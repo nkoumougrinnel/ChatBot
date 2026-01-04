@@ -1,0 +1,497 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{tabularx}
+
+% Configuration des listes
+\setlist[itemize]{leftmargin=*, itemsep=3pt, topsep=3pt}
+\setlist[enumerate]{leftmargin=*, itemsep=3pt, topsep=3pt}
+
+% Configuration du code
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{orange},
+    tabsize=4,
+    showstringspaces=false
+}
+
+% En-tête et pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Système de Gestion FAQ - Documentation Technique}
+\fancyhead[R]{\small \today}
+\fancyfoot[C]{\thepage}
+
+% Définition d'un environnement "important"
+\newtcolorbox{important}[1][]{
+  colback=red!5!white,
+  colframe=red!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+% Définition d'un environnement "info"
+\newtcolorbox{info}[1][]{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\begin{document}
+
+% Page de titre
+\begin{titlepage}
+    \centering
+    % Logo de l'école
+    \includegraphics[width=0.3\textwidth]{images/logo_supptic.png} \\[1cm]
+    
+    \vspace*{2cm}
+    {\Huge \textbf{Système de Gestion FAQ ChatBot}} \\[0.5cm]
+    {\Large Architecture et Implémentation Technique} \\[1.5cm]
+    
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \textbf{Documentation Technique Complète} \\[0.3cm]
+        \small Pipeline d'importation des données depuis Google Sheets \\
+        vers une base de données SQLite locale
+    \end{minipage}
+    
+    \vfill
+    
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \faIcon{user} \textbf{Auteur :} NKOUMOU GERMAIN \\
+        \faIcon{calendar} \textbf{Date :} \today \\
+        \faIcon{code} \textbf{Version :} 1.0.0
+    \end{minipage}
+    
+    \vspace{2cm}
+\end{titlepage}
+
+% Table des matières
+\tableofcontents
+\clearpage
+
+% Section 1 : Introduction
+\section{Introduction}
+\label{sec:introduction}
+
+Ce document présente l'architecture complète du \textbf{Système de Gestion FAQ ChatBot}. L'objectif principal est d'automatiser la collecte, la validation et l'insertion des questions/réponses depuis un formulaire Google Sheets vers une base de données SQLite locale, afin d'alimenter un chatbot conversationnel.
+
+\subsection{Contexte et Objectifs}
+\begin{itemize}
+    \item \textbf{Automatiser} le processus de collecte des données depuis Google Sheets
+    \item \textbf{Standardiser} le workflow de validation des données par l'équipe
+    \item \textbf{Sécuriser} le stockage des données FAQ dans une base locale
+    \item \textbf{Tracer} l'ensemble des opérations via des logs et archives
+    \item \textbf{Documenter} l'architecture pour faciliter la maintenance
+\end{itemize}
+
+\subsection{Architecture Globale}
+Le système suit une architecture en pipeline avec les étapes suivantes :
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.9\textwidth}
+\begin{lstlisting}
+[Google Sheets] → [Collecte] → [Validation] → [Base de Données]
+        ↓               ↓           ↓               ↓
+   Formulaire     sync.py    Traitement     import_validated.py
+     Source      (export)     Manuel          (insertion BD)
+\end{lstlisting}
+    \end{minipage}
+    \caption{Flux de données simplifié}
+\end{figure}
+
+% Section 2 : Configuration Initiale
+\section{Configuration Initiale}
+\label{sec:initial-config}
+
+\subsection{Structure du Projet}
+\begin{lstlisting}
+ChatBot/
+├── config/               # Configuration et clés d'API
+│   └── faq-service-key.json
+├── scripts/              # Scripts Python
+│   ├── sync.py
+│   └── import_validated.py
+├── data/                 # Données par statut
+│   ├── pending/
+│   ├── processing/
+│   ├── validated/
+│   └── archived/
+├── db/                   # Base de données
+│   └── faq.db
+├── logs/                 # Journaux d'activité
+│   └── sync.log
+├── docs/                 # Documentation
+└── tests/                # Tests unitaires
+\end{lstlisting}
+
+\subsection{Dépendances Système}
+\begin{lstlisting}[language=bash]
+# Installation des packages Python requis
+pip install gspread oauth2client pandas
+\end{lstlisting}
+
+\begin{itemize}
+    \item \textbf{Python 3.7+} requis
+    \item \textbf{Connexion internet} nécessaire pour la synchronisation
+    \item \textbf{Permissions en écriture} sur le système de fichiers
+\end{itemize}
+
+% Section 3 : Scripts d'Automatisation
+\section{Scripts d'Automatisation}
+\label{sec:automation-scripts}
+
+\subsection{sync.py - Collecte des Données}
+\label{subsec:sync-script}
+
+Ce script est responsable de la collecte automatique des données depuis Google Sheets. Il s'exécute périodiquement et suit le processus suivant :
+
+\begin{enumerate}
+    \item Vérification de la connectivité internet
+    \item Authentification avec l'API Google Sheets
+    \item Récupération des nouvelles données
+    \item Export au format CSV horodaté
+    \item Journalisation des opérations
+\end{enumerate}
+
+\begin{lstlisting}[language=Python, caption=sync.py - Fonction principale]
+def main():
+    # Vérification de la connexion
+    if not check_connection():
+        log_status("FAILURE - No internet connection")
+        return
+    
+    try:
+        # Configuration des scopes API
+        scope = [
+            "https://spreadsheets.google.com/feeds",
+            "https://www.googleapis.com/auth/drive"
+        ]
+        
+        # Chargement des credentials
+        key_file = Path(__file__).parent.parent / "config" / "faq-service-key.json"
+        creds = ServiceAccountCredentials.from_json_keyfile_name(str(key_file), scope)
+        client = gspread.authorize(creds)
+        
+        # Accès à la feuille
+        sheet = client.open("FAQ ChatBot (réponses)").sheet1
+        rows = sheet.get_all_records()
+        
+        # Création du fichier CSV horodaté
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
+        filename = f"new_data_{timestamp}.csv"
+        filepath = Path("data/pending") / filename
+        
+        # Export des données
+        with filepath.open("w", newline="", encoding="utf-8") as csvfile:
+            if rows:
+                fieldnames = list(rows[0].keys())
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(rows)
+        
+        log_status(f"SUCCESS - Fichier créé: {filename}")
+        
+    except Exception as e:
+        log_status(f"FAILURE - {str(e)}")
+        raise
+\end{lstlisting}
+
+\subsection{import\_validated.py - Insertion en Base}
+\label{subsec:import-script}
+
+Ce script traite les fichiers validés par l'équipe et les insère dans la base de données SQLite.
+
+\begin{lstlisting}[language=Python, caption=import\_validated.py - Structure]
+def import_validated():
+    # Connexion à la base de données
+    db_path = Path("db/faq.db")
+    conn = sqlite3.connect(str(db_path))
+    cursor = conn.cursor()
+    
+    # Création de la table si elle n'existe pas
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS faq (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        question TEXT,
+        answer TEXT
+    )
+    """)
+    
+    # Traitement des fichiers validés
+    validated_dir = Path("data/validated")
+    for file in validated_dir.glob("*.csv"):
+        df = pd.read_csv(file)
+        
+        # Insertion des données
+        for _, row in df.iterrows():
+            cursor.execute(
+                "INSERT INTO faq (question, answer) VALUES (?, ?)",
+                (row.get('Question'), row.get('Réponse'))
+            )
+        
+        conn.commit()
+        
+        # Archivage du fichier
+        archive_file(file)
+    
+    conn.close()
+\end{lstlisting}
+
+% Section 4 : Workflow de Gestion des Données
+\section{Workflow de Gestion des Données}
+\label{sec:data-workflow}
+
+\subsection{Cycle de Vie des dnnées}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+    \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!20]
+    \tikzstyle{arrow} = [thick,->,>=stealth]
+    
+    \node (source) [process] {Google Sheets};
+    \node (sync) [process, right of=source, xshift=2cm] {sync.py};
+    \node (pending) [process, right of=sync, xshift=2cm] {data/pending/};
+    \node (processing) [process, below of=pending, yshift=-1cm] {data/processing/};
+    \node (validated) [process, left of=processing, xshift=-2cm] {data/validated/};
+    \node (import) [process, left of=validated, xshift=-2cm] {import\_validated.py};
+    \node (database) [process, below of=import, yshift=-1cm] {faq.db};
+    \node (archived) [process, right of=database, xshift=2cm] {data/archived/};
+    
+    \draw [arrow] (source) -- (sync);
+    \draw [arrow] (sync) -- (pending);
+    \draw [arrow] (pending) -- node[anchor=south] {Manuel} (processing);
+    \draw [arrow] (processing) -- (validated);
+    \draw [arrow] (validated) -- (import);
+    \draw [arrow] (import) -- (database);
+    \draw [arrow] (import) -- (archived);
+    \end{tikzpicture}
+    \caption{Flux complet de traitement des données}
+\end{figure}
+
+\subsection{Étapes Détaillées}
+
+\textbf{1. Collecte Automatique}
+\begin{itemize}
+    \item Exécution périodique de \texttt{sync.py}
+    \item Création de fichiers au format : \texttt{new\_data\_YYYY-MM-DD\_HH-MM.csv}
+    \item Stockage initial dans \texttt{data/pending/}
+\end{itemize}
+
+\textbf{2. Validation Manuelle}
+\begin{itemize}
+    \item Déplacement des fichiers vers \texttt{data/processing/}
+    \item Vérification et correction du contenu
+    \item Validation finale et déplacement vers \texttt{data/validated/}
+\end{itemize}
+
+\textbf{3. Insertion en Base}
+\begin{itemize}
+    \item Exécution de \texttt{import\_validated.py}
+    \item Lecture de tous les fichiers CSV dans \texttt{data/validated/}
+    \item Insertion dans la table \texttt{faq} de \texttt{faq.db}
+    \item Archivage automatique dans \texttt{data/archived/}
+\end{itemize}
+
+% Section 5 : Configuration API Google
+\section{Configuration API Google}
+\label{sec:google-api}
+
+\subsection{Création du Projet Google Cloud}
+\begin{enumerate}
+    \item Accéder à \href{https://console.cloud.google.com}{Google Cloud Console}
+    \item Créer un nouveau projet : \texttt{faq-chatbot-2026}
+    \item Activer les APIs :
+    \begin{itemize}
+        \item Google Sheets API
+        \item Google Drive API (nécessaire pour gspread)
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Compte de Service}
+\begin{info}[Compte de Service]
+Le compte de service permet une authentification sécurisée sans intervention utilisateur. Il est essentiel pour les processus automatisés.
+\end{info}
+
+\textbf{Configuration :}
+\begin{enumerate}
+    \item Navigation : \textbf{IAM \& Admin \to Service Accounts}
+    \item Créer un compte : \texttt{faq-service}
+    \item Attribuer le rôle : \textbf{Editor} ou \textbf{Sheets Editor}
+    \item Générer une clé JSON : \texttt{faq-service-key.json}
+\end{enumerate}
+
+\begin{important}[Sécurité des Clés]
+\begin{itemize}
+    \item La clé JSON contient des identifiants sensibles
+    \item Ne jamais commiter dans le dépôt Git
+    \item Ajouter au \texttt{.gitignore} : \texttt{config/faq-service-key.json}
+    \item Stocker dans un endroit sécurisé hors du projet
+\end{itemize}
+\end{important}
+
+\subsection{Partage de la Feuille Google}
+\begin{enumerate}
+    \item Ouvrir la feuille : \texttt{FAQ ChatBot (réponses)}
+    \item Cliquer sur \textbf{Partager}
+    \item Ajouter l'email du compte de service :
+    \begin{verbatim}
+    faq-service@faq-chatbot-2026.iam.gserviceaccount.com
+    \end{verbatim}
+    \item Attribuer les permissions : \textbf{Reader} ou \textbf{Editor}
+\end{enumerate}
+
+% Section 6 : Base de Données
+\section{Base de Données SQLite}
+\label{sec:database}
+
+\subsection{Structure de la Table FAQ}
+\begin{lstlisting}[language=SQL]
+CREATE TABLE faq (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    question TEXT NOT NULL,
+    answer TEXT NOT NULL,
+);
+\end{lstlisting}
+
+\subsection{Schéma de Données}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|X|X|X|X|}
+        \hline
+        \textbf{Colonne} & \textbf{Type} & \textbf{Contrainte} & \textbf{Description} \\
+        \hline
+        id & INTEGER & PRIMARY KEY & Identifiant unique auto-incrémenté \\
+        \hline
+        question & TEXT & NOT NULL & Texte de la question posée \\
+        \hline
+        answer & TEXT & NOT NULL & Réponse correspondante \\
+        \hline
+    \end{tabularx}
+    \caption{Structure de la table FAQ}
+\end{table}
+
+\subsection{Gestion de la Base}
+\begin{itemize}
+    \item \textbf{Localisation} : \texttt{db/faq.db}
+    \item \textbf{Interface} : Script Python via sqlite3
+    \item \textbf{Sauvegarde} : Recommandée régulièrement
+    \item \textbf{Versionnage} : Exclusion du fichier \texttt{.db} dans Git
+\end{itemize}
+
+% Section 7 : Journalisation et Monitoring
+\section{Journalisation et Monitoring}
+\label{sec:logging}
+
+\subsection{Fichier de Logs}
+Toutes les opérations de synchronisation sont tracées dans \texttt{logs/sync.log} :
+
+\begin{lstlisting}
+[2026-01-04 14:30:25] SUCCESS - Fichier créé: new_data_2026-01-04_14-30.csv
+[2026-01-04 14:30:26] SUCCESS - 15 enregistrements exportés
+[2026-01-04 20:30:01] FAILURE - No internet connection
+[2026-01-05 08:30:15] SUCCESS - Fichier créé: new_data_2026-01-05_08-30.csv
+\end{lstlisting}
+
+\subsection{Format des Logs}
+\begin{itemize}
+    \item \textbf{Timestamp} : Date et heure précise
+    \item \textbf{Statut} : SUCCESS ou FAILURE
+    \item \textbf{Message} : Description détaillée
+\end{itemize}
+
+% Section 8 : Déploiement et Maintenance
+\section{Déploiement et Maintenance}
+\label{sec:deployment}
+
+\subsection{Nettoyage des Archives}
+\begin{lstlisting}[language=bash]
+# Suppression des archives de plus de 30 jours
+find data/archived/ -name "*.csv" -mtime +30 -delete
+\end{lstlisting}
+
+\subsection{Sauvegarde}
+\begin{itemize}
+    \item \textbf{Base de données} : Copie régulière de \texttt{faq.db}
+    \item \textbf{Configuration} : Sauvegarde des clés API
+    \item \textbf{Logs} : Archivage mensuel
+    \item \textbf{Scripts} : Versionnés dans Git
+\end{itemize}
+
+% Section 9 : Dépannage
+\section{Dépannage et FAQ Technique}
+\label{sec:troubleshooting}
+
+\subsection{Problèmes Courants}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|p{0.3\textwidth}|p{0.6\textwidth}|}
+        \hline
+        \textbf{Symptôme} & \textbf{Solution} \\
+        \hline
+        Erreur d'authentification & Vérifier la validité de la clé JSON \\
+        \hline
+        Permission denied sur Google Sheet & Vérifier le partage avec le compte de service \\
+        \hline
+        Pas de connexion internet & Attendre la restauration ou vérifier la config réseau \\
+        \hline
+        Fichier CSV vide & Vérifier les données dans Google Sheets \\
+        \hline
+        Erreur SQLite & Vérifier les permissions en écriture sur db/ \\
+        \hline
+    \end{tabular}
+    \caption{Guide de dépannage rapide}
+\end{table}
+
+\subsection{Vérifications Système}
+\begin{enumerate}
+    \item \textbf{Python} : Version 3.7+ installée
+    \item \textbf{Dépendances} : Packages requis installés
+    \item \textbf{Permissions} : Accès en écriture sur les dossiers
+    \item \textbf{Réseau} : Connexion internet active
+    \item \textbf{API Google} : Activées et configurées
+\end{enumerate}
+
+% Conclusion
+\section*{Conclusion}
+
+Cette documentation présente l'architecture complète du système de gestion FAQ pour ChatBot. L'approche modulaire et automatisée permet :
+
+\begin{itemize}
+    \item Une collecte régulière et fiable des données depuis Google Sheets
+    \item Un processus de validation contrôlé et traçable
+    \item Un stockage sécurisé dans une base de données SQLite locale
+    \item Une maintenance facilitée par une documentation complète
+\end{itemize}
+
+\vspace{1cm}
+\begin{center}
+    \faIcon{check-circle} \textbf{Système opérationnel et documenté} \\
+    \small Prêt pour le déploiement en production
+\end{center}
+
+\end{document}

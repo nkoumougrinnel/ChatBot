@@ -1,0 +1,21 @@
+# Secrets
+config/faq-service-key.json
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Data and db (if you prefer to exclude them from VCS)
+db/faq.db
+data/archived/
+
+# Logs
+logs/
+
+# LaTeX build artifacts
+docs/latex/*.aux
+docs/latex/*.log
+docs/latex/*.out
+docs/latex/*.toc
+docs/latex/*.synctex.gz
