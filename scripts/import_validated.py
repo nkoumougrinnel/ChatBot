@@ -3,14 +3,13 @@ import sqlite3
 import pandas as pd
 import shutil
 from pathlib import Path
+import csv
 
 
 def import_validated():
     # Chemins basés sur la racine du projet
     root = Path(__file__).resolve().parent.parent
     db_path = root / "db" / "faq.db"
-    if not db_path.exists():
-        raise FileNotFoundError(f"Database not found: {db_path}")
 
     conn = sqlite3.connect(str(db_path))
     cursor = conn.cursor()
@@ -32,14 +31,20 @@ def import_validated():
     for file in os.listdir(validated_dir):
         if file.endswith(".csv"):
             filepath = validated_dir / file
-            df = pd.read_csv(filepath)
+            with open(filepath, 'r', encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile)
+                reader.fieldnames = [name.strip() for name in reader.fieldnames]
+                rows = list(reader)
 
             # Insertion en BD
-            for _, row in df.iterrows():
-                cursor.execute(
-                    "INSERT INTO faq (question, answer) VALUES (?, ?)",
-                    (row.get('Question'), row.get('Réponse')),
-                )
+            for row in rows:
+                question = row.get('Question', '').strip()
+                answer = row.get('Réponse', '').strip()
+                if question and answer:  # Skip empty rows
+                    cursor.execute(
+                        "INSERT INTO faq (question, answer) VALUES (?, ?)",
+                        (question, answer),
+                    )
             conn.commit()
 
             # Déplacement vers archived

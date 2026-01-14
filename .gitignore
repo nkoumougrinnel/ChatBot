@@ -19,3 +19,4 @@ docs/latex/*.log
 docs/latex/*.out
 docs/latex/*.toc
 docs/latex/*.synctex.gz
+docs/latex/*.pdf

@@ -101,6 +101,14 @@ python scripts/import_validated.py
 - Insère les données dans `db/faq.db`
 - Déplace les fichiers vers `data/archived/`
 
+### Reset et réimport complet
+
+Pour recommencer à zéro (supprimer DB, remettre archived en validated et réimporter) :
+
+```bash
+python scripts/reset_and_import.py
+```
+
 ## Base de Données
 
 La table `faq` dans `db/faq.db` contient :

@@ -32,51 +32,67 @@ def log_status(status):
         timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
         f.write(f"[{timestamp}] {status}\n")
 
-    def main():
-        if not check_connection():
-            log_status("FAILURE - No internet connection")
-            print("Pas de connexion, synchronisation annulée.")
+def get_last_row_index():
+    """Lit le dernier index sauvegardé depuis un fichier."""
+    state_file = Path(__file__).resolve().parent.parent / "data" / "last_row.txt"
+    if state_file.exists():
+        return int(state_file.read_text().strip())
+    return 0
+
+def save_last_row_index(index):
+    """Sauvegarde le dernier index traité."""
+    state_file = Path(__file__).resolve().parent.parent / "data" / "last_row.txt"
+    state_file.write_text(str(index))
+
+def main():
+    if not check_connection():
+        log_status("FAILURE - No internet connection")
+        print("Pas de connexion, synchronisation annulée.")
+        return
+
+    try:
+        scope = [
+            "https://spreadsheets.google.com/feeds",
+            "https://www.googleapis.com/auth/drive",
+        ]
+        key_file = Path(__file__).resolve().parent.parent / "config" / "faq-service-key.json"
+        creds = ServiceAccountCredentials.from_json_keyfile_name(str(key_file), scope)
+        client = gspread.authorize(creds)
+
+        sheet = client.open("FAQ ChatBot (réponses)").sheet1
+        all_rows = sheet.get_all_values()  # toutes les lignes brutes
+        headers, data = all_rows[0], all_rows[1:]  # première ligne = entêtes
+
+        last_index = get_last_row_index()
+        new_rows = data[last_index:]  # uniquement les nouvelles lignes
+
+        if not new_rows:
+            log_status("INFO - Aucune nouvelle donnée")
+            print("Aucune nouvelle donnée à synchroniser.")
             return
 
-        try:
-            # Scopes pour Google Sheets / Drive
-            scope = [
-                "https://spreadsheets.google.com/feeds",
-                "https://www.googleapis.com/auth/drive",
-            ]
+        # Créer le fichier CSV horodaté
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
+        filename = f"new_data_{timestamp}.csv"
+        pending_dir = Path(__file__).resolve().parent.parent / "data" / "pending"
+        pending_dir.mkdir(parents=True, exist_ok=True)
+        filepath = pending_dir / filename
 
-            # Emplacement de la clé de service dans la nouvelle arborescence
-            key_file = Path(__file__).resolve().parent.parent / "config" / "faq-service-key.json"
-            if not key_file.exists():
-                raise FileNotFoundError(f"Clé de service introuvable: {key_file}")
+        with filepath.open("w", newline="", encoding="utf-8") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(headers)
+            writer.writerows(new_rows)
 
-            creds = ServiceAccountCredentials.from_json_keyfile_name(str(key_file), scope)
-            client = gspread.authorize(creds)
+        # Mettre à jour l’index
+        save_last_row_index(last_index + len(new_rows))
 
-            sheet = client.open("FAQ ChatBot (réponses)").sheet1
-            rows = sheet.get_all_records()
+        log_status(f"SUCCESS - Fichier créé: {filename}")
+        print(f"Synchronisation réussie. Fichier créé: {filepath}")
 
-            # Créer le fichier CSV horodaté dans data/pending/
-            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
-            filename = f"new_data_{timestamp}.csv"
-            pending_dir = Path(__file__).resolve().parent.parent / "data" / "pending"
-            pending_dir.mkdir(parents=True, exist_ok=True)
-            filepath = pending_dir / filename
-
-            with filepath.open("w", newline="", encoding="utf-8") as csvfile:
-                if rows:
-                    fieldnames = list(rows[0].keys())
-                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                    writer.writeheader()
-                    writer.writerows(rows)
-
-            log_status(f"SUCCESS - Fichier créé: {filename}")
-            print(f"Synchronisation réussie. Fichier créé: {filepath}")
-
-        except Exception as e:
-            log_status(f"FAILURE - {str(e)}")
-            print("Erreur pendant la synchro :", e)
+    except Exception as e:
+        log_status(f"FAILURE - {str(e)}")
+        print("Erreur pendant la synchro :", e)
 
 
-    if __name__ == "__main__":
+if __name__ == "__main__":
         main()

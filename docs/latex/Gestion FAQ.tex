@@ -83,7 +83,7 @@
         \centering
         \faIcon{user} \textbf{Auteur :} NKOUMOU GERMAIN \\
         \faIcon{calendar} \textbf{Date :} \today \\
-        \faIcon{code} \textbf{Version :} 1.0.0
+        %\faIcon{code} \textbf{Version :} 1.0.0
     \end{minipage}
     
     \vspace{2cm}
@@ -135,8 +135,10 @@ ChatBot/
 │   └── faq-service-key.json
 ├── scripts/              # Scripts Python
 │   ├── sync.py
-│   └── import_validated.py
+│   ├── import_validated.py
+│   └── reset_and_import.py
 ├── data/                 # Données par statut
+│   ├── last_row.txt      # Suivi du dernier index traité
 │   ├── pending/
 │   ├── processing/
 │   ├── validated/
@@ -145,15 +147,27 @@ ChatBot/
 │   └── faq.db
 ├── logs/                 # Journaux d'activité
 │   └── sync.log
+├── tests/                # Tests et vérifications
+│   └── test_db.py
 ├── docs/                 # Documentation
-└── tests/                # Tests unitaires
+├── .gitignore            # Patterns d'exclusion Git
+├── requirements.txt      # Dépendances Python
+└── README.md             # Documentation du projet
 \end{lstlisting}
 
 \subsection{Dépendances Système}
 \begin{lstlisting}[language=bash]
 # Installation des packages Python requis
-pip install gspread oauth2client pandas
+pip install -r requirements.txt
 \end{lstlisting}
+
+Les dépendances incluent :
+\begin{itemize}
+    \item \textbf{gspread} : Interface Python pour Google Sheets
+    \item \textbf{oauth2client} : Authentification OAuth2
+    \item \textbf{pandas} : Manipulation de données (optionnel)
+    \item \textbf{requests} : Requêtes HTTP pour vérification de connexion
+\end{itemize}
 
 \begin{itemize}
     \item \textbf{Python 3.7+} requis
@@ -173,8 +187,9 @@ Ce script est responsable de la collecte automatique des données depuis Google 
 \begin{enumerate}
     \item Vérification de la connectivité internet
     \item Authentification avec l'API Google Sheets
-    \item Récupération des nouvelles données
+    \item Récupération des \textbf{nouvelles données uniquement} (via suivi d'index)
     \item Export au format CSV horodaté
+    \item Mise à jour de l'index de la dernière ligne traitée
     \item Journalisation des opérations
 \end{enumerate}
 
@@ -221,53 +236,59 @@ def main():
         raise
 \end{lstlisting}
 
-\subsection{import\_validated.py - Insertion en Base}
-\label{subsec:import-script}
+\subsection{reset\_and\_import.py - Reset et Réimport}
+\label{subsec:reset-script}
 
-Ce script traite les fichiers validés par l'équipe et les insère dans la base de données SQLite.
+Ce script permet de recommencer le processus d'importation à zéro. Il est utile pour les tests ou en cas de besoin de revalidation complète.
 
-\begin{lstlisting}[language=Python, caption=import\_validated.py - Structure]
-def import_validated():
-    # Connexion à la base de données
+\begin{lstlisting}[language=Python, caption=reset\_and\_import.py - Fonction principale]
+def reset_and_import():
+    # Suppression de la base de données
     db_path = Path("db/faq.db")
-    conn = sqlite3.connect(str(db_path))
+    if db_path.exists():
+        db_path.unlink()
+    
+    # Déplacement des archives vers validated
+    archived_dir = Path("data/archived")
+    validated_dir = Path("data/validated")
+    for file in archived_dir.glob("*.csv"):
+        shutil.move(str(file), str(validated_dir / file.name))
+    
+    # Exécution de l'import
+    subprocess.run([sys.executable, "import_validated.py"], cwd="scripts")
+\end{lstlisting}
+
+% Section 4 : Tests et Vérifications
+\section{Tests et Vérifications}
+\label{sec:tests}
+
+\subsection{test\_db.py - Vérification de la Base de Données}
+\label{subsec:test-script}
+
+Ce script permet de vérifier l'état de la base de données et d'effectuer des requêtes de test.
+
+\begin{lstlisting}[language=Python, caption=test\_db.py - Fonctions principales]
+def test_db_queries():
+    # Connexion à la base
+    conn = sqlite3.connect("db/faq.db")
     cursor = conn.cursor()
     
-    # Création de la table si elle n'existe pas
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS faq (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        question TEXT,
-        answer TEXT
-    )
-    """)
-    
-    # Traitement des fichiers validés
-    validated_dir = Path("data/validated")
-    for file in validated_dir.glob("*.csv"):
-        df = pd.read_csv(file)
-        
-        # Insertion des données
-        for _, row in df.iterrows():
-            cursor.execute(
-                "INSERT INTO faq (question, answer) VALUES (?, ?)",
-                (row.get('Question'), row.get('Réponse'))
-            )
-        
-        conn.commit()
-        
-        # Archivage du fichier
-        archive_file(file)
+    # Affichage de la structure
+    cursor.execute("PRAGMA table_info(faq)")
+    # Comptage des entrées
+    cursor.execute("SELECT COUNT(*) FROM faq")
+    # Affichage d'échantillons
+    cursor.execute("SELECT id, question, answer FROM faq LIMIT 5")
+    # Recherche par mot-clé
     
     conn.close()
 \end{lstlisting}
 
-% Section 4 : Workflow de Gestion des Données
-\section{Workflow de Gestion des Données}
-\label{sec:data-workflow}
+% Section 5 : Workflow de Gestion des Données
 
-\subsection{Cycle de Vie des dnnées}
-\begin{figure}[H]
+\subsection{Cycle de Vie des données}\begin{itemize}
+    \item \textbf{last\_row.txt} : Fichier de suivi contenant l'index de la dernière ligne traitée depuis Google Sheets, permettant d'éviter les doublons lors des synchronisations successives.
+\end{itemize}\begin{figure}[H]
     \centering
     \begin{tikzpicture}[node distance=2cm]
     \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!20]
@@ -400,7 +421,7 @@ CREATE TABLE faq (
     \item \textbf{Localisation} : \texttt{db/faq.db}
     \item \textbf{Interface} : Script Python via sqlite3
     \item \textbf{Sauvegarde} : Recommandée régulièrement
-    \item \textbf{Versionnage} : Exclusion du fichier \texttt{.db} dans Git
+    \item \textbf{Versionnage} : Exclusion du fichier \texttt{.db} dans \texttt{.gitignore}
 \end{itemize}
 
 % Section 7 : Journalisation et Monitoring
