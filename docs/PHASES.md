@@ -1,14 +1,14 @@
-# Phases du Projet ChatBot FAQ Management System
+# Phases du Projet ChatBot
 
 ## Vue d'ensemble
 
-Le projet est conçu en **phases successives** pour progresser graduellement vers une solution complète et autonome.
+Le projet **ChatBot** est conçu en **phases successives** pour progresser d'une gestion simple de FAQ vers un chatbot complet.
 
-## 📌 Phase 1 : Collecte et Validation des Données
+## 📌 Phase 1 : FAQ Management System
 
 **Status** : 🟢 En cours
 
-**Objectif** : Automatiser partiellement la collecte de FAQ depuis Google Sheets avec validation manuelle avant insertion en base.
+**Objectif** : Mettre en place une base solide pour la gestion des FAQ avec collecte depuis Google Sheets et validation manuelle avant insertion en base.
 
 ### Caractéristiques
 

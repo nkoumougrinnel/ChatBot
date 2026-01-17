@@ -1,18 +1,18 @@
-# Architecture du Système
+# Architecture du Système - ChatBot
 
 ## Vue d'ensemble
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│         ChatBot FAQ Management System                        │
+│                    ChatBot Project                          │
 ├─────────────────────────────────────────────────────────────┤
 │                                                               │
-│  Phase 1 (Collecte)    Phase 2 (À venir)    Phase 3+ ...   │
-│  ┌──────────────┐     ┌──────────────┐                      │
-│  │  Scripts     │     │  Scripts     │                      │
-│  │  Config      │     │  Config      │                      │
-│  │  Data        │     │  Data        │                      │
-│  └──────────────┘     └──────────────┘                      │
+│  Phase 1 (FAQ Mgmt)  Phase 2 (NLP)  Phase 3+ ...           │
+│  ┌──────────────┐   ┌──────────────┐                        │
+│  │  FAQ System  │   │   Chatbot    │                        │
+│  │  Scripts     │   │   Core       │                        │
+│  │  Data        │   │   Scripts    │                        │
+│  └──────────────┘   └──────────────┘                        │
 │          │                   │                               │
 │          └───────────┬───────┘                               │
 │                      │                                       │

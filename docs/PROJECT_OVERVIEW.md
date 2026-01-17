@@ -1,14 +1,14 @@
-# ChatBot FAQ Management System - Vue d'ensemble
+# ChatBot - Vue d'ensemble Projet
 
 ## 🎯 Objectif Global
 
-Un système modulaire et extensible pour gérer les FAQ d'un chatbot, conçu en **phases successives** pour progresser graduellement du traitement manuel des données à une solution complètement automatisée.
+Construction d'un **chatbot intelligent** conçu en **phases successives**. Chaque phase ajoute des capacités pour progresser graduellement d'une simple gestion de FAQ à une solution complète et autonome.
 
 ## 📋 Phases du Projet
 
-### **Phase 1 : Collecte et Validation des Données** (Actuelle)
+### **Phase 1 : FAQ Management System** (Actuelle)
 
-Collecte semi-automatisée des FAQ depuis Google Sheets avec validation manuelle avant insertion en base de données SQLite.
+Gestion des FAQ : collecte semi-automatisée depuis Google Sheets avec validation manuelle avant insertion en base de données SQLite.
 
 - **Synchronisation** depuis Google Sheets
 - **Validation manuelle** par l'équipe

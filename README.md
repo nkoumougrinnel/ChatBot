@@ -1,19 +1,21 @@
-# ChatBot FAQ Management System
+# ChatBot
 
-> Un système modulaire et extensible pour gérer les FAQ d'un chatbot, conçu en phases successives.
+> Un projet modulaire et extensible pour construire un chatbot intelligent, conçu en phases successives.
 
 ## 🎯 Qu'est-ce que c'est ?
 
-**ChatBot FAQ Management System** est une solution pour automatiser progressivement la gestion des FAQ d'un chatbot. Le projet est organisé en **phases**, chacune ajoutant des fonctionnalités.
+**ChatBot** est un projet complet visant à développer un chatbot intelligent. Le projet est organisé en **phases**, chacune ajoutant des fonctionnalités.
 
-### Phase 1 (Actuelle) : Collecte et Validation
+### Phase 1 (Actuelle) : FAQ Management System
+
+Gestion et collecte des FAQ depuis Google Sheets avec validation manuelle :
 
 - Synchronisation depuis Google Sheets
 - Validation manuelle par l'équipe
 - Insertion en base SQLite
 - Archivage pour traçabilité
 
-Les futures phases ajouteront de nouvelles capacités (enrichissement, déduplication, interface web, etc.).
+Les futures phases ajouteront de nouvelles capacités (traitement du langage naturel, interface utilisateur, déploiement, etc.).
 
 ## 📚 Documentation
 
