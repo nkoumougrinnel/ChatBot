@@ -5,7 +5,7 @@ def test_db_queries():
     """Test script pour interroger la base de données FAQ."""
 
     # Chemin vers la DB
-    db_path = Path(__file__).resolve().parent.parent / "db" / "faq.db"
+    db_path = Path(__file__).resolve().parent.parent.parent / "db" / "faq.db"
 
     if not db_path.exists():
         print(f"Base de données introuvable: {db_path}")

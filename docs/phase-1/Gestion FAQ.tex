@@ -131,24 +131,25 @@ Le système suit une architecture en pipeline avec les étapes suivantes :
 \subsection{Structure du Projet}
 \begin{lstlisting}
 ChatBot/
-├── config/               # Configuration et clés d'API
-│   └── faq-service-key.json
-├── scripts/              # Scripts Python
-│   ├── sync.py
-│   ├── import_validated.py
-│   └── reset_and_import.py
-├── data/                 # Données par statut
-│   ├── last_row.txt      # Suivi du dernier index traité
-│   ├── pending/
-│   ├── processing/
-│   ├── validated/
-│   └── archived/
-├── db/                   # Base de données
+├── phase-1/              # Phase 1 : Collecte & Validation
+│   ├── config/           # Configuration et clés d'API
+│   │   └── faq-service-key.json
+│   ├── scripts/          # Scripts Python
+│   │   ├── sync.py
+│   │   ├── import_validated.py
+│   │   └── reset_and_import.py
+│   ├── data/             # Données par statut
+│   │   ├── last_row.txt  # Suivi du dernier index traité
+│   │   ├── pending/
+│   │   ├── processing/
+│   │   ├── validated/
+│   │   └── archived/
+│   └── tests/            # Tests et vérifications
+│       └── test_db.py
+├── db/                   # Base de données partagée
 │   └── faq.db
 ├── logs/                 # Journaux d'activité
 │   └── sync.log
-├── tests/                # Tests et vérifications
-│   └── test_db.py
 ├── docs/                 # Documentation
 ├── .gitignore            # Patterns d'exclusion Git
 ├── requirements.txt      # Dépendances Python
@@ -219,7 +220,7 @@ def main():
         # Création du fichier CSV horodaté
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
         filename = f"new_data_{timestamp}.csv"
-        filepath = Path("data/pending") / filename
+        filepath = Path("../data/pending") / filename
         
         # Export des données
         with filepath.open("w", newline="", encoding="utf-8") as csvfile:
@@ -249,13 +250,13 @@ def reset_and_import():
         db_path.unlink()
     
     # Déplacement des archives vers validated
-    archived_dir = Path("data/archived")
-    validated_dir = Path("data/validated")
+    archived_dir = Path("../data/archived")
+    validated_dir = Path("../data/validated")
     for file in archived_dir.glob("*.csv"):
         shutil.move(str(file), str(validated_dir / file.name))
     
     # Exécution de l'import
-    subprocess.run([sys.executable, "import_validated.py"], cwd="scripts")
+    subprocess.run([sys.executable, "import_validated.py"], cwd="."))
 \end{lstlisting}
 
 % Section 4 : Tests et Vérifications

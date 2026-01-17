@@ -26,7 +26,7 @@ import time
 def log_status(status):
 
     """Logs the given status message to a file with a timestamp."""
-    log_file = Path(__file__).resolve().parent.parent / "logs" / "sync.log"
+    log_file = Path(__file__).resolve().parent.parent.parent / "logs" / "sync.log"
     log_file.parent.mkdir(parents=True, exist_ok=True)
     with log_file.open("a", encoding="utf-8") as f:
         timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
@@ -58,8 +58,11 @@ def main():
         key_file = Path(__file__).resolve().parent.parent / "config" / "faq-service-key.json"
         creds = ServiceAccountCredentials.from_json_keyfile_name(str(key_file), scope)
         client = gspread.authorize(creds)
-
-        sheet = client.open("FAQ ChatBot (réponses)").sheet1
+        
+        
+        sheet_id = "1aTLOEaa4ImqiLUr1LS4BFAHvqf1n55bDj-ET2ie2frw"
+        spreadsheet = client.open_by_key(sheet_id)
+        sheet = spreadsheet.sheet1
         all_rows = sheet.get_all_values()  # toutes les lignes brutes
         headers, data = all_rows[0], all_rows[1:]  # première ligne = entêtes
 

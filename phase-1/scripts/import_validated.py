@@ -8,7 +8,7 @@ import csv
 
 def import_validated():
     # Chemins basés sur la racine du projet
-    root = Path(__file__).resolve().parent.parent
+    root = Path(__file__).resolve().parent.parent.parent
     db_path = root / "db" / "faq.db"
 
     conn = sqlite3.connect(str(db_path))
@@ -23,8 +23,9 @@ def import_validated():
     )
     """)
 
-    validated_dir = root / "data" / "validated"
-    archived_dir = root / "data" / "archived"
+    phase1_root = Path(__file__).resolve().parent.parent
+    validated_dir = phase1_root / "data" / "validated"
+    archived_dir = phase1_root / "data" / "archived"
     validated_dir.mkdir(parents=True, exist_ok=True)
     archived_dir.mkdir(parents=True, exist_ok=True)
 

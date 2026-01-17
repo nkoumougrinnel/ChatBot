@@ -13,7 +13,8 @@ import subprocess
 import sys
 
 def reset_and_import():
-    root = Path(__file__).resolve().parent.parent
+    root = Path(__file__).resolve().parent.parent.parent
+    phase1_root = Path(__file__).resolve().parent.parent
 
     # 1. Supprimer la DB
     db_path = root / "db" / "faq.db"
@@ -22,8 +23,8 @@ def reset_and_import():
         print("Base de données supprimée.")
 
     # 2. Déplacer archived vers validated
-    archived_dir = root / "data" / "archived"
-    validated_dir = root / "data" / "validated"
+    archived_dir = phase1_root / "data" / "archived"
+    validated_dir = phase1_root / "data" / "validated"
     validated_dir.mkdir(parents=True, exist_ok=True)
 
     moved = 0
@@ -35,7 +36,7 @@ def reset_and_import():
         print(f"{moved} fichier(s) déplacé(s) de archived vers validated.")
 
     # 3. Lancer l'import
-    script_dir = root / "scripts"
+    script_dir = phase1_root / "scripts"
     result = subprocess.run([sys.executable, "import_validated.py"], cwd=str(script_dir), capture_output=True, text=True)
 
     if result.returncode == 0:
