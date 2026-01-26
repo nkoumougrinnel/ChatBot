@@ -1,0 +1,169 @@
+{
+  "version": "2.0",
+  "date_creation": "2026-01-26",
+  "statut": "En cours",
+  "objectif_total_qr": 7500,
+
+  "categories": {
+    "1_inscriptions_admissions": {
+      "nom": "Inscriptions et Admissions",
+      "priorite": "Haute",
+      "cible_qr": 1000,
+      "qr_actuels": 0,
+      "pourcentage": "0%",
+      "sous_themes": [
+        "conditions_admission",
+        "procedure_enligne",
+        "documents_requis",
+        "frais_paiements",
+        "reinscription_cas_particuliers",
+        "etudiants_etrangers",
+        "orientation_choix_filiere",
+        "cas_particuliers_handicap",
+        "plateformes_numeriques"
+      ]
+    },
+    "2_examens_evaluations": {
+      "nom": "Examens et Évaluations",
+      "priorite": "Haute",
+      "cible_qr": 1000,
+      "qr_actuels": 0,
+      "pourcentage": "0%",
+      "sous_themes": [
+        "calendrier_examens",
+        "modalites",
+        "notes_bareme",
+        "rattrapages_dispenses",
+        "fraude_sanctions",
+        "publication_resultats",
+        "preparation_methodologie",
+        "examens_enligne",
+        "accessibilite"
+      ]
+    },
+    "3_vie_etudiante": {
+      "nom": "Vie Étudiante",
+      "priorite": "Haute",
+      "cible_qr": 1000,
+      "qr_actuels": 0,
+      "pourcentage": "0%",
+      "sous_themes": [
+        "clubs_associations",
+        "logement_etudiant",
+        "restauration",
+        "activites_culturelles_sportives",
+        "sante_accompagnement",
+        "evenements_academiques",
+        "vie_quotidienne",
+        "engagement_citoyen",
+        "numerique_etudiant"
+      ]
+    },
+    "4_services_administratifs": {
+      "nom": "Services Administratifs",
+      "priorite": "Haute",
+      "cible_qr": 1000,
+      "qr_actuels": 0,
+      "pourcentage": "0%",
+      "sous_themes": [
+        "bibliotheque_ressources",
+        "scolarite",
+        "finances",
+        "stages_partenariats",
+        "diplomes_certifications",
+        "relations_internationales",
+        "support_informatique",
+        "archives_memoire",
+        "communication_officielle"
+      ]
+    },
+    "5_programmes_academiques": {
+      "nom": "Programmes Académiques",
+      "priorite": "Moyenne",
+      "cible_qr": 500,
+      "qr_actuels": 0,
+      "pourcentage": "0%",
+      "sous_themes": [
+        "presentation_filieres",
+        "organisation_cours",
+        "encadrement_pedagogique",
+        "projets_tp"
+      ]
+    },
+    "6_infrastructures_ressources": {
+      "nom": "Infrastructures et Ressources",
+      "priorite": "Moyenne",
+      "cible_qr": 500,
+      "qr_actuels": 0,
+      "pourcentage": "0%",
+      "sous_themes": [
+        "laboratoires",
+        "internet_plateformes",
+        "logiciels_licences",
+        "securite_maintenance"
+      ]
+    },
+    "7_carrieres_insertion": {
+      "nom": "Carrières et Insertion Professionnelle",
+      "priorite": "Moyenne",
+      "cible_qr": 400,
+      "qr_actuels": 0,
+      "pourcentage": "0%",
+      "sous_themes": [
+        "stages_conventions",
+        "partenariats_entreprises",
+        "forums_emploi",
+        "reseau_alumni"
+      ]
+    },
+    "8_communication_vie_institutionnelle": {
+      "nom": "Communication et Vie Institutionnelle",
+      "priorite": "Basse",
+      "cible_qr": 400,
+      "qr_actuels": 0,
+      "pourcentage": "0%",
+      "sous_themes": [
+        "canaux_officiels",
+        "reclamations_mediation",
+        "actualites_annonces",
+        "participation_instances"
+      ]
+    },
+    "9_vie_pratique": {
+      "nom": "Vie Pratique",
+      "priorite": "Basse",
+      "cible_qr": 400,
+      "qr_actuels": 0,
+      "pourcentage": "0%",
+      "sous_themes": [
+        "transport_accessibilite",
+        "securite_reglement",
+        "cout_vie",
+        "services_annexes"
+      ]
+    }
+  },
+
+  "workflow": {
+    "pending": "En attente de traitement",
+    "processing": "Validation en cours",
+    "validated": "Approuvé et prêt pour BD",
+    "archived": "Archivé ou supprimé"
+  },
+
+  "metriques": {
+    "total_categories": 9,
+    "total_sous_themes": 52,
+    "qr_validated_total": 0,
+    "qr_pending_total": 0,
+    "taux_completion": "0%"
+  },
+
+  "notes": [
+    "V2 lancée en janvier 2026 avec nouvelle structure",
+    "Ancien système (pending/processing/validated/archived) déprécié mais conservé temporairement",
+    "Focus sur contribution massive via ateliers collaboratifs et IA",
+    "Validation par échantillonnage (10-20% selon catégorie)",
+    "Objectif: 5000-9000 Q/R validées pour couverture exhaustive"
+  ]
+}

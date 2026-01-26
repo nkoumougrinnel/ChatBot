@@ -1,129 +1,120 @@
-# ChatBot
+# ChatBot - Système de Gestion FAQ Intelligent
 
-> Un projet modulaire et extensible pour construire un chatbot intelligent, conçu en phases successives.
+> Un projet pour développer un chatbot conversationnel intelligent, alimenté par une FAQ gérée collectivement. **Actuellement en Phase 1 : Collecte et Validation des Données**.
 
-## 🎯 Qu'est-ce que c'est ?
+## 🎯 Objectif
 
-**ChatBot** est un projet complet visant à développer un chatbot intelligent. Le projet est organisé en **phases**, chacune ajoutant des fonctionnalités.
+Créer un **chatbot FAQ intelligent** capable de :
 
-### Phase 1 (Actuelle) : FAQ Management System
+1. **Répondre aux questions** des utilisateurs sur SUP'PTIC
+2. **Apprendre** à partir d'une base FAQ collaborative et validée
+3. **Évoluer** avec de nouvelles capacités dans les prochaines phases
 
-Gestion et collecte des FAQ depuis Google Sheets avec validation manuelle :
+## 📊 Phase 1 (Actuelle) : Collecte des Données
 
-- Synchronisation depuis Google Sheets
-- Validation manuelle par l'équipe
-- Insertion en base SQLite
-- Archivage pour traçabilité
+La Phase 1 est dédiée à la **collecte organisée des Questions/Réponses** par catégories d'étudiants :
 
-Les futures phases ajouteront de nouvelles capacités (traitement du langage naturel, interface utilisateur, déploiement, etc.).
+- 👥 **Étudiants contributeurs** déposent des CSV par thème assigné
+- ✅ **Validation manuelle** en présentiel par l'équipe
+- 💾 **Stockage structuré** dans base SQLite
+- 📦 **Archivage complet** pour traçabilité
 
 ## 📚 Documentation
 
-| Lien                                                    | Description                     |
-| ------------------------------------------------------- | ------------------------------- |
-| 📖 [Vue d'ensemble du projet](docs/PROJECT_OVERVIEW.md) | Voir les phases et la roadmap   |
-| 📋 [Description des phases](docs/PHASES.md)             | Détails de chaque phase         |
-| 🏗️ [Architecture générale](docs/ARCHITECTURE.md)        | Flux de données et organisation |
-| 🚀 [Phase 1 : Installation](docs/phase-1/SETUP.md)      | Guide d'installation            |
-| ⚙️ [Phase 1 : Utilisation](docs/phase-1/USAGE.md)       | Comment utiliser les scripts    |
+| Document                                            | Description                         |
+| --------------------------------------------------- | ----------------------------------- |
+| 📖 [Vue d'ensemble](docs/PROJECT_OVERVIEW.md)       | Stratégie générale du projet        |
+| 📋 [Phases](docs/PHASES.md)                         | Roadmap et phases futures           |
+| 🏗️ [Architecture](docs/ARCHITECTURE.md)             | Schéma technique et flux de données |
+| **🚀 [Phase 1 : Collecte](phase-1/docs/README.md)** | **Guide Phase 1 (vous êtes ici)**   |
 
-## 🚀 Démarrage Rapide
+## 🚀 Démarrage Rapide - Phase 1
 
-### Installation
+### Pour les Étudiants Contributeurs
 
-```bash
-# 1. Cloner le dépôt
-git clone <url_du_repo>
-cd ChatBot
+Consultez le **[Guide des Contributeurs](phase-1/docs/GUIDE_CONTRIBUTEURS.md)** pour savoir comment déposer votre fichier CSV dans votre catégorie assignée.
 
-# 2. Installer les dépendances
-pip install -r requirements.txt
+**Démarche simple :**
 
-# 3. Configurer Phase 1
-# Voir docs/phase-1/SETUP.md pour la configuration initiale
-```
+1. Identifiez votre catégorie et sous-thème assignés
+2. Préparez un fichier CSV avec vos Questions/Réponses
+3. Déposez-le dans : `phase-1/data/categories/[X]/[Y]/pending/`
+4. L'équipe valide en présentiel
 
-### Premiers pas avec Phase 1
+### Pour l'Équipe de Validation
 
-```bash
-# Récupérer les données depuis Google Sheets
-python phase-1/scripts/sync.py
-
-# [L'équipe valide les fichiers CSV manuellement]
-
-# Importer les données validées en base
-python phase-1/scripts/import_validated.py
-```
-
-👉 **Guide complet** : [docs/phase-1/USAGE.md](docs/phase-1/USAGE.md)
+Les fichiers déposés par les étudiants sont validés en réunion présentielle. Voir [Phase 1 README](phase-1/docs/README.md) pour la structure complète.
 
 ## 📁 Structure du Projet
 
 ```
 ChatBot/
-├── phase-1/              # Phase 1 : Collecte & Validation
-│   ├── scripts/          # Scripts Python
-│   ├── data/             # Données temporaires (pending, validated, archived)
-│   ├── config/           # Configuration
-│   └── tests/            # Tests
+├── phase-1/                  # Phase 1 (ACTUELLE) : Collecte & Validation
+│   ├── scripts/              # Scripts Python pour import/sync
+│   ├── data/                 # Données
+│   │   ├── categories/       # Dossiers par catégories étudiantes
+│   │   ├── pending/          # En attente de validation
+│   │   ├── processing/       # En cours de révision
+│   │   ├── validated/        # Validées et prêtes
+│   │   └── archived/         # Déjà intégrées à la BD
+│   ├── config/               # Configuration (clés API, etc.)
+│   └── docs/                 # Documentation Phase 1
+│       ├── README.md                    # Vue d'ensemble Phase 1
+│       ├── GUIDE_CONTRIBUTEURS.md       # Pour déposer un CSV
+│       ├── MIGRATION_COMPLETE.md        # Historique des versions
+│       ├── architecture_v1/             # Archive - ancien système
+│       └── architecture_v2/             # Approche actuelle
 │
-├── phase-2/              # Phase 2 (à venir)
-├── ...
+├── phase-2/                  # Phase 2 (À VENIR)
+├── ...                       # Phases futures
 │
-├── db/                   # Base de données partagée
-│   └── faq.db            # SQLite
+├── db/                       # Base de données partagée
+│   └── faq.db                # SQLite - FAQ collectées
 │
-├── logs/                 # Logs de toutes les phases
+├── logs/                     # Logs de toutes les phases
 │
-├── docs/                 # Documentation complète
-│   ├── PROJECT_OVERVIEW.md    # Vue d'ensemble
-│   ├── ARCHITECTURE.md         # Schéma technique
-│   ├── PHASES.md               # Description des phases
-│   ├── phase-1/                # Doc Phase 1
-│   │   ├── README.md
-│   │   ├── SETUP.md
-│   │   ├── USAGE.md
-│   │   ├── Gestion FAQ.tex     # Documentation LaTeX
-│   │   └── Gestion FAQ.pdf
-│   ├── phase-2/                # Doc Phase 2 (à venir)
-│   └── common/                 # Documentation partagée
+├── docs/                     # Documentation générale
+│   ├── PROJECT_OVERVIEW.md   # Vue d'ensemble projet
+│   ├── ARCHITECTURE.md       # Architecture technique
+│   └── PHASES.md             # Roadmap des phases
 │
-├── requirements.txt      # Dépendances Python
-└── README.md            # Ce fichier
+├── requirements.txt          # Dépendances Python
+└── README.md                 # Ce fichier
 ```
 
 ## 🔧 Technologie
 
 - **Language** : Python 3.8+
-- **Base de données** : SQLite
-- **API** : Google Sheets API
-- **Librairies** : gspread, pandas, etc.
+- **Base de données** : SQLite (`db/faq.db`)
+- **Approche** : Collecte collaborative avec validation présentielle
+- **Versioning** : Git (secrets non versionnés)
 
-## ✨ Caractéristiques
+## ✨ Caractéristiques Phase 1
 
-✅ **Modulaire** : Phases indépendantes et extensibles  
-✅ **Traçable** : Archivage et logging complets  
-✅ **Sécurisé** : Clés d'accès non versionnées  
-✅ **Documenté** : Documentation pour chaque phase  
-✅ **En développement** : Évolution progressive
+✅ **Collecte organisée** : Par catégories et sous-thèmes  
+✅ **Contributions étudiantes** : Dépôt direct en CSV  
+✅ **Validation présentielle** : Révision en réunion  
+✅ **Traçable** : Archivage complet de l'historique  
+✅ **Documenté** : Guides pour contributeurs et équipe  
+✅ **Flexible** : Architecture V1 (Google Sheets) aussi disponible
 
-## 🐛 Problèmes ?
+## 🗺️ Roadmap Future
 
-Voir la section troubleshooting :
+- **Phase 2** : Traitement du langage naturel (NLP)
+- **Phase 3** : Interface utilisateur (chatbot conversationnel)
+- **Phase 4** : Déploiement et optimisation
+- **Phase 5** : Améliorations continues
 
-- 📖 [Phase 1 - Troubleshooting](docs/phase-1/USAGE.md#-troubleshooting)
-- 📖 [Phase 1 - Installation](docs/phase-1/SETUP.md)
+## � Prochaines Étapes
 
-## 📄 License
+### Vous êtes Étudiant Contributeur ?
 
-À définir
+👉 **[Lire le Guide des Contributeurs](phase-1/docs/GUIDE_CONTRIBUTEURS.md)**
 
-## 👤 Auteur
+### Vous êtes de l'Équipe de Validation ?
 
-À définir
+👉 **[Lire le README Phase 1](phase-1/docs/README.md)**
 
----
+### Besoin d'en savoir plus ?
 
-**Prêt à commencer ?** 👉 [Installation Phase 1](docs/phase-1/SETUP.md)
-
-**Besoin d'aide ?** 👉 [Documentation complète](docs/PROJECT_OVERVIEW.md)
+👉 **[Documentation Complète](docs/PROJECT_OVERVIEW.md)**

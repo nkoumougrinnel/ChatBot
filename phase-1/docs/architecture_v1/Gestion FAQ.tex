@@ -274,13 +274,13 @@ def test_db_queries():
     conn = sqlite3.connect("db/faq.db")
     cursor = conn.cursor()
     
-    # Affichage de la structure
+    % Affichage de la structure
     cursor.execute("PRAGMA table_info(faq)")
-    # Comptage des entrées
+    % Comptage des entrées
     cursor.execute("SELECT COUNT(*) FROM faq")
-    # Affichage d'échantillons
+    % Affichage d'échantillons
     cursor.execute("SELECT id, question, answer FROM faq LIMIT 5")
-    # Recherche par mot-clé
+    % Recherche par mot-clé
     
     conn.close()
 \end{lstlisting}
@@ -452,7 +452,7 @@ Toutes les opérations de synchronisation sont tracées dans \texttt{logs/sync.l
 
 \subsection{Nettoyage des Archives}
 \begin{lstlisting}[language=bash]
-# Suppression des archives de plus de 30 jours
+% Suppression des archives de plus de 30 jours
 find data/archived/ -name "*.csv" -mtime +30 -delete
 \end{lstlisting}
 
