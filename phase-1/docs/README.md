@@ -1,6 +1,6 @@
 # Phase 1 : Collecte et Validation des Données
 
-## 📝 Description
+## Description
 
 Phase 1 du ChatBot FAQ Management System - Système V2.
 
@@ -8,7 +8,7 @@ Un système automatisé pour gérer les FAQ d'un chatbot, avec collecte par cat�
 
 **Note** : Cette phase inclut l'architecture V2 actuelle. Voir [architecture_v1/](architecture_v1/) pour la documentation de l'ancienne approche.
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
 - **Collecte par catégories** : Étudiants déposent des CSV par thème assigné
 - **Validation manuelle** : Processus de révision par l'équipe avant insertion
@@ -16,7 +16,7 @@ Un système automatisé pour gérer les FAQ d'un chatbot, avec collecte par cat�
 - **Base de données SQLite** : Stockage structuré des FAQ
 - **Logging** : Suivi des succès/échecs des opérations
 
-## 📁 Structure
+## Structure
 
 ```
 phase-1/
@@ -57,7 +57,7 @@ phase-1/
 └── tests/                       # Vide (fichiers de test à ajouter)
 ```
 
-## 🔄 Cycle de Vie des Fichiers (V2)
+## Cycle de Vie des Fichiers (V2)
 
 ```
 Étudiants                    Équipe Validation               BD
@@ -79,17 +79,17 @@ data/categories/             data/pending/               faq.db
 
 **Architecture V1** : Approche Google Sheets (voir [docs/architecture_v1/](architecture_v1/))
 
-## 📖 Guides
+## Guides
 
 - [Guide pour Contributeurs Étudiants](GUIDE_CONTRIBUTEURS.md) - **À consulter pour déposer un CSV**
-- 📚 [Historique Migration V1→V2](MIGRATION_COMPLETE.md)
+- [Historique Migration V1→V2](MIGRATION_COMPLETE.md)
 
-## 📋 Documentation Architecturale
+## Documentation Architecturale
 
 - **V2 (Actuelle)** : [docs/architecture_v2/](architecture_v2/) - Approche par catégories étudiants
 - **V1 (Archive)** : [docs/architecture_v1/](architecture_v1/) - Approche Google Sheets
 
-## 🔐 Sécurité
+## Sécurité
 
 - La clé de service Google (`phase-1/config/faq-service-key.json`) n'est pas versionnée (V1 only)
 - Seules les données validées sont insérées en base
@@ -97,4 +97,4 @@ data/categories/             data/pending/               faq.db
 
 ---
 
-Pour la vue d'ensemble du projet : 📖 [Aller au README principal](../PROJECT_OVERVIEW.md)
+Pour la vue d'ensemble du projet : [Aller au README principal](../PROJECT_OVERVIEW.md)

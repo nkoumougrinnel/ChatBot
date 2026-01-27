@@ -1,4 +1,4 @@
-# 📋 Guide pour les Équipes Contributeurs - Phase 1
+# Guide pour les Équipes Contributeurs - Phase 1
 
 **Architecture V2** : Collecte par catégories étudiantes
 
@@ -34,11 +34,11 @@ vieetudiante_logement_equipe3_session1.csv
 
 #### Règles de Nomenclature :
 
-- ✅ Tout en **minuscules**
-- ✅ Sans **accents**
-- ✅ Sans **espaces**
-- ✅ Séparation par **underscore (\_)**
-- ✅ Format: `categorie_soustheme_equipeX_sessionY.csv`
+- Tout en **minuscules**
+- Sans **accents**
+- Sans **espaces**
+- Séparation par **underscore (\_)**
+- Format: `categorie_soustheme_equipeX_sessionY.csv`
 
 ### Étape 4 : Remplir le CSV
 
@@ -57,21 +57,21 @@ Question,Reponse,Categorie,SousTheme,Source
 
 ### Étape 5 : Respect des Standards
 
-#### 📝 Questions :
+#### Questions :
 
 - Commencer par un **mot interrogatif** : Quoi, Quand, Où, Comment, Pourquoi, Quels, Combien
 - **Max 200 caractères**
 - Une seule question par ligne
 - **Formulation naturelle** (comme si vous parliez à un ami)
 
-#### ✅ Réponses :
+#### Réponses :
 
 - **2-3 phrases maximum**
 - Langage **accessible** (pas de jargon)
 - **Informations concrètes** (chiffres, noms, délais)
 - **Pas de listes à puces** (utiliser du texte continu)
 
-#### 🏷️ Catégorie :
+#### Catégorie :
 
 Doit correspondre à votre assignation (en minuscules) :
 
@@ -85,7 +85,7 @@ Doit correspondre à votre assignation (en minuscules) :
 - `communication`
 - `viepratique`
 
-#### 🎯 SousTheme :
+#### SousTheme :
 
 Utiliser exactement le nom du dossier (minuscules) :
 
@@ -93,7 +93,7 @@ Utiliser exactement le nom du dossier (minuscules) :
 - `conditions_admission`
 - etc.
 
-#### 📚 Source :
+#### Source :
 
 L'une de ces valeurs :
 
@@ -108,10 +108,10 @@ L'une de ces valeurs :
 
 #### Pour créer/éditer le CSV :
 
-- ✅ **Excel** (meilleur pour CSV)
-- ✅ **LibreOffice Calc**
-- ✅ **VS Code** (avec Live Share pour collaboration)
-- ✅ **Google Sheets** → exporter en CSV
+- **Excel** (meilleur pour CSV)
+- **LibreOffice Calc**
+- **VS Code** (avec Live Share pour collaboration)
+- **Google Sheets** → exporter en CSV
 
 #### Pour générer des Q/R avec IA :
 
@@ -133,13 +133,13 @@ Format de sortie :
 
 ### Étape 7 : Qualité Avant Quantité
 
-#### ✅ Excellent :
+#### Excellent :
 
 ```csv
 "Combien coûte une chambre en cité universitaire ?","Une chambre en cité universitaire coûte entre 50 000 et 80 000 FCFA par mois selon la cité. Les tarifs incluent électricité et eau. Des bourses sont disponibles pour étudiants en difficulté financière.","vieetudiante","logement_etudiant","Service vie étudiante SUP'PTIC"
 ```
 
-#### ❌ Mauvais :
+#### Mauvais :
 
 ```csv
 "Logement ?","Tu peux trouver un logement à Yaoundé.","vieetudiante","logement_etudiant","IA"
@@ -200,14 +200,14 @@ Format de sortie :
 
 Si vous recevez des retours :
 
-1. ✏️ **Corriger** les Q/R signalées
-2. 📤 **Renommer** le fichier : `...session2.csv`
-3. 📁 **Replacer** dans pending/
-4. 🔄 **Redémarrer** le processus
+1. **Corriger** les Q/R signalées
+2. **Renommer** le fichier : `...session2.csv`
+3. **Replacer** dans pending/
+4. **Redémarrer** le processus
 
 ---
 
-## 🏆 Conseils pour Excellentes Q/R
+## Conseils pour Excellentes Q/R
 
 ### 1. Source Primaire
 
@@ -234,8 +234,8 @@ Poser les questions qu'un **étudiant réel** posera :
 Ajouter des **infos utiles** :
 
 ```
-❌ Mauvais : "Où loger ?"
-✅ Bon : "Combien coûte une chambre en cité à côté de SUP'PTIC ?"
+Mauvais : "Où loger ?"
+Bon : "Combien coûte une chambre en cité à côté de SUP'PTIC ?"
 ```
 
 ### 4. Cohérence Ton
@@ -243,21 +243,21 @@ Ajouter des **infos utiles** :
 Maintenir un **ton formel mais accessible** :
 
 ```
-❌ "Yo mec, tu peux loger à la cité"
-✅ "Vous pouvez vous loger à la Cité Verte, 10 min du campus"
+Mauvais : "Yo mec, tu peux loger à la cité"
+Bon : "Vous pouvez vous loger à la Cité Verte, 10 min du campus"
 ```
 
 ### 5. Éviter les Pièges
 
-- ❌ Copier-coller sans vérifier → L'IA invente !
-- ❌ Réponses trop longues → Garder 2-3 phrases
-- ❌ Jargon administratif → Langage clair
-- ❌ Doublons → Vérifier avant soumettre
-- ❌ Infos obsolètes → Indiquer l'année académique
+- Copier-coller sans vérifier → L'IA invente !
+- Réponses trop longues → Garder 2-3 phrases
+- Jargon administratif → Langage clair
+- Doublons → Vérifier avant soumettre
+- Infos obsolètes → Indiquer l'année académique
 
 ---
 
-## 📊 Cible de Votre Équipe
+## Cible de Votre Équipe
 
 | Métrique                | Cible        |
 | ----------------------- | ------------ |
@@ -269,7 +269,7 @@ Maintenir un **ton formel mais accessible** :
 
 ---
 
-## 🎓 Formation IA Recommandée
+## Formation Recommandée
 
 Avant votre première contribution :
 
@@ -290,7 +290,7 @@ Avant votre première contribution :
 
 ---
 
-## 💬 Support et Questions
+## Support et Questions
 
 **Responsable V2 :** NKOUMOU Germain  
 **Email :** germain.nkoumou@supptic.cm  
@@ -320,7 +320,7 @@ Solution: Garder l'info essentielle, condenser à 2-3 phrases
 
 ---
 
-## ✅ Checklist Finale
+## Checklist Finale
 
 Avant d'envoyer votre fichier :
 
@@ -343,5 +343,3 @@ Avant d'envoyer votre fichier :
 
 **Version:** 2.0 (Janvier 2026)  
 **Ressource:** phase-1/data/categories/README.md
-
-Bonne contribution ! 🚀

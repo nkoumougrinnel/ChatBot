@@ -1,8 +1,8 @@
-# Structure des Catégories - Phase 1 V2
+# Structure des Categories - Phase 2
 
 ## Vue d'ensemble
 
-Cette structure organise tous les Q/R en **9 catégories majeures** avec leurs **sous-thèmes respectifs**, chacun ayant un workflow de validation à 4 étapes.
+Cette structure organise tous les Q/R en **9 categories majeures** avec leurs **sous-themes respectifs**. Chaque sous-theme contient des fichiers CSV avec les questions et reponses.
 
 ## Hiérarchie des Catégories
 
@@ -91,14 +91,13 @@ Cette structure organise tous les Q/R en **9 catégories majeures** avec leurs *
 
 ## Workflow des Fichiers CSV
 
-Chaque sous-thème possède 4 dossiers :
+Chaque sous-theme contient des fichiers CSV organisés directement dans le dossier.
 
 ```
 sous-theme/
-├── pending/         → Q/R soumises, en attente de traitement
-├── processing/      → Q/R en cours de validation
-├── validated/       → Q/R approuvées et prêtes pour la BD
-└── archived/        → Q/R archivées ou supprimées
+├── fichier1.csv
+├── fichier2.csv
+└── ...
 ```
 
 ## Convention de Nommage
@@ -137,12 +136,9 @@ Question,Reponse,Categorie,SousTheme,Source
 | **SousTheme** | Sous-catégorie précise        | Selon taxonomie définie                                                                                           |
 | **Source**    | Origine de l'information      | Site SUP'PTIC, IA, Communiqué, Atelier                                                                            |
 
-## Processus de Validation
+## Processus de Traitement
 
-1. **Pending** : Fichier reçu, notation pré-validation IA
-2. **Processing** : En révision par équipe de validation
-3. **Validated** : Approuvé, prêt pour intégration BD
-4. **Archived** : Stockage long terme ou suppression
+Les fichiers CSV sont traites directement dans leurs dossiers respectifs. L'historique de la collecte v1 (pending, processing, validated, archived) est conserve dans `phase-1/data/v1_collecte/`.
 
 ## Objectifs par Catégorie
 
@@ -163,9 +159,9 @@ Question,Reponse,Categorie,SousTheme,Source
 
 ```
 phase-1/
-├── config/              → Configuration et clés
+├── config/              → Configuration et cles
 ├── data/
-│   ├── categories/       → Nouvelle structure V2 (ce dossier)
+│   ├── categories/      → Structure Phase 2 (ce dossier)
 │   │   ├── 1_inscriptions_admissions/
 │   │   ├── 2_examens_evaluations/
 │   │   ├── 3_vie_etudiante/
@@ -175,40 +171,30 @@ phase-1/
 │   │   ├── 7_carrieres_insertion/
 │   │   ├── 8_communication_vie_institutionnelle/
 │   │   ├── 9_vie_pratique/
-│   │   └── README.md    → Ce fichier
-│   ├── pending/         → Ancien système (déprécié)
-│   ├── processing/      → Ancien système (déprécié)
-│   ├── validated/       → Ancien système (déprécié)
-│   └── archived/        → Ancien système (déprécié)
+│   │   ├── category_manager.py  → Outil de gestion
+│   │   └── README.md            → Ce fichier
+│   └── v1_collecte/     → Archive historique collecte v1
 ├── scripts/             → Outils de traitement
 └── tests/               → Tests unitaires
 ```
 
 ## Utilisation Pratique
 
-### Pour une équipe qui contribue :
+### Pour generer des statistiques :
 
-1. Identifier votre catégorie et sous-thème
-2. Créer un fichier CSV : `categorie_soustheme_equipeX_sessionY.csv`
-3. Placer dans le dossier `pending/` du sous-thème
-4. Notifier l'équipe de validation
-
-### Pour la validation :
-
-1. Récupérer les fichiers du dossier `pending/`
-2. Valider avec les critères (exactitude, clarté, concision)
-3. Déplacer vers `processing/` pendant la révision
-4. Finaliser : `validated/` (accepté) ou `archived/` (rejeté/archivé)
+```bash
+python category_manager.py count    # Compte Q/R par categorie
+python category_manager.py list     # Liste les categories
+python category_manager.py cat 1    # Details categorie 1
+python category_manager.py check    # Verifie structure
+```
 
 ## Notes Importantes
 
-- ✅ Chaque sous-thème est **indépendant** et peut être traité en parallèle
-- ✅ La structure permet une **scalabilité massive** (9000+ Q/R)
-- ✅ Les fichiers restent en **format CSV universel** (compatible Excel, Python, etc.)
-- ✅ La hiérarchie est **flexible** pour ajouter des sous-thèmes futurs
-- ⚠️ Les anciens dossiers (pending, processing, validated) restent pour compatibilité temporaire
+- Chaque sous-theme est independant et peut etre traite en parallele
+- La structure permet une scalabilite massive
+- Les fichiers sont en format CSV universel (compatible Excel, Python, etc.)
 
 ---
 
-**Version** : 2.0 (Janvier 2026)  
-**Responsable** : NKOUMOU Germain - Club Informatique SUP'PTIC
+**Version** : 2.0 (Janvier 2026)
