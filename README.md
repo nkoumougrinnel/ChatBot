@@ -1,84 +1,68 @@
-# ChatBot - Système de Gestion FAQ Intelligent
+# ChatBot - Système de Gestion FAQ
 
-> Un projet pour développer un chatbot conversationnel intelligent, alimenté par une FAQ gérée collectivement. **Actuellement en Phase 1 : Collecte et Validation des Données**.
+Système de collecte et gestion des Questions/Réponses pour un chatbot intelligent.
 
-## 🎯 Objectif
+## Objectif
 
-Créer un **chatbot FAQ intelligent** capable de :
+Créer une base FAQ collaborative et validée pour alimenter un chatbot conversationnel capable de répondre aux questions sur SUP'PTIC.
 
-1. **Répondre aux questions** des utilisateurs sur SUP'PTIC
-2. **Apprendre** à partir d'une base FAQ collaborative et validée
-3. **Évoluer** avec de nouvelles capacités dans les prochaines phases
+## Phase Actuelle : Collecte des Données
 
-## 📊 Phase 1 (Actuelle) : Collecte des Données
+Collecte organisée des Questions/Réponses par catégories d'étudiants :
 
-La Phase 1 est dédiée à la **collecte organisée des Questions/Réponses** par catégories d'étudiants :
+- Étudiants contributeurs déposent des CSV par thème assigné
+- Validation manuelle par l'équipe
+- Stockage structuré dans base SQLite
+- Archivage complet pour traçabilité
 
-- 👥 **Étudiants contributeurs** déposent des CSV par thème assigné
-- ✅ **Validation manuelle** en présentiel par l'équipe
-- 💾 **Stockage structuré** dans base SQLite
-- 📦 **Archivage complet** pour traçabilité
+## Documentation
 
-## 📚 Documentation
-
-| Document                                            | Description                         |
-| --------------------------------------------------- | ----------------------------------- |
-| 📖 [Vue d'ensemble](docs/PROJECT_OVERVIEW.md)       | Stratégie générale du projet        |
-| 📋 [Phases](docs/PHASES.md)                         | Roadmap et phases futures           |
-| 🏗️ [Architecture](docs/ARCHITECTURE.md)             | Schéma technique et flux de données |
-| **🚀 [Phase 1 : Collecte](phase-1/docs/README.md)** | **Guide Phase 1 (vous êtes ici)**   |
+La documentation complète se trouve dans le dossier [collecte/docs/](collecte/docs/) :
 
 ## 🚀 Démarrage Rapide - Phase 1
 
 ### Pour les Étudiants Contributeurs
 
 Consultez le **[Guide des Contributeurs](phase-1/docs/GUIDE_CONTRIBUTEURS.md)** pour savoir comment déposer votre fichier CSV dans votre catégorie assignée.
+Démarrage Rapide
 
-**Démarche simple :**
+### Pour les Etudiants Contributeurs
+
+Consultez le [Guide des Contributeurs](collecte/docs/GUIDE_CONTRIBUTEURS.md) pour savoir comment déposer votre fichier CSV.
+
+**Démarche :**
 
 1. Identifiez votre catégorie et sous-thème assignés
 2. Préparez un fichier CSV avec vos Questions/Réponses
-3. Déposez-le dans : `phase-1/data/categories/[X]/[Y]/pending/`
-4. L'équipe valide en présentiel
-
-### Pour l'Équipe de Validation
-
-Les fichiers déposés par les étudiants sont validés en réunion présentielle. Voir [Phase 1 README](phase-1/docs/README.md) pour la structure complète.
-
-## 📁 Structure du Projet
+3. Déposez-le dans : `collecte/data/categories/[X]/[Y]/`
+4. L'équipe valide et intègre à la base
+   Structure du Projet
 
 ```
 ChatBot/
-├── phase-1/                  # Phase 1 (ACTUELLE) : Collecte & Validation
+├── collecte/                 # Collecte et validation des Q/R
 │   ├── scripts/              # Scripts Python pour import/sync
-│   ├── data/                 # Données
-│   │   ├── categories/       # Dossiers par catégories étudiantes
-│   │   ├── pending/          # En attente de validation
-│   │   ├── processing/       # En cours de révision
-│   │   ├── validated/        # Validées et prêtes
-│   │   └── archived/         # Déjà intégrées à la BD
-│   ├── config/               # Configuration (clés API, etc.)
-│   └── docs/                 # Documentation Phase 1
-│       ├── README.md                    # Vue d'ensemble Phase 1
-│       ├── GUIDE_CONTRIBUTEURS.md       # Pour déposer un CSV
-│       ├── MIGRATION_COMPLETE.md        # Historique des versions
-│       ├── architecture_v1/             # Archive - ancien système
-│       └── architecture_v2/             # Approche actuelle
+│   ├── data/
+│   │   ├── categories/       # Dossiers par catégories
+│   │   │   ├── 1_inscriptions_admissions/
+│   │   │   ├── 2_examens_evaluations/
+│   │   │   ├── ...
+│   │   │   └── category_manager.py
+│   │   └── v1_collecte/      # Archive collecte v1
+│   ├── config/               # Configuration
+│   ├── docs/
+│   │   ├── README.md         # Vue d'ensemble
+│   │   ├── GUIDE_CONTRIBUTEURS.md
+│   │   ├── architecture_v1/  # Archive
+│   │   └── architecture_v2/  # Approche actuelle
+│   └── tests/
 │
-├── phase-2/                  # Phase 2 (À VENIR)
-├── ...                       # Phases futures
+├── db/                       # Base de données
+│   └── faq.db
 │
-├── db/                       # Base de données partagée
-│   └── faq.db                # SQLite - FAQ collectées
+├── logs/                     # Logs
 │
-├── logs/                     # Logs de toutes les phases
-│
-├── docs/                     # Documentation générale
-│   ├── PROJECT_OVERVIEW.md   # Vue d'ensemble projet
-│   ├── ARCHITECTURE.md       # Architecture technique
-│   └── PHASES.md             # Roadmap des phases
-│
-├── requirements.txt          # Dépendances Python
+├── requirements.txt
 └── README.md                 # Ce fichier
 ```
 
@@ -89,32 +73,15 @@ ChatBot/
 - **Approche** : Collecte collaborative avec validation présentielle
 - **Versioning** : Git (secrets non versionnés)
 
-## ✨ Caractéristiques Phase 1
+## Technologie
 
-✅ **Collecte organisée** : Par catégories et sous-thèmes  
-✅ **Contributions étudiantes** : Dépôt direct en CSV  
-✅ **Validation présentielle** : Révision en réunion  
-✅ **Traçable** : Archivage complet de l'historique  
-✅ **Documenté** : Guides pour contributeurs et équipe  
-✅ **Flexible** : Architecture V1 (Google Sheets) aussi disponible
+- Python 3.8+
+- SQLite (db/faq.db)
+- Collecte collaborative avec validation présentielle
+- Versioning : Gitque  
+  ✅ **Documenté** : Guides pour contributeurs et équipe  
+  ✅ \*Caracteristiques
 
-## 🗺️ Roadmap Future
+## Prochaines Etapes
 
-- **Phase 2** : Traitement du langage naturel (NLP)
-- **Phase 3** : Interface utilisateur (chatbot conversationnel)
-- **Phase 4** : Déploiement et optimisation
-- **Phase 5** : Améliorations continues
-
-## � Prochaines Étapes
-
-### Vous êtes Étudiant Contributeur ?
-
-👉 **[Lire le Guide des Contributeurs](phase-1/docs/GUIDE_CONTRIBUTEURS.md)**
-
-### Vous êtes de l'Équipe de Validation ?
-
-👉 **[Lire le README Phase 1](phase-1/docs/README.md)**
-
-### Besoin d'en savoir plus ?
-
-👉 **[Documentation Complète](docs/PROJECT_OVERVIEW.md)**
+Contributions étudiantes → Validation → Base de données → ChatBot (phases futures)
