@@ -138,8 +138,7 @@ Question,Reponse,Categorie,SousTheme,Source
 
 ## Processus de Traitement
 
-Les fichiers CSV sont traites directement dans leurs dossiers respectifs. L'historique de la collecte v1 (pending, processing, validated, archived) est conserve dans `phase-1/data/v1_collecte/`.
-
+Les fichiers CSV sont traites directement dans leurs dossiers respectifs.
 ## Objectifs par Catégorie
 
 | Catégorie       | Cible Q/R     | Priorité |

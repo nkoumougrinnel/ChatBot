@@ -1,10 +1,10 @@
-# ChatBot - Système de Gestion FAQ
+# ChatBot SUP’PTIC 
 
-Système de collecte et gestion des Questions/Réponses pour un chatbot intelligent.
+Chatbot conversationnel intelligent destiné à répondre aux questions fréquentes des étudiants et visiteurs de SUP’PTIC.
 
-## Objectif
+## 🎯 Objectif
 
-Créer une base FAQ collaborative et validée pour alimenter un chatbot conversationnel capable de répondre aux questions sur SUP'PTIC.
+Développer un **chatbot complet** capable de fournir des réponses fiables et contextualisées sur la vie académique et administrative de SUP’PTIC.
 
 ## Phase Actuelle : Collecte des Données
 
@@ -41,26 +41,20 @@ Consultez le [Guide des Contributeurs](collecte/docs/GUIDE_CONTRIBUTEURS.md) pou
 ```
 ChatBot/
 ├── collecte/                 # Collecte et validation des Q/R
-│   ├── scripts/              # Scripts Python pour import/sync
 │   ├── data/
-│   │   ├── categories/       # Dossiers par catégories
+│   │   ├── categories/       # Dossiers par catégories et sous categories
 │   │   │   ├── 1_inscriptions_admissions/
 │   │   │   ├── 2_examens_evaluations/
 │   │   │   ├── ...
 │   │   │   └── category_manager.py
-│   │   └── v1_collecte/      # Archive collecte v1
 │   ├── config/               # Configuration
-│   ├── docs/
-│   │   ├── README.md         # Vue d'ensemble
-│   │   ├── GUIDE_CONTRIBUTEURS.md
-│   │   ├── architecture_v1/  # Archive
-│   │   └── architecture_v2/  # Approche actuelle
-│   └── tests/
-│
+│   └── docs/
+│       ├── README.md         # Vue d'ensemble
+│       ├── GUIDE_CONTRIBUTEURS.md
+│       ├── architecture_v1/  # Archive
+│       └── architecture_v2/  # Approche actuelle
 ├── db/                       # Base de données
 │   └── faq.db
-│
-├── logs/                     # Logs
 │
 ├── requirements.txt
 └── README.md                 # Ce fichier
@@ -78,9 +72,6 @@ ChatBot/
 - Python 3.8+
 - SQLite (db/faq.db)
 - Collecte collaborative avec validation présentielle
-- Versioning : Gitque  
-  ✅ **Documenté** : Guides pour contributeurs et équipe  
-  ✅ \*Caracteristiques
 
 ## Prochaines Etapes
 
