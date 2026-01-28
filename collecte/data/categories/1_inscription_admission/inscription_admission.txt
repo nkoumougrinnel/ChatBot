@@ -1,0 +1,101 @@
+ID;Catégorie;Question
+1;Conditions d'admission;Quelles sont les conditions pour intégrer SUP'PTIC ?
+2;Conditions d'admission;Quels sont les critères académiques pour le cycle ingénieur ?
+3;Conditions d'admission;Quels diplômes sont acceptés pour l'admission en première année ?
+4;Conditions d'admission;Faut-il avoir un baccalauréat scientifique pour postuler ?
+5;Conditions d'admission;Existe-t-il une limite d'âge pour l'inscription ?
+6;Conditions d'admission;Quel est le niveau minimum requis en mathématiques ?
+7;Conditions d'admission;Les diplômes étrangers sont-ils reconnus pour l'admission ?
+8;Conditions d'admission;Quels sont les prérequis pour le master professionnel ?
+9;Conditions d'admission;Peut-on s'inscrire avec un BTS ?
+10;Conditions d'admission;Quelles sont les conditions spécifiques pour les techniciens supérieurs ?
+11;Procédure en ligne/sur place;Comment s'inscrire en ligne à SUP'PTIC ?
+12;Procédure en ligne/sur place;Quelles sont les étapes détaillées de la procédure d'inscription ?
+13;Procédure en ligne/sur place;Sur quelle plateforme se font les préinscriptions ?
+14;Procédure en ligne/sur place;Quels sont les délais pour soumettre son dossier de candidature ?
+15;Procédure en ligne/sur place;Peut-on s'inscrire directement sur le campus de Yaoundé ?
+16;Procédure en ligne/sur place;Comment savoir si ma candidature en ligne a été validée ?
+17;Procédure en ligne/sur place;Que faire si je rencontre un problème sur la plateforme d'inscription ?
+18;Procédure en ligne/sur place;Y a-t-il un calendrier précis pour les admissions cette année ?
+19;Procédure en ligne/sur place;Quand se clôturent les inscriptions pour le concours ?
+20;Procédure en ligne/sur place;Comment suivre l'évolution de mon dossier ?
+21;Documents requis;Quelle est la liste exhaustive des pièces à fournir ?
+22;Documents requis;Sous quel format faut-il uploader les documents en ligne ?
+23;Documents requis;Les photocopies des diplômes doivent-elles être légalisées ?
+24;Documents requis;Où peut-on faire légaliser les documents requis ?
+25;Documents requis;Faut-il fournir un certificat médical ?
+26;Documents requis;Combien de photos d'identité sont nécessaires ?
+27;Documents requis;Doit-on fournir un extrait d'acte de naissance original ?
+28;Documents requis;Le relevé de notes du bac est-il obligatoire ?
+29;Documents requis;Que faire s'il me manque un document le jour du dépôt ?
+30;Documents requis;Faut-il une enveloppe timbrée dans le dossier physique ?
+31;Frais et paiements;Quel est le montant des frais d'inscription au concours ?
+32;Frais et paiements;Quelles sont les modalités de paiement des frais de scolarité ?
+33;Frais et paiements;Peut-on payer la scolarité en plusieurs tranches ?
+34;Frais et paiements;Quel est l'échéancier pour les paiements ?
+35;Frais et paiements;Existe-t-il des bourses d'études pour les nouveaux étudiants ?
+36;Frais et paiements;Comment obtenir une réduction sur les frais de scolarité ?
+37;Frais et paiements;Quels sont les modes de paiement acceptés (banque, mobile money) ?
+38;Frais et paiements;Les frais de concours sont-ils remboursables ?
+39;Frais et paiements;À combien s'élèvent les frais de scolarité pour le cycle ingénieur ?
+40;Frais et paiements;Y a-t-il des frais supplémentaires pour l'assurance étudiante ?
+41;Réinscription et cas particuliers;Quelle est la procédure de réinscription pour les anciens ?
+42;Réinscription et cas particuliers;Comment demander un transfert d'une autre école vers SUP'PTIC ?
+43;Réinscription et cas particuliers;Est-il possible de se réorienter après une première année ?
+44;Réinscription et cas particuliers;Quelles sont les conditions pour une reprise d'études après une interruption ?
+45;Réinscription et cas particuliers;Comment faire une demande de suspension temporaire d'études ?
+46;Réinscription et cas particuliers;Peut-on changer de filière en cours de cycle ?
+47;Réinscription et cas particuliers;Quelles sont les formalités pour un redoublant ?
+48;Réinscription et cas particuliers;Comment valider ses acquis pour un transfert ?
+49;Réinscription et cas particuliers;Quelles sont les dates limites de réinscription ?
+50;Réinscription et cas particuliers;Un étudiant exclu peut-il demander une réadmission ?
+51;Étudiants étrangers;Quelles sont les conditions d'admission pour les étudiants non-camerounais ?
+52;Étudiants étrangers;Comment obtenir un visa étudiant pour venir étudier à SUP'PTIC ?
+53;Étudiants étrangers;Quelle est la procédure d'équivalence des diplômes étrangers ?
+54;Étudiants étrangers;Y a-t-il un quota pour les étudiants internationaux ?
+55;Étudiants étrangers;Les frais de scolarité sont-ils différents pour les étrangers ?
+56;Étudiants étrangers;Quel accompagnement pour l'installation des étudiants étrangers ?
+57;Étudiants étrangers;Faut-il passer un test de langue française ou anglaise ?
+58;Étudiants étrangers;Où déposer le dossier pour les candidats hors du Cameroun ?
+59;Étudiants étrangers;Quels sont les documents spécifiques pour les étudiants de la zone CEMAC ?
+60;Étudiants étrangers;Existe-t-il des partenariats avec des écoles étrangères ?
+61;Orientation et choix de filière;Quelles sont les différentes filières proposées à SUP'PTIC ?
+62;Orientation et choix de filière;Comment choisir entre Télécoms, Réseaux et Informatique ?
+63;Orientation et choix de filière;Existe-t-il des passerelles entre les différentes filières ?
+64;Orientation et choix de filière;En quoi consiste le test d'aptitude à l'entrée ?
+65;Orientation et choix de filière;Quels sont les débouchés professionnels pour chaque filière ?
+66;Orientation et choix de filière;Est-il possible de suivre des conseils d'orientation avant l'inscription ?
+67;Orientation et choix de filière;Quelle est la filière la plus demandée ?
+68;Orientation et choix de filière;Comment se préparer au concours d'entrée ?
+69;Orientation et choix de filière;Y a-t-il une journée portes ouvertes pour découvrir les programmes ?
+70;Orientation et choix de filière;Quelles compétences sont évaluées lors de l'entretien ?
+71;Cas particuliers;Quelles dispositions sont prises pour les étudiants en situation de handicap ?
+72;Cas particuliers;Est-il possible de cumuler deux diplômes simultanément ?
+73;Cas particuliers;Comment justifier une reprise d'études après 5 ans d'arrêt ?
+74;Cas particuliers;Existe-t-il un aménagement du temps pour les étudiants travailleurs ?
+75;Cas particuliers;Quels sont les soutiens spécifiques pour les étudiants en difficulté sociale ?
+76;Cas particuliers;Comment déclarer un besoin spécifique lors de l'inscription ?
+77;Cas particuliers;Le campus de Yaoundé est-il accessible aux personnes à mobilité réduite ?
+78;Cas particuliers;Peut-on s'inscrire en tant qu'auditeur libre ?
+79;Cas particuliers;Quelles sont les règles pour les sportifs de haut niveau ?
+80;Cas particuliers;Comment bénéficier d'un régime spécial d'études ?
+81;Plateformes numériques;Quel est l'URL du portail des inscriptions ?
+82;Plateformes numériques;Comment créer un compte sur la plateforme numérique ?
+83;Plateformes numériques;J'ai oublié mon mot de passe pour l'inscription en ligne, que faire ?
+84;Plateformes numériques;Existe-t-il un tutoriel vidéo pour la procédure d'inscription ?
+85;Plateformes numériques;Pourquoi ma photo n'est-elle pas acceptée sur le site ?
+86;Plateformes numériques;Comment uploader des fichiers volumineux sur le portail ?
+87;Plateformes numériques;Comment recevoir la confirmation d'inscription par email ?
+88;Plateformes numériques;Le site est-il accessible sur mobile ?
+89;Plateformes numériques;Que faire en cas de bug lors du paiement en ligne ?
+90;Plateformes numériques;Qui contacter pour une assistance technique sur la plateforme ?
+91;Questions Générales;Où se trouve le bureau des admissions à Yaoundé ?
+92;Questions Générales;Quels sont les horaires d'ouverture du service de scolarité ?
+93;Questions Générales;Peut-on s'inscrire par procuration ?
+94;Questions Générales;Quelle est la différence entre le cycle de technicien et celui d'ingénieur ?
+95;Questions Générales;Quand sont publiés les résultats du concours ?
+96;Questions Générales;Comment retirer sa fiche de candidature ?
+97;Questions Générales;Y a-t-il des centres d'examen dans d'autres villes que Yaoundé ?
+98;Questions Générales;Combien de fois peut-on présenter le concours ?
+99;Questions Générales;Quel est le taux de réussite moyen au concours ?
+100;Questions Générales;À qui s'adresser pour des informations de dernière minute sur les admissions ?
