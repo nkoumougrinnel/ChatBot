@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .services import get_chatbot_response
