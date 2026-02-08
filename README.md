@@ -33,6 +33,8 @@ Ce projet est une démonstration concrète de l'application de technologies mode
 
 ```
 ChatBot/
+├── .venv/              # Environnement virtuel Python
+│
 ├── backend/
 │   ├── config/          # Paramètres Django (settings, urls, wsgi)
 │   ├── faq/             # App gestion FAQ
@@ -50,11 +52,14 @@ ChatBot/
 │   └── assets/
 │
 ├── data/
-│   ├── csv/             # Fichiers CSV générés
+│   ├── csv/             # Fichiers CSV générés par catégories/sous-thèmes
 │   └── scripts/         # Scripts import/export
 │
-└── docs/
-    └── README_API.md
+├── docs/
+│   └── README_API.md
+│
+├── README.md            # Documentation principale (ce fichier)
+└── requirements.txt     # Dépendances Python
 ```
 
 ---
@@ -282,7 +287,6 @@ Les fichiers suivants seront générés au cours du projet :
 ---
 
 ## 🎯 Objectif Final
-
 
 ✨ **1000+ Q/R validées**  
 ✨ **Algorithme TF-IDF robuste**  
