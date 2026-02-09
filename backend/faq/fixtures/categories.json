@@ -1,0 +1,17 @@
+[
+    {
+        "model": "faq.categorie",
+        "pk": 1,
+        "fields": { "nom": "Général", "description": "Informations globales sur SUP'PTIC" }
+      },
+      {
+        "model": "faq.categorie",
+        "pk": 2,
+        "fields": { "nom": "Scolarité", "description": "Inscriptions et diplômes" }
+      },
+      {
+        "model": "faq.categorie",
+        "pk": 3,
+        "fields": { "nom": "Vie Étudiante", "description": "Clubs et vie pratique" }
+      }
+]

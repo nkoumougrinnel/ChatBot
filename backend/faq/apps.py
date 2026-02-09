@@ -1,0 +1,22 @@
+from django.apps import AppConfig
+
+
+class FaqConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'faq'
+
+    def ready(self):
+        """
+        Initialiser le vectorizer TF-IDF au démarrage de Django.
+        
+        Cela garantit que le vectorizer est entraîné et disponible
+        pour tous les requests API (et non seulement dans le shell).
+        """
+        try:
+            from chatbot.vectorization import compute_and_store_vectors
+            print("[FAQ] Initialisation du vectorizer TF-IDF...")
+            compute_and_store_vectors()
+            print("[FAQ] ✓ Vectorizer entraîné et FAQVectors stockés en BD")
+        except Exception as e:
+            print(f"[FAQ] ⚠ Initialisation vectorizer échouée : {e}")
+            print("[FAQ] Le chatbot ne fonctionnera pas tant que ce problème n'est pas résolu")
