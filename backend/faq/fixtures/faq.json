@@ -1,0 +1,102 @@
+[
+    {
+        "model": "faq.faq",
+        "pk": 1,
+        "fields": {
+          "question": "Où se trouve SUP'PTIC ?",
+          "reponse": "L'école est située à Yaoundé, quartier Elig-Essono.",
+          "categorie": 1,
+          "source": "Site officiel"
+        }
+      },
+      {
+        "model": "faq.faq",
+        "pk": 2,
+        "fields": {
+          "question": "Quels sont les frais d'inscription ?",
+          "reponse": "Les frais varient selon le cycle, veuillez consulter le service de scolarité.",
+          "categorie": 2,
+          "source": "Règlement 2026"
+        }
+      },
+      {
+        "model": "faq.faq",
+        "pk": 3,
+        "fields": {
+          "question": "Comment rejoindre le Club Informatique ?",
+          "reponse": "Inscrivez-vous directement auprès du bureau du club au bloc B.",
+          "categorie": 3,
+          "source": "Club Info"
+        }
+      },
+      {
+        "model": "faq.faq",
+        "pk": 4,
+        "fields": {
+          "question": "Dates des examens ?",
+          "reponse": "Le calendrier est affiché sur le panneau d'affichage central.",
+          "categorie": 2,
+          "source": "DAAC"
+        }
+      },
+      {
+        "model": "faq.faq",
+        "pk": 5,
+        "fields": {
+          "question": "Y a-t-il une bibliothèque ?",
+          "reponse": "Oui, elle est ouverte de 8h à 18h en semaine.",
+          "categorie": 1,
+          "source": "Guide étudiant"
+        }
+      },
+      {
+        "model": "faq.faq",
+        "pk": 6,
+        "fields": {
+          "question": "Peut-on faire un stage ?",
+          "reponse": "Les stages sont obligatoires en fin de cycle.",
+          "categorie": 2,
+          "source": "Direction"
+        }
+      },
+      {
+        "model": "faq.faq",
+        "pk": 7,
+        "fields": {
+          "question": "Wifi disponible ?",
+          "reponse": "Le campus est couvert par le wifi SUP'PTIC_GUEST.",
+          "categorie": 3,
+          "source": "Division Info"
+        }
+      },
+      {
+        "model": "faq.faq",
+        "pk": 8,
+        "fields": {
+          "question": "Comment réinitialiser mon mot de passe ?",
+          "reponse": "Contactez l'administrateur système avec votre carte d'étudiant.",
+          "categorie": 1,
+          "source": "IT Support"
+        }
+      },
+      {
+        "model": "faq.faq",
+        "pk": 9,
+        "fields": {
+          "question": "Où manger sur le campus ?",
+          "reponse": "Le restaurant universitaire est situé derrière le bâtiment principal.",
+          "categorie": 3,
+          "source": "Vie pratique"
+        }
+      },
+      {
+        "model": "faq.faq",
+        "pk": 10,
+        "fields": {
+          "question": "Heures d'ouverture de l'école ?",
+          "reponse": "De 7h30 à 17h30 pour les services administratifs.",
+          "categorie": 1,
+          "source": "Standard"
+        }
+      }
+]
