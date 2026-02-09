@@ -1,0 +1,19 @@
+[
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "username": "admin_test",
+            "is_staff": true,
+            "is_superuser": true
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 2,
+        "fields": {
+            "username": "etudiant_test",
+            "is_staff": false
+        }
+    }
+]
