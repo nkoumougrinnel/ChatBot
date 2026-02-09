@@ -9,6 +9,7 @@ class Category(models.Model):
                                null=True, blank=True,
                                related_name='subcategories',
                                verbose_name="Catégorie parente")
+    active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "Catégorie"
@@ -28,6 +29,7 @@ class FAQ(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Créé le")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Modifié le")
     is_active = models.BooleanField(default=True, verbose_name="Actif")
+    popularity = models.IntegerField(default=0, verbose_name="Popularity")
 
     class Meta:
         verbose_name = "FAQ"
@@ -80,7 +82,8 @@ class Feedback(models.Model):
                                       verbose_name="Créé le")
     resolved = models.BooleanField(default=False,
                                    verbose_name="Résolu")
-
+    question_utilisateur = models.TextField(blank=False, verbose_name="Question utilisateur", null=False)
+    score_similarite = models.FloatField(null=True, blank=True,)
     class Meta:
         verbose_name = "Feedback"
         verbose_name_plural = "Feedbacks"

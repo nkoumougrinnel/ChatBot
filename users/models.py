@@ -6,6 +6,10 @@ class CustomUser(AbstractUser):
     department = models.CharField(max_length=100, blank=True)
     year = models.IntegerField(null=True, blank=True)
     phone = models.CharField(max_length=15, blank=True)
+    role=['etudiant', 'admin', 'anonyme']
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+    active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "Utilisateur"
