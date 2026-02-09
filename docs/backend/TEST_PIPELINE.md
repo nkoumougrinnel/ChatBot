@@ -105,9 +105,10 @@ Total FAQs: 4
 
 ```python
 sample_text = "Je ne peux pas réinitialiser mon mot de passe"
-tokens = preprocess_text(sample_text)
+tokens=preprocess_text(sample_text)
 
-print(f"\nTexte original: '{sample_text}'")
+
+print(f"\nTexte original: {sample_text}")
 print(f"Tokens (après spaCy): {tokens}")
 print(f"Nombre de tokens: {len(tokens)}")
 ```
