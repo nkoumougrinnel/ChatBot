@@ -5,6 +5,7 @@
 Quand le frontend (HTML) est servi depuis un serveur HTTP différent du backend Django, le navigateur bloque les requêtes cross-origin pour des raisons de sécurité (CORS = Cross-Origin Resource Sharing).
 
 **Symptôme :** Erreur dans la console du navigateur :
+
 ```
 Failed to fetch
 TypeError: Failed to fetch
@@ -23,6 +24,7 @@ pip install django-cors-headers
 ### 2. Modifications dans `backend/config/settings.py`
 
 #### Ajout à INSTALLED_APPS
+
 ```python
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
 ```
 
 #### Ajout du Middleware CORS
+
 ```python
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,6 +59,7 @@ MIDDLEWARE = [
 **Important :** L'ordre des middlewares est critique. `CorsMiddleware` doit être proche du haut pour traiter les requêtes préflightées.
 
 #### Configuration CORS
+
 ```python
 # CORS Configuration - Allow frontend to access API
 CORS_ALLOWED_ORIGINS = [
@@ -68,13 +72,13 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5500',      # Localhost alias
     'http://localhost',           # Generic localhost
     'http://127.0.0.1',           # Generic localhost
-    
+
     # Network IPs (pour accès via IP interne)
     'http://192.168.1.0:3000',    # Frontend sur IP réseau, port 3000
     'http://192.168.1.0:5500',    # Frontend sur IP réseau, port 5500
     'http://10.0.0.0:3000',       # Autres plages de réseau
     'http://10.0.0.0:5500',
-    
+
     # ngrok & DevTunnels (pour partage public)
     'https://sharron-prehazard-gully.ngrok-free.dev',  # ngrok frontend
     'https://jlhld2dz-8000.use.devtunnels.ms',         # DevTunnels backend
@@ -91,6 +95,7 @@ CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization']
 ```
 
 **Note :** Pour les IPs réseau dynamiques, vous pouvez utiliser une pattern plus flexible :
+
 ```python
 import re
 
@@ -128,6 +133,7 @@ const API_URL = `${API_BASE}/api/chatbot/ask/`;
 ```
 
 **Cas d'usage :**
+
 - **Localhost** : `http://localhost:8000/api/chatbot/ask/`
 - **IP réseau** (ex: `192.168.10.82`) : `http://192.168.10.82:8000/api/chatbot/ask/`
 - **ngrok frontend** : Appelle le backend via DevTunnels HTTPS
@@ -136,7 +142,7 @@ Cela permet au frontend d'être servi depuis n'importe quel contexte (localhost,
 
 ## Comment ça fonctionne
 
-1. **Requête préflight (OPTIONS)** : 
+1. **Requête préflight (OPTIONS)** :
    - Le navigateur envoie une requête OPTIONS à l'API
    - Django (via `CorsMiddleware`) répond avec les en-têtes CORS appropriés
 
@@ -160,12 +166,14 @@ CORS_ALLOWED_ORIGINS = [
 ## Dépannage
 
 ### "Failed to fetch" persiste
+
 - Vérifiez que Django tourne sur `http://localhost:8000`
 - Assurez-vous que `corsheaders` est installé : `pip list | grep django-cors`
 - Vérifiez que `CorsMiddleware` est dans `MIDDLEWARE` (dans l'ordre correct)
 - Redémarrez le serveur Django après les modifications
 
 ### Erreur CORS dans la console
+
 - Ouvrez F12 → onglet Console
 - Vérifiez le message d'erreur exact
 - Comparez l'origine de la requête avec `CORS_ALLOWED_ORIGINS`
