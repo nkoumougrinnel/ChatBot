@@ -20,3 +20,10 @@ class FaqConfig(AppConfig):
         except Exception as e:
             print(f"[FAQ] ⚠ Initialisation vectorizer échouée : {e}")
             print("[FAQ] Le chatbot ne fonctionnera pas tant que ce problème n'est pas résolu")
+        
+        # ===== Importer les signaux =====
+        try:
+            from faq import signals
+            print("[FAQ] ✓ Signaux d'amélioration des scores chargés")
+        except Exception as e:
+            print(f"[FAQ] ⚠ Erreur lors du chargement des signaux : {e}")
