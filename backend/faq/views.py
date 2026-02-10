@@ -18,6 +18,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.shortcuts import get_object_or_404
 from django.db.models import Count, Avg
+from django.core.cache import cache
 
 from faq.models import Category, FAQ, Feedback
 from faq.serializers import (
@@ -193,7 +194,16 @@ class FeedbackViewSet(viewsets.ModelViewSet):
     
     Endpoints:
     - GET /api/feedback/ : lister feedbacks (admin)
-    - POST /api/feedback/ : créer feedback
+    - POST /api/feedback/ : créer feedback (public, user auto-assigné ou anonyme)
+    
+    POST body exemple:
+    {
+        "faq": 1,
+        "feedback_type": "positif",
+        "question_utilisateur": "...",
+        "comment": "...",
+        "score_similarite": 0.85
+    }
     """
     queryset = Feedback.objects.all().select_related('user', 'faq')
     serializer_class = FeedbackSerializer
