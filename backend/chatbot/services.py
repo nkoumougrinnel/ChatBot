@@ -1,30 +1,43 @@
-def apply_confidence_thresholds(faq_object, score):
-    """Pour l'ajout du système de confiance
-    Seuils : 0.6 et 0.8
+from django.core.cache import cache
+from similarity import find_best_faq
+
+def get_chatbot_response(user_query):
+    """Service principal : Gère le 
+    cache et les seuils de confiance.
     """
-    # Seuil critique : inférieur à 0.6
+    # 1. Nettoyer la requête pour la clé de cache
+    cache_key = f"query_{user_query.strip().lower()}"
+
+    # 2. Vérifier si la réponse est déjà en cache
+    cached_response = cache.get(cache_key)
+    if cached_response:
+        return cached_response
+    
+    # 3. Si non masquée, effectuer la recherche TF-IDF
+    best_faq, score = find_best_faq(user_query)
+
+    # 4. Appliquer la logique de seuil
     if score < 0.6:
-        return {
-            "answer": "Je n'ai pas trouvé de réponse précise à votre question. Pourriez-vous reformuler ?",
-            "faq_id": None,
-            "confidence_level": "low",
+        result = {
+            "answer": "Je n'ai pas trouvé de réponse précise. Pourriez-vous reformuler?",
+            "status": "not found",
             "score": score
         }
-    
-    # Seuil intermédiaire : entre 0.6 et 0.8
     elif 0.6 <= score < 0.8:
-        return {
-            "answer": f"Voici la réponse la plus proche : {faq_object.answer}",
-            "faq_id": faq_object.id,
-            "confidence_level": "medium",
-            "score": score
+        result = {
+            "answer": f"Voici la réponse la plus proche  {best_faq.answer}",
+            "status": "uncertain",
+            "score": score,
+            "faq_id": best_faq.id
+        }
+    else:
+        result = {
+            "answer": best_faq.answer,
+            "status": "confident",
+            "score": score,
+            "faq_id": best_faq.id
         }
     
-    # Seuil élevé : supérieur ou égal à 0.8
-    else:
-        return {
-            "answer": faq_object.answer,
-            "faq_id": faq_object.id,
-            "confidence_level": "high",
-            "score": score
-        }
+    # 5. Stocker le résultat en cache pour 1 heure (3600 secondes)
+    cache.set(cache_key, result, 3600)
+    return result
