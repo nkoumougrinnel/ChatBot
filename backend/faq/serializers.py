@@ -118,7 +118,7 @@ class QuestionRequestSerializer(serializers.Serializer):
 
 
 class ChatbotResponseSerializer(serializers.Serializer):
-    """Sérialisation d'une réponse du chatbot avec statut de confiance."""
+    """Sérialisation d'une réponse du chatbot."""
     
     question = serializers.CharField()
     results = serializers.ListField(
@@ -128,6 +128,3 @@ class ChatbotResponseSerializer(serializers.Serializer):
         )
     )
     count = serializers.IntegerField()
-    status = serializers.CharField(
-        help_text="Status de confiance: 'not found', 'uncertain', ou 'confident'"
-    )
