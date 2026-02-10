@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Assistant chatbot intelligent pour la FAQ de SUP'PTIC. Posez vos questions sur l'établissement et obtenez des réponses instantanées.">
+    <meta name="theme-color" content="#1a4594">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/jpeg" href="icone.png" sizes="any">
+    <link rel="apple-touch-icon" href="icone.png">
+    <link rel="shortcut icon" href="icone.png">
+
+    <title>SUP'PTIC Assistant - Chatbot Intelligent</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="chat-container">
+        <!-- En-tête moderne -->
+        <header class="chat-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i></div>
+                    <div class="header-text">
+                        <h1>SUP'PTIC Assistant</h1>
+                        <span class="status-indicator">
+                            <span class="status-dot"></span>
+                            En ligne
+                        </span>
+                    </div>
+                </div>
+                <div class="controls">
+                    <label for="topk">Résultats:</label>
+                    <select id="topk">
+                        <option selected>1</option>
+                        <option>3</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Zone de conversation -->
+        <main class="chat-body" id="thread" aria-live="polite">
+            <div class="welcome-message">
+                <div class="welcome-icon"><i class="bi bi-hand-thumbs-up" aria-hidden="true"></i></div>
+                <h2>Bienvenue sur l'Assistant SUP'PTIC</h2>
+                <p>Posez vos questions sur la FAQ de l'établissement</p>
+            </div>
+
+            <!-- Suggestions initiales -->
+            <div class="suggestions-grid" id="suggestions">
+                <button class="suggestion-card" data-question="Quelle est l'histoire de SUP'PTIC ?">
+                    <span class="suggestion-icon"><i class="bi bi-book"></i></span>
+                    <span class="suggestion-text">Histoire de l'école</span>
+                </button>
+                <button class="suggestion-card" data-question="Comment louer une chambre universitaire ?">
+                    <span class="suggestion-icon"><i class="bi bi-house"></i></span>
+                    <span class="suggestion-text">Logement étudiant</span>
+                </button>
+                <button class="suggestion-card" data-question="Quels sont les clubs disponibles ?">
+                    <span class="suggestion-icon"><i class="bi bi-bullseye"></i></span>
+                    <span class="suggestion-text">Clubs & activités</span>
+                </button>
+                <button class="suggestion-card" data-question="Quelles sont les filières disponibles ?">
+                    <span class="suggestion-icon"><i class="bi bi-book-half"></i></span>
+                    <span class="suggestion-text">Formations</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- Zone de saisie -->
+        <footer class="chat-footer">
+            <form id="composer" class="input-group-custom" autocomplete="off">
+                <input id="input" type="text" placeholder="Tapez votre question ici..." maxlength="500" />
+                <button type="submit" id="send" class="send-btn" aria-label="Envoyer">
+                    <i class="bi bi-send-fill"></i>
+                </button>
+            </form>
+        </footer>
+
+        <!-- Toast de notification -->
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
