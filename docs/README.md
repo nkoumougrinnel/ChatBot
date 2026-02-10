@@ -1,4 +1,4 @@
-﻿﻿# README â€” docs/
+﻿# README â€” docs/
 
 Ce dossier contient la documentation du projet, organisée par phases et par usages.
 
