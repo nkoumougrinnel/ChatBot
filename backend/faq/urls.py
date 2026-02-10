@@ -10,7 +10,7 @@ Routes enregistrées via DRF router:
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import (
+from faq.views import (
     CategoryViewSet,
     FAQViewSet,
     ChatbotAskViewSet,
@@ -29,6 +29,4 @@ router.register(r'chatbot', ChatbotAskViewSet, basename='chatbot')
 # URLs patterns
 urlpatterns = [
     path('', include(router.urls)),
-    path('stats/', FeedbackViewSet.faq_stats, name='faq-stats'),
-    path('stats/categories/', FeedbackViewSet.category_stats, name='category-stats'),
 ]
