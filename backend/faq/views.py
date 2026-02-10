@@ -171,8 +171,8 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         """GET /api/stats/ - FAQ par taux de satisfaction"""
         # Calcul de la moyenne des scores par ratio de satisfaction par FAQ
         stats = FAQ.objects.annotate(
-            avg_satisfaction=Avg('feedback__score'),
-            total_feedbacks=Count('feedback').order_by('-avg_satisfaction'))
+            avg_satisfaction=Avg('feedback'),
+            total_feedbacks=Count('feedback')).order_by('-avg_satisfaction')
         data = []
         for item in stats:
             data.append({
