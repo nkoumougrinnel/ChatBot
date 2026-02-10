@@ -5,7 +5,7 @@ ENV/
 env/
 
 # Django
-db.sqlite3
+backend/db.sqlite3
 __pycache__/
 *.py[cod]
 *$py.class
