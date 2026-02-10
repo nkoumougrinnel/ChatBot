@@ -53,8 +53,19 @@ def compute_tfidf_vector(text):
     """
     global vectorizer
     if vectorizer is None:
-        # Protéger contre l'utilisation avant entraînement
-        raise ValueError("Vectorizer not trained. Call train_vectorizer first.")
+        # Si le vectorizer n'est pas entraîné, essayer un entraînement à la demande
+        # en utilisant le corpus des questions existantes en base. Cela évite
+        # d'échouer avec une 500 lorsque l'initialisation n'a pas été faite
+        # (par ex. processus séparé). Note: opération coûteuse la première fois.
+        try:
+            from faq.models import FAQ
+            corpus = list(FAQ.objects.values_list('question', flat=True))
+            if corpus:
+                train_vectorizer(corpus)
+            else:
+                raise ValueError("Vectorizer not trained and no FAQ corpus available.")
+        except Exception:
+            raise ValueError("Vectorizer not trained. Call train_vectorizer first.")
     # Transformer le texte en vecteur TF-IDF (format sparse → dense)
     vector = vectorizer.transform([text]).toarray()[0]
     # Calculer la norme L2 (utile pour la similarité cosinus)
