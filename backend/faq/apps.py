@@ -12,9 +12,6 @@ class FaqConfig(AppConfig):
         Cela garantit que le vectorizer est entraîné et disponible
         pour tous les requests API (et non seulement dans le shell).
         """
-        # Importer les signaux
-        import faq.signals
-        
         try:
             from chatbot.vectorization import compute_and_store_vectors
             print("[FAQ] Initialisation du vectorizer TF-IDF...")
