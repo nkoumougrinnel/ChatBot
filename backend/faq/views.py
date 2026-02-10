@@ -11,10 +11,11 @@ Endpoints :
 """
 
 from rest_framework import viewsets, status
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.shortcuts import get_object_or_404
+from django.db.models import Count, Avg
 
 from faq.models import Category, FAQ, Feedback
 from faq.serializers import (
@@ -164,6 +165,32 @@ class FeedbackViewSet(viewsets.ModelViewSet):
     """
     queryset = Feedback.objects.all().select_related('user', 'faq')
     serializer_class = FeedbackSerializer
+
+    @api_view(['GET'])
+    def faq_stats(request):
+        """GET /api/stats/ - FAQ par taux de satisfaction"""
+        # Calcul de la moyenne des scores par ratio de satisfaction par FAQ
+        stats = FAQ.objects.annotate(
+            avg_satisfaction=Avg('feedback__score'),
+            total_feedbacks=Count('feedback').order_by('-avg_satisfaction'))
+        data = []
+        for item in stats:
+            data.append({
+                "id": item.id,
+                "question": item.question,
+                "avg_score": item.avg_satisfaction or 0,
+                "count": item.total_feedbacks
+            })
+        return Response(data)
+    
+    @api_view(['GET'])
+    def category_stats(request):
+        """GET /api/stats/categories/ - Répartition par catégorie"""
+        categories = Category.objects.annotate(faq_count=Count('faq'))
+        serializer = CategorySerializer(categories, many=True)
+        # On adapte le format pour inclure le compte
+        data = [{"name": cat.name, "count": cat.faq_count} for cat in categories]
+        return Response(data)
     
     def get_permissions(self):
         """POST public pour créer feedback; GET restreint."""
