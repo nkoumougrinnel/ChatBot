@@ -1,3 +1,4 @@
+import os
 from django.apps import AppConfig
 
 
@@ -11,7 +12,16 @@ class FaqConfig(AppConfig):
         
         Cela garantit que le vectorizer est entraîné et disponible
         pour tous les requests API (et non seulement dans le shell).
+        
+        Note: Cette méthode est appelée deux fois par StatReloader.
+        On utilise une variable d'environnement pour éviter les appels redondants.
         """
+        # Éviter d'initialiser deux fois à cause du StatReloader
+        if os.environ.get('_FAQ_VECTORIZER_INITIALIZED'):
+            return
+        
+        os.environ['_FAQ_VECTORIZER_INITIALIZED'] = '1'
+        
         try:
             from chatbot.vectorization import compute_and_store_vectors
             print("[FAQ] Initialisation du vectorizer TF-IDF...")

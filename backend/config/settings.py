@@ -25,7 +25,14 @@ SECRET_KEY = 'django-insecure-h+&v%j+^v1gm4w-5_1pc=qy-5li26z)*o!571n&1p@87e9=5%q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Allow connections from frontend on different IPs/ports
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '192.168.10.82',
+    '0.0.0.0',
+    'jlhld2dz-8000.use.devtunnels.ms',
+]
 
 
 # Application definition
@@ -37,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
     'faq',
     'chatbot',
     'users',
@@ -44,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -127,3 +137,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Utiliser CustomUser au lieu du modèle User par défaut
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# Django REST Framework
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}
+
+# CORS Configuration - Allow frontend to access API
+CORS_ALLOWED_ORIGINS = [
+    # Local development
+    'http://localhost:9090',
+    'http://127.0.0.1:9090',
+    'http://192.168.10.82:9090',
+    # NGrok frontend (calls devtunnels backend)
+    'https://sharron-prehazard-gully.ngrok-free.dev',
+]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
+CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization']
+CORS_ALLOW_ALL_ORIGINS = False
