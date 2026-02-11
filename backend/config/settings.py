@@ -31,9 +31,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '192.168.10.82',
     '0.0.0.0',
-    'jlhld2dz-8000.use.devtunnels.ms',
-    '.ngrok-free.app',
-    'fancifully-unfumbling-sterling.ngrok-free.dev'
+    'patternable-felicitously-shaunta.ngrok-free.dev',
 ]
 
 
@@ -69,6 +67,13 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 ROOT_URLCONF = 'config.urls'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
 
 TEMPLATES = [
     {
@@ -144,21 +149,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Utiliser CustomUser au lieu du modèle User par défaut
 AUTH_USER_MODEL = 'users.CustomUser'
 
-# Django REST Framework
+# Django REST Framework configuration
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
 }
-
 # CORS Configuration - Allow frontend to access API
 CORS_ALLOWED_ORIGINS = [
-    # Local development
-    'http://localhost:9090',
-    'http://127.0.0.1:9090',
-    'http://192.168.10.82:9090',
-    # NGrok frontend (calls devtunnels backend)
+    # Local development (frontend on port 3000)
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://192.168.10.82:3000',
+    # NGrok frontend tunnel
     'https://sharron-prehazard-gully.ngrok-free.dev',
+    # NGrok backend tunnel (for API calls)
+    'https://patternable-felicitously-shaunta.ngrok-free.dev',
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']

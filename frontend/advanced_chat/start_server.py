@@ -10,9 +10,9 @@ import sys
 
 # Configuration
 # Bind to 0.0.0.0 so the server accepts connections from localhost and network interfaces
-# This ensures ngrok (which connects to localhost:9090) can reach the server.
+# This ensures connections from localhost:3000 can reach the server.
 HOST = "0.0.0.0"
-PORT = 9090
+PORT = 3000
 
 # Change to the script directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
