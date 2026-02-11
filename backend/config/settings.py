@@ -72,6 +72,10 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.netlify.app',
     'https://*.up.railway.app',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app'
+]
+
 
 
 ROOT_URLCONF = 'config.urls'
