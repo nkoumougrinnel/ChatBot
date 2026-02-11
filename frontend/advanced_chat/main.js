@@ -1,13 +1,13 @@
 // Detect API endpoint based on current location
-// If frontend is served from ngrok, call backend via devtunnels
+// If frontend is served from ngrok, call backend via ngrok
 // If frontend is served from local IP, use that IP for API
 // Otherwise, use localhost for local development
 const API_BASE = (() => {
   const host = window.location.hostname;
 
-  // If on ngrok frontend, call backend via devtunnels HTTPS
-  if (host.includes("sharron-prehazard-gully.ngrok-free.dev")) {
-    return "https://jlhld2dz-8000.use.devtunnels.ms";
+  // If on ngrok frontend, call backend via ngrok
+  if (host.includes("ngrok-free.dev")) {
+    return "https://patternable-felicitously-shaunta.ngrok-free.dev";
   }
 
   // Network IP detected, use same IP for API
@@ -19,6 +19,8 @@ const API_BASE = (() => {
   return "http://localhost:8000";
 })();
 const API_URL = `${API_BASE}/api/chatbot/ask/`;
+const API_FEEDBACK_URL = `${API_BASE}/api/feedback/`;
+const API_STATS_URL = `${API_BASE}/api/stats/`;
 
 // Éléments du DOM
 const thread = document.getElementById("thread");
@@ -32,6 +34,7 @@ const suggestionsGrid = document.getElementById("suggestions");
 
 // État de l'application
 let isProcessing = false;
+let lastUserQuestion = ""; // Pour stocker la question de l'utilisateur
 
 /**
  * Affiche un toast de notification
@@ -94,9 +97,10 @@ function formatResults(results) {
       const categoryText = r.category || "";
       const scoreNum = Number(r.score);
       const scoreText = Number.isFinite(scoreNum) ? scoreNum.toFixed(2) : "—";
+      const faqId = r.faq_id || "";
 
       return `
-    <div class="result-item">
+    <div class="result-item" data-faq-id="${faqId}">
       <div class="result-question"><i class="bi bi-pin-angle-fill"></i> ${questionText}</div>
       <div class="result-answer">${answerText}</div>
       <div class="result-meta">
@@ -104,10 +108,10 @@ function formatResults(results) {
         <span><i class="bi bi-star-fill"></i> Score: ${scoreText}</span>
       </div>
       <div class="feedback">
-        <button class="feedback-btn up" aria-label="like"><i class="bi bi-hand-thumbs-up"></i></button>
-        <button class="feedback-btn down" aria-label="dislike"><i class="bi bi-hand-thumbs-down"></i></button>
-        <button class="feedback-btn copy" aria-label="copy"><i class="bi bi-clipboard"></i></button>
-        <button class="feedback-btn share" aria-label="share"><i class="bi bi-share"></i></button>
+        <button class="feedback-btn up" aria-label="like" data-faq-id="${faqId}"><i class="bi bi-hand-thumbs-up"></i></button>
+        <button class="feedback-btn down" aria-label="dislike" data-faq-id="${faqId}"><i class="bi bi-hand-thumbs-down"></i></button>
+        <button class="feedback-btn copy" aria-label="copy" data-faq-id="${faqId}"><i class="bi bi-clipboard"></i></button>
+        <button class="feedback-btn share" aria-label="share" data-faq-id="${faqId}"><i class="bi bi-share"></i></button>
       </div>
     </div>
   `;
@@ -124,6 +128,9 @@ async function ask(question, topK) {
   isProcessing = true;
   sendBtn.disabled = true;
   hideSuggestions();
+
+  // Stocke la question pour le feedback
+  lastUserQuestion = question.trim();
 
   // Affiche la question de l'utilisateur
   appendBubble(question, "user");
@@ -253,6 +260,353 @@ async function ask(question, topK) {
 }
 
 /**
+ * Envoie un feedback (like uniquement) pour une réponse FAQ
+ */
+async function sendFeedback(faqId, isPositive, lastQuestion = "") {
+  try {
+    const payload = {
+      faq: faqId,
+      feedback_type: isPositive ? "positif" : "negatif",
+      question_utilisateur: lastQuestion,
+      score_similarite: isPositive ? 1 : 0,
+      comment: isPositive ? "Réponse utile" : "Réponse peu utile",
+    };
+
+    console.log("Envoi du feedback:", payload);
+
+    const response = await fetch(API_FEEDBACK_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const responseData = await response.json();
+    console.log("Réponse API:", response.status, responseData);
+
+    if (response.ok) {
+      console.log("Feedback enregistré avec succès");
+    } else {
+      throw new Error(
+        `Erreur ${response.status}: ${JSON.stringify(responseData)}`,
+      );
+    }
+  } catch (error) {
+    console.error("Erreur feedback:", error);
+    showToast("Erreur lors de l'enregistrement du feedback", 3000);
+  }
+}
+
+/**
+ * Charge et affiche les statistiques des FAQs
+ */
+async function loadStats() {
+  try {
+    const response = await fetch(API_STATS_URL);
+    if (!response.ok)
+      throw new Error("Erreur lors de la récupération des statistiques");
+
+    const stats = await response.json();
+    displayStats(stats);
+  } catch (error) {
+    console.error("Erreur stats:", error);
+    showToast("Impossible de charger les statistiques", 3000);
+  }
+}
+
+/**
+ * Affiche les statistiques dans le panel
+ */
+function displayStats(stats) {
+  const statsContent = document.getElementById("stats-content");
+
+  if (!stats || stats.length === 0) {
+    statsContent.innerHTML = "<p>Aucun feedback enregistré pour l'instant.</p>";
+    return;
+  }
+
+  let html = `
+    <table>
+      <thead>
+        <tr>
+          <th>FAQ</th>
+          <th>Score Moy.</th>
+          <th>Feedbacks</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  stats.forEach((stat) => {
+    const avgScore = stat.avg_score || 0;
+    const scoreClass =
+      avgScore >= 0.7
+        ? "score-good"
+        : avgScore >= 0.4
+          ? "score-medium"
+          : "score-poor";
+
+    html += `
+      <tr>
+        <td title="${stat.question}" style="max-width: 150px; overflow: hidden; text-overflow: ellipsis;">
+          ${stat.question.substring(0, 25)}...
+        </td>
+        <td><span class="score-badge ${scoreClass}">${avgScore.toFixed(2)}</span></td>
+        <td>${stat.count}</td>
+      </tr>
+    `;
+  });
+
+  html += `
+      </tbody>
+    </table>
+  `;
+
+  statsContent.innerHTML = html;
+}
+
+/**
+ * Bascule le panel de statistiques
+ */
+function toggleStatsPanel() {
+  const statsPanel = document.getElementById("stats-panel");
+  const showStatsBtn = document.getElementById("show-stats-btn");
+
+  if (statsPanel.classList.contains("show")) {
+    statsPanel.classList.remove("show");
+  } else {
+    loadStats();
+    statsPanel.classList.add("show");
+  }
+}
+
+/**
+ * Attache les événements de feedback aux boutons
+ */
+let feedbackListenersAttached = false;
+function attachFeedbackListeners() {
+  // Éviter d'attacher plusieurs fois les mêmes listeners
+  if (feedbackListenersAttached) return;
+  feedbackListenersAttached = true;
+
+  console.log("Attachement des event listeners de feedback...");
+
+  // Observer les nouveaux éléments dynamiquement ajoutés
+  document.addEventListener("click", (e) => {
+    const feedbackBtn = e.target.closest(".feedback-btn");
+    if (!feedbackBtn) return;
+
+    console.log("Clic sur bouton feedback:", feedbackBtn.className);
+
+    // Extraire l'ID FAQ depuis l'attribut data du bouton
+    const faqId = feedbackBtn.dataset.faqId;
+    console.log("FAQ ID from button:", faqId);
+
+    if (!faqId) {
+      console.error("FAQ ID non trouvé sur le bouton");
+      return;
+    }
+
+    // Récupérer le result-item pour accéder aux textes
+    const resultItem =
+      feedbackBtn.closest(".result-item") ||
+      document.querySelector(`[data-faq-id="${faqId}"]`);
+    console.log("Result item trouvé:", resultItem ? "oui" : "non");
+
+    if (feedbackBtn.classList.contains("up")) {
+      console.log("Feedback POSITIF pour FAQ:", faqId);
+      // Feedback positif
+      feedbackBtn.classList.add("active");
+      feedbackBtn.disabled = true;
+      feedbackBtn.style.opacity = "0.6";
+      feedbackBtn.style.cursor = "not-allowed";
+
+      sendFeedback(faqId, true, lastUserQuestion);
+
+      showToast("Merci d'avoir apprécié cette réponse!", 2000);
+    } else if (feedbackBtn.classList.contains("down")) {
+      console.log("Feedback NÉGATIF pour FAQ:", faqId);
+      // Feedback négatif - afficher un formulaire
+      feedbackBtn.classList.add("active");
+      feedbackBtn.style.opacity = "0.6";
+      feedbackBtn.style.cursor = "not-allowed";
+
+      showFeedbackForm(faqId);
+    } else if (feedbackBtn.classList.contains("copy")) {
+      console.log("Copie de la réponse");
+      // Copier la réponse
+      if (resultItem) {
+        const answerText =
+          resultItem.querySelector(".result-answer")?.textContent || "";
+        navigator.clipboard.writeText(answerText).then(() => {
+          showToast("Réponse copiée!", 2000);
+        });
+      }
+    } else if (feedbackBtn.classList.contains("share")) {
+      console.log("Partage de la réponse");
+      // Partager
+      if (resultItem) {
+        const questionText =
+          resultItem.querySelector(".result-question")?.textContent || "";
+        const answerText =
+          resultItem.querySelector(".result-answer")?.textContent || "";
+        const shareText = `Q: ${questionText}\nR: ${answerText}`;
+
+        if (navigator.share) {
+          navigator.share({
+            title: "SUP'PTIC Assistant",
+            text: shareText,
+          });
+        } else {
+          navigator.clipboard.writeText(shareText).then(() => {
+            showToast("Contenu copié pour partage!", 2000);
+          });
+        }
+      }
+    }
+  });
+}
+
+/**
+ * Affiche un formulaire modal pour le feedback négatif
+ */
+function showFeedbackForm(faqId) {
+  console.log("Affichage du formulaire de feedback pour FAQ:", faqId);
+
+  const suggestions = [
+    "La réponse n'est pas claire",
+    "La réponse ne répond pas à ma question",
+    "La réponse est incorrecte",
+  ];
+
+  const suggestionsHTML = suggestions
+    .map(
+      (sugg) => `
+    <button type="button" class="suggestion-btn" data-suggestion="${sugg}">
+      ${sugg}
+    </button>
+  `,
+    )
+    .join("");
+
+  const formHTML = `
+    <div class="feedback-modal-overlay" id="modal-overlay-${faqId}">
+      <div class="feedback-modal">
+        <h3>Nous aider à nous améliorer</h3>
+        <p>Dites-nous ce qui n'a pas fonctionné</p>
+        <form id="feedback-form-${faqId}" class="feedback-form">
+          <div class="suggestions-container">
+            ${suggestionsHTML}
+          </div>
+          <textarea 
+            id="feedback-text-${faqId}" 
+            placeholder="Votre commentaire personnel..." 
+            maxlength="500" 
+            rows="4"></textarea>
+          <label class="anon-label">
+            <input type="checkbox" id="anon-${faqId}" checked>
+            Envoyer en tant qu'anonyme
+          </label>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel">Annuler</button>
+            <button type="submit" class="btn-submit">Envoyer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML("beforeend", formHTML);
+  console.log("Modal HTML inséré");
+
+  const overlay = document.getElementById(`modal-overlay-${faqId}`);
+  const form = document.getElementById(`feedback-form-${faqId}`);
+  const cancelBtn = form.querySelector(".btn-cancel");
+  const textarea = document.getElementById(`feedback-text-${faqId}`);
+  const suggestionBtns = form.querySelectorAll(".suggestion-btn");
+
+  console.log("Overlay trouvé:", overlay ? "oui" : "non");
+  console.log("Form trouvée:", form ? "oui" : "non");
+
+  // Ajouter les suggestions au commentaire
+  suggestionBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const suggestion = btn.getAttribute("data-suggestion");
+      textarea.value = suggestion;
+      btn.style.backgroundColor = "#3b82f6";
+      btn.style.color = "white";
+      // Enlever les autres boutons actifs
+      suggestionBtns.forEach((b) => {
+        if (b !== btn) {
+          b.style.backgroundColor = "";
+          b.style.color = "";
+        }
+      });
+    });
+  });
+
+  cancelBtn.addEventListener("click", () => {
+    console.log("Clic sur Annuler");
+    overlay.remove();
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      console.log("Clic sur overlay (fermeture)");
+      overlay.remove();
+    }
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log("Submit du formulaire de feedback");
+
+    const comment = document.getElementById(`feedback-text-${faqId}`).value;
+    console.log("Commentaire:", comment);
+    console.log("FAQ ID pour submit:", faqId);
+
+    try {
+      const payload = {
+        faq: faqId,
+        feedback_type: "negatif",
+        question_utilisateur: lastUserQuestion,
+        score_similarite: 0,
+        comment: comment || "Réponse peu utile",
+      };
+
+      console.log("Payload à envoyer:", payload);
+
+      const response = await fetch(API_FEEDBACK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      console.log("Réponse API:", response.status, response.statusText);
+
+      if (response.ok) {
+        overlay.remove();
+        showToast(
+          "Merci pour votre feedback! Nous l'utilisons pour nous améliorer.",
+          3000,
+        );
+      } else {
+        throw new Error("Erreur lors de l'envoi");
+      }
+    } catch (error) {
+      console.error("Erreur:", error);
+      showToast("Erreur lors de l'envoi du feedback", 3000);
+    }
+  });
+}
+
+/**
  * Auto-resize du textarea
  */
 function autoResizeTextarea() {
@@ -350,8 +704,34 @@ topk.addEventListener("change", () => {
  */
 window.addEventListener("load", () => {
   input.focus();
-  console.log("✅ SUP'PTIC Assistant initialisé");
-  console.log("🔗 API:", API_URL);
+  console.log("SUP'PTIC Assistant initialisé");
+  console.log("API:", API_URL);
+  console.log("API Feedback URL:", API_FEEDBACK_URL);
+
+  // Initialiser les event listeners pour le feedback
+  console.log("Appel de attachFeedbackListeners()");
+  attachFeedbackListeners();
+  console.log("attachFeedbackListeners() terminé");
+
+  // Afficher le container de statistiques et attacher les événements
+  const statsContainer = document.getElementById("stats-container");
+  if (statsContainer) {
+    statsContainer.style.display = "block";
+
+    const showStatsBtn = document.getElementById("show-stats-btn");
+    const closeStatsBtn = document.getElementById("close-stats");
+    const statsPanel = document.getElementById("stats-panel");
+
+    if (showStatsBtn) {
+      showStatsBtn.addEventListener("click", toggleStatsPanel);
+    }
+
+    if (closeStatsBtn) {
+      closeStatsBtn.addEventListener("click", () => {
+        statsPanel.classList.remove("show");
+      });
+    }
+  }
 });
 
 /**
