@@ -25,7 +25,7 @@ class FaqConfig(AppConfig):
             return
         
         os.environ['_FAQ_VECTORIZER_INITIALIZED'] = '1'
-
+        
         try:
             from chatbot.vectorization import compute_and_store_vectors
             print("[FAQ] Initialisation du vectorizer TF-IDF...")

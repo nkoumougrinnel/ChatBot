@@ -61,6 +61,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app'
+]
+
 
 ROOT_URLCONF = 'config.urls'
 
