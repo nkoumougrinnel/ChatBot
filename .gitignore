@@ -23,4 +23,5 @@ Thumbs.db
 
 # Frontend
 node_modules/
-.env
+.env__pycache__/
+*.pyc
