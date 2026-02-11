@@ -272,17 +272,17 @@ class FeedbackViewSet(viewsets.ModelViewSet):
     @api_view(['GET'])
     def faq_stats(request):
         """GET /api/stats/ - FAQ par taux de satisfaction"""
-        # Calcul de la moyenne des scores par ratio de satisfaction par FAQ
+        # Calcul de la moyenne des scores (sur le champ numeric `score_similarite`)
         stats = FAQ.objects.annotate(
-
-            avg_satisfaction=Avg('feedback'),
-            total_feedbacks=Count('feedback')).order_by('-avg_satisfaction')
+            avg_satisfaction=Avg('feedback__score_similarite'),
+            total_feedbacks=Count('feedback')
+        ).order_by('-avg_satisfaction')
         data = []
         for item in stats:
             data.append({
                 "id": item.id,
                 "question": item.question,
-                "avg_score": item.avg_satisfaction or 0,
+                "avg_score": round((item.avg_satisfaction or 0), 4),
                 "count": item.total_feedbacks
             })
         return Response(data)
