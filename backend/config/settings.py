@@ -32,6 +32,8 @@ ALLOWED_HOSTS = [
     '192.168.10.82',
     '0.0.0.0',
     'jlhld2dz-8000.use.devtunnels.ms',
+    '.ngrok-free.app',
+    'fancifully-unfumbling-sterling.ngrok-free.dev'
 ]
 
 
@@ -61,6 +63,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app'
+]
+
 
 ROOT_URLCONF = 'config.urls'
 
