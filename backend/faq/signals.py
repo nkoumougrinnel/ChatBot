@@ -31,12 +31,10 @@ def update_faq_vector_on_feedback(sender, instance, created, **kwargs):
     feedback_type = instance.feedback_type
     
     # ===== 1. Ajuster la popularité =====
+    # Seuls les feedbacks positifs augmentent la popularité
     if feedback_type == 'positif':
         faq.popularity += 1
-    elif feedback_type == 'negatif':
-        faq.popularity = max(0, faq.popularity - 1)
-    
-    faq.save()
+        faq.save()
     
     # ===== 2. Ajuster le score_similarite selon la satisfaction =====
     # Les scores négatifs doivent affecter le avg_score en le réduisant
