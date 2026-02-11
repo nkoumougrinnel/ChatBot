@@ -246,9 +246,22 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         
         # Formater les résultats
         results = []
+        status_confidence = "not found"
+        
         for faq_result in faq_results:
             faq = faq_result['faq']
             score = faq_result['score']
+            
+            # Déterminer le statut de confiance
+            if score < 0.6:
+                if status_confidence == "not found":
+                    status_confidence = "not found"
+            elif 0.6 <= score < 0.8:
+                if status_confidence != "confident":
+                    status_confidence = "uncertain"
+            else:
+                status_confidence = "confident"
+            
             results.append({
                 'faq_id': faq.id,
                 'question': faq.question,
@@ -261,6 +274,7 @@ class ChatbotAskViewSet(viewsets.ViewSet):
             'question': question,
             'results': results,
             'count': len(results),
+            'status': status_confidence,
         }
         
         response_serializer = ChatbotResponseSerializer(response_data)

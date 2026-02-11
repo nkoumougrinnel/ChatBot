@@ -1,13 +1,13 @@
 // Detect API endpoint based on current location
-// If frontend is served from ngrok, call backend via devtunnels
+// If frontend is served from ngrok, call backend via ngrok
 // If frontend is served from local IP, use that IP for API
 // Otherwise, use localhost for local development
 const API_BASE = (() => {
   const host = window.location.hostname;
 
-  // If on ngrok frontend, call backend via devtunnels HTTPS
-  if (host.includes("sharron-prehazard-gully.ngrok-free.dev")) {
-    return "https://jlhld2dz-8000.use.devtunnels.ms";
+  // If on ngrok frontend, call backend via ngrok
+  if (host.includes("ngrok-free.dev")) {
+    return "https://patternable-felicitously-shaunta.ngrok-free.dev";
   }
 
   // Network IP detected, use same IP for API
