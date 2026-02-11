@@ -18,6 +18,10 @@ local_settings.py
 # OS / IDE
 .DS_Store
 Thumbs.db
+
+# NGrok configuration avec tokens (SENSIBLE - ne pas commiter)
+ngrok_front.yml
+ngrok_back.yml
 .vscode/
 .idea/
 

@@ -25,16 +25,13 @@ SECRET_KEY = 'django-insecure-h+&v%j+^v1gm4w-5_1pc=qy-5li26z)*o!571n&1p@87e9=5%q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = []
-=======
 # Allow connections from frontend on different IPs/ports
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '192.168.10.82',
     '0.0.0.0',
-    'jlhld2dz-8000.use.devtunnels.ms',
+    'patternable-felicitously-shaunta.ngrok-free.dev',
 ]
 
 
@@ -159,12 +156,14 @@ REST_FRAMEWORK = {
 }
 # CORS Configuration - Allow frontend to access API
 CORS_ALLOWED_ORIGINS = [
-    # Local development
-    'http://localhost:9090',
-    'http://127.0.0.1:9090',
-    'http://192.168.10.82:9090',
-    # NGrok frontend (calls devtunnels backend)
+    # Local development (frontend on port 3000)
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://192.168.10.82:3000',
+    # NGrok frontend tunnel
     'https://sharron-prehazard-gully.ngrok-free.dev',
+    # NGrok backend tunnel (for API calls)
+    'https://patternable-felicitously-shaunta.ngrok-free.dev',
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
