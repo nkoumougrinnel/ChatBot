@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sup One AI - Assistant Intelligent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+</head>
+<body>
+
+    <div class="chat-container">
+        <header class="chat-header">
+            <i class="bi bi-list fs-3 text-white" style="cursor:pointer" data-bs-toggle="offcanvas" data-bs-target="#historySidebar"></i>
+            <div class="fw-bold fs-5">Sup One AI</div>
+            <i class="bi bi-person-circle fs-3 text-white" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#profileModal"></i>
+        </header>
+
+        <main class="chat-body" id="chatContent">
+            <div class="message-container">
+                <div class="msg-bot">
+                    Bonjour Interlocuteur ou interlocutrice ! 👋 Que puis-je faire pour vous aujourd'hui ?
+                </div>
+            </div>
+
+            <div class="suggestions-container" id="suggestionsBox">
+                <button class="suggestion-btn" data-msg="Parler de l'histoire de SUP'PTIC">📚 Histoire de SUP'PTIC</button>
+                <button class="suggestion-btn" data-msg="Comment louer une chambre ?">🏠 Louer une chambre</button>
+                <button class="suggestion-btn" data-msg="Quels sont les clubs disponibles ?">🎯 S'inscrire à un club</button>
+                <button class="suggestion-btn" data-msg="j'ai une question ?"> ❓ Poser une question</button>
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator">
+                <span class="spinner-grow spinner-grow-sm text-primary"></span> Sup One AI réfléchit...
+            </div>
+        </main>
+
+        <footer class="chat-footer">
+            <form id="messageForm" class="input-group-custom">
+                <i class="bi bi-plus-circle fs-4 text-muted me-2" style="cursor:pointer"></i>
+                <input type="text" id="userInput" placeholder="Écrivez votre message..." autocomplete="off">
+                <button type="submit" class="btn btn-primary rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <i class="bi bi-send-fill"></i>
+                </button>
+            </form>
+        </footer>
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="historySidebar">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="fw-bold m-0">Historique</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group list-group-flush">
+                <button class="list-group-item list-group-item-action border-0 py-3 rounded-3 mb-2 bg-light">
+                    <i class="bi bi-chat-left-text me-2"></i> Histoire de SUP'PTIC
+                </button>
+                <button class="list-group-item list-group-item-action border-0 py-3 rounded-3 mb-2">
+                    <i class="bi bi-chat-left-text me-2"></i> Question sur les clubs
+                </button>
+            </div>
+            <button class="btn btn-primary w-100 rounded-pill mt-4">
+                <i class="bi bi-plus-lg"></i> Nouvelle Discussion
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="profileModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg p-3">
+                <div class="modal-body text-center">
+                    <i class="bi bi-person-circle text-primary mb-3" style="font-size: 4rem;"></i>
+                    <h4 class="fw-bold">Mon Compte</h4>
+                    <p class="text-muted small">Connectez-vous pour synchroniser vos discussions.</p>
+                    
+                    <div class="text-start mt-4">
+                        <div class="mb-3">
+                            <input type="email" class="form-control rounded-pill py-2" placeholder="Email">
+                        </div>
+                        <div class="mb-4">
+                            <input type="password" class="form-control rounded-pill py-2" placeholder="Mot de passe">
+                        </div>
+                        <button class="btn btn-primary w-100 rounded-pill py-2 fw-bold">Se connecter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

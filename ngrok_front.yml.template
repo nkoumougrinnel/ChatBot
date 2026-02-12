@@ -1,0 +1,7 @@
+version: 3
+ngrok:
+  authtoken: <VOTRE_TOKEN_FRONTEND>
+tunnels:
+  frontend:
+    addr: 3000
+    proto: http
