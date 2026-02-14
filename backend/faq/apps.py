@@ -1,4 +1,3 @@
-
 import os
 
 from django.apps import AppConfig
@@ -22,6 +21,11 @@ class FaqConfig(AppConfig):
         """
         # Éviter d'initialiser deux fois à cause du StatReloader
         if os.environ.get('_FAQ_VECTORIZER_INITIALIZED'):
+            return
+        
+        # SKIP le vectorizer si demandé (ex: pendant l'import de données)
+        if os.environ.get('SKIP_FAQ_VECTORIZER'):
+            print("[FAQ] ⏭️  Vectorizer skippé (SKIP_FAQ_VECTORIZER activé)")
             return
         
         os.environ['_FAQ_VECTORIZER_INITIALIZED'] = '1'

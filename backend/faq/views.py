@@ -11,7 +11,7 @@ Endpoints :
 """
 
 from rest_framework import viewsets, status
-from django.db.models import Count, Avg
+from django.db.models import Count, Avg, Q
 from django.core.cache import cache
 from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
@@ -285,11 +285,11 @@ class FeedbackViewSet(viewsets.ModelViewSet):
 
     @api_view(['GET'])
     def faq_stats(request):
-        """GET /api/stats/ - FAQ par taux de satisfaction"""
-        # Calcul de la moyenne des scores (sur le champ numeric `score_similarite`)
+        """GET /api/stats/ - FAQ par taux de satisfaction (count = feedbacks positifs)"""
+        # Calcul de la moyenne des scores et compte des feedbacks POSITIFS
         stats = FAQ.objects.annotate(
             avg_satisfaction=Avg('feedback__score_similarite'),
-            total_feedbacks=Count('feedback')
+            positive_feedbacks=Count('feedback', filter=Q(feedback__feedback_type='positif'))
         ).order_by('-avg_satisfaction')
         data = []
         for item in stats:
@@ -297,7 +297,7 @@ class FeedbackViewSet(viewsets.ModelViewSet):
                 "id": item.id,
                 "question": item.question,
                 "avg_score": round((item.avg_satisfaction or 0), 4),
-                "count": item.total_feedbacks
+                "count": item.positive_feedbacks
             })
         return Response(data)
     

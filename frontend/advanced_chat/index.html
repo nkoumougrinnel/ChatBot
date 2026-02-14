@@ -5,67 +5,195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Assistant chatbot intelligent pour la FAQ de SUP'PTIC. Posez vos questions sur l'établissement et obtenez des réponses instantanées.">
+        content="Assistant chatbot intelligent pour la FAQ de SUP'ONE. Posez vos questions sur l'établissement et obtenez des réponses instantanées.">
     <meta name="theme-color" content="#1a4594">
 
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SUP'ONE AI">
+
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="manifest.json">
+
     <!-- Icons -->
-    <link rel="icon" type="image/jpeg" href="icone.png" sizes="any">
+    <link rel="icon" type="image/png" href="icone.png" sizes="any">
     <link rel="apple-touch-icon" href="icone.png">
     <link rel="shortcut icon" href="icone.png">
 
-    <title>SUP'PTIC Assistant - Chatbot Intelligent</title>
+    <!-- Icons supplémentaires pour iOS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icone.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icone.png">
+
+    <title>SUP'ONE AI - Chatbot Intelligent</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pwa-styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
 <body>
+    <!-- Bannière d'installation PWA -->
+    <div id="install-banner" class="install-banner">
+        <!-- 1. Bouton X pour fermer -->
+        <button id="close-install-btn" class="close-install-btn" aria-label="Fermer">
+            <i class="bi bi-x-lg"></i>
+        </button>
+
+        <div class="install-content">
+            <!-- 2. Header qui groupe icône + texte -->
+            <div class="install-header">
+                <div class="install-icon">
+                    <img src="icone.png" alt="Logo">
+                </div>
+
+                <!-- 3. Texte avec h3 au lieu de strong -->
+                <div class="install-text">
+                    <h3>Installer SUP'ONE AI</h3>
+                    <p>Accédez rapidement à votre assistant depuis votre écran d'accueil</p>
+                </div>
+            </div>
+
+            <!-- 4. Liste des avantages (nouveau bloc) -->
+            <div class="install-benefits">
+                <h4>Avantages</h4>
+                <div class="benefit-item">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                    <span>Accès instantané depuis votre écran d'accueil</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="bi bi-wifi-off"></i>
+                    <span>Fonctionne hors ligne</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="bi bi-bell-fill"></i>
+                    <span>Recevez des notifications</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="bi bi-arrows-fullscreen"></i>
+                    <span>Expérience plein écran</span>
+                </div>
+            </div>
+
+            <!-- 5. Un seul bouton -->
+            <div class="install-actions">
+                <button id="install-btn" class="btn-install">
+                    <i class="bi bi-download"></i>
+                    Installer l'application
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Badge de mise à jour -->
+    <div id="update-banner" class="update-banner">
+        <div class="update-content">
+            <i class="bi bi-arrow-clockwise"></i>
+
+            <div class="update-text">
+                <strong>Mise à jour disponible</strong>
+                <span>Une nouvelle version est prête à être installée</span>
+            </div>
+
+            <button id="update-btn" class="btn-update">
+                Mettre à jour
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de profil -->
+    <div id="profile-modal" class="profile-modal-overlay">
+        <div class="profile-modal">
+            <div class="profile-modal-header">
+                <h3>Mon Profil</h3>
+                <button id="close-profile-btn" class="close-profile-btn" aria-label="Fermer">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            
+            <div class="profile-modal-body">
+                <div class="profile-avatar">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                
+                <div class="profile-info">
+                    <div class="profile-item">
+                        <i class="bi bi-person-fill"></i>
+                        <div class="profile-item-content">
+                            <label>Nom</label>
+                            <span id="profile-name">Utilisateur</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <div class="profile-item-content">
+                            <label>Email</label>
+                            <span id="profile-email">email@exemple.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-item">
+                        <i class="bi bi-calendar-fill"></i>
+                        <div class="profile-item-content">
+                            <label>Membre depuis</label>
+                            <span id="profile-date">Janvier 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="stat-questions">0</div>
+                        <div class="stat-label">Questions posées</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="stat-feedbacks">0</div>
+                        <div class="stat-label">Feedbacks donnés</div>
+                    </div>
+                </div>
+                
+                <div class="profile-note">
+                    <i class="bi bi-info-circle"></i>
+                    <p>L'intégration de l'API pour afficher vos informations est en cours de développement.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="chat-container">
         <!-- En-tête moderne -->
         <header class="chat-header">
             <div class="header-content">
                 <div class="logo-section">
-                    <div class="logo-icon"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i></div>
+                    <div class="logo-icon"><img src="icone.png" alt="Logo" style="width: 50px; height: 50px; border-radius: 50%;"></div>
                     <div class="header-text">
-                        <h1>SUP'PTIC Assistant</h1>
+                        <h1>SUP'ONE AI</h1>
                         <span class="status-indicator">
                             <span class="status-dot"></span>
-                            En ligne
+                            <span id="connection-status">En ligne</span>
                         </span>
                     </div>
                 </div>
                 <div class="controls">
-                    <label for="topk">Résultats:</label>
-                    <select id="topk">
-                        <option selected>1</option>
-                        <option>3</option>
-                        <option>5</option>
-                    </select>
+                    <button class="profile-btn" id="profile-toggle" aria-label="Profil utilisateur">
+                        <i class="bi bi-person-circle"></i>
+                    </button>
                 </div>
             </div>
         </header>
 
         <!-- Zone de conversation -->
         <main class="chat-body" id="thread" aria-live="polite">
-            <div class="welcome-message">
-                <div class="welcome-icon"><i class="bi bi-hand-thumbs-up" aria-hidden="true"></i></div>
-                <h2>Bienvenue sur l'Assistant SUP'PTIC</h2>
+            <div class="welcome-message" id="welcome-section">
+                <h2>Bienvenue sur SUP'ONE AI</h2>
                 <p>Posez vos questions sur la FAQ de l'établissement</p>
             </div>
 
-            <!-- Suggestions initiales -->
+            <!-- Suggestions dynamiques (chargées depuis l'API) -->
             <div class="suggestions-grid" id="suggestions">
-                <button class="suggestion-card" data-question="Quelle est l'histoire de SUP'PTIC ?">
-                    <span class="suggestion-icon"><i class="bi bi-book"></i></span>
-                    <span class="suggestion-text">Quelle est l'histoire de SUP'PTIC ?</span>
-                </button>
-                <button class="suggestion-card" data-question="Comment louer une chambre universitaire ?">
-                    <span class="suggestion-icon"><i class="bi bi-house"></i></span>
-                    <span class="suggestion-text">Comment louer une chambre universitaire ?</span>
-                </button>
-                <button class="suggestion-card" data-question="Quels sont les clubs disponibles ?">
-                    <span class="suggestion-icon"><i class="bi bi-bullseye"></i></span>
-                    <span class="suggestion-text">Quels sont les clubs disponibles ?</span>
-                </button>
+                <!-- Les suggestions seront chargées dynamiquement depuis l'API feedback -->
             </div>
         </main>
 
@@ -83,17 +211,9 @@
         <div id="toast" class="toast" role="status" aria-live="polite"></div>
     </div>
 
-    <!-- Section de statistiques (pour vérifier les feedbacks) -->
-    <div id="stats-container" style="display: none;">
-        <button id="show-stats-btn" class="stats-toggle"><i class="bi bi-bar-chart"></i> Statistiques</button>
-        <div id="stats-panel" class="stats-panel">
-            <h3>Statistiques des FAQs</h3>
-            <button id="close-stats" class="close-btn"><i class="bi bi-x-lg"></i></button>
-            <div id="stats-content"></div>
-        </div>
-    </div>
-
+    <!-- Scripts -->
     <script type="module" src="main.js"></script>
+    <script src="pwa.js"></script>
 </body>
 
 </html>
