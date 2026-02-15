@@ -131,7 +131,8 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         top_k = serializer.validated_data.get('top_k', 3)
         
         # ===== 1. Vérifier le cache =====
-        cache_key = f"query_{question.strip().lower()}"
+        import hashlib
+        cache_key = f"query_{hashlib.md5(question.strip().lower().encode()).hexdigest()}"
         cached_response = cache.get(cache_key)
         if cached_response:
             return Response(cached_response, status=status.HTTP_200_OK)
@@ -185,93 +186,6 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         return Response(response_serializer.data, status=status.HTTP_200_OK)
 
 
-class ChatbotAskViewSet(viewsets.ViewSet):
-    """
-    Endpoint pour poser une question au chatbot.
-    
-    - POST /api/chatbot/ask/ : poser question et obtenir top-k réponses
-    """
-    permission_classes = [AllowAny]
-    
-    @action(detail=False, methods=['post'], url_path='ask')
-    def ask(self, request):
-        """
-        Poser une question et retourner les FAQs les plus pertinentes.
-        
-        Body:
-        {
-            "question": "Comment réinitialiser mon mot de passe ?",
-            "top_k": 3
-        }
-        
-        Response:
-        {
-            "question": "Comment réinitialiser mon mot de passe ?",
-            "results": [
-                {
-                    "faq_id": 1,
-                    "question": "...",
-                    "answer": "...",
-                    "score": 0.95,
-                    "category": "Support"
-                }
-            ],
-            "count": 1
-        }
-        """
-        serializer = QuestionRequestSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
-        question = serializer.validated_data['question']
-        top_k = serializer.validated_data.get('top_k', 3)
-        
-        # Appeler le pipeline de similarité
-        try:
-            faq_results = find_best_faq(question, top_k=top_k)
-        except Exception as e:
-            return Response(
-                {'error': f'Erreur lors de la recherche : {str(e)}'},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-        
-        # Formater les résultats
-        results = []
-        status_confidence = "not found"
-        
-        for faq_result in faq_results:
-            faq = faq_result['faq']
-            score = faq_result['score']
-            
-            # Déterminer le statut de confiance
-            if score < 0.6:
-                if status_confidence == "not found":
-                    status_confidence = "not found"
-            elif 0.6 <= score < 0.8:
-                if status_confidence != "confident":
-                    status_confidence = "uncertain"
-            else:
-                status_confidence = "confident"
-            
-            results.append({
-                'faq_id': faq.id,
-                'question': faq.question,
-                'answer': faq.answer,
-                'score': round(score, 4),
-                'category': faq.category.name,
-            })
-        
-        response_data = {
-            'question': question,
-            'results': results,
-            'count': len(results),
-            'status': status_confidence,
-        }
-        
-        response_serializer = ChatbotResponseSerializer(response_data)
-        return Response(response_serializer.data, status=status.HTTP_200_OK)
-
-
 class FeedbackViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour les feedbacks utilisateurs.
@@ -319,7 +233,6 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
     
     def perform_create(self, serializer):
-
         """Assigner l'utilisateur courant ou anonyme selon l'authentification."""
         from django.contrib.auth import get_user_model
         User = get_user_model()

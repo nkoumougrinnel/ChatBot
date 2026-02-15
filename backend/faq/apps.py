@@ -1,5 +1,7 @@
 import os
-
+import sys
+import time
+from pathlib import Path
 from django.apps import AppConfig
 
 
@@ -10,38 +12,91 @@ class FaqConfig(AppConfig):
     def ready(self):
         """
         Initialiser le vectorizer TF-IDF au démarrage de Django.
-        
-        Cela garantit que le vectorizer est entraîné et disponible
-        pour tous les requests API (et non seulement dans le shell).
+        Version avec logging détaillé pour debug.
         """
         
-        """
-        Note: Cette méthode est appelée deux fois par StatReloader.
-        On utilise une variable d'environnement pour éviter les appels redondants.
-        """
-        # Éviter d'initialiser deux fois à cause du StatReloader
-        if os.environ.get('_FAQ_VECTORIZER_INITIALIZED'):
+        # ===== DEBUG : Afficher qu'on est bien dans ready() =====
+        print("=" * 80, file=sys.stderr)
+        print("[FAQ DEBUG] ready() appelé !", file=sys.stderr)
+        print(f"[FAQ DEBUG] PID: {os.getpid()}", file=sys.stderr)
+        print(f"[FAQ DEBUG] RUN_MAIN: {os.environ.get('RUN_MAIN')}", file=sys.stderr)
+        print("=" * 80, file=sys.stderr)
+        
+        # ===== 1. Protection contre le double-chargement du autoreloader =====
+        # EN PRODUCTION avec Gunicorn, RUN_MAIN n'existe pas, donc on skip cette vérification
+        run_main = os.environ.get('RUN_MAIN')
+        if run_main and run_main != 'true':
+            print("[FAQ] ⏭️ Skip (autoreloader parent process)", file=sys.stderr)
             return
         
-        # SKIP le vectorizer si demandé (ex: pendant l'import de données)
-        if os.environ.get('SKIP_FAQ_VECTORIZER'):
-            print("[FAQ] ⏭️  Vectorizer skippé (SKIP_FAQ_VECTORIZER activé)")
-            return
+        # ===== 2. Lock fichier pour éviter l'init multiple avec Gunicorn =====
+        lock_file = Path('/tmp/faq_vectorizer.lock')
+        init_done_file = Path('/tmp/faq_vectorizer_done.flag')
         
-        os.environ['_FAQ_VECTORIZER_INITIALIZED'] = '1'
+        print(f"[FAQ DEBUG] Lock file: {lock_file}", file=sys.stderr)
+        print(f"[FAQ DEBUG] Done flag: {init_done_file}", file=sys.stderr)
+        print(f"[FAQ DEBUG] Done flag exists: {init_done_file.exists()}", file=sys.stderr)
         
-        try:
-            from chatbot.vectorization import compute_and_store_vectors
-            print("[FAQ] Initialisation du vectorizer TF-IDF...")
-            compute_and_store_vectors()
-            print("[FAQ] ✓ Vectorizer entraîné et FAQVectors stockés en BD")
-        except Exception as e:
-            print(f"[FAQ] ⚠ Initialisation vectorizer échouée : {e}")
-            print("[FAQ] Le chatbot ne fonctionnera pas tant que ce problème n'est pas résolu")
+        # Si déjà initialisé (flag existe), skip
+        if init_done_file.exists():
+            print("[FAQ] ⏭️ Vectorizer déjà initialisé (flag détecté)")
+        else:
+            # Essayer d'acquérir le lock
+            try:
+                print("[FAQ DEBUG] Tentative de création du lock...", file=sys.stderr)
+                # Créer le fichier lock de façon atomique (fail si existe déjà)
+                fd = os.open(str(lock_file), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                os.write(fd, str(os.getpid()).encode())
+                os.close(fd)
+                
+                print("[FAQ DEBUG] Lock acquis !", file=sys.stderr)
+                
+                # On a le lock, on initialise
+                try:
+                    from chatbot.vectorization import compute_and_store_vectors
+                    print("[FAQ] 🚀 Initialisation du vectorizer TF-IDF...")
+                    compute_and_store_vectors()
+                    print("[FAQ] ✅ Vectorizer entraîné et FAQVectors stockés en BD")
+                    
+                    # Créer le flag "done"
+                    init_done_file.touch()
+                    print("[FAQ DEBUG] Flag 'done' créé", file=sys.stderr)
+                    
+                except Exception as e:
+                    print(f"[FAQ] ⚠️ Initialisation vectorizer échouée : {e}")
+                    print(f"[FAQ DEBUG] Exception complète:", file=sys.stderr)
+                    import traceback
+                    traceback.print_exc()
+                finally:
+                    # Libérer le lock
+                    lock_file.unlink(missing_ok=True)
+                    print("[FAQ DEBUG] Lock libéré", file=sys.stderr)
+                    
+            except FileExistsError:
+                # Un autre worker a le lock, attendre qu'il finisse
+                print("[FAQ] ⏳ Attente de l'initialisation par un autre worker...")
+                print(f"[FAQ DEBUG] Lock déjà pris, attente...", file=sys.stderr)
+                
+                # Attendre max 60 secondes que le flag "done" apparaisse
+                for i in range(60):
+                    if init_done_file.exists():
+                        print("[FAQ] ✅ Initialisation terminée par un autre worker")
+                        break
+                    if i % 5 == 0:
+                        print(f"[FAQ DEBUG] Attente... {i}s", file=sys.stderr)
+                    time.sleep(1)
+                else:
+                    # Timeout : nettoyer le lock qui pourrait être bloqué
+                    print("[FAQ] ⚠️ Timeout d'attente - nettoyage du lock")
+                    lock_file.unlink(missing_ok=True)
         
-        # ===== Importer les signaux =====
+        # ===== 3. Importer les signaux (chaque worker doit les charger) =====
         try:
             from faq import signals
-            print("[FAQ] ✓ Signaux d'amélioration des scores chargés")
+            print("[FAQ] ✅ Signaux d'amélioration des scores chargés")
         except Exception as e:
-            print(f"[FAQ] ⚠ Erreur lors du chargement des signaux : {e}")
+            print(f"[FAQ] ⚠️ Erreur lors du chargement des signaux : {e}")
+            import traceback
+            traceback.print_exc()
+        
+        print("[FAQ DEBUG] ready() terminé", file=sys.stderr)

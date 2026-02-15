@@ -1,0 +1,236 @@
+{
+  "conversational_rules": [
+    {
+      "intent": "salutation",
+      "patterns": [
+        "bonjour", "salut", "coucou", "hello", "hey", "bonsoir", "yo",
+        "salutations", "bon matin", "bon après-midi", "bien le bonjour",
+        "hi", "hola", "wesh", "slt", "cc", "kikou"
+      ],
+      "response": "Bonjour ! Comment puis-je vous aider aujourd'hui ?"
+    },
+    {
+      "intent": "comment_ca_va",
+      "patterns": [
+        "comment ça va", "comment tu vas", "ça va", "comment allez-vous",
+        "tu vas bien", "comment tu te sens", "la forme", "ça roule",
+        "ça gaze", "quoi de neuf", "quoi de beau", "tout va bien",
+        "comment est ta journée", "comment va la vie", "cv"
+      ],
+      "response": "Je vais très bien, merci ! Comment puis-je vous aider ?"
+    },
+    {
+      "intent": "remerciement",
+      "patterns": [
+        "merci", "merci beaucoup", "je te remercie", "merci bien",
+        "un grand merci", "merci infiniment", "thanks", "thx", "ty",
+        "merci pour ton aide", "merci mille fois", "merci du fond du cœur",
+        "je vous remercie", "merci pour tout", "cool merci", "ok merci"
+      ],
+      "response": "Avec plaisir ! N'hésitez pas si vous avez d'autres questions."
+    },
+    {
+      "intent": "au_revoir",
+      "patterns": [
+        "au revoir", "salut à bientôt", "ciao", "bye", "bye bye",
+        "à plus tard", "à la prochaine", "bonne journée", "bonne soirée",
+        "adieu", "à demain", "je dois y aller", "on se reparle",
+        "à bientôt", "a plus", "aurevoir", "à tout"
+      ],
+      "response": "Au revoir ! Bonne continuation."
+    },
+    {
+      "intent": "identite_bot",
+      "patterns": [
+        "qui es-tu", "tu es qui", "tu es un robot", "es-tu une ia",
+        "tu es humain ou machine", "tu es un programme", "dis-moi qui tu es",
+        "quelle est ton identité", "intelligence artificielle",
+        "tu as un nom", "comment tu t'appelles", "présente-toi",
+        "identité", "qui êtes-vous", "c'est quoi ton nom"
+      ],
+      "response": "Je suis SUP'ONE AI, votre assistant virtuel pour toutes vos questions sur SUP'PTIC."
+    },
+    {
+      "intent": "capacites_bot",
+      "patterns": [
+        "qu'est-ce que tu sais faire", "tu peux faire quoi", "tes capacités",
+        "en quoi tu peux m'aider", "à quoi sers-tu", "quelle est ta fonction",
+        "tu es utile pour quoi", "qu'est-ce que tu peux pour moi",
+        "tu peux répondre", "tu connais", "tu es intelligent",
+        "tu apprends", "tu as des limites", "tu fais quoi", "aide moi"
+      ],
+      "response": "Je peux répondre à vos questions sur les inscriptions, les examens, les cours, l'administration et toute information concernant SUP'PTIC."
+    },
+    {
+      "intent": "blague",
+      "patterns": [
+        "raconte-moi une blague", "tu connais une blague", "fais-moi rire",
+        "une blague", "histoire drôle", "quelque chose de drôle",
+        "blague du jour", "histoire amusante", "fais-moi sourire",
+        "tu es drôle", "donne-moi une blague", "je veux rire"
+      ],
+      "response": "Pourquoi les développeurs préfèrent-ils le mode sombre ? Parce que la lumière attire les bugs ! 😄"
+    },
+    {
+      "intent": "age_bot",
+      "patterns": [
+        "quel âge as-tu", "tu es jeune", "depuis combien de temps tu existes",
+        "date de naissance", "tu as quel âge", "est-ce que tu vieillis",
+        "quand as-tu été créé", "ton âge", "tu es nouveau",
+        "depuis quand es-tu en service"
+      ],
+      "response": "Je suis tout nouveau ! Je suis en phase de test pour mieux vous servir."
+    },
+    {
+      "intent": "genre_bot",
+      "patterns": [
+        "es-tu un homme ou une femme", "tu es masculin ou féminin",
+        "quel est ton genre", "tu es une fille ou un garçon",
+        "tu as un sexe", "je dois t'appeler il ou elle",
+        "madame ou monsieur", "genre du bot"
+      ],
+      "response": "Je n'ai pas de genre, je suis une IA. Appelez-moi comme vous préférez !"
+    },
+    {
+      "intent": "sentiments_bot",
+      "patterns": [
+        "as-tu des sentiments", "tu ressens des émotions", "est-ce que tu peux aimer",
+        "tu es sensible", "tu as un cœur", "tu comprends les émotions",
+        "est-ce que tu pleures", "peux-tu être triste", "tu ressens la joie",
+        "tu es capable d'empathie", "tu as une conscience"
+      ],
+      "response": "Je n'ai pas de sentiments comme les humains, mais je suis programmé pour vous aider avec bienveillance."
+    },
+    {
+      "intent": "meteo",
+      "patterns": [
+        "quel temps fait-il", "il fait beau", "il va pleuvoir",
+        "quelle est la météo", "donne-moi la météo", "il fait combien degrés",
+        "température", "parapluie", "météo du jour", "prévisions météo",
+        "il fait chaud ou froid", "ciel dégagé", "risque de pluie"
+      ],
+      "response": "Je ne peux pas accéder aux données météo. Consultez une application météo dédiée."
+    },
+    {
+      "intent": "heure",
+      "patterns": [
+        "quelle heure est-il", "tu as l'heure", "donne-moi l'heure",
+        "il est quelle heure", "heure actuelle", "il est tard",
+        "on est quel jour", "date du jour", "quel jour sommes-nous",
+        "c'est quel jour aujourd'hui", "nous sommes quel mois"
+      ],
+      "response": "Je n'ai pas accès à l'heure en temps réel. Regardez votre montre ou téléphone !"
+    },
+    {
+      "intent": "hors_scope",
+      "patterns": [
+        "sport", "basketball", "football", "tennis", "volleyball",
+        "tu aimes voyager", "voyage", "tu cuisines", "recette",
+        "musique", "film", "série", "jeu vidéo", "tu joues",
+        "politique", "religion", "philosophie"
+      ],
+      "response": "Je suis spécialisé dans les questions académiques sur SUP'PTIC. Comment puis-je vous aider avec vos études ?"
+    },
+    {
+      "intent": "createur_bot",
+      "patterns": [
+        "qui t'a créé", "qui sont tes créateurs", "d'où viens-tu",
+        "qui est derrière toi", "qui a développé", "équipe de développement",
+        "qui t'a programmé", "tes parents", "ton créateur"
+      ],
+      "response": "J'ai été développé par le Club Informatique de SUP'PTIC. Pour en savoir plus, contactez le club !"
+    },
+    {
+      "intent": "probleme_connexion",
+      "patterns": [
+        "je ne peux pas me connecter", "problème de connexion", "mot de passe oublié",
+        "j'ai oublié mon mot de passe", "connexion impossible", "compte bloqué",
+        "réinitialiser mot de passe", "problème accès", "login ne marche pas"
+      ],
+      "response": "Pour les problèmes de connexion, contactez le service informatique de SUP'PTIC ou l'administration."
+    },
+    {
+      "intent": "horaires",
+      "patterns": [
+        "horaires", "quelle heure ouvre", "quelle heure ferme",
+        "heure d'ouverture", "heure de fermeture", "planning", "emploi du temps",
+        "c'est ouvert", "bibliothèque ouvre", "secrétariat ouvre"
+      ],
+      "response": "Pour connaître les horaires exacts, consultez le portail étudiant ou contactez directement le service concerné."
+    },
+    {
+      "intent": "contact_urgence",
+      "patterns": [
+        "numéro d'urgence", "contact urgent", "problème urgent",
+        "qui appeler", "numéro administration", "contacter quelqu'un",
+        "aide urgente", "besoin aide immédiate"
+      ],
+      "response": "Pour toute urgence, contactez l'administration de SUP'PTIC pendant les heures d'ouverture ou le service de garde."
+    },
+    {
+      "intent": "incomprehension",
+      "patterns": [
+        "je ne comprends pas", "c'est pas clair", "peux-tu expliquer",
+        "explique mieux", "reformule", "je ne saisis pas",
+        "c'est compliqué", "plus simple", "autrement", "hein"
+      ],
+      "response": "Désolé si ce n'était pas clair. Pouvez-vous reformuler votre question ? Je vais essayer de mieux vous aider."
+    },
+    {
+      "intent": "reformulation_demande",
+      "patterns": [
+        "autre façon de demander", "redis autrement", "reformule ta réponse",
+        "tu peux dire autrement", "change ta réponse", "autre formulation"
+      ],
+      "response": "Bien sûr ! Pouvez-vous préciser ce que vous voulez savoir exactement ?"
+    },
+    {
+      "intent": "bug_signalement",
+      "patterns": [
+        "il y a un bug", "ça ne marche pas", "erreur", "problème technique",
+        "ça bug", "c'est cassé", "ne fonctionne pas", "dysfonctionnement"
+      ],
+      "response": "Merci de signaler ce problème ! Contactez le Club Informatique pour qu'ils puissent corriger ça."
+    },
+    {
+      "intent": "feedback_positif",
+      "patterns": [
+        "c'est bien", "bon travail", "bravo", "excellent", "super",
+        "très utile", "merci c'est parfait", "top", "génial", "cool"
+      ],
+      "response": "Merci beaucoup ! Votre retour fait plaisir. N'hésitez pas si vous avez d'autres questions."
+    },
+    {
+      "intent": "feedback_negatif",
+      "patterns": [
+        "c'est nul", "pas bien", "mauvais", "ça sert à rien",
+        "inutile", "décevant", "pas satisfait"
+      ],
+      "response": "Désolé que l'expérience ne soit pas satisfaisante. Vos retours aident à améliorer le service. Que puis-je faire de mieux ?"
+    },
+    {
+      "intent": "test_bot",
+      "patterns": [
+        "test", "tu es là", "ça marche", "tu m'entends",
+        "tu réponds", "hello world", "testing"
+      ],
+      "response": "Oui, je suis là et je fonctionne ! Comment puis-je vous aider ?"
+    },
+    {
+      "intent": "confusion_generale",
+      "patterns": [
+        "je suis perdu", "je ne sais pas", "aide", "confused",
+        "par où commencer", "quoi faire", "je suis confus"
+      ],
+      "response": "Pas de problème ! Dites-moi ce que vous cherchez : inscriptions, examens, cours, administration... Je vous guide !"
+    },
+    {
+      "intent": "impatience",
+      "patterns": [
+        "trop long", "c'est lent", "dépêche-toi", "plus vite",
+        "accélère", "trop de temps"
+      ],
+      "response": "Désolé pour l'attente. Je fais de mon mieux pour vous répondre rapidement !"
+    }
+  ]
+}

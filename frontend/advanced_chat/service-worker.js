@@ -85,9 +85,22 @@ self.addEventListener('fetch', (event) => {
           console.log('[SW] Serving from cache (offline mode):', url.pathname);
           return response;
         }
-        // Fallback si pas en cache (ne devrait jamais arriver)
-        console.warn('[SW] Demo/Offline page not in cache!');
-        return fetch(request);
+        // Fallback: essayer le réseau si pas en cache
+        console.warn('[SW] Page not in cache, trying network:', url.pathname);
+        return fetch(request).catch(() => {
+          // Si le réseau échoue aussi, générer une page d'erreur basique
+          if (url.pathname === '/offline.html') {
+            return new Response(generateOfflineHTML(), {
+              headers: { 'Content-Type': 'text/html' }
+            });
+          }
+          // Pour demo.html, rediriger vers offline.html
+          return caches.match('/offline.html').then(offline => {
+            return offline || new Response(generateOfflineHTML(), {
+              headers: { 'Content-Type': 'text/html' }
+            });
+          });
+        });
       })
     );
     return;

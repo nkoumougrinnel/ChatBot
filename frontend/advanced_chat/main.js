@@ -43,6 +43,8 @@ let isProcessing = false;
 let lastUserQuestion = "";
 let hasAskedQuestion = false;
 let activeFeedbackStates = new Map();
+let userHasScrolledManually = false; // Flag pour détecter si l'utilisateur a scrollé manuellement
+let scrollTimeout = null; // Timeout pour réinitialiser le flag
 
 /**
  * Affiche un toast de notification
@@ -221,16 +223,21 @@ function attachSuggestionListeners() {
  * Vérifie si l'utilisateur est en bas du scroll
  */
 function isUserAtBottom() {
-  const threshold = 100;
+  const threshold = 150; // Augmenté pour plus de tolérance
   return (
     thread.scrollHeight - thread.scrollTop - thread.clientHeight < threshold
   );
 }
 
 /**
- * Scroll vers le bas si l'utilisateur était déjà en bas
+ * Scroll vers le bas SEULEMENT si l'utilisateur n'a pas scrollé manuellement
  */
 function autoScrollIfNeeded() {
+  // Ne pas scroller si l'utilisateur a pris le contrôle du scroll
+  if (userHasScrolledManually) {
+    return;
+  }
+  
   requestAnimationFrame(() => {
     thread.scrollTo({ top: thread.scrollHeight, behavior: "smooth" });
   });
@@ -247,7 +254,8 @@ function appendBubble(text, who = "bot") {
   const wasAtBottom = isUserAtBottom();
   thread.appendChild(bubble);
 
-  if (wasAtBottom) {
+  // Auto-scroll SEULEMENT si l'utilisateur était en bas ET n'a pas scrollé manuellement
+  if (wasAtBottom && !userHasScrolledManually) {
     autoScrollIfNeeded();
   }
 
@@ -270,8 +278,8 @@ async function typeText(element, text, speed = 20) {
         element.textContent += text.charAt(index);
         index++;
 
-        // Auto-scroll pendant la frappe
-        if (isUserAtBottom()) {
+        // Auto-scroll pendant la frappe SEULEMENT si l'utilisateur n'a pas scrollé manuellement
+        if (isUserAtBottom() && !userHasScrolledManually) {
           autoScrollIfNeeded();
         }
       } else {
@@ -346,8 +354,8 @@ async function typeHTML(element, htmlContent, speed = 20) {
           element.textContent = displayText;
         }
 
-        // Auto-scroll pendant la frappe
-        if (isUserAtBottom()) {
+        // Auto-scroll pendant la frappe SEULEMENT si l'utilisateur n'a pas scrollé manuellement
+        if (isUserAtBottom() && !userHasScrolledManually) {
           autoScrollIfNeeded();
         }
       } else {
@@ -431,11 +439,12 @@ async function ask(question) {
   lastUserQuestion = question.trim();
   appendBubble(question, "user");
 
-  // Animation de recherche avec délai minimum de 1 seconde
-  const loadingBubble = appendBubble(
-    '<span class="muted"><i class="bi bi-search"></i> Recherche dans la FAQ...</span>',
-    "bot",
-  );
+  // Animation de recherche avec typing effect
+  const loadingBubble = appendBubble('<span class="muted"><i class="bi bi-search"></i> </span>', "bot");
+  const loadingTextSpan = loadingBubble.querySelector('.muted');
+  
+  // Animation de typing pour le texte de recherche (sans attendre la fin)
+  typeText(loadingTextSpan, 'Recherche dans la FAQ...', 30);
 
   const startTime = Date.now();
 
@@ -559,14 +568,13 @@ async function ask(question) {
 
     loadingBubble.remove();
 
-    const errorBubble = appendBubble("", "bot");
+    const errorBubble = appendBubble('<span class="muted"><i class="bi bi-x-circle"></i> </span>', "bot");
+    const errorTextSpan = errorBubble.querySelector('.muted');
     await typeText(
-      errorBubble,
+      errorTextSpan,
       'Une erreur est survenue. Veuillez réessayer.',
       10,
     );
-    // Ajouter l'icône après l'animation
-    errorBubble.innerHTML = '<span class="muted"><i class="bi bi-x-circle"></i> ' + errorBubble.textContent + '</span>';
   } finally {
     isProcessing = false;
     sendBtn.disabled = false;
@@ -811,12 +819,45 @@ function showNegativeFeedbackModal(faqId) {
 }
 
 /**
- * Gestion de la soumission du formulaire
+ * Détecte quand l'utilisateur scroll manuellement pour désactiver l'auto-scroll
+ */
+thread.addEventListener('scroll', () => {
+  // Vérifier si l'utilisateur a scrollé vers le haut (pas en bas)
+  if (!isUserAtBottom()) {
+    userHasScrolledManually = true;
+    
+    // Réinitialiser le flag après 2 secondes d'inactivité
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(() => {
+      // Réactiver l'auto-scroll après 2s d'inactivité, peu importe la position
+      userHasScrolledManually = false;
+    }, 2000);
+  } else {
+    // Si l'utilisateur est en bas, réactiver l'auto-scroll immédiatement
+    userHasScrolledManually = false;
+    if (scrollTimeout) {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = null;
+    }
+  }
+});
+
+/**
+ * Réinitialiser le flag de scroll manuel à chaque nouvelle question
  */
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const question = input.value.trim();
   if (!question || isProcessing) return;
+
+  // Réinitialiser le flag pour permettre l'auto-scroll sur la nouvelle réponse
+  userHasScrolledManually = false;
+  if (scrollTimeout) {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = null;
+  }
 
   ask(question);
   input.value = "";

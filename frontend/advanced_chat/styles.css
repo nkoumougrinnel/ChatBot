@@ -126,7 +126,6 @@ body {
   -webkit-backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   position: relative;
   z-index: 1;
 }
@@ -475,9 +474,11 @@ body {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding: 20px;
+  padding-bottom: 40px; /* Extra padding en bas pour éviter que le contenu soit caché */
   display: flex;
   flex-direction: column;
   gap: 16px;
+  scroll-behavior: smooth;
 }
 
 /* Scrollbar personnalisée */

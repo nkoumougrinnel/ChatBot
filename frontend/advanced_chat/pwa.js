@@ -1,6 +1,6 @@
 /**
  * PWA - Gestion de l'installation et des mises à jour
- * SUP'ONE AI - Version stabilisée SANS rafraîchissements intempestifs
+ * SUP'ONE AI - Version corrigée - Bug demo.html fixé
  */
 
 // Variables globales
@@ -34,7 +34,6 @@ if ('serviceWorker' in navigator) {
         
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            // ✅ SEULEMENT si une mise à jour est détectée
             showUpdateBanner();
           }
         });
@@ -58,7 +57,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
   
-  // ✅ SEULEMENT afficher si beforeinstallprompt est déclenché ET pas en mode PWA
   if (!isPWA()) {
     setTimeout(() => {
       showInstallBanner();
@@ -74,13 +72,11 @@ function showInstallBanner() {
     return;
   }
 
-  // Toujours afficher tant que pas installé
   if (isPWA()) {
     console.log('[PWA] Application déjà installée');
     return;
   }
 
-  // ✅ Utiliser display: block au lieu de flex (correspond au CSS)
   banner.style.display = 'block';
   banner.offsetHeight;
   
@@ -90,7 +86,6 @@ function showInstallBanner() {
 
   console.log('[PWA] Bannière d\'installation affichée');
 
-  // Bouton Installer
   const installBtn = document.getElementById('install-btn');
   if (installBtn) {
     const newInstallBtn = installBtn.cloneNode(true);
@@ -98,7 +93,6 @@ function showInstallBanner() {
     newInstallBtn.addEventListener('click', installApp);
   }
 
-  // Bouton Fermer (X)
   const closeBtn = document.getElementById('close-install-btn');
   if (closeBtn) {
     const newCloseBtn = closeBtn.cloneNode(true);
@@ -203,11 +197,10 @@ function showUpdateBanner() {
   }
 }
 
-// ✅ CORRECTION : Détection plus intelligente de la connexion
+// ✅ CORRECTION du bug : Ne jamais rediriger automatiquement quand on navigue
 window.addEventListener('online', () => {
   console.log('[PWA] Connexion rétablie');
   
-  // Annuler toute redirection en cours
   if (offlineTimeout) {
     clearTimeout(offlineTimeout);
     offlineTimeout = null;
@@ -218,21 +211,17 @@ window.addEventListener('online', () => {
   showToast('Connexion rétablie', 'success');
   
   // ✅ Revenir à la page principale UNIQUEMENT depuis offline.html
-  // ❌ NE PAS rediriger depuis demo.html (l'utilisateur veut rester sur la démo)
   if (window.location.pathname.includes('offline.html')) {
     console.log('[PWA] Retour à la page principale depuis offline.html');
     window.location.href = '/';
-  } else if (window.location.pathname.includes('demo.html')) {
-    console.log('[PWA] Connexion rétablie - L\'utilisateur reste sur demo.html');
   } else {
-    console.log('[PWA] Connexion rétablie sur la page actuelle');
+    console.log('[PWA] Connexion rétablie - L\'utilisateur reste sur la page actuelle');
   }
 });
 
 window.addEventListener('offline', () => {
   console.log('[PWA] Événement offline détecté');
   
-  // Annuler tout timeout précédent
   if (offlineTimeout) {
     clearTimeout(offlineTimeout);
   }
@@ -240,26 +229,24 @@ window.addEventListener('offline', () => {
   updateConnectionStatus(false);
   showToast('Mode hors ligne activé', 'warning');
   
-  // ✅ Redirection intelligente : uniquement si on n'est pas déjà sur une page offline
-  if (!window.location.pathname.includes('offline.html') && 
-      !window.location.pathname.includes('demo.html')) {
-    
-    console.log('[PWA] Redirection vers offline.html dans 3 secondes...');
-    
-    // Attendre 3 secondes pour éviter les faux positifs
-    offlineTimeout = setTimeout(() => {
-      // Vérifier à nouveau qu'on est toujours offline
-      if (!navigator.onLine) {
-        console.log('[PWA] Toujours offline, redirection...');
-        window.location.href = '/offline.html';
-      }
-    }, 3000);
-  } else {
-    console.log('[PWA] Déjà sur une page offline, pas de redirection');
+  // ✅ Ne PAS rediriger si on est déjà sur offline.html ou demo.html
+  const currentPath = window.location.pathname;
+  if (currentPath === '/offline.html' || currentPath === '/demo.html') {
+    console.log('[PWA] Déjà sur une page hors ligne, pas de redirection');
+    return;
   }
+  
+  // Rediriger vers offline.html après 3 secondes
+  isTransitioningToOffline = true;
+  offlineTimeout = setTimeout(() => {
+    if (!navigator.onLine) {
+      console.log('[PWA] Redirection vers offline.html après 3s');
+      window.location.href = '/offline.html';
+    }
+  }, 3000);
 });
 
-// ✅ Fonction pour vérifier réellement la connexion (pas juste navigator.onLine)
+// ✅ Fonction pour vérifier réellement la connexion
 async function checkRealConnection() {
   try {
     const controller = new AbortController();
@@ -315,7 +302,6 @@ function showToast(message, type = 'info', duration = 3000) {
     return;
   }
 
-  // Icônes Bootstrap Icons selon le type
   let icon = '';
   switch(type) {
     case 'success':
@@ -343,42 +329,27 @@ function showToast(message, type = 'info', duration = 3000) {
   }, duration);
 }
 
-// ✅ Initialisation au chargement - Avec vérification offline intelligente
+// ✅ Initialisation simplifiée - Pas de redirection automatique
 window.addEventListener('load', async () => {
   console.log('[PWA] Script initialisé');
   
-  // Vérifier le statut de connexion initial
   const isOnline = navigator.onLine;
+  const currentPath = window.location.pathname;
+  
   updateConnectionStatus(isOnline);
   
-  // ✅ Vérification offline au chargement
-  // Rediriger SEULEMENT si :
-  // 1. On est hors ligne
-  // 2. On n'est pas déjà sur offline.html ou demo.html
-  // 3. La page n'a pas déjà été mise en cache
-  if (!isOnline && 
-      !window.location.pathname.includes('offline.html') && 
-      !window.location.pathname.includes('demo.html')) {
-    
-    console.log('[PWA] Page chargée en mode offline, vérification...');
-    
-    // Attendre 2 secondes pour laisser le Service Worker gérer la requête
-    setTimeout(async () => {
-      // Double vérification de la connexion
-      const stillOffline = !navigator.onLine;
-      const reallyOffline = !(await checkRealConnection());
-      
-      if (stillOffline || reallyOffline) {
-        console.log('[PWA] Toujours offline, redirection vers offline.html');
-        window.location.href = '/offline.html';
-      }
-    }, 2000);
+  // ✅ Si on est sur demo.html, désactiver les événements de connexion
+  if (currentPath === '/demo.html') {
+    console.log('[PWA] Mode démo - événements de connexion désactivés');
+    return;
   }
+  
+  // ✅ NE PLUS rediriger automatiquement
+  // Le Service Worker s'occupe de tout
   
   if (isPWA()) {
     console.log('[PWA] Application lancée en mode standalone');
     
-    // Masquer la bannière d'installation en mode PWA
     const banner = document.getElementById('install-banner');
     if (banner) {
       banner.style.display = 'none';
@@ -439,19 +410,17 @@ document.addEventListener('touchmove', (e) => {
   }
 }, { passive: false });
 
-// Fonction debug pour forcer l'affichage (TEST UNIQUEMENT)
+// Fonction debug pour forcer l'affichage
 window.showPWAInstallBanner = () => {
   console.log('[DEBUG] Affichage forcé de la bannière d\'installation');
   showInstallBanner();
 };
 
-// Fonction debug pour forcer la bannière de mise à jour (TEST UNIQUEMENT)
 window.showPWAUpdateBanner = () => {
   console.log('[DEBUG] Affichage forcé de la bannière de mise à jour');
   showUpdateBanner();
 };
 
-// ✅ Fonction debug pour tester le statut de connexion
 window.testConnection = async () => {
   const real = await checkRealConnection();
   const reported = navigator.onLine;
@@ -461,8 +430,8 @@ window.testConnection = async () => {
   return { reported, real };
 };
 
-console.log('[PWA] Script chargé - Version stabilisée');
+console.log('[PWA] Script chargé - Version corrigée (bug demo.html fixé)');
 console.log('[DEBUG] Commandes disponibles:');
-console.log('  - window.showPWAInstallBanner() : Forcer la bannière d\'installation');
-console.log('  - window.showPWAUpdateBanner() : Forcer la bannière de mise à jour');
-console.log('  - window.testConnection() : Tester la connexion réelle');
+console.log('  - window.showPWAInstallBanner()');
+console.log('  - window.showPWAUpdateBanner()');
+console.log('  - window.testConnection()');
