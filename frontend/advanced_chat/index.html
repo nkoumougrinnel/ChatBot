@@ -193,7 +193,22 @@
 
             <!-- Suggestions dynamiques (chargées depuis l'API) -->
             <div class="suggestions-grid" id="suggestions">
+<<<<<<< HEAD
                 <!-- Les suggestions seront chargées dynamiquement depuis l'API feedback -->
+=======
+                <button class="suggestion-card" data-question="Quelle est l'histoire de SUP'PTIC ?">
+                    <span class="suggestion-icon"><i class="bi bi-book"></i></span>
+                    <span class="suggestion-text">Quelle est l'histoire de SUP'PTIC ?</span>
+                </button>
+                <button class="suggestion-card" data-question="Comment louer une chambre universitaire ?">
+                    <span class="suggestion-icon"><i class="bi bi-house"></i></span>
+                    <span class="suggestion-text">Comment louer une chambre universitaire ?</span>
+                </button>
+                <button class="suggestion-card" data-question="Quels sont les clubs disponibles ?">
+                    <span class="suggestion-icon"><i class="bi bi-bullseye"></i></span>
+                    <span class="suggestion-text">Quels sont les clubs disponibles ?</span>
+                </button>
+>>>>>>> backend
             </div>
         </main>
 
@@ -211,7 +226,20 @@
         <div id="toast" class="toast" role="status" aria-live="polite"></div>
     </div>
 
+<<<<<<< HEAD
     <!-- Scripts -->
+=======
+    <!-- Section de statistiques (pour vérifier les feedbacks) -->
+    <div id="stats-container" style="display: none;">
+        <button id="show-stats-btn" class="stats-toggle"><i class="bi bi-bar-chart"></i> Statistiques</button>
+        <div id="stats-panel" class="stats-panel">
+            <h3>Statistiques des FAQs</h3>
+            <button id="close-stats" class="close-btn"><i class="bi bi-x-lg"></i></button>
+            <div id="stats-content"></div>
+        </div>
+    </div>
+
+>>>>>>> backend
     <script type="module" src="main.js"></script>
     <script src="pwa.js"></script>
 </body>

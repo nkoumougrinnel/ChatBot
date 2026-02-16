@@ -1,7 +1,12 @@
+
 import os
+<<<<<<< HEAD
 import sys
 import time
 from pathlib import Path
+=======
+
+>>>>>>> backend
 from django.apps import AppConfig
 
 
@@ -12,7 +17,18 @@ class FaqConfig(AppConfig):
     def ready(self):
         """
         Initialiser le vectorizer TF-IDF au démarrage de Django.
+<<<<<<< HEAD
         Version avec logging détaillé pour debug.
+=======
+        
+        Cela garantit que le vectorizer est entraîné et disponible
+        pour tous les requests API (et non seulement dans le shell).
+        """
+        
+        """
+        Note: Cette méthode est appelée deux fois par StatReloader.
+        On utilise une variable d'environnement pour éviter les appels redondants.
+>>>>>>> backend
         """
         
         # ===== DEBUG : Afficher qu'on est bien dans ready() =====
@@ -95,8 +111,20 @@ class FaqConfig(AppConfig):
             from faq import signals
             print("[FAQ] ✅ Signaux d'amélioration des scores chargés")
         except Exception as e:
+<<<<<<< HEAD
             print(f"[FAQ] ⚠️ Erreur lors du chargement des signaux : {e}")
             import traceback
             traceback.print_exc()
         
         print("[FAQ DEBUG] ready() terminé", file=sys.stderr)
+=======
+            print(f"[FAQ] ⚠ Initialisation vectorizer échouée : {e}")
+            print("[FAQ] Le chatbot ne fonctionnera pas tant que ce problème n'est pas résolu")
+        
+        # ===== Importer les signaux =====
+        try:
+            from faq import signals
+            print("[FAQ] ✓ Signaux d'amélioration des scores chargés")
+        except Exception as e:
+            print(f"[FAQ] ⚠ Erreur lors du chargement des signaux : {e}")
+>>>>>>> backend

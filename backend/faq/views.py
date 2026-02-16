@@ -11,7 +11,11 @@ Endpoints :
 """
 
 from rest_framework import viewsets, status
+<<<<<<< HEAD
 from django.db.models import Count, Avg, Q
+=======
+from django.db.models import Count, Avg
+>>>>>>> backend
 from django.core.cache import cache
 from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
@@ -101,6 +105,106 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         - Score 0.6-0.8 : "uncertain"
         - Score >= 0.8 : "confident"
         
+<<<<<<< HEAD
+=======
+        Body:
+        {
+            "question": "Comment réinitialiser mon mot de passe ?",
+            "top_k": 3
+        }
+        
+        Response:
+        {
+            "question": "Comment réinitialiser mon mot de passe ?",
+            "results": [
+                {
+                    "faq_id": 1,
+                    "question": "...",
+                    "answer": "...",
+                    "score": 0.95,
+                    "category": "Support"
+                }
+            ],
+            "count": 1,
+            "status": "confident"
+        }
+        """
+        serializer = QuestionRequestSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        question = serializer.validated_data['question']
+        top_k = serializer.validated_data.get('top_k', 3)
+        
+        # ===== 1. Vérifier le cache =====
+        cache_key = f"query_{question.strip().lower()}"
+        cached_response = cache.get(cache_key)
+        if cached_response:
+            return Response(cached_response, status=status.HTTP_200_OK)
+        
+        # ===== 2. Recherche TF-IDF =====
+        try:
+            faq_results = find_best_faq(question, top_k=top_k)
+        except Exception as e:
+            return Response(
+                {'error': f'Erreur lors de la recherche : {str(e)}'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+        
+        # ===== 3. Appliquer les seuils et formater =====
+        results = []
+        status_confidence = "not found"
+        
+        for faq_result in faq_results:
+            faq = faq_result['faq']
+            score = faq_result['score']
+            
+            # Déterminer le statut de confiance
+            if score < 0.6:
+                if status_confidence == "not found":
+                    status_confidence = "not found"
+            elif 0.6 <= score < 0.8:
+                if status_confidence != "confident":
+                    status_confidence = "uncertain"
+            else:
+                status_confidence = "confident"
+            
+            results.append({
+                'faq_id': faq.id,
+                'question': faq.question,
+                'answer': faq.answer,
+                'score': round(score, 4),
+                'category': faq.category.name,
+            })
+        
+        response_data = {
+            'question': question,
+            'results': results,
+            'count': len(results),
+            'status': status_confidence,
+        }
+        
+        # ===== 4. Mettre en cache pour 1 heure =====
+        cache.set(cache_key, response_data, 3600)
+        
+        response_serializer = ChatbotResponseSerializer(response_data)
+        return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+class ChatbotAskViewSet(viewsets.ViewSet):
+    """
+    Endpoint pour poser une question au chatbot.
+    
+    - POST /api/chatbot/ask/ : poser question et obtenir top-k réponses
+    """
+    permission_classes = [AllowAny]
+    
+    @action(detail=False, methods=['post'], url_path='ask')
+    def ask(self, request):
+        """
+        Poser une question et retourner les FAQs les plus pertinentes.
+        
+>>>>>>> backend
         Body:
         {
             "question": "Comment réinitialiser mon mot de passe ?",
@@ -199,11 +303,19 @@ class FeedbackViewSet(viewsets.ModelViewSet):
 
     @api_view(['GET'])
     def faq_stats(request):
+<<<<<<< HEAD
         """GET /api/stats/ - FAQ par taux de satisfaction (count = feedbacks positifs)"""
         # Calcul de la moyenne des scores et compte des feedbacks POSITIFS
         stats = FAQ.objects.annotate(
             avg_satisfaction=Avg('feedback__score_similarite'),
             positive_feedbacks=Count('feedback', filter=Q(feedback__feedback_type='positif'))
+=======
+        """GET /api/stats/ - FAQ par taux de satisfaction"""
+        # Calcul de la moyenne des scores (sur le champ numeric `score_similarite`)
+        stats = FAQ.objects.annotate(
+            avg_satisfaction=Avg('feedback__score_similarite'),
+            total_feedbacks=Count('feedback')
+>>>>>>> backend
         ).order_by('-avg_satisfaction')
         data = []
         for item in stats:
@@ -211,7 +323,11 @@ class FeedbackViewSet(viewsets.ModelViewSet):
                 "id": item.id,
                 "question": item.question,
                 "avg_score": round((item.avg_satisfaction or 0), 4),
+<<<<<<< HEAD
                 "count": item.positive_feedbacks
+=======
+                "count": item.total_feedbacks
+>>>>>>> backend
             })
         return Response(data)
     
@@ -233,6 +349,10 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
     
     def perform_create(self, serializer):
+<<<<<<< HEAD
+=======
+
+>>>>>>> backend
         """Assigner l'utilisateur courant ou anonyme selon l'authentification."""
         from django.contrib.auth import get_user_model
         User = get_user_model()

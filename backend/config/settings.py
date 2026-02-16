@@ -34,8 +34,11 @@ ALLOWED_HOSTS = [
     '192.168.10.82',
     '0.0.0.0',
     'patternable-felicitously-shaunta.ngrok-free.dev',
+<<<<<<< HEAD
     '*.netlify.app',
     'chatbot-production-5202.up.railway.app',
+=======
+>>>>>>> backend
 ]
 
 
@@ -71,6 +74,10 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.netlify.app',
     'https://*.up.railway.app',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app'
+]
+
 
 
 ROOT_URLCONF = 'config.urls'
@@ -182,10 +189,13 @@ CORS_ALLOWED_ORIGINS = [
     'https://sharron-prehazard-gully.ngrok-free.dev',
     # NGrok backend tunnel (for API calls)
     'https://patternable-felicitously-shaunta.ngrok-free.dev',
+<<<<<<< HEAD
     # Railway deployment
     "https://chatbot-production-5202.up.railway.app",
     # Netlify deployment
     'https://sup-one-ai.netlify.app',
+=======
+>>>>>>> backend
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
