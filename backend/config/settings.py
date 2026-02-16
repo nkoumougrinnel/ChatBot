@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +33,9 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '192.168.10.82',
     '0.0.0.0',
-    'jlhld2dz-8000.use.devtunnels.ms',
+    'patternable-felicitously-shaunta.ngrok-free.dev',
+    '*.netlify.app',
+    'chatbot-production-5202.up.railway.app',
 ]
 
 
@@ -60,9 +64,23 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app',
+    'https://*.netlify.app',
+    'https://*.up.railway.app',
 ]
 
+
 ROOT_URLCONF = 'config.urls'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
 
 TEMPLATES = [
     {
@@ -87,10 +105,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 
@@ -128,7 +147,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'   # dossier collectstatic
+STATICFILES_DIRS = [BASE_DIR / 'static'] # si tu as un dossier "static" dans ton projet
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -138,23 +163,31 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Utiliser CustomUser au lieu du modèle User par défaut
 AUTH_USER_MODEL = 'users.CustomUser'
 
-# Django REST Framework
+# Django REST Framework configuration
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
 }
-
 # CORS Configuration - Allow frontend to access API
 CORS_ALLOWED_ORIGINS = [
-    # Local development
-    'http://localhost:9090',
-    'http://127.0.0.1:9090',
-    'http://192.168.10.82:9090',
-    # NGrok frontend (calls devtunnels backend)
+    # Local development (frontend on port 3000)
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://192.168.10.82:3000',
+    # NGrok frontend tunnel
     'https://sharron-prehazard-gully.ngrok-free.dev',
+    # NGrok backend tunnel (for API calls)
+    'https://patternable-felicitously-shaunta.ngrok-free.dev',
+    # Railway deployment
+    "https://chatbot-production-5202.up.railway.app",
+    # Netlify deployment
+    'https://sup-one-ai.netlify.app',
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
 CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization']
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True

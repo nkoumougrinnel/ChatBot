@@ -1,19 +1,35 @@
 [
-    {
-        "model": "users.user",
-        "pk": 1,
-        "fields": {
-            "username": "admin_test",
-            "is_staff": true,
-            "is_superuser": true
-        }
-    },
-    {
-        "model": "users.user",
-        "pk": 2,
-        "fields": {
-            "username": "etudiant_test",
-            "is_staff": false
-        }
+
+  {
+    "model": "users.customuser",
+    "pk": 1,
+    "fields": {
+      "username": "admin_test",
+      "email": "admin@test.com",
+      "password": "pbkdf2_sha256$720000$abcd1234efgh5678ijkl$1234567890abcdefghijklmnop==",
+      "is_staff": true,
+      "is_superuser": true,
+      "is_active": true,
+      "first_name": "Admin",
+      "last_name": "Test",
+      "date_joined": "2026-02-10T00:00:00Z",
+      "role": "admin"
     }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 2,
+    "fields": {
+      "username": "etudiant_test",
+      "email": "etudiant@test.com",
+      "password": "pbkdf2_sha256$720000$abcd1234efgh5678ijkl$1234567890abcdefghijklmnop==",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true,
+      "first_name": "Étudiant",
+      "last_name": "Test",
+      "date_joined": "2026-02-10T00:00:00Z",
+      "role": "etudiant"
+    }
+  }
 ]
