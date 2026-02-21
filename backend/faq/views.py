@@ -11,12 +11,12 @@ Endpoints :
 """
 
 from rest_framework import viewsets, status
+from django.db.models import Count, Avg, Q
+from django.core.cache import cache
 from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.shortcuts import get_object_or_404
-from django.db.models import Count, Avg
-from django.core.cache import cache
 
 from faq.models import Category, FAQ, Feedback
 from faq.serializers import (
@@ -128,10 +128,11 @@ class ChatbotAskViewSet(viewsets.ViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         question = serializer.validated_data['question']
-        top_k = serializer.validated_data.get('top_k', 3)
+        top_k = serializer.validated_data.get('top_k', 1)
         
         # ===== 1. Vérifier le cache =====
-        cache_key = f"query_{question.strip().lower()}"
+        import hashlib
+        cache_key = f"query_{hashlib.md5(question.strip().lower().encode()).hexdigest()}"
         cached_response = cache.get(cache_key)
         if cached_response:
             return Response(cached_response, status=status.HTTP_200_OK)
@@ -185,79 +186,6 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         return Response(response_serializer.data, status=status.HTTP_200_OK)
 
 
-class ChatbotAskViewSet(viewsets.ViewSet):
-    """
-    Endpoint pour poser une question au chatbot.
-    
-    - POST /api/chatbot/ask/ : poser question et obtenir top-k réponses
-    """
-    permission_classes = [AllowAny]
-    
-    @action(detail=False, methods=['post'], url_path='ask')
-    def ask(self, request):
-        """
-        Poser une question et retourner les FAQs les plus pertinentes.
-        
-        Body:
-        {
-            "question": "Comment réinitialiser mon mot de passe ?",
-            "top_k": 3
-        }
-        
-        Response:
-        {
-            "question": "Comment réinitialiser mon mot de passe ?",
-            "results": [
-                {
-                    "faq_id": 1,
-                    "question": "...",
-                    "answer": "...",
-                    "score": 0.95,
-                    "category": "Support"
-                }
-            ],
-            "count": 1
-        }
-        """
-        serializer = QuestionRequestSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
-        question = serializer.validated_data['question']
-        top_k = serializer.validated_data.get('top_k', 3)
-        
-        # Appeler le pipeline de similarité
-        try:
-            faq_results = find_best_faq(question, top_k=top_k)
-        except Exception as e:
-            return Response(
-                {'error': f'Erreur lors de la recherche : {str(e)}'},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-        
-        # Formater les résultats
-        results = []
-        for faq_result in faq_results:
-            faq = faq_result['faq']
-            score = faq_result['score']
-            results.append({
-                'faq_id': faq.id,
-                'question': faq.question,
-                'answer': faq.answer,
-                'score': round(score, 4),
-                'category': faq.category.name,
-            })
-        
-        response_data = {
-            'question': question,
-            'results': results,
-            'count': len(results),
-        }
-        
-        response_serializer = ChatbotResponseSerializer(response_data)
-        return Response(response_serializer.data, status=status.HTTP_200_OK)
-
-
 class FeedbackViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour les feedbacks utilisateurs.
@@ -271,11 +199,11 @@ class FeedbackViewSet(viewsets.ModelViewSet):
 
     @api_view(['GET'])
     def faq_stats(request):
-        """GET /api/stats/ - FAQ par taux de satisfaction"""
-        # Calcul de la moyenne des scores (sur le champ numeric `score_similarite`)
+        """GET /api/stats/ - FAQ par taux de satisfaction (count = feedbacks positifs)"""
+        # Calcul de la moyenne des scores et compte des feedbacks POSITIFS
         stats = FAQ.objects.annotate(
             avg_satisfaction=Avg('feedback__score_similarite'),
-            total_feedbacks=Count('feedback')
+            positive_feedbacks=Count('feedback', filter=Q(feedback__feedback_type='positif'))
         ).order_by('-avg_satisfaction')
         data = []
         for item in stats:
@@ -283,7 +211,7 @@ class FeedbackViewSet(viewsets.ModelViewSet):
                 "id": item.id,
                 "question": item.question,
                 "avg_score": round((item.avg_satisfaction or 0), 4),
-                "count": item.total_feedbacks
+                "count": item.positive_feedbacks
             })
         return Response(data)
     

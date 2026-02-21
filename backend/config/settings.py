@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,16 @@ SECRET_KEY = 'django-insecure-h+&v%j+^v1gm4w-5_1pc=qy-5li26z)*o!571n&1p@87e9=5%q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Allow connections from frontend on different IPs/ports
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '192.168.10.82',
+    '0.0.0.0',
+    'patternable-felicitously-shaunta.ngrok-free.dev',
+    '*.netlify.app',
+    'chatbot-production-5202.up.railway.app',
+]
 
 
 # Application definition
@@ -38,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'faq',
     'chatbot',
     'users',
@@ -45,13 +57,21 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app',
+    'https://*.netlify.app',
+    'https://*.up.railway.app',
+]
+
 
 ROOT_URLCONF = 'config.urls'
 
@@ -85,10 +105,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 
@@ -126,7 +147,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'   # dossier collectstatic
+STATICFILES_DIRS = [BASE_DIR / 'static'] # si tu as un dossier "static" dans ton projet
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -144,3 +171,22 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
 }
+# CORS Configuration - Allow frontend to access API
+CORS_ALLOWED_ORIGINS = [
+    # Local development (frontend on port 3000)
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://192.168.10.82:3000',
+    # NGrok frontend tunnel
+    'https://sharron-prehazard-gully.ngrok-free.dev',
+    # NGrok backend tunnel (for API calls)
+    'https://patternable-felicitously-shaunta.ngrok-free.dev',
+    # Railway deployment
+    "https://chatbot-production-5202.up.railway.app",
+    # Netlify deployment
+    'https://sup-one-ai.netlify.app',
+]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
+CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization']
+CORS_ALLOW_ALL_ORIGINS = True

@@ -10,7 +10,12 @@ Routes enregistrées via DRF router:
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+<<<<<<< HEAD
 from .views import (
+=======
+
+from faq.views import (
+>>>>>>> dev
     CategoryViewSet,
     FAQViewSet,
     ChatbotAskViewSet,

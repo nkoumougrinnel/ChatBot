@@ -1,4 +1,8 @@
 [
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
   {
     "model": "users.customuser",
     "pk": 1,
