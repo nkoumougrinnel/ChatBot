@@ -1,0 +1,156 @@
+[
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
+  {
+    "model": "faq.faq",
+    "pk": 1,
+    "fields": {
+      "question": "Où se trouve SUP'PTIC ?",
+      "answer": "L'école est située à Yaoundé, quartier Elig-Essono.",
+      "category": 1,
+      "source": "Site officiel",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "faq.faq",
+    "pk": 2,
+    "fields": {
+      "question": "Quels sont les frais d'inscription ?",
+      "answer": "Les frais varient selon le cycle, veuillez consulter le service de scolarité.",
+      "category": 2,
+      "source": "Règlement 2026",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "faq.faq",
+    "pk": 3,
+    "fields": {
+      "question": "Comment rejoindre le Club Informatique ?",
+      "answer": "Inscrivez-vous directement auprès du bureau du club au bloc B.",
+      "category": 3,
+      "source": "Club Info",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "faq.faq",
+    "pk": 4,
+    "fields": {
+      "question": "Dates des examens ?",
+      "answer": "Le calendrier est affiché sur le panneau d'affichage central.",
+      "category": 2,
+      "source": "DAAC",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "faq.faq",
+    "pk": 5,
+    "fields": {
+      "question": "Y a-t-il une bibliothèque ?",
+      "answer": "Oui, elle est ouverte de 8h à 18h en semaine.",
+      "category": 1,
+      "source": "Guide étudiant",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "faq.faq",
+    "pk": 6,
+    "fields": {
+      "question": "Peut-on faire un stage ?",
+      "answer": "Les stages sont obligatoires en fin de cycle.",
+      "category": 2,
+      "source": "Direction",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "faq.faq",
+    "pk": 7,
+    "fields": {
+      "question": "Wifi disponible ?",
+      "answer": "Le campus est couvert par le wifi SUP'PTIC_GUEST.",
+      "category": 3,
+      "source": "Division Info",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "faq.faq",
+    "pk": 8,
+    "fields": {
+      "question": "Comment réinitialiser mon mot de passe ?",
+      "answer": "Contactez l'administrateur système avec votre carte d'étudiant.",
+      "category": 1,
+      "source": "IT Support",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "faq.faq",
+    "pk": 9,
+    "fields": {
+      "question": "Où manger sur le campus ?",
+      "answer": "Le restaurant universitaire est situé derrière le bâtiment principal.",
+      "category": 3,
+      "source": "Vie pratique",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "faq.faq",
+    "pk": 10,
+    "fields": {
+      "question": "Heures d'ouverture de l'école ?",
+      "answer": "De 7h30 à 17h30 pour les services administratifs.",
+      "category": 1,
+      "source": "Standard",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  }
+]
