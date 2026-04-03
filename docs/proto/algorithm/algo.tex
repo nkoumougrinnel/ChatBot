@@ -1,0 +1,837 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit,backgrounds}
+
+% Configuration des listes
+\setlist[itemize]{leftmargin=*, itemsep=3pt, topsep=3pt}
+\setlist[enumerate]{leftmargin=*, itemsep=3pt, topsep=3pt}
+
+% Configuration du code
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{orange},
+    tabsize=4,
+    showstringspaces=false
+}
+
+% En-tête et pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Documentation Technique de l'Algorithme de Similarité - ChatBot SUP'PTIC}
+\fancyhead[R]{\small \today}
+\fancyfoot[C]{\thepage}
+
+% Environnements personnalisés
+\newtcolorbox{important}[1][]{
+  colback=red!5!white,
+  colframe=red!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{info}[1][]{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{astuce}[1][]{
+  colback=green!5!white,
+  colframe=green!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{exemple}[1][]{
+  colback=orange!5!white,
+  colframe=orange!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\begin{document}
+
+% Page de titre
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge \textbf{Documentation Technique de l'Algorithme de Similarité}} 
+    
+\vspace{0.5cm}
+    {\Large ChatBot SUP'PTIC} 
+
+\vspace{1.5cm}
+    
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \small Document de référence pour l'équipe projet \\
+        détaillant l'architecture logicielle et le fonctionnement \\
+        du moteur de recherche basé sur TF-IDF et Similarité Cosinus
+    \end{minipage}
+    
+\end{titlepage}
+
+
+% Table des matières
+\tableofcontents
+\clearpage
+
+% Section 1 : Introduction
+\section{Introduction}
+\label{sec:introduction}
+
+\subsection{Objectif du Document}
+
+Ce document technique a pour objectif d’expliquer en détail le 
+\textbf{fonctionnement de l’algorithme de recherche et de similarité} 
+utilisé par le ChatBot SUP'PTIC. 
+Il constitue une référence pour les membres de l’équipe projet 
+souhaitant comprendre la logique mathématique et le pipeline de traitement 
+des questions/réponses (prétraitement, vectorisation TF-IDF, calcul de similarité cosinus).
+
+\begin{important}[Périmètre]
+Ce document se concentre \textbf{exclusivement} sur l’algorithme de similarité 
+et son intégration dans le moteur de recherche du chatbot. 
+\end{important}
+
+
+\subsection{Ce que Vous Allez Apprendre}
+
+À la fin de ce document, vous serez capable de :
+
+\begin{enumerate}
+    \item \textbf{Comprendre l'algorithme} : Saisir comment TF-IDF et la similarité cosinus permettent au chatbot de trouver la bonne réponse
+    \item \textbf{Apprécier l'importance des données CSV} : Comprendre pourquoi la qualité de nos fichiers CSV détermine directement la performance du système
+    \item \textbf{Contribuer efficacement} : Savoir comment améliorer les données pour optimiser les résultats
+    
+\end{enumerate}
+
+\subsection{Public Cible}
+
+Ce document s'adresse à :
+\begin{itemize}
+    \item Les développeurs backend et frontend de l'équipe
+    \item Les gestionnaires de contenu responsables de la FAQ
+    \item Les designers UX/UI qui conçoivent l'interface
+    \item Les nouveaux membres rejoignant le projet
+    \item Tout membre de l'équipe souhaitant comprendre le système
+\end{itemize}
+
+\begin{astuce}[Prérequis]
+Aucune connaissance préalable en intelligence artificielle n'est requise. 
+Les concepts mathématiques sont expliqués avec des exemples concrets tirés de notre projet.
+\end{astuce}
+
+\clearpage
+
+% Section 2 : L'Algorithme Expliqué
+\section{L'Algorithme de Similarité : Cœur du Système}
+\label{sec:algorithme}
+
+\subsection{Vue d'Ensemble}
+
+Le chatbot SUP'PTIC repose sur un principe simple mais puissant : \textbf{transformer les phrases en nombres pour pouvoir les comparer mathématiquement}.
+
+\begin{info}[Principe Fondamental]
+Quand un utilisateur pose une question, le système :
+\begin{enumerate}
+    \item Transforme la question en un vecteur de nombres (TF-IDF)
+    \item Transforme toutes les questions de la FAQ en vecteurs
+    \item Calcule la distance entre la question utilisateur et chaque question FAQ (similarité cosinus)
+    \item Retourne la réponse associée à la question FAQ la plus proche
+\end{enumerate}
+\end{info}
+
+\subsection{TF-IDF : Donner un Poids aux Mots}
+
+\subsubsection{Qu'est-ce que TF-IDF ?}
+
+TF-IDF (Term Frequency - Inverse Document Frequency) est une technique statistique qui évalue l'importance d'un mot dans un document par rapport à un corpus de documents.
+
+\paragraph{TF : Fréquence du Terme}
+
+La fréquence du terme (TF) mesure simplement combien de fois un mot apparaît dans une phrase.
+
+\[
+TF(mot, phrase) = \frac{\text{nombre d'occurrences du mot dans la phrase}}{\text{nombre total de mots dans la phrase}}
+\]
+
+\paragraph{IDF : Fréquence Inverse du Document}
+
+La fréquence inverse du document (IDF) mesure la rareté d'un mot dans l'ensemble du corpus. Un mot rare est plus discriminant qu'un mot courant.
+
+\[
+IDF(mot) = \log \frac{N}{n_t}
+\]
+
+où $N$ est le nombre total de documents (questions FAQ) et $n_t$ le nombre de documents contenant le mot.
+
+\paragraph{TF-IDF : La Combinaison}
+
+Le score TF-IDF final combine les deux mesures :
+
+\[
+TF\text{-}IDF(mot, phrase) = TF(mot, phrase) \times IDF(mot)
+\]
+
+\subsubsection{Exemple Concret avec Notre FAQ}
+
+Prenons un exemple tiré de notre base de données réelle sur les clubs et associations :
+
+\begin{exemple}[Calcul TF-IDF - Exemple Réel]
+\textbf{Question utilisateur :} \\
+\textit{"Quels sont les frais d'adhésion au club informatique ?"}
+
+\vspace{0.3cm}
+\textbf{Questions FAQ candidates :}
+\begin{enumerate}
+    \item \textit{"Quels sont les documents nécessaires pour adhérer au club informatique ?"}
+    \item \textit{"Est-ce que les frais d'adhésion sont remboursables ?"}
+\end{enumerate}
+
+\vspace{0.3cm}
+\textbf{Analyse des mots clés :}
+
+\begin{itemize}
+    \item Le mot \textbf{"frais"} apparaît dans la question utilisateur et dans la FAQ 2, mais \textbf{pas} dans la FAQ 1
+    \item Le mot \textbf{"adhésion"} apparaît dans les trois phrases
+    \item Le mot \textbf{"club"} apparaît dans la question utilisateur et la FAQ 1
+    \item Le mot \textbf{"informatique"} apparaît dans la question utilisateur et la FAQ 1
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Calcul simplifié (supposons 100 questions dans notre base) :}
+
+Pour la question utilisateur "Quels sont les frais d'adhésion au club informatique ?" (8 mots) :
+
+\begin{itemize}
+    \item Si "frais" apparaît dans 12 questions : $IDF(\text{frais}) = \log(100/12) \approx 2.12$
+    \item $TF(\text{frais}) = 1/8 = 0.125$
+    \item $TF\text{-}IDF(\text{frais}) = 0.125 \times 2.12 = 0.27$
+\end{itemize}
+
+\begin{itemize}
+    \item Si "adhésion" apparaît dans 25 questions : $IDF(\text{adhésion}) = \log(100/25) \approx 1.39$
+    \item $TF(\text{adhésion}) = 1/8 = 0.125$
+    \item $TF\text{-}IDF(\text{adhésion}) = 0.125 \times 1.39 = 0.17$
+\end{itemize}
+
+\begin{itemize}
+    \item Si "club" apparaît dans 40 questions : $IDF(\text{club}) = \log(100/40) \approx 0.92$
+    \item $TF(\text{club}) = 1/8 = 0.125$
+    \item $TF\text{-}IDF(\text{club}) = 0.125 \times 0.92 = 0.12$
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Observation :} Le mot "frais" a le score TF-IDF le plus élevé car il est plus discriminant.
+\end{exemple}
+
+\clearpage
+
+\subsection{Similarité Cosinus : Mesurer la Proximité}
+
+\subsubsection{Le Concept Géométrique}
+
+Une fois que nous avons transformé les phrases en vecteurs de nombres, nous devons mesurer leur similarité. La similarité cosinus calcule l'angle entre deux vecteurs dans un espace multidimensionnel.
+
+\[
+\text{similarité}(\vec{A}, \vec{B}) = \frac{\vec{A} \cdot \vec{B}}{||\vec{A}|| \times ||\vec{B}||}
+\]
+
+où :
+\begin{itemize}
+    \item $\vec{A} \cdot \vec{B}$ est le produit scalaire (somme des produits des composantes)
+    \item $||\vec{A}||$ est la norme du vecteur $\vec{A}$ (racine carrée de la somme des carrés)
+    \item $||\vec{B}||$ est la norme du vecteur $\vec{B}$
+\end{itemize}
+
+Le résultat varie entre 0 (totalement différent) et 1 (identique).
+
+\subsubsection{Exemple de Calcul Complet}
+
+Reprenons notre exemple précédent avec un calcul complet (simplifié à 3 dimensions pour la clarté).
+
+\begin{exemple}[Calcul de Similarité - Pas à Pas]
+
+Supposons que nous ne considérons que 3 mots : [frais, adhésion, club]
+
+\vspace{0.3cm}
+\textbf{Question utilisateur :} \\
+\textit{"Quels sont les frais d'adhésion au club informatique ?"}
+
+Vecteur : $\vec{A} = [0.27, 0.17, 0.12]$ (scores TF-IDF calculés précédemment)
+
+\vspace{0.3cm}
+\textbf{FAQ 1 :} \\
+\textit{"Quels sont les documents nécessaires pour adhérer au club informatique ?"}
+
+Vecteur : $\vec{B_1} = [0.00, 0.18, 0.13]$ (pas de "frais", mais "adhésion" et "club")
+
+\vspace{0.3cm}
+\textbf{FAQ 2 :} \\
+\textit{"Est-ce que les frais d'adhésion sont remboursables ?"}
+
+Vecteur : $\vec{B_2} = [0.28, 0.19, 0.00]$ ("frais" et "adhésion", mais pas "club")
+
+\textbf{Calcul de similarité($\vec{A}$, $\vec{B_1}$) :}
+
+\begin{enumerate}
+    \item Produit scalaire : 
+    \begin{align*}
+    \vec{A} \cdot \vec{B_1} 
+    &= 0.0462
+    \end{align*}
+    
+    \item Norme de $\vec{A}$ :
+    \begin{align*}
+    ||\vec{A}|| 
+    &= \sqrt{0.1162} \approx 0.341
+    \end{align*}
+    
+    \item Norme de $\vec{B_1}$ :
+    \begin{align*}
+    ||\vec{B_1}|| 
+    &= \sqrt{0.0493} \approx 0.222
+    \end{align*}
+    
+    \item Similarité :
+    \begin{align*}
+    \text{similarité}(\vec{A}, \vec{B_1}) &= \frac{0.0462}{0.341 \times 0.222} \\
+    &= \frac{0.0462}{0.0757} \\
+    &\approx 0.61 \text{ soit } \mathbf{61\%}
+    \end{align*}
+\end{enumerate}
+
+\textbf{Calcul de similarité($\vec{A}$, $\vec{B_2}$) :}
+
+\begin{enumerate}
+    \item Produit scalaire : 
+    \begin{align*}
+    \vec{A} \cdot \vec{B_2} 
+    &= 0.1079
+    \end{align*}
+    
+    \item Norme de $\vec{B_2}$ :
+    \begin{align*}
+    ||\vec{B_2}|| 
+    &= \sqrt{0.1145} \approx 0.338
+    \end{align*}
+    
+    \item Similarité :
+    \begin{align*}
+    \text{similarité}(\vec{A}, \vec{B_2}) &= \frac{0.1079}{0.341 \times 0.338} \\
+    &= \frac{0.1079}{0.1153} \\
+    &\approx 0.94 \text{ soit } \mathbf{94\%}
+    \end{align*}
+\end{enumerate}
+
+\vspace{0.1cm}
+\textbf{Résultat :} Le système sélectionne la FAQ 2 car sa similarité (94\%) est beaucoup plus élevée que celle de la FAQ 1 (61\%).
+
+\end{exemple}
+
+\begin{important}[Conclusion]
+La présence du mot clé "frais" dans la FAQ 2 fait toute la différence ! C'est pourquoi la qualité et la richesse du vocabulaire dans nos fichiers CSV sont cruciales.
+\end{important}
+
+\subsection{Exemple avec les Programmes Académiques}
+
+Prenons maintenant un exemple tiré de notre FAQ sur les programmes académiques :
+
+\begin{exemple}[Application aux Programmes]
+
+\textbf{Question utilisateur :} \\
+\textit{"Combien de temps dure la formation d'ingénieur des télécommunications ?"}
+
+\vspace{0.3cm}
+\textbf{Questions FAQ candidates :}
+\begin{enumerate}
+    \item \textit{"Quelle est la durée de formation pour devenir Ingénieur des Télécommunications ?"}
+    \item \textit{"Quelle est la durée de formation pour devenir Technicien des Télécommunications ?"}
+    \item \textit{"Quel diplôme obtient-on après le second cycle d'ingénierie ?"}
+\end{enumerate}
+
+\vspace{0.3cm}
+\textbf{Analyse :}
+
+Mots clés communs :
+\begin{itemize}
+    \item \textbf{"durée"} et \textbf{"formation"} : présents dans la question utilisateur, FAQ 1 et FAQ 2
+    \item \textbf{"Ingénieur"} : présent dans la question utilisateur, FAQ 1 et FAQ 3
+    \item \textbf{"Télécommunications"} : présent dans toutes les questions
+    \item \textbf{"Technicien"} : uniquement dans FAQ 2 (différent de "Ingénieur")
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Pourquoi FAQ 1 aura le meilleur score :}
+
+\begin{enumerate}
+    \item Elle contient \textbf{tous} les mots clés de la question utilisateur
+    \item La structure de la phrase est très similaire
+    \item Le mot "durée" est un terme discriminant qui apparaît explicitement
+    \item Même si FAQ 3 contient "Ingénieur", elle ne mentionne pas "durée" ou "formation"
+\end{enumerate}
+
+\vspace{0.3cm}
+\textbf{Scores estimés (simplifié) :}
+\begin{itemize}
+    \item FAQ 1 : $\approx$ 95\% (quasi-identique)
+    \item FAQ 2 : $\approx$ 70\% (similaire mais "Technicien" $\neq$ "Ingénieur")
+    \item FAQ 3 : $\approx$ 45\% (manque les mots clés "durée" et "formation")
+\end{itemize}
+
+\end{exemple}
+
+\begin{astuce}[Leçon Importante]
+Plus la question dans notre CSV est formulée de manière proche de ce qu'un utilisateur réel demanderait, meilleur sera le score de similarité. C'est pourquoi nous devons :
+\begin{itemize}
+    \item Utiliser un vocabulaire naturel et varié
+    \item Inclure plusieurs variantes de la même question
+    \item Penser comme un étudiant qui pose une question
+\end{itemize}
+\end{astuce}
+
+\clearpage
+
+% Section 3 : Importance des Données CSV
+\section{Importance Cruciale des Données CSV}
+\label{sec:donnees_csv}
+
+\subsection{Structure Standard des Fichiers CSV}
+
+Nos fichiers CSV respectent rigoureusement la structure suivante :
+
+\begin{lstlisting}[language=bash, caption=Format CSV Standard]
+Question, Reponse, Categorie, SousTheme, Source
+\end{lstlisting}
+
+\begin{info}[Colonnes du CSV]
+\begin{description}
+    \item[Question] : La question telle qu'un utilisateur pourrait la poser naturellement
+    \item[Reponse] : La réponse complète, précise et vérifiée
+    \item[Categorie] : Catégorie thématique principale (ex: "Vie Étudiante", "Programmes académiques")
+    \item[SousTheme] : Sous-thème plus précis (ex: "Clubs et associations", "Présentation des filières")
+    \item[Source] : Référence ou contributeur de l'information
+\end{description}
+\end{info}
+
+\subsection{Pourquoi la Qualité des Questions est Critique}
+
+\subsubsection{Rappel du Principe}
+
+L'algorithme TF-IDF calcule la similarité entre :
+\begin{itemize}
+    \item La question posée par l'utilisateur
+    \item Les questions stockées dans notre fichier CSV
+\end{itemize}
+
+\begin{important}[Conséquence Directe]
+Si nos questions CSV sont mal formulées, l'algorithme ne trouvera \textbf{jamais} la bonne réponse, même si nous l'avons dans notre base de données !
+\end{important}
+
+\subsubsection{Exemples de Bonnes et Mauvaises Questions}
+
+\begin{exemple}[Mauvaise Formulation]
+
+\textbf{❌ Question CSV mal formulée :}
+
+\begin{lstlisting}
+Question: FAQ_CLUB_001
+Reponse: Pour s'inscrire à un club cette année, il faut...
+Categorie: Vie Étudiante
+\end{lstlisting}
+
+\textbf{Problème :} 
+\begin{itemize}
+    \item "FAQ\_CLUB\_001" ne contient aucun mot clé significatif
+    \item Si un utilisateur demande "Comment s'inscrire à un club ?", le score TF-IDF sera proche de zéro
+    \item Aucune correspondance possible avec une vraie question
+\end{itemize}
+\end{exemple}
+
+\begin{exemple}[Bonne Formulation - Exemple Réel]
+
+\textbf{✅ Question CSV bien formulée (extrait de notre base réelle) :}
+
+\begin{lstlisting}
+Question: Comment s'inscrire à un club cette année ?
+Reponse: Pour s'inscrire à un club cette année, il faut se rapprocher du président du club pour se renseigner sur la procédure d'intégration du club.
+Categorie: Vie Étudiante
+SousTheme: Clubs et associations
+Source: Contributeur
+\end{lstlisting}
+
+\textbf{Avantages :}
+\begin{itemize}
+    \item Mots clés pertinents : "inscrire", "club", "année"
+    \item Formulation naturelle comme un étudiant poserait la question
+    \item Si un utilisateur demande "inscription club" ou "comment rejoindre un club", le score sera élevé
+\end{itemize}
+\end{exemple}
+
+\clearpage
+
+\subsection{Importance des Variantes de Questions}
+
+Pour maximiser la couverture et la précision, nous devons inclure plusieurs variantes pour chaque réponse.
+
+\begin{exemple}[Variantes - Clubs et Associations]
+
+Pour la même réponse sur l'inscription aux clubs, nous pourrions avoir :
+
+\vspace{0.3cm}
+\textbf{Variante 1 (actuelle dans notre base) :}
+\begin{lstlisting}
+Comment s'inscrire à un club cette année ?
+\end{lstlisting}
+
+\textbf{Variante 2 (à ajouter) :}
+\begin{lstlisting}
+Quelle est la procédure pour rejoindre un club ?
+\end{lstlisting}
+
+\textbf{Variante 3 (à ajouter) :}
+\begin{lstlisting}
+Comment faire pour devenir membre d'une association ?
+\end{lstlisting}
+
+\textbf{Variante 4 (à ajouter) :}
+\begin{lstlisting}
+Inscription club étudiant procédure
+\end{lstlisting}
+
+\vspace{0.3cm}
+\textbf{Avantages :}
+\begin{itemize}
+    \item Variante 1 : Couvre "inscrire", "club", "année"
+    \item Variante 2 : Couvre "procédure", "rejoindre"
+    \item Variante 3 : Couvre "devenir", "membre", "association"
+    \item Variante 4 : Couvre les recherches avec mots-clés uniquement
+\end{itemize}
+
+Chaque variante augmente les chances qu'un utilisateur trouve la bonne réponse !
+\end{exemple}
+
+\subsection{Cas Réels de Notre Base de Données}
+
+Analysons quelques exemples tirés de nos fichiers CSV existants :
+
+\subsubsection{Exemple 1 : Clubs - Question Bien Formulée}
+
+\begin{lstlisting}[caption=Extrait réel - Vie Étudiante]
+Question: Est-ce que je peux m'inscrire à plusieurs clubs en même temps ?
+Reponse: Oui tu peux t'inscrire à plusieurs clubs au même moment.
+Categorie: Vie Étudiante
+SousTheme: Clubs et associations
+Source: Contributeur
+\end{lstlisting}
+
+\begin{astuce}[Pourquoi c'est bien]
+\begin{itemize}
+    \item Question complète et naturelle
+    \item Mots clés : "inscrire", "plusieurs", "clubs", "même temps"
+    \item Un utilisateur qui demande "peut-on adhérer à 2 clubs" obtiendra un bon score
+    \item Réponse courte et directe
+\end{itemize}
+\end{astuce}
+
+\subsubsection{Exemple 2 : Programmes - Question Précise}
+
+\begin{lstlisting}[caption=Extrait réel - Programmes académiques]
+Question: Quelle est la durée de formation pour devenir Ingénieur des Télécommunications ?
+Reponse: La formation dure 2 ans.
+Categorie: Programmes académiques
+SousTheme: Présentation des filières
+Source: À vérifier auprès de SUP'PTIC - https://e-supptic.cm/
+\end{lstlisting}
+
+\begin{astuce}[Pourquoi c'est bien]
+\begin{itemize}
+    \item Question très spécifique avec tous les mots clés nécessaires
+    \item "durée", "formation", "Ingénieur", "Télécommunications"
+    \item Correspond exactement à ce qu'un candidat demanderait
+    \item Réponse concise et factuelle
+\end{itemize}
+\end{astuce}
+
+\subsubsection{Exemple 3 : Clubs - Question à Améliorer}
+
+\begin{lstlisting}[caption=Question qui pourrait être enrichie]
+Question: Quel club choisir si je suis passionné de jeux vidéo ?
+Reponse: Le club jeu et loisirs.
+Categorie: Vie Étudiante
+SousTheme: Clubs et associations
+Source: Contributeur
+\end{lstlisting}
+
+\begin{important}[Suggestions d'Amélioration]
+Cette question est bonne, mais nous pourrions ajouter des variantes :
+
+\begin{itemize}
+    \item "Y a-t-il un club pour les amateurs de jeux vidéo ?"
+    \item "Club gaming SUP'PTIC existe ?"
+    \item "Quel club pour les gamers à l'école ?"
+\end{itemize}
+
+Cela augmenterait la couverture pour différentes formulations.
+\end{important}
+
+\clearpage
+
+\subsection{Impact du Vocabulaire Riche}
+
+\subsubsection{Synonymes et Variantes Linguistiques}
+
+Les utilisateurs utilisent des mots différents pour exprimer la même idée. Notre CSV doit refléter cette diversité.
+
+\begin{exemple}[Richesse du Vocabulaire]
+
+Pour poser une question sur les frais, un utilisateur peut dire :
+
+\begin{itemize}
+    \item "Quels sont les \textbf{frais} d'inscription ?"
+    \item "Combien \textbf{coûte} l'inscription ?"
+    \item "Quel est le \textbf{montant} à payer ?"
+    \item "Quel est le \textbf{prix} de l'inscription ?"
+    \item "Quel est le \textbf{tarif} pour s'inscrire ?"
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Mots clés à couvrir :} frais, coûte, coût, montant, prix, tarif, payer, paiement
+
+\vspace{0.3cm}
+\textbf{Solution :} Créer plusieurs variantes dans notre CSV utilisant ces différents termes.
+\end{exemple}
+
+\subsubsection{Exemple Réel : Diversité du Vocabulaire}
+
+Voici comment notre base actuelle gère différentes formulations :
+
+\begin{lstlisting}[caption=Variantes dans notre base]
+# Variante 1
+Question: Comment créer un nouveau club à SUP'PTIC ?
+Reponse: Pour créer un nouveau club à SUP'PTIC, il faut écrire une demande...
+
+# Variante 2 (à ajouter)
+Question: Quelle est la procédure pour lancer une nouvelle association ?
+Reponse: [même réponse]
+
+# Variante 3 (à ajouter)
+Question: Comment faire pour fonder un club étudiant ?
+Reponse: [même réponse]
+\end{lstlisting}
+
+\textbf{Vocabulaire couvert :}
+\begin{itemize}
+    \item Variante 1 : "créer", "nouveau", "club"
+    \item Variante 2 : "procédure", "lancer", "association"
+    \item Variante 3 : "faire", "fonder", "étudiant"
+\end{itemize}
+
+\subsection{Structure CSV et Catégorisation}
+
+\subsubsection{Importance des Métadonnées}
+
+Les colonnes Categorie, SousTheme et Source ne sont pas utilisées directement par l'algorithme de similarité, mais elles sont cruciales pour :
+
+\begin{enumerate}
+    \item \textbf{Organisation} : Faciliter la gestion et la maintenance des données
+    \item \textbf{Filtrage} : Permettre des recherches par catégorie si nécessaire
+    \item \textbf{Validation} : Tracer la source de l'information pour vérification
+    \item \textbf{Évolution} : Identifier les zones à enrichir
+\end{enumerate}
+
+\subsubsection{Catégories Actuelles}
+
+D'après nos données existantes, nous avons identifié ces catégories principales :
+
+\begin{itemize} \item \textbf{Inscriptions \& Admissions} : procédures d'inscription, conditions d'admission \item \textbf{Examens \& Évaluations} : organisation des examens, modalités d'évaluation \item \textbf{Vie Étudiante} : clubs, associations, activités étudiantes \item \textbf{Services Administratifs} : démarches administratives, services aux étudiants \item \textbf{Programmes Académiques} : présentation des filières, contenus pédagogiques \item \textbf{Infrastructures \& Ressources} : salles, laboratoires, bibliothèque, ressources numériques \item \textbf{Carrières \& Insertion} : orientation, stages, insertion professionnelle \item \textbf{Communication \& Vie Institutionnelle} : communication interne, vie institutionnelle \item \textbf{Vie Pratique} : logement, restauration, transport, vie quotidienne \end{itemize}
+
+\clearpage
+
+\subsection{Règles d'Or pour la Qualité des Données}
+
+\begin{important}[10 Règles d'Or]
+\begin{enumerate}
+    \item \textbf{Formulez comme un utilisateur réel} : Écrivez les questions comme un étudiant les poserait naturellement
+    
+    \item \textbf{Soyez spécifique} : "Quels sont les frais d'inscription en L1 ?" plutôt que "Frais L1"
+    
+    \item \textbf{Incluez des variantes} : Minimum 2-3 formulations différentes par réponse
+    
+    \item \textbf{Utilisez un vocabulaire riche} : Synonymes, expressions courantes, jargon étudiant
+    
+    \item \textbf{Respectez la structure CSV} : Ne jamais omettre une colonne, même si "À compléter"
+    
+    \item \textbf{Vérifiez la source} : Toujours indiquer l'origine de l'information
+    
+    \item \textbf{Réponses concises mais complètes} : Direct et informatif, sans superflu
+    
+    \item \textbf{Testez vos questions} : Posez-vous "comment un étudiant demanderait-il cela ?"
+    
+    \item \textbf{Évitez les codes} : "Comment s'inscrire au club ?" plutôt que "FAQ\_CLUB\_001"
+    
+    \item \textbf{Mettez à jour régulièrement} : Les informations évoluent (présidents de clubs, dates, etc.)
+\end{enumerate}
+\end{important}
+
+\subsection{Checklist de Validation d'une Entrée CSV}
+
+Avant d'ajouter une nouvelle ligne à votre fichier CSV, vérifiez :
+
+\begin{enumerate}
+    \item ☐ La question est-elle formulée en langage naturel ?
+    \item ☐ Contient-elle au moins 5 mots significatifs ?
+    \item ☐ Ai-je créé 2-3 variantes de cette question ?
+    \item ☐ La réponse est-elle précise et vérifiée ?
+    \item ☐ La catégorie et le sous-thème sont-ils corrects ?
+    \item ☐ La source est-elle indiquée ?
+    \item ☐ Aucune colonne n'est vide (sauf si "À compléter")
+    \item ☐ Le format CSV est-il respecté (virgules, guillemets si nécessaire)
+    \item ☐ Ai-je relu pour détecter les fautes d'orthographe ?
+    \item ☐ Un utilisateur réel poserait-il la question ainsi ?
+\end{enumerate}
+
+\clearpage
+
+% Section 5 : Cas d'Utilisation
+\section{Cas d'Utilisation du Système}
+\label{sec:cas_utilisation}
+
+\subsection{CU-01 : Question Simple avec Bonne Correspondance}
+
+\textbf{Acteur :} Étudiant actuel ou candidat
+
+\textbf{Objectif :} Obtenir une réponse rapide à une question fréquente
+
+\textbf{Scénario nominal :}
+
+\begin{enumerate}
+    \item L'utilisateur accède à l'interface chatbot (web ou mobile)
+    \item Le système affiche un message de bienvenue : "Bonjour ! Comment puis-je vous aider ?"
+    \item L'utilisateur tape : "Comment s'inscrire au club informatique ?"
+    \item L'utilisateur clique sur "Envoyer"
+    \item Le système appelle l'API chatbot avec la question
+    \item Le module chatbot calcule les scores TF-IDF
+    \item La meilleure correspondance est trouvée (score = 92\%)
+    \begin{itemize}
+        \item Question FAQ : "Quels sont les documents nécessaires pour adhérer au club informatique ?"
+        \item Réponse : "Pour adhérer au club informatique, il suffit d'être étudiant inscrit à SUP'PTIC."
+    \end{itemize}
+    \item Le système affiche la réponse en moins de 2 secondes
+    \item Le système propose 2 questions similaires :
+    \begin{itemize}
+        \item "Comment s'inscrire à un club cette année ?" (85\%)
+        \item "Peut-on s'inscrire à plusieurs clubs ?" (72\%)
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Postconditions :} L'utilisateur a obtenu sa réponse et peut explorer d'autres questions liées.
+
+\textbf{Variantes :}
+\begin{itemize}
+    \item Si le score est entre 60-80\%, afficher un avertissement : "Voici la réponse la plus proche :"
+    \item Si score < 60\%, afficher : "Je n'ai pas trouvé de réponse précise. Voici les catégories disponibles..."
+\end{itemize}
+
+\subsection{CU-02 : Question Ambiguë Nécessitant Clarification}
+
+\textbf{Acteur :} Nouvel étudiant
+
+\textbf{Objectif :} Obtenir de l'aide malgré une formulation imprécise
+
+\textbf{Scénario nominal :}
+
+\begin{enumerate}
+    \item L'utilisateur tape une question courte : "Durée formation"
+    \item Le système calcule les scores et trouve plusieurs correspondances moyennes :
+    \begin{itemize}
+        \item "Quelle est la durée de formation pour devenir Ingénieur des Télécommunications ?" (68\%)
+        \item "Quelle est la durée de formation pour devenir Technicien des Télécommunications ?" (67\%)
+        \item "Quelle est la durée de formation au premier cycle management ?" (65\%)
+    \end{itemize}
+    \item Le système affiche : "Votre question est un peu vague. Voulez-vous savoir :"
+    \item Liste les 3 meilleures correspondances comme options cliquables
+    \item L'utilisateur clique sur "Ingénieur des Télécommunications"
+    \item Le système affiche la réponse complète : "La formation dure 2 ans."
+\end{enumerate}
+
+\textbf{Postconditions :} L'utilisateur a clarifié sa question et obtenu la bonne réponse.
+
+\textbf{Importance pour les données CSV :} Ce cas montre pourquoi nous avons besoin de questions spécifiques dans notre CSV, pas juste "Durée formation".
+
+\subsection{CU-03 : Question Hors Périmètre}
+
+\textbf{Acteur :} Visiteur externe
+
+\textbf{Objectif :} Poser une question non couverte par notre FAQ
+
+\textbf{Scénario nominal :}
+
+\begin{enumerate}
+    \item L'utilisateur tape : "Où puis-je acheter des livres de physique quantique ?"
+    \item Le système calcule les scores de similarité
+    \item Toutes les correspondances ont un score < 40\%
+    \item Le système affiche :
+    \begin{quote}
+    "Désolé, je n'ai pas trouvé de réponse pertinente à votre question. \\
+    Je suis spécialisé dans les informations sur SUP'PTIC : \\
+    - Programmes académiques \\
+    - Inscriptions et admissions \\
+    - Vie étudiante (clubs, associations) \\
+    - Services administratifs \\
+    \\
+    Pour d'autres questions, vous pouvez contacter : \\
+    Email: info@supptic.cm \\
+    Téléphone: +237 XXX XXX XXX"
+    \end{quote}
+    \item L'utilisateur peut choisir une catégorie ou reformuler
+\end{enumerate}
+
+\textbf{Postconditions :} L'utilisateur comprend les limites du système et sait comment obtenir de l'aide humaine.
+
+\section{Points Clés à Retenir}
+
+\begin{important}[Résumé des Concepts Essentiels]
+\begin{enumerate}
+    \item \textbf{TF-IDF transforme les mots en nombres} en tenant compte de leur fréquence dans la phrase (TF) et de leur rareté dans le corpus (IDF)
+    
+    \item \textbf{La similarité cosinus mesure l'angle} entre deux vecteurs pour déterminer leur proximité sémantique
+    
+    \item \textbf{La qualité des questions CSV détermine directement} la performance du chatbot - une question mal formulée ne sera jamais trouvée
+    
+    \item \textbf{Les variantes de questions sont cruciales} pour couvrir les différentes façons dont les utilisateurs posent la même question
+    
+    \item \textbf{Le vocabulaire riche améliore la couverture} - utiliser des synonymes et expressions courantes augmente les chances de correspondance
+    
+    \item \textbf{L'architecture modulaire} (FAQ, Chatbot, Users) facilite la maintenance et l'évolution du système
+    
+    \item \textbf{Le flux de données est simple} : Question $\rightarrow$ TF-IDF $\rightarrow$ Similarité $\rightarrow$ Meilleure réponse
+\end{enumerate}
+\end{important}
+
+
+
+\end{document}

@@ -1,0 +1,762 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{amssymb}
+
+
+\usepackage{fontawesome5}
+
+% Configuration des listes
+\setlist[itemize]{leftmargin=*, itemsep=3pt, topsep=3pt}
+\setlist[enumerate]{leftmargin=*, itemsep=3pt, topsep=3pt}
+
+% Configuration du code
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{orange},
+    tabsize=4,
+    showstringspaces=false
+}
+
+% En-tête et pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Guide de Travail - Chatbot SUP'PTIC}
+\fancyhead[R]{\small Workflow Git}
+\fancyfoot[C]{\thepage}
+
+% Environnements personnalisés
+\newtcolorbox{important}[1][]{
+  colback=red!5!white,
+  colframe=red!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{info}[1][]{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{astuce}[1][]{
+  colback=green!5!white,
+  colframe=green!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{exemple}[1][]{
+  colback=orange!5!white,
+  colframe=orange!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\begin{document}
+
+% Page de titre
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge \textbf{Guide de Travail}} \\[0.5cm]
+    {\LARGE \textbf{Workflow Git \& Organisation}}
+    
+    \vspace{1cm}
+    
+    {\Large Projet Chatbot SUP'PTIC}
+    
+    \vspace{1.5cm}
+    
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \small Comment travailler efficacement en équipe \\
+        avec Git, les branches et les Pull Requests
+    \end{minipage}
+    
+    \vfill
+    
+    \begin{center}
+        \textbf{Club Informatique SUP'PTIC} \\
+        Février 2026
+    \end{center}
+    
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+% Section 1 : Organisation du Dépôt
+\section{Organisation du Dépôt Git}
+\label{sec:organisation}
+
+\subsection{Structure des Branches}
+
+Notre dépôt Git est organisé autour de \textbf{deux branches principales protégées} :
+
+\begin{info}[Branches Principales]
+\begin{itemize}
+    \item \textbf{main} : Version stable et finale du projet
+    \begin{itemize}
+        \item Code testé et validé
+        \item Prêt pour démonstration/déploiement
+        \item \faIcon{lock} \textcolor{red}{PROTÉGÉE - Accès restreint}
+    \end{itemize}
+    
+    \item \textbf{dev} : Branche de développement principal
+    \begin{itemize}
+        \item Intégration de toutes les features
+        \item Tests et validation avant merge vers main
+        \item \faIcon{lock} \textcolor{red}{PROTÉGÉE - Accès restreint}
+    \end{itemize}
+\end{itemize}
+\end{info}
+
+\subsection{Branches de Travail par Équipe}
+
+Chaque équipe dispose de sa propre branche pour travailler :
+
+\begin{itemize}
+    \item \textbf{backend} : Équipe Backend (API Django, TF-IDF)
+    \item \textbf{frontend} : Équipe Frontend (HTML/CSS/JS)
+    \item \textbf{database} : Équipe Base de Données (Models, migrations)
+    \item \textbf{data} : Équipe Structuration des Données (CSV, génération)
+\end{itemize}
+
+\begin{important}[Règle Fondamentale]
+\textbf{Vous ne travaillez JAMAIS directement sur main ou dev.}
+
+Vous créez et travaillez sur votre branche d'équipe, puis vous proposez vos changements via une Pull Request.
+\end{important}
+
+\clearpage
+
+% Section 2 : Règles du Dépôt
+\section{Règles du Dépôt }
+\label{sec:regles}
+
+\subsection{Règle \#1 : Ne touchez pas à main et dev directement}
+
+\begin{itemize}
+    \item[\faIcon{times}] Ces deux branches sont \textbf{protégées}
+    \item[\faIcon{times}] Vous ne pouvez pas les supprimer
+    \item[\faIcon{times}] Vous ne pouvez pas y envoyer du code directement (push)
+\end{itemize}
+
+\vspace{0.5cm}
+
+\subsection{Règle \#2 : Travaillez sur vos propres branches}
+
+\begin{itemize}
+    \item[\faIcon{check}] Exemple : \texttt{backend}, \texttt{frontend}, \texttt{database}, \texttt{data}
+    \item[\faIcon{check}] Faites vos modifications et commits là-bas
+    \item[\faIcon{check}] Testez votre code avant de proposer
+\end{itemize}
+
+\vspace{0.5cm}
+
+\subsection{Règle \#3 : Créez une Pull Request (PR) quand vous êtes prêts}
+
+\begin{itemize}
+    \item[\faIcon{code-branch}] Une PR = "Voilà mon travail, est-ce qu'on peut l'ajouter dans dev ?"
+    \item[\faIcon{user-check}] Les chefs de projet vérifient et valident
+    \item[\faIcon{check-circle}] Après validation, votre code est fusionné dans dev
+\end{itemize}
+
+\vspace{0.5cm}
+
+\clearpage
+
+% Section 3 : Workflow Résumé
+\section{Workflow Résumé pour l'Équipe}
+\label{sec:workflow}
+
+\begin{enumerate}
+    \item \textbf{Vous codez} sur vos branches personnelles (ex: \texttt{backend})
+    
+    \item \textbf{Vous proposez} vos changements via une Pull Request
+    
+    \item \textbf{Les chefs de projet} valident et fusionnent dans \texttt{dev}
+    
+    \item \textbf{Quand tout est stable}, \texttt{dev} est fusionné dans \texttt{main}
+\end{enumerate}
+
+\vspace{1cm}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=4.5cm, auto]
+    % Styles
+    \tikzstyle{branch} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!20]
+    \tikzstyle{protected} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!20]
+    \tikzstyle{arrow} = [thick,->,>=stealth]
+    
+    % Nodes
+    \node (team) [branch] {Branches équipes\newline(backend, frontend...)};
+\node (dev) [protected, right of=team, xshift=2cm] {dev\newline(protégée)};
+\node (main) [protected, right of=dev, xshift=2cm] {main\newline(protégée)};
+
+    
+    % Arrows
+    \draw [arrow] (team) -- node[above] {Pull Request} (dev);
+    \draw [arrow] (dev) -- node[above] {Validation} (main);
+\end{tikzpicture}
+\caption{Flux de travail Git simplifié}
+\end{figure}
+
+\clearpage
+
+% Section 4 : Démarrage - Cloner le Dépôt
+\section{Démarrer : Cloner le Dépôt}
+\label{sec:demarrage}
+
+\subsection{Étape 1 : Cloner le Dépôt sur Votre Machine}
+
+\begin{lstlisting}[language=bash, caption=Dans le terminal VS Code ou PowerShell]
+# Cloner le depot
+git clone https://github.com/nkoumougrinnel/ChatBot.git
+
+# Entrer dans le dossier
+cd ChatBot
+\end{lstlisting}
+
+\subsection{Étape 2 : Vérifier les Branches Disponibles}
+
+\begin{lstlisting}[language=bash]
+# Lister toutes les branches (locales et distantes)
+git branch -a
+\end{lstlisting}
+
+\textbf{Résultat attendu :}
+\begin{lstlisting}
+* main
+  remotes/origin/backend
+  remotes/origin/frontend
+  remotes/origin/database
+  remotes/origin/data
+  remotes/origin/dev
+  remotes/origin/main
+\end{lstlisting}
+
+\begin{astuce}[Comprendre les branches]
+\begin{itemize}
+    \item Les branches avec \texttt{remotes/origin/} sont sur GitHub (serveur distant)
+    \item L'étoile \texttt{*} indique la branche actuelle
+\end{itemize}
+\end{astuce}
+
+\clearpage
+
+% Section 5 : Récupérer Votre Branche de Travail
+\section{Récupérer Votre Branche de Travail}
+\label{sec:recuperer}
+
+\subsection{Cas 1 : Vous êtes dans l'Équipe Frontend}
+
+\begin{lstlisting}[language=bash]
+# Se positionner sur la branche frontend
+git checkout frontend
+\end{lstlisting}
+
+\textbf{Que se passe-t-il ?}
+\begin{itemize}
+    \item[\faIcon{check}] Git crée automatiquement la branche \texttt{frontend} en local
+    \item[\faIcon{check}] Git la synchronise avec \texttt{origin/frontend} (GitHub)
+    \item[\faIcon{check}] Vous êtes maintenant sur la branche \texttt{frontend}
+\end{itemize}
+
+\subsection{Cas 2 : Vous êtes dans l'Équipe Backend}
+
+\begin{lstlisting}[language=bash]
+# Se positionner sur la branche backend
+git checkout backend
+\end{lstlisting}
+
+\subsection{Mettre à Jour Votre Branche}
+
+\textbf{Important :} Avant de commencer à coder, récupérez les dernières modifications :
+
+\begin{lstlisting}[language=bash]
+# Recuperer les derniers changements
+git pull origin frontend
+\end{lstlisting}
+
+\textit{(Remplacez \texttt{frontend} par le nom de votre branche)}
+
+\subsection{Vérifier Que Vous Êtes sur la Bonne Branche}
+
+\begin{lstlisting}[language=bash]
+# Verifier la branche actuelle
+git branch
+\end{lstlisting}
+
+\textbf{Résultat attendu :}
+\begin{lstlisting}
+  backend
+  database
+* frontend    <- L'etoile indique votre branche actuelle
+  main
+\end{lstlisting}
+
+\clearpage
+
+% Section 6 : Travailler sur Votre Branche
+\section{Travailler sur Votre Branche}
+\label{sec:travailler}
+
+\subsection{Organisation des Dossiers}
+
+Quand vous ouvrez le projet dans VS Code, vous voyez tous les dossiers :
+
+\begin{lstlisting}
+ChatBot/
+├── backend/        <- Backend et Database travaillent ICI
+├── frontend/       <- Frontend travaille ICI
+├── data/           <- Structuration et Database travaillent ICI
+├── docs/
+└── README.md
+\end{lstlisting}
+
+\begin{important}[Règle de Travail]
+\textbf{Même si vous voyez tous les dossiers, vous devez travailler UNIQUEMENT dans le dossier de votre équipe.}
+
+\vspace{0.3cm}
+Exemples :
+\begin{itemize}
+    \item Équipe Frontend → Modifiez seulement les fichiers dans \texttt{frontend/}
+    \item Équipe Backend → Modifiez seulement les fichiers dans \texttt{backend/}
+    \item Équipe Database → Modifiez seulement les fichiers dans \texttt{backend/} (models, migrations)
+    \item Équipe Data-struct → Modifiez seulement les fichiers dans \texttt{data/}
+\end{itemize}
+\end{important}
+
+\subsection{Faire des Modifications}
+
+\begin{enumerate}
+    \item Ouvrez les fichiers de votre dossier
+    \item Codez, testez, corrigez
+    \item Sauvegardez vos fichiers (\texttt{Ctrl+S})
+\end{enumerate}
+
+\subsection{Enregistrer Vos Changements (Commit)}
+
+\begin{lstlisting}[language=bash]
+# Voir les fichiers modifies
+git status
+
+# Ajouter tous les fichiers modifies
+git add .
+
+# Creer un commit avec un message clair
+git commit -m "Ajout interface chat + styles responsive"
+\end{lstlisting}
+
+\begin{astuce}[Messages de Commit Clairs]
+\textbf{Mauvais exemples :}
+\begin{itemize}
+    \item[\faIcon{times}] "update"
+    \item[\faIcon{times}] "fix"
+    \item[\faIcon{times}] "changes"
+\end{itemize}
+
+\textbf{Bons exemples :}
+\begin{itemize}
+    \item[\faIcon{check}] "Ajout endpoint POST /api/chatbot/ask/"
+    \item[\faIcon{check}] "Correction bug affichage feedback"
+    \item[\faIcon{check}] "Import 200 Q/R catégorie Examens"
+\end{itemize}
+\end{astuce}
+
+\subsection{Envoyer Vos Commits sur GitHub}
+
+\begin{lstlisting}[language=bash]
+# Envoyer sur GitHub
+git push origin frontend
+\end{lstlisting}
+
+\textit{(Remplacez \texttt{frontend} par le nom de votre branche)}
+
+\clearpage
+
+% Section 7 : Créer une Pull Request
+\section{Créer une Pull Request (PR)}
+\label{sec:pull-request}
+
+\subsection{Quand Créer une Pull Request ?}
+
+\begin{itemize}
+    \item[\faIcon{check}] Vous avez terminé une fonctionnalité importante
+    \item[\faIcon{check}] Votre code est testé et fonctionne
+    \item[\faIcon{check}] Vous voulez que votre travail soit intégré dans \texttt{dev}
+\end{itemize}
+
+\subsection{Étapes pour Créer une PR sur GitHub}
+
+\begin{enumerate}
+    \item Allez sur GitHub : \url{https://github.com/votre-compte/chatbot-supptic}
+    
+    \item Cliquez sur l'onglet \textbf{"Pull requests"}
+    
+    \item Cliquez sur \textbf{"New pull request"}
+    
+    \item Sélectionnez :
+    \begin{itemize}
+        \item \textbf{Base :} \texttt{dev} (destination)
+        \item \textbf{Compare :} \texttt{frontend} (votre branche)
+    \end{itemize}
+    
+    \item Donnez un titre clair :
+    \begin{lstlisting}
+Exemple : "Frontend - Interface chat complete + feedback"
+    \end{lstlisting}
+    
+    \item Décrivez vos changements :
+    \begin{lstlisting}
+## Modifications
+- Ajout interface chat responsive
+- Integration API /chatbot/ask/
+- Boutons feedback (like/dislike)
+- Page statistiques basique
+
+## Tests effectues
+- Chrome, Firefox, Safari
+- Mode mobile
+- Connexion API testee
+    \end{lstlisting}
+    
+    \item Cliquez sur \textbf{"Create pull request"}
+\end{enumerate}
+
+\subsection{Que Se Passe-t-il Ensuite ?}
+
+\begin{info}[Processus de Validation]
+\begin{enumerate}
+    \item Les \textbf{chefs de projet} reçoivent une notification
+    \item Ils examinent votre code
+    \item Ils peuvent :
+    \begin{itemize}
+        \item \faIcon{check-circle} \textbf{Approuver} et fusionner dans \texttt{dev}
+        \item \faIcon{comment} \textbf{Commenter} et demander des modifications
+        \item \faIcon{times-circle} \textbf{Rejeter} si le code pose problème
+    \end{itemize}
+    \item Une fois approuvé, votre code est dans \texttt{dev} !
+\end{enumerate}
+\end{info}
+
+\clearpage
+
+% Section 8 : Synchronisation Quotidienne
+\section{Synchronisation Quotidienne}
+\label{sec:synchronisation}
+
+\subsection{Mettre à Jour Votre Branche Chaque Matin}
+
+\textbf{Avant de commencer à coder chaque jour :}
+
+\begin{lstlisting}[language=bash]
+# 1. Se positionner sur votre branche
+git checkout frontend
+
+# 2. Recuperer les derniers changements de dev
+git pull origin dev
+
+# 3. Fusionner dev dans votre branche
+git merge dev
+
+# 4. Resoudre les conflits eventuels (voir section suivante)
+
+# 5. Envoyer la mise a jour
+git push origin frontend
+\end{lstlisting}
+
+\begin{important}[Pourquoi Mettre à Jour ?]
+D'autres équipes ont peut-être ajouté du code dans \texttt{dev} hier soir. 
+
+En fusionnant \texttt{dev} dans votre branche chaque matin, vous évitez les conflits majeurs et restez synchronisés avec le projet.
+\end{important}
+
+\subsection{Gérer les Conflits de Fusion}
+
+\subsubsection{Qu'est-ce qu'un Conflit ?}
+
+Un conflit arrive quand :
+\begin{itemize}
+    \item Vous avez modifié un fichier
+    \item Quelqu'un d'autre a modifié le \textbf{même fichier} au \textbf{même endroit}
+    \item Git ne sait pas quelle version garder
+\end{itemize}
+
+\subsubsection{Résoudre un Conflit}
+
+\begin{lstlisting}[language=bash]
+# Apres git merge dev, si conflit :
+# Git affiche : CONFLICT (content): Merge conflict in frontend/index.html
+\end{lstlisting}
+
+\textbf{Étapes :}
+
+\begin{enumerate}
+    \item Ouvrez le fichier en conflit dans VS Code
+    
+    \item Vous verrez des marqueurs :
+    \begin{lstlisting}
+<<<<<<< HEAD
+Votre code
+=======
+Code de l'autre personne
+>>>>>>> dev
+    \end{lstlisting}
+    
+    \item Choisissez quelle version garder (ou combinez les deux)
+    
+    \item Supprimez les marqueurs \texttt{<<<<<<<}, \texttt{=======}, \texttt{>>>>>>>}
+    
+    \item Sauvegardez le fichier
+    
+    \item Ajoutez et commitez :
+    \begin{lstlisting}[language=bash]
+git add .
+git commit -m "Resolution conflit merge dev"
+git push origin frontend
+    \end{lstlisting}
+\end{enumerate}
+
+\begin{astuce}[VS Code Aide Beaucoup !]
+VS Code détecte automatiquement les conflits et propose des boutons :
+\begin{itemize}
+    \item "Accept Current Change" (garder votre version)
+    \item "Accept Incoming Change" (garder leur version)
+    \item "Accept Both Changes" (garder les deux)
+\end{itemize}
+\end{astuce}
+
+\clearpage
+
+% Section 9 : Commandes Git Essentielles
+\section{Commandes Git Essentielles - Récapitulatif}
+\label{sec:commandes}
+
+\subsection{Configuration Initiale}
+
+\begin{lstlisting}[language=bash]
+# Cloner le depot
+git clone https://github.com/compte/chatbot-supptic.git
+cd chatbot-supptic
+
+# Voir toutes les branches
+git branch -a
+\end{lstlisting}
+
+\subsection{Travail Quotidien}
+
+\begin{lstlisting}[language=bash]
+# Se positionner sur votre branche
+git checkout frontend
+
+# Mettre a jour depuis dev (chaque matin)
+git pull origin dev
+git merge dev
+
+# Voir les fichiers modifies
+git status
+
+# Ajouter tous les changements
+git add .
+
+# Creer un commit
+git commit -m "Message clair et descriptif"
+
+# Envoyer sur GitHub
+git push origin frontend
+\end{lstlisting}
+
+\subsection{Commandes de Vérification}
+
+\begin{lstlisting}[language=bash]
+# Quelle branche suis-je ?
+git branch
+
+# Voir l'historique des commits
+git log --oneline
+
+# Voir les differences avant commit
+git diff
+\end{lstlisting}
+
+\subsection{Commandes Interdites}
+
+\begin{important}[À NE JAMAIS FAIRE]
+\begin{lstlisting}[language=bash]
+# INTERDIT sur main et dev
+git push --force
+
+# INTERDIT - Ne pas supprimer ces branches
+git branch -D main
+git branch -D dev
+\end{lstlisting}
+\end{important}
+
+\clearpage
+
+% Section 10 : Checklist Quotidienne
+\section{Checklist Quotidienne}
+\label{sec:checklist}
+
+\subsection{Le Matin (Avant de Coder)}
+
+\begin{itemize}
+    \item[$\square$] Je me positionne sur ma branche : \texttt{git checkout frontend}
+    \item[$\square$] Je récupère les dernières modifications : \texttt{git pull origin dev}
+    \item[$\square$] Je fusionne dev dans ma branche : \texttt{git merge dev}
+    \item[$\square$] Je résous les conflits éventuels
+    \item[$\square$] Je vérifie que tout fonctionne (tests)
+\end{itemize}
+
+\subsection{Pendant le Travail}
+
+\begin{itemize}
+    \item[$\square$] Je code dans MON dossier uniquement
+    \item[$\square$] Je teste régulièrement
+    \item[$\square$] Je fais des commits réguliers (toutes les 1-2h)
+    \item[$\square$] Mes messages de commit sont clairs
+\end{itemize}
+
+\subsection{Le Soir (Fin de Journée)}
+
+\begin{itemize}
+    \item[$\square$] Je vérifie que mon code fonctionne
+    \item[$\square$] Je fais un dernier commit : \texttt{git add . \&\& git commit -m "..."}
+    \item[$\square$] J'envoie sur GitHub : \texttt{git push origin frontend}
+    \item[$\square$] Si ma feature est terminée, je crée une Pull Request
+\end{itemize}
+
+\clearpage
+
+% Section 11 : FAQ et Problèmes Courants
+\section{FAQ et Problèmes Courants}
+\label{sec:faq}
+
+\subsection{Q1 : J'ai modifié un fichier par erreur dans un autre dossier}
+
+\textbf{Réponse :}
+
+\begin{lstlisting}[language=bash]
+# Annuler les modifications NON commitees
+git checkout -- chemin/vers/fichier
+
+# Ou annuler TOUTES les modifications non commitees
+git reset --hard
+\end{lstlisting}
+
+\begin{important}[Attention]
+\texttt{git reset --hard} supprime TOUTES vos modifications non sauvegardées !
+\end{important}
+
+\subsection{Q2 : J'ai fait un commit sur la mauvaise branche}
+
+\textbf{Réponse :}
+
+\begin{lstlisting}[language=bash]
+# Annuler le dernier commit (mais garder les modifications)
+git reset --soft HEAD~1
+
+# Se positionner sur la bonne branche
+git checkout ma-vraie-branche
+
+# Refaire le commit
+git add .
+git commit -m "Mon message"
+\end{lstlisting}
+
+\subsection{Q3 : Mon push est rejeté par GitHub}
+
+\textbf{Message d'erreur :}
+\begin{lstlisting}
+! [rejected] frontend -> frontend (non-fast-forward)
+\end{lstlisting}
+
+\textbf{Cause :} Quelqu'un a push sur la même branche pendant que vous travailliez.
+
+\textbf{Solution :}
+
+\begin{lstlisting}[language=bash]
+# Recuperer les changements
+git pull origin frontend
+
+# Resoudre les conflits eventuels
+
+# Re-pousser
+git push origin frontend
+\end{lstlisting}
+
+\subsection{Q4 : Je ne vois pas ma branche dans VS Code}
+
+\textbf{Solution :}
+
+\begin{lstlisting}[language=bash]
+# Mettre a jour la liste des branches
+git fetch origin
+
+# Lister toutes les branches
+git branch -a
+
+# Se positionner sur la branche
+git checkout ma-branche
+\end{lstlisting}
+
+\clearpage
+
+% Conclusion
+\section*{Conclusion}
+
+\vspace{1cm}
+
+\begin{center}
+\Large
+\textbf{🎯 Résumé en 3 Points}
+
+\vspace{0.5cm}
+\end{center}
+
+\begin{enumerate}
+    \item \textbf{Travaillez sur VOTRE branche} (backend, frontend, database, data-struct)
+    
+    \item \textbf{Synchronisez-vous CHAQUE MATIN} avec dev
+    
+    \item \textbf{Proposez vos changements} via Pull Request quand c'est prêt
+\end{enumerate}
+
+\vspace{1cm}
+
+\begin{center}
+
+\vfill{}
+
+\textit{Document préparé par :} \\
+\textbf{NKOUMOU TJADE} \\
+Chef de la Division de Programmation \\
+Club Informatique SUP'PTIC
+
+\vspace{0.5cm}
+
+\textbf{Bonne collaboration à tous ! 🚀}
+\end{center}
+
+\end{document}

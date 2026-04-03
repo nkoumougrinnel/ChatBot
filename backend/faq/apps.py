@@ -30,8 +30,10 @@ class FaqConfig(AppConfig):
             return
         
         # ===== 2. Lock fichier pour éviter l'init multiple avec Gunicorn =====
-        lock_file = Path('/tmp/faq_vectorizer.lock')
-        init_done_file = Path('/tmp/faq_vectorizer_done.flag')
+        import tempfile
+        temp_dir = Path(tempfile.gettempdir())
+        lock_file = temp_dir / 'faq_vectorizer.lock'
+        init_done_file = temp_dir / 'faq_vectorizer_done.flag'
         
         print(f"[FAQ DEBUG] Lock file: {lock_file}", file=sys.stderr)
         print(f"[FAQ DEBUG] Done flag: {init_done_file}", file=sys.stderr)

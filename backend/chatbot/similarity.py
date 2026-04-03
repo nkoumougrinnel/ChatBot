@@ -72,7 +72,15 @@ def load_conversational_rules():
         if RULES_JSON_PATH.exists():
             with open(RULES_JSON_PATH, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-                return data.get('conversational_rules', [])
+                if isinstance(data, dict):
+                    rules = data.get('conversational_rules', [])
+                elif isinstance(data, list):
+                    rules = data
+                else:
+                    rules = []
+                if not isinstance(rules, list):
+                    return []
+                return rules
         else:
             print(f"[Similarity] ⚠️ Fichier de règles non trouvé: {RULES_JSON_PATH}")
             return []
@@ -157,12 +165,15 @@ def match_conversational_rule(question: str) -> Optional[str]:
     # Chercher un match dans chaque règle
     for rule in CONVERSATIONAL_RULES:
         intent = rule.get('intent', 'unknown')
-        patterns = rule.get('patterns', [])
-        response = rule.get('response', '')
+        patterns = rule.get('patterns', []) or rule.get('examples', [])
+        response = rule.get('response', '') or (rule.get('responses', []) and rule.get('responses')[0]) or ''
         
         for pattern in patterns:
-            if pattern in question_lower:
-                print(f"[Similarity L0] ✅ RÈGLE '{intent}' (pattern: '{pattern}')")
+            if not isinstance(pattern, str):
+                continue
+            pattern_norm = pattern.lower().strip()
+            if pattern_norm and pattern_norm in question_lower:
+                print(f"[Similarity L0] ✅ RÈGLE '{intent}' (pattern: '{pattern_norm}')")
                 return response
     
     return None
