@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUP'ONE AI - Démo PWA</title>
+    <link rel="stylesheet" href="pwa-styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a4594 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .demo-header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .demo-header h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .demo-header p {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .demo-btn {
+            padding: 14px 28px;
+            background: white;
+            color: #1a4594;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .demo-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+        }
+
+        .demo-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .demo-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .demo-section h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .demo-section h2 svg {
+            width: 24px;
+            height: 24px;
+            fill: #60a5fa;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card svg {
+            width: 32px;
+            height: 32px;
+            fill: #10b981;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .code-block {
+            background: #1f2937;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-top: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-block code {
+            color: #60a5fa;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .status-bar {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @media (max-width: 768px) {
+            .demo-header h1 {
+                font-size: 32px;
+            }
+
+            .demo-header p {
+                font-size: 16px;
+            }
+
+            .demo-section {
+                padding: 20px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>SUP'ONE AI PWA</h1>
+            <p>Progressive Web App moderne et optimisée</p>
+            
+            <div class="demo-buttons">
+                <a href="index.html" class="demo-btn" style="text-decoration: none;">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M156.6 384.9L125.7 354c-8.5-8.5-11.5-20.8-7.7-32.2c3-8.9 7-20.5 11.8-33.8L24 288c-8.6 0-16.6-4.6-20.9-12.1s-4.2-16.7 .2-24.1l52.5-88.5c13-21.9 36.5-35.3 61.9-35.3l82.3 0c2.4-4 4.8-7.7 7.2-11.3C289.1-4.1 411.1-8.1 483.9 5.3c11.6 2.1 20.6 11.2 22.8 22.8c13.4 72.9 9.3 194.8-111.4 276.7c-3.5 2.4-7.3 4.8-11.3 7.2v82.3c0 25.4-13.4 49-35.3 61.9l-88.5 52.5c-7.4 4.4-16.6 4.5-24.1 .2s-12.1-12.2-12.1-20.9V380.8c-14.1 4.9-26.4 8.9-35.7 11.9c-11.2 3.6-23.4 .5-31.8-7.8zM384 168a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
+                    </svg>
+                    Accéder à l'application
+                </a>
+                <button class="demo-btn secondary" onclick="showInstallDemo()">
+                    <svg viewBox="0 0 384 512">
+                        <path d="M16 64C16 28.7 44.7 0 80 0H304c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H80c-35.3 0-64-28.7-64-64V64zM144 448c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16s-7.2-16-16-16H160c-8.8 0-16 7.2-16 16zM304 64H80V384H304V64z"/>
+                    </svg>
+                    Voir la bannière d'installation
+                </button>
+                <button class="demo-btn secondary" onclick="showUpdateDemo()">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H352c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32s-32 14.3-32 32v35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V432c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/>
+                    </svg>
+                    Voir la mise à jour
+                </button>
+                <button class="demo-btn secondary" onclick="showToastDemo()">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"/>
+                    </svg>
+                    Voir une notification
+                </button>
+                <button class="demo-btn secondary" onclick="window.location.href='offline.html'">
+                    <svg viewBox="0 0 640 512">
+                        <path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L489.3 358.2l90.5-90.5c56.7-56.7 56.7-148.7 0-205.4s-148.7-56.7-205.4 0L320 116.8 265.5 70.8l49.7-49.7c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8L525.6 444.4 38.8 5.1zM239 162l53.4 41.9-22.7 22.7c-25 25-25 65.5 0 90.5l22.6 22.6L160 480c-8.2 10.4-23.3 12.3-33.7 4.1s-12.3-23.3-4.1-33.7L239 162zm81 63.3l36.2 28.4c-6.3 3.2-12.2 7.2-17.5 12.5l-22.6 22.6c-25 25-65.5 25-90.5 0l-22.6-22.6c-25-25-25-65.5 0-90.5L320 225.3z"/>
+                    </svg>
+                    Voir la page offline
+                </button>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>
+                <svg viewBox="0 0 512 512">
+                    <path d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64c-35.3 0-64 28.7-64 64H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H64v56H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H64v56H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H64c0 35.3 28.7 64 64 64v40c0 13.3 10.7 24 24 24s24-10.7 24-24V448h56v40c0 13.3 10.7 24 24 24s24-10.7 24-24V448h56v40c0 13.3 10.7 24 24 24s24-10.7 24-24V448c35.3 0 64-28.7 64-64h40c13.3 0 24-10.7 24-24s-10.7-24-24-24H448V280h40c13.3 0 24-10.7 24-24s-10.7-24-24-24H448V176h40c13.3 0 24-10.7 24-24s-10.7-24-24-24H448c0-35.3-28.7-64-64-64V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H280V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H176V24zM160 128H352c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32zm192 32H160V352H352V160z"/>
+                </svg>
+                Fonctionnalités principales
+            </h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64H80c-8.8 0-16-7.2-16-16s7.2-16 16-16H448c17.7 0 32-14.3 32-32s-14.3-32-32-32H64zM416 272a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                    </svg>
+                    <h3>Bannière moderne</h3>
+                    <p>Modal centrée avec design épuré et professionnel. Affichage persistant jusqu'à installation.</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 640 512">
+                        <path d="M54.2 202.9C123.2 136.7 216.8 96 320 96s196.8 40.7 265.8 106.9c12.8 12.2 33 11.8 45.2-.9s11.8-33-.9-45.2C549.7 79.5 440.4 32 320 32S90.3 79.5 9.8 156.7C-2.9 169-3.3 189.2 8.9 202s32.5 13.2 45.2 .9zM320 256c56.8 0 108.6 21.1 148.2 56c13.3 11.7 33.5 10.4 45.2-2.8s10.4-33.5-2.8-45.2C459.8 219.2 393 192 320 192s-139.8 27.2-190.5 72c-13.3 11.7-14.5 31.9-2.8 45.2s31.9 14.5 45.2 2.8c39.5-34.9 91.3-56 148.2-56zm64 160a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z"/>
+                    </svg>
+                    <h3>Mode hors ligne</h3>
+                    <p>Redirection automatique vers une page dédiée. Retour automatique en ligne.</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/>
+                    </svg>
+                    <h3>Performances</h3>
+                    <p>Service Worker optimisé avec stratégies de cache intelligentes.</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 384 512">
+                        <path d="M16 64C16 28.7 44.7 0 80 0H304c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H80c-35.3 0-64-28.7-64-64V64zM144 448c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16s-7.2-16-16-16H160c-8.8 0-16 7.2-16 16zM304 64H80V384H304V64z"/>
+                    </svg>
+                    <h3>100% Responsive</h3>
+                    <p>Adapté à tous les écrans, du mobile au desktop.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>
+                <svg viewBox="0 0 640 512">
+                    <path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/>
+                </svg>
+                Modifications apportées
+            </h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                    </svg>
+                    <h3>Sans CDN externe</h3>
+                    <p>Utilisation de SVG inline pour fonctionner complètement hors ligne</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                    </svg>
+                    <h3>Design épuré</h3>
+                    <p>Bannière en modal centrée sans décalage du contenu</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                    </svg>
+                    <h3>Affichage persistant</h3>
+                    <p>S'affiche à chaque chargement jusqu'à installation</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                    </svg>
+                    <h3>Mode démo offline</h3>
+                    <p>La page démo reste accessible même sans connexion</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>
+                <svg viewBox="0 0 512 512">
+                    <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                </svg>
+                Fichiers fournis
+            </h2>
+            <ul style="list-style: none; padding: 0; margin-top: 16px;">
+                <li style="padding: 12px; background: rgba(255,255,255,0.05); margin-bottom: 8px; border-radius: 8px; display: flex; align-items: center; gap: 12px;">
+                    <svg style="width: 20px; height: 20px; fill: #60a5fa;" viewBox="0 0 384 512">
+                        <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+                    </svg>
+                    <strong>pwa.js</strong> - Script principal PWA optimisé
+                </li>
+                <li style="padding: 12px; background: rgba(255,255,255,0.05); margin-bottom: 8px; border-radius: 8px; display: flex; align-items: center; gap: 12px;">
+                    <svg style="width: 20px; height: 20px; fill: #60a5fa;" viewBox="0 0 384 512">
+                        <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+                    </svg>
+                    <strong>pwa-styles.css</strong> - Styles modernes pour PWA
+                </li>
+                <li style="padding: 12px; background: rgba(255,255,255,0.05); margin-bottom: 8px; border-radius: 8px; display: flex; align-items: center; gap: 12px;">
+                    <svg style="width: 20px; height: 20px; fill: #60a5fa;" viewBox="0 0 384 512">
+                        <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+                    </svg>
+                    <strong>service-worker.js</strong> - Service Worker amélioré
+                </li>
+                <li style="padding: 12px; background: rgba(255,255,255,0.05); margin-bottom: 8px; border-radius: 8px; display: flex; align-items: center; gap: 12px;">
+                    <svg style="width: 20px; height: 20px; fill: #60a5fa;" viewBox="0 0 384 512">
+                        <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+                    </svg>
+                    <strong>offline.html</strong> - Page hors ligne moderne
+                </li>
+                <li style="padding: 12px; background: rgba(255,255,255,0.05); margin-bottom: 8px; border-radius: 8px; display: flex; align-items: center; gap: 12px;">
+                    <svg style="width: 20px; height: 20px; fill: #10b981;" viewBox="0 0 384 512">
+                        <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM111 257.1c-7.9 7.3-8.5 19.8-1.2 27.7s19.8 8.5 27.7 1.2l80-74 80 74c7.9 7.3 20.4 6.7 27.7-1.2s6.7-20.4-1.2-27.7L241.5 184c-7.3-6.8-18.7-6.8-26 0L133 257.1zM111 385.9c-7.9-7.3-8.5-19.8-1.2-27.7s19.8-8.5 27.7-1.2l80 74 80-74c7.9-7.3 20.4-6.7 27.7 1.2s6.7 20.4-1.2 27.7L241.5 458c-7.3 6.8-18.7 6.8-26 0L133 385.9z"/>
+                    </svg>
+                    <strong>README.md</strong> - Documentation complète
+                </li>
+            </ul>
+        </div>
+
+        <div class="demo-section">
+            <h2>
+                <svg viewBox="0 0 512 512">
+                    <path d="M156.6 384.9L125.7 354c-8.5-8.5-11.5-20.8-7.7-32.2c3-8.9 7-20.5 11.8-33.8L24 288c-8.6 0-16.6-4.6-20.9-12.1s-4.2-16.7 .2-24.1l52.5-88.5c13-21.9 36.5-35.3 61.9-35.3l82.3 0c2.4-4 4.8-7.7 7.2-11.3C289.1-4.1 411.1-8.1 483.9 5.3c11.6 2.1 20.6 11.2 22.8 22.8c13.4 72.9 9.3 194.8-111.4 276.7c-3.5 2.4-7.3 4.8-11.3 7.2v82.3c0 25.4-13.4 49-35.3 61.9l-88.5 52.5c-7.4 4.4-16.6 4.5-24.1 .2s-12.1-12.2-12.1-20.9V380.8c-14.1 4.9-26.4 8.9-35.7 11.9c-11.2 3.6-23.4 .5-31.8-7.8zM384 168a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
+                </svg>
+                Installation rapide
+            </h2>
+            <div class="code-block">
+                <code>
+# 1. Remplacez vos fichiers existants<br>
+cp pwa.js /votre-projet/<br>
+cp pwa-styles.css /votre-projet/<br>
+cp service-worker.js /votre-projet/<br>
+cp offline.html /votre-projet/<br>
+cp demo.html /votre-projet/<br>
+<br>
+# 2. Ajoutez dans votre index.html<br>
+&lt;link rel="stylesheet" href="pwa-styles.css"&gt;<br>
+&lt;script src="pwa.js"&gt;&lt;/script&gt;<br>
+<br>
+# 3. Déployez et testez !
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <span class="status-dot"></span>
+        <span>PWA Version 2.0.0 - Prêt à installer</span>
+    </div>
+
+    <!-- Éléments PWA pour la démo -->
+    <div id="install-banner" class="install-banner">
+        <button id="close-install-btn" class="close-install-btn" aria-label="Fermer" onclick="hideInstallDemo()">
+            <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 384 512">
+                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+            </svg>
+        </button>
+        
+        <div class="install-content">
+            <div class="install-header">
+                <div class="install-icon">
+                    <svg style="width: 32px; height: 32px; fill: currentColor;" viewBox="0 0 384 512">
+                        <path d="M16 64C16 28.7 44.7 0 80 0H304c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H80c-35.3 0-64-28.7-64-64V64zM144 448c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16s-7.2-16-16-16H160c-8.8 0-16 7.2-16 16zM304 64H80V384H304V64z"/>
+                    </svg>
+                </div>
+                
+                <div class="install-text">
+                    <h3>Installer SUP'ONE AI</h3>
+                    <p>Accédez rapidement à votre assistant depuis votre écran d'accueil</p>
+                </div>
+            </div>
+            
+            <div class="install-benefits">
+                <h4>Avantages</h4>
+                <div class="benefit-item">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 448 512">
+                        <path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/>
+                    </svg>
+                    <span>Accès instantané depuis votre écran d'accueil</span>
+                </div>
+                <div class="benefit-item">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 640 512">
+                        <path d="M54.2 202.9C123.2 136.7 216.8 96 320 96s196.8 40.7 265.8 106.9c12.8 12.2 33 11.8 45.2-.9s11.8-33-.9-45.2C549.7 79.5 440.4 32 320 32S90.3 79.5 9.8 156.7C-2.9 169-3.3 189.2 8.9 202s32.5 13.2 45.2 .9zM320 256c56.8 0 108.6 21.1 148.2 56c13.3 11.7 33.5 10.4 45.2-2.8s10.4-33.5-2.8-45.2C459.8 219.2 393 192 320 192s-139.8 27.2-190.5 72c-13.3 11.7-14.5 31.9-2.8 45.2s31.9 14.5 45.2 2.8c39.5-34.9 91.3-56 148.2-56zm64 160a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z"/>
+                    </svg>
+                    <span>Fonctionne hors ligne</span>
+                </div>
+                <div class="benefit-item">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 448 512">
+                        <path d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"/>
+                    </svg>
+                    <span>Recevez des notifications</span>
+                </div>
+                <div class="benefit-item">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 448 512">
+                        <path d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z"/>
+                    </svg>
+                    <span>Expérience plein écran</span>
+                </div>
+            </div>
+            
+            <div class="install-actions">
+                <button class="btn-install" onclick="alert('Ceci est une démo ! Dans la vraie application, cela installerait la PWA.')">
+                    <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 512 512">
+                        <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                    Installer l'application
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="update-banner" class="update-banner">
+        <div class="update-content">
+            <svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 512 512">
+                <path d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H352c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32s-32 14.3-32 32v35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V432c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/>
+            </svg>
+            <div class="update-text">
+                <strong>Mise à jour disponible</strong>
+                <span>Une nouvelle version est prête à être installée</span>
+            </div>
+            <button class="btn-update" onclick="alert('Ceci est une démo ! Dans la vraie application, cela mettrait à jour la PWA.')">
+                Mettre à jour
+            </button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        function showInstallDemo() {
+            const banner = document.getElementById('install-banner');
+            banner.style.display = 'flex';
+            banner.offsetHeight;
+            banner.classList.add('show');
+        }
+
+        function hideInstallDemo() {
+            const banner = document.getElementById('install-banner');
+            banner.classList.remove('show');
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 300);
+        }
+
+        function showUpdateDemo() {
+            const banner = document.getElementById('update-banner');
+            banner.style.display = 'flex';
+            banner.offsetHeight;
+            banner.classList.add('show');
+            
+            setTimeout(() => {
+                banner.classList.remove('show');
+                setTimeout(() => {
+                    banner.style.display = 'none';
+                }, 300);
+            }, 5000);
+        }
+
+        function showToastDemo() {
+            const toast = document.getElementById('toast');
+            toast.innerHTML = `
+                <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 512 512">
+                    <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                </svg>
+                <span>Notification de test affichée avec succès !</span>
+            `;
+            toast.className = 'toast toast-success';
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ✅ BLOQUER les vraies bannières PWA sur cette page
+        // Masquer les bannières réelles de pwa.js si elles existent
+        window.addEventListener('load', () => {
+            // Masquer la vraie bannière d'installation (de pwa.js)
+            const realInstallBanner = document.querySelector('.install-banner:not(#install-banner)');
+            if (realInstallBanner) {
+                realInstallBanner.style.display = 'none';
+                console.log('[DEMO] Vraie bannière d\'installation masquée');
+            }
+            
+            // Masquer la vraie bannière de mise à jour (de pwa.js)
+            const realUpdateBanner = document.querySelector('.update-banner:not(#update-banner)');
+            if (realUpdateBanner) {
+                realUpdateBanner.style.display = 'none';
+                console.log('[DEMO] Vraie bannière de mise à jour masquée');
+            }
+        });
+        
+        // Bloquer l'affichage automatique des vraies bannières
+        window.showInstallBanner = function() {
+            console.log('[DEMO] Blocage de la vraie bannière d\'installation');
+            return false;
+        };
+        
+        window.showUpdateBanner = function() {
+            console.log('[DEMO] Blocage de la vraie bannière de mise à jour');
+            return false;
+        };
+        
+        // Afficher automatiquement la bannière DE DÉMO au chargement
+        setTimeout(() => {
+            showInstallDemo();
+        }, 2000);
+        
+        // ✅ Log pour confirmer qu'on est sur demo.html
+        console.log('[DEMO] Page demo.html chargée');
+        console.log('[DEMO] Cette page ne sera PAS redirigée automatiquement');
+        console.log('[DEMO] Les bannières PWA réelles sont bloquées sur cette page');
+    </script>
+</body>
+</html>

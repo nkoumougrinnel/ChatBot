@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a4594">
+    <title>Hors ligne - SUP'ONE AI</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a4594 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .offline-container {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .offline-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .offline-icon svg {
+            width: 56px;
+            height: 56px;
+            fill: white;
+            opacity: 0.9;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            padding: 10px 20px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .status-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .demo-btn {
+            background: linear-gradient(135deg, #60a5fa, #2563eb);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(96, 165, 250, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(96, 165, 250, 0.5);
+        }
+
+        .demo-btn:active {
+            transform: translateY(0);
+        }
+
+        .demo-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .offline-tips {
+            margin-top: 48px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .offline-tips h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .offline-tips h2 svg {
+            width: 20px;
+            height: 20px;
+            fill: #60a5fa;
+        }
+
+        .offline-tips ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .offline-tips li {
+            padding-left: 32px;
+            position: relative;
+            line-height: 1.5;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .offline-tips li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 16px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 50%;
+        }
+
+        .connection-status {
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            font-size: 14px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .connection-status svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .offline-icon {
+                width: 100px;
+                height: 100px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .demo-btn {
+                padding: 14px 32px;
+                font-size: 15px;
+            }
+
+            .offline-tips {
+                padding: 20px;
+            }
+
+            .offline-tips h2 {
+                font-size: 16px;
+            }
+
+            .offline-tips li {
+                font-size: 14px;
+            }
+        }
+
+        /* Animation d'apparition */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .offline-container > * {
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .offline-icon {
+            animation-delay: 0.1s;
+        }
+
+        h1 {
+            animation-delay: 0.2s;
+        }
+
+        .subtitle {
+            animation-delay: 0.3s;
+        }
+
+        .status-badge {
+            animation-delay: 0.4s;
+        }
+
+        .action-buttons {
+            animation-delay: 0.5s;
+        }
+
+        .offline-tips {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">
+            <svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg">
+                <path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L489.3 358.2l90.5-90.5c56.7-56.7 56.7-148.7 0-205.4s-148.7-56.7-205.4 0L320 116.8 265.5 70.8l49.7-49.7c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8L525.6 444.4 38.8 5.1zM239 162l53.4 41.9-22.7 22.7c-25 25-25 65.5 0 90.5l22.6 22.6L160 480c-8.2 10.4-23.3 12.3-33.7 4.1s-12.3-23.3-4.1-33.7L239 162zm81 63.3l36.2 28.4c-6.3 3.2-12.2 7.2-17.5 12.5l-22.6 22.6c-25 25-65.5 25-90.5 0l-22.6-22.6c-25-25-25-65.5 0-90.5L320 225.3z"/>
+            </svg>
+        </div>
+
+        <h1>Vous êtes hors ligne</h1>
+        
+        <p class="subtitle">
+            Impossible de se connecter à SUP'ONE AI.<br>
+            En attendant, découvrez notre application en mode démo !
+        </p>
+
+        <div class="status-badge">
+            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="256" cy="256" r="256"/>
+            </svg>
+            <span>Mode hors ligne</span>
+        </div>
+
+        <div class="action-buttons">
+            <a href="/demo.html" class="demo-btn" onclick="console.log('[Offline] Navigation vers demo.html'); return true;">
+                <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/>
+                </svg>
+                Accéder à la démo
+            </a>
+        </div>
+
+        <div class="offline-tips">
+            <h2>
+                <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M297.2 248.9C311.6 228.3 320 203.2 320 176c0-70.7-57.3-128-128-128S64 105.3 64 176c0 27.2 8.4 52.3 22.8 72.9c3.7 5.3 8.1 11.3 12.8 17.7l0 0c12.9 17.7 28.3 38.9 39.8 59.8c10.4 19 15.7 38.8 18.3 57.5H109c-2.2-12-5.9-23.7-11.8-34.5c-9.9-18-22.2-34.9-34.5-51.8l0 0 0 0c-5.2-7.1-10.4-14.2-15.4-21.4C27.6 247.9 16 213.3 16 176C16 78.8 94.8 0 192 0s176 78.8 176 176c0 37.3-11.6 71.9-31.4 100.3c-5 7.2-10.2 14.3-15.4 21.4l0 0 0 0c-12.3 16.8-24.6 33.7-34.5 51.8c-5.9 10.8-9.6 22.5-11.8 34.5H226.4c2.6-18.7 7.9-38.6 18.3-57.5c11.5-20.9 26.9-42.1 39.8-59.8l0 0 0 0 0 0c4.7-6.4 9-12.4 12.7-17.7zM192 128c-26.5 0-48 21.5-48 48c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-44.2 35.8-80 80-80c8.8 0 16 7.2 16 16s-7.2 16-16 16zm0 384c-44.2 0-80-35.8-80-80V416H272v16c0 44.2-35.8 80-80 80z"/>
+                </svg>
+                Pour vous reconnecter
+            </h2>
+            <ul>
+                <li>Vérifiez votre connexion WiFi ou données mobiles</li>
+                <li>Désactivez le mode avion si activé</li>
+                <li>Redémarrez votre routeur si nécessaire</li>
+                <li>La page se rechargera automatiquement</li>
+            </ul>
+        </div>
+
+        <div class="connection-status">
+            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <path d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H352c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32s-32 14.3-32 32v35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V432c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/>
+            </svg>
+            <span>Vérification automatique de la connexion...</span>
+        </div>
+    </div>
+
+    <script>
+        // Vérifier la connexion toutes les 3 secondes
+        setInterval(() => {
+            if (navigator.onLine) {
+                console.log('[Offline] Connexion rétablie, redirection...');
+                window.location.href = '/';
+            }
+        }, 3000);
+
+        // Écouter le retour de connexion
+        window.addEventListener('online', () => {
+            console.log('[Offline] Événement online détecté');
+            showReconnecting();
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 500);
+        });
+
+        // Afficher un message de reconnexion
+        function showReconnecting() {
+            const statusDiv = document.querySelector('.connection-status');
+            if (statusDiv) {
+                statusDiv.innerHTML = `
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;fill:#10b981;">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                    </svg>
+                    <span>Connexion rétablie ! Redirection...</span>
+                `;
+                statusDiv.style.background = 'rgba(16, 185, 129, 0.15)';
+            }
+        }
+
+        // Gestion du clic sur le bouton démo
+        document.addEventListener('DOMContentLoaded', () => {
+            const demoBtn = document.querySelector('.demo-btn');
+            if (demoBtn) {
+                demoBtn.addEventListener('click', (e) => {
+                    console.log('[Offline] Clic sur bouton démo');
+                    // Laisser la navigation normale se faire
+                });
+            }
+        });
+
+        // Log pour debug
+        console.log('[Offline] Page hors ligne chargée');
+        console.log('[Offline] Statut en ligne:', navigator.onLine);
+    </script>
+</body>
+
+</html>

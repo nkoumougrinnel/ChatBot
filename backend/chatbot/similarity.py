@@ -72,15 +72,7 @@ def load_conversational_rules():
         if RULES_JSON_PATH.exists():
             with open(RULES_JSON_PATH, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-                if isinstance(data, dict):
-                    rules = data.get('conversational_rules', [])
-                elif isinstance(data, list):
-                    rules = data
-                else:
-                    rules = []
-                if not isinstance(rules, list):
-                    return []
-                return rules
+                return data.get('conversational_rules', [])
         else:
             print(f"[Similarity] ⚠️ Fichier de règles non trouvé: {RULES_JSON_PATH}")
             return []
