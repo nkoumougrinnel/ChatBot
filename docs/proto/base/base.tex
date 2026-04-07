@@ -1,0 +1,1079 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{fontawesome5}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit,backgrounds,er}
+
+% Configuration des listes
+\setlist[itemize]{leftmargin=*, itemsep=3pt, topsep=3pt}
+\setlist[enumerate]{leftmargin=*, itemsep=3pt, topsep=3pt}
+
+% Configuration du code (si nécessaire pour exemples Python ou autre)
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    tabsize=4,
+    showstringspaces=false,
+    captionpos=b
+}
+
+% En-tête et pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Documentation de la Base de Données - ChatBot SUP'PTIC}
+\fancyhead[R]{\small \today}
+\fancyfoot[C]{\thepage}
+
+% Environnements personnalisés
+\newtcolorbox{important}[1][]{
+  colback=red!5!white,
+  colframe=red!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{info}[1][]{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{astuce}[1][]{
+  colback=green!5!white,
+  colframe=green!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{exemple}[1][]{
+  colback=orange!5!white,
+  colframe=orange!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{schema}[1][]{
+  colback=gray!5!white,
+  colframe=gray!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\begin{document}
+
+% Page de titre
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge \textbf{Documentation de la Base de Données}} 
+    
+    \vspace{0.5cm}
+    {\Large ChatBot SUP'PTIC} 
+
+    \vspace{1.5cm}
+    
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \small Document de référence pour l'équipe projet \\
+        détaillant l'architecture de la base de données, \\
+        le système de feedback et les cas d'utilisation
+    \end{minipage}
+    
+    \vspace{2cm}
+    
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \textit{Rédigé par :} \\
+        \vspace{0.3cm}
+        \textbf{NKOUMOU TJADE} \\
+        Chef de la Division de Programmation \\
+        Club Informatique SUP'PTIC
+    \end{minipage}
+    
+\end{titlepage}
+
+% Table des matières
+\tableofcontents
+\clearpage
+
+% Section 1 : Introduction
+\section{Introduction}
+\label{sec:introduction}
+
+\subsection{Objectif du Document}
+
+Ce document technique présente l'architecture complète de la base de données du ChatBot SUP'PTIC. Il détaille les tables principales, leurs relations, le système de feedback utilisateur et les cas d'utilisation permettant la gestion et l'amélioration continue du système.
+
+\begin{important}[Périmètre]
+Ce document se concentre \textbf{exclusivement} sur la couche persistance de données du chatbot : structure des tables, relations, système de feedback et opérations CRUD. Pour la partie algorithmique (TF-IDF, similarité cosinus), consulter le document \textit{Documentation Technique de l'Algorithme de Similarité}.
+\end{important}
+
+\subsection{Ce que Vous Allez Apprendre}
+
+À la fin de ce document, vous serez capable de :
+
+\begin{enumerate}
+    \item \textbf{Comprendre l'architecture} : Connaître toutes les tables de la base de données et leurs relations
+    \item \textbf{Gérer les FAQ} : Ajouter, modifier et supprimer des questions-réponses de manière cohérente
+    \item \textbf{Exploiter le feedback} : Utiliser les retours utilisateurs pour améliorer la pertinence du chatbot
+    \item \textbf{Manipuler les utilisateurs} : Créer et gérer les comptes utilisateurs en respectant les principes de protection des données
+    \item \textbf{Maintenir la cohérence} : Effectuer des opérations sur la base tout en préservant l'intégrité référentielle
+\end{enumerate}
+
+\subsection{Public Cible}
+
+Ce document s'adresse à :
+\begin{itemize}
+    \item Les développeurs backend responsables de l'API et de la base de données
+    \item Les administrateurs de base de données (DBA)
+    \item Les gestionnaires de contenu responsables de l'enrichissement de la FAQ
+    \item Les data analysts chargés d'exploiter les feedbacks
+    \item Les nouveaux membres rejoignant l'équipe technique
+\end{itemize}
+
+\begin{astuce}[Prérequis]
+Une connaissance de base en SQL et en modélisation relationnelle est recommandée. Les concepts avancés sont expliqués avec des exemples concrets.
+\end{astuce}
+
+\clearpage
+
+% Section 2 : Architecture Globale
+\section{Architecture de la Base de Données}
+\label{sec:architecture}
+
+\subsection{Vue d'Ensemble}
+
+La base de données du ChatBot SUP'PTIC est conçue selon une architecture relationnelle normalisée (3NF) qui garantit :
+
+\begin{itemize}
+    \item \textbf{Intégrité des données} : Pas de redondance, cohérence garantie par les clés étrangères
+    \item \textbf{Performance} : Indexation appropriée pour des requêtes rapides
+    \item \textbf{Évolutivité} : Structure modulaire permettant l'ajout de nouvelles fonctionnalités
+    \item \textbf{Traçabilité} : Horodatage de toutes les opérations critiques
+\end{itemize}
+
+\subsection{Modèle Entité-Relation}
+
+La base de données est organisée autour de 5 tables principales :
+
+\begin{schema}[Tables Principales]
+\begin{enumerate}
+    \item \textbf{Utilisateurs} : Stocke les informations des utilisateurs du chatbot
+    \item \textbf{Catégories} : Classification thématique des questions FAQ
+    \item \textbf{FAQ} : Questions-réponses du corpus du chatbot
+    \item \textbf{FAQVector} : Représentation vectorielle (TF-IDF) des questions pour le calcul de similarité
+    \item \textbf{Feedback} : Retours utilisateurs sur la pertinence des réponses
+\end{enumerate}
+\end{schema}
+
+\subsection{Diagramme UML des Classes}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    class/.style={rectangle, draw, thick, minimum width=3.5cm, minimum height=1.5cm, align=center, fill=blue!10},
+    node distance=2.5cm and 3cm
+]
+
+% Classes principales
+\node[class] (user) {\textbf{Utilisateurs} \\ \rule{3.5cm}{0.4pt} \\ id: INT \\ nom: VARCHAR \\ email: VARCHAR \\ role: ENUM};
+
+\node[class, below right=1.5cm and 0.5cm of user] (feedback) {\textbf{Feedback} \\ \rule{3.5cm}{0.4pt} \\ id: INT \\ type: ENUM \\ commentaire: TEXT \\ score: FLOAT};
+
+\node[class, below left=1.5cm and 0.5cm of user] (category) {\textbf{Catégories} \\ \rule{3.5cm}{0.4pt} \\ id: INT \\ nom: VARCHAR \\ description: TEXT};
+
+\node[class, below=2cm of category] (faq) {\textbf{FAQ} \\ \rule{3.5cm}{0.4pt} \\ id: INT \\ question: TEXT \\ reponse: TEXT};
+
+\node[class, right=3cm of faq] (vector) {\textbf{FAQVector} \\ \rule{3.5cm}{0.4pt} \\ id: INT \\ vecteur: JSON \\ norme: FLOAT};
+
+% Relations avec cardinalités UML (décalées)
+\draw[thick, ->] (user) -- (feedback)
+    node[pos=0.25, above, sloped] {\small 1}
+    node[pos=0.75, below, sloped] {\small 0..*};
+
+\draw[thick, ->] (faq) -- (feedback)
+    node[pos=0.25, above, sloped] {\small 1}
+    node[pos=0.75, below, sloped] {\small 0..*};
+
+\draw[thick, ->] (category) -- (faq)
+    node[pos=0.25, left] {\small 1}
+    node[pos=0.75, right] {\small 1..*};
+
+\draw[thick, <->] (faq) -- (vector)
+    node[pos=0.25, above] {\small 1}
+    node[pos=0.75, below] {\small 1};
+
+\end{tikzpicture}
+\caption{Diagramme UML des classes de la base de données avec cardinalités décalées}
+\end{figure}
+
+
+\begin{info}[Lecture du Diagramme UML]
+\begin{itemize}
+    \item \textbf{1..*} : Un à plusieurs (au moins un)
+    \item \textbf{0..*} : Zéro à plusieurs
+    \item \textbf{1} : Exactement un
+    \item Les flèches indiquent les relations de dépendance (clés étrangères)
+\end{itemize}
+\end{info}
+
+\clearpage
+
+% Section 3 : Description des Tables
+\section{Description Détaillée des Tables}
+\label{sec:tables}
+
+\subsection{Table : Utilisateurs}
+
+\subsubsection{Rôle et Objectif}
+
+La table \texttt{Utilisateurs} stocke les informations de base sur tous les utilisateurs du chatbot, qu'ils soient étudiants, administrateurs ou visiteurs anonymes.
+
+\subsubsection{Structure}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Colonne} & \textbf{Type} & \textbf{Description} & \textbf{Contraintes} \\
+\hline
+\texttt{id} & INT & Identifiant unique & PRIMARY KEY \\
+\hline
+\texttt{nom} & VARCHAR(100) & Nom complet & NOT NULL \\
+\hline
+\texttt{email} & VARCHAR(150) & Adresse email & UNIQUE, NOT NULL \\
+\hline
+\texttt{role} & ENUM & Rôle (etudiant/admin/anonyme) & NOT NULL \\
+\hline
+\texttt{date\_creation} & TIMESTAMP & Date de création & Auto \\
+\hline
+\texttt{derniere\_connexion} & DATETIME & Dernière connexion & NULL \\
+\hline
+\texttt{actif} & BOOLEAN & Statut du compte & DEFAULT TRUE \\
+\hline
+\end{tabular}
+\caption{Structure de la table Utilisateurs}
+\end{table}
+
+\subsubsection{Exemples de Données}
+
+\begin{exemple}[Données d'exemple]
+\begin{itemize}
+    \item \textbf{Étudiant} : Jean Dupont | jean.dupont@supptic.cm | rôle: etudiant
+    \item \textbf{Administrateur} : Marie Nkodo | marie.nkodo@supptic.cm | rôle: admin
+    \item \textbf{Visiteur} : Visiteur Anonyme | anonyme@system.local | rôle: anonyme
+\end{itemize}
+\end{exemple}
+
+\begin{info}[Gestion des Anonymes]
+Pour les utilisateurs non authentifiés, un compte générique \texttt{anonyme@system.local} peut être utilisé. Alternativement, on peut créer un utilisateur anonyme par session avec un email généré : \texttt{anon\_<timestamp>@temp.local}.
+\end{info}
+
+\clearpage
+
+\subsection{Table : Catégories}
+
+\subsubsection{Rôle et Objectif}
+
+La table \texttt{Catégories} permet de classifier les questions FAQ en thématiques cohérentes. Elle facilite l'organisation du contenu et l'analyse des domaines couverts par le chatbot.
+
+\subsubsection{Structure}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Colonne} & \textbf{Type} & \textbf{Description} & \textbf{Contraintes} \\
+\hline
+\texttt{id} & INT & Identifiant unique & PRIMARY KEY \\
+\hline
+\texttt{nom} & VARCHAR(100) & Nom de la catégorie & UNIQUE, NOT NULL \\
+\hline
+\texttt{description} & TEXT & Description détaillée & NULL \\
+\hline
+\texttt{actif} & BOOLEAN & Statut de la catégorie & DEFAULT TRUE \\
+\hline
+\end{tabular}
+\caption{Structure de la table Catégories}
+\end{table}
+
+\subsubsection{Exemples de Données}
+
+\begin{exemple}[Catégories Principales du Chatbot SUP'PTIC]
+\begin{enumerate}
+    \item \textbf{Inscriptions \& Admissions} \\
+    \textit{Description :} Procédures d'inscription, conditions d'admission, dossiers requis
+    
+    \item \textbf{Examens \& Évaluations} \\
+    \textit{Description :} Organisation des examens, modalités d'évaluation, rattrapage
+    
+    \item \textbf{Vie Étudiante} \\
+    \textit{Description :} Clubs, associations, activités culturelles et sportives
+    
+    \item \textbf{Services Administratifs} \\
+    \textit{Description :} Démarches administratives, services aux étudiants
+    
+    \item \textbf{Programmes Académiques} \\
+    \textit{Description :} Présentation des filières, contenus pédagogiques
+\end{enumerate}
+\end{exemple}
+
+\clearpage
+
+\subsection{Table : FAQ}
+
+\subsubsection{Rôle et Objectif}
+
+La table \texttt{FAQ} constitue le cœur du système : elle stocke toutes les paires question-réponse utilisées par l'algorithme de similarité pour répondre aux utilisateurs.
+
+\subsubsection{Structure}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Colonne} & \textbf{Type} & \textbf{Description} & \textbf{Contraintes} \\
+\hline
+\texttt{id} & INT & Identifiant unique & PRIMARY KEY \\
+\hline
+\texttt{question} & TEXT & Texte de la question & NOT NULL \\
+\hline
+\texttt{reponse} & TEXT & Texte de la réponse & NOT NULL \\
+\hline
+\texttt{categorie\_id} & INT & Catégorie associée & FOREIGN KEY \\
+\hline
+\texttt{sous\_theme} & VARCHAR(100) & Sous-classification & NULL \\
+\hline
+\texttt{source} & VARCHAR(200) & Source de l'info & NULL \\
+\hline
+\texttt{date\_creation} & TIMESTAMP & Date d'ajout & Auto \\
+\hline
+\texttt{date\_modification} & TIMESTAMP & Dernière modification & Auto \\
+\hline
+\texttt{actif} & BOOLEAN & Statut de la FAQ & DEFAULT TRUE \\
+\hline
+\texttt{popularite} & INT & Nb de consultations & Défaut: 0 \\
+\hline
+\end{tabular}
+\caption{Structure de la table FAQ}
+\end{table}
+
+\subsubsection{Exemples de Données}
+
+\begin{exemple}[FAQ Réelles du Chatbot SUP'PTIC]
+\begin{itemize}
+    \item \textbf{Question :} Comment s'inscrire au club informatique de SUP'PTIC ? \\
+    \textbf{Réponse :} Pour adhérer au club informatique, il suffit d'être étudiant inscrit à SUP'PTIC. Rendez-vous au bureau du club pendant les heures d'ouverture (Lundi-Vendredi 14h-17h) avec votre carte étudiante. \\
+    \textbf{Catégorie :} Vie Étudiante | \textbf{Sous-thème :} Clubs | \textbf{Source :} Bureau du Club Info
+    
+    \item \textbf{Question :} Quels sont les documents nécessaires pour l'inscription en première année ? \\
+    \textbf{Réponse :} Pour l'inscription en L1, vous devez fournir : (1) Photocopie du baccalauréat, (2) Acte de naissance, (3) 4 photos d'identité, (4) Certificat médical, (5) Frais d'inscription. \\
+    \textbf{Catégorie :} Inscriptions \& Admissions | \textbf{Sous-thème :} Première inscription | \textbf{Source :} Service Scolarité
+\end{itemize}
+\end{exemple}
+
+\begin{important}[Relation avec l'Algorithme]
+Chaque fois qu'une FAQ est ajoutée ou modifiée, son vecteur TF-IDF doit être recalculé et stocké dans la table \texttt{FAQVector}. Ce mécanisme est détaillé dans la section sur les cas d'utilisation.
+\end{important}
+
+\clearpage
+
+\subsection{Table : FAQVector}
+
+\subsubsection{Rôle et Objectif}
+
+La table \texttt{FAQVector} stocke la représentation vectorielle (TF-IDF) de chaque question FAQ. Ces vecteurs sont utilisés par l'algorithme de similarité cosinus pour calculer la proximité entre la question de l'utilisateur et les questions du corpus.
+
+\subsubsection{Structure}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Colonne} & \textbf{Type} & \textbf{Description} & \textbf{Contraintes} \\
+\hline
+\texttt{id} & INT & Identifiant unique & PRIMARY KEY \\
+\hline
+\texttt{faq\_id} & INT & Référence à la FAQ & FOREIGN KEY, UNIQUE \\
+\hline
+\texttt{vecteur} & JSON & Vecteur TF-IDF sérialisé & NOT NULL \\
+\hline
+\texttt{norme} & FLOAT & Norme euclidienne & NOT NULL \\
+\hline
+\texttt{date\_calcul} & TIMESTAMP & Date du calcul & Auto \\
+\hline
+\end{tabular}
+\caption{Structure de la table FAQVector}
+\end{table}
+
+\subsubsection{Format du Vecteur JSON}
+
+\begin{exemple}[Exemple de Vecteur TF-IDF Stocké]
+\textbf{Question :} "Comment s'inscrire au club informatique ?" \\
+\textbf{Vecteur TF-IDF (JSON) :} \\
+\texttt{\{"comment": 0.45, "inscrire": 0.78, "club": 0.62, "informatique": 0.85\}} \\
+\textbf{Norme :} 1.34
+
+\vspace{0.3cm}
+\textbf{Explication :}
+\begin{itemize}
+    \item Les clés sont les mots-clés de la question
+    \item Les valeurs sont les scores TF-IDF correspondants
+    \item La norme (1.34) est utilisée pour normaliser le vecteur lors du calcul de similarité cosinus
+\end{itemize}
+\end{exemple}
+
+\begin{info}[Performance]
+La colonne \texttt{norme} est précalculée et stockée pour accélérer le calcul de la similarité cosinus :
+\[
+\text{similarité}(A, B) = \frac{A \cdot B}{\|A\| \times \|B\|}
+\]
+En stockant $\|A\|$ (la norme), on évite de la recalculer à chaque requête utilisateur.
+\end{info}
+
+\clearpage
+
+\subsection{Table : Feedback}
+
+\subsubsection{Rôle et Objectif}
+
+La table \texttt{Feedback} enregistre les retours des utilisateurs sur la pertinence des réponses fournies par le chatbot. Ces données sont cruciales pour :
+
+\begin{enumerate}
+    \item Identifier les questions mal comprises par l'algorithme
+    \item Détecter les FAQ nécessitant des reformulations
+    \item Calculer des statistiques de satisfaction
+    \item Ajuster les pondérations de l'algorithme (amélioration continue)
+\end{enumerate}
+
+\subsubsection{Structure}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Colonne} & \textbf{Type} & \textbf{Description} & \textbf{Contraintes} \\
+\hline
+\texttt{id} & INT & Identifiant unique & PRIMARY KEY \\
+\hline
+\texttt{utilisateur\_id} & INT & Référence utilisateur & FOREIGN KEY \\
+\hline
+\texttt{faq\_id} & INT & Référence FAQ évaluée & FOREIGN KEY \\
+\hline
+\texttt{type} & ENUM & Type (positif/negatif) & NOT NULL \\
+\hline
+\texttt{commentaire} & TEXT & Commentaire optionnel & NULL \\
+\hline
+\texttt{question\_utilisateur} & TEXT & Question posée & NOT NULL \\
+\hline
+\texttt{score\_similarite} & FLOAT & Score obtenu & NULL \\
+\hline
+\texttt{date\_creation} & TIMESTAMP & Date du feedback & Auto \\
+\hline
+\end{tabular}
+\caption{Structure de la table Feedback}
+\end{table}
+
+\subsubsection{Exemples de Données}
+
+\begin{exemple}[Feedback Positifs et Négatifs]
+\textbf{Feedback positif :}
+\begin{itemize}
+    \item Utilisateur ID: 1
+    \item FAQ ID: 15
+    \item Type: positif
+    \item Question utilisateur: "Comment faire pour rejoindre le club info ?"
+    \item Score similarité: 0.92
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Feedback négatif avec commentaire :}
+\begin{itemize}
+    \item Utilisateur ID: 2
+    \item FAQ ID: 23
+    \item Type: négatif
+    \item Commentaire: "La réponse parle d'inscription générale, pas spécifiquement du Master"
+    \item Question utilisateur: "Quelles sont les conditions d'admission en Master Télécoms ?"
+    \item Score similarité: 0.68
+\end{itemize}
+\end{exemple}
+
+\begin{important}[Champ Critique : question\_utilisateur]
+Il est \textbf{essentiel} de stocker la question exacte de l'utilisateur. En comparant \texttt{question\_utilisateur} et \texttt{FAQ.question}, on peut :
+\begin{itemize}
+    \item Identifier les variantes de questions manquantes
+    \item Détecter les formulations qui mènent à des erreurs
+    \item Enrichir le corpus avec de nouvelles variantes
+\end{itemize}
+\end{important}
+
+\clearpage
+
+\section{Relations entre Tables et Intégrité Référentielle}
+\label{sec:relations}
+
+\subsection{Clés Étrangères et Stratégies d’Intégrité}
+
+Le diagramme UML présenté plus haut illustre les relations entre les tables. 
+Dans cette section, nous détaillons les règles d’intégrité référentielle appliquées 
+aux clés étrangères afin de garantir la cohérence des données.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Table} & \textbf{Clé Étrangère} & \textbf{Référence} & \textbf{Stratégie} \\
+\hline
+FAQ & categorie\_id & Categories(id) & RESTRICT \\
+\hline
+FAQVector & faq\_id & FAQ(id) & CASCADE \\
+\hline
+Feedback & utilisateur\_id & Utilisateurs(id) & CASCADE \\
+\hline
+Feedback & faq\_id & FAQ(id) & CASCADE \\
+\hline
+\end{tabular}
+\caption{Configuration des clés étrangères et stratégies d’intégrité}
+\end{table}
+
+\subsection{Explication des Stratégies}
+
+\begin{info}[RESTRICT sur FAQ.categorie\_id]
+On ne peut pas supprimer une catégorie si elle contient encore des FAQ. Cela force l'administrateur à :
+\begin{enumerate}
+    \item Réassigner les FAQ à une autre catégorie
+    \item OU désactiver la catégorie (actif = FALSE) plutôt que la supprimer
+\end{enumerate}
+\end{info}
+
+\begin{info}[CASCADE sur FAQVector.faq\_id]
+Quand une FAQ est supprimée, son vecteur TF-IDF associé est automatiquement supprimé. Relation 1:1 stricte.
+\end{info}
+
+\begin{info}[CASCADE sur Feedback]
+Quand un utilisateur ou une FAQ est supprimé(e), tous les feedbacks associés sont supprimés automatiquement pour éviter les orphelins.
+\end{info}
+
+\clearpage
+
+% Section 5 : Système de Feedback
+\section{Système de Feedback Utilisateur}
+\label{sec:feedback}
+
+\subsection{Principe de Fonctionnement}
+
+Le système de feedback permet aux utilisateurs d'évaluer la pertinence des réponses reçues. Chaque interaction avec le chatbot peut être notée comme :
+
+\begin{itemize}
+    \item \textbf{Feedback positif} (\faThumbsUp) : La réponse était pertinente et utile
+    \item \textbf{Feedback négatif} (\faThumbsDown) : La réponse était hors-sujet ou insuffisante
+\end{itemize}
+
+\subsection{Workflow du Feedback}
+
+\begin{enumerate}
+    \item L'utilisateur pose une question
+    \item Le chatbot calcule les similarités et renvoie la meilleure réponse
+    \item L'interface affiche deux boutons : \faThumbsUp{} et \faThumbsDown{}
+    \item L'utilisateur clique sur un bouton (optionnel : ajoute un commentaire)
+    \item Le backend enregistre le feedback dans la table \texttt{Feedback}
+    \item Des jobs batch analysent périodiquement les feedbacks pour produire des statistiques
+\end{enumerate}
+
+\subsection{Enregistrement d'un Feedback}
+
+Lorsqu'un utilisateur donne son avis sur une réponse, le système enregistre :
+\begin{itemize}
+    \item L'ID de l'utilisateur
+    \item L'ID de la FAQ concernée
+    \item Le type de feedback (positif ou négatif)
+    \item La question exacte posée par l'utilisateur
+    \item Le score de similarité obtenu
+    \item Optionnellement : un commentaire explicatif
+\end{itemize}
+
+\begin{exemple}[Données Enregistrées]
+\textbf{Cas d'un feedback positif :}
+\begin{itemize}
+    \item Utilisateur : ID 42
+    \item FAQ sélectionnée : ID 18
+    \item Type : Positif
+    \item Question posée : "Comment adhérer au club robotique ?"
+    \item Score de similarité : 0.89
+\end{itemize}
+\end{exemple}
+
+\subsection{Exploitation des Feedbacks}
+
+\subsubsection{Identification des FAQ Problématiques}
+
+Le système permet d'identifier les FAQ ayant un taux de feedback négatif élevé (> 50\%). Ces FAQ sont candidates à une reformulation ou à un enrichissement.
+
+\textbf{Informations analysées :}
+\begin{itemize}
+    \item Nombre total de feedbacks reçus
+    \item Nombre de feedbacks positifs et négatifs
+    \item Taux de satisfaction en pourcentage
+    \item Questions ayant reçu au moins 5 feedbacks pour avoir des données significatives
+\end{itemize}
+
+\begin{astuce}[Seuil de Qualité]
+Une FAQ est considérée comme problématique si :
+\begin{itemize}
+    \item Elle a reçu au moins 5 feedbacks (données suffisantes)
+    \item Son taux de feedbacks négatifs dépasse 50\%
+\end{itemize}
+\end{astuce}
+
+\subsubsection{Découverte de Nouvelles Variantes}
+
+L'analyse des questions utilisateurs ayant reçu des feedbacks négatifs permet d'identifier les formulations manquantes dans le corpus.
+
+\textbf{Critères de détection :}
+\begin{itemize}
+    \item Questions posées au moins 3 fois avec des feedbacks négatifs
+    \item Score de similarité moyen inférieur à 0.7
+    \item Ces patterns indiquent une formulation non couverte par la FAQ actuelle
+\end{itemize}
+
+\textbf{Action recommandée :} Créer de nouvelles variantes de questions ou ajouter de nouvelles FAQ pour couvrir ces formulations.
+
+\subsubsection{Calcul de Satisfaction Globale}
+
+Le système calcule le taux de satisfaction par catégorie pour identifier les domaines nécessitant des améliorations.
+
+\textbf{Métriques calculées :}
+\begin{itemize}
+    \item Nombre total de feedbacks par catégorie
+    \item Pourcentage de feedbacks positifs
+    \item Classement des catégories par satisfaction
+\end{itemize}
+
+\begin{exemple}[Interprétation]
+Si la catégorie "Examens \& Évaluations" obtient 68\% de satisfaction alors que la moyenne globale est de 82\%, cela indique un besoin de renforcement dans ce domaine.
+\end{exemple}
+
+\begin{astuce}[Visualisation]
+Ces données peuvent être exportées vers un dashboard (Grafana, Metabase) pour suivre l'évolution de la satisfaction au fil du temps.
+\end{astuce}
+
+\clearpage
+
+\subsection{Amélioration de la Pertinence par Feedback}
+
+Une approche possible pour améliorer l'algorithme est d'ajuster les scores de similarité en fonction des feedbacks historiques :
+
+\begin{exemple}[Pseudo-Code d'Ajustement]
+\begin{lstlisting}
+# Lors du calcul de similarité
+score_base = similarite_cosinus(question_utilisateur, faq_question)
+
+# Récupérer les statistiques de feedback pour cette FAQ
+stats = get_feedback_stats(faq_id)
+taux_positif = stats.positifs / stats.total
+
+# Appliquer un bonus/malus
+if taux_positif > 0.8:
+    score_ajuste = score_base * 1.1  # Bonus de 10%
+elif taux_positif < 0.4:
+    score_ajuste = score_base * 0.9  # Malus de 10%
+else:
+    score_ajuste = score_base
+
+return score_ajuste
+\end{lstlisting}
+\end{exemple}
+
+\begin{important}[Précaution]
+Cette approche nécessite un volume suffisant de feedbacks (au moins 10 par FAQ) pour être statistiquement significative. Sinon, risque de biais.
+\end{important}
+
+
+
+\clearpage
+
+% Section 6 : Cas d'Utilisation
+\section{Cas d'Utilisation (CU)}
+\label{sec:cas_utilisation}
+
+\subsection{CU-01 : Ajouter une Nouvelle FAQ}
+
+\textbf{Acteur :} Administrateur de contenu
+
+\textbf{Objectif :} Enrichir le corpus avec une nouvelle question-réponse
+
+\textbf{Préconditions :}
+\begin{itemize}
+    \item La catégorie cible existe déjà
+    \item L'administrateur est authentifié
+\end{itemize}
+
+\textbf{Scénario nominal :}
+
+\begin{enumerate}
+    \item L'administrateur accède à l'interface de gestion des FAQ
+    \item Il clique sur "Ajouter une FAQ"
+    \item Il remplit le formulaire :
+    \begin{itemize}
+        \item Question : "Quels sont les débouchés en Génie Logiciel ?"
+        \item Réponse : "Les diplômés en Génie Logiciel peuvent devenir développeurs, architectes logiciels, chefs de projet IT..."
+        \item Catégorie : "Programmes Académiques"
+        \item Sous-thème : "Débouchés professionnels"
+        \item Source : "Service Orientation SUP'PTIC"
+    \end{itemize}
+    \item L'administrateur clique sur "Enregistrer"
+    \item Le système enregistre la nouvelle FAQ dans la base de données avec :
+    \begin{itemize}
+        \item Un ID unique auto-généré
+        \item La date de création automatique
+        \item Le statut "actif" par défaut
+    \end{itemize}
+    \item Le système calcule automatiquement le vecteur TF-IDF de la question
+    \item Le vecteur est stocké avec sa norme dans la table FAQVector
+    \item Le système affiche : "FAQ ajoutée avec succès (ID: 145)"
+\end{enumerate}
+
+\textbf{Variante : Import CSV} \begin{itemize} \item L'administrateur importe un fichier CSV contenant plusieurs FAQ \item Le système insère chaque ligne et calcule les vecteurs associés \end{itemize}
+
+\textbf{Postconditions :}
+\begin{itemize}
+    \item Nouvelle ligne dans \texttt{FAQ}
+    \item Vecteur TF-IDF correspondant dans \texttt{FAQVector}
+    \item La FAQ est immédiatement disponible pour le chatbot
+\end{itemize}
+
+\begin{important}[Atomicité]
+L'insertion dans \texttt{FAQ} et \texttt{FAQVector} doit être effectuée dans une transaction unique pour garantir la cohérence. Si une étape échoue, toute l'opération est annulée.
+\end{important}
+
+\clearpage
+
+\subsection{CU-02 : Supprimer une FAQ}
+
+\textbf{Acteur :} Administrateur de contenu
+
+\textbf{Objectif :} Retirer une FAQ obsolète ou incorrecte
+
+\textbf{Préconditions :}
+\begin{itemize}
+    \item La FAQ à supprimer existe
+    \item L'administrateur a les droits de suppression
+\end{itemize}
+
+\textbf{Scénario nominal :}
+
+\begin{enumerate}
+    \item L'administrateur recherche la FAQ à supprimer (par ID ou par mots-clés)
+    \item Le système affiche la FAQ avec ses détails et ses statistiques :
+    \begin{itemize}
+        \item Nombre de fois consultée : 45
+        \item Feedbacks : 12 positifs, 3 négatifs
+    \end{itemize}
+    \item L'administrateur clique sur "Supprimer"
+    \item Le système affiche un avertissement :
+    \begin{quote}
+    "Attention : Cette FAQ a reçu 15 feedbacks. Êtes-vous sûr de vouloir la supprimer ?"
+    \end{quote}
+    \item L'administrateur confirme
+    \item Le système supprime la FAQ de la base de données
+    \item Grâce à la cascade automatique, le système supprime aussi :
+    \begin{itemize}
+        \item L'entrée correspondante dans FAQVector
+        \item Tous les feedbacks associés à cette FAQ
+    \end{itemize}
+    \item Le système affiche : "FAQ supprimée (ID: 145). 15 feedbacks archivés."
+\end{enumerate}
+
+\textbf{Postconditions :}
+\begin{itemize}
+    \item FAQ retirée de la base
+    \item Vecteur TF-IDF supprimé automatiquement
+    \item Feedbacks supprimés automatiquement
+\end{itemize}
+
+\begin{astuce}[Alternative : Soft Delete]
+Au lieu de supprimer physiquement, on peut désactiver la FAQ en changeant son statut à "inactif". \\
+\textbf{Avantage :} On conserve l'historique et les feedbacks. La FAQ n'apparaît plus dans les résultats du chatbot.
+\end{astuce}
+
+\clearpage
+
+\subsection{CU-03 : Mettre à Jour une FAQ et Recalculer son Vecteur}
+
+\textbf{Acteur :} Administrateur de contenu
+
+\textbf{Objectif :} Corriger ou améliorer une question/réponse existante
+
+\textbf{Préconditions :}
+\begin{itemize}
+    \item La FAQ à modifier existe
+    \item L'administrateur a identifié une erreur ou une amélioration nécessaire
+\end{itemize}
+
+\textbf{Scénario nominal :}
+
+\begin{enumerate}
+    \item L'administrateur accède à la FAQ ID=78
+    \item Il modifie la question :
+    \begin{itemize}
+        \item Ancienne : "Comment s'inscrire en L1 ?"
+        \item Nouvelle : "Quelles sont les étapes pour s'inscrire en première année (L1) ?"
+    \end{itemize}
+    \item Il améliore aussi la réponse (plus de détails)
+    \item L'administrateur clique sur "Enregistrer les modifications"
+    \item Le système met à jour la FAQ dans la base de données :
+    \begin{itemize}
+        \item Nouvelle question enregistrée
+        \item Nouvelle réponse enregistrée
+        \item Date de modification mise à jour automatiquement
+    \end{itemize}
+    \item Le système détecte que la question a changé
+    \item Recalcul automatique du vecteur TF-IDF
+    \item Mise à jour du vecteur et de sa norme dans FAQVector
+    \item Le système affiche : "FAQ mise à jour. Vecteur recalculé."
+\end{enumerate}
+
+\textbf{Postconditions :}
+\begin{itemize}
+    \item FAQ mise à jour dans la base
+    \item Vecteur TF-IDF mis à jour
+    \item Le chatbot utilise immédiatement la nouvelle version
+\end{itemize}
+
+\begin{important}[Impact sur les Feedbacks]
+Les feedbacks existants restent liés à cette FAQ, même après modification. Cela permet de comparer les performances avant/après la modification.
+\end{important}
+
+\clearpage
+
+\subsection{CU-04 : Enregistrer un Feedback Utilisateur}
+
+\textbf{Acteur :} Utilisateur (étudiant ou visiteur)
+
+\textbf{Objectif :} Indiquer si la réponse du chatbot était utile
+
+\textbf{Préconditions :}
+\begin{itemize}
+    \item L'utilisateur a posé une question et reçu une réponse
+    \item L'interface affiche les boutons de feedback (\faThumbsUp{} / \faThumbsDown{})
+\end{itemize}
+
+\textbf{Scénario nominal (Feedback Positif) :}
+
+\begin{enumerate}
+    \item L'utilisateur (ID=23) pose la question : "Où trouver les horaires de la bibliothèque ?"
+    \item Le chatbot renvoie la FAQ ID=56 avec un score de similarité de 0.91
+    \item L'utilisateur est satisfait et clique sur \faThumbsUp
+    \item Le système enregistre les informations suivantes :
+    \begin{itemize}
+        \item ID de l'utilisateur (23)
+        \item ID de la FAQ (56)
+        \item Type de feedback (positif)
+        \item Question posée ("Où trouver les horaires de la bibliothèque ?")
+        \item Score de similarité obtenu (0.91)
+    \end{itemize}
+    \item Le système affiche : "Merci pour votre feedback !"
+\end{enumerate}
+
+\textbf{Variante : Feedback Négatif avec Commentaire}
+
+\begin{enumerate}
+    \item L'utilisateur clique sur \faThumbsDown
+    \item Une boîte de dialogue s'ouvre : "Qu'est-ce qui n'allait pas ?"
+    \item L'utilisateur écrit : "La réponse parle de la bibliothèque centrale, moi je cherchais celle du campus annexe"
+    \item Le système enregistre le feedback avec le commentaire explicatif
+\end{enumerate}
+
+\textbf{Postconditions :}
+\begin{itemize}
+    \item Feedback enregistré dans la base
+    \item Données disponibles pour analyse ultérieure
+    \item Si le commentaire est renseigné, il peut déclencher une alerte pour l'équipe contenu
+\end{itemize}
+
+\begin{astuce}[Analyse des Commentaires]
+Un job automatisé peut analyser les commentaires négatifs pour :
+\begin{itemize}
+    \item Détecter des mots-clés récurrents ("campus annexe", "master", "stage")
+    \item Générer des alertes si une FAQ reçoit 5+ commentaires négatifs similaires
+    \item Proposer des suggestions de nouvelles FAQ
+\end{itemize}
+\end{astuce}
+
+\clearpage
+
+\subsection{CU-05 : Exploiter les Feedbacks pour Améliorer la Pertinence}
+
+\textbf{Acteur :} Responsable Qualité / Data Analyst
+
+\textbf{Objectif :} Identifier les axes d'amélioration du corpus FAQ
+
+\textbf{Préconditions :}
+\begin{itemize}
+    \item Au moins 100 feedbacks collectés
+    \item Accès aux outils d'analyse de données
+\end{itemize}
+
+\textbf{Scénario nominal :}
+
+\begin{enumerate}
+    \item Le responsable lance le dashboard de statistiques
+    \item Il consulte le rapport "FAQ avec Taux de Feedback Négatif > 40\%"
+    \item Le système affiche la liste des FAQ problématiques
+    \item Résultat affiché :
+    \begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{ID} & \textbf{Question (résumée)} & \textbf{Total} & \textbf{\% Négatif} \\
+    \hline
+    89 & Comment obtenir une bourse d'études ? & 23 & 65\% \\
+    \hline
+    102 & Débouchés en réseau ? & 18 & 56\% \\
+    \hline
+    45 & Où se trouve le secrétariat ? & 15 & 47\% \\
+    \hline
+    \end{tabular}
+    \end{table}
+    \item Le responsable examine les commentaires pour la FAQ ID=89
+    \item Commentaires typiques :
+    \begin{itemize}
+        \item "Je voulais savoir pour les bourses d'excellence, pas les bourses sociales"
+        \item "Manque d'infos sur les bourses internationales"
+        \item "La réponse est trop générale"
+    \end{itemize}
+    \item Le responsable décide :
+    \begin{itemize}
+        \item De créer 2 FAQ spécifiques : "Bourses sociales" et "Bourses d'excellence"
+        \item De compléter la réponse avec les infos sur les bourses internationales
+        \item De reformuler la question originale pour être plus précise
+    \end{itemize}
+    \item Il exécute CU-01 (Ajouter FAQ) pour les nouvelles entrées
+    \item Il exécute CU-03 (Mettre à jour FAQ) pour améliorer la FAQ ID=89
+\end{enumerate}
+
+\textbf{Postconditions :}
+\begin{itemize}
+    \item Nouvelles FAQ créées
+    \item FAQ problématique améliorée
+    \item Meilleure couverture du sujet "bourses"
+\end{itemize}
+
+\begin{info}[Cycle d'Amélioration Continue]
+Ce cas d'utilisation doit être exécuté \textbf{régulièrement} (par exemple, chaque mois) pour garantir que le corpus évolue en fonction des besoins réels des utilisateurs.
+\end{info}
+
+\clearpage
+
+\subsection{CU-06 : Supprimer ou Anonymiser les Données d'un Utilisateur (RGPD)}
+
+\textbf{Acteur :} Administrateur système / DPO (Data Protection Officer)
+
+\textbf{Objectif :} Respecter le droit à l'oubli (RGPD)
+
+\textbf{Préconditions :}
+\begin{itemize}
+    \item L'utilisateur a demandé la suppression de ses données
+    \item L'administrateur a validé la demande
+\end{itemize}
+
+\textbf{Scénario nominal (Anonymisation) :}
+
+\begin{enumerate}
+    \item L'utilisateur ID=42 demande la suppression de son compte
+    \item L'administrateur examine l'impact : vérification du nombre de feedbacks liés
+    \item Résultat : 28 feedbacks associés à cet utilisateur
+    \item Décision : Les feedbacks sont précieux pour les statistiques, on anonymise plutôt que supprimer
+    \item L'administrateur exécute l'anonymisation :
+    \begin{itemize}
+        \item Nom remplacé par "Utilisateur Anonymisé"
+        \item Email remplacé par "anonyme\_42@supptic.cm"
+        \item Compte désactivé (actif = FALSE)
+        \item Dernière connexion effacée
+    \end{itemize}
+    \item Les feedbacks restent dans la base mais ne sont plus liés à une personne identifiable
+    \item Le système envoie une confirmation : "Vos données ont été anonymisées conformément au RGPD"
+\end{enumerate}
+
+\textbf{Variante : Suppression Totale (Hard Delete)}
+
+Si l'utilisateur n'a jamais donné de feedback ou si la politique de l'école l'exige, on peut effectuer une suppression totale. Grâce à la cascade automatique, cette opération supprime aussi tous les feedbacks de cet utilisateur.
+
+\textbf{Postconditions :}
+\begin{itemize}
+    \item Données personnelles supprimées ou anonymisées
+    \item Feedbacks conservés (si anonymisation) ou supprimés (si hard delete)
+    \item Conformité RGPD respectée
+\end{itemize}
+
+\begin{important}[Stratégie Recommandée]
+\textbf{Anonymisation} plutôt que suppression pour :
+\begin{itemize}
+    \item Préserver les données statistiques (feedbacks)
+    \item Maintenir l'intégrité des analyses
+    \item Respecter quand même le RGPD (données non identifiables)
+\end{itemize}
+
+\textbf{Suppression totale} uniquement si :
+\begin{itemize}
+    \item Aucun feedback donné (utilisateur inactif)
+    \item Demande explicite de suppression totale
+    \item Politique stricte de l'établissement
+\end{itemize}
+\end{important}
+
+\clearpage
+
+% Section 9 : Conclusion
+\section{Récapitulatif des Points Clés}
+\label{sec:conclusion}
+
+\begin{important}[Points Essentiels]
+\begin{enumerate}
+    \item \textbf{Architecture Normalisée} : 5 tables principales avec relations bien définies garantissent l'intégrité des données
+    
+    \item \textbf{Système de Feedback Robuste} : Enregistrement des retours utilisateurs pour amélioration continue et calcul de statistiques
+    
+    \item \textbf{Relation FAQ  FAQVector} : Synchronisation critique entre le contenu et sa représentation vectorielle
+    
+    \item \textbf{Cas d'Utilisation Documentés} : 6 CU couvrant l'ajout, la modification, la suppression et l'analyse des données
+    
+    \item \textbf{RGPD et Sécurité} : Mécanismes d'anonymisation et de suppression pour respecter le droit à l'oubli
+\end{enumerate}
+\end{important}
+
+
+\vfill
+
+\begin{center}
+\textit{Merci d'avoir lu cette documentation. \\
+Bon développement sur le ChatBot SUP'PTIC !}
+\end{center}
+
+\end{document}

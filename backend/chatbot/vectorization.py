@@ -25,7 +25,8 @@ from pathlib import Path
 from faq.models import FAQ, FAQVector
 
 # Chemin pour sauvegarder le vectorizer entraîné
-VECTORIZER_PATH = Path('/tmp/tfidf_vectorizer.pkl')
+import tempfile
+VECTORIZER_PATH = Path(tempfile.gettempdir()) / 'tfidf_vectorizer.pkl'
 
 # Vectorizer TF-IDF global (chargé depuis le disque)
 vectorizer = None

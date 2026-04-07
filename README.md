@@ -1,4 +1,4 @@
-# 📌 ChatBot SUP'PTIC – Prototype
+# 📌 ChatBot SUP'PTIC – Version 1.0.0
 
 **Période :** 8 février — 13 février 2026  
 **Réalisé par :** Club Informatique SUP'PTIC
@@ -7,7 +7,7 @@
 
 ## 🎯 Présentation
 
-Ce **ChatBot SUP'PTIC** est un prototype développé par le Club Informatique SUP'PTIC. L'objectif est de fournir aux étudiants et personnels de SUP'PTIC un **outil interactif intelligent** capable de :
+Ce **ChatBot SUP'PTIC** est la **version 1.0.0** développée par le Club Informatique SUP'PTIC. L'objectif est de fournir aux étudiants et personnels de SUP'PTIC un **outil interactif intelligent** capable de :
 
 - Répondre automatiquement aux questions fréquentes (FAQ)
 - Fournir des informations pertinentes sur les services et ressources de l'école
@@ -40,23 +40,32 @@ ChatBot/
 │   ├── faq/             # App gestion FAQ
 │   ├── chatbot/         # App algorithme TF-IDF et prétraitement texte
 │   ├── users/           # App utilisateurs + feedback
+│   ├── doc/             # 📚 Documentation backend
+│   │   ├── api/         # Spécifications API REST
+│   │   ├── architecture/# Architecture et schémas
+│   │   ├── changelog/   # Historique des modifications
+│   │   ├── config/      # Configuration CORS, déploiement
+│   │   └── reports/     # Rapports de tests et performances
 │   ├── manage.py
 │   └── db.sqlite3       # Base de données SQLite
 │
 ├── frontend/
-│   ├── index.html       # Page principale du chatbot
-│   ├── css/
-│   │   └── styles.css   # Styles responsive
-│   ├── js/
-│   │   └── app.js       # Logique du chatbot (fetch API, UI)
-│   └── assets/
+│   ├── pwa/             # 📱 Application PWA indépendante
+│   │   ├── index.html   # Interface PWA
+│   │   ├── manifest.json
+│   │   ├── service-worker.js
+│   │   ├── css/
+│   │   ├── js/
+│   │   ├── doc/         # 📚 Documentation PWA
+│   │   │   └── GUIDE_PWA.md
+│   │   └── icons/
+│   ├── README.md        # Documentation frontend
+│   └── start_server.py # Serveur de développement
 │
-├── data/
-│   ├── csv/             # Fichiers CSV générés par catégories/sous-thèmes
-│   └── scripts/         # Scripts import/export
-│
-├── docs/
-│   └── README_API.md
+├── docs/                # 📚 Documentation générale
+│   ├── README.md        # Vue d'ensemble du projet
+│   └── setup/
+│       └── NGROK_SETUP.md # Configuration Ngrok
 │
 ├── README.md            # Documentation principale (ce fichier)
 └── requirements.txt     # Dépendances Python
@@ -64,7 +73,40 @@ ChatBot/
 
 ---
 
-## 👥 Organisation des Équipes (10 personnes)
+## � Documentation du Projet
+
+Le projet dispose d'une documentation complète organisée par domaine :
+
+### 📖 Documentation Générale
+
+- **`README.md`** (ce fichier) - Vue d'ensemble, architecture, installation
+- **`docs/README.md`** - Documentation complémentaire du projet
+- **`docs/setup/NGROK_SETUP.md`** - Configuration et déploiement avec Ngrok
+
+### 🔧 Documentation Backend
+
+Située dans `backend/doc/` :
+
+- **`api/`** - Spécifications complètes des endpoints REST, exemples d'usage
+- **`architecture/`** - Schémas d'architecture, modèles de données, workflows
+- **`changelog/`** - Historique des modifications par blocs fonctionnels
+- **`config/`** - Configuration CORS, déploiement, sécurité
+- **`reports/`** - Rapports de tests, performances, métriques
+
+### 🎨 Documentation Frontend
+
+- **`frontend/README.md`** - Guide d'utilisation de l'interface web
+- **`frontend/pwa/doc/GUIDE_PWA.md`** - Documentation complète de l'application PWA
+
+### 📱 Documentation PWA
+
+- **`frontend/pwa/doc/GUIDE_PWA.md`** - Installation, configuration, déploiement PWA
+  - Fonctionnalités offline, service worker, manifest
+  - Personnalisation des couleurs et icônes
+  - Déploiement sur Netlify/Vercel
+  - Dépannage et optimisation
+
+---
 
 | Équipe                    | Effectif | Missions                                                          |
 | ------------------------- | -------- | ----------------------------------------------------------------- |
@@ -124,93 +166,21 @@ curl -X POST http://localhost:8000/api/chatbot/ask/ \
 
 ---
 
-## 📅 Planning Détaillé (6 jours)
+## � Historique des Versions
 
-### **Jour 1-2** : Fondations et Premières Vagues
+### Version 1.0.0 (Base)
 
-- Initialiser dépôt Git et projet Django
-- Créer modèles Django (FAQ, Utilisateurs, Feedback, Vecteurs)
-- Générer 400 Q/R (par vagues de 100)
-- Implémenter prétraitement texte basique
-- **Objectif :** 400 Q/R en base de données
-
-### **Jour 3-4** : Algorithme et Intégration
-
-- Implémenter TF-IDF vectorizer
-- Créer endpoints API REST
-- Générer 600 Q/R supplémentaires
-- Intégrer frontend basique
-- **Objectif :** 1000 Q/R, API complète, interface de base
-
-### **Jour 5** : Documentation et Démo
-
-- Documentation API complète (`README_API.md`)
-- Système feedback opérationnel
-- Pages "statistiques" et "À propos"
-- Répétition démo (3x minimum)
-- **Objectif :** Démonstration préparée et documentée
-
-### **Jour 6** : Finalisation et Livraison
-
-- Derniers ajustements UI/UX
-- Déploiement sur serveur test
-- Finalisation README principal
-- **Démonstration officielle (18h)**
-
----
-
-## 📦 Livrables Attendus (13 février 18h)
-
-✅ **Code**
-
-- Projet Django complet (3 apps : `faq`, `chatbot`, `users`)
-- Frontend HTML/CSS/JS fonctionnel avec feedback
-- Base de données avec 1000+ Q/R validées
-- API REST testée et fonctionnelle
-
-✅ **Documentation**
-
-- `README.md` complet (ce fichier)
-- `README_API.md` (spécifications et exemples)
-
-✅ **Démonstration**
-
-- Application déployée et accessible
-- Présentation PowerPoint (10-15 slides)
-- Scénario démo préparé et répété
-- 10 questions test impressionnantes
-
----
-
-## 📊 Indicateurs de Succès
-
-| Critère                  | Objectif | Mesure                        |
-| ------------------------ | -------- | ----------------------------- |
-| **Q/R en base**          | 1000+    | `SELECT COUNT(*) FROM faq`    |
-| **Taux réponse**         | >70%     | Questions avec score > 0.6    |
-| **API fonctionnelle**    | 100%     | Tous endpoints testés ✓       |
-| **Interface utilisable** | ✓        | Chat + feedback opérationnels |
-| **Documentation**        | ✓        | README + API + BD complètes   |
-| **Démo prête**           | ✓        | Scénario testé 3x minimum     |
-
----
-
-## ⚠️ Points d'Attention Critiques
-
-### Risques Identifiés
-
-- **Synchronisation équipes** → Réunions quotidiennes (matin + soir)
-- **Qualité vs Quantité** → Validation systématique 20% des Q/R
-- **Scope creep** → NE PAS ajouter fonctionnalités non prévues
-- **Fatigue production** → Pauses régulières, rotation des tâches
-
-### Bonnes Pratiques
-
-- 🔄 **Commits Git** : min. 2 par personne par jour
-- 💬 **Communication** : groupe Telegram/WhatsApp actif
-- 🐛 **Bug tracking** : fichier partagé centralisé
-- ✅ **Tests** : après chaque feature importante
-- ☕ **Pauses** : régulières pour éviter la fatigue
+- **Date :** Avril 2026
+- **Statut :** Version de base stable
+- **Fonctionnalités :**
+  - Recherche TF-IDF avec similarité cosinus
+  - Base de données Django avec 1000+ FAQ
+  - API REST complète
+  - Interface web responsive
+  - Système de feedback utilisateur
+  - Application PWA avec fonctionnalités offline
+  - Documentation complète
+- **Technologies :** Django 4.2.7, scikit-learn, spaCy, HTML5/CSS3/JS
 
 ---
 
@@ -241,60 +211,19 @@ cd backend
 python manage.py makemigrations
 python manage.py migrate
 
-# (Optionnel) Charger données démo
-python manage.py loaddata fixtures/demo_faq.json
+# Charger les données FAQ depuis le script
+python data/scripts/load_json_data_sqlite.py
 
-# Lancer serveur Django
-python manage.py runserver
+# Lancer serveur backend Django (dans un terminal)
+python start_server.py
+
+# Lancer serveur frontend (dans un autre terminal)
+cd ../frontend
+python start_server.py
 ```
 
-### Accès Application
+### Accès aux applications
 
-- **Backend API** : http://localhost:8000/api/
-- **Frontend** : Ouvrir `frontend/index.html` dans navigateur
-
----
-
-## 🔧 Modules Clés à Implémenter
-
-### Backend (`chatbot/utils.py`)
-
-```python
-def preprocess_text(text: str) -> str:
-    """Tokenisation, suppression stopwords FR, normalisation."""
-
-def train_vectorizer(corpus: List[str]) -> TfidfVectorizer:
-    """Entraîner TF-IDF sur le corpus FAQ."""
-
-def compute_tfidf_vector(text: str, vectorizer) -> np.ndarray:
-    """Vecteur TF-IDF pour une requête."""
-
-def compute_cosine_similarity(vec1, vec2) -> float:
-    """Similarité cosinus entre deux vecteurs."""
-
-def find_best_faq(question: str, top_k: int = 3) -> List[Dict]:
-    """Trouver top K réponses + scores."""
-```
-
----
-
-## 📚 Documentation Complémentaire
-
-Les fichiers suivants seront générés au cours du projet :
-
-- **`README_API.md`** : Spécifications API détaillées, exemples cURL, authentification
-
----
-
-## 🎯 Objectif Final
-
-✨ **1000+ Q/R validées**  
-✨ **Algorithme TF-IDF robuste**  
-✨ **API REST sécurisée**  
-✨ **Interface web responsive**  
-✨ **Documentation technique complète**  
-✨ **Démonstration impressionnante**
-
----
-
-**Let's build something amazing together!** 🚀
+- **API Backend** : http://localhost:8000
+- **Interface Frontend** : http://localhost:8080
+- **Application PWA** : http://localhost:8080/pwa/
