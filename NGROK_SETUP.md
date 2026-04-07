@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # Configuration ngrok pour deux tunnels séparés
-=======
-﻿# Configuration ngrok pour deux tunnels séparés
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 
 ## Setup
 
@@ -27,7 +23,3 @@ ngrok start --config ngrok_back.yml backend
 - Chaque tunnel utilise un compte ngrok différent
 - Les URLs seront affichées dans chaque terminal ngrok
 - Update settings.py et main.js avec les nouvelles URLs
-<<<<<<< HEAD
-=======
-
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482

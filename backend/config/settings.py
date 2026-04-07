@@ -11,11 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-<<<<<<< HEAD
-=======
 import os
 import dj_database_url
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,11 +34,8 @@ ALLOWED_HOSTS = [
     '192.168.10.82',
     '0.0.0.0',
     'patternable-felicitously-shaunta.ngrok-free.dev',
-<<<<<<< HEAD
-=======
     '*.netlify.app',
     'chatbot-production-5202.up.railway.app',
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 ]
 
 
@@ -70,18 +64,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-<<<<<<< HEAD
-]
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.ngrok-free.app'
-=======
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://*.ngrok-free.app',
     'https://*.netlify.app',
     'https://*.up.railway.app',
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 ]
 
 
@@ -117,19 +105,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-<<<<<<< HEAD
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-=======
     'default': dj_database_url.config(
         # default=os.getenv('DATABASE_URL'),
-        default='sqlite:///db.sqlite3',  # SQLite local
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
         conn_max_age=600,
         conn_health_checks=True,
     )
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 }
 
 
@@ -167,9 +148,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-<<<<<<< HEAD
-STATIC_URL = 'static/'
-=======
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'   # dossier collectstatic
@@ -177,7 +155,6 @@ STATICFILES_DIRS = [BASE_DIR / 'static'] # si tu as un dossier "static" dans ton
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -186,10 +163,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Utiliser CustomUser au lieu du modèle User par défaut
 AUTH_USER_MODEL = 'users.CustomUser'
-<<<<<<< HEAD
-
-=======
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 # Django REST Framework configuration
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -209,19 +182,12 @@ CORS_ALLOWED_ORIGINS = [
     'https://sharron-prehazard-gully.ngrok-free.dev',
     # NGrok backend tunnel (for API calls)
     'https://patternable-felicitously-shaunta.ngrok-free.dev',
-<<<<<<< HEAD
-=======
     # Railway deployment
     "https://chatbot-production-5202.up.railway.app",
     # Netlify deployment
     'https://sup-one-ai.netlify.app',
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
 CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization']
-<<<<<<< HEAD
-CORS_ALLOW_ALL_ORIGINS = False
-=======
 CORS_ALLOW_ALL_ORIGINS = True
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482

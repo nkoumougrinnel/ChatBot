@@ -130,8 +130,4 @@ class ChatbotResponseSerializer(serializers.Serializer):
     count = serializers.IntegerField()
     status = serializers.CharField(
         help_text="Status de confiance: 'not found', 'uncertain', ou 'confident'"
-<<<<<<< HEAD
     )
-=======
-    )
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
