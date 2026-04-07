@@ -1,8 +1,8 @@
-# Rapport — Changement de dépendances et incompatibilité Python 3.13.12
+﻿# Rapport â€” Changement de dépendances et incompatibilité Python 3.13.12
 
 ## Contexte
 
-Vous avez mis à jour `requirements.txt` en changeant les versions de `numpy` et `pandas`; les autres paquets ont été résolus automatiquement. Le fichier actif contient désormais :
+Vous avez mis à  jour `requirements.txt` en changeant les versions de `numpy` et `pandas`; les autres paquets ont été résolus automatiquement. Le fichier actif contient désormais :
 
 - asgiref==3.11.1
 - Django==4.2.7
@@ -23,4 +23,5 @@ Vous avez mis à jour `requirements.txt` en changeant les versions de `numpy` et
 ## Observations
 
 - Vous avez tenté de créer l'environnement virtuel et d'installer les dépendances sur Python **3.13.12**.
-- L'installation a échoué : cause probable — absence de roues (prebuilt wheels) compatibles pour certaines bibliothèques (notamment celles avec extensions C/C++ comme `scipy` et `scikit-learn`) pour Python 3.13, ce qui force `pip` à compiler depuis les sources et provoque des erreurs si les outils de compilation manquent.
+- L'installation a échoué : cause probable â€” absence de roues (prebuilt wheels) compatibles pour certaines bibliothèques (notamment celles avec extensions C/C++ comme `scipy` et `scikit-learn`) pour Python 3.13, ce qui force `pip` à  compiler depuis les sources et provoque des erreurs si les outils de compilation manquent.
+

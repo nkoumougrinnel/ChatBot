@@ -1,6 +1,6 @@
-# TEST PIPELINE - Résultats Réels d'Exécution
+﻿# TEST PIPELINE - Résultats Réels d'Exécution
 
-Document de test du pipeline complet : **Prétraitement → Vectorisation → Similarité**
+Document de test du pipeline complet : **Prétraitement â†’ Vectorisation â†’ Similarité**
 
 Exécuté dans le Django shell le 9 février 2026.
 
@@ -17,7 +17,7 @@ Django Shell: python backend/manage.py shell
 
 ## Exécution du Test
 
-### Étape 1 : Imports et création de la catégorie
+### à‰tape 1 : Imports et création de la catégorie
 
 ```python
 from faq.models import Category, FAQ, FAQVector
@@ -36,18 +36,18 @@ cat, created = Category.objects.get_or_create(
     name="Support",
     defaults={"description": "Questions de support technique"}
 )
-print(f"✓ Catégorie '{cat.name}' créée/existante")
+print(f"âœ“ Catégorie '{cat.name}' créée/existante")
 ```
 
 **Résultat :**
 
 ```
-✓ Catégorie 'Support' créée/existante
+âœ“ Catégorie 'Support' créée/existante
 ```
 
 ---
 
-### Étape 2 : Création des FAQs
+### à‰tape 2 : Création des FAQs
 
 ```python
 faqs_data = [
@@ -57,7 +57,7 @@ faqs_data = [
     },
     {
         "question": "Quelle est votre politique de confidentialité ?",
-        "answer": "Nous protégeons vos données conformément à la RGPD.",
+        "answer": "Nous protégeons vos données conformément à  la RGPD.",
     },
     {
         "question": "Quel est votre horaire d'ouverture ?",
@@ -65,7 +65,7 @@ faqs_data = [
     },
     {
         "question": "Comment contacter le support ?",
-        "answer": "Envoyez un email à support@example.com ou appelez +33 1 23 45 67 89.",
+        "answer": "Envoyez un email à  support@example.com ou appelez +33 1 23 45 67 89.",
     },
 ]
 
@@ -80,7 +80,7 @@ for data in faqs_data:
         }
     )
     faqs.append(faq)
-    status = "✓ Créée" if created else "✓ Existante"
+    status = "âœ“ Créée" if created else "âœ“ Existante"
     print(f"{status}: {data['question'][:50]}...")
 
 print(f"\nTotal FAQs: {len(faqs)}")
@@ -89,19 +89,19 @@ print(f"\nTotal FAQs: {len(faqs)}")
 **Résultat :**
 
 ```
-✓ Créée: Comment réinitialiser mon mot de passe ?...
-✓ Créée: Quelle est votre politique de confidentialité ?...
-✓ Créée: Quel est votre horaire d'ouverture ?...
-✓ Créée: Comment contacter le support ?...
+âœ“ Créée: Comment réinitialiser mon mot de passe ?...
+âœ“ Créée: Quelle est votre politique de confidentialité ?...
+âœ“ Créée: Quel est votre horaire d'ouverture ?...
+âœ“ Créée: Comment contacter le support ?...
 
 Total FAQs: 4
 ```
 
-✅ **4 FAQs créées avec succès**
+âœ… **4 FAQs créées avec succès**
 
 ---
 
-### Étape 3 : Test du Prétraitement (spaCy)
+### à‰tape 3 : Test du Prétraitement (spaCy)
 
 ```python
 sample_text = "Je ne peux pas réinitialiser mon mot de passe"
@@ -121,31 +121,31 @@ Tokens (après spaCy): ['réinitialiser', 'mot', 'passer']
 Nombre de tokens: 3
 ```
 
-✅ **Prétraitement fonctionne correctement**
+âœ… **Prétraitement fonctionne correctement**
 
 **Observations :**
 
 - "Je" supprimé (stopword)
 - "ne peux pas" supprimé (stopwords + non-alphabétique)
-- "passe" → "passer" (lemmatisation)
+- "passe" â†’ "passer" (lemmatisation)
 - **3 tokens conservés** (pertinents pour la recherche)
 
 ---
 
-### Étape 4 : Entraînement du vectorizer et stockage des vecteurs
+### à‰tape 4 : Entraînement du vectorizer et stockage des vecteurs
 
 ```python
-print("\n--- ÉTAPE: Entraînement du vectorizer ---")
+print("\n--- à‰TAPE: Entraînement du vectorizer ---")
 corpus = list(FAQ.objects.values_list("question", flat=True))
 print(f"Corpus de {len(corpus)} questions")
 
 vectorizer = train_vectorizer(corpus)
-print(f"✓ Vectorizer entraîné")
+print(f"âœ“ Vectorizer entraîné")
 print(f"  Vocabulaire: {len(vectorizer.get_feature_names_out())} termes uniques")
 
-print("\n--- ÉTAPE: Calcul et stockage des vecteurs ---")
+print("\n--- à‰TAPE: Calcul et stockage des vecteurs ---")
 compute_and_store_vectors()
-print("✓ Vecteurs TF-IDF calculés et stockés en BD")
+print("âœ“ Vecteurs TF-IDF calculés et stockés en BD")
 
 for faq in FAQ.objects.all():
     faq_vec = faq.vector
@@ -155,13 +155,13 @@ for faq in FAQ.objects.all():
 **Résultat :**
 
 ```
---- ÉTAPE: Entraînement du vectorizer ---
+--- à‰TAPE: Entraînement du vectorizer ---
 Corpus de 7 questions
-✓ Vectorizer entraîné
+âœ“ Vectorizer entraîné
   Vocabulaire: 30 termes uniques
 
---- ÉTAPE: Calcul et stockage des vecteurs ---
-✓ Vecteurs TF-IDF calculés et stockés en BD
+--- à‰TAPE: Calcul et stockage des vecteurs ---
+âœ“ Vecteurs TF-IDF calculés et stockés en BD
   FAQ #1: 30 dimensions, norme=1.0000
   FAQ #2: 30 dimensions, norme=1.0000
   FAQ #3: 30 dimensions, norme=1.0000
@@ -171,23 +171,23 @@ Corpus de 7 questions
   FAQ #5: 30 dimensions, norme=1.0000
 ```
 
-✅ **Vectorisation complète et stockage en BD réussi**
+âœ… **Vectorisation complète et stockage en BD réussi**
 
 **Observations :**
 
 - **30 termes uniques** extraits du corpus
 - **7 FAQs en base** (4 créées + 3 existantes d'avant)
-- **Normes normalisées à 1.0000** (TF-IDF normalise automatiquement)
+- **Normes normalisées à  1.0000** (TF-IDF normalise automatiquement)
 - Chaque vecteur = **30 dimensions** (une par terme du vocabulaire)
 
 ---
 
-### Étape 5 : Tests de Similarité
+### à‰tape 5 : Tests de Similarité
 
 #### TEST 1 : Question similaire au mot de passe
 
 ```python
-print("\n--- TEST 1: Question similaire à mot de passe ---")
+print("\n--- TEST 1: Question similaire à  mot de passe ---")
 question1 = "Je veux réinitialiser mon mot de passe"
 print(f"Question: '{question1}'")
 results = find_best_faq(question1, top_k=2)
@@ -198,13 +198,13 @@ for i, r in enumerate(results, 1):
 **Résultat :**
 
 ```
---- TEST 1: Question similaire à mot de passe ---
+--- TEST 1: Question similaire à  mot de passe ---
 Question: 'Je veux réinitialiser mon mot de passe'
   1. [Score: 0.9503] Comment réinitialiser mon mot de passe ?
   2. [Score: 0.1414] Quelle est votre politique de confidentialité ?
 ```
 
-✅ **EXCELLENT : Score 0.9503 pour la question quasi-identique**
+âœ… **EXCELLENT : Score 0.9503 pour la question quasi-identique**
 
 **Analyse :**
 
@@ -217,7 +217,7 @@ Question: 'Je veux réinitialiser mon mot de passe'
 #### TEST 2 : Question sur politique de confidentialité
 
 ```python
-print("\n--- TEST 2: Question similaire à politique de confidentialité ---")
+print("\n--- TEST 2: Question similaire à  politique de confidentialité ---")
 question2 = "Parlez-moi de votre RGPD"
 print(f"Question: '{question2}'")
 results = find_best_faq(question2, top_k=2)
@@ -228,13 +228,13 @@ for i, r in enumerate(results, 1):
 **Résultat :**
 
 ```
---- TEST 2: Question similaire à politique de confidentialité ---
+--- TEST 2: Question similaire à  politique de confidentialité ---
 Question: 'Parlez-moi de votre RGPD'
   1. [Score: 0.5215] Quelle est votre politique de confidentialité ?
   2. [Score: 0.2805] Quel est votre horaire d'ouverture ?
 ```
 
-✅ **BON : Score 0.5215 pour la question sur la politique**
+âœ… **BON : Score 0.5215 pour la question sur la politique**
 
 **Analyse :**
 
@@ -265,18 +265,18 @@ Question: 'Coucou ça va ?'
   3. [Score: 0.0000] Comment rejoindre le Club Informatique ?
 ```
 
-✅ **CORRECT : Scores 0.0000 pour question non pertinente**
+âœ… **CORRECT : Scores 0.0000 pour question non pertinente**
 
 **Analyse :**
 
-- "Coucou ça va ?" → tous les mots sont supprimés par spaCy (stopwords)
+- "Coucou ça va ?" â†’ tous les mots sont supprimés par spaCy (stopwords)
 - Aucun token pertinent reste
 - Les scores 0.0000 indiquent que la question n'a aucune similarité (comportement attendu)
 - Les FAQs retournées sont les FAQs existantes (pas les 4 de test)
 
 ---
 
-### Étape 6 : Inspection des Vecteurs
+### à‰tape 6 : Inspection des Vecteurs
 
 ```python
 print("\n--- INSPECTION: Structure des vecteurs ---")
@@ -317,7 +317,7 @@ Norme utilisateur: 1.000000
 Similarité cosinus manuelle: 0.0000
 ```
 
-✅ **Structure des vecteurs correcte**
+âœ… **Structure des vecteurs correcte**
 
 **Observations :**
 
@@ -333,36 +333,36 @@ Similarité cosinus manuelle: 0.0000
 
 | Test | Question                                 | Top Match                                         | Score      | Statut       |
 | ---- | ---------------------------------------- | ------------------------------------------------- | ---------- | ------------ |
-| 1    | "Je veux réinitialiser mon mot de passe" | "Comment réinitialiser mon mot de passe ?"        | **0.9503** | ✅ EXCELLENT |
-| 2    | "Parlez-moi de votre RGPD"               | "Quelle est votre politique de confidentialité ?" | **0.5215** | ✅ BON       |
-| 3    | "Coucou ça va ?"                         | (pas de match pertinent)                          | **0.0000** | ✅ CORRECT   |
+| 1    | "Je veux réinitialiser mon mot de passe" | "Comment réinitialiser mon mot de passe ?"        | **0.9503** | âœ… EXCELLENT |
+| 2    | "Parlez-moi de votre RGPD"               | "Quelle est votre politique de confidentialité ?" | **0.5215** | âœ… BON       |
+| 3    | "Coucou ça va ?"                         | (pas de match pertinent)                          | **0.0000** | âœ… CORRECT   |
 
 ---
 
 ## Conclusions
 
-### ✅ Pipeline Entièrement Fonctionnel
+### âœ… Pipeline Entièrement Fonctionnel
 
 1. **Prétraitement (spaCy)** :
-   - Tokenization ✓
-   - Lemmatization ✓
-   - Suppression stopwords ✓
+   - Tokenization âœ“
+   - Lemmatization âœ“
+   - Suppression stopwords âœ“
 
 2. **Vectorisation (TF-IDF)** :
-   - Entraînement sur corpus ✓
-   - Calcul vecteurs ✓
-   - Stockage en BD ✓
-   - Normalisation L2 ✓
+   - Entraînement sur corpus âœ“
+   - Calcul vecteurs âœ“
+   - Stockage en BD âœ“
+   - Normalisation L2 âœ“
 
 3. **Similarité (Cosinus)** :
-   - Questions similaires → scores élevés ✓
-   - Questions différentes → scores bas ✓
-   - Questions ambiguës → scores 0 ✓
+   - Questions similaires â†’ scores élevés âœ“
+   - Questions différentes â†’ scores bas âœ“
+   - Questions ambiguës â†’ scores 0 âœ“
 
 4. **Performance** :
-   - Singleton lazy (spaCy chargé une seule fois) ✓
-   - Calculs rapides (numpy + produit scalaire) ✓
-   - Stockage persistant en BD ✓
+   - Singleton lazy (spaCy chargé une seule fois) âœ“
+   - Calculs rapides (numpy + produit scalaire) âœ“
+   - Stockage persistant en BD âœ“
 
 ---
 
@@ -372,13 +372,14 @@ Similarité cosinus manuelle: 0.0000
 - **Normalisation efficace** : toutes les normes = 1.0000
 - **Sensibilité appropriée** : reconnaît les synonymes et variations
 - **Robustesse** : gère bien les questions mal formées
-- **Scalabilité** : prêt à ajouter plus de FAQs (le vectorizer peut être réentraîné)
+- **Scalabilité** : prêt à  ajouter plus de FAQs (le vectorizer peut être réentraîné)
 
 ---
 
-## Prochaines Étapes (Optionnel)
+## Prochaines à‰tapes (Optionnel)
 
 1. Ajouter plus de FAQs et réentraîner le vectorizer
 2. Tester avec des questions réelles des utilisateurs
 3. Ajuster les seuils de similarité minimum (ex: retourner uniquement si score > 0.3)
 4. Intégrer dans une API REST pour servir les résultats
+

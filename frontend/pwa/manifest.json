@@ -1,7 +1,7 @@
-{
+﻿{
   "name": "SUP'ONE AI - Assistant Intelligent",
   "short_name": "SUP'ONE AI",
-  "description": "Assistant chatbot intelligent pour la FAQ de SUP'ONE. Posez vos questions et obtenez des réponses instantanées.",
+  "description": "Assistant chatbot intelligent pour la FAQ de SUP'ONE. Posez vos questions et obtenez des rÃ©ponses instantanÃ©es.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a1628",

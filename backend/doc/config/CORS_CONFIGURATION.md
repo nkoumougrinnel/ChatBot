@@ -1,4 +1,4 @@
-# Configuration CORS dans Django
+﻿# Configuration CORS dans Django
 
 ## Problème
 
@@ -23,7 +23,7 @@ pip install django-cors-headers
 
 ### 2. Modifications dans `backend/config/settings.py`
 
-#### Ajout à INSTALLED_APPS
+#### Ajout à  INSTALLED_APPS
 
 ```python
 INSTALLED_APPS = [
@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',  # ← Nouveau
+    'corsheaders',  # â† Nouveau
     'faq',
     'chatbot',
     'users',
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 ```python
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # ← Doit être après SecurityMiddleware et avant SessionMiddleware
+    'corsheaders.middleware.CorsMiddleware',  # â† Doit être après SecurityMiddleware et avant SessionMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -143,7 +143,7 @@ Cela permet au frontend d'être servi depuis n'importe quel contexte (localhost,
 ## Comment ça fonctionne
 
 1. **Requête préflight (OPTIONS)** :
-   - Le navigateur envoie une requête OPTIONS à l'API
+   - Le navigateur envoie une requête OPTIONS à  l'API
    - Django (via `CorsMiddleware`) répond avec les en-têtes CORS appropriés
 
 2. **Requête réelle (POST/GET)** :
@@ -159,7 +159,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://www.example.com',  # Votre domaine de production
 ]
 
-# Optionnel : pour autoriser tous les domaines (NON RECOMMANDÉ)
+# Optionnel : pour autoriser tous les domaines (NON RECOMMANDà‰)
 # CORS_ALLOW_ALL_ORIGINS = True
 ```
 
@@ -174,7 +174,7 @@ CORS_ALLOWED_ORIGINS = [
 
 ### Erreur CORS dans la console
 
-- Ouvrez F12 → onglet Console
+- Ouvrez F12 â†’ onglet Console
 - Vérifiez le message d'erreur exact
 - Comparez l'origine de la requête avec `CORS_ALLOWED_ORIGINS`
 
@@ -183,3 +183,4 @@ CORS_ALLOWED_ORIGINS = [
 - [Django CORS Headers Documentation](https://github.com/adamchainz/django-cors-headers)
 - [MDN: CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 - [Django REST Framework: CORS](https://www.django-rest-framework.org/topics/rest-frameworks/)
+

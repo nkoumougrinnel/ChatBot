@@ -1,10 +1,10 @@
-[
+﻿[
   {
     "model": "faq.faq",
     "pk": 1,
     "fields": {
-      "question": "Où se trouve SUP'PTIC ?",
-      "answer": "L'école est située à Yaoundé, quartier Elig-Essono.",
+      "question": "OÃ¹ se trouve SUP'PTIC ?",
+      "answer": "L'Ã©cole est situÃ©e Ã  YaoundÃ©, quartier Elig-Essono.",
       "category": 1,
       "source": "Site officiel",
       "subtheme": "",
@@ -19,9 +19,9 @@
     "pk": 2,
     "fields": {
       "question": "Quels sont les frais d'inscription ?",
-      "answer": "Les frais varient selon le cycle, veuillez consulter le service de scolarité.",
+      "answer": "Les frais varient selon le cycle, veuillez consulter le service de scolaritÃ©.",
       "category": 2,
-      "source": "Règlement 2026",
+      "source": "RÃ¨glement 2026",
       "subtheme": "",
       "is_active": true,
       "popularity": 0,
@@ -34,7 +34,7 @@
     "pk": 3,
     "fields": {
       "question": "Comment rejoindre le Club Informatique ?",
-      "answer": "Inscrivez-vous directement auprès du bureau du club au bloc B.",
+      "answer": "Inscrivez-vous directement auprÃ¨s du bureau du club au bloc B.",
       "category": 3,
       "source": "Club Info",
       "subtheme": "",
@@ -49,7 +49,7 @@
     "pk": 4,
     "fields": {
       "question": "Dates des examens ?",
-      "answer": "Le calendrier est affiché sur le panneau d'affichage central.",
+      "answer": "Le calendrier est affichÃ© sur le panneau d'affichage central.",
       "category": 2,
       "source": "DAAC",
       "subtheme": "",
@@ -63,10 +63,10 @@
     "model": "faq.faq",
     "pk": 5,
     "fields": {
-      "question": "Y a-t-il une bibliothèque ?",
-      "answer": "Oui, elle est ouverte de 8h à 18h en semaine.",
+      "question": "Y a-t-il une bibliothÃ¨que ?",
+      "answer": "Oui, elle est ouverte de 8h Ã  18h en semaine.",
       "category": 1,
-      "source": "Guide étudiant",
+      "source": "Guide Ã©tudiant",
       "subtheme": "",
       "is_active": true,
       "popularity": 0,
@@ -108,8 +108,8 @@
     "model": "faq.faq",
     "pk": 8,
     "fields": {
-      "question": "Comment réinitialiser mon mot de passe ?",
-      "answer": "Contactez l'administrateur système avec votre carte d'étudiant.",
+      "question": "Comment rÃ©initialiser mon mot de passe ?",
+      "answer": "Contactez l'administrateur systÃ¨me avec votre carte d'Ã©tudiant.",
       "category": 1,
       "source": "IT Support",
       "subtheme": "",
@@ -123,8 +123,8 @@
     "model": "faq.faq",
     "pk": 9,
     "fields": {
-      "question": "Où manger sur le campus ?",
-      "answer": "Le restaurant universitaire est situé derrière le bâtiment principal.",
+      "question": "OÃ¹ manger sur le campus ?",
+      "answer": "Le restaurant universitaire est situÃ© derriÃ¨re le bÃ¢timent principal.",
       "category": 3,
       "source": "Vie pratique",
       "subtheme": "",
@@ -138,8 +138,8 @@
     "model": "faq.faq",
     "pk": 10,
     "fields": {
-      "question": "Heures d'ouverture de l'école ?",
-      "answer": "De 7h30 à 17h30 pour les services administratifs.",
+      "question": "Heures d'ouverture de l'Ã©cole ?",
+      "answer": "De 7h30 Ã  17h30 pour les services administratifs.",
       "category": 1,
       "source": "Standard",
       "subtheme": "",

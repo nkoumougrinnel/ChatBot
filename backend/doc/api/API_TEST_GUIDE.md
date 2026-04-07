@@ -1,4 +1,4 @@
-# Guide de Test des Endpoints API
+﻿# Guide de Test des Endpoints API
 
 Tester les endpoints REST du chatbot avec **curl** ou **Postman**.
 
@@ -165,7 +165,7 @@ curl -X POST http://localhost:8000/api/chatbot/ask/ ^
     {
       "faq_id": 4,
       "question": "Comment contacter le support ?",
-      "answer": "Envoyez un email à support@example.com ou appelez +33 1 23 45 67 89.",
+      "answer": "Envoyez un email à  support@example.com ou appelez +33 1 23 45 67 89.",
       "score": 0.1414,
       "category": "Support"
     }
@@ -353,8 +353,9 @@ compute_and_store_vectors()
 
 ## Points clés
 
-✅ Endpoints publics : GET (lecture)  
-✅ Endpoints protégés : POST/PUT/DELETE (modifications)  
-✅ Endpoint chatbot : public (pas d'authentification)  
-✅ Feedback : public (permet retours anonymes)  
-✅ Scores de similarité : entre 0 et 1
+âœ… Endpoints publics : GET (lecture)  
+âœ… Endpoints protégés : POST/PUT/DELETE (modifications)  
+âœ… Endpoint chatbot : public (pas d'authentification)  
+âœ… Feedback : public (permet retours anonymes)  
+âœ… Scores de similarité : entre 0 et 1
+

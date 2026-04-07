@@ -1,63 +1,63 @@
-# Architecture du Cœur du ChatBot
+﻿# Architecture du CÅ“ur du ChatBot
 
 ## Vue d'ensemble
 
 L'application chatbot est organisée autour de trois modules spécialisés, organisés en pipeline :
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    CHAÎNE DE TRAITEMENT                         │
-└─────────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                    CHAàŽNE DE TRAITEMENT                         â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
-┌──────────────────────┐
-│  preprocessing.py    │  → TextPreprocessor (classe)
-│                      │  → preprocess_text() fonction
-│  Dépendances:        │     (singleton lazy avec spaCy)
-│  - spacy             │
-└──────────────────────┘
-          ▲
-          │ importe preprocess_text
-          │
-┌──────────────────────┐
-│ vectorization.py     │  → train_vectorizer()
-│                      │  → compute_tfidf_vector()
-│ Dépendances:         │  → compute_and_store_vectors()
-│ - preprocessing      │
-│   (preprocess_text)  │  Utilise:
-│ - sklearn            │  • preprocess_text() avant fit/transform
-│ - faq.models         │  • FAQ, FAQVector (Django)
-│ - numpy              │
-└──────────────────────┘
-          ▲
-          │ importe compute_tfidf_vector
-          │
-┌──────────────────────┐
-│  similarity.py       │  → compute_cosine_similarity()
-│                      │  → find_best_faq()
-│ Dépendances:         │
-│ - vectorization      │  Utilise:
-│   (compute_tfidf_    │  • compute_tfidf_vector() pour
-│    vector)           │    vectoriser la question user
-│ - faq.models         │  • FAQVector.tfidf_vector (BD)
-│ - numpy              │  • Calcul cosinus (produit scalaire/norme)
-└──────────────────────┘
-          ▲
-          │ importe
-          │ (compute_cosine_similarity,
-          │  find_best_faq)
-          │
-┌──────────────────────┐
-│    utils.py          │  Point d'entrée UNIQUE
-│                      │  (réexporte tout)
-│ Dépendances:         │
-│ - preprocessing      │  Exporte:
-│ - vectorization      │  • preprocess_text
-│ - similarity         │  • TextPreprocessor
-│                      │  • train_vectorizer
-└──────────────────────┘  • compute_tfidf_vector
-                          • compute_and_store_vectors
-                          • compute_cosine_similarity
-                          • find_best_faq
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  preprocessing.py    â”‚  â†’ TextPreprocessor (classe)
+â”‚                      â”‚  â†’ preprocess_text() fonction
+â”‚  Dépendances:        â”‚     (singleton lazy avec spaCy)
+â”‚  - spacy             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+          â–²
+          â”‚ importe preprocess_text
+          â”‚
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ vectorization.py     â”‚  â†’ train_vectorizer()
+â”‚                      â”‚  â†’ compute_tfidf_vector()
+â”‚ Dépendances:         â”‚  â†’ compute_and_store_vectors()
+â”‚ - preprocessing      â”‚
+â”‚   (preprocess_text)  â”‚  Utilise:
+â”‚ - sklearn            â”‚  â€¢ preprocess_text() avant fit/transform
+â”‚ - faq.models         â”‚  â€¢ FAQ, FAQVector (Django)
+â”‚ - numpy              â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+          â–²
+          â”‚ importe compute_tfidf_vector
+          â”‚
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  similarity.py       â”‚  â†’ compute_cosine_similarity()
+â”‚                      â”‚  â†’ find_best_faq()
+â”‚ Dépendances:         â”‚
+â”‚ - vectorization      â”‚  Utilise:
+â”‚   (compute_tfidf_    â”‚  â€¢ compute_tfidf_vector() pour
+â”‚    vector)           â”‚    vectoriser la question user
+â”‚ - faq.models         â”‚  â€¢ FAQVector.tfidf_vector (BD)
+â”‚ - numpy              â”‚  â€¢ Calcul cosinus (produit scalaire/norme)
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+          â–²
+          â”‚ importe
+          â”‚ (compute_cosine_similarity,
+          â”‚  find_best_faq)
+          â”‚
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚    utils.py          â”‚  Point d'entrée UNIQUE
+â”‚                      â”‚  (réexporte tout)
+â”‚ Dépendances:         â”‚
+â”‚ - preprocessing      â”‚  Exporte:
+â”‚ - vectorization      â”‚  â€¢ preprocess_text
+â”‚ - similarity         â”‚  â€¢ TextPreprocessor
+â”‚                      â”‚  â€¢ train_vectorizer
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â€¢ compute_tfidf_vector
+                          â€¢ compute_and_store_vectors
+                          â€¢ compute_cosine_similarity
+                          â€¢ find_best_faq
 ```
 
 ## Tableau des imports
@@ -75,23 +75,23 @@ L'application chatbot est organisée autour de trois modules spécialisés, orga
 
 ```
 Question utilisateur: "Je veux réinitialiser mon mot de passe"
-         ↓
+         â†“
   find_best_faq() [similarity.py]
-         ↓
-    ├─→ compute_tfidf_vector() [vectorization.py]
-    │       ├─→ preprocess_text() [preprocessing.py]
-    │       │       └─→ spaCy model chargé une fois (singleton)
-    │       │           Résultat: ["vouloir", "réinitialiser", "mot_passe"]
-    │       │
-    │       └─→ TF-IDF transform sur tokens
-    │           Résultat: vecteur numpy 1D + norme L2
-    │
-    ├─→ Récupère FAQVector.tfidf_vector depuis la BD
-    │       (vecteurs pré-calculés pour chaque FAQ)
-    │
-    └─→ compute_cosine_similarity()
-            Calcul: dot_product / (norm1 × norm2)
-            Résultat: score ∈ [0, 1]
+         â†“
+    â”œâ”€â†’ compute_tfidf_vector() [vectorization.py]
+    â”‚       â”œâ”€â†’ preprocess_text() [preprocessing.py]
+    â”‚       â”‚       â””â”€â†’ spaCy model chargé une fois (singleton)
+    â”‚       â”‚           Résultat: ["vouloir", "réinitialiser", "mot_passe"]
+    â”‚       â”‚
+    â”‚       â””â”€â†’ TF-IDF transform sur tokens
+    â”‚           Résultat: vecteur numpy 1D + norme L2
+    â”‚
+    â”œâ”€â†’ Récupère FAQVector.tfidf_vector depuis la BD
+    â”‚       (vecteurs pré-calculés pour chaque FAQ)
+    â”‚
+    â””â”€â†’ compute_cosine_similarity()
+            Calcul: dot_product / (norm1 à— norm2)
+            Résultat: score âˆˆ [0, 1]
 
 Résultat final: liste des top_k FAQs avec scores
 ```
@@ -103,12 +103,12 @@ Résultat final: liste des top_k FAQs avec scores
 **Classe:** `TextPreprocessor`
 
 - Initialise spaCy avec modèle français (`fr_core_news_sm`)
-- Applique: tokenization → lemmatization → suppression stopwords → filtre alphabétique
+- Applique: tokenization â†’ lemmatization â†’ suppression stopwords â†’ filtre alphabétique
 
 **Fonction:** `preprocess_text(text: str) -> List[str]`
 
 - Interface publique
-- Utilise singleton lazy pour éviter de recharger spaCy à chaque appel
+- Utilise singleton lazy pour éviter de recharger spaCy à  chaque appel
 
 **Optimisation:**
 
@@ -137,9 +137,9 @@ Résultat final: liste des top_k FAQs avec scores
 
 **Fonction:** `compute_cosine_similarity(vec1, vec2) -> float`
 
-- Calcul direct: `dot(v1, v2) / (norm(v1) × norm(v2))`
+- Calcul direct: `dot(v1, v2) / (norm(v1) à— norm(v2))`
 - Plus rapide que sklearn (pas de reshape)
-- Gère cas zero-norm, clip score ∈ [0, 1]
+- Gère cas zero-norm, clip score âˆˆ [0, 1]
 
 **Fonction:** `find_best_faq(question: str, top_k: int = 3) -> list[dict]`
 
@@ -148,7 +148,7 @@ Résultat final: liste des top_k FAQs avec scores
   2. Récupère tous les `FAQVector` de la BD
   3. Calcule similarité cosinus vs chaque FAQ
   4. Retourne top_k par score décroissant
-- Chaque résultat: `{'faq': FAQ_object, 'score': float ∈ [0, 1]}`
+- Chaque résultat: `{'faq': FAQ_object, 'score': float âˆˆ [0, 1]}`
 
 ### 4. `utils.py` - Point d'entrée unique
 
@@ -196,4 +196,5 @@ Teste les 4 étapes:
 1. Prétraitement (tokenization/lemmatization)
 2. Vectorisation (TF-IDF)
 3. Similarité (calculs cosinus)
-4. Pipeline end-to-end (création FAQs → vectorisation → recherche)
+4. Pipeline end-to-end (création FAQs â†’ vectorisation â†’ recherche)
+

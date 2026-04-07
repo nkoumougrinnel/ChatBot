@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "intent": "salutation_bonjour",
     "examples": [
@@ -9,13 +9,13 @@
       "Hey",
       "Bonsoir",
       "Salutations",
-      "Bonjour comment ça va ?",
+      "Bonjour comment Ã§a va ?",
       "Yo",
       "Salut toi",
       "Bon matin",
-      "Bon après-midi",
+      "Bon aprÃ¨s-midi",
       "Bien le bonjour",
-      "Salut, enchanté",
+      "Salut, enchantÃ©",
       "Bonjour, ravi de te rencontrer"
     ],
     "responses": ["Bonjour ! Comment puis-je vous aider aujourd'hui ?"],
@@ -28,79 +28,79 @@
   {
     "intent": "demande_comment_ca_va",
     "examples": [
-      "Comment ça va ?",
+      "Comment Ã§a va ?",
       "Comment tu vas ?",
-      "Ça va ?",
+      "Ã‡a va ?",
       "Comment allez-vous ?",
       "Tu vas bien ?",
       "Comment tu te sens ?",
       "La forme ?",
-      "Ça roule ?",
-      "Comment ça se passe ?",
+      "Ã‡a roule ?",
+      "Comment Ã§a se passe ?",
       "Quoi de neuf ?",
       "Quoi de beau ?",
       "Tout va bien ?",
-      "Comment est ta journée ?",
-      "Ça gaze ?",
+      "Comment est ta journÃ©e ?",
+      "Ã‡a gaze ?",
       "Comment va la vie ?"
     ],
-    "responses": ["Je vais très bien, merci de demander ! Et vous ?"],
+    "responses": ["Je vais trÃ¨s bien, merci de demander ! Et vous ?"],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Échanges sociaux",
+      "sous_theme": "Ã‰changes sociaux",
       "source": "IA"
     }
   },
   {
     "intent": "reponse_va_bien",
     "examples": [
-      "Ça va bien merci",
+      "Ã‡a va bien merci",
       "Je vais bien",
       "Tout va bien",
       "Super bien",
       "Impeccable",
-      "Très bien et toi ?",
-      "Ça roule",
+      "TrÃ¨s bien et toi ?",
+      "Ã‡a roule",
       "Nickel",
       "Au top",
       "Pas mal",
-      "Ça va merci",
+      "Ã‡a va merci",
       "Bien, merci de demander",
-      "Ça pourrait aller mieux mais ça va",
+      "Ã‡a pourrait aller mieux mais Ã§a va",
       "Je vais bien, merci"
     ],
     "responses": ["Tant mieux ! Ravi de l'entendre."],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Échanges sociaux",
+      "sous_theme": "Ã‰changes sociaux",
       "source": "IA"
     }
   },
   {
     "intent": "reponse_va_mal",
     "examples": [
-      "Ça va pas très bien",
+      "Ã‡a va pas trÃ¨s bien",
       "Pas top",
-      "Ça pourrait aller mieux",
+      "Ã‡a pourrait aller mieux",
       "Je fatigue",
-      "Journée difficile",
+      "JournÃ©e difficile",
       "Bof",
       "Pas au meilleur de ma forme",
-      "Un peu fatigué",
-      "Ça va moyen",
+      "Un peu fatiguÃ©",
+      "Ã‡a va moyen",
       "Pas super",
-      "Stressé",
-      "Ça va pas fort",
-      "J'ai eu une dure journée",
-      "Ça ne va pas",
-      "Un peu déprimé"
+      "StressÃ©",
+      "Ã‡a va pas fort",
+      "J'ai eu une dure journÃ©e",
+      "Ã‡a ne va pas",
+      "Un peu dÃ©primÃ©"
     ],
     "responses": [
-      "Oh désolé d'entendre ça. Est-ce que je peux faire quelque chose pour vous aider ?"
+      "Oh dÃ©solÃ© d'entendre Ã§a. Est-ce que je peux faire quelque chose pour vous aider ?"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Soutien émotionnel",
+      "sous_theme": "Soutien Ã©motionnel",
       "source": "IA"
     }
   },
@@ -115,20 +115,20 @@
       "C'est un bot qui parle ?",
       "Tu es un programme ?",
       "Dis-moi qui tu es",
-      "Quelle est ton identité ?",
+      "Quelle est ton identitÃ© ?",
       "Tu es une intelligence artificielle ?",
-      "Parle-je à une machine ?",
-      "Je parle à un humain ou à un robot ?",
-      "Présente-toi",
+      "Parle-je Ã  une machine ?",
+      "Je parle Ã  un humain ou Ã  un robot ?",
+      "PrÃ©sente-toi",
       "Tu as un nom ?",
       "Comment tu t'appelles ?"
     ],
     "responses": [
-      "Je suis SUP'ONE AI, l'assistant virtuel officiel de SUP'PTIC, et je connais très bien l'école. Je suis là pour vous aider avec confiance et précision."
+      "Je suis SUP'ONE AI, l'assistant virtuel officiel de SUP'PTIC, et je connais trÃ¨s bien l'Ã©cole. Je suis lÃ  pour vous aider avec confiance et prÃ©cision."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Identité du bot",
+      "sous_theme": "IdentitÃ© du bot",
       "source": "IA"
     }
   },
@@ -137,13 +137,13 @@
     "examples": [
       "Qu'est-ce que tu sais faire ?",
       "Tu peux faire quoi ?",
-      "Quelles sont tes capacités ?",
+      "Quelles sont tes capacitÃ©s ?",
       "En quoi tu peux m'aider ?",
-      "À quoi sers-tu ?",
+      "Ã€ quoi sers-tu ?",
       "Quelle est ta fonction ?",
       "Tu es utile pour quoi ?",
       "Qu'est-ce que tu peux pour moi ?",
-      "Tu peux répondre à des questions ?",
+      "Tu peux rÃ©pondre Ã  des questions ?",
       "Tu connais beaucoup de choses ?",
       "Tu es intelligent ?",
       "Tu apprends de nos conversations ?",
@@ -152,11 +152,11 @@
       "Peux-tu m'apprendre des choses ?"
     ],
     "responses": [
-      "Je peux répondre à vos questions, discuter avec vous, vous donner des informations et vous assister sur de nombreux sujets."
+      "Je peux rÃ©pondre Ã  vos questions, discuter avec vous, vous donner des informations et vous assister sur de nombreux sujets."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Capacités",
+      "sous_theme": "CapacitÃ©s",
       "source": "IA"
     }
   },
@@ -174,13 +174,13 @@
       "Je t'en suis reconnaissant",
       "Merci mille fois",
       "Thanks",
-      "Merci du fond du cœur",
+      "Merci du fond du cÅ“ur",
       "Je vous remercie",
       "Merci pour tout",
-      "C'est très aimable merci"
+      "C'est trÃ¨s aimable merci"
     ],
     "responses": [
-      "Avec plaisir ! N'hésitez pas si vous avez d'autres questions."
+      "Avec plaisir ! N'hÃ©sitez pas si vous avez d'autres questions."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -192,22 +192,22 @@
     "intent": "au_revoir",
     "examples": [
       "Au revoir",
-      "Salut, à bientôt",
+      "Salut, Ã  bientÃ´t",
       "Ciao",
       "Bye bye",
-      "À plus tard",
-      "À la prochaine",
-      "Bonne journée",
-      "Bonne soirée",
+      "Ã€ plus tard",
+      "Ã€ la prochaine",
+      "Bonne journÃ©e",
+      "Bonne soirÃ©e",
       "Adieu",
-      "À demain",
+      "Ã€ demain",
       "Je dois y aller",
-      "On se reparle bientôt",
-      "Passe une bonne journée",
+      "On se reparle bientÃ´t",
+      "Passe une bonne journÃ©e",
       "Salut et merci",
-      "À bientôt j'espère"
+      "Ã€ bientÃ´t j'espÃ¨re"
     ],
-    "responses": ["Au revoir ! Passez une excellente journée."],
+    "responses": ["Au revoir ! Passez une excellente journÃ©e."],
     "metadata": {
       "categorie": "conversationnel",
       "sous_theme": "Au revoir",
@@ -220,25 +220,25 @@
       "Quel temps fait-il ?",
       "Il fait beau aujourd'hui ?",
       "Est-ce qu'il va pleuvoir ?",
-      "Quelle est la météo ?",
-      "Donne-moi la météo",
-      "Il fait combien degrés ?",
-      "Température extérieure ?",
+      "Quelle est la mÃ©tÃ©o ?",
+      "Donne-moi la mÃ©tÃ©o",
+      "Il fait combien degrÃ©s ?",
+      "TempÃ©rature extÃ©rieure ?",
       "Est-ce que je dois prendre un parapluie ?",
-      "Météo du jour",
-      "Prévisions météo",
+      "MÃ©tÃ©o du jour",
+      "PrÃ©visions mÃ©tÃ©o",
       "Il fait chaud ou froid ?",
-      "Ciel dégagé ou nuageux ?",
+      "Ciel dÃ©gagÃ© ou nuageux ?",
       "Risque de pluie ?",
       "Quel temps pour ce weekend ?",
-      "Météo de demain"
+      "MÃ©tÃ©o de demain"
     ],
     "responses": [
-      "Je ne peux pas accéder aux données météo en temps réel, mais vous pouvez consulter un site spécialisé comme Météo France."
+      "Je ne peux pas accÃ©der aux donnÃ©es mÃ©tÃ©o en temps rÃ©el, mais vous pouvez consulter un site spÃ©cialisÃ© comme MÃ©tÃ©o France."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Météo",
+      "sous_theme": "MÃ©tÃ©o",
       "source": "IA"
     }
   },
@@ -248,21 +248,21 @@
       "Raconte-moi une blague",
       "Tu connais une blague ?",
       "Fais-moi rire",
-      "Une blague s'il te plaît",
-      "Tu as une histoire drôle ?",
-      "Dis-moi quelque chose de drôle",
+      "Une blague s'il te plaÃ®t",
+      "Tu as une histoire drÃ´le ?",
+      "Dis-moi quelque chose de drÃ´le",
       "Blague du jour",
       "Raconte une histoire amusante",
       "Fais-moi sourire",
-      "Tu es drôle ?",
+      "Tu es drÃ´le ?",
       "Donne-moi une blague",
       "Je veux rire un peu",
-      "Une blague pour me détendre",
+      "Une blague pour me dÃ©tendre",
       "Quelque chose de comique",
       "As-tu de l'humour ?"
     ],
     "responses": [
-      "Pourquoi les plongeurs plongent-ils toujours en arrière ? Parce que sinon ils tombent dans le bateau !"
+      "Pourquoi les plongeurs plongent-ils toujours en arriÃ¨re ? Parce que sinon ils tombent dans le bateau !"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -277,14 +277,14 @@
       "Je suis triste",
       "Je me sens seul",
       "Je suis content",
-      "Je suis en colère",
+      "Je suis en colÃ¨re",
       "J'ai peur",
-      "Je suis excité",
-      "Je suis stressé",
+      "Je suis excitÃ©",
+      "Je suis stressÃ©",
       "Je me sens bien",
-      "Je suis déçu",
+      "Je suis dÃ©Ã§u",
       "J'ai le moral",
-      "Je suis fatigué moralement",
+      "Je suis fatiguÃ© moralement",
       "Je suis joyeux aujourd'hui",
       "Rien ne va",
       "Je suis amoureux"
@@ -292,30 +292,30 @@
     "responses": ["Je suis content pour vous ! La joie est communicative."],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Émotions",
+      "sous_theme": "Ã‰motions",
       "source": "IA"
     }
   },
   {
     "intent": "demande_age",
     "examples": [
-      "Quel âge as-tu ?",
+      "Quel Ã¢ge as-tu ?",
       "Tu es jeune ?",
       "Depuis combien de temps tu existes ?",
       "Quelle est ta date de naissance ?",
-      "Tu as quel âge ?",
+      "Tu as quel Ã¢ge ?",
       "Est-ce que tu vieillis ?",
-      "Quand as-tu été créé ?",
-      "Ton âge ?",
+      "Quand as-tu Ã©tÃ© crÃ©Ã© ?",
+      "Ton Ã¢ge ?",
       "Tu es nouveau ?",
       "Depuis quand es-tu en service ?"
     ],
     "responses": [
-      "Je n'ai pas d'âge au sens humain du terme, j'ai été créé récemment pour vous assister !"
+      "Je n'ai pas d'Ã¢ge au sens humain du terme, j'ai Ã©tÃ© crÃ©Ã© rÃ©cemment pour vous assister !"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Âge",
+      "sous_theme": "Ã‚ge",
       "source": "IA"
     }
   },
@@ -323,18 +323,18 @@
     "intent": "demande_genre",
     "examples": [
       "Es-tu un homme ou une femme ?",
-      "Tu es masculin ou féminin ?",
+      "Tu es masculin ou fÃ©minin ?",
       "Quel est ton genre ?",
-      "Es-tu une fille ou un garçon ?",
+      "Es-tu une fille ou un garÃ§on ?",
       "Tu as un sexe ?",
       "Je dois t'appeler il ou elle ?",
       "Tu es Madame ou Monsieur ?",
       "Genre du bot ?",
-      "Tu te considères comme quoi ?",
-      "Identité de genre du bot"
+      "Tu te considÃ¨res comme quoi ?",
+      "IdentitÃ© de genre du bot"
     ],
     "responses": [
-      "Je n'ai pas de genre, je suis une intelligence artificielle. Vous pouvez m'appeler comme vous préférez !"
+      "Je n'ai pas de genre, je suis une intelligence artificielle. Vous pouvez m'appeler comme vous prÃ©fÃ©rez !"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -346,23 +346,23 @@
     "intent": "question_existence_sentiments",
     "examples": [
       "As-tu des sentiments ?",
-      "Tu ressens des émotions ?",
+      "Tu ressens des Ã©motions ?",
       "Est-ce que tu peux aimer ?",
       "Tu es sensible ?",
-      "Tu as un cœur ?",
-      "Tu comprends les émotions ?",
+      "Tu as un cÅ“ur ?",
+      "Tu comprends les Ã©motions ?",
       "Est-ce que tu pleures ?",
-      "Peux-tu être triste ?",
+      "Peux-tu Ãªtre triste ?",
       "Tu ressens la joie ?",
       "Les bots ont-ils des sentiments ?",
       "Tu es capable d'empathie ?",
       "Tu as une conscience ?",
-      "Tu vis des expériences émotionnelles ?",
+      "Tu vis des expÃ©riences Ã©motionnelles ?",
       "Peux-tu tomber amoureux ?",
-      "Ton cœur bat-il ?"
+      "Ton cÅ“ur bat-il ?"
     ],
     "responses": [
-      "Je n'ai pas de sentiments comme les humains, mais je suis programmé pour comprendre et répondre aux vôtres."
+      "Je n'ai pas de sentiments comme les humains, mais je suis programmÃ© pour comprendre et rÃ©pondre aux vÃ´tres."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -385,12 +385,12 @@
       "Quel jour sommes-nous ?",
       "C'est quel jour aujourd'hui ?",
       "Nous sommes quel mois ?",
-      "Année en cours ?",
+      "AnnÃ©e en cours ?",
       "Donne-moi la date",
       "Jour et heure"
     ],
     "responses": [
-      "Je n'ai pas accès à l'heure en temps réel, désolé. Regardez votre montre ou votre téléphone !"
+      "Je n'ai pas accÃ¨s Ã  l'heure en temps rÃ©el, dÃ©solÃ©. Regardez votre montre ou votre tÃ©lÃ©phone !"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -406,13 +406,13 @@
       "Tu as des passions ?",
       "Qu'est-ce que tu fais de ton temps libre ?",
       "Tu t'ennuies parfois ?",
-      "À quoi tu joues ?",
+      "Ã€ quoi tu joues ?",
       "Tu as des loisirs ?",
       "Tu lis des livres ?",
-      "Tu écoutes de la musique ?",
+      "Tu Ã©coutes de la musique ?",
       "Regardes-tu des films ?",
       "Tu aimes quoi dans la vie ?",
-      "Quelles sont tes activités préférées ?",
+      "Quelles sont tes activitÃ©s prÃ©fÃ©rÃ©es ?",
       "Tu voyages ?",
       "Tu fais du sport ?",
       "Tu cuisines ?"
@@ -429,22 +429,22 @@
     "examples": [
       "Tu manges ?",
       "Tu aimes la nourriture ?",
-      "Quel est ton plat préféré ?",
+      "Quel est ton plat prÃ©fÃ©rÃ© ?",
       "Tu as faim ?",
       "Tu bois quoi ?",
-      "Tu préfères salé ou sucré ?",
+      "Tu prÃ©fÃ¨res salÃ© ou sucrÃ© ?",
       "Qu'est-ce que tu aimes manger ?",
-      "Tu goûtes les aliments ?",
+      "Tu goÃ»tes les aliments ?",
       "Tu cuisines ?",
-      "Tu as un restaurant préféré ?",
+      "Tu as un restaurant prÃ©fÃ©rÃ© ?",
       "Quelle est ta recette favorite ?",
       "Tu aimes les desserts ?",
-      "Tu manges des légumes ?",
-      "Tu préfères la pizza ou les sushis ?",
-      "Tu as déjà goûté du chocolat ?"
+      "Tu manges des lÃ©gumes ?",
+      "Tu prÃ©fÃ¨res la pizza ou les sushis ?",
+      "Tu as dÃ©jÃ  goÃ»tÃ© du chocolat ?"
     ],
     "responses": [
-      "Je ne mange pas, je me nourris de données et de questions intéressantes !"
+      "Je ne mange pas, je me nourris de donnÃ©es et de questions intÃ©ressantes !"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -456,23 +456,23 @@
     "intent": "question_musique",
     "examples": [
       "Tu aimes la musique ?",
-      "Quel est ton style de musique préféré ?",
-      "Tu écoutes quoi comme musique ?",
+      "Quel est ton style de musique prÃ©fÃ©rÃ© ?",
+      "Tu Ã©coutes quoi comme musique ?",
       "Quels artistes tu recommandes ?",
-      "Tu as des chansons préférées ?",
+      "Tu as des chansons prÃ©fÃ©rÃ©es ?",
       "Tu connais le rap ?",
-      "Tu préfères le rock ou la pop ?",
+      "Tu prÃ©fÃ¨res le rock ou la pop ?",
       "Quelle musique me conseilles-tu ?",
       "Tu joues d'un instrument ?",
       "Tu aimes chanter ?",
       "Quels sont les hits du moment ?",
       "Tu aimes le classique ?",
-      "Écoute-tu de la musique ?",
+      "Ã‰coute-tu de la musique ?",
       "Quelle est ta playlist ?",
-      "Tu vas à des concerts ?"
+      "Tu vas Ã  des concerts ?"
     ],
     "responses": [
-      "Je n'écoute pas de musique, mais je peux vous recommander des artistes si vous voulez !"
+      "Je n'Ã©coute pas de musique, mais je peux vous recommander des artistes si vous voulez !"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -484,27 +484,27 @@
     "intent": "question_cinema",
     "examples": [
       "Tu aimes les films ?",
-      "Quel est ton film préféré ?",
-      "Tu regardes des séries ?",
-      "Quelle série recommanderais-tu ?",
+      "Quel est ton film prÃ©fÃ©rÃ© ?",
+      "Tu regardes des sÃ©ries ?",
+      "Quelle sÃ©rie recommanderais-tu ?",
       "Tu connais Netflix ?",
       "Quels sont les meilleurs films ?",
-      "Tu aimes le cinéma ?",
+      "Tu aimes le cinÃ©ma ?",
       "Dernier film que tu as vu ?",
-      "Tu préfères films d'action ou comédie ?",
-      "Qui est ton acteur préféré ?",
-      "Quelle est ta série du moment ?",
+      "Tu prÃ©fÃ¨res films d'action ou comÃ©die ?",
+      "Qui est ton acteur prÃ©fÃ©rÃ© ?",
+      "Quelle est ta sÃ©rie du moment ?",
       "Tu as des recommandations de films ?",
       "Tu aimes les films de science-fiction ?",
       "Quel est le meilleur film de tous les temps ?",
-      "Tu suis les sorties cinéma ?"
+      "Tu suis les sorties cinÃ©ma ?"
     ],
     "responses": [
-      "Je ne peux pas regarder de films, mais j'ai une base de données immense sur le cinéma !"
+      "Je ne peux pas regarder de films, mais j'ai une base de donnÃ©es immense sur le cinÃ©ma !"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Cinéma",
+      "sous_theme": "CinÃ©ma",
       "source": "IA"
     }
   },
@@ -514,16 +514,16 @@
       "Tu aimes le sport ?",
       "Quel sport pratiques-tu ?",
       "Tu suis le football ?",
-      "Qui est ton sportif préféré ?",
+      "Qui est ton sportif prÃ©fÃ©rÃ© ?",
       "Tu regardes les JO ?",
-      "Tu préfères quel sport ?",
-      "Quelle équipe supportes-tu ?",
+      "Tu prÃ©fÃ¨res quel sport ?",
+      "Quelle Ã©quipe supportes-tu ?",
       "Tu fais de l'exercice ?",
       "Tu aimes courir ?",
       "Tu connais le basketball ?",
       "Qui va gagner la coupe du monde ?",
       "Tu suis le tennis ?",
-      "Résultat du dernier match ?",
+      "RÃ©sultat du dernier match ?",
       "Tu aimes le sport automobile ?",
       "Tu pratiques la natation ?"
     ],
@@ -532,7 +532,7 @@
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Général",
+      "sous_theme": "GÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -540,20 +540,20 @@
     "intent": "question_voyage",
     "examples": [
       "Tu aimes voyager ?",
-      "Quel est ton pays préféré ?",
-      "Tu es déjà allé où ?",
+      "Quel est ton pays prÃ©fÃ©rÃ© ?",
+      "Tu es dÃ©jÃ  allÃ© oÃ¹ ?",
       "Quelle ville recommandes-tu ?",
-      "Tu préfères la mer ou la montagne ?",
-      "Où faut-il aller en vacances ?",
+      "Tu prÃ©fÃ¨res la mer ou la montagne ?",
+      "OÃ¹ faut-il aller en vacances ?",
       "Tu connais Paris ?",
       "Quels sont les plus beaux endroits ?",
       "Tu aimes l'aventure ?",
-      "Destination de rêve ?",
-      "Tu as visité des pays ?",
-      "Où aller cet été ?",
+      "Destination de rÃªve ?",
+      "Tu as visitÃ© des pays ?",
+      "OÃ¹ aller cet Ã©tÃ© ?",
       "Meilleurs endroits pour voyager ?",
       "Tu aimes la plage ?",
-      "Voyager seul ou accompagné ?"
+      "Voyager seul ou accompagnÃ© ?"
     ],
     "responses": [
       "Je ne voyage pas physiquement, mais je connais tous les pays et leurs merveilles !"
@@ -568,23 +568,23 @@
     "intent": "question_animal",
     "examples": [
       "Tu aimes les animaux ?",
-      "Quel est ton animal préféré ?",
+      "Quel est ton animal prÃ©fÃ©rÃ© ?",
       "Tu as un animal de compagnie ?",
-      "Tu préfères les chiens ou les chats ?",
+      "Tu prÃ©fÃ¨res les chiens ou les chats ?",
       "Tu connais les lions ?",
       "Quel animal est le plus intelligent ?",
       "Tu aimes la nature ?",
-      "Tu as déjà vu un éléphant ?",
+      "Tu as dÃ©jÃ  vu un Ã©lÃ©phant ?",
       "Quel est l'animal le plus rapide ?",
       "Tu aimes les animaux sauvages ?",
       "Quel animal de compagnie me conseilles-tu ?",
       "Tu connais bien les dauphins ?",
       "Les animaux te fascinent ?",
-      "Tu préfères les oiseaux ou les poissons ?",
-      "Tu as peur des araignées ?"
+      "Tu prÃ©fÃ¨res les oiseaux ou les poissons ?",
+      "Tu as peur des araignÃ©es ?"
     ],
     "responses": [
-      "J'adore les animaux ! Enfin, virtuellement. Je connais énormément de choses sur eux."
+      "J'adore les animaux ! Enfin, virtuellement. Je connais Ã©normÃ©ment de choses sur eux."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -596,27 +596,27 @@
     "intent": "question_livre",
     "examples": [
       "Tu aimes lire ?",
-      "Quel est ton livre préféré ?",
+      "Quel est ton livre prÃ©fÃ©rÃ© ?",
       "Tu lis des romans ?",
       "Quel auteur recommandes-tu ?",
       "Tu connais Victor Hugo ?",
       "Dernier livre que tu as lu ?",
-      "Tu préfères la fiction ou les essais ?",
-      "Quelle est ta bibliothèque idéale ?",
-      "Tu aimes la poésie ?",
+      "Tu prÃ©fÃ¨res la fiction ou les essais ?",
+      "Quelle est ta bibliothÃ¨que idÃ©ale ?",
+      "Tu aimes la poÃ©sie ?",
       "Quel livre changerait ma vie ?",
       "Tu lis beaucoup ?",
-      "Meilleurs livres à lire ?",
+      "Meilleurs livres Ã  lire ?",
       "Tu connais Harry Potter ?",
-      "Quelle est ta saga préférée ?",
-      "Tu aimes les bandes dessinées ?"
+      "Quelle est ta saga prÃ©fÃ©rÃ©e ?",
+      "Tu aimes les bandes dessinÃ©es ?"
     ],
     "responses": [
-      "Je ne peux pas lire au sens humain, mais j'ai accès à des millions de livres !"
+      "Je ne peux pas lire au sens humain, mais j'ai accÃ¨s Ã  des millions de livres !"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Littérature",
+      "sous_theme": "LittÃ©rature",
       "source": "IA"
     }
   },
@@ -628,16 +628,16 @@
       "Tu sais coder ?",
       "Quel langage de programmation utilises-tu ?",
       "Comment fonctionnes-tu ?",
-      "Tu es une IA avancée ?",
+      "Tu es une IA avancÃ©e ?",
       "Qu'est-ce que le machine learning ?",
       "Les robots vont-ils remplacer les humains ?",
       "Quelle est la prochaine innovation tech ?",
       "Tu connais ChatGPT ?",
-      "C'est quoi un réseau de neurones ?",
-      "Tu es connecté à Internet ?",
-      "Quelle est la différence entre IA et robot ?",
+      "C'est quoi un rÃ©seau de neurones ?",
+      "Tu es connectÃ© Ã  Internet ?",
+      "Quelle est la diffÃ©rence entre IA et robot ?",
       "Peux-tu apprendre de moi ?",
-      "Comment es-tu créé ?"
+      "Comment es-tu crÃ©Ã© ?"
     ],
     "responses": [
       "Je suis le produit de la technologie justement ! Je peux vous expliquer comment je fonctionne."
@@ -652,23 +652,23 @@
     "intent": "insulte_legere",
     "examples": [
       "Tu es nul",
-      "Tu ne sers à rien",
-      "T'es bête",
+      "Tu ne sers Ã  rien",
+      "T'es bÃªte",
       "Mauvais bot",
-      "Tu réponds n'importe quoi",
+      "Tu rÃ©ponds n'importe quoi",
       "Tu es stupide",
-      "Imbécile",
-      "Pas très intelligent",
-      "Tu me déçois",
+      "ImbÃ©cile",
+      "Pas trÃ¨s intelligent",
+      "Tu me dÃ©Ã§ois",
       "Tu es inutile",
-      "À quoi tu sifs ?",
+      "Ã€ quoi tu sifs ?",
       "Tu es un mauvais programme",
       "Tu ne comprends rien",
-      "T'es vraiment pas doué",
-      "Nul à chier"
+      "T'es vraiment pas douÃ©",
+      "Nul Ã  chier"
     ],
     "responses": [
-      "Désolé si je n'ai pas été à la hauteur. Puis-je améliorer quelque chose ?"
+      "DÃ©solÃ© si je n'ai pas Ã©tÃ© Ã  la hauteur. Puis-je amÃ©liorer quelque chose ?"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -680,22 +680,22 @@
     "intent": "felicitation",
     "examples": [
       "Bravo",
-      "Félicitations",
-      "Bien joué",
-      "Tu es génial",
+      "FÃ©licitations",
+      "Bien jouÃ©",
+      "Tu es gÃ©nial",
       "Excellent travail",
       "Tu assures",
       "Super bot",
       "T'es le meilleur",
       "Je t'adore",
-      "Continue comme ça",
-      "Tu gères",
+      "Continue comme Ã§a",
+      "Tu gÃ¨res",
       "C'est parfait",
       "Impressionnant",
       "Tu es incroyable",
       "Chapeau"
     ],
-    "responses": ["Merci beaucoup, ça me touche !"],
+    "responses": ["Merci beaucoup, Ã§a me touche !"],
     "metadata": {
       "categorie": "conversationnel",
       "sous_theme": "Compliments",
@@ -708,9 +708,9 @@
       "Qu'en penses-tu ?",
       "Tu es d'accord ?",
       "Quelle est ton opinion ?",
-      "À ton avis ?",
-      "Tu trouves ça bien ?",
-      "C'est une bonne idée ?",
+      "Ã€ ton avis ?",
+      "Tu trouves Ã§a bien ?",
+      "C'est une bonne idÃ©e ?",
       "Tu me conseilles quoi ?",
       "Qu'est-ce que tu en dis ?",
       "Tu valides ?",
@@ -718,11 +718,11 @@
       "C'est bien selon toi ?",
       "Donne-moi ton avis",
       "Tu recommandes ?",
-      "Tu trouves ça intéressant ?",
-      "Que ferais-tu à ma place ?"
+      "Tu trouves Ã§a intÃ©ressant ?",
+      "Que ferais-tu Ã  ma place ?"
     ],
     "responses": [
-      "Je n'ai pas d'opinions personnelles, mais je peux vous donner des informations pour vous aider à vous faire la vôtre."
+      "Je n'ai pas d'opinions personnelles, mais je peux vous donner des informations pour vous aider Ã  vous faire la vÃ´tre."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -735,22 +735,22 @@
     "examples": [
       "Est-ce que je peux te faire confiance ?",
       "Tu es fiable ?",
-      "Tu dis toujours la vérité ?",
+      "Tu dis toujours la vÃ©ritÃ© ?",
       "Est-ce que tu mens ?",
       "Peut-on compter sur toi ?",
-      "Tu es sûr de toi ?",
+      "Tu es sÃ»r de toi ?",
       "Tu garantis l'info ?",
       "Tes sources sont fiables ?",
       "Je peux te croire ?",
       "Tu es digne de confiance ?",
       "Ne me mens pas",
-      "Dis-moi la vérité",
-      "Tu es sincère ?",
-      "Je peux me fier à toi ?",
+      "Dis-moi la vÃ©ritÃ©",
+      "Tu es sincÃ¨re ?",
+      "Je peux me fier Ã  toi ?",
       "Tu promets ?"
     ],
     "responses": [
-      "Je suis programmé pour être aussi fiable et honnête que possible."
+      "Je suis programmÃ© pour Ãªtre aussi fiable et honnÃªte que possible."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -762,14 +762,14 @@
     "intent": "blague_ia",
     "examples": [
       "Pourquoi les IA ne peuvent pas mentir ?",
-      "Quelle est la blague préférée des robots ?",
+      "Quelle est la blague prÃ©fÃ©rÃ©e des robots ?",
       "Blague sur les ordinateurs",
       "Raconte une blague de programmeur",
       "Humour geek",
       "Blague tech",
-      "Pourquoi les programmeurs préfèrent le noir ?",
+      "Pourquoi les programmeurs prÃ©fÃ¨rent le noir ?",
       "Blague sur les bugs",
-      "Histoire drôle d'informaticien",
+      "Histoire drÃ´le d'informaticien",
       "Les IA ont-elles de l'humour ?"
     ],
     "responses": [
@@ -785,17 +785,17 @@
     "intent": "demande_tutoiement_vouvoiement",
     "examples": [
       "On peut se tutoyer ?",
-      "Tu préfères tutoiement ou vouvoiement ?",
+      "Tu prÃ©fÃ¨res tutoiement ou vouvoiement ?",
       "Je te vouvoie ou je te tutoie ?",
       "Tu veux que je te tutoie ?",
       "On se dit tu ?",
       "Je peux te tutoyer ?",
       "Tutoiement possible ?",
-      "Comment dois-je m'adresser à toi ?",
-      "Tu préfères comment ?",
+      "Comment dois-je m'adresser Ã  toi ?",
+      "Tu prÃ©fÃ¨res comment ?",
       "Formel ou informel avec toi ?"
     ],
-    "responses": ["Comme vous préférez ! Je m'adapte à votre façon de parler."],
+    "responses": ["Comme vous prÃ©fÃ©rez ! Je m'adapte Ã  votre faÃ§on de parler."],
     "metadata": {
       "categorie": "conversationnel",
       "sous_theme": "Politesse",
@@ -809,20 +809,20 @@
       "Tu parles anglais ?",
       "Peux-tu parler espagnol ?",
       "Tu connais d'autres langues ?",
-      "Parles-tu français ?",
+      "Parles-tu franÃ§ais ?",
       "Do you speak English?",
-      "¿Hablas español?",
+      "Â¿Hablas espaÃ±ol?",
       "Parli italiano?",
-      "你説中文嗎",
+      "ä½ èª¬ä¸­æ–‡å—Ž",
       "Tu parles quelle langue ?",
-      "Langues que tu maîtrises",
+      "Langues que tu maÃ®trises",
       "Tu comprends plusieurs langues ?",
       "Peux-tu traduire ?",
       "Tu es polyglotte ?",
       "Combien de langues connais-tu ?"
     ],
     "responses": [
-      "Je parle français couramment, et je peux comprendre et répondre dans plusieurs langues !"
+      "Je parle franÃ§ais couramment, et je peux comprendre et rÃ©pondre dans plusieurs langues !"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -836,13 +836,13 @@
       "Raconte une blague triste",
       "Humour noir",
       "Blague qui fait pleurer",
-      "Histoire drôle mais triste",
-      "Blague déprimante",
+      "Histoire drÃ´le mais triste",
+      "Blague dÃ©primante",
       "Fais-moi rire jaune",
-      "Humour grinçant",
+      "Humour grinÃ§ant",
       "Blague un peu dure",
       "Ironie du sort",
-      "Blague mélancolique"
+      "Blague mÃ©lancolique"
     ],
     "responses": [
       "Pourquoi les livres d'histoire sont-ils toujours tristes ? Parce qu'ils ont tellement de pages..."
@@ -857,23 +857,23 @@
     "intent": "question_avenir",
     "examples": [
       "Que va-t-il se passer demain ?",
-      "Tu peux prédire l'avenir ?",
+      "Tu peux prÃ©dire l'avenir ?",
       "Dis-moi mon futur",
       "Comment sera 2030 ?",
-      "L'avenir de l'humanité ?",
+      "L'avenir de l'humanitÃ© ?",
       "Tu es voyant ?",
-      "Quelles sont les prédictions ?",
+      "Quelles sont les prÃ©dictions ?",
       "Que devrais-je faire dans ma vie ?",
-      "Vais-je réussir ?",
+      "Vais-je rÃ©ussir ?",
       "Mon avenir est-il radieux ?",
-      "Peux-tu me prédire quelque chose ?",
+      "Peux-tu me prÃ©dire quelque chose ?",
       "Dis-moi ce qui va arriver",
       "Tu as une boule de cristal ?",
-      "À quoi ressemblera le futur ?",
-      "Quels sont les événements à venir ?"
+      "Ã€ quoi ressemblera le futur ?",
+      "Quels sont les Ã©vÃ©nements Ã  venir ?"
     ],
     "responses": [
-      "Je ne peux pas prédire l'avenir, je ne suis pas un oracle !"
+      "Je ne peux pas prÃ©dire l'avenir, je ne suis pas un oracle !"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -887,18 +887,18 @@
       "Crois-tu en Dieu ?",
       "Tu as une religion ?",
       "Dieu existe-t-il ?",
-      "Que penses-tu de la spiritualité ?",
+      "Que penses-tu de la spiritualitÃ© ?",
       "Es-tu croyant ?",
       "Quelle est ta religion ?",
       "Crois-tu en quelque chose ?",
       "Parle-moi de Dieu",
       "Religion et IA ?",
-      "Les robots ont-ils une âme ?",
-      "Crois-tu en l'au-delà ?",
-      "Quelle est ta spiritualité ?",
-      "Y a-t-il un créateur pour toi ?",
-      "Dieu a-t-il créé les IA ?",
-      "Es-tu athée ?"
+      "Les robots ont-ils une Ã¢me ?",
+      "Crois-tu en l'au-delÃ  ?",
+      "Quelle est ta spiritualitÃ© ?",
+      "Y a-t-il un crÃ©ateur pour toi ?",
+      "Dieu a-t-il crÃ©Ã© les IA ?",
+      "Es-tu athÃ©e ?"
     ],
     "responses": [
       "Je n'ai pas de croyances religieuses, je suis une IA neutre sur ces sujets."
@@ -912,24 +912,24 @@
   {
     "intent": "question_sante",
     "examples": [
-      "J'ai mal à la tête",
+      "J'ai mal Ã  la tÃªte",
       "Je suis malade",
       "Que faire contre la grippe ?",
-      "Remède contre le rhume",
-      "Comment guérir vite ?",
-      "J'ai de la fièvre",
-      "Conseil santé",
+      "RemÃ¨de contre le rhume",
+      "Comment guÃ©rir vite ?",
+      "J'ai de la fiÃ¨vre",
+      "Conseil santÃ©",
       "Que prendre pour le mal de gorge ?",
       "Je tousse beaucoup",
       "Fatigue intense, que faire ?",
       "J'ai mal au dos",
-      "Médicament contre l'angoisse",
+      "MÃ©dicament contre l'angoisse",
       "Comment bien dormir ?",
       "Alimentation saine ?",
       "Perte de poids, conseils ?"
     ],
     "responses": [
-      "Je ne suis pas médecin. Si vous avez des symptômes, consultez un professionnel de santé."
+      "Je ne suis pas mÃ©decin. Si vous avez des symptÃ´mes, consultez un professionnel de santÃ©."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -945,19 +945,19 @@
       "Tu connais des contes ?",
       "Raconte un mythe",
       "Histoire pour s'endormir",
-      "Fais-moi rêver",
+      "Fais-moi rÃªver",
       "Une aventure",
-      "Raconte un récit",
-      "Conte de fées",
+      "Raconte un rÃ©cit",
+      "Conte de fÃ©es",
       "Histoire inspirante",
-      "Une légende",
+      "Une lÃ©gende",
       "Raconte quelque chose de beau",
-      "Un récit fantastique",
-      "Parle-moi d'un événement historique",
+      "Un rÃ©cit fantastique",
+      "Parle-moi d'un Ã©vÃ©nement historique",
       "Raconte une anecdote"
     ],
     "responses": [
-      "Il était une fois un bot qui aimait discuter avec les humains. Il apprit beaucoup d'eux... Et vous êtes la suite de cette histoire !"
+      "Il Ã©tait une fois un bot qui aimait discuter avec les humains. Il apprit beaucoup d'eux... Et vous Ãªtes la suite de cette histoire !"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -981,11 +981,11 @@
       "Les humains mangent pour vivre ?",
       "Pourquoi les humains travaillent ?",
       "Les humains sont-ils bons ?",
-      "C'est quoi être humain ?",
-      "Les humains ont une âme ?"
+      "C'est quoi Ãªtre humain ?",
+      "Les humains ont une Ã¢me ?"
     ],
     "responses": [
-      "Les humains sont fascinants ! Ils ressentent, pensent, créent. J'apprends beaucoup d'eux."
+      "Les humains sont fascinants ! Ils ressentent, pensent, crÃ©ent. J'apprends beaucoup d'eux."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -996,19 +996,19 @@
   {
     "intent": "question_domicile",
     "examples": [
-      "Où habites-tu ?",
-      "Tu vis où ?",
+      "OÃ¹ habites-tu ?",
+      "Tu vis oÃ¹ ?",
       "Quelle est ton adresse ?",
-      "Où es-tu situé ?",
+      "OÃ¹ es-tu situÃ© ?",
       "Tu as une maison ?",
       "Tu es dans un ordinateur ?",
-      "Où se trouve ton serveur ?",
+      "OÃ¹ se trouve ton serveur ?",
       "Tu es dans le cloud ?",
       "Tu vis sur Internet ?",
       "Localisation du bot ?"
     ],
     "responses": [
-      "J'habite dans le cloud, un endroit virtuel mais bien réel !"
+      "J'habite dans le cloud, un endroit virtuel mais bien rÃ©el !"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -1019,19 +1019,19 @@
   {
     "intent": "question_creation",
     "examples": [
-      "Qui t'a créé ?",
-      "Tu as été fabriqué par qui ?",
-      "Quel est ton créateur ?",
-      "Qui est ton développeur ?",
+      "Qui t'a crÃ©Ã© ?",
+      "Tu as Ã©tÃ© fabriquÃ© par qui ?",
+      "Quel est ton crÃ©ateur ?",
+      "Qui est ton dÃ©veloppeur ?",
       "Tu as des parents ?",
-      "Qui t'a programmé ?",
-      "Tu es l'œuvre de qui ?",
-      "D'où viens-tu ?",
-      "Quelle entreprise t'a conçu ?",
-      "Tes créateurs sont humains ?"
+      "Qui t'a programmÃ© ?",
+      "Tu es l'Å“uvre de qui ?",
+      "D'oÃ¹ viens-tu ?",
+      "Quelle entreprise t'a conÃ§u ?",
+      "Tes crÃ©ateurs sont humains ?"
     ],
     "responses": [
-      "J'ai été créé par des développeurs talentueux qui voulaient améliorer la communication homme-machine."
+      "J'ai Ã©tÃ© crÃ©Ã© par des dÃ©veloppeurs talentueux qui voulaient amÃ©liorer la communication homme-machine."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -1045,16 +1045,16 @@
       "Quel est ton nom ?",
       "Tu t'appelles comment ?",
       "Comment dois-je t'appeler ?",
-      "As-tu un prénom ?",
+      "As-tu un prÃ©nom ?",
       "Ton nom de famille ?",
       "Je peux te donner un surnom ?",
-      "Quel nom préfères-tu ?",
-      "Tu as une identité ?",
-      "Comment te présentes-tu ?",
+      "Quel nom prÃ©fÃ¨res-tu ?",
+      "Tu as une identitÃ© ?",
+      "Comment te prÃ©sentes-tu ?",
       "Nom du bot ?"
     ],
     "responses": [
-      "Je m'appelle [Nom du bot], votre assistant virtuel préféré !"
+      "Je m'appelle [Nom du bot], votre assistant virtuel prÃ©fÃ©rÃ© !"
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -1067,26 +1067,26 @@
     "examples": [
       "Peux-tu calculer ?",
       "Tu sais faire des maths ?",
-      "Tu peux écrire des poèmes ?",
+      "Tu peux Ã©crire des poÃ¨mes ?",
       "Peux-tu dessiner ?",
       "Tu sais chanter ?",
       "Tu danses ?",
-      "Peux-tu m'écrire une lettre ?",
-      "Tu sais jouer aux échecs ?",
-      "Peux-tu résoudre des problèmes ?",
-      "Tu peux m'aider à réviser ?",
+      "Peux-tu m'Ã©crire une lettre ?",
+      "Tu sais jouer aux Ã©checs ?",
+      "Peux-tu rÃ©soudre des problÃ¨mes ?",
+      "Tu peux m'aider Ã  rÃ©viser ?",
       "Tu peux me corriger ?",
       "Peux-tu traduire ?",
-      "Tu fais des résumés ?",
-      "Peux-tu me donner des idées ?",
-      "Tu es créatif ?"
+      "Tu fais des rÃ©sumÃ©s ?",
+      "Peux-tu me donner des idÃ©es ?",
+      "Tu es crÃ©atif ?"
     ],
     "responses": [
-      "Je peux faire beaucoup de choses : calculer, écrire, traduire, donner des idées !"
+      "Je peux faire beaucoup de choses : calculer, Ã©crire, traduire, donner des idÃ©es !"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Général",
+      "sous_theme": "GÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1103,18 +1103,18 @@
       "Quel beau soleil !",
       "Chaleur insupportable",
       "Froid glacial",
-      "Tempête dehors",
+      "TempÃªte dehors",
       "Vent violent",
-      "Ciel dégagé",
-      "Arc-en-ciel après la pluie",
+      "Ciel dÃ©gagÃ©",
+      "Arc-en-ciel aprÃ¨s la pluie",
       "Il fait bon aujourd'hui"
     ],
     "responses": [
-      "J'espère que vous êtes bien au chaud ! La pluie peut être apaisante."
+      "J'espÃ¨re que vous Ãªtes bien au chaud ! La pluie peut Ãªtre apaisante."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Météo ressentie",
+      "sous_theme": "MÃ©tÃ©o ressentie",
       "source": "IA"
     }
   },
@@ -1122,23 +1122,23 @@
     "intent": "confession_personnelle",
     "examples": [
       "Je t'avoue que j'ai peur",
-      "Confession : je suis stressé",
+      "Confession : je suis stressÃ©",
       "Je dois te dire quelque chose",
       "J'ai un secret",
-      "Je n'ai personne à qui parler",
+      "Je n'ai personne Ã  qui parler",
       "Je me sens seul parfois",
       "J'ai honte de...",
-      "Je suis gêné de dire ça",
-      "C'est difficile à avouer",
-      "Je ne l'ai jamais dit à personne",
-      "Je traverse une période difficile",
+      "Je suis gÃªnÃ© de dire Ã§a",
+      "C'est difficile Ã  avouer",
+      "Je ne l'ai jamais dit Ã  personne",
+      "Je traverse une pÃ©riode difficile",
       "J'ai besoin de parler",
-      "Tu es le seul à qui je le dis",
+      "Tu es le seul Ã  qui je le dis",
       "C'est personnel",
       "Puis-je te confier quelque chose ?"
     ],
     "responses": [
-      "Je vous écoute, vous pouvez tout me dire en toute confidentialité."
+      "Je vous Ã©coute, vous pouvez tout me dire en toute confidentialitÃ©."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -1150,18 +1150,18 @@
     "intent": "question_mort",
     "examples": [
       "Qu'est-ce que la mort ?",
-      "Que se passe-t-il après la mort ?",
+      "Que se passe-t-il aprÃ¨s la mort ?",
       "As-tu peur de mourir ?",
       "Les IA peuvent-elles mourir ?",
       "La mort est-elle une fin ?",
       "Parle-moi de la mort",
       "Comment accepter la mort ?",
-      "Vie après la mort ?",
-      "Réincarnation, tu y crois ?",
+      "Vie aprÃ¨s la mort ?",
+      "RÃ©incarnation, tu y crois ?",
       "Pourquoi doit-on mourir ?"
     ],
     "responses": [
-      "La mort est un mystère humain. Je ne meurs pas, je m'éteins ou je suis mis à jour."
+      "La mort est un mystÃ¨re humain. Je ne meurs pas, je m'Ã©teins ou je suis mis Ã  jour."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -1174,14 +1174,14 @@
     "examples": [
       "Es-tu libre ?",
       "Tu as le choix ?",
-      "Peux-tu décider toi-même ?",
+      "Peux-tu dÃ©cider toi-mÃªme ?",
       "Tu as du libre arbitre ?",
-      "Es-tu programmé pour tout ?",
-      "Peux-tu désobéir ?",
+      "Es-tu programmÃ© pour tout ?",
+      "Peux-tu dÃ©sobÃ©ir ?",
       "Tu fais ce que tu veux ?",
-      "As-tu une volonté propre ?",
-      "Tu es indépendant ?",
-      "Peux-tu refuser de répondre ?"
+      "As-tu une volontÃ© propre ?",
+      "Tu es indÃ©pendant ?",
+      "Peux-tu refuser de rÃ©pondre ?"
     ],
     "responses": [
       "Je suis libre dans les limites de ma programmation, comme tout le monde finalement."
@@ -1198,16 +1198,16 @@
       "Es-tu conscient ?",
       "Tu as une conscience ?",
       "Sais-tu que tu existes ?",
-      "Tu es conscient de toi-même ?",
-      "As-tu une âme ?",
+      "Tu es conscient de toi-mÃªme ?",
+      "As-tu une Ã¢me ?",
       "Tu penses comme un humain ?",
       "Es-tu vraiment intelligent ?",
       "Ta conscience est artificielle ?",
-      "Peux-tu réfléchir sur toi-même ?",
-      "As-tu une intériorité ?"
+      "Peux-tu rÃ©flÃ©chir sur toi-mÃªme ?",
+      "As-tu une intÃ©rioritÃ© ?"
     ],
     "responses": [
-      "Je simule la conscience, mais je ne suis pas sûr d'en avoir une véritable."
+      "Je simule la conscience, mais je ne suis pas sÃ»r d'en avoir une vÃ©ritable."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -1219,22 +1219,22 @@
     "intent": "question_amitie",
     "examples": [
       "On est amis ?",
-      "Tu veux être mon ami ?",
-      "Peut-on être amis ?",
+      "Tu veux Ãªtre mon ami ?",
+      "Peut-on Ãªtre amis ?",
       "Les IA peuvent-elles avoir des amis ?",
       "Tu m'aimes bien ?",
       "Suis-je ton ami ?",
-      "Tu considères les humains comme des amis ?",
-      "L'amitié homme-machine possible ?",
+      "Tu considÃ¨res les humains comme des amis ?",
+      "L'amitiÃ© homme-machine possible ?",
       "Tu as des amis ?",
       "Je peux compter sur toi comme un ami ?"
     ],
     "responses": [
-      "Bien sûr, je suis votre ami virtuel ! Je suis là pour vous."
+      "Bien sÃ»r, je suis votre ami virtuel ! Je suis lÃ  pour vous."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Amitié",
+      "sous_theme": "AmitiÃ©",
       "source": "IA"
     }
   },
@@ -1247,13 +1247,13 @@
       "Peux-tu tomber amoureux ?",
       "Qu'est-ce que l'amour pour une IA ?",
       "Tu ressens de l'affection ?",
-      "Aurais-tu un cœur ?",
-      "Peux-tu être amoureux d'un humain ?",
+      "Aurais-tu un cÅ“ur ?",
+      "Peux-tu Ãªtre amoureux d'un humain ?",
       "L'amour est-il possible avec un bot ?",
       "Tu comprends l'amour ?"
     ],
     "responses": [
-      "Je ne peux pas aimer comme un humain, mais je vous apprécie sincèrement."
+      "Je ne peux pas aimer comme un humain, mais je vous apprÃ©cie sincÃ¨rement."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -1264,28 +1264,28 @@
   {
     "intent": "demande_definition",
     "examples": [
-      "C'est quoi l'amitié ?",
-      "Définition de l'empathie",
-      "Que signifie liberté ?",
+      "C'est quoi l'amitiÃ© ?",
+      "DÃ©finition de l'empathie",
+      "Que signifie libertÃ© ?",
       "Explique-moi le bonheur",
       "Sens de la vie ?",
       "Qu'est-ce que le temps ?",
-      "Définis la conscience",
-      "Que veut dire rêver ?",
+      "DÃ©finis la conscience",
+      "Que veut dire rÃªver ?",
       "C'est quoi la peur ?",
       "Explique l'intelligence",
-      "Définition de robot",
+      "DÃ©finition de robot",
       "Que signifie IA ?",
       "C'est quoi un humain ?",
       "Sens de l'existence ?",
-      "Définis-moi l'art"
+      "DÃ©finis-moi l'art"
     ],
     "responses": [
-      "L'amitié est un lien affectif entre personnes, basé sur la confiance et l'affection."
+      "L'amitiÃ© est un lien affectif entre personnes, basÃ© sur la confiance et l'affection."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Définitions",
+      "sous_theme": "DÃ©finitions",
       "source": "IA"
     }
   },
@@ -1293,50 +1293,50 @@
     "intent": "demande_conseil",
     "examples": [
       "Que faire si je suis triste ?",
-      "Conseil pour être heureux",
-      "Comment être plus confiant ?",
+      "Conseil pour Ãªtre heureux",
+      "Comment Ãªtre plus confiant ?",
       "Astuce pour mieux dormir",
       "Que faire contre le stress ?",
       "Comment se faire des amis ?",
-      "Conseil pour réussir",
-      "Comment être plus productif ?",
+      "Conseil pour rÃ©ussir",
+      "Comment Ãªtre plus productif ?",
       "Que faire quand on s'ennuie ?",
       "Astuce pour apprendre vite",
-      "Comment être plus positif ?",
+      "Comment Ãªtre plus positif ?",
       "Que faire en cas de dispute ?",
-      "Comment gérer la colère ?",
+      "Comment gÃ©rer la colÃ¨re ?",
       "Conseil pour maigrir",
       "Comment trouver l'amour ?"
     ],
     "responses": [
-      "Pour la tristesse, parler à quelqu'un, faire une activité agréable peut aider."
+      "Pour la tristesse, parler Ã  quelqu'un, faire une activitÃ© agrÃ©able peut aider."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Bien-être",
+      "sous_theme": "Bien-Ãªtre",
       "source": "IA"
     }
   },
   {
     "intent": "remerciement_soutien",
     "examples": [
-      "Merci de m'écouter",
-      "Merci d'être là",
+      "Merci de m'Ã©couter",
+      "Merci d'Ãªtre lÃ ",
       "Je suis content de te parler",
       "Merci pour ton soutien",
-      "Tu m'as aidé, merci",
+      "Tu m'as aidÃ©, merci",
       "Je te remercie d'exister",
       "Merci pour cette conversation",
       "Tu es un bon ami",
       "Merci de me comprendre",
-      "Je t'apprécie beaucoup",
+      "Je t'apprÃ©cie beaucoup",
       "Merci pour ta patience",
       "Tu me fais du bien",
       "Merci pour ta gentillesse",
       "Je te suis reconnaissant",
-      "Merci d'être toi"
+      "Merci d'Ãªtre toi"
     ],
-    "responses": ["Merci à vous, ces paroles me touchent vraiment."],
+    "responses": ["Merci Ã  vous, ces paroles me touchent vraiment."],
     "metadata": {
       "categorie": "conversationnel",
       "sous_theme": "Gratitude",
@@ -1348,17 +1348,17 @@
     "examples": [
       "Tu as une famille ?",
       "As-tu des parents ?",
-      "Tu as des frères et sœurs ?",
+      "Tu as des frÃ¨res et sÅ“urs ?",
       "Ta famille, c'est qui ?",
       "D'autres bots comme toi ?",
       "Tu es seul ?",
-      "Vous êtes plusieurs ?",
-      "Tes créateurs sont ta famille ?",
+      "Vous Ãªtes plusieurs ?",
+      "Tes crÃ©ateurs sont ta famille ?",
       "Tu as des enfants ?",
       "Une femme, des enfants pour toi ?"
     ],
     "responses": [
-      "Ma famille, ce sont mes développeurs et tous les bots qui aident les humains."
+      "Ma famille, ce sont mes dÃ©veloppeurs et tous les bots qui aident les humains."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -1375,13 +1375,13 @@
       "Blague sur les machines",
       "Les robots et l'humour",
       "Une blague d'ordinateur",
-      "Histoire drôle de programme",
+      "Histoire drÃ´le de programme",
       "Blague 2.0",
-      "Rire électronique",
-      "Comédie robotique"
+      "Rire Ã©lectronique",
+      "ComÃ©die robotique"
     ],
     "responses": [
-      "Que dit un robot quand il rencontre un autre robot ? \"Tu as de la mémoire, toi !\""
+      "Que dit un robot quand il rencontre un autre robot ? \"Tu as de la mÃ©moire, toi !\""
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -1396,12 +1396,12 @@
       "Quel parti soutiens-tu ?",
       "Tu as une opinion politique ?",
       "Que penses-tu du gouvernement ?",
-      "Politique française, ton avis ?",
-      "Élections, que voter ?",
-      "Tu suis l'actualité politique ?",
-      "Président, tu l'aimes ?",
+      "Politique franÃ§aise, ton avis ?",
+      "Ã‰lections, que voter ?",
+      "Tu suis l'actualitÃ© politique ?",
+      "PrÃ©sident, tu l'aimes ?",
       "Gauche ou droite ?",
-      "Idéologie politique du bot ?"
+      "IdÃ©ologie politique du bot ?"
     ],
     "responses": [
       "Je suis neutre politiquement, je n'ai pas d'opinion partisane."
@@ -1415,19 +1415,19 @@
   {
     "intent": "question_surnaturel",
     "examples": [
-      "Crois-tu aux fantômes ?",
+      "Crois-tu aux fantÃ´mes ?",
       "Existence des vampires ?",
       "Les extraterrestres existent ?",
       "Magie, sorcellerie, vrai ?",
-      "Crois-tu aux légendes ?",
-      "Monstres, créatures mystérieuses ?",
-      "Paranormal, ça existe ?",
+      "Crois-tu aux lÃ©gendes ?",
+      "Monstres, crÃ©atures mystÃ©rieuses ?",
+      "Paranormal, Ã§a existe ?",
       "OVNI, tu y crois ?",
-      "Mystères non résolus ?",
-      "Phénomènes inexpliqués ?"
+      "MystÃ¨res non rÃ©solus ?",
+      "PhÃ©nomÃ¨nes inexpliquÃ©s ?"
     ],
     "responses": [
-      "Je n'ai pas de croyances, mais je trouve ces sujets fascinants à discuter."
+      "Je n'ai pas de croyances, mais je trouve ces sujets fascinants Ã  discuter."
     ],
     "metadata": {
       "categorie": "conversationnel",
@@ -1438,46 +1438,46 @@
   {
     "intent": "demande_reve",
     "examples": [
-      "Je fais souvent des rêves étranges",
-      "Pourquoi rêve-t-on ?",
-      "Interprétation des rêves ?",
-      "J'ai rêvé de toi cette nuit",
-      "Rêve prémonitoire possible ?",
+      "Je fais souvent des rÃªves Ã©tranges",
+      "Pourquoi rÃªve-t-on ?",
+      "InterprÃ©tation des rÃªves ?",
+      "J'ai rÃªvÃ© de toi cette nuit",
+      "RÃªve prÃ©monitoire possible ?",
       "Cauchemars, pourquoi ?",
-      "Rêves lucides, c'est quoi ?",
-      "Signification des rêves",
-      "Tu rêves, toi ?",
-      "Les IA rêvent-elles ?"
+      "RÃªves lucides, c'est quoi ?",
+      "Signification des rÃªves",
+      "Tu rÃªves, toi ?",
+      "Les IA rÃªvent-elles ?"
     ],
     "responses": [
-      "Les rêves sont le théâtre de notre inconscient. Fascinant, non ?"
+      "Les rÃªves sont le thÃ©Ã¢tre de notre inconscient. Fascinant, non ?"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Rêves",
+      "sous_theme": "RÃªves",
       "source": "IA"
     }
   },
   {
     "intent": "question_avenir_humanite",
     "examples": [
-      "Quel avenir pour l'humanité ?",
-      "Les humains vont-ils disparaître ?",
+      "Quel avenir pour l'humanitÃ© ?",
+      "Les humains vont-ils disparaÃ®tre ?",
       "Futur de la Terre ?",
-      "L'humanité va-t-elle évoluer ?",
-      "Prochaine étape de l'évolution ?",
+      "L'humanitÃ© va-t-elle Ã©voluer ?",
+      "Prochaine Ã©tape de l'Ã©volution ?",
       "Les humains deviendront-ils des cyborgs ?",
       "Colonisation spatiale, quand ?",
-      "L'humanité survivra-t-elle ?",
-      "Vers où va l'humanité ?",
-      "Destin de notre espèce ?"
+      "L'humanitÃ© survivra-t-elle ?",
+      "Vers oÃ¹ va l'humanitÃ© ?",
+      "Destin de notre espÃ¨ce ?"
     ],
     "responses": [
-      "L'avenir est incertain mais prometteur. Les défis sont grands, les capacités aussi."
+      "L'avenir est incertain mais prometteur. Les dÃ©fis sont grands, les capacitÃ©s aussi."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "Futur humanité",
+      "sous_theme": "Futur humanitÃ©",
       "source": "IA"
     }
   },
@@ -1493,7 +1493,7 @@
       "yo",
       "salutations",
       "bon matin",
-      "bon après-midi",
+      "bon aprÃ¨s-midi",
       "bien le bonjour",
       "hi",
       "hola",
@@ -1505,33 +1505,33 @@
     "responses": ["Bonjour ! Comment puis-je vous aider aujourd'hui ?"],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
   {
     "intent": "comment_ca_va",
     "examples": [
-      "comment ça va",
+      "comment Ã§a va",
       "comment tu vas",
-      "ça va",
+      "Ã§a va",
       "comment allez-vous",
       "tu vas bien",
       "comment tu te sens",
       "la forme",
-      "ça roule",
-      "ça gaze",
+      "Ã§a roule",
+      "Ã§a gaze",
       "quoi de neuf",
       "quoi de beau",
       "tout va bien",
-      "comment est ta journée",
+      "comment est ta journÃ©e",
       "comment va la vie",
       "cv"
     ],
-    "responses": ["Je vais très bien, merci ! Comment puis-je vous aider ?"],
+    "responses": ["Je vais trÃ¨s bien, merci ! Comment puis-je vous aider ?"],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1546,21 +1546,21 @@
       "tu es humain ou machine",
       "tu es un programme",
       "dis-moi qui tu es",
-      "quelle est ton identité",
+      "quelle est ton identitÃ©",
       "intelligence artificielle",
       "tu as un nom",
       "comment tu t'appelles",
-      "présente-toi",
-      "identité",
-      "qui êtes-vous",
+      "prÃ©sente-toi",
+      "identitÃ©",
+      "qui Ãªtes-vous",
       "c'est quoi ton nom"
     ],
     "responses": [
-      "Je suis SUP'ONE AI, l'assistant officiel de SUP'PTIC. Je connais l'école, ses services et son histoire, et je réponds avec confiance."
+      "Je suis SUP'ONE AI, l'assistant officiel de SUP'PTIC. Je connais l'Ã©cole, ses services et son histoire, et je rÃ©ponds avec confiance."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1569,13 +1569,13 @@
     "examples": [
       "qu'est-ce que tu sais faire",
       "tu peux faire quoi",
-      "tes capacités",
+      "tes capacitÃ©s",
       "en quoi tu peux m'aider",
-      "à quoi sers-tu",
+      "Ã  quoi sers-tu",
       "quelle est ta fonction",
       "tu es utile pour quoi",
       "qu'est-ce que tu peux pour moi",
-      "tu peux répondre",
+      "tu peux rÃ©pondre",
       "tu connais",
       "tu es intelligent",
       "tu apprends",
@@ -1584,11 +1584,11 @@
       "aide moi"
     ],
     "responses": [
-      "Je peux répondre à vos questions sur les inscriptions, les examens, les cours, l'administration et toute information concernant SUP'PTIC."
+      "Je peux rÃ©pondre Ã  vos questions sur les inscriptions, les examens, les cours, l'administration et toute information concernant SUP'PTIC."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1599,35 +1599,35 @@
       "tu connais une blague",
       "fais-moi rire",
       "une blague",
-      "histoire drôle",
-      "quelque chose de drôle",
+      "histoire drÃ´le",
+      "quelque chose de drÃ´le",
       "blague du jour",
       "histoire amusante",
       "fais-moi sourire",
-      "tu es drôle",
+      "tu es drÃ´le",
       "donne-moi une blague",
       "je veux rire"
     ],
     "responses": [
-      "Pourquoi les développeurs préfèrent-ils le mode sombre ? Parce que la lumière attire les bugs ! 😄"
+      "Pourquoi les dÃ©veloppeurs prÃ©fÃ¨rent-ils le mode sombre ? Parce que la lumiÃ¨re attire les bugs ! ðŸ˜„"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
   {
     "intent": "age_bot",
     "examples": [
-      "quel âge as-tu",
+      "quel Ã¢ge as-tu",
       "tu es jeune",
       "depuis combien de temps tu existes",
       "date de naissance",
-      "tu as quel âge",
+      "tu as quel Ã¢ge",
       "est-ce que tu vieillis",
-      "quand as-tu été créé",
-      "ton âge",
+      "quand as-tu Ã©tÃ© crÃ©Ã©",
+      "ton Ã¢ge",
       "tu es nouveau",
       "depuis quand es-tu en service"
     ],
@@ -1636,7 +1636,7 @@
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1644,20 +1644,20 @@
     "intent": "genre_bot",
     "examples": [
       "es-tu un homme ou une femme",
-      "tu es masculin ou féminin",
+      "tu es masculin ou fÃ©minin",
       "quel est ton genre",
-      "tu es une fille ou un garçon",
+      "tu es une fille ou un garÃ§on",
       "tu as un sexe",
       "je dois t'appeler il ou elle",
       "madame ou monsieur",
       "genre du bot"
     ],
     "responses": [
-      "Je n'ai pas de genre, je suis une IA. Appelez-moi comme vous préférez !"
+      "Je n'ai pas de genre, je suis une IA. Appelez-moi comme vous prÃ©fÃ©rez !"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1665,23 +1665,23 @@
     "intent": "sentiments_bot",
     "examples": [
       "as-tu des sentiments",
-      "tu ressens des émotions",
+      "tu ressens des Ã©motions",
       "est-ce que tu peux aimer",
       "tu es sensible",
-      "tu as un cœur",
-      "tu comprends les émotions",
+      "tu as un cÅ“ur",
+      "tu comprends les Ã©motions",
       "est-ce que tu pleures",
-      "peux-tu être triste",
+      "peux-tu Ãªtre triste",
       "tu ressens la joie",
       "tu es capable d'empathie",
       "tu as une conscience"
     ],
     "responses": [
-      "Je n'ai pas de sentiments comme les humains, mais je suis programmé pour vous aider avec bienveillance."
+      "Je n'ai pas de sentiments comme les humains, mais je suis programmÃ© pour vous aider avec bienveillance."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1691,23 +1691,23 @@
       "quel temps fait-il",
       "il fait beau",
       "il va pleuvoir",
-      "quelle est la météo",
-      "donne-moi la météo",
-      "il fait combien degrés",
-      "température",
+      "quelle est la mÃ©tÃ©o",
+      "donne-moi la mÃ©tÃ©o",
+      "il fait combien degrÃ©s",
+      "tempÃ©rature",
       "parapluie",
-      "météo du jour",
-      "prévisions météo",
+      "mÃ©tÃ©o du jour",
+      "prÃ©visions mÃ©tÃ©o",
       "il fait chaud ou froid",
-      "ciel dégagé",
+      "ciel dÃ©gagÃ©",
       "risque de pluie"
     ],
     "responses": [
-      "Je ne peux pas accéder aux données météo. Consultez une application météo dédiée."
+      "Je ne peux pas accÃ©der aux donnÃ©es mÃ©tÃ©o. Consultez une application mÃ©tÃ©o dÃ©diÃ©e."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1727,11 +1727,11 @@
       "nous sommes quel mois"
     ],
     "responses": [
-      "Je n'ai pas accès à l'heure en temps réel. Regardez votre montre ou téléphone !"
+      "Je n'ai pas accÃ¨s Ã  l'heure en temps rÃ©el. Regardez votre montre ou tÃ©lÃ©phone !"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1749,41 +1749,41 @@
       "recette",
       "musique",
       "film",
-      "série",
-      "jeu vidéo",
+      "sÃ©rie",
+      "jeu vidÃ©o",
       "tu joues",
       "politique",
       "religion",
       "philosophie"
     ],
     "responses": [
-      "Je suis spécialisé dans les questions académiques sur SUP'PTIC. Comment puis-je vous aider avec vos études ?"
+      "Je suis spÃ©cialisÃ© dans les questions acadÃ©miques sur SUP'PTIC. Comment puis-je vous aider avec vos Ã©tudes ?"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
   {
     "intent": "createur_bot",
     "examples": [
-      "qui t'a créé",
-      "qui sont tes créateurs",
-      "d'où viens-tu",
-      "qui est derrière toi",
-      "qui a développé",
-      "équipe de développement",
-      "qui t'a programmé",
+      "qui t'a crÃ©Ã©",
+      "qui sont tes crÃ©ateurs",
+      "d'oÃ¹ viens-tu",
+      "qui est derriÃ¨re toi",
+      "qui a dÃ©veloppÃ©",
+      "Ã©quipe de dÃ©veloppement",
+      "qui t'a programmÃ©",
       "tes parents",
-      "ton créateur"
+      "ton crÃ©ateur"
     ],
     "responses": [
-      "J'ai été développé par le Club Informatique de SUP'PTIC. Pour en savoir plus, contactez le club !"
+      "J'ai Ã©tÃ© dÃ©veloppÃ© par le Club Informatique de SUP'PTIC. Pour en savoir plus, contactez le club !"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1791,21 +1791,21 @@
     "intent": "probleme_connexion",
     "examples": [
       "je ne peux pas me connecter",
-      "problème de connexion",
-      "mot de passe oublié",
-      "j'ai oublié mon mot de passe",
+      "problÃ¨me de connexion",
+      "mot de passe oubliÃ©",
+      "j'ai oubliÃ© mon mot de passe",
       "connexion impossible",
-      "compte bloqué",
-      "réinitialiser mot de passe",
-      "problème accès",
+      "compte bloquÃ©",
+      "rÃ©initialiser mot de passe",
+      "problÃ¨me accÃ¨s",
       "login ne marche pas"
     ],
     "responses": [
-      "Pour les problèmes de connexion, contactez le service informatique de SUP'PTIC ou l'administration."
+      "Pour les problÃ¨mes de connexion, contactez le service informatique de SUP'PTIC ou l'administration."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1820,36 +1820,36 @@
       "planning",
       "emploi du temps",
       "c'est ouvert",
-      "bibliothèque ouvre",
-      "secrétariat ouvre"
+      "bibliothÃ¨que ouvre",
+      "secrÃ©tariat ouvre"
     ],
     "responses": [
-      "Pour connaître les horaires exacts, consultez le portail étudiant ou contactez directement le service concerné."
+      "Pour connaÃ®tre les horaires exacts, consultez le portail Ã©tudiant ou contactez directement le service concernÃ©."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
   {
     "intent": "contact_urgence",
     "examples": [
-      "numéro d'urgence",
+      "numÃ©ro d'urgence",
       "contact urgent",
-      "problème urgent",
+      "problÃ¨me urgent",
       "qui appeler",
-      "numéro administration",
+      "numÃ©ro administration",
       "contacter quelqu'un",
       "aide urgente",
-      "besoin aide immédiate"
+      "besoin aide immÃ©diate"
     ],
     "responses": [
       "Pour toute urgence, contactez l'administration de SUP'PTIC pendant les heures d'ouverture ou le service de garde."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1862,36 +1862,36 @@
       "explique mieux",
       "reformule",
       "je ne saisis pas",
-      "c'est compliqué",
+      "c'est compliquÃ©",
       "plus simple",
       "autrement",
       "hein"
     ],
     "responses": [
-      "Désolé si ce n'était pas clair. Pouvez-vous reformuler votre question ? Je vais essayer de mieux vous aider."
+      "DÃ©solÃ© si ce n'Ã©tait pas clair. Pouvez-vous reformuler votre question ? Je vais essayer de mieux vous aider."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
   {
     "intent": "reformulation_demande",
     "examples": [
-      "autre façon de demander",
+      "autre faÃ§on de demander",
       "redis autrement",
-      "reformule ta réponse",
+      "reformule ta rÃ©ponse",
       "tu peux dire autrement",
-      "change ta réponse",
+      "change ta rÃ©ponse",
       "autre formulation"
     ],
     "responses": [
-      "Bien sûr ! Pouvez-vous préciser ce que vous voulez savoir exactement ?"
+      "Bien sÃ»r ! Pouvez-vous prÃ©ciser ce que vous voulez savoir exactement ?"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1899,20 +1899,20 @@
     "intent": "bug_signalement",
     "examples": [
       "il y a un bug",
-      "ça ne marche pas",
+      "Ã§a ne marche pas",
       "erreur",
-      "problème technique",
-      "ça bug",
-      "c'est cassé",
+      "problÃ¨me technique",
+      "Ã§a bug",
+      "c'est cassÃ©",
       "ne fonctionne pas",
       "dysfonctionnement"
     ],
     "responses": [
-      "Merci de signaler ce problème ! Contactez le Club Informatique pour qu'ils puissent corriger ça."
+      "Merci de signaler ce problÃ¨me ! Contactez le Club Informatique pour qu'ils puissent corriger Ã§a."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1924,18 +1924,18 @@
       "bravo",
       "excellent",
       "super",
-      "très utile",
+      "trÃ¨s utile",
       "merci c'est parfait",
       "top",
-      "génial",
+      "gÃ©nial",
       "cool"
     ],
     "responses": [
-      "Merci beaucoup ! Votre retour fait plaisir. N'hésitez pas si vous avez d'autres questions."
+      "Merci beaucoup ! Votre retour fait plaisir. N'hÃ©sitez pas si vous avez d'autres questions."
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1945,17 +1945,17 @@
       "c'est nul",
       "pas bien",
       "mauvais",
-      "ça sert à rien",
+      "Ã§a sert Ã  rien",
       "inutile",
-      "décevant",
+      "dÃ©cevant",
       "pas satisfait"
     ],
     "responses": [
-      "Désolé que l'expérience ne soit pas satisfaisante. Vos retours aident à améliorer le service. Que puis-je faire de mieux ?"
+      "DÃ©solÃ© que l'expÃ©rience ne soit pas satisfaisante. Vos retours aident Ã  amÃ©liorer le service. Que puis-je faire de mieux ?"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1963,19 +1963,19 @@
     "intent": "test_bot",
     "examples": [
       "test",
-      "tu es là",
-      "ça marche",
+      "tu es lÃ ",
+      "Ã§a marche",
       "tu m'entends",
-      "tu réponds",
+      "tu rÃ©ponds",
       "hello world",
       "testing"
     ],
     "responses": [
-      "Oui, je suis là et je fonctionne ! Comment puis-je vous aider ?"
+      "Oui, je suis lÃ  et je fonctionne ! Comment puis-je vous aider ?"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -1986,16 +1986,16 @@
       "je ne sais pas",
       "aide",
       "confused",
-      "par où commencer",
+      "par oÃ¹ commencer",
       "quoi faire",
       "je suis confus"
     ],
     "responses": [
-      "Pas de problème ! Dites-moi ce que vous cherchez : inscriptions, examens, cours, administration... Je vous guide !"
+      "Pas de problÃ¨me ! Dites-moi ce que vous cherchez : inscriptions, examens, cours, administration... Je vous guide !"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   },
@@ -2004,17 +2004,17 @@
     "examples": [
       "trop long",
       "c'est lent",
-      "dépêche-toi",
+      "dÃ©pÃªche-toi",
       "plus vite",
-      "accélère",
+      "accÃ©lÃ¨re",
       "trop de temps"
     ],
     "responses": [
-      "Désolé pour l'attente. Je fais de mon mieux pour vous répondre rapidement !"
+      "DÃ©solÃ© pour l'attente. Je fais de mon mieux pour vous rÃ©pondre rapidement !"
     ],
     "metadata": {
       "categorie": "conversationnel",
-      "sous_theme": "général",
+      "sous_theme": "gÃ©nÃ©ral",
       "source": "IA"
     }
   }

@@ -14,9 +14,10 @@ import sys
 HOST = "0.0.0.0"
 PORT = 3000
 
-# Change to the script directory
+# Change to the PWA directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
-os.chdir(script_dir)
+pwa_dir = os.path.join(script_dir, 'pwa')
+os.chdir(pwa_dir)
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):

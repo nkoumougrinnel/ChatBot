@@ -1,4 +1,4 @@
-# Implémentation API REST - Documentation Technique
+﻿# Implémentation API REST - Documentation Technique
 
 Document technique détaillant l'implémentation complète de l'API REST du chatbot avec Django REST Framework.
 
@@ -18,39 +18,39 @@ L'API REST expose le pipeline chatbot via des endpoints HTTP standardisés. Les 
 ## Architecture des couches
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│          CLIENTS (curl, Postman, Web Frontend)          │
-└────────────────────┬────────────────────────────────────┘
-                     │ HTTP Requests
-                     ↓
-┌─────────────────────────────────────────────────────────┐
-│             Django URL Router (urls.py)                 │
-│  Mappe /api/categories/ → CategoryViewSet, etc.         │
-└────────────────────┬────────────────────────────────────┘
-                     │
-                     ↓
-┌─────────────────────────────────────────────────────────┐
-│             Views (ViewSets) - views.py                 │
-│  Handle requests, validation, permissions, responses    │
-└────────────────────┬────────────────────────────────────┘
-                     │
-                     ↓
-┌─────────────────────────────────────────────────────────┐
-│          Serializers - serializers.py                   │
-│  Convert request JSON ↔ Django models                   │
-└────────────────────┬────────────────────────────────────┘
-                     │
-                     ↓
-┌─────────────────────────────────────────────────────────┐
-│         Django Models (faq.models)                      │
-│  Category, FAQ, FAQVector, Feedback                     │
-└────────────────────┬────────────────────────────────────┘
-                     │
-                     ↓
-┌─────────────────────────────────────────────────────────┐
-│  Chatbot Pipeline (chatbot.utils, vectorization, etc.)  │
-│  find_best_faq() → retourne FAQs pertinentes            │
-└─────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚          CLIENTS (curl, Postman, Web Frontend)          â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                     â”‚ HTTP Requests
+                     â†“
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚             Django URL Router (urls.py)                 â”‚
+â”‚  Mappe /api/categories/ â†’ CategoryViewSet, etc.         â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                     â”‚
+                     â†“
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚             Views (ViewSets) - views.py                 â”‚
+â”‚  Handle requests, validation, permissions, responses    â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                     â”‚
+                     â†“
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚          Serializers - serializers.py                   â”‚
+â”‚  Convert request JSON â†” Django models                   â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                     â”‚
+                     â†“
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚         Django Models (faq.models)                      â”‚
+â”‚  Category, FAQ, FAQVector, Feedback                     â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                     â”‚
+                     â†“
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  Chatbot Pipeline (chatbot.utils, vectorization, etc.)  â”‚
+â”‚  find_best_faq() â†’ retourne FAQs pertinentes            â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---
@@ -59,7 +59,7 @@ L'API REST expose le pipeline chatbot via des endpoints HTTP standardisés. Les 
 
 ### 1. `backend/faq/serializers.py` (NEW)
 
-**Rôle :** Définir les schémas de sérialisation/désérialisation JSON ↔ modèles Django
+**Rôle :** Définir les schémas de sérialisation/désérialisation JSON â†” modèles Django
 
 **Serializers créés :**
 
@@ -121,7 +121,7 @@ class FAQViewSet(ModelViewSet)
 
 class ChatbotAskViewSet(ViewSet)
     # Endpoint: POST /api/chatbot/ask/
-    # CŒUR DU CHATBOT
+    # CÅ’UR DU CHATBOT
     # 1. Valide la requête (QuestionRequestSerializer)
     # 2. Appelle find_best_faq(question, top_k)
     # 3. Formate les résultats (ChatbotResponseSerializer)
@@ -172,7 +172,7 @@ router.register(r'chatbot', ChatbotAskViewSet, basename='chatbot')
 ```python
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('faq.urls')),  # ← AJOUTÉ
+    path('api/', include('faq.urls')),  # â† AJOUTà‰
 ]
 ```
 
@@ -194,9 +194,9 @@ class FaqConfig(AppConfig):
             from chatbot.vectorization import compute_and_store_vectors
             print("[FAQ] Initialisation du vectorizer TF-IDF...")
             compute_and_store_vectors()
-            print("[FAQ] ✓ Vectorizer entraîné")
+            print("[FAQ] âœ“ Vectorizer entraîné")
         except Exception as e:
-            print(f"[FAQ] ⚠ Erreur : {e}")
+            print(f"[FAQ] âš  Erreur : {e}")
 ```
 
 **Pourquoi :** Le vectorizer est une variable globale en mémoire. Sans cette initialisation, il n'existait que dans le process du Django shell, pas dans le serveur API.
@@ -216,21 +216,21 @@ class FaqConfig(AppConfig):
    }
 
 2. Django URL ROUTER
-   Mappe à ChatbotAskViewSet.ask() action
+   Mappe à  ChatbotAskViewSet.ask() action
 
 3. SERIALIZER validation (QuestionRequestSerializer)
-   ✓ Vérifie question (max 1000 chars)
-   ✓ Vérifie top_k (1-10)
+   âœ“ Vérifie question (max 1000 chars)
+   âœ“ Vérifie top_k (1-10)
 
 4. VIEW logique
    user_vec, user_norm = compute_tfidf_vector(question)
-       ↓ appelle preprocessing.preprocess_text()
-       ↓ applique TF-IDF transform
+       â†“ appelle preprocessing.preprocess_text()
+       â†“ applique TF-IDF transform
 
    faq_results = find_best_faq(question, top_k)
-       ↓ boucle sur FAQVector en BD
-       ↓ calcule similarité cosinus
-       ↓ trie par score décroissant
+       â†“ boucle sur FAQVector en BD
+       â†“ calcule similarité cosinus
+       â†“ trie par score décroissant
 
 5. FORMAT résultats (ChatbotResponseSerializer)
    {
@@ -258,17 +258,17 @@ class FaqConfig(AppConfig):
 | Méthode   | Endpoint                | Authentification | Rôle                     |
 | --------- | ----------------------- | ---------------- | ------------------------ |
 | GET       | `/api/categories/`      | Public           | Lister catégories        |
-| POST      | `/api/categories/`      | ✓ Protégé        | Créer catégorie          |
+| POST      | `/api/categories/`      | âœ“ Protégé        | Créer catégorie          |
 | GET       | `/api/categories/{id}/` | Public           | Détail catégorie         |
-| PUT/PATCH | `/api/categories/{id}/` | ✓ Protégé        | Modifier catégorie       |
-| DELETE    | `/api/categories/{id}/` | ✓ Protégé        | Supprimer catégorie      |
+| PUT/PATCH | `/api/categories/{id}/` | âœ“ Protégé        | Modifier catégorie       |
+| DELETE    | `/api/categories/{id}/` | âœ“ Protégé        | Supprimer catégorie      |
 | GET       | `/api/faq/`             | Public           | Lister FAQs              |
-| POST      | `/api/faq/`             | ✓ Protégé        | Créer FAQ                |
+| POST      | `/api/faq/`             | âœ“ Protégé        | Créer FAQ                |
 | GET       | `/api/faq/{id}/`        | Public           | Détail FAQ               |
-| PUT/PATCH | `/api/faq/{id}/`        | ✓ Protégé        | Modifier FAQ             |
-| DELETE    | `/api/faq/{id}/`        | ✓ Protégé        | Supprimer FAQ            |
-| **POST**  | **`/api/chatbot/ask/`** | **Public**       | **⭐ Poser question**    |
-| GET       | `/api/feedback/`        | ✓ Protégé        | Lister feedbacks (admin) |
+| PUT/PATCH | `/api/faq/{id}/`        | âœ“ Protégé        | Modifier FAQ             |
+| DELETE    | `/api/faq/{id}/`        | âœ“ Protégé        | Supprimer FAQ            |
+| **POST**  | **`/api/chatbot/ask/`** | **Public**       | **â­ Poser question**    |
+| GET       | `/api/feedback/`        | âœ“ Protégé        | Lister feedbacks (admin) |
 | POST      | `/api/feedback/`        | Public           | Envoyer feedback         |
 
 ---
@@ -285,7 +285,7 @@ Logs au démarrage :
 
 ```
 [FAQ] Initialisation du vectorizer TF-IDF...
-[FAQ] ✓ Vectorizer entraîné et FAQVectors stockés en BD
+[FAQ] âœ“ Vectorizer entraîné et FAQVectors stockés en BD
 ...
 Starting development server at http://127.0.0.1:8000/
 ```
@@ -360,29 +360,29 @@ Réponse : 500 Internal Server Error
 
 ## Bonnes pratiques implémentées
 
-✅ **Séparation des concerns**
+âœ… **Séparation des concerns**
 
 - Serializers : validation et transformation
 - Views : logique métier
 - URLs : routing
 
-✅ **Permissions granulaires**
+âœ… **Permissions granulaires**
 
 - Lectures publiques (GET)
 - Modifications authentifiées (POST/PUT/DELETE)
 
-✅ **Nesting intelligent**
+âœ… **Nesting intelligent**
 
 - Serializers imbriqués (Category dans FAQ)
 - Relations optimisées (prefetch_related)
 
-✅ **Gestion des erreurs**
+âœ… **Gestion des erreurs**
 
 - Try/catch dans views
 - Messages d'erreur explicites
 - Status codes HTTP appropriés
 
-✅ **Performance**
+âœ… **Performance**
 
 - Vectorizer singleton lazy (chargé une fois)
 - Prefetch relations DB
@@ -404,6 +404,7 @@ Réponse : 500 Internal Server Error
 
 ## Fichiers de référence
 
-- [API_TEST_GUIDE.md](API_TEST_GUIDE.md) — Exemples curl PowerShell
-- [ARCHITECTURE.md](ARCHITECTURE.md) — Architecture du pipeline chatbot
-- [TEST_PIPELINE.md](TEST_PIPELINE.md) — Résultats tests en Django shell
+- [API_TEST_GUIDE.md](API_TEST_GUIDE.md) â€” Exemples curl PowerShell
+- [ARCHITECTURE.md](ARCHITECTURE.md) â€” Architecture du pipeline chatbot
+- [TEST_PIPELINE.md](TEST_PIPELINE.md) â€” Résultats tests en Django shell
+

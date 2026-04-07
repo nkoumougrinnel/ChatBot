@@ -1,4 +1,4 @@
-[
+﻿[
 <<<<<<< HEAD
 =======
 
@@ -29,7 +29,7 @@
       "is_staff": false,
       "is_superuser": false,
       "is_active": true,
-      "first_name": "Étudiant",
+      "first_name": "Ã‰tudiant",
       "last_name": "Test",
       "date_joined": "2026-02-10T00:00:00Z",
       "role": "etudiant"
