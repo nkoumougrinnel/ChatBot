@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 """
+=======
+﻿"""
+>>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 Utilitaires généraux pour l'application chatbot.
 Point d'entrée unique pour les fonctions du cœur du chatbot.
 """
@@ -23,6 +27,7 @@ __all__ = [
     'compute_cosine_similarity',
     'find_best_faq',
 ]
+<<<<<<< HEAD
 
 def get_chatbot_response(question: str, top_k: int = 3):
     """
@@ -59,3 +64,5 @@ def get_chatbot_response(question: str, top_k: int = 3):
         "status": status,
     }
 
+=======
+>>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482

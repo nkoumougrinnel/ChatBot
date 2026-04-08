@@ -1,0 +1,86 @@
+﻿[
+  {
+    "id": "faq_001",
+    "categorie": "Introduction",
+    "sous_theme": "IdentitÃ© de l'Ã©tablissement",
+    "question": "Qu'est-ce que SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC (Ã‰cole Nationale SupÃ©rieure des Postes, des TÃ©lÃ©communications et des Technologies de l'Information et de la Communication) est un Ã©tablissement d'enseignement supÃ©rieur public camerounais situÃ© Ã  YaoundÃ©. Il forme des cadres et techniciens spÃ©cialisÃ©s dans les domaines des tÃ©lÃ©communications, des rÃ©seaux, de l'informatique et du numÃ©rique.",
+    "exemples": [
+      "C'est quoi SUP'PTIC ?",
+      "Qu'est-ce que SUP'PTIC Cameroun ?",
+      "SUP'PTIC, c'est une Ã©cole ou une universitÃ© ?"
+    ],
+    "sources": ["https://e-supptic.cm/"],
+    "date_creation": "2026-04-07",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_002",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'Ã©tablissement",
+    "question": "Depuis quand existe SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC a Ã©tÃ© crÃ©Ã©e le 3 octobre 1969 sous le nom d'Ã‰cole FÃ©dÃ©rale des Postes et TÃ©lÃ©communications. Elle est devenue l'ENSPT en 1982, a adoptÃ© le systÃ¨me LMD en 2012, puis a pris son nom actuel par dÃ©cret prÃ©sidentiel en 2016.",
+    "exemples": [
+      "Depuis quand existe SUP'PTIC ?",
+      "Comment SUP'PTIC a-t-elle Ã©tÃ© crÃ©Ã©e ?",
+      "Quelle est l'histoire de SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://fr.wikipedia.org/wiki/%C3%89cole_nationale_des_postes_et_t%C3%A9l%C3%A9communications_et_des_technologies_de_l'information_et_de_la_communication"
+    ],
+    "date_creation": "2026-04-07",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_003",
+    "categorie": "Programmes AcadÃ©miques",
+    "sous_theme": "FiliÃ¨res et diplÃ´mes",
+    "question": "Quelles formations propose SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC propose deux grandes filiÃ¨res : l'IngÃ©nierie et le Management. En IngÃ©nierie, on trouve des formations techniques en tÃ©lÃ©communications, rÃ©seaux et informatique. En Management, on trouve des parcours pour les mÃ©tiers de l'inspection des postes, de la comptabilitÃ©, de la logistique et du commerce.",
+    "exemples": [
+      "Quelles formations propose SUP'PTIC ?",
+      "Quelles sont les filiÃ¨res disponibles Ã  SUP'PTIC ?",
+      "On peut Ã©tudier quoi Ã  SUP'PTIC ?"
+    ],
+    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "date_creation": "2026-04-07",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_004",
+    "categorie": "Inscriptions et Admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Comment intÃ©grer SUP'PTIC ?",
+    "reponse_enrichie": "L'entrÃ©e Ã  SUP'PTIC se fait par concours. La filiÃ¨re IngÃ©nierie demande un baccalaurÃ©at scientifique ou technique, tandis que la filiÃ¨re Management accepte tout baccalaurÃ©at. Les concours sont organisÃ©s dans plusieurs villes du Cameroun.",
+    "exemples": [
+      "Comment intÃ©grer SUP'PTIC ?",
+      "Quelles sont les conditions pour entrer Ã  SUP'PTIC ?",
+      "Faut-il passer un concours pour intÃ©grer SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
+    ],
+    "date_creation": "2026-04-07",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_005",
+    "categorie": "Inscriptions et Admissions",
+    "sous_theme": "Frais de scolaritÃ©",
+    "question": "Combien coÃ»tent les frais de scolaritÃ© Ã  SUP'PTIC ?",
+    "reponse_enrichie": "Les frais de scolaritÃ© annuels Ã  SUP'PTIC sont de 525 000 FCFA pour les Ã©tudiants camerounais et 825 000 FCFA pour les Ã©tudiants Ã©trangers. Ce montant inclut les frais d'inscription, les activitÃ©s culturelles et l'assurance.",
+    "exemples": [
+      "Combien coÃ»te la scolaritÃ© Ã  SUP'PTIC ?",
+      "Quels sont les frais de scolaritÃ© Ã  SUP'PTIC ?",
+      "SUP'PTIC est-elle payante ?"
+    ],
+    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "date_creation": "2026-04-07",
+    "version": "2.0",
+    "valide": true
+  }
+]
