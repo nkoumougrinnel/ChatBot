@@ -1,31 +1,44 @@
-# Environnement virtuel (Trés important pour votre dossier .venv)
-.venv/
-venv/
-ENV/
-env/
-
-# Django
-backend/db.sqlite3
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environnements virtuels
+.venv/
+venv/
+env/
+ENV/
+
+# Django
+*.sqlite3
+staticfiles/
+media/
 local_settings.py
 
-# Fichiers de log et temporaires
-*.log
-.tmp/
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
 
-# OS / IDE
+# OS
 .DS_Store
 Thumbs.db
 
-# NGrok configuration avec tokens (SENSIBLE - ne pas commiter)
-ngrok_front.yml
-ngrok_back.yml
-.vscode/
-.idea/
+# Logs
+*.log
 
-# Frontend
-node_modules/
-.env__pycache__/
-*.pyc
+# Variables d'environnement
+.env
+.env.*
+
+# ngrok
+ngrok_back.yml
+ngrok_front.yml
