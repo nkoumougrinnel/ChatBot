@@ -1,0 +1,874 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{fontawesome5}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit,backgrounds}
+\usepackage{amssymb}
+\usepackage[table]{xcolor}   % pour gérer les couleurs dans les tableaux
+\usepackage{colortbl}        % pour activer \rowcolor
+
+
+
+% Configuration des listes
+\setlist[itemize]{leftmargin=*, itemsep=3pt, topsep=3pt}
+\setlist[enumerate]{leftmargin=*, itemsep=3pt, topsep=3pt}
+
+% Configuration du code
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    tabsize=4,
+    showstringspaces=false,
+    captionpos=b
+}
+
+% En-tête et pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Roadmap Prototype Chatbot SUP'PTIC}
+\fancyhead[R]{\small 8-13 février 2026}
+\fancyfoot[C]{\thepage}
+
+% Environnements personnalisés
+\newtcolorbox{important}[1][]{
+  colback=red!5!white,
+  colframe=red!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{info}[1][]{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{astuce}[1][]{
+  colback=green!5!white,
+  colframe=green!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{exemple}[1][]{
+  colback=orange!5!white,
+  colframe=orange!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\begin{document}
+
+% Page de titre
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge \textbf{ROADMAP PROTOTYPE}} \\[0.5cm]
+    {\LARGE \textbf{CHATBOT SUP'PTIC}} 
+    
+    \vspace{1cm}
+    
+    {\Large 8 février - 13 février 2026 (6 jours)}
+    
+    \vspace{1.5cm}
+    
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \small Documentation technique complète pour \\
+        le développement du prototype
+    \end{minipage}
+    
+    \vfill
+    
+    \begin{center}
+        \textit{Rédigé par :} \\
+        \vspace{0.3cm}
+        \textbf{NKOUMOU TJADE} \\
+        Chef de la Division de Programmation \\
+        Club Informatique SUP'PTIC
+    \end{center}
+    
+\end{titlepage}
+
+% Table des matières
+\tableofcontents
+\clearpage
+
+% Section 1 : Contexte
+\section{Contexte et Contraintes}
+\label{sec:contexte}
+
+\subsection{Situation actuelle}
+
+\begin{itemize}
+    \item[\faIcon{check-circle}] \textbf{Documentation technique complète} : algorithme TF-IDF, architecture BD, gestion FAQ v2.0
+    \item[\faIcon{check-circle}] \textbf{Maquette wireframe} déjà proposée (à finaliser)
+    \item[\faIcon{times-circle}] \textbf{Pas de données CSV réelles} : nécessité de génération massive
+\end{itemize}
+
+\subsection{Équipes disponibles (10 personnes)}
+
+\begin{enumerate}
+    \item \textbf{Base de Données (2 places)} \\
+    Mission : Django models, migrations, optimisation, scripts d'import
+    
+    \item \textbf{Structuration des Données (4 places)} \\
+    Mission : Génération massive CSV avec IA, nettoyage, validation
+    
+    \item \textbf{Backend (2 places)} \\
+    Mission : API Django, TF-IDF, similarité cosinus, endpoints REST
+    
+    \item \textbf{Frontend (2 places)} \\
+    Mission : Interface chat HTML/CSS/JS, connexion API, design responsive
+\end{enumerate}
+
+\subsection{Stratégie de Génération des Données}
+
+\begin{important}[Approche par Vagues de 100 Q/R]
+L'équipe Structuration des Données fonctionne en \textbf{vagues de 100 Q/R par sous-thème}.
+
+\textbf{Objectif ambitieux :} 1000+ Q/R pour le prototype
+
+\textbf{Méthode :}
+\begin{itemize}
+    \item Chaque sous-groupe génère 100 Q/R par session de travail
+    \item Focus sur un sous-thème à la fois pour garantir cohérence
+    \item Utilisation intensive d'IA générative (ChatGPT, Claude, Copilot)
+    \item Validation par échantillonnage (20\% des Q/R)
+\end{itemize}
+\end{important}
+
+\clearpage
+
+% Section 2 : Objectif
+\section{Objectif du Prototype}
+\label{sec:objectif}
+
+\subsection{Livrable final (13 février 18h)}
+
+Un chatbot fonctionnel démontrant :
+
+\begin{itemize}
+    \item[\faIcon{check}] \textbf{Recherche par similarité TF-IDF} opérationnelle sur 1000+ Q/R
+    \item[\faIcon{check}] \textbf{Base de données Django} avec modèles complets et relations
+    \item[\faIcon{check}] \textbf{API REST fonctionnelle} : endpoints FAQ, feedback, statistiques
+    \item[\faIcon{check}] \textbf{Interface HTML/CSS/JS} basée sur wireframe existant
+    \item[\faIcon{check}] \textbf{1000+ Q/R validées} couvrant toutes les catégories principales
+    \item[\faIcon{check}] \textbf{Système de feedback} opérationnel (\faThumbsUp \, \faThumbsDown)
+    \item[\faIcon{check}] \textbf{Documentation complète} : README, API, guide BD
+\end{itemize}
+
+\subsection{Principe de Génération Massive}
+
+\begin{info}[Pipeline de Production]
+\textbf{Jour 1-2 :} 400 Q/R \\
+\textbf{Jour 3-4 :} 600 Q/R supplémentaires \\
+\textbf{Total :} 1000+ Q/R en 4 jours
+
+\vspace{0.3cm}
+\textbf{Répartition par catégorie :}
+\begin{itemize}
+    \item Introduction \& Historique : 100 Q/R
+    \item Inscriptions \& Admissions : 100 Q/R
+    \item Examens \& Évaluations : 100 Q/R
+    \item Vie Étudiante : 100 Q/R
+    \item Services Administratifs : 100 Q/R
+    \item Programmes Académiques : 100 Q/R
+    \item Infrastructures \& Ressources : 100 Q/R
+    \item Carrières \& Insertion Professionnelle : 100 Q/R
+    \item Communication \& Vie Institutionnelle : 100 Q/R
+    \item Vie Pratique : 100 Q/R
+\end{itemize}
+
+\textbf{Total :} 1000 Q/R
+\end{info}
+
+\clearpage
+
+% Section 3 : Planning
+\section{Planning Détaillé Jour par Jour}
+\label{sec:planning}
+
+\subsection{DIMANCHE 8 FÉVRIER - Jour 1 : Fondations et Première Vague}
+
+\subsubsection{Matin (8h-12h) - Setup \& Démarrage}
+
+\paragraph{Équipe Base de Données}
+\begin{itemize}
+    \item[$\square$] Créer nouveau dépôt Git propre
+    \item[$\square$] Initialiser projet Django (django-admin startproject)
+    \item[$\square$] Définir les 5 models Django :
+    \begin{itemize}
+        \item Utilisateurs (extension AbstractUser)
+        \item Catégories
+        \item FAQ (question, réponse, catégorie, sous-thème, source)
+        \item FAQVector (vecteur TF-IDF, norme)
+        \item Feedback (utilisateur, FAQ, type, score, commentaire)
+    \end{itemize}
+    \item[$\square$] Ajouter contraintes et relations (ForeignKey, CASCADE/RESTRICT)
+    \item[$\square$] Première migration (makemigrations + migrate)
+\end{itemize}
+
+\paragraph{Équipe Structuration des Données}
+\begin{itemize}
+    \item[$\square$] \textbf{Sous-groupe 1 :} Première vague de génération
+    \begin{itemize}
+        \item ≥ 100 Q/R sur "Introduction \& Historique"
+        \item Utiliser le CSV de référence déjà défini
+        \item Respecter les règles de qualité et validation
+    \end{itemize}
+
+    \item[$\square$] \textbf{Sous-groupe 2 :} Deuxième vague de génération
+    \begin{itemize}
+        \item ≥ 100 Q/R sur "Inscriptions \& Admissions"
+        \item Respecter le même format CSV de référence
+        \item Validation croisée entre sous-groupes
+    \end{itemize}
+\end{itemize}
+
+
+\paragraph{Équipe Backend}
+\begin{itemize}
+    \item[$\square$] Installer dépendances (requirements.txt)
+    \begin{lstlisting}[language=bash]
+Django==4.2.7
+djangorestframework==3.14.0
+django-cors-headers==4.3.1
+scikit-learn==1.3.2
+pandas==2.1.3
+numpy==1.26.2
+    \end{lstlisting}
+    \item[$\square$] Créer structure apps Django : \texttt{faq/}, \texttt{chatbot/}, \texttt{users/}
+    \item[$\square$] Implémenter module prétraitement texte (tokenization, stopwords français)
+\end{itemize}
+
+\paragraph{Équipe Frontend}
+\begin{itemize}
+    \item[$\square$] Finaliser wireframe de l'interface chat
+    \item[$\square$] Setup projet HTML/CSS/JS :
+    \begin{itemize}
+        \item Structure de base : index.html, styles.css, app.js
+        \item Framework CSS (Bootstrap)
+    \end{itemize}
+    \item[$\square$] Créer composants de base (zone messages, input, boutons)
+\end{itemize}
+
+\subsubsection{Après-midi (14h-18h) - Production Intensive}
+
+\paragraph{Tous ensemble}
+\begin{itemize}
+    \item[$\square$] \textbf{Réunion synchronisation} (14h-14h30)
+    \item[$\square$] Officialiser architecture projet sur nouveau dépôt
+    \item[$\square$] Commit initial avec structure complète
+\end{itemize}
+
+\textbf{Architecture projet}
+\begin{verbatim}
+ChatBot/
+├── backend/
+│   ├── config/          # Paramètres Django (settings, urls, wsgi)
+│   ├── faq/             # App gestion FAQ (stockage et réponses)
+│   ├── chatbot/         # App algorithme TF-IDF et prétraitement texte
+│   ├── users/           # App gestion des utilisateurs + feedback
+│   ├── manage.py        # Commandes Django (runserver, migrations)
+│   └── db.sqlite3       # Base de données SQLite par défaut
+│
+├── frontend/            # Interface utilisateur (HTML/CSS/JS)
+│   ├── index.html
+│   ├── css/             # Styles
+│   ├── js/              # Scripts dynamiques
+│   └── assets/          # Images, icônes, ressources statiques
+│
+├── data/
+│   ├── csv/             # Fichiers CSV générés par structuration
+│   └── scripts/         # Scripts import/export (CSV ↔ BD)
+│
+├── docs/                # Documentation technique et fonctionnelle
+│
+├── venv/                # Environnement virtuel Python (isolé)
+│
+└── requirements.txt     # Liste des dépendances Python
+
+\end{verbatim}
+
+
+\paragraph{Équipe Structuration (Production massive)}
+\begin{itemize}
+    \item[$\square$] \textbf{Sous-groupe 1 :} Troisième vague
+    \begin{itemize}
+        \item ≥ 100 Q/R sur "Examens \& Évaluations - Modalités"
+        \item Respecter le format CSV de référence
+        \item Validation interne avant livraison
+    \end{itemize}
+
+    \item[$\square$] \textbf{Sous-groupe 2 :} Quatrième vague
+    \begin{itemize}
+        \item ≥ 100 Q/R sur "Vie Étudiante - Clubs et associations"
+        \item Respecter le même format CSV de référence
+        \item Validation interne avant livraison
+    \end{itemize}
+
+    \item[$\square$] \textbf{Validation croisée}
+    \begin{itemize}
+        \item Chaque sous-groupe valide 20\% des Q/R de l'autre
+        \item Vérification cohérence, clarté et absence de doublons
+    \end{itemize}
+\end{itemize}
+
+
+\paragraph{Équipe Backend}
+\begin{itemize}
+    \item[$\square$] Implémenter fonction \texttt{preprocess\_text(text)}
+    \item[$\square$] Créer fixtures de test (10 FAQ, 3 catégories, 2 utilisateurs)
+\end{itemize}
+
+\paragraph{Équipe Frontend}
+\begin{itemize}
+    \item[$\square$] Implémenter structure HTML complète
+    \item[$\square$] Styliser interface (CSS)
+    \item[$\square$] Préparer logique d'envoi requête (fetch API)
+\end{itemize}
+
+\paragraph{Équipe Base de Données}
+\begin{itemize}
+    \item[$\square$] Créer script d'import CSV → Django
+    \item[$\square$] Tester import avec 50 premières Q/R
+    \item[$\square$] Créer index sur colonnes critiques
+\end{itemize}
+
+\subsubsection{Fin de journée (18h-18h30)}
+\begin{itemize}
+    \item[$\square$] \textbf{Stand-up :} chaque équipe présente avancement
+    \item[$\square$] Vérifier objectif atteint : 300 Q/R générées
+    \item[$\square$] Identifier blocages éventuels
+\end{itemize}
+
+\clearpage
+
+\subsection{LUNDI 9 FÉVRIER - Jour 2 : Algorithme et Vague Massive}
+
+\subsubsection{Matin (8h-12h) - Cœur Algorithmique}
+
+\paragraph{Équipe Backend}
+\begin{itemize}
+    \item[$\square$] Implémenter vectorisation TF-IDF complète :
+    \begin{itemize}
+        \item Fonction \texttt{train\_vectorizer(corpus)}
+        \item Fonction \texttt{compute\_tfidf\_vector(text)}
+        \item Calcul et stockage vecteurs dans FAQVector
+        \item Calcul normes vectorielles
+    \end{itemize}
+    \item[$\square$] Implémenter similarité cosinus :
+    \begin{itemize}
+        \item Fonction \texttt{compute\_cosine\_similarity(vec1, vec2)}
+        \item Fonction \texttt{find\_best\_faq(question, top\_k=3)}
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Équipe Structuration (Vagues 4-5-6)}
+\begin{itemize}
+    \item[$\square$] \textbf{Vague 5 :} 100 Q/R "Services Administratifs - Scolarité"
+    \begin{itemize}
+        \item Respecter le format CSV de référence
+        \item Validation interne avant livraison
+    \end{itemize}
+
+    \item[$\square$] \textbf{Vague 6 :} 100 Q/R "Programmes Académiques - Filières"
+    \begin{itemize}
+        \item Respecter le même format CSV de référence
+        \item Validation interne avant livraison
+    \end{itemize}
+
+    \item[$\square$] \textbf{Objectif session :} 300 Q/R supplémentaires → Total : 600 Q/R
+    \begin{itemize}
+        \item Vérifier cohérence et homogénéité des données
+        \item Validation croisée entre sous-groupes
+    \end{itemize}
+\end{itemize}
+
+
+\paragraph{Équipe Base de Données}
+\begin{itemize}
+    \item[$\square$] Optimiser script d'import (traitement par batch)
+    \item[$\square$] Import des 600 Q/R dans la base
+    \item[$\square$] Vérifier intégrité référentielle
+\end{itemize}
+
+\paragraph{Équipe Frontend}
+\begin{itemize}
+    \item[$\square$] Implémenter logique envoi requête
+    \item[$\square$] Affichage réponse chatbot (bulle de message)
+    \item[$\square$] Gérer états de chargement (spinner)
+\end{itemize}
+
+\subsubsection{Après-midi (14h-18h) - Intégration \& Production}
+
+\paragraph{Équipe Backend}
+\begin{itemize}
+    \item[$\square$] Créer endpoints API REST (Django REST Framework) :
+    \begin{itemize}
+        \item \texttt{POST /api/chatbot/ask/} - poser question
+        \item \texttt{GET /api/faq/} - lister FAQ
+        \item \texttt{GET /api/categories/} - lister catégories
+    \end{itemize}
+    \item[$\square$] Tester endpoints avec Postman/curl
+\end{itemize}
+
+\paragraph{Équipe Structuration (Vagues 7-8)}
+\begin{itemize}
+    \item[$\square$] \textbf{Vague 7 :} 100 Q/R "Carrières \& Insertion - Stages"
+    \begin{itemize}
+        \item Respecter le format CSV de référence
+        \item Validation interne avant livraison
+    \end{itemize}
+
+    \item[$\square$] \textbf{Vague 8 :} 100 Q/R "Inscriptions - Documents requis"
+    \begin{itemize}
+        \item Respecter le même format CSV de référence
+        \item Validation interne avant livraison
+    \end{itemize}
+
+    \item[$\square$] \textbf{Validation finale :} vérifier cohérence 800 Q/R totales
+    \begin{itemize}
+        \item Contrôle qualité global
+        \item Vérification absence de doublons
+        \item Validation croisée entre sous-groupes
+    \end{itemize}
+\end{itemize}
+
+
+\paragraph{Équipe Frontend}
+\begin{itemize}
+    \item[$\square$] Connecter frontend à API backend
+    \item[$\square$] Tester envoi question et affichage réponse
+    \item[$\square$] Gérer erreurs (pas de réponse, API indisponible)
+\end{itemize}
+
+\paragraph{Équipe Base de Données}
+\begin{itemize}
+    \item[$\square$] Import des 800 Q/R totales
+    \item[$\square$] Vérifier que tous vecteurs sont calculés
+    \item[$\square$] Requêtes de vérification (count, duplicates)
+\end{itemize}
+
+\subsubsection{Soir (18h-19h)}
+\begin{itemize}
+    \item[$\square$] \textbf{Test end-to-end} : parcours utilisateur complet
+    \item[$\square$] Vérifier : 800 Q/R en base, algorithme fonctionnel
+    \item[$\square$] Identifier bugs critiques à corriger demain
+\end{itemize}
+
+\clearpage
+
+\subsection{MARDI 10 FÉVRIER - Jour 3 : Feedback et Finalisation 1000+}
+
+\subsubsection{Matin (8h-12h) - Système Feedback}
+
+\paragraph{Équipe Backend}
+\begin{itemize}
+    \item[$\square$] Implémenter endpoint feedback :
+    \begin{itemize}
+        \item \texttt{POST /api/feedback/} - enregistrer feedback
+        \item Sauvegarder : user\_id, faq\_id, type (\faThumbsUp/\faThumbsDown), score, commentaire
+    \end{itemize}
+    \item[$\square$] Créer endpoint statistiques :
+    \begin{itemize}
+        \item \texttt{GET /api/stats/} - FAQ par taux satisfaction
+        \item \texttt{GET /api/stats/categories/} - répartition par catégorie
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Équipe Structuration (Vagues finales 9-10)}
+\begin{itemize}
+    \item[$\square$] \textbf{Vague 9 :} 100 Q/R "Examens - Rattrapages et notes"
+    \begin{itemize}
+        \item Respecter le format CSV de référence
+        \item Validation interne avant livraison
+    \end{itemize}
+
+    \item[$\square$] \textbf{Vague 10 :} 100 Q/R "Vie Pratique - Transport, restauration"
+    \begin{itemize}
+        \item Respecter le même format CSV de référence
+        \item Validation interne avant livraison
+    \end{itemize}
+
+    \item[$\square$] \textbf{OBJECTIF ATTEINT :} 1000 Q/R
+    \begin{itemize}
+        \item Vérification cohérence globale
+        \item Contrôle qualité final (échantillon 10\%)
+        \item Enrichissement : ajouter variantes pour Q/R importantes
+    \end{itemize}
+\end{itemize}
+
+
+\paragraph{Équipe Base de Données}
+\begin{itemize}
+    \item[$\square$] Ajouter 5-10 utilisateurs de test
+    \item[$\square$] Créer données feedback fictives pour démo
+    \item[$\square$] Tester requêtes analytiques (statistiques)
+\end{itemize}
+
+\paragraph{Équipe Frontend}
+\begin{itemize}
+    \item[$\square$] Ajouter boutons feedback (\faThumbsUp/\faThumbsDown) sous réponses
+    \item[$\square$] Implémenter boîte commentaire feedback négatif
+    \item[$\square$] Améliorer design (CSS responsive)
+\end{itemize}
+
+\subsubsection{Après-midi (14h-18h) - Raffinement}
+
+\paragraph{Équipe Backend}
+\begin{itemize}
+    \item[$\square$] Ajouter système seuil de confiance :
+    \begin{itemize}
+        \item Score < 0.6 : "Je n'ai pas trouvé de réponse précise"
+        \item 0.6 < Score < 0.8 : "Voici la réponse la plus proche"
+        \item Score > 0.8 : Réponse directe
+    \end{itemize}
+    \item[$\square$] Optimiser recherche (caching si nécessaire)
+\end{itemize}
+
+\paragraph{Équipe Structuration}
+\begin{itemize}
+    \item[$\square$] Documenter toutes sources utilisées (SOURCES.md)
+    \item[$\square$] Créer CSV final propre et consolidé
+    \item[$\square$] Validation qualité finale (échantillon 10\%)
+\end{itemize}
+
+\paragraph{Équipe Frontend}
+\begin{itemize}
+    \item[$\square$] Ajouter page "Statistiques" basique
+    \item[$\square$] Implémenter liste catégories cliquables
+    \item[$\square$] Améliorer UX mobile (responsive design)
+\end{itemize}
+
+\paragraph{Équipe Base de Données}
+\begin{itemize}
+    \item[$\square$] Import final 1000+ Q/R
+    \item[$\square$] Créer backup complet base de données
+    \item[$\square$] Tests d'intégrité référentielle
+\end{itemize}
+
+\clearpage
+
+\subsection{MERCREDI 11 FÉVRIER - Jour 4 : Tests et Debugging}
+
+\subsubsection{Matin (8h-12h) - Tests Intensifs}
+
+\paragraph{Tous ensemble - Session Tests}
+\begin{itemize}
+    \item[$\square$] Chaque équipe teste fonctionnalités autres équipes
+    \item[$\square$] Créer liste bugs : critiques / moyens / mineurs
+    \item[$\square$] Tester avec questions réelles d'étudiants
+\end{itemize}
+
+\paragraph{Tests spécifiques}
+\begin{itemize}
+    \item[$\square$] \textbf{Backend :} Tester 100 questions variées, vérifier scores
+    \item[$\square$] \textbf{Base de Données :} Test charge (100 requêtes simultanées)
+    \item[$\square$] \textbf{Frontend :} Tester 3 navigateurs (Chrome, Firefox, Safari)
+    \item[$\square$] \textbf{Structuration :} Vérifier qualité 1000+ Q/R finales
+\end{itemize}
+
+\subsubsection{Après-midi (14h-18h) - Corrections}
+
+\begin{itemize}
+    \item[$\square$] \textbf{Backend :} Corriger bugs critiques algorithme
+    \item[$\square$] \textbf{Backend :} Améliorer gestion cas edge
+    \item[$\square$] \textbf{Base de Données :} Optimiser requêtes lentes
+    \item[$\square$] \textbf{Structuration :} Corriger Q/R problématiques
+    \item[$\square$] \textbf{Frontend :} Corriger bugs UI/UX
+    \item[$\square$] \textbf{Frontend :} Améliorer messages erreur
+\end{itemize}
+
+\subsubsection{Soir (18h-19h)}
+\begin{itemize}
+    \item[$\square$] Réunion priorisation : dernières tâches critiques
+    \item[$\square$] Définir qui fait quoi pour jeudi/vendredi
+\end{itemize}
+
+\clearpage
+
+\subsection{JEUDI 12 FÉVRIER - Jour 5 : Documentation et Démo}
+
+\subsubsection{Matin (8h-12h) - Documentation Technique}
+
+\paragraph{Équipe Backend}
+\begin{itemize}
+    \item[$\square$] Documenter API (README\_API.md) :
+    \begin{itemize}
+        \item Endpoints disponibles
+        \item Format requêtes/réponses
+        \item Exemples utilisation
+    \end{itemize}
+    \item[$\square$] Créer requirements.txt à jour
+    \item[$\square$] Commenter code critique
+\end{itemize}
+
+\paragraph{Équipe Base de Données}
+\begin{itemize}
+    \item[$\square$] Documenter schéma BD (diagramme ER)
+    \item[$\square$] Créer guide installation et migration
+    \item[$\square$] Préparer scripts seed (données démo)
+\end{itemize}
+
+\paragraph{Équipe Structuration}
+\begin{itemize}
+    \item[$\square$] Rédiger guide contribution CSV
+    \item[$\square$] Créer FAQ meta sur chatbot :
+    \begin{itemize}
+        \item "Comment fonctionne ce chatbot ?"
+        \item "Que faire si pas de réponse ?"
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Équipe Frontend}
+\begin{itemize}
+    \item[$\square$] Créer page "À propos" expliquant projet
+    \item[$\square$] Ajouter guide utilisation (tooltips, onboarding)
+    \item[$\square$] Documenter code frontend
+\end{itemize}
+
+\subsubsection{Après-midi (14h-18h) - Préparation Démo}
+
+\paragraph{Tous ensemble}
+\begin{itemize}
+    \item[$\square$] Créer scénario démonstration :
+    \begin{enumerate}
+        \item Introduction contexte
+        \item Architecture technique
+        \item Démonstration live (10 questions variées)
+        \item Système feedback
+        \item Statistiques
+        \item Perspectives futures
+    \end{enumerate}
+    \item[$\square$] Préparer slides présentation (PowerPoint/Google Slides)
+    \item[$\square$] Répéter démo 2-3 fois
+\end{itemize}
+
+\paragraph{Tâches spécifiques}
+\begin{itemize}
+    \item[$\square$] \textbf{Backend :} Préparer 10 questions démo impressionnantes
+    \item[$\square$] \textbf{Base de Données :} Créer données feedback réalistes
+    \item[$\square$] \textbf{Frontend :} Assurer visuel impeccable
+    \item[$\square$] \textbf{Structuration :} Story de collecte données
+\end{itemize}
+
+\clearpage
+
+\subsection{VENDREDI 13 FÉVRIER - Jour 6 : Finalisation et Livraison}
+
+\subsubsection{Matin (8h-12h) - Polish Final}
+
+\paragraph{Tous ensemble - Session Polissage}
+\begin{itemize}
+    \item[$\square$] Derniers ajustements UI/UX
+    \item[$\square$] Vérification complète endpoints
+    \item[$\square$] Test final end-to-end complet
+    \item[$\square$] Vérification responsive (mobile, tablette, desktop)
+\end{itemize}
+
+\paragraph{Par équipe}
+\begin{itemize}
+    \item[$\square$] \textbf{Backend :} Logs et monitoring basique
+    \item[$\square$] \textbf{Base de Données :} Backup final
+    \item[$\square$] \textbf{Frontend :} Optimisation performances
+    \item[$\square$] \textbf{Structuration :} Export CSV final
+\end{itemize}
+
+\subsubsection{Après-midi (14h-17h) - Déploiement \& Documentation}
+
+\begin{itemize}
+    \item[$\square$] Déployer sur serveur test (Heroku/PythonAnywhere/Railway)
+    \item[$\square$] Finaliser README.md principal :
+    \begin{itemize}
+        \item Description projet
+        \item Installation et setup
+        \item Architecture
+        \item Screenshots
+        \item Guide utilisation
+        \item Roadmap future
+    \end{itemize}
+    \item[$\square$] Créer CHANGELOG.md
+    \item[$\square$] Tag version v0.1.0-prototype
+\end{itemize}
+
+\subsubsection{Fin de journée (17h-18h) - Démo Officielle}
+
+\begin{important}[DÉMONSTRATION FINALE]
+\begin{itemize}
+    \item Présentation prototype devant équipe/encadrant/évaluateur
+    \item Démonstration système complet
+    \item Réponse aux questions
+    \item Collecte feedbacks
+    \item Discussion prochaines étapes
+\end{itemize}
+\end{important}
+
+\clearpage
+
+% Section 4 : Livrables
+\section{Livrables Attendus (13 février 18h)}
+\label{sec:livrables}
+
+\subsection{Code}
+
+\begin{itemize}
+    \item[\faIcon{check}] Projet Django complet avec 3 apps (faq, chatbot, users)
+    \item[\faIcon{check}] Frontend HTML/CSS/JS fonctionnel
+    \item[\faIcon{check}] Base de données avec 1000+ Q/R
+    \item[\faIcon{check}] API REST documentée
+\end{itemize}
+
+\subsection{Documentation}
+
+\begin{itemize}
+    \item[\faIcon{check}] README.md complet
+    \item[\faIcon{check}] Documentation API (README\_API.md)
+    \item[\faIcon{check}] Guide BD (schéma ER + migrations)
+    \item[\faIcon{check}] Guide contribution CSV
+    \item[\faIcon{check}] CHANGELOG.md
+\end{itemize}
+
+\subsection{Démo}
+
+\begin{itemize}
+    \item[\faIcon{check}] Application déployée et accessible en ligne
+    \item[\faIcon{check}] Présentation PowerPoint (10-15 slides)
+    \item[\faIcon{check}] Scénario démo préparé
+    \item[\faIcon{check}] 10 questions test impressionnantes
+\end{itemize}
+
+\clearpage
+
+% Section 5 : Indicateurs
+\section{Indicateurs de Succès}
+\label{sec:indicateurs}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{4cm}|p{3cm}|p{5cm}|}
+\hline
+\rowcolor{blue!20}
+\textbf{Critère} & \textbf{Objectif} & \textbf{Mesure} \\
+\hline
+Q/R dans la base & 1000+ & COUNT(*) FROM faq \\
+\hline
+Taux de réponse & >70\% & Questions score >0.6 \\
+\hline
+API fonctionnelle & 100\% & Tous endpoints testés \\
+\hline
+Interface utilisable & \faIcon{check} & Chat + feedback OK \\
+\hline
+Documentation & \faIcon{check} & README + API + BD \\
+\hline
+Démo prête & \faIcon{check} & Scénario testé 3x \\
+\hline
+\end{tabular}
+\caption{Critères de validation du prototype}
+\end{table}
+
+\clearpage
+
+% Section 6 : Points d'attention
+\section{Points d'Attention Critiques}
+\label{sec:attention}
+
+\subsection{Risques identifiés}
+
+\begin{enumerate}
+    \item \textbf{Synchronisation équipes} : Réunions quotidiennes obligatoires (matin + soir)
+    \item \textbf{Qualité vs Quantité} : Validation systématique 20\% des Q/R générées
+    \item \textbf{Blocage technique} : Plan B si import CSV pose problème
+    \item \textbf{Scope creep} : NE PAS ajouter fonctionnalités non prévues
+    \item \textbf{Fatigue production} : Pauses régulières, rotation tâches
+\end{enumerate}
+
+\subsection{Bonnes pratiques}
+
+\begin{itemize}
+    \item[\faIcon{sync}] Commits Git fréquents (min. 2 par personne par jour)
+    \item[\faIcon{comments}] Communication continue (groupe WhatsApp/Telegram)
+    \item[\faIcon{bug}] Logger tous bugs dans fichier partagé
+    \item[\faIcon{flask}] Tester après chaque feature importante
+    \item[\faIcon{coffee}] Pauses régulières pour éviter fatigue
+\end{itemize}
+
+\subsection{Gestion Production Massive}
+
+\begin{astuce}[Workflow Génération IA]
+\textbf{Pour chaque vague de 100 Q/R :}
+
+\begin{enumerate}
+    \item Définir sous-thème précis
+    \item Créer prompt IA optimisé
+    \item Générer 120 Q/R (marge sécurité)
+    \item Validation croisée : 20\% échantillon
+    \item Correction anomalies détectées
+    \item Export CSV consolidé
+    \item Import dans base test
+    \item Vérification vecteurs TF-IDF
+\end{enumerate}
+
+\textbf{Durée estimée par vague :} 1h30 - 2h
+\end{astuce}
+
+\clearpage
+
+
+% Section 8 : Conclusion
+\section*{Conclusion}
+
+\vspace{1cm}
+
+\begin{center}
+\Large
+\textbf{L'objectif est clair :}
+
+\vspace{0.5cm}
+
+\textbf{Un prototype fonctionnel et impressionnant} \\
+\textbf{avec 1000+ Q/R en 6 jours}
+
+\vspace{1cm}
+
+\textbf{\faIcon{check} On peut le faire !} \\
+\textbf{Let's build something amazing together !}
+
+\vspace{2cm}
+
+\rule{0.5\textwidth}{0.4pt}
+
+\vfill
+
+\normalsize
+\textit{Document préparé par :} \\
+\textbf{NKOUMOU TJADE} \\
+Chef de la Division de Programmation \\
+Club Informatique SUP'PTIC
+
+\vspace{0.5cm}
+
+
+\end{center}
+
+\end{document}
