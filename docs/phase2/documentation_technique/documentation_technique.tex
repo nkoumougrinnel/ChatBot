@@ -1,0 +1,909 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit,backgrounds,decorations.pathreplacing}
+
+% Configuration des listes
+\setlist[itemize]{leftmargin=*, itemsep=4pt, topsep=4pt}
+\setlist[enumerate]{leftmargin=*, itemsep=4pt, topsep=4pt}
+
+% Configuration du code
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{orange},
+    tabsize=4,
+    showstringspaces=false
+}
+
+% En-tête et pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Documentation Phase 2 --- ChatBot SUP'ONE}
+\fancyhead[R]{\small \today}
+\fancyfoot[C]{\thepage}
+
+% Environnements personnalisés
+\newtcolorbox{important}[1][]{
+  colback=red!5!white,
+  colframe=red!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{info}[1][]{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{astuce}[1][]{
+  colback=green!5!white,
+  colframe=green!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{exemple}[1][]{
+  colback=orange!5!white,
+  colframe=orange!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{schema}[1][]{
+  colback=gray!5!white,
+  colframe=gray!60!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\begin{document}
+
+% ============================================================
+% PAGE DE GARDE
+% ============================================================
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+
+    {\Huge \textbf{Documentation Technique — Phase 2}}
+
+    \vspace{0.5cm}
+    {\Large \textbf{ChatBot SUP'ONE}}
+
+    \vspace{1.5cm}
+
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \small Document de référence pour l'équipe projet \\
+        expliquant les limites de la Phase 1, les nouveaux concepts \\
+        introduits en Phase 2, le fonctionnement du pipeline RAG \\
+        (Embeddings, FAISS, LLM) et le passage à React \\
+    \end{minipage}
+
+\end{titlepage}
+
+% Table des matières
+\tableofcontents
+\clearpage
+
+% ============================================================
+\section{Introduction}
+% ============================================================
+
+\subsection{Pourquoi ce document existe}
+
+Le Club Informatique SUP'PTIC a livré une première version fonctionnelle
+du chatbot en Phase 1. Ce premier système répondait aux questions des
+étudiants en cherchant dans une base de données la question la plus
+proche de celle posée. Il a bien fonctionné --- mais l'utilisation réelle
+a mis en évidence des limites concrètes qu'on ne pouvait pas contourner
+sans changer d'approche.
+
+Ce document explique honnêtement ce qui n'allait pas, pourquoi on a
+choisi une nouvelle architecture, et comment elle fonctionne. Il n'y a
+pas besoin d'être développeur pour le lire --- chaque concept technique
+est expliqué avec des mots simples et des exemples tirés du projet.
+
+\subsection{Ce que vous allez comprendre}
+
+À la fin de ce document, vous saurez répondre à ces questions :
+
+\begin{enumerate}
+    \item Pourquoi la Phase 1 avait des limites qu'on ne pouvait pas
+    corriger juste en ajoutant plus de données ?
+    \item C'est quoi concrètement un embedding, FAISS, un LLM, le RAG ?
+    \item Comment une question posée par un étudiant devient une réponse
+    affichée à l'écran, étape par étape ?
+    \item Qu'est-ce qui change dans le projet par rapport à ce qu'on avait ?
+\end{enumerate}
+
+\subsection{Public cible}
+
+Ce document s'adresse à tous les membres du club --- développeurs,
+data curators, designers, nouveaux arrivants. Aucune connaissance
+préalable en intelligence artificielle n'est requise.
+
+\clearpage
+
+% ============================================================
+\section{Ce qu'on avait en Phase 1}
+% ============================================================
+
+\subsection{L'architecture en quelques mots}
+
+La Phase 1 était construite autour de \textbf{Django} et d'une base
+de données \textbf{SQLite}. Les données --- questions, réponses,
+catégories --- étaient stockées dans des fichiers JSON, puis importées
+dans la base via un script Python. Une fois en base, Django s'occupait
+de tout : stocker les FAQ, calculer les vecteurs de recherche,
+répondre aux requêtes de l'interface.
+
+L'algorithme de recherche utilisé était le \textbf{TF-IDF} combiné
+à la \textbf{similarité cosinus}. En résumé : chaque question de la
+base était transformée en une suite de nombres (un vecteur) représentant
+les mots qu'elle contient. Quand un étudiant posait une question,
+cette question était elle aussi transformée en vecteur, et le système
+cherchait dans la base le vecteur le plus proche. Il retournait ensuite
+la réponse associée.
+
+\begin{info}[Ce que faisait le système à chaque question]
+\begin{enumerate}
+    \item L'étudiant envoie sa question via l'interface web
+    \item Django transforme la question en vecteur TF-IDF
+    \item Le système compare ce vecteur à tous ceux stockés en base
+    \item Il trouve la question la plus proche et retourne sa réponse
+    \item La réponse est affichée --- telle quelle, sans modification
+\end{enumerate}
+\end{info}
+
+\subsection{Ce qui fonctionnait bien}
+
+Le système Phase 1 avait de vraies qualités. Il était rapide,
+stable, déployé et utilisable. L'API Django répondait correctement,
+l'interface web était fonctionnelle, et le système de feedback
+permettait de collecter les retours des utilisateurs. Pour des
+questions formulées exactement comme celles stockées en base,
+les résultats étaient très bons.
+
+\subsection{Ce qui posait problème}
+
+Le problème fondamental de TF-IDF, c'est qu'il compare des
+\textbf{mots}, pas des \textbf{idées}. Deux phrases peuvent vouloir
+dire la même chose avec des mots complètement différents --- et
+TF-IDF les traitera comme étrangères l'une à l'autre.
+
+\begin{exemple}[Le problème central de la Phase 1]
+Un étudiant tape : \textit{«~C'est combien pour s'inscrire ?~»} \\
+La base contient : \textit{«~Quels sont les frais de scolarité ?~»} \\
+\vspace{0.3cm}
+Ces deux phrases veulent dire la même chose. Mais elles n'ont
+\textbf{aucun mot en commun}. Le score TF-IDF est donc proche
+de zéro, et le chatbot répond à côté --- ou pire, dit qu'il ne
+sait pas --- alors que la réponse est bien là, dans la base.
+\end{exemple}
+
+Ce problème ne pouvait pas être résolu en ajoutant plus de données.
+Même avec 10 000 questions en base, si l'étudiant utilisait des
+mots différents de ceux stockés, le système échouait. C'est une
+limite \textbf{structurelle} de l'algorithme, pas un manque de contenu.
+
+\clearpage
+
+% ============================================================
+\section{Les limites qui ont motivé le passage à la Phase 2}
+% ============================================================
+
+Voici les cinq limites concrètes observées après le déploiement
+de la Phase 1.
+
+\subsection{Limite 1 --- Le système comparait des mots, pas du sens}
+
+C'est la limite la plus importante. TF-IDF ne comprend pas le sens
+des phrases. Il compte les mots, calcule leur fréquence, et cherche
+des correspondances lexicales. Deux synonymes, deux formulations
+différentes d'une même idée, une faute de frappe --- et le résultat
+devient mauvais. Un étudiant qui écrit \textit{«~tarif scolarité~»},
+\textit{«~combien ça coûte~»} ou \textit{«~prix inscription~»} pour
+demander la même chose obtiendra des résultats différents selon
+la formulation, et pas toujours le bon.
+
+\subsection{Limite 2 --- Les réponses étaient figées}
+
+Le chatbot ne générait rien. Il copiait-collait directement le
+contenu du champ \texttt{responses} de l'objet JSON le mieux
+classé. Peu importe comment l'étudiant avait formulé sa question,
+la réponse était toujours identique, rédigée d'une seule façon.
+C'est fonctionnel, mais ça donne un résultat robotique --- et
+surtout, ça ne s'adapte pas au contexte de la question posée.
+
+\subsection{Limite 3 --- Impossible de croiser plusieurs sources}
+
+Certaines questions touchent à plusieurs sujets à la fois.
+\textit{«~Comment rejoindre le club informatique et quels sont
+les frais ?~»} nécessite des informations qui viennent de deux
+objets JSON différents. En Phase 1, le système retournait
+toujours \textbf{une seule réponse} --- la meilleure correspondance
+unique. Tout le reste était ignoré. Les réponses à des questions
+un peu complexes étaient donc forcément incomplètes.
+
+\subsection{Limite 4 --- Aucune mémoire entre les messages}
+
+Chaque question était traitée de façon totalement indépendante.
+Si un étudiant demandait d'abord \textit{«~Quelles sont les filières
+disponibles ?~»}, puis enchaînait avec \textit{«~Et les frais pour
+celle-là ?~»}, le chatbot ne savait pas de quelle filière il
+parlait. Il repartait de zéro à chaque message, sans aucun
+contexte de ce qui venait d'être échangé.
+
+\subsection{Limite 5 --- Fragilité face aux variantes de langage}
+
+Les abréviations, les fautes de frappe courantes, les expressions
+familières ou les mots en franglais perturbaient le calcul TF-IDF.
+\textit{«~suptptic~»}, \textit{«~frais scol~»}, \textit{«~comment
+register~»} --- autant de formulations réelles que des étudiants
+utilisent et qui faisaient échouer la recherche malgré la
+présence de la réponse en base.
+
+\vspace{0.5cm}
+
+\begin{important}[Ce qu'il faut retenir]
+Ces cinq limites ne venaient pas d'un manque de données
+ni d'un bug dans le code. Elles venaient du fait que
+\textbf{TF-IDF compare des mots, pas des intentions}.
+Quelle que soit la quantité de données ajoutée, on ne
+pouvait pas résoudre ce problème sans changer d'algorithme.
+C'est pourquoi la Phase 2 introduit une approche différente.
+\end{important}
+
+\clearpage
+
+% ============================================================
+\section{Les concepts clés de la Phase 2}
+% ============================================================
+
+La Phase 2 introduit quatre notions nouvelles qui reviennent
+constamment dans les discussions du projet. Il est important
+de bien les distinguer car elles sont souvent confondues.
+
+% ------------------------------------------------------------
+\subsection{Les Embeddings --- lire le sens, pas les mots}
+% ------------------------------------------------------------
+
+En Phase 1, TF-IDF transformait une phrase en vecteur en
+comptant les mots qu'elle contient. Deux phrases sans mot
+en commun donnaient deux vecteurs très éloignés, même si
+elles voulaient dire la même chose.
+
+Les \textbf{embeddings} font quelque chose de fondamentalement
+différent. Ils transforment une phrase en vecteur en se basant
+sur son \textbf{sens}. Ils ont été produits par un modèle entraîné
+sur des centaines de millions de phrases pour apprendre que
+\textit{«~frais de scolarité~»} et \textit{«~combien coûte
+l'inscription~»} expriment la même intention --- et donc produisent
+des vecteurs proches.
+
+\begin{exemple}[La même question avec les deux algorithmes]
+\textbf{Question posée :} \textit{«~C'est combien pour s'inscrire ?~»} \\
+\textbf{Question en base :} \textit{«~Quels sont les frais de scolarité ?~»} \\
+\vspace{0.3cm}
+Avec TF-IDF (Phase 1) : score $\approx$ 0.00 --- aucun mot en commun \\
+Avec Embeddings (Phase 2) : score $\approx$ 0.82 --- même intention détectée
+\end{exemple}
+
+Le modèle utilisé s'appelle \textbf{MiniLM-L6-v2}. Ce n'est pas
+du code que l'équipe écrit --- c'est une bibliothèque Python
+(\texttt{pip install sentence-transformers}) que l'on installe
+et que l'on utilise. Elle transforme n'importe quel texte en
+un vecteur de \textbf{384 nombres}.
+
+\begin{astuce}[Analogie simple]
+Imaginez que chaque phrase reçoit des coordonnées GPS
+dans un espace à 384 dimensions. Deux phrases qui veulent
+dire la même chose se retrouvent proches géographiquement,
+même si leurs mots sont différents. TF-IDF, lui, regardait
+uniquement les mots --- pas la position dans cet espace.
+\end{astuce}
+
+% ------------------------------------------------------------
+\subsection{FAISS --- chercher vite parmi des milliers de vecteurs}
+% ------------------------------------------------------------
+
+Une fois que toutes les questions de la base ont été transformées
+en vecteurs par MiniLM, il faut pouvoir chercher très rapidement
+lequel est le plus proche d'une nouvelle question. C'est exactement
+ce que fait \textbf{FAISS}.
+
+FAISS est une bibliothèque développée par Meta (Facebook),
+installée via \texttt{pip install faiss-cpu}. Elle stocke
+tous les vecteurs dans un fichier \texttt{index.bin} et
+permet de retrouver en quelques millisecondes les cinq vecteurs
+les plus proches d'un vecteur donné, même parmi des dizaines
+de milliers.
+
+FAISS ne sait pas ce que veulent dire les vecteurs. Il sait
+juste les comparer très vite. C'est le rôle de \texttt{metadata.json}
+de faire le lien entre un numéro de vecteur et la réponse
+correspondante dans les fichiers JSON.
+
+\begin{schema}[Ce que FAISS reçoit et ce qu'il retourne]
+\textbf{Entrée :} le vecteur de la question posée par l'étudiant \\
+\textbf{Sortie :} les numéros des 5 vecteurs les plus proches \\
+\vspace{0.3cm}
+Exemple : \texttt{[42, 871, 304, 1205, 2087]} \\
+\vspace{0.3cm}
+\texttt{metadata.json} est alors consulté pour retrouver
+la réponse associée à chacun de ces numéros.
+\end{schema}
+
+% ------------------------------------------------------------
+\subsection{Le LLM --- rédiger une réponse naturelle}
+% ------------------------------------------------------------
+
+En Phase 1, une fois la meilleure correspondance trouvée,
+le système copiait-collait la réponse telle quelle depuis
+la base. En Phase 2, on introduit un \textbf{LLM} (Large
+Language Model) --- un modèle d'intelligence artificielle
+capable de lire un texte et de rédiger une réponse naturelle.
+
+Le LLM utilisé s'appelle \textbf{Phi-3 Mini}. Il tourne
+entièrement sur la machine locale via un outil appelé
+\textbf{Ollama} --- sans connexion internet, sans envoyer
+de données à l'extérieur.
+
+Concrètement, le LLM reçoit un message structuré contenant :
+la question posée par l'étudiant, et les cinq réponses
+récupérées par FAISS. Il rédige alors une réponse fluide
+et naturelle à partir de ces informations.
+
+\begin{important}[Le LLM ne devine rien --- il s'appuie sur vos données]
+Le LLM ne puise pas dans ses propres connaissances générales.
+Il ne peut répondre qu'avec ce qu'on lui donne. Si FAISS
+ne trouve aucune correspondance pertinente, le système
+répond : \textit{«~Je n'ai pas cette information ---
+contactez le secrétariat.~»} \\
+\vspace{0.2cm}
+C'est une garantie importante : le chatbot ne peut pas
+inventer des informations sur SUP'PTIC.
+\end{important}
+
+% ------------------------------------------------------------
+\subsection{Le RAG --- le nom de la stratégie globale}
+% ------------------------------------------------------------
+
+\textbf{RAG} signifie \textit{Retrieval Augmented Generation}.
+Ce n'est pas une bibliothèque, pas un outil à installer.
+C'est le nom qu'on donne à la stratégie qui combine les trois
+éléments précédents :
+
+\begin{enumerate}
+    \item \textbf{Retrieval} --- on \textit{récupère} les réponses
+    les plus pertinentes grâce aux embeddings et à FAISS
+    \item \textbf{Augmented} --- on \textit{enrichit} le contexte
+    donné au LLM avec ces réponses
+    \item \textbf{Generation} --- le LLM \textit{génère} une réponse
+    naturelle à partir de ce contexte
+\end{enumerate}
+
+Le RAG est la recette. MiniLM, FAISS et Phi-3 sont les ingrédients.
+Le code Django de l'équipe est le cuisinier qui suit la recette.
+
+\clearpage
+
+% ============================================================
+\section{Le flux complet --- de la question à la réponse}
+% ============================================================
+
+\subsection{Vue d'ensemble}
+
+Le système Phase 2 fonctionne en deux temps bien distincts.
+Le premier est un travail préparatoire fait une seule fois
+par l'équipe technique. Le second se répète automatiquement
+à chaque message d'un étudiant.
+
+\begin{schema}[Les deux temps du système]
+\textbf{Temps 1 --- Préparation (une seule fois)} \\
+\hspace{1cm} Les fichiers JSON sont lus, vectorisés et indexés. \\
+\hspace{1cm} Le système est prêt à recevoir des questions. \\
+\vspace{0.4cm}
+\textbf{Temps 2 --- Réponse (à chaque message)} \\
+\hspace{1cm} La question est vectorisée, les réponses proches sont
+trouvées, \\
+\hspace{1cm} le LLM rédige et l'interface affiche.
+\end{schema}
+
+% ------------------------------------------------------------
+\subsection{Temps 1 --- La préparation de l'index}
+% ------------------------------------------------------------
+
+Cette étape est invisible pour l'utilisateur final. Elle est
+exécutée par l'équipe technique chaque fois que de nouveaux
+contenus sont ajoutés aux fichiers JSON.
+
+\vspace{0.3cm}
+\textbf{Étape 1 --- Lecture des fichiers JSON}
+
+Le script Python parcourt tous les fichiers JSON du dossier
+\texttt{data/}. Pour chaque objet JSON, il extrait tous les
+éléments de la liste \texttt{examples} --- ce sont les différentes
+façons de formuler une question sur un même sujet.
+
+\vspace{0.3cm}
+\textbf{Étape 2 --- Vectorisation par MiniLM}
+
+Chaque example est envoyé à MiniLM qui le transforme en un
+vecteur de 384 nombres. Un objet JSON avec 8 examples
+produit donc 8 vecteurs distincts --- mais tous les 8 pointent
+vers la même réponse, puisqu'ils viennent du même objet.
+
+\vspace{0.3cm}
+\textbf{Étape 3 --- Construction de l'index FAISS}
+
+Tous les vecteurs produits sont stockés dans \texttt{index.bin}.
+En parallèle, \texttt{metadata.json} est écrit : il associe
+chaque numéro de vecteur à la réponse et aux informations
+(catégorie, source) de l'objet JSON dont il est issu.
+
+\begin{exemple}[Ce que contient metadata.json pour 3 vecteurs du même objet]
+\begin{lstlisting}[language=]
+{ "vecteur_id": 0,
+  "intent": "faq_frais_0",
+  "example": "C'est combien pour s'inscrire ?",
+  "response": "Les frais sont de 500 000 FCFA par an...",
+  "categorie": "Admissions", "source": "e-supptic.cm" },
+
+{ "vecteur_id": 1,
+  "intent": "faq_frais_0",
+  "example": "Quels sont les frais de scolarite ?",
+  "response": "Les frais sont de 500 000 FCFA par an...",
+  "categorie": "Admissions", "source": "e-supptic.cm" },
+
+{ "vecteur_id": 2,
+  "intent": "faq_frais_0",
+  "example": "Tarif inscription SUP'PTIC",
+  "response": "Les frais sont de 500 000 FCFA par an...",
+  "categorie": "Admissions", "source": "e-supptic.cm" }
+\end{lstlisting}
+Les vecteurs 0, 1 et 2 ont des examples différents mais
+la même réponse --- ils viennent du même objet JSON.
+\end{exemple}
+
+% ------------------------------------------------------------
+\subsection{Temps 2 --- Le traitement de chaque question}
+% ------------------------------------------------------------
+
+\begin{exemple}[Un étudiant tape : «~C'est combien pour s'inscrire ?~»]
+
+\textbf{Étape 1 --- Réception par Django} \\
+L'interface envoie la question à l'API Django via une requête HTTP.
+
+\vspace{0.4cm}
+\textbf{Étape 2 --- Vectorisation de la question} \\
+MiniLM transforme la question en un vecteur de 384 nombres,
+exactement comme il l'a fait pour les examples lors de la
+préparation.
+
+\vspace{0.4cm}
+\textbf{Étape 3 --- Recherche dans FAISS} \\
+FAISS compare ce vecteur à tous ceux stockés dans
+\texttt{index.bin} et retourne les 5 numéros les plus proches.
+
+\vspace{0.4cm}
+\textbf{Étape 4 --- Vérification de la pertinence} \\
+Chaque résultat a un score entre 0 et 1. Trois cas possibles :
+\begin{itemize}
+    \item Score $<$ 0.30 : aucun résultat RAG pertinent ---
+    \textbf{le système bascule automatiquement sur le moteur
+    TF-IDF de la Phase 1} qui répond comme avant.
+    L'étudiant obtient toujours une réponse, sans voir
+    la différence.
+    \item Score entre 0.30 et 0.55 : résultat approximatif ---
+    la réponse sera précédée d'un avertissement
+    \item Score $>$ 0.55 : bonne correspondance --- le LLM rédige
+    normalement
+\end{itemize}
+
+\vspace{0.4cm}
+\textbf{Étape 5 --- Construction du message pour le LLM} \\
+Le système prépare un message structuré qui contient :
+le rôle du chatbot, les 5 réponses récupérées par FAISS
+avec leurs métadonnées, et la question originale de l'étudiant.
+La dernière instruction est toujours : \textit{«~Réponds
+uniquement à partir des informations fournies.~»}
+
+\vspace{0.4cm}
+\textbf{Étape 6 --- Génération par Phi-3 Mini} \\
+Phi-3 lit le message et rédige une réponse mot par mot.
+La réponse est envoyée en \textbf{streaming} : chaque mot
+est transmis à l'interface dès qu'il est produit, ce qui
+donne l'impression que le chatbot tape en temps réel.
+
+\vspace{0.4cm}
+\textbf{Étape 7 --- Affichage} \\
+L'interface affiche la réponse progressivement. En dessous,
+les 3 meilleures sources sont affichées avec leur catégorie
+et leur score, pour que l'étudiant sache d'où vient l'information.
+
+\vspace{0.4cm}
+\textbf{Résultat affiché :} \\
+\textit{«~Les frais de scolarité à SUP'PTIC s'élèvent à 500~000~FCFA
+par an. Ce montant couvre l'ensemble de la formation. Des facilités
+de paiement peuvent être demandées à la scolarité.~»} \\
+\vspace{0.1cm}
+\textit{Sources : Admissions (0.91) | e-supptic.cm}
+
+\end{exemple}
+
+\clearpage
+
+\subsection{Schéma du flux complet}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    scale=0.78,
+    every node/.style={transform shape},
+    node distance=0.75cm,
+    box/.style={rectangle, draw, thick, rounded corners=4pt,
+                minimum width=9cm, minimum height=0.9cm,
+                align=center, font=\small},
+    offline/.style={box, fill=blue!8},
+    online/.style={box, fill=orange!8},
+    decision/.style={box, fill=red!8},
+    result/.style={box, fill=green!8},
+    arrow/.style={->, thick, >=stealth}
+]
+
+% Phase Offline
+\node[offline] (json)
+    {Lecture des fichiers JSON --- extraction des \texttt{examples}};
+\node[offline, below=of json] (embed_off)
+    {MiniLM --- chaque example devient un vecteur de 384 nombres};
+\node[offline, below=of embed_off] (faiss_build)
+    {FAISS construit \texttt{index.bin} \quad + \quad \texttt{metadata.json} est écrit};
+
+% Séparateur
+\node[below=0.5cm of faiss_build,
+      font=\small\itshape, text=gray!70] (sep)
+    {--- Système prêt --- se répète à chaque question ---};
+
+% Phase Online
+\node[online, below=0.5cm of sep] (question)
+    {Question de l'étudiant reçue par l'API Django};
+\node[online, below=of question] (embed_on)
+    {MiniLM --- la question devient un vecteur de 384 nombres};
+\node[online, below=of embed_on] (search)
+    {FAISS cherche dans \texttt{index.bin} --- retourne le top-5};
+\node[decision, below=of search] (seuil)
+    {Vérification du score --- pertinent ou pas ?};
+\node[online, below=of seuil] (prompt)
+    {Construction du message --- question + 5 réponses + métadonnées};
+\node[online, below=of prompt] (llm)
+    {Phi-3 Mini rédige une réponse naturelle (streaming)};
+\node[result, below=of llm] (affichage)
+    {Affichage dans l'interface --- réponse + sources};
+
+% Nœud fallback TF-IDF (à droite du nœud seuil)
+\node[box, fill=purple!8, right=1.5cm of seuil] (fallback)
+    {Fallback TF-IDF (Phase 1) ---\\réponse directe depuis la base};
+
+% Flèches Offline
+\draw[arrow] (json) -- (embed_off);
+\draw[arrow] (embed_off) -- (faiss_build);
+
+% Flèches Online
+\draw[arrow] (question) -- (embed_on);
+\draw[arrow] (embed_on) -- (search);
+\draw[arrow] (search) -- (seuil);
+\draw[arrow] (seuil) -- (prompt);
+\draw[arrow] (prompt) -- (llm);
+\draw[arrow] (llm) -- (affichage);
+
+% Flèche fallback avec label
+\draw[arrow, dashed, color=purple!70!black]
+    (seuil) -- (fallback)
+    node[midway, above, font=\tiny\itshape, text=purple!70!black]
+    {score $<$ 0.30};
+
+% Grouper les boîtes Offline
+\node[draw=none, fit=(json)(faiss_build)] (offlineGroup) {};
+\draw[thick, decorate,
+      decoration={brace, amplitude=7pt},
+      xshift=-1cm] % petit décalage vers la gauche
+    (offlineGroup.south west) -- (offlineGroup.north west)
+    node[midway, left=10pt,
+         font=\small\bfseries, text=blue!60!black]
+    {Préparation};
+
+% Grouper les boîtes Online
+\node[draw=none, fit=(question)(affichage)] (onlineGroup) {};
+\draw[thick, decorate,
+      decoration={brace, amplitude=7pt},
+      xshift=-1cm]
+    (onlineGroup.south west) -- (onlineGroup.north west)
+    node[midway, left=10pt,
+         font=\small\bfseries, text=orange!70!black]
+    {À chaque question};
+
+
+\end{tikzpicture}
+\caption{Flux complet du système RAG --- Phase 2}
+\end{figure}
+
+\clearpage
+
+% ============================================================
+\section{Ce qui change dans le projet}
+% ============================================================
+
+\subsection{Django ne disparaît pas --- son rôle se réduit}
+
+En Phase 1, Django était le cœur du système : il stockait
+les FAQ, calculait les vecteurs TF-IDF, et faisait la recherche.
+Tout passait par la base SQLite.
+
+En Phase 2, la recherche et la génération de réponses sont
+prises en charge par FAISS et Phi-3. Django conserve ce
+qu'il fait naturellement bien : gérer les utilisateurs,
+enregistrer les feedbacks, exposer les endpoints de l'API,
+et afficher les statistiques.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+\textbf{Responsabilité} & \textbf{Phase 1} & \textbf{Phase 2} \\
+\hline
+Stocker les FAQ & Base Django/SQLite & Fichiers JSON sur le disque \\
+\hline
+Stocker les vecteurs & Table \texttt{FAQVector} en base & \texttt{index.bin} (FAISS) \\
+\hline
+Faire la recherche & TF-IDF sur la base & MiniLM + FAISS \\
+\hline
+Produire la réponse & Copier depuis la base & Phi-3 Mini génère \\
+\hline
+\textbf{Fallback si RAG insuffisant} & \textit{n/a} &
+\textbf{TF-IDF Phase 1 --- bascule automatique si score FAISS $<$ 0.30} \\
+\hline
+Feedbacks & Base Django & Base Django (inchangé) \\
+\hline
+Utilisateurs & Base Django & Base Django (inchangé) \\
+\hline
+Statistiques & Base Django & Base Django (inchangé) \\
+\hline
+API REST & Django REST Framework & Django REST Framework (inchangé) \\
+\hline
+\end{tabularx}
+\caption{Répartition des responsabilités --- Phase 1 vs Phase 2}
+\end{table}
+
+\subsection{Les nouveaux fichiers qui entrent en jeu}
+
+Deux fichiers nouveaux font leur apparition dans le projet :
+
+\begin{itemize}
+    \item \texttt{index.bin} --- c'est l'index FAISS. Il contient
+    tous les vecteurs générés à partir des examples JSON.
+    C'est lui que FAISS consulte lors de chaque recherche.
+    Il est regénéré chaque fois qu'on ajoute de nouveaux
+    contenus aux fichiers JSON.
+
+    \item \texttt{metadata.json} --- c'est l'annuaire qui fait
+    le lien entre un numéro de vecteur dans FAISS et la réponse
+    correspondante dans les fichiers JSON. Sans lui, FAISS
+    retournerait des numéros sans pouvoir les associer à du contenu.
+\end{itemize}
+
+\subsection{L'endpoint principal change de comportement}
+
+L'endpoint \texttt{POST /api/chatbot/ask/} existait déjà en
+Phase 1. En Phase 2, son comportement interne change complètement :
+au lieu d'interroger la base SQLite avec TF-IDF, il lance le
+pipeline RAG --- vectorisation de la question, recherche FAISS,
+construction du message, appel à Ollama, streaming de la réponse.
+
+Deux nouveaux endpoints font leur apparition :
+
+\begin{itemize}
+    \item \texttt{GET /api/sources/} --- retourne les sources JSON
+    utilisées pour produire la dernière réponse, pour affichage
+    dans l'interface
+    \item \texttt{POST /api/reload-index/} --- recharge \texttt{index.bin}
+    en mémoire sans redémarrer Django, utile après l'ajout de
+    nouveaux contenus JSON
+\end{itemize}
+
+\clearpage
+
+% ============================================================
+\section{Migration de l'interface : de la PWA à React}
+% ============================================================
+
+\subsection{Ce qu'était la PWA en Phase 1}
+
+En Phase 1, l'interface utilisateur était une \textbf{Progressive Web App}
+(PWA) développée en HTML, CSS et JavaScript vanilla. Elle était servie
+par un petit serveur Python indépendant (\texttt{start\_server.py}) sur
+le port 8080, séparé du backend Django. Un \texttt{service-worker.js}
+lui permettait de fonctionner partiellement hors-ligne et d'être
+installable sur mobile.
+
+Cette approche était simple à mettre en place et fonctionnelle pour
+une première version. Mais elle montrait ses limites dès que
+l'interface devenait plus complexe : gestion d'état dispersée dans
+le DOM, code JavaScript difficile à structurer au fil des nouvelles
+fonctionnalités, réutilisation des composants quasi impossible.
+
+\subsection{Pourquoi passer à React}
+
+La Phase 2 introduit plusieurs nouveautés côté interface qui auraient
+été très difficiles à gérer proprement en JavaScript vanilla :
+
+\begin{itemize}
+    \item \textbf{Le streaming de réponse} --- afficher les mots du LLM
+    au fur et à mesure qu'ils arrivent nécessite une gestion d'état
+    réactive. En React, un simple \texttt{useState} suffit ; en JS
+    vanilla, cela demande une manipulation du DOM fastidieuse et
+    fragile.
+
+    \item \textbf{L'affichage des sources} --- chaque réponse est
+    accompagnée de 3 sources avec catégorie et score. Ce sont des
+    composants répétables, exactement le cas d'usage pour lequel
+    React a été conçu.
+
+    \item \textbf{La gestion de l'historique de conversation} ---
+    maintenir et afficher une liste de messages avec états différents
+    (en cours, répondu, erreur) est naturel en React grâce à la
+    notion de composants et de props.
+
+    \item \textbf{L'indicateur de confiance} --- afficher visuellement
+    le niveau de pertinence d'une réponse (score FAISS) sous forme
+    de jauge ou de badge coloré est trivial en JSX, laborieux en
+    HTML/JS manuel.
+\end{itemize}
+
+\begin{info}[Ce que React change fondamentalement]
+En PWA vanilla, l'interface \textit{manipule} le DOM pour refléter
+l'état de l'application. En React, l'interface \textit{est} une
+fonction de l'état --- on met à jour l'état, React s'occupe
+du rendu. Pour une interface de chat avec des données dynamiques
+qui arrivent en streaming, c'est un gain de fiabilité et de
+lisibilité considérable.
+\end{info}
+
+\subsection{Ce qui disparaît et ce qui reste}
+
+La migration ne repart pas de zéro. La logique métier reste
+intégralement côté Django --- React ne remplace que la couche
+d'affichage.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+\textbf{Élément} & \textbf{Phase 1 (PWA)} & \textbf{Phase 2 (React)} \\
+\hline
+Technologie & HTML/CSS/JS vanilla & React (JSX + hooks) \\
+\hline
+Serveur frontend & \texttt{start\_server.py} sur port 8080 & \texttt{npm start} / Vite sur port 3000 \\
+\hline
+Gestion d'état & Variables JS + manipulation DOM & \texttt{useState}, \texttt{useEffect} \\
+\hline
+Composants & Fonctions JS manuelles & Composants React réutilisables \\
+\hline
+Streaming LLM & EventSource / fetch manuel & Hook dédié avec mise à jour réactive \\
+\hline
+Offline & Service Worker + cache & Non prioritaire en Phase 2 \\
+\hline
+Installation mobile & Manifest PWA & Non prioritaire en Phase 2 \\
+\hline
+Communication API & \texttt{fetch()} vers Django & \texttt{fetch()} vers Django (inchangé) \\
+\hline
+\end{tabularx}
+\caption{Comparaison interface --- Phase 1 (PWA) vs Phase 2 (React)}
+\end{table}
+
+\begin{astuce}[Ce que ça change pour les autres équipes]
+Pour l'équipe backend et data, \textbf{rien ne change} : l'API
+Django REST reste identique, les endpoints sont les mêmes. Seule
+l'équipe frontend travaille différemment --- elle passe de fichiers
+\texttt{.html}/\texttt{.js} à des composants \texttt{.jsx} organisés
+dans un projet React. Les fonctionnalités PWA (mode offline,
+installation sur mobile) pourront être réintégrées ultérieurement
+via des librairies React dédiées si le besoin s'en fait sentir.
+\end{astuce}
+
+\clearpage
+
+% ============================================================
+\section{Points clés à retenir}
+% ============================================================
+
+\begin{important}[Ce qu'il faut avoir compris à la fin de ce document]
+\begin{enumerate}
+    \item \textbf{La Phase 1 avait une limite structurelle.}
+    TF-IDF compare des mots, pas des intentions. Ajouter plus
+    de données ne pouvait pas résoudre ce problème.
+
+    \item \textbf{Les embeddings remplacent TF-IDF.}
+    MiniLM transforme les textes en vecteurs basés sur le sens.
+    Deux phrases similaires en intention donnent des vecteurs
+    proches, même sans mot en commun.
+
+    \item \textbf{FAISS stocke et cherche dans ces vecteurs.}
+    Ce n'est pas du code produit par l'équipe --- c'est une
+    bibliothèque de Meta qu'on installe et qu'on utilise.
+    Elle cherche en quelques millisecondes parmi des milliers
+    de vecteurs.
+
+    \item \textbf{MiniLM vectorise chaque example séparément.}
+    Un objet JSON avec 8 examples produit 8 vecteurs dans FAISS,
+    tous liés à la même réponse. Plus il y a d'examples,
+    plus la recherche est précise.
+
+    \item \textbf{metadata.json fait le lien entre les vecteurs
+    et les réponses.} FAISS retourne des numéros --- metadata.json
+    dit ce que chaque numéro représente.
+
+    \item \textbf{Le LLM rédige, il n'invente pas.}
+    Phi-3 Mini reçoit uniquement les réponses trouvées par FAISS.
+    Il ne peut pas produire d'informations qui ne sont pas
+    dans vos fichiers JSON.
+
+    \item \textbf{RAG est le nom de la stratégie, pas un outil.}
+    Chercher (FAISS) $\rightarrow$ enrichir (JSON)
+    $\rightarrow$ générer (LLM) : voilà ce qu'est le RAG.
+
+    \item \textbf{Django reste dans le projet.}
+    Il garde les feedbacks, les utilisateurs, les statistiques
+    et l'API REST. Ce qui change, c'est uniquement le moteur
+    de recherche et la génération de réponse.
+
+    \item \textbf{L'interface PWA est remplacée par React.}
+    La PWA HTML/JS vanilla de la Phase 1 laisse place à une
+    application React. Le streaming LLM, les sources et
+    l'historique de conversation sont bien plus faciles à
+    gérer avec des composants et des hooks. L'API Django
+    ne change pas --- seule la couche d'affichage évolue.
+
+    \item \textbf{TF-IDF n'est pas supprimé --- il devient le filet de sécurité.}
+    Si le score FAISS est trop bas (question hors-domaine,
+    formulation très inhabituelle), le système bascule
+    automatiquement sur le moteur TF-IDF de la Phase 1.
+    L'étudiant obtient toujours une réponse.
+    \textbf{La Phase 2 ajoute de l'intelligence sans rien retirer.}
+\end{enumerate}
+\end{important}
+
+    \vfill
+
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \small
+        \textit{Rédigé par le Chef de Division Programmation} \\
+        \textit{Club Informatique SUP'PTIC --- Projet SUP'ONE}
+    \end{minipage}
+
+\end{document}

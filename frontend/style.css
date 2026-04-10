@@ -1,0 +1,128 @@
+        :root {
+            --primary-blue: #1a4594;
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --bot-bubble: #f1f3f5;
+            --user-bubble: #1a4594;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            
+            min-height: 100vh;
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        /* --- CONTENEUR PRINCIPAL RESPONSIVE --- */
+        .chat-container {
+            width: 100%;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            background: linear-gradient(180deg, var(--primary-blue) 0%, #ffffff 70%);
+        }
+
+        /* Mobile (Plein ecran) */
+        @media (max-width: 575.98px) {
+            .chat-container { height: 100vh; border-radius: 0; }
+        }
+
+        /* Tablette & PC  */
+        @media (min-width: 576px) {
+            .chat-container {
+                max-width: 400px;
+                height: 820px;
+                max-height: 92vh;
+                border-radius: 35px;
+                border: 1px solid rgba(255,255,255,0.4);
+            }
+        }
+
+        /* --- HEADER --- */
+        .chat-header {
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* --- CHAT --- */
+        .chat-body {
+            flex: 1;
+            padding: 1.2rem;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .message-container {
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+       
+        /* message du bot dimension*/
+        .msg-bot {
+            background: var(--bot-bubble);
+            padding: 14px 18px;
+            border-radius: 18px 18px 18px 5px;
+            max-width: 85%;
+            align-self: flex-start;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .msg-user {
+            background: var(--user-bubble);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 18px 18px 5px 18px;
+            max-width: 85%;
+            align-self: flex-end;
+            box-shadow: 0 4px 10px rgba(26, 69, 148, 0.2);
+        }
+
+        /* --- SUGGESTIONS --- */
+        .suggestions-container { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; }
+        
+        .suggestion-btn {
+            background: rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 20px;
+            padding: 12px 18px;
+            text-align: left;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .suggestion-btn:hover { background: rgba(0,0,0,0.1); transform: translateX(8px); }
+
+        /* --- SAISIE (FOOTER) --- */
+        .chat-footer { padding: 1.2rem; }
+        .input-group-custom {
+            background: white;
+            border-radius: 30px;
+            padding: 8px 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            border: 2px solid transparent;
+        }
+        .input-group-custom:focus-within { border-color: var(--primary-blue); }
+        .input-group-custom input { border: none; outline: none; flex: 1; padding: 8px; font-size: 1rem; }
+
+        .typing-indicator { font-size: 0.85rem; color: #777; margin-bottom: 10px; display: none; font-style: italic; }
+
+        /* --- MENUS (OFFCANVAS & MODAL) --- */
+        .offcanvas { background: rgba(255, 255, 255, 0.95) !important; backdrop-filter: blur(10px); }
+        .modal-content { border-radius: 25px; border: none; }
