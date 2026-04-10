@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 """
+=======
+﻿"""
+>>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 Utilitaires généraux pour l'application chatbot.
 Point d'entrée unique pour les fonctions du cœur du chatbot.
 """
