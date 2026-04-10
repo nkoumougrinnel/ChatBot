@@ -46,4 +46,3 @@ Pour chaque modèle documenté :
 - `get_similar_questions()` : Retourne questions similaires
 - `validate_content()` : Validation du contenu
 ```
-

@@ -5,7 +5,6 @@ from django.conf import settings
 class Category(models.Model):
     """
     Catégories pour classifier les questions FAQ.
-    Conforme à la spécification LaTeX: id, nom, description, actif.
     """
     name = models.CharField(max_length=100, unique=True, verbose_name="Nom")
     description = models.TextField(blank=True, verbose_name="Description")
@@ -22,7 +21,6 @@ class Category(models.Model):
 class FAQ(models.Model):
     """
     Paires question-réponse - cœur du système.
-    Conforme à la spécification LaTeX.
     """
     question = models.TextField(verbose_name="Question")
     answer = models.TextField(verbose_name="Réponse")
@@ -64,11 +62,14 @@ class FAQVector(models.Model):
 class Feedback(models.Model):
     """
     Retours utilisateurs sur la pertinence des réponses.
-    Conforme à la spécification LaTeX: type, commentaire, question_utilisateur, score_similarite.
     """
     FEEDBACK_TYPES = [
         ('positif', 'Positif'),
         ('negatif', 'Négatif'),
+    ]
+    METHOD_CHOICES = [
+        ('TF-IDF', 'TF-IDF'),
+        ('RAG', 'RAG'),
     ]
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Utilisateur")
@@ -76,6 +77,7 @@ class Feedback(models.Model):
     feedback_type = models.CharField(max_length=20, choices=FEEDBACK_TYPES, verbose_name="Type")
     question_utilisateur = models.TextField(verbose_name="Question utilisateur")
     comment = models.TextField(blank=True, verbose_name="Commentaire")
+    rag_method = models.CharField(max_length=10, choices=METHOD_CHOICES, default='TF-IDF')
     score_similarite = models.FloatField(null=True, blank=True, verbose_name="Score de similarité")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Date création")
 

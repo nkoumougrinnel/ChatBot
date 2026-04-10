@@ -6,13 +6,13 @@ Ce dossier contient les données d'entraînement et de test pour le chatbot SUP'
 
 ```
 data/
-â”œâ”€â”€ json/
-â”‚   â”œâ”€â”€ drafts/         # Fichiers JSON en brouillon avant validation
-â”‚   â”œâ”€â”€ validated/      # Fichiers JSON validés prêts à  être importés en base
-â”‚   â””â”€â”€ donnees_exemples.json  # Exemple de dataset formaté
-â”œâ”€â”€ scripts/           # Outils de traitement des données
-â””â”€â”€ doc/               # Documentation des données
-    â””â”€â”€ README.md      # Format et structure des données
+├── json/
+│   ├── drafts/           # Fichiers JSON en brouillon avant validation
+│   ├── validated/        # Fichiers JSON validés prêts à être importés en base
+│   └── donnees_exemples.json  # Exemple de dataset formaté
+├── scripts/              # Outils de traitement des données
+└── doc/                  # Documentation des données
+    └── README.md         # Format et structure des données
 ```
 
 ## Format des données
@@ -24,10 +24,10 @@ Les données FAQ sont structurées au format JSON avec le schéma suivant :
   "id": "faq_001",
   "categorie": "Admissions",
   "sous_theme": "Dossier d'inscription",
-  "question": "Quels documents fournir pour s'inscrire à  SUP'PTIC ?",
+  "question": "Quels documents fournir pour s'inscrire à SUP'PTIC ?",
   "reponse_enrichie": "Le dossier comprend : formulaire d'inscription, photocopie du diplôme, acte de naissance, photos d'identité. Tous les documents doivent être fournis en 2 exemplaires.",
   "exemples": [
-    "Comment s'inscrire à  SUP'PTIC ?",
+    "Comment s'inscrire à SUP'PTIC ?",
     "Quelles pièces fournir pour l'admission ?",
     "Qu'est-ce qu'il faut pour le dossier d'entrée ?"
   ],
@@ -58,10 +58,10 @@ Les données FAQ sont structurées au format JSON avec le schéma suivant :
   "id": "faq_001",
   "categorie": "Admissions",
   "sous_theme": "Dossier d'inscription",
-  "question": "Quels documents fournir pour s'inscrire à  SUP'PTIC ?",
+  "question": "Quels documents fournir pour s'inscrire à SUP'PTIC ?",
   "reponse_enrichie": "Le dossier comprend : formulaire d'inscription, photocopie du diplôme, acte de naissance, photos d'identité. Tous les documents doivent être fournis en 2 exemplaires.",
   "exemples": [
-    "Comment s'inscrire à  SUP'PTIC ?",
+    "Comment s'inscrire à SUP'PTIC ?",
     "Quelles pièces fournir pour l'admission ?",
     "Qu'est-ce qu'il faut pour le dossier d'entrée ?"
   ],
@@ -101,7 +101,6 @@ Les fichiers sont organisés par domaine fonctionnel :
 
 ### Maintenance
 
-- Mise à  jour régulière des informations
+- Mise à jour régulière des informations
 - Validation croisée des sources
 - Tests d'intégration avec le moteur de recherche
-
