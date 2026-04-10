@@ -1,0 +1,429 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{pifont}
+\newcommand{\faIcon}[1]{\ensuremath{\bullet}}
+
+% Configuration des listes
+\setlist[itemize]{leftmargin=*, itemsep=3pt, topsep=3pt}
+\setlist[enumerate]{leftmargin=*, itemsep=3pt, topsep=3pt}
+
+% Configuration du code
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{orange},
+    tabsize=4,
+    showstringspaces=false
+}
+
+% En-tête et pied de page
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Architecture Dépôt Git – Phase 2}
+\fancyhead[R]{\small Chatbot SUP'PTIC}
+\fancyfoot[C]{\thepage}
+
+% Couleurs personnalisées
+\definecolor{suppticblue}{RGB}{0, 70, 140}
+\definecolor{phase1color}{RGB}{180, 60, 60}
+\definecolor{phase2color}{RGB}{30, 130, 80}
+\definecolor{warningyellow}{RGB}{255, 193, 7}
+
+% Environnements personnalisés
+\newtcolorbox{important}[1][]{
+  colback=red!5!white,
+  colframe=red!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{info}[1][]{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{astuce}[1][]{
+  colback=green!5!white,
+  colframe=green!75!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{phase1box}[1][]{
+  colback=red!5!white,
+  colframe=phase1color,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{phase2box}[1][]{
+  colback=green!5!white,
+  colframe=phase2color,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\newtcolorbox{decision}[1][]{
+  colback=orange!5!white,
+  colframe=orange!80!black,
+  fonttitle=\bfseries,
+  title=#1
+}
+
+\begin{document}
+
+% ============================================================
+% PAGE DE GARDE
+% ============================================================
+\begin{titlepage}
+    \centering
+\vspace*{1.5cm}
+
+{\Huge \textbf{Architecture du Dépôt Git}} 
+
+\vspace{0.4cm}
+{\LARGE \textbf{Organisation des Branches -- Phase 2}}
+
+\vspace{1.2cm}
+
+{\Large Projet Chatbot SUP'PTIC}
+
+\vspace{1cm}
+
+\begin{minipage}{0.85\textwidth}
+    \centering
+    \normalsize
+    Analyse de la situation héritée de la Phase 1, \\
+    recommandations sur les branches existantes \\
+    et nouvelle organisation pour la Phase 2
+\end{minipage}
+
+
+
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+% ─── Section 1 : Bilan Phase 1 ────────────────────────────────────────────────
+\section{Bilan du Dépôt — Héritage de la Phase 1}
+\label{sec:bilan}
+
+\subsection{Rappel : Branches créées en Phase 1}
+
+À l'issue de la Phase 1 (8-13 février 2026), le dépôt GitHub contenait les branches suivantes :
+
+\vspace{0.5cm}
+\begin{center}
+\begin{tabular}{>{\ttfamily}l l l}
+\toprule
+\textbf{Branche} & \textbf{Type} & \textbf{Rôle en Phase 1} \\
+\midrule
+main     & Protégée & Version stable finale, prête pour démo \\
+dev      & Protégée & Intégration de toutes les features \\
+backend  & Équipe   & API Django REST + algorithme TF-IDF \\
+frontend & Équipe   & Interface HTML/CSS/JS \\
+database & Équipe   & Modèles Django, migrations, scripts \\
+data     & Équipe   & Génération et nettoyage CSV (1000+ Q/R) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{phase1box}[Bilan Phase 1 — Ce qui a été livré]
+\begin{itemize}
+    \item[\ding{52}] Recherche TF-IDF avec similarité cosinus opérationnelle
+    \item[\ding{52}] Base de données Django avec 1000+ FAQ chargées
+    \item[\ding{52}] API REST complète (5 endpoints principaux)
+    \item[\ding{52}] Interface web responsive + système de feedback
+    \item[\ding{52}] Application PWA avec fonctionnalités offline
+    \item[\ding{52}] Documentation complète (backend, frontend, PWA)
+\end{itemize}
+\end{phase1box}
+
+\subsection{Répartition des équipes — Phase 1 vs Phase 2}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tabular}{l c c l}
+\toprule
+\textbf{Équipe} & \textbf{Phase 1} & \textbf{Phase 2} & \textbf{Évolution} \\
+\midrule
+Backend           & 2 membres & 3 membres & \textcolor{phase2color}{$\uparrow$ +1} \\
+Base de Données   & 2 membres & 1 membre  & \textcolor{phase1color}{$\downarrow$ -1} \\
+Structuration Données & 4 membres & 4 membres & \textcolor{gray}{= Stable} \\
+Frontend          & 2 membres & 2 membres & \textcolor{gray}{= Stable} \\
+\midrule
+\textbf{Total}    & \textbf{10} & \textbf{10} & — \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{info}[Analyse de la nouvelle répartition]
+Le changement principal entre les deux phases est le \textbf{renforcement du Backend} (+1 membre) compensé par une \textbf{réduction de l'équipe Base de Données} (-1 membre). Cette décision est cohérente avec l'état du projet : les modèles de données étant désormais stables, les efforts doivent se concentrer sur les nouvelles fonctionnalités applicatives.
+\end{info}
+
+\clearpage
+
+% ─── Section 2 : Décision sur les branches Phase 1 ───────────────────────────
+\section{Que Faire des Branches de la Phase 1 ?}
+\label{sec:decision}
+
+\subsection{Analyse branche par branche}
+
+Avant de définir l'architecture de la Phase 2, il convient d'examiner chaque branche héritée et de décider de son sort.
+
+\vspace{0.5cm}
+
+\subsubsection{Branches protégées : \texttt{main} et \texttt{dev}}
+
+\begin{astuce}[\ding{110} À conserver impérativement]
+\begin{itemize}
+    \item \textbf{\texttt{main}} — Contient la version stable 1.0.0. À garder comme référence historique et point de départ de la Phase 2.
+    \item \textbf{\texttt{dev}} — Sert de branche d'intégration continue. Elle est réutilisée telle quelle en Phase 2.
+\end{itemize}
+Ces deux branches ne doivent \textbf{jamais} être supprimées.
+\end{astuce}
+
+\subsubsection{Branches d'équipe : \texttt{backend}, \texttt{frontend}, \texttt{database}, \texttt{data}}
+
+\begin{decision}[\ding{110} Décision recommandée pour les branches d'équipe]
+\textbf{Proposition : Archiver, puis recréer proprement.}
+
+\vspace{0.3cm}
+Les branches d'équipe de la Phase 1 portent l'historique de commits de tout le sprint précédent. Continuer à travailler directement dessus en Phase 2 risque de :
+\begin{itemize}
+    \item[\ding{56}] Créer de la confusion entre les travaux des deux phases
+    \item[\ding{56}] Polluer l'historique Git avec des commits mélangés
+    \item[\ding{56}] Rendre difficile la revue de code phase par phase
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Procédure recommandée :}
+\begin{enumerate}
+    \item Créer un \textbf{tag d'archivage} sur chaque branche Phase 1
+    \item Supprimer les anciennes branches sur GitHub
+    \item Recréer des branches fraîches pour la Phase 2 (à partir de \texttt{dev})
+\end{enumerate}
+\end{decision}
+
+\subsubsection{Procédure d'archivage des branches Phase 1}
+
+\begin{lstlisting}[language=bash, caption=Archivage des branches Phase 1 avant suppression]
+# Etape 1 : Se positionner sur chaque branche et creer un tag
+git checkout backend
+git tag archive/phase1/backend
+git push origin archive/phase1/backend
+
+git checkout frontend
+git tag archive/phase1/frontend
+git push origin archive/phase1/frontend
+
+git checkout database
+git tag archive/phase1/database
+git push origin archive/phase1/database
+
+git checkout data
+git tag archive/phase1/data
+git push origin archive/phase1/data
+
+# Etape 2 : Supprimer les branches distantes
+git push origin --delete backend
+git push origin --delete frontend
+git push origin --delete database
+git push origin --delete data
+
+# Etape 3 : Nettoyer les branches locales
+git branch -D backend
+git branch -D frontend
+git branch -D database
+git branch -D data
+\end{lstlisting}
+
+\clearpage
+
+% ─── Section 3 : Architecture Phase 2 ────────────────────────────────────────
+\section{Architecture des Branches — Phase 2}
+\label{sec:architecture}
+
+\subsection{Vue d'ensemble}
+
+\begin{phase2box}[Nouvelle architecture — Phase 2]
+\begin{itemize}
+    \item \textbf{2 branches permanentes protégées} : \texttt{main}, \texttt{dev}
+    \item \textbf{4 branches d'équipe} recréées proprement depuis \texttt{dev}
+    \item Même workflow qu'en Phase 1 (Pull Requests vers \texttt{dev})
+\end{itemize}
+\end{phase2box}
+
+\vspace{0.5cm}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=1.8cm, auto]
+
+    % Styles
+    \tikzstyle{protected} = [rectangle, rounded corners, minimum width=3.2cm,
+        minimum height=0.9cm, text centered, draw=suppticblue,
+        fill=blue!15, font=\bfseries\small]
+    \tikzstyle{team} = [rectangle, rounded corners, minimum width=3.2cm,
+        minimum height=0.9cm, text centered, draw=phase2color,
+        fill=green!10, font=\small]
+    \tikzstyle{arrow} = [thick,->,>=stealth,color=gray!70]
+    \tikzstyle{prArrow} = [thick,dashed,->,>=stealth,color=phase2color]
+
+    % Branches protégées
+    \node (main) [protected] at (12, 0) {main};
+    \node (dev)  [protected] at (4, 0) {dev};
+
+    % Branches équipes (en dessous)
+    \node (backend)  [team] at (0,  -2.5) {backend};
+    \node (frontend) [team] at (3.5,  -2.5) {frontend};
+    \node (database) [team] at (7,  -2.5) {database};
+    \node (data)     [team] at (10.5,-2.5) {data};
+
+    % Flèches création depuis dev
+    \draw [arrow] (dev) -- (backend);
+    \draw [arrow] (dev) -- (frontend);
+    \draw [arrow] (dev) -- (database);
+    \draw [arrow] (dev) -- (data);
+
+    % Pull Requests vers dev
+    \draw [prArrow] (backend)  to[bend left=20] node[left,font=\tiny] {PR} (dev);
+    \draw [prArrow] (frontend) to[bend left=10] node[right,font=\tiny] {PR} (dev);
+    \draw [prArrow] (database) to[bend right=10] node[right,font=\tiny] {PR} (dev);
+    \draw [prArrow] (data)     to[bend right=20] node[right,font=\tiny] {PR} (dev);
+
+    % dev vers main
+    \draw [arrow, color=suppticblue, very thick]
+        (dev) -- node[above,font=\small\bfseries] {Validation finale} (main);
+
+    % Légende
+    \node[font=\footnotesize, draw=suppticblue, fill=blue!15, rounded corners,
+          minimum width=2cm, minimum height=0.5cm] at (8, -4.5)
+          {\textcolor{suppticblue}{\textbf{Protégée}}};
+    \node[font=\footnotesize, draw=phase2color, fill=green!10, rounded corners,
+          minimum width=2cm, minimum height=0.5cm] at (8, -5.5)
+          {\textcolor{phase2color}{\textbf{Branche équipe}}};
+
+\end{tikzpicture}
+\caption{Flux de travail Git — Phase 2}
+\end{figure}
+
+\subsection{Création des branches Phase 2}
+
+\begin{lstlisting}[language=bash, caption=Initialisation des branches Phase 2 depuis dev]
+# S'assurer d'etre a jour
+git checkout dev
+git pull origin dev
+
+# Creer les nouvelles branches Phase 2 depuis dev
+git checkout -b backend
+git push origin backend
+
+git checkout dev
+git checkout -b frontend
+git push origin frontend
+
+git checkout dev
+git checkout -b database
+git push origin database
+
+git checkout dev
+git checkout -b data
+git push origin data
+\end{lstlisting}
+
+\clearpage
+
+% ─── Section 4 : Arborescence complète du dépôt — Phase 2 ─────────────────────
+\section{Arborescence complète du dépôt — Phase 2}
+\label{sec:arborescence}
+
+\begin{info}[Légende]
+Les éléments marqués \texttt{\# [NEW]} sont nouveaux par rapport à la Phase 1. \\
+Les dossiers \texttt{backend/rag\_data/} contiennent des artefacts générés localement et ne sont pas commités (dans \texttt{.gitignore}).
+\end{info}
+
+\vspace{0.3cm}
+\begin{lstlisting}[basicstyle=\ttfamily\small, caption=Arborescence Phase 2, breaklines=true]
+ChatBot/                          # Racine
+|
++-- .venv/                        # Env virtuel Python
++-- .gitignore / requirements.txt # Dépendances (Phase 2 ajoutées)
++-- README.md
+|
++-- backend/                      # Django
+|   +-- config/                   # Paramètres + routes [NEW]
+|   +-- faq/                      # FAQ (hérité)
+|   +-- chatbot/                  # Moteur RAG
+|   |   +-- views.py              # /api/chatbot/ask/ [NEW]
+|   |   +-- engine/ [NEW]         # Pipeline RAG
+|   |       +-- embedder.py       # MiniLM
+|   |       +-- faiss_search.py   # FAISS
+|   |       +-- llm_client.py     # Ollama Phi-3
+|   |       +-- rag_pipeline.py   # Orchestration
+|   |       +-- tfidf_fallback.py # Bascules TF-IDF
+|   |       \-- prompt_builder.py # Prompt LLM
+|   +-- users/                    # Utilisateurs + feedback
+|   +-- rag_data/ [NEW]           # Artefacts FAISS
+|   +-- scripts/ [NEW]            # build_index, reload_index, test_rag
+|   +-- doc/                      # Docs backend
+|   +-- manage.py / db.sqlite3
+|
++-- data/                         # Données FAQ JSON
+|   +-- faq_*.json                # Admissions, frais, etc.
+|   +-- scripts/                  # validate_json, stats_dataset [NEW]
+|   \-- doc/
+|
++-- frontend/                     # Interface
+|   +-- react-app/ [NEW]          # App React
+|   +-- pwa/                      # Ancienne PWA (archivée)
+|   +-- README.md / start_server.py
+|
++-- docs/                         # Documentation générale
+|   +-- architecture/
+|   \-- setup/                    # OLLAMA_SETUP.md [NEW]
+                             
+\end{lstlisting}
+
+%\clearpage
+
+% ─── Conclusion ───────────────────────────────────────────────────────────────
+
+\vfill
+
+\begin{center}
+\textit{Document préparé par :} \\
+\textbf{NKOUMOU TJADE} \\
+Chef de la Division de Programmation \\
+Club Informatique SUP'PTIC
+
+\end{center}
+
+\end{document}

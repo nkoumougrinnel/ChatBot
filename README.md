@@ -1,300 +1,93 @@
-# 📌 ChatBot SUP'PTIC – Prototype
+﻿# ChatBot SUP'PTIC – Phase 2
 
-**Période :** 8 février — 13 février 2026  
 **Réalisé par :** Club Informatique SUP'PTIC
 
 ---
 
-## 🎯 Présentation
+## Passage à la Phase 2
 
-Ce **ChatBot SUP'PTIC** est un prototype développé par le Club Informatique SUP'PTIC. L'objectif est de fournir aux étudiants et personnels de SUP'PTIC un **outil interactif intelligent** capable de :
+Le projet a maintenant quitté la Phase 1 pour entrer en **Phase 2**. Les documents de la Phase 1 restent disponibles dans `docs/phase1/` à titre historique, mais l'activité principale se concentre désormais sur :
 
-- Répondre automatiquement aux questions fréquentes (FAQ)
-- Fournir des informations pertinentes sur les services et ressources de l'école
-
-Ce projet est une démonstration concrète de l'application de technologies modernes en informatique pour créer des solutions utiles et efficaces.
-
----
-
-## ⚙️ Fonctionnalités Principales
-
-| Fonctionnalité                | Description                                                                         |
-| ----------------------------- | ----------------------------------------------------------------------------------- |
-| 🔍 **Recherche TF-IDF**       | Algorithme de similarité cosinus pour trouver la réponse pertinente parmi 1000+ FAQ |
-| 🗄️ **Base de données Django** | Modèles complets : Utilisateurs, Catégories, FAQ, Vecteurs, Feedback                |
-| 🌐 **API REST**               | Endpoints pour poser des questions, gérer les FAQ, collecter des statistiques       |
-| 💬 **Interface web**          | Chat interactif en HTML/CSS/JS, design responsive, connexion directe à l'API        |
-| 👍👎 **Feedback utilisateur** | Système de satisfaction intégré (like/dislike + commentaire optionnel)              |
-| 📊 **Statistiques**           | Suivi des performances et taux de satisfaction par catégorie                        |
+- `docs/phase2/architecture/`
+- `docs/phase2/documentation_technique/`
+- `docs/phase2/roadmap/`
 
 ---
 
-## 🧩 Architecture Projet
+## Présentation
 
-```
-ChatBot/
-├── .venv/              # Environnement virtuel Python
-│
-├── backend/
-│   ├── config/          # Paramètres Django (settings, urls, wsgi)
-│   ├── faq/             # App gestion FAQ
-│   ├── chatbot/         # App algorithme TF-IDF et prétraitement texte
-│   ├── users/           # App utilisateurs + feedback
-│   ├── manage.py
-│   └── db.sqlite3       # Base de données SQLite
-│
-├── frontend/
-│   ├── index.html       # Page principale du chatbot
-│   ├── css/
-│   │   └── styles.css   # Styles responsive
-│   ├── js/
-│   │   └── app.js       # Logique du chatbot (fetch API, UI)
-│   └── assets/
-│
-├── data/
-│   ├── csv/             # Fichiers CSV générés par catégories/sous-thèmes
-│   └── scripts/         # Scripts import/export
-│
-├── docs/
-│   └── README_API.md
-│
-├── README.md            # Documentation principale (ce fichier)
-└── requirements.txt     # Dépendances Python
-```
+Ce **ChatBot SUP'PTIC** est désormais en **Phase 2**, avec une évolution majeure vers une architecture RAG (Retrieval-Augmented Generation). Le projet conserve les bases du chatbot FAQ, mais ajoute :
+
+- une architecture hybride RAG + TF-IDF
+- un index FAISS pour la recherche vectorielle
+- un LLM local via Ollama pour enrichir les réponses
+- une interface plus riche avec historique de conversation
 
 ---
 
-## 👥 Organisation des Équipes (10 personnes)
+## Fonctionnalités principales
 
-| Équipe                    | Effectif | Missions                                                          |
-| ------------------------- | -------- | ----------------------------------------------------------------- |
-| **Base de Données**       | 2        | Modèles Django, migrations, optimisation, scripts import/export   |
-| **Structuration Données** | 4        | Génération massive CSV avec IA, nettoyage, validation (1000+ Q/R) |
-| **Backend**               | 2        | API Django REST, TF-IDF, similarité cosinus, endpoints sécurisés  |
-| **Frontend**              | 2        | Interface chat HTML/CSS/JS, design responsive, connexion API      |
-
----
-
-## 📚 Dépendances Principales
-
-```txt
-Django==4.2.7
-djangorestframework==3.14.0
-django-cors-headers==4.3.1
-scikit-learn==1.3.2
-pandas==2.1.3
-numpy==1.26.2
-```
+| Fonctionnalité           | Description                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------ |
+| Pipeline RAG             | Recherche de documents par embeddings MiniLM, index FAISS, puis génération LLM |
+| Bascule RAG / TF-IDF     | Passage automatique entre RAG et TF-IDF selon le score de confiance            |
+| API REST v2              | Endpoint `/api/chatbot/ask/` amélioré avec fallback, sources et méthode        |
+| Historique conversation  | Stockage local (localStorage) des conversations et navigation multi-tours      |
+| Retour utilisateur       | Feedback positif/négatif avec traçage de la méthode utilisée (RAG ou TF-IDF)   |
+| Passage au React         | Interface web migrée vers React, chat responsive, badge de méthode et streaming SSE |
 
 ---
 
-## 🔧 API REST – Endpoints Principaux
+## Architecture du projet
 
-| Méthode | Endpoint            | Description                                            |
-| ------- | ------------------- | ------------------------------------------------------ |
-| `POST`  | `/api/chatbot/ask/` | Poser une question → retourne top 3 résultats + scores |
-| `GET`   | `/api/faq/`         | Lister toutes les FAQ (avec pagination)                |
-| `GET`   | `/api/categories/`  | Lister les catégories de FAQ                           |
-| `POST`  | `/api/feedback/`    | Enregistrer un feedback utilisateur (like/dislike)     |
-| `GET`   | `/api/stats/`       | Statistiques : taux satisfaction, FAQ populaires       |
+Le dépôt est organisé ainsi :
 
-**Exemple de requête :**
-
-```bash
-curl -X POST http://localhost:8000/api/chatbot/ask/ \
-  -H "Content-Type: application/json" \
-  -d '{"question": "Quand sont les examens?"}'
-```
-
-**Réponse :**
-
-```json
-{
-  "results": [
-    {
-      "id": 1,
-      "question": "Quand se déroulent les examens?",
-      "answer": "Les examens ont lieu...",
-      "category": "Examens",
-      "score": 0.92
-    }
-  ]
-}
-```
+- `backend/` : application Django, API, gestion des FAQ et du moteur de similarité
+- `frontend/` : interface utilisateur et application PWA
+- `data/` : jeux de données, scripts et documentation de données
+- `docs/` : documentation générale et par phase
+- `requirements.txt` : dépendances Python
 
 ---
 
-## 📅 Planning Détaillé (6 jours)
+## Documentation Phase 2
 
-### **Jour 1-2** : Fondations et Premières Vagues
+La documentation de la Phase 2 est le bon point d'entrée :
 
-- Initialiser dépôt Git et projet Django
-- Créer modèles Django (FAQ, Utilisateurs, Feedback, Vecteurs)
-- Générer 400 Q/R (par vagues de 100)
-- Implémenter prétraitement texte basique
-- **Objectif :** 400 Q/R en base de données
+- `docs/phase2/README.md` : résumé de la Phase 2
+- `docs/phase2/architecture/` : documents d'architecture système
+- `docs/phase2/documentation_technique/` : documentation technique
+- `docs/phase2/roadmap/` : feuille de route Phase 2
 
-### **Jour 3-4** : Algorithme et Intégration
+Pour les éléments de configuration et de déploiement, consultez également :
 
-- Implémenter TF-IDF vectorizer
-- Créer endpoints API REST
-- Générer 600 Q/R supplémentaires
-- Intégrer frontend basique
-- **Objectif :** 1000 Q/R, API complète, interface de base
-
-### **Jour 5** : Documentation et Démo
-
-- Documentation API complète (`README_API.md`)
-- Système feedback opérationnel
-- Pages "statistiques" et "À propos"
-- Répétition démo (3x minimum)
-- **Objectif :** Démonstration préparée et documentée
-
-### **Jour 6** : Finalisation et Livraison
-
-- Derniers ajustements UI/UX
-- Déploiement sur serveur test
-- Finalisation README principal
-- **Démonstration officielle (18h)**
+- `docs/setup/NGROK_SETUP.md`
+- `backend/doc/` : spécifications backend détaillées
+- `frontend/README.md` : documentation frontend
 
 ---
 
-## 📦 Livrables Attendus (13 février 18h)
+## Installation rapide
 
-✅ **Code**
-
-- Projet Django complet (3 apps : `faq`, `chatbot`, `users`)
-- Frontend HTML/CSS/JS fonctionnel avec feedback
-- Base de données avec 1000+ Q/R validées
-- API REST testée et fonctionnelle
-
-✅ **Documentation**
-
-- `README.md` complet (ce fichier)
-- `README_API.md` (spécifications et exemples)
-
-✅ **Démonstration**
-
-- Application déployée et accessible
-- Présentation PowerPoint (10-15 slides)
-- Scénario démo préparé et répété
-- 10 questions test impressionnantes
+1. Créez et activez un environnement virtuel :
+   ```powershell
+   python -m venv .venv
+   .venv\Scripts\Activate.ps1
+   ```
+2. Installez les dépendances :
+   ```powershell
+   pip install -r requirements.txt
+   ```
+3. Lancez le serveur Django :
+   ```powershell
+   python backend/manage.py runserver
+   ```
+4. Ouvrez `http://localhost:8000/` dans votre navigateur.
 
 ---
 
-## 📊 Indicateurs de Succès
+## Notes
 
-| Critère                  | Objectif | Mesure                        |
-| ------------------------ | -------- | ----------------------------- |
-| **Q/R en base**          | 1000+    | `SELECT COUNT(*) FROM faq`    |
-| **Taux réponse**         | >70%     | Questions avec score > 0.6    |
-| **API fonctionnelle**    | 100%     | Tous endpoints testés ✓       |
-| **Interface utilisable** | ✓        | Chat + feedback opérationnels |
-| **Documentation**        | ✓        | README + API + BD complètes   |
-| **Démo prête**           | ✓        | Scénario testé 3x minimum     |
-
----
-
-## ⚠️ Points d'Attention Critiques
-
-### Risques Identifiés
-
-- **Synchronisation équipes** → Réunions quotidiennes (matin + soir)
-- **Qualité vs Quantité** → Validation systématique 20% des Q/R
-- **Scope creep** → NE PAS ajouter fonctionnalités non prévues
-- **Fatigue production** → Pauses régulières, rotation des tâches
-
-### Bonnes Pratiques
-
-- 🔄 **Commits Git** : min. 2 par personne par jour
-- 💬 **Communication** : groupe Telegram/WhatsApp actif
-- 🐛 **Bug tracking** : fichier partagé centralisé
-- ✅ **Tests** : après chaque feature importante
-- ☕ **Pauses** : régulières pour éviter la fatigue
-
----
-
-## 🚀 Installation et Lancement Rapide
-
-### Prérequis
-
-- Python 3.10+
-- pip
-- Git
-
-### Setup (Windows PowerShell)
-
-```powershell
-# Cloner et entrer dans le dossier
-git clone <repository-url>
-cd chatbot-supptic
-
-# Créer environnement virtuel
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-
-# Installer dépendances
-pip install -r requirements.txt
-
-# Initialiser base de données
-cd backend
-python manage.py makemigrations
-python manage.py migrate
-
-# (Optionnel) Charger données démo
-python manage.py loaddata fixtures/demo_faq.json
-
-# Lancer serveur Django
-python manage.py runserver
-```
-
-### Accès Application
-
-- **Backend API** : http://localhost:8000/api/
-- **Frontend** : Ouvrir `frontend/index.html` dans navigateur
-
----
-
-## 🔧 Modules Clés à Implémenter
-
-### Backend (`chatbot/utils.py`)
-
-```python
-def preprocess_text(text: str) -> str:
-    """Tokenisation, suppression stopwords FR, normalisation."""
-
-def train_vectorizer(corpus: List[str]) -> TfidfVectorizer:
-    """Entraîner TF-IDF sur le corpus FAQ."""
-
-def compute_tfidf_vector(text: str, vectorizer) -> np.ndarray:
-    """Vecteur TF-IDF pour une requête."""
-
-def compute_cosine_similarity(vec1, vec2) -> float:
-    """Similarité cosinus entre deux vecteurs."""
-
-def find_best_faq(question: str, top_k: int = 3) -> List[Dict]:
-    """Trouver top K réponses + scores."""
-```
-
----
-
-## 📚 Documentation Complémentaire
-
-Les fichiers suivants seront générés au cours du projet :
-
-- **`README_API.md`** : Spécifications API détaillées, exemples cURL, authentification
-
----
-
-## 🎯 Objectif Final
-
-✨ **1000+ Q/R validées**  
-✨ **Algorithme TF-IDF robuste**  
-✨ **API REST sécurisée**  
-✨ **Interface web responsive**  
-✨ **Documentation technique complète**  
-✨ **Démonstration impressionnante**
-
----
-
-**Let's build something amazing together!** 🚀
+- Le contenu principal de la Phase 2 est dans `docs/phase2/`.
+- Les documents de la Phase 1 sont conservés dans `docs/phase1/` pour référence historique.
+- Vérifiez l'encodage UTF-8 si vous éditez des fichiers de documentation.

@@ -1,0 +1,742 @@
+/* Styles PWA - Design moderne et épuré */
+
+/* ============================================
+   BANNIÈRE D'INSTALLATION - DESIGN MODERNE
+   ============================================ */
+
+.install-banner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #0a1628 0%, #1a4594 100%);
+  color: #ffffff;
+  padding: 0;
+  z-index: 99999; /* Au-dessus de tout */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  width: 90%;
+  max-width: 450px;
+  overflow: hidden;
+  display: none; /* Caché par défaut */
+  pointer-events: none; /* N'interfère pas avec le contenu en dessous */
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+.install-banner.show {
+  opacity: 1;
+  display: block; /* Visible quand classe show ajoutée */
+  pointer-events: auto; /* Réactive les interactions */
+}
+
+/* Overlay sombre derrière la modal */
+.install-banner::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.install-content {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px;
+  text-align: center;
+  gap: 20px;
+}
+
+/* En-tête avec icône */
+.install-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.install-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #60a5fa, #2563eb);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 40px;
+  box-shadow: 0 8px 20px rgba(96, 165, 250, 0.4);
+  overflow: hidden;     /* ← Ajoute cette ligne */
+}
+
+.install-icon img {
+  width: 100%;          /* ← Prend toute la largeur du parent */
+  height: 100%;         /* ← Prend toute la hauteur du parent */
+  object-fit: cover;    /* ← Remplit sans déformer */
+}
+
+/* Bouton fermer (X) */
+.close-install-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.close-install-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Texte */
+.install-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.install-text h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.install-text p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Actions */
+.install-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-install {
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #60a5fa, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.4);
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-install:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(96, 165, 250, 0.5);
+}
+
+.btn-install:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(96, 165, 250, 0.4);
+}
+
+/* Avantages */
+.install-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.install-benefits h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.benefit-item i {
+  color: #60a5fa;
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+/* ============================================
+   BANNIÈRE DE MISE À JOUR - VERSION AMÉLIORÉE
+   ============================================ */
+
+.update-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ffffff, #f9fafb);
+  color: #1f2937;
+  padding: 16px 24px;
+  border-radius: 16px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  z-index: 99998; /* En dessous de install-banner (99999) mais au-dessus du contenu */
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: none;
+  min-width: 360px;
+  max-width: 90%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(59, 130, 246, 0.1);
+  pointer-events: none; /* N'interfère pas avec le contenu */
+}
+
+.update-banner.show {
+  opacity: 1;
+  display: flex;
+  pointer-events: auto; /* Réactive les interactions */
+  animation: slideUpBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUpBounce {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px) scale(0.9);
+  }
+  70% {
+    transform: translate(-50%, -5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.update-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.update-content > i {
+  font-size: 28px;
+  color: #3b82f6;
+  flex-shrink: 0;
+  animation: rotateUpdate 3s linear infinite;
+}
+
+@keyframes rotateUpdate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.update-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.update-text strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.update-text span {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.btn-update {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  font-family: inherit;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+.btn-update:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.btn-update:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+}
+
+.btn-update:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   RESPONSIVE MOBILE
+   ============================================ */
+
+@media (max-width: 640px) {
+  .update-banner {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    transform: none;
+    min-width: auto;
+    padding: 14px 18px;
+    border-radius: 14px;
+  }
+
+  .update-banner.show {
+    animation: slideUpBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes slideUpBounce {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+    }
+    70% {
+      transform: translateY(-5px) scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .update-content {
+    gap: 12px;
+  }
+
+  .update-content > i {
+    font-size: 24px;
+  }
+
+  .update-text strong {
+    font-size: 15px;
+  }
+
+  .update-text span {
+    font-size: 13px;
+  }
+
+  .btn-update {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Version compacte pour très petits écrans */
+@media (max-width: 400px) {
+  .update-content {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .update-text {
+    width: 100%;
+    order: 2;
+  }
+
+  .btn-update {
+    width: 100%;
+    order: 3;
+  }
+
+  .update-content > i {
+    order: 1;
+  }
+}
+
+/* ============================================
+   DARK MODE (optionnel)
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .update-banner {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border-color: rgba(59, 130, 246, 0.2);
+  }
+
+  .update-text strong {
+    color: #f9fafb;
+  }
+
+  .update-text span {
+    color: #d1d5db;
+  }
+}
+
+/* ============================================
+   ANIMATION POUR ATTENTION
+   ============================================ */
+
+/* Pulse subtil pour attirer l'attention */
+.update-banner.show {
+  animation: slideUpBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+             pulseAttention 2s ease-in-out 1s 3;
+}
+
+@keyframes pulseAttention {
+  0%, 100% {
+    box-shadow: 
+      0 10px 40px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 10px 40px rgba(59, 130, 246, 0.3),
+      0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITÉ
+   ============================================ */
+
+/* Réduire les animations si l'utilisateur le préfère */
+@media (prefers-reduced-motion: reduce) {
+  .update-banner,
+  .update-content > i,
+  .btn-update {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .update-banner.show {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   TOAST NOTIFICATIONS
+   ============================================ */
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: white;
+  color: #1f2937;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 99997; /* En dessous des bannières mais au-dessus du contenu */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  max-width: 90%;
+  min-width: 280px;
+  border-left: 4px solid #3b82f6;
+  pointer-events: none; /* N'interfère pas avec le contenu */
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  display: flex;
+  pointer-events: auto; /* Réactive les interactions */
+}
+
+.toast i {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.toast span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.toast-success {
+  border-left-color: #10b981;
+}
+
+.toast-success i {
+  color: #10b981;
+}
+
+.toast-warning {
+  border-left-color: #f59e0b;
+}
+
+.toast-warning i {
+  color: #f59e0b;
+}
+
+.toast-error {
+  border-left-color: #ef4444;
+}
+
+.toast-error i {
+  color: #ef4444;
+}
+
+.toast-info {
+  border-left-color: #3b82f6;
+}
+
+.toast-info i {
+  color: #3b82f6;
+}
+
+/* ============================================
+   STATUT DE CONNEXION
+   ============================================ */
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  transition: all 0.3s ease;
+}
+
+.status-dot.offline {
+  background: #f59e0b;
+  animation: pulseOffline 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseOffline {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+}
+
+.status-indicator.offline {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================
+   MODE PWA STANDALONE
+   ============================================ */
+
+@media (display-mode: standalone) {
+  .install-banner {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE MOBILE
+   ============================================ */
+
+@media (max-width: 640px) {
+  .install-banner {
+    width: 95%;
+    max-width: none;
+  }
+
+  .install-content {
+    padding: 28px 20px;
+  }
+
+  .install-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 36px;
+  }
+
+  .install-text h3 {
+    font-size: 20px;
+  }
+
+  .install-text p {
+    font-size: 14px;
+  }
+
+  .btn-install {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .benefit-item {
+    font-size: 13px;
+  }
+
+  .update-banner {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    transform: none;
+    min-width: auto;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .update-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .btn-update {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .toast {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    min-width: auto;
+  }
+}
+
+/* ============================================
+   SUPPORT IOS SAFE AREA
+   ============================================ */
+
+@supports (padding: max(0px)) {
+  .chat-container {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* ============================================
+   OPTIMISATIONS SAFARI IOS
+   ============================================ */
+
+@supports (-webkit-touch-callout: none) {
+  .install-banner,
+  .update-banner,
+  .toast {
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .btn-install,
+  .btn-update,
+  .close-install-btn {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.install-banner.show {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast.show {
+  animation: slideUp 0.3s ease forwards;
+}
+
+/* ============================================
+   ACCESSIBILITÉ
+   ============================================ */
+
+.btn-install:focus,
+.btn-update:focus,
+.close-install-btn:focus {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* Réduire les animations pour les utilisateurs qui préfèrent moins de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .install-banner,
+  .update-banner,
+  .toast,
+  .btn-install,
+  .btn-update,
+  .status-dot {
+    animation: none !important;
+    transition: none !important;
+  }
+}
