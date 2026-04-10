@@ -1,0 +1,33 @@
+# Configuration des fins de ligne pour éviter les avertissements Git
+# Tous les fichiers texte utilisent LF (Unix) pour la cohérence
+
+* text=auto
+
+# Fichiers Python
+*.py text eol=lf
+
+# Fichiers web
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# Fichiers de données
+*.json text eol=lf
+*.txt text eol=lf
+
+# Documentation
+*.md text eol=lf
+*.tex text eol=lf
+
+# Fichiers de configuration
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Fichiers binaires
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.pdf binary

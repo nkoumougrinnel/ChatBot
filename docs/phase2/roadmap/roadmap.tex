@@ -1,0 +1,1201 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{pifont}
+\usepackage{amssymb}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit,backgrounds}
+
+\renewcommand{\checkmark}{\ding{52}}
+\newcommand{\xmark}{\ding{56}}
+
+\setlist[itemize]{leftmargin=*, itemsep=3pt, topsep=3pt}
+\setlist[enumerate]{leftmargin=*, itemsep=3pt, topsep=3pt}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!10},
+    tabsize=4,
+    showstringspaces=false
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Roadmap Phase 2 --- Chatbot SUP'PTIC}
+\fancyhead[R]{\small Avril 2026}
+\fancyfoot[C]{\thepage}
+
+\definecolor{suppticblue}{RGB}{0,70,140}
+\definecolor{phase2color}{RGB}{30,130,80}
+\definecolor{ragcolor}{RGB}{130,30,160}
+\definecolor{reactcolor}{RGB}{0,100,180}
+\definecolor{datacolor}{RGB}{200,100,0}
+\definecolor{dbcolor}{RGB}{180,30,30}
+
+\newtcolorbox{important}[1][]{colback=red!5!white,colframe=red!75!black,fonttitle=\bfseries,title=#1}
+\newtcolorbox{info}[1][]{colback=blue!5!white,colframe=suppticblue,fonttitle=\bfseries,title=#1}
+\newtcolorbox{astuce}[1][]{colback=green!5!white,colframe=phase2color,fonttitle=\bfseries,title=#1}
+\newtcolorbox{phase2box}[1][]{colback=green!5!white,colframe=phase2color,fonttitle=\bfseries,title=#1}
+\newtcolorbox{ragbox}[1][]{colback=purple!5!white,colframe=ragcolor,fonttitle=\bfseries,title=#1}
+\newtcolorbox{reactbox}[1][]{colback=blue!5!white,colframe=reactcolor,fonttitle=\bfseries,title=#1}
+\newtcolorbox{databox}[1][]{colback=orange!5!white,colframe=datacolor,fonttitle=\bfseries,title=#1}
+\newtcolorbox{dbbox}[1][]{colback=red!5!white,colframe=dbcolor,fonttitle=\bfseries,title=#1}
+
+\newcommand{\back}{\textcolor{ragcolor}{\textbf{[BACK]}}}
+\newcommand{\front}{\textcolor{reactcolor}{\textbf{[FRONT]}}}
+\newcommand{\datas}{\textcolor{datacolor}{\textbf{[DATA]}}}
+\newcommand{\db}{\textcolor{dbcolor}{\textbf{[BD]}}}
+
+\begin{document}
+
+%% PAGE DE TITRE
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+{\color{suppticblue}\rule{\linewidth}{1.5pt}}
+\vspace{0.5cm}
+
+{\Huge \textbf{Roadmap --- Phase 2}} \\[0.4cm]
+{\LARGE \textbf{RAG \textperiodcentered{} FAISS \textperiodcentered{} LLM \textperiodcentered{} React Mobile}}
+
+\vspace{0.5cm}
+{\color{suppticblue}\rule{\linewidth}{1.5pt}}
+\vspace{1.2cm}
+
+{\Large Projet Chatbot SUP'PTIC}
+\vspace{1cm}
+
+\begin{minipage}{0.85\textwidth}
+\centering
+\normalsize
+Planification detaillee sur 3 semaines (15 jours ouvres) ---\\
+Pipeline RAG, enrichissement des donnees par binomes circulaires,\\
+interface React mobile et gestion de la base de donnees
+\end{minipage}
+
+\vspace{1.5cm}
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Version :}   & 2.0.0 \\
+\textbf{Date :}      & Avril 2026 \\
+\textbf{Duree :}     & 3 semaines, 15 jours ouvres \\
+\textbf{Equipes :}   & Backend (3) \textperiodcentered{} BD (1) \textperiodcentered{} Data (4) \textperiodcentered{} Frontend (2) \\
+\end{tabular}
+\end{center}
+
+\vfill
+\textbf{Club Informatique SUP'PTIC}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+%%=============================================================
+\section{Contexte et objectifs de la Phase 2}
+%%=============================================================
+
+\subsection{Bilan Phase 1}
+
+\begin{phase2box}[Ce qui a ete livre en Phase 1]
+\begin{itemize}
+    \item[\checkmark] Recherche TF-IDF + similarite cosinus fonctionnelle
+    \item[\checkmark] Base de donnees Django avec les Q/R existantes
+    \item[\checkmark] API REST Django (5 endpoints documentes)
+    \item[\checkmark] Interface PWA (HTML/CSS/JS)
+    \item[\checkmark] Systeme de feedback et statistiques
+    \item[\xmark] Collecte de donnees : objectif 1000 Q/R \textbf{non atteint}
+    \item[\xmark] Recherche semantique : absente (TF-IDF ne comprend pas le sens)
+    \item[\xmark] Generation de reponses naturelles adaptees au contexte : absente
+    \item[\xmark] Memoire conversationnelle : absente
+\end{itemize}
+\end{phase2box}
+
+\subsection{Limites identifiees justifiant la Phase 2}
+
+La Phase 1 repose exclusivement sur TF-IDF qui compare des mots, non du sens. Deux questions synonymes peuvent produire des resultats differents. Le chatbot renvoie des reponses brutes extraites de la base sans adaptation au contexte ni au fil de la conversation. La diversite des formulations reelles des etudiants n'est pas couverte et le dataset reste insuffisant pour assurer une bonne couverture des sujets.
+
+\subsection{Objectifs de la Phase 2}
+
+\begin{enumerate}
+    \item \textbf{Pipeline RAG complet} : MiniLM $\rightarrow$ FAISS $\rightarrow$ LLM Phi-3 (Ollama)
+    \item \textbf{Bascule automatique} : RAG si score FAISS $\geq$ 0.55, TF-IDF sinon
+    \item \textbf{Interface React mobile} calquee sur la maquette Supone AI (mobile-first)
+    \item \textbf{Dataset enrichi} : $\geq$ 1050 nouveaux Q/R valides (cible totale : 1500+ en base)
+    \item \textbf{Base de donnees} coherente, schema etendu, synchronisee avec l'index FAISS
+\end{enumerate}
+
+\subsection{Repartition des equipes}
+
+\begin{center}
+\begin{tabular}{>{\bfseries}l c >{\ttfamily}l p{6.5cm}}
+\toprule
+Equipe & Effectif & Branche & Mission \\
+\midrule
+Backend & 3 & backend & Pipeline RAG, FAISS, Ollama, endpoints, fallback TF-IDF \\
+Base de Donnees & 1 & database & Schema, migrations, import JSON, synchronisation FAISS \\
+Data & 4 & data & Collecte et validation Q/R par binomes circulaires \\
+Frontend & 2 & frontend & Application React mobile (Supone AI), streaming, UX \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\clearpage
+
+%%=============================================================
+\section{Processus de collecte des donnees --- Equipe Data}
+%%=============================================================
+
+\subsection{Nouveau processus : binomes circulaires avec validation immediate}
+
+L'equipe de 4 membres est divisee en \textbf{2 binomes permanents} qui alternent chaque jour entre la collecte et la validation. La regle fondamentale est la suivante :
+
+\begin{important}[Regle d'or --- synchronisation collecte/validation]
+Le binome en validation traite \textbf{le jour meme} les Q/R produits par l'autre binome \textbf{ce meme jour}. Il ne valide jamais sa propre production. Cela garantit que le lendemain, lorsque les roles s'inversent, chaque binome traite une production fraiche qu'il n'a pas lui-meme ecrite --- ce qui assure une relecture independante et objective.
+
+Le flux quotidien est : \textbf{collecte le matin} $\rightarrow$ \textbf{remise des brouillons a 12h} $\rightarrow$ \textbf{validation l'apres-midi} $\rightarrow$ \textbf{commit + verification du quota le soir}.
+\end{important}
+
+\begin{center}
+\begin{tabular}{c l l l}
+\toprule
+Binome & Membres & Jours impairs (J1, J3, J5\ldots) & Jours pairs (J2, J4, J6\ldots) \\
+\midrule
+\textbf{A} & Membre 1 + Membre 2 & Collecte (matin) & Validation (apres-midi) \\
+\textbf{B} & Membre 3 + Membre 4 & Validation (apres-midi) & Collecte (matin) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{databox}[Fonctionnement quotidien detaille]
+\begin{enumerate}
+    \item \textbf{9h--12h --- Binome collecteur} : chaque membre redige \textbf{35 Q/R minimum} sur un sous-theme distinct du jour. Total attendu par journee : \textbf{70 Q/R bruts}.
+    \item \textbf{12h --- Remise} : le binome collecteur pousse ses fichiers JSON bruts dans le dossier de travail partage (branche \texttt{data}, sous-dossier \texttt{brouillons/}).
+    \item \textbf{13h--17h --- Binome validateur} : lit chaque entree, verifie les criteres (cf. section suivante), corrige la mise en forme JSON, deplace les rejets dans \texttt{brouillons/rejets\_jX.json} avec une note explicative.
+    \item \textbf{17h30 --- Commit} : le binome validateur commite le fichier JSON valide dans \texttt{data/} avec un message clair : \texttt{feat(data): faq\_admissions\_j1 -- 68 Q/R valides}.
+    \item \textbf{18h --- Script de verification} : lancer \texttt{verify\_quota.py} pour confirmer que le quota journalier est atteint.
+\end{enumerate}
+\end{databox}
+
+\subsection{Criteres de validation}
+
+Un Q/R est \textbf{valide} s'il respecte tous les criteres suivants :
+\begin{itemize}
+    \item La reponse fait au moins 2 phrases completes et apporte une information concrete et verifiable.
+    \item Le champ \texttt{exemples} contient au minimum 2 variantes de formulation de la question.
+    \item Le JSON est syntaxiquement correct (aucune erreur de parse avec \texttt{json.load()}).
+    \item L'entree n'est pas un doublon d'une entree deja existante (verification manuelle par mot-cle).
+    \item Le champ \texttt{sous\_theme} correspond bien au theme du jour.
+    \item Le champ \texttt{valide} est explicitement mis a \texttt{true}.
+\end{itemize}
+
+Un Q/R \textbf{rejete} est deplace dans \texttt{brouillons/rejets\_jX.json} avec une note. Le binome collecteur doit corriger les rejets lors de sa prochaine session de collecte avant d'atteindre le quota du jour.
+
+\subsection{Script de verification des quotas}
+\label{sec:verify}
+
+Le script \texttt{verify\_quota.py} est cree des le Jour 1 et execute chaque soir apres le commit du binome validateur. Il garantit que le calcul de 70 Q/R par jour est bien respecte.
+
+\begin{lstlisting}[language=Python, caption=verify\_quota.py]
+# verify_quota.py
+# Usage : python verify_quota.py --file faq_admissions_j1.json --quota 70
+
+import json, argparse, sys
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--file", required=True)
+parser.add_argument("--quota", type=int, default=70)
+args = parser.parse_args()
+
+with open(args.file, "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+total   = len(data)
+valides = sum(1 for d in data if d.get("valide") is True)
+rejets  = total - valides
+
+print(f"[verify_quota] Fichier : {args.file}")
+print(f"  Total entrees   : {total}")
+print(f"  Valides         : {valides}")
+print(f"  Rejets          : {rejets}")
+print(f"  Quota attendu   : {args.quota}")
+
+if valides < args.quota:
+    print(f"  ECHEC : {args.quota - valides} Q/R manquants !")
+    sys.exit(1)
+else:
+    print(f"  OK : quota atteint ({valides} >= {args.quota})")
+    sys.exit(0)
+\end{lstlisting}
+
+En cas d'echec (code de sortie 1), le binome collecteur est notifie pour completer sa production avant la fin de journee.
+
+\subsection{Format JSON attendu (v2)}
+
+\begin{lstlisting}[caption=Format JSON v2 --- exemple complet]
+{
+  "id": "faq_001",
+  "categorie": "Admissions",
+  "sous_theme": "Dossier d'inscription",
+  "question": "Quels documents fournir pour s'inscrire a SUP'PTIC ?",
+  "reponse_enrichie": "Le dossier comprend : formulaire d'inscription,
+    photocopie du diplome, acte de naissance, photos d'identite.
+    Tous les documents doivent etre fournis en 2 exemplaires.",
+  "exemples": [
+    "Comment s'inscrire a SUP'PTIC ?",
+    "Quelles pieces fournir pour l'admission ?",
+    "Qu'est-ce qu'il faut pour le dossier d'entree ?"
+  ],
+  "sources": ["Service des admissions", "brochure_2025.pdf"],
+  "date_creation": "2026-04-07",
+  "version": "2.0",
+  "valide": true
+}
+\end{lstlisting}
+
+\begin{astuce}[Conseils pour les collecteurs]
+\begin{itemize}
+    \item Chaque membre du binome choisit un \textbf{sous-theme distinct} pour eviter les doublons internes.
+    \item Privilegier des questions reellement posees par des etudiants, y compris les formulations orales ou avec des fautes de frappe (a inclure dans \texttt{exemples}).
+    \item La \texttt{reponse\_enrichie} doit etre autonome : un etudiant ne doit pas avoir besoin de chercher ailleurs.
+    \item En cas d'incertitude sur une reponse, mettre \texttt{"valide": false} et noter la source a verifier.
+\end{itemize}
+\end{astuce}
+
+\subsection{Sous-themes et quotas sur 3 semaines}
+
+\begin{center}
+\begin{tabular}{c l c r}
+\toprule
+Semaine & Sous-themes cibles & Jours & Quota \\
+\midrule
+S1 & Admissions et inscriptions, Frais de scolarite, Logement & J1--J5 & 350 Q/R \\
+S2 & Emploi du temps et cours, Examens et notes, Filieres & J6--J10 & 420 Q/R \\
+S3 & Services administratifs, Vie etudiante, Ajustements finaux & J11--J14 & 280 Q/R \\
+\midrule
+  & \textbf{Total cible (nouveaux Q/R)} & & \textbf{$\geq$ 1050 Q/R} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\clearpage
+
+%%=============================================================
+\section{Vue d'ensemble --- Planning 3 semaines}
+%%=============================================================
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    scale=0.80,
+    every node/.style={transform shape},
+    bloc/.style={rectangle, rounded corners, draw, thick,
+                  minimum width=3.5cm, minimum height=0.85cm,
+                  align=center, font=\small\bfseries},
+    tl/.style={->, thick, >=stealth, color=gray!60}
+]
+\draw[tl] (0,0) -- (16.5,0);
+\foreach \x/\lbl in {0/Depart, 5.5/Fin S1, 11/Fin S2, 16.5/Livraison}
+    \draw (\x,0.2) -- (\x,-0.2) node[below,font=\scriptsize] {\textbf{\lbl}};
+
+\node[bloc,fill=purple!15,draw=ragcolor,text=ragcolor]  at (2.75,1.3)  {Backend\\MiniLM + FAISS};
+\node[bloc,fill=purple!15,draw=ragcolor,text=ragcolor]  at (8.25,1.3)  {Backend\\Ollama + Fallback};
+\node[bloc,fill=purple!15,draw=ragcolor,text=ragcolor]  at (13.75,1.3) {Backend\\Tests + API v2};
+
+\node[bloc,fill=blue!10,draw=reactcolor,text=reactcolor] at (2.75,2.5)  {Frontend\\Setup React Mobile};
+\node[bloc,fill=blue!10,draw=reactcolor,text=reactcolor] at (8.25,2.5)  {Frontend\\Chat + Streaming};
+\node[bloc,fill=blue!10,draw=reactcolor,text=reactcolor] at (13.75,2.5) {Frontend\\Integration finale};
+
+\node[bloc,fill=orange!10,draw=datacolor,text=datacolor] at (2.75,3.7)  {Data\\Themes 1--2 (350)};
+\node[bloc,fill=orange!10,draw=datacolor,text=datacolor] at (8.25,3.7)  {Data\\Themes 3--5 (420)};
+\node[bloc,fill=orange!10,draw=datacolor,text=datacolor] at (13.75,3.7) {Data\\Themes 6--8 (280)};
+
+\node[bloc,fill=red!8,draw=dbcolor,text=dbcolor]         at (2.75,4.9)  {BD\\Audit + Migrations};
+\node[bloc,fill=red!8,draw=dbcolor,text=dbcolor]         at (8.25,4.9)  {BD\\Imports + Coherence};
+\node[bloc,fill=red!8,draw=dbcolor,text=dbcolor]         at (13.75,4.9) {BD\\Schema final + Docs};
+
+\draw[dashed,gray!40] (5.5,0.3) -- (5.5,5.5);
+\draw[dashed,gray!40] (11,0.3)  -- (11,5.5);
+\end{tikzpicture}
+\caption{Planning macroscopique --- 3 semaines}
+\end{figure}
+
+\clearpage
+
+%%=============================================================
+\section{Semaine 1 --- Fondations (J1 a J5)}
+%%=============================================================
+
+\subsection*{Objectifs de la semaine}
+\begin{itemize}
+    \item \back{} MiniLM operationnel, index FAISS initial construit, LLM Phi-3 installe et teste
+    \item \front{} Projet React cree (mobile-first), composants Header, ChatBubble, InputBar et FeedbackBar implementes
+    \item \datas{} 350 Q/R produits et valides (themes 1 et 2 + debut 3), \texttt{verify\_quota.py} operationnel des J1
+    \item \db{} Audit du schema Phase 1 termine, migrations preparees et testees, premiers imports
+\end{itemize}
+
+\subsection{Jour 1 --- Lundi : Lancement et configuration}
+
+\begin{ragbox}[Backend --- J1]
+\begin{itemize}
+    \item[$\square$] Creer la structure \texttt{backend/chatbot/engine/} avec les fichiers vides suivants : \texttt{embedder.py}, \texttt{faiss\_search.py}, \texttt{llm\_client.py}, \texttt{prompt\_builder.py}, \texttt{rag\_pipeline.py}, \texttt{tfidf\_fallback.py}
+    \item[$\square$] Installer les dependances : \texttt{pip install sentence-transformers faiss-cpu ollama}
+    \item[$\square$] Mettre a jour \texttt{requirements.txt} et commiter sur la branche \texttt{backend}
+    \item[$\square$] Verifier que le modele MiniLM (\texttt{all-MiniLM-L6-v2}) se charge correctement en local
+    \item[$\square$] Installer Ollama et telecharger le modele : \texttt{ollama pull phi3:mini}
+    \item[$\square$] Verifier qu'Ollama repond a une question test : \texttt{ollama run phi3:mini "Bonjour"}
+    \item[$\square$] (Optionnel) Commiter un \texttt{Dockerfile} de developpement pour securiser l'environnement
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J1]
+\begin{itemize}
+    \item[$\square$] Creer le projet React : \texttt{npm create vite@latest supptic-chat -- --template react}
+    \item[$\square$] Installer les dependances : \texttt{npm install react-router-dom axios}
+    \item[$\square$] Definir la structure des dossiers : \texttt{components/}, \texttt{screens/}, \texttt{services/}, \texttt{hooks/}, \texttt{assets/}
+    \item[$\square$] Configurer les variables CSS globales dans \texttt{index.css} : couleur primaire bleu \texttt{\#00468C}, blanc, gris clair, police systeme
+    \item[$\square$] Configurer le viewport mobile dans \texttt{index.html} : \texttt{<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">}
+    \item[$\square$] Configurer Vite : port 3000, proxy vers Django sur le port 8000 (evite les CORS en developpement)
+    \item[$\square$] Commit initial sur branche \texttt{frontend}
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J1]
+\begin{itemize}
+    \item[$\square$] Reunion de lancement : presentation des roles des binomes, lecture du guide JSON v2, rappel des quotas et du processus journalier
+    \item[$\square$] Creer et tester \texttt{verify\_quota.py} (cf. section~\ref{sec:verify}) sur un fichier exemple factice
+    \item[$\square$] \textbf{Binome A collecte (9h--12h)} : Theme 1 --- Admissions et inscriptions. Chaque membre choisit un sous-theme distinct. Total attendu : \textbf{70 Q/R bruts}. Remise dans \texttt{brouillons/} a 12h.
+    \item[$\square$] \textbf{Binome B valide (13h--17h)} : lit et valide la production du Binome A. Corrige le format, note les rejets dans \texttt{brouillons/rejets\_j1.json}.
+    \item[$\square$] Commit soir par Binome B : \texttt{faq\_admissions\_j1.json}
+    \item[$\square$] Lancer \texttt{verify\_quota.py --file faq\_admissions\_j1.json --quota 70} : verifier que le quota est atteint
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J1]
+\begin{itemize}
+    \item[$\square$] Audit complet des modeles Phase 1 : \texttt{FAQ}, \texttt{Category}, \texttt{Feedback}
+    \item[$\square$] Identifier les champs manquants pour le RAG : \texttt{source} (provenance de la reponse), \texttt{embedding\_id} (reference dans l'index FAISS), \texttt{rag\_method} (methode ayant retourne la reponse)
+    \item[$\square$] Rediger \texttt{schema\_phase2.md} : schema ER actualise avec les nouveaux champs et leur type Django
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 2 --- Mardi : Premiers embeddings et composants React}
+
+\begin{ragbox}[Backend --- J2]
+\begin{itemize}
+    \item[$\square$] Ecrire \texttt{embedder.py} : charger \texttt{all-MiniLM-L6-v2} une seule fois au demarrage, exposer \texttt{encode(text: str) -> np.ndarray} (vecteur de dimension 384)
+    \item[$\square$] Ecrire \texttt{scripts/build\_index.py} : lire les fichiers JSON v2, encoder chaque entree via \texttt{embedder.encode()}, generer \texttt{index.bin} (index FAISS) + \texttt{metadata.json} (mapping id $\leftrightarrow$ reponse)
+    \item[$\square$] Tester sur un echantillon de 50 Q/R de Phase 1 : verifier que les vecteurs sont generes sans erreur
+    \item[$\square$] Benchmark : mesurer le temps de vectorisation d'une phrase (objectif $<$ 50 ms)
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J2]
+\begin{itemize}
+    \item[$\square$] Creer \textbf{Header} : barre bleue (\texttt{\#00468C}), icone menu hamburger ($\equiv$) a gauche, titre ``Supone AI'' centre, icone profil a droite. Hauteur fixe 56px, \texttt{position: sticky; top: 0; z-index: 100}.
+    \item[$\square$] Creer \textbf{ChatBubble} : props \texttt{message} (texte), \texttt{isUser} (boolean), \texttt{timestamp}. Bulle utilisateur alignee a droite (fond bleu, texte blanc), bulle bot alignee a gauche (fond gris clair, texte noir). Border-radius 18px, padding 12px 16px, largeur max 80\% de l'ecran.
+    \item[$\square$] Creer \textbf{TypingIndicator} : trois points animes (CSS \texttt{@keyframes} bounce) affiches pendant la generation de la reponse.
+    \item[$\square$] Tester l'affichage de plusieurs ChatBubble avec des donnees statiques dans \texttt{App.jsx}
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J2]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome B collecte (9h--12h)} : Theme 1 --- Admissions (sous-themes differents de J1). Total attendu : \textbf{70 Q/R bruts}. Remise dans \texttt{brouillons/} a 12h.
+    \item[$\square$] \textbf{Binome A valide (13h--17h)} : lit et valide la production du Binome B.
+    \item[$\square$] Commit soir par Binome A : \texttt{faq\_admissions\_j2.json}
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{140 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J2]
+\begin{itemize}
+    \item[$\square$] Ecrire la premiere migration Django : ajout du champ \texttt{source} (CharField, max\_length=200, blank=True) sur le modele \texttt{FAQ}
+    \item[$\square$] Appliquer la migration : \texttt{python manage.py makemigrations \&\& python manage.py migrate}
+    \item[$\square$] Verifier que l'API Phase 1 (TF-IDF) fonctionne toujours apres migration (aucune regression)
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 3 --- Mercredi : FAISS operationnel et layout chat}
+
+\begin{ragbox}[Backend --- J3]
+\begin{itemize}
+    \item[$\square$] Ecrire \texttt{faiss\_search.py} : charger \texttt{index.bin} au demarrage, exposer \texttt{search(query\_vec: np.ndarray, k: int = 3) -> list[tuple[int, float]]} (retourne des paires (id\_metadata, score))
+    \item[$\square$] Construire l'index initial avec toutes les donnees Phase 1 existantes via \texttt{build\_index.py}
+    \item[$\square$] Tester manuellement : 10 questions variees, verifier la pertinence semantique des top-3
+    \item[$\square$] Assurer le chargement de l'index au demarrage de Django via \texttt{AppConfig.ready()}
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J3]
+\begin{itemize}
+    \item[$\square$] Creer \textbf{ChatScreen} : conteneur \texttt{overflow-y: auto}, auto-scroll vers le bas a chaque nouveau message (\texttt{useEffect} + \texttt{ref.scrollIntoView()}), padding bottom 80px pour ne pas etre cache par InputBar
+    \item[$\square$] Creer \textbf{InputBar} : fixee en bas (\texttt{position: fixed; bottom: 0}), champ texte multilignes (max 4 lignes, auto-resize), bouton envoi bleu rond, gestion de la touche Entree (envoyer) vs Maj+Entree (saut de ligne). Hauteur minimale 56px.
+    \item[$\square$] Assembler Header + ChatScreen + InputBar dans \texttt{ChatLayout.jsx}
+    \item[$\square$] Tester l'ajout dynamique de bulles via React state : simuler une conversation de 5 echanges
+    \item[$\square$] Verifier le rendu sur viewport 390px (iPhone 14) et 360px (Galaxy A) via Chrome DevTools
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J3]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome A collecte (9h--12h)} : Theme 2 --- Frais de scolarite, chaque membre choisit un sous-theme distinct. Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome B valide (13h--17h)} : valide la production du Binome A. Fusionner \texttt{faq\_admissions\_j1.json} + \texttt{faq\_admissions\_j2.json} en \texttt{faq\_admissions.json} definitif.
+    \item[$\square$] Commit soir par Binome B : \texttt{faq\_frais\_j3.json} + \texttt{faq\_admissions.json} (complet)
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{210 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J3]
+\begin{itemize}
+    \item[$\square$] Ecrire \texttt{scripts/import\_json.py} : lire un fichier JSON v2, inserer chaque entree en base, ignorer les doublons par verification de l'identifiant unique \texttt{id}
+    \item[$\square$] Tester l'import de \texttt{faq\_admissions.json} (140 entrees)
+    \item[$\square$] Verifier l'absence de doublons apres import
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 4 --- Jeudi : LLM Phi-3 et service API frontend}
+
+\begin{ragbox}[Backend --- J4]
+\begin{itemize}
+    \item[$\square$] Ecrire \texttt{llm\_client.py} : connexion HTTP a Ollama (\texttt{localhost:11434}), exposer \texttt{generate(prompt: str) -> str} (reponse complete) et \texttt{generate\_stream(prompt: str) -> Iterator[str]} (tokens en continu)
+    \item[$\square$] Tester une generation manuelle : envoyer une question simple, verifier la reponse en francais
+    \item[$\square$] Mesurer la latence de generation (objectif $<$ 3s pour une reponse courte)
+    \item[$\square$] Documenter les parametres Ollama utilises : \texttt{temperature}, \texttt{num\_predict}, \texttt{stop}
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J4]
+\begin{itemize}
+    \item[$\square$] Creer \texttt{services/api.js} : fonction \texttt{askQuestion(text, history)} effectuant un \texttt{POST /api/chatbot/ask/}
+    \item[$\square$] Gerer les etats dans le service : \texttt{loading}, \texttt{error}, \texttt{data}
+    \item[$\square$] Afficher TypingIndicator pendant la requete API
+    \item[$\square$] Tester la connexion avec l'API Phase 1 (TF-IDF) pour valider la plomberie reseau (CORS, format JSON)
+    \item[$\square$] Creer \textbf{ErrorBanner} : bandeau rouge affichant les erreurs reseau (timeout, 500, etc.) avec un bouton ``Reessayer''
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J4]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome B collecte (9h--12h)} : Theme 2 --- Frais de scolarite (sous-themes differents de J3). Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome A valide (13h--17h)} : valide la production du Binome B. Fusionner en \texttt{faq\_frais.json} definitif.
+    \item[$\square$] Commit soir par Binome A : \texttt{faq\_frais.json} (140 Q/R complet)
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{280 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J4]
+\begin{itemize}
+    \item[$\square$] Import de \texttt{faq\_frais.json} en base via \texttt{import\_json.py}
+    \item[$\square$] Verification croisee : nombre d'entrees en base vs. nombre d'entrees dans le JSON
+    \item[$\square$] Rapport de coherence J4 : total Q/R en base, repartition par theme, champs nuls
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 5 --- Vendredi : Bilan S1 et Pull Requests}
+
+\begin{ragbox}[Backend --- J5]
+\begin{itemize}
+    \item[$\square$] Ecrire \texttt{prompt\_builder.py} : construire le prompt Phi-3 depuis les contextes FAISS (top-3) + question utilisateur. Message systeme : ``Tu es un assistant de SUP'PTIC. Reponds uniquement en francais et en te basant sur le contexte fourni.''
+    \item[$\square$] Test end-to-end manuel : question $\rightarrow$ embed $\rightarrow$ FAISS $\rightarrow$ prompt $\rightarrow$ LLM $\rightarrow$ reponse affichee
+    \item[$\square$] Verifier que le LLM reste dans le contexte fourni (ne fabrique pas d'informations non presentes)
+    \item[$\square$] Pull Request \texttt{backend} $\rightarrow$ \texttt{dev} : MiniLM + FAISS + LLM + prompt\_builder fonctionnels
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J5]
+\begin{itemize}
+    \item[$\square$] Creer \textbf{FeedbackBar} : barre d'actions sous chaque bulle bot contenant les boutons \ding{52} (like), \ding{56} (dislike), icone ``Copier le texte'', icone ``Recharger la reponse''
+    \item[$\square$] Etat des boutons : desactiver apres un premier clic, feedback visuel (\ding{52} vert, \ding{56} rouge)
+    \item[$\square$] Verifier l'affichage sur petits ecrans (360px) : la barre ne deborde pas
+    \item[$\square$] Pull Request \texttt{frontend} $\rightarrow$ \texttt{dev} : Header, ChatBubble, InputBar, FeedbackBar, TypingIndicator, ErrorBanner
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J5]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome A collecte (9h--12h)} : Theme 3 --- Logement (debut). Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome B valide (13h--17h)} : valide la production du Binome A + correction retroactive des rejets des jours precedents
+    \item[$\square$] Bilan S1 Data : qualite generale, taux de rejet, points a ameliorer
+    \item[$\square$] Pull Request \texttt{data} $\rightarrow$ \texttt{dev} : \texttt{faq\_admissions.json} + \texttt{faq\_frais.json}
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{$\geq$ 350 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J5]
+\begin{itemize}
+    \item[$\square$] Declencher \texttt{build\_index.py} sur toutes les donnees importees (S1 complete)
+    \item[$\square$] Verifier que l'index FAISS charge par Django est coherent avec la base
+    \item[$\square$] Pull Request \texttt{database} $\rightarrow$ \texttt{dev} : migrations + \texttt{import\_json.py}
+\end{itemize}
+\end{dbbox}
+
+\begin{phase2box}[Bilan Semaine 1 --- Criteres de succes]
+\begin{itemize}
+    \item[\checkmark] MiniLM charge et vectorise correctement (test sur 50 Q/R)
+    \item[\checkmark] Index FAISS construit et interrogeable (top-3 pertinent sur 10 questions test)
+    \item[\checkmark] LLM Phi-3 installe, repond en moins de 3s
+    \item[\checkmark] Composants Header + ChatBubble + InputBar + FeedbackBar valides (mobile 390px et 360px)
+    \item[\checkmark] 350 Q/R valides (themes 1 et 2 + debut 3), \texttt{verify\_quota.py} operationnel
+    \item[\checkmark] Migrations BD appliquees (champ \texttt{source}), import fonctionne
+\end{itemize}
+\end{phase2box}
+
+\clearpage
+
+%%=============================================================
+\section{Semaine 2 --- Le Coeur Intelligent (J6 a J10)}
+%%=============================================================
+
+\subsection*{Objectifs de la semaine}
+\begin{itemize}
+    \item \back{} Pipeline RAG complet, endpoint \texttt{/api/chatbot/ask/} v2 avec streaming SSE et fallback TF-IDF
+    \item \front{} Ecran de chat complet : streaming visible, sources, badge methode, historique, feedback connecte
+    \item \datas{} +420 Q/R (themes 3, 4, 5), imports quotidiens en base
+    \item \db{} Imports batch apres chaque journee de validation, audit de coherence mi-parcours
+\end{itemize}
+
+\subsection{Jour 6 --- Lundi : Pipeline RAG et streaming}
+
+\begin{ragbox}[Backend --- J6]
+\begin{itemize}
+    \item[$\square$] Ecrire \texttt{rag\_pipeline.py} : orchestrer embed $\rightarrow$ FAISS (top-3) $\rightarrow$ prompt $\rightarrow$ LLM
+    \item[$\square$] Exposer dans \texttt{chatbot/views.py} : \texttt{POST /api/chatbot/ask/} v2
+    \item[$\square$] Format de la reponse JSON : \texttt{\{"answer": "...", "sources": [\{"question": "...", "score": 0.82\}], "method": "RAG"\}}
+    \item[$\square$] Activer le streaming SSE : \texttt{StreamingHttpResponse} Django avec \texttt{Content-Type: text/event-stream}, chaque token du LLM est envoye comme un evenement \texttt{data: <token>\textbackslash n\textbackslash n}
+    \item[$\square$] Tester avec curl : \texttt{curl -N -X POST /api/chatbot/ask/ -d '\{"question":"Quels sont les frais?"\}'}
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J6]
+\begin{itemize}
+    \item[$\square$] Implementer le \textbf{streaming} : utiliser l'API \texttt{fetch} avec \texttt{ReadableStream} pour lire le flux SSE octet par octet. A chaque chunk recu, concatener le texte dans la bulle en cours de construction.
+    \item[$\square$] Creer le hook \texttt{useChat()} : gere la liste des messages, l'etat \texttt{isStreaming}, l'accumulation du texte streame et l'ajout de la bulle finale une fois le stream termine
+    \item[$\square$] Mettre a jour ChatBubble pour accepter un mode ``streaming'' : afficher le texte progressivement
+    \item[$\square$] Afficher TypingIndicator uniquement quand \texttt{isStreaming === true} et que la bulle est encore vide
+    \item[$\square$] Tester visuellement l'effet de frappe progressive sur viewport mobile
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J6]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome B collecte (9h--12h)} : Theme 3 --- Logement (suite, sous-themes differents de J5). Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome A valide (13h--17h)} : valide la production du Binome B. Fusionner avec la production J5 pour obtenir \texttt{faq\_logement.json} complet (140 Q/R).
+    \item[$\square$] Commit soir par Binome A : \texttt{faq\_logement.json}
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{490 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J6]
+\begin{itemize}
+    \item[$\square$] Import \texttt{faq\_logement.json} via \texttt{import\_json.py}
+    \item[$\square$] Declencher le rebuild FAISS, verifier que Django charge le nouvel index sans redemarrage (via \texttt{reload\_trigger.py})
+    \item[$\square$] Verifier la coherence relationnelle : toutes les entrees ont une categorie assignee
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 7 --- Mardi : Fallback TF-IDF et affichage des sources}
+
+\begin{ragbox}[Backend --- J7]
+\begin{itemize}
+    \item[$\square$] Ecrire \texttt{tfidf\_fallback.py} : encapsuler le moteur TF-IDF de Phase 1, exposer \texttt{search(query: str) -> tuple[str, float, str]} (reponse, score, methode="TF-IDF")
+    \item[$\square$] Integrer la bascule dans \texttt{rag\_pipeline.py} : si le meilleur score FAISS $<$ 0.55, appeler \texttt{tfidf\_fallback.search()}
+    \item[$\square$] Le champ \texttt{method} de la reponse finale vaut \texttt{"RAG"} ou \texttt{"TF-IDF"} selon la branche empruntee
+    \item[$\square$] Tester avec des questions hors domaine (ex: ``Quel temps fait-il ?'') : la bascule TF-IDF doit s'activer
+    \item[$\square$] Tester avec des questions bien formulees sur SUP'PTIC : la voie RAG doit etre privilegiee
+    \item[$\square$] Ajuster le seuil si necessaire (valeur par defaut : 0.55)
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J7]
+\begin{itemize}
+    \item[$\square$] Creer \textbf{SourcesCard} : composant affichant les sources retournees par l'API. Chaque carte montre la question source et le score de confiance (arrondi en pourcentage). Composant pliable/depliable, ferme par defaut.
+    \item[$\square$] Creer \textbf{MethodBadge} : badge colore affiche dans la bulle bot. Valeur \texttt{RAG} en violet, valeur \texttt{TF-IDF} en orange.
+    \item[$\square$] Integrer SourcesCard et MethodBadge sous chaque bulle bot dans ChatScreen
+    \item[$\square$] Tester visuellement : la carte sources s'ouvre et se ferme au tap, l'animation est fluide
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J7]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome A collecte (9h--12h)} : Theme 4 --- Emploi du temps, chaque membre choisit un sous-theme distinct. Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome B valide (13h--17h)} : valide la production du Binome A. Commit \texttt{faq\_emploi\_j7.json}.
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{560 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J7]
+\begin{itemize}
+    \item[$\square$] Import \texttt{faq\_emploi\_j7.json}
+    \item[$\square$] Verification des doublons inter-themes
+    \item[$\square$] Rapport de coherence : champs manquants, valeurs nulles, FK orphelines
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 8 --- Mercredi : Historique et memoire contextuelle}
+
+\begin{ragbox}[Backend --- J8]
+\begin{itemize}
+    \item[$\square$] Modifier \texttt{prompt\_builder.py} : accepter un parametre \texttt{history: list[dict]} (liste des 3 derniers echanges) et l'inclure dans le prompt envoye au LLM. Format : \texttt{[Historique]\textbackslash nQ: ...\textbackslash nR: ...\textbackslash n...\textbackslash n[Nouvelle question]\textbackslash n\{question\}}
+    \item[$\square$] Modifier l'endpoint \texttt{/api/chatbot/ask/} pour accepter le champ \texttt{history} dans le corps de la requete (peut etre absent ou vide pour la premiere question)
+    \item[$\square$] Tester une conversation multi-tours : ``Quels sont les frais ?'' puis ``Et pour les boursiers ?'' --- la deuxieme reponse doit tenir compte du contexte
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J8]
+\begin{itemize}
+    \item[$\square$] Creer \textbf{HistorySidebar} : panneau lateral listant les conversations passees (titre automatique = premiere question posee, date)
+    \item[$\square$] Declencher l'ouverture via le bouton $\equiv$ du Header, animation \texttt{slide-in} depuis la gauche (\texttt{transform: translateX} avec transition 300ms)
+    \item[$\square$] Stocker les conversations en \texttt{localStorage} : cle \texttt{supptic\_conversations}, tableau d'objets \texttt{\{id, title, messages, date\}}
+    \item[$\square$] Permettre de reprendre une conversation passee en cliquant dessus : charger les messages dans ChatScreen
+    \item[$\square$] Bouton ``Nouvelle conversation'' en haut du sidebar : vider l'etat courant, generer un nouvel \texttt{id}
+    \item[$\square$] Envoyer les 3 derniers messages comme \texttt{history} dans chaque requete API via \texttt{useChat()}
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J8]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome B collecte (9h--12h)} : Theme 4 --- Emploi du temps (suite). Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome A valide (13h--17h)} : valide la production du Binome B. Fusionner les deux journees en \texttt{faq\_emploi\_du\_temps.json} definitif (140 Q/R).
+    \item[$\square$] Commit soir par Binome A : \texttt{faq\_emploi\_du\_temps.json}
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{630 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J8]
+\begin{itemize}
+    \item[$\square$] Import \texttt{faq\_emploi\_du\_temps.json} via \texttt{import\_json.py}
+    \item[$\square$] Ecrire \texttt{scripts/reload\_trigger.py} : signaler au backend de recharger l'index FAISS a chaud sans redemarrer Django (par exemple via un fichier sentinel ou un signal interne)
+    \item[$\square$] Tester le rechargement a chaud : ajouter une entree en base, declencher le reload, verifier qu'elle est retrouvable par FAISS
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 9 --- Jeudi : Feedback connecte et tests unitaires}
+
+\begin{ragbox}[Backend --- J9]
+\begin{itemize}
+    \item[$\square$] Ajouter le champ \texttt{rag\_method} au modele \texttt{Feedback} pour tracer quelle methode (RAG ou TF-IDF) a produit la reponse evaluee
+    \item[$\square$] Ecrire \texttt{tests/test\_embedder.py} : verifier que deux questions synonymes ont une similarite cosinus $>$ 0.85
+    \item[$\square$] Ecrire \texttt{tests/test\_faiss\_search.py} : verifier que les top-3 retournes sont semantiquement coherents sur 20 questions connues
+    \item[$\square$] Ecrire \texttt{tests/test\_fallback.py} : verifier que la bascule TF-IDF s'active bien pour les questions hors domaine (score $<$ 0.55)
+    \item[$\square$] Lancer \texttt{python manage.py test} et corriger les echecs
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J9]
+\begin{itemize}
+    \item[$\square$] Connecter FeedbackBar a l'endpoint \texttt{POST /api/feedback/} : envoyer \texttt{\{message\_id, type: "like" | "dislike"\}}
+    \item[$\square$] Retour visuel apres feedback : bouton colore (\ding{52} vert, \ding{56} rouge), desactivation du double-clic
+    \item[$\square$] Creer \textbf{SplashScreen} : ecran d'accueil affiche 2 secondes au lancement. Logo Supone AI centre sur fond bleu \texttt{\#00468C}, animation de fondu (\texttt{opacity: 0 -> 1} en 500ms). Navigation automatique vers ChatScreen apres 2s via \texttt{useNavigate}.
+    \item[$\square$] Configurer le routeur React : \texttt{/} $\rightarrow$ SplashScreen, \texttt{/chat} $\rightarrow$ ChatLayout, \texttt{/about} $\rightarrow$ AboutScreen
+    \item[$\square$] Tester le flux complet : ouverture app $\rightarrow$ SplashScreen $\rightarrow$ Chat $\rightarrow$ question $\rightarrow$ reponse streamee $\rightarrow$ feedback
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J9]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome A collecte (9h--12h)} : Theme 5 --- Examens et notes, chaque membre choisit un sous-theme distinct. Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome B valide (13h--17h)} : valide la production du Binome A. Commit \texttt{faq\_examens\_j9.json}.
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{700 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J9]
+\begin{itemize}
+    \item[$\square$] Migration : ajout du champ \texttt{rag\_method} (CharField, max\_length=10, default="TF-IDF") sur le modele \texttt{Feedback}
+    \item[$\square$] Import \texttt{faq\_examens\_j9.json}
+    \item[$\square$] Stats mi-parcours : total Q/R en base, repartition par theme, taux de champs remplis
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 10 --- Vendredi : Bilan S2 et Pull Requests}
+
+\begin{ragbox}[Backend --- J10]
+\begin{itemize}
+    \item[$\square$] Tests end-to-end : 20 questions variees couvrant les 5 themes importes, verifier bascule RAG/TF-IDF, champ \texttt{method}, streaming SSE
+    \item[$\square$] Mesurer les temps de reponse : objectif moyenne $<$ 3s sur les 20 requetes. Documenter les resultats dans un fichier \texttt{perf\_s2.md}.
+    \item[$\square$] Optimiser si necessaire : reduire \texttt{num\_predict} Ollama, limiter le contexte FAISS a 2 sources si la latence est elevee
+    \item[$\square$] Pull Request \texttt{backend} $\rightarrow$ \texttt{dev} : pipeline RAG complet + fallback TF-IDF + tests unitaires
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J10]
+\begin{itemize}
+    \item[$\square$] Verifier le comportement mobile : gestion du clavier virtuel (viewport resize), scroll automatique, InputBar qui remonte avec le clavier
+    \item[$\square$] Corriger tous les bugs UI identifies cette semaine
+    \item[$\square$] Tester sur un appareil Android reel si possible (pas seulement Chrome DevTools)
+    \item[$\square$] Pull Request \texttt{frontend} $\rightarrow$ \texttt{dev} : chat complet (streaming, sources, historique, feedback, SplashScreen, routeur)
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J10]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome B collecte (9h--12h)} : Theme 5 --- Examens (suite). Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome A valide (13h--17h)} : valide la production du Binome B. Fusionner en \texttt{faq\_examens.json} definitif (140 Q/R).
+    \item[$\square$] Commit soir par Binome A : \texttt{faq\_examens.json}
+    \item[$\square$] Bilan S2 : lancer \texttt{verify\_quota.py} | Cumul : \textbf{$\geq$ 770 Q/R valides}
+    \item[$\square$] Pull Request \texttt{data} $\rightarrow$ \texttt{dev} : themes 3 + 4 + 5 complets
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J10]
+\begin{itemize}
+    \item[$\square$] Import \texttt{faq\_examens.json}
+    \item[$\square$] Rebuild complet de l'index FAISS avec toutes les donnees S1 + S2
+    \item[$\square$] Audit de coherence global : relations, doublons, champs nuls, distribution par theme
+    \item[$\square$] Pull Request \texttt{database} $\rightarrow$ \texttt{dev}
+\end{itemize}
+\end{dbbox}
+
+\begin{phase2box}[Bilan Semaine 2 --- Criteres de succes]
+\begin{itemize}
+    \item[\checkmark] Pipeline RAG complet, expose via \texttt{/api/chatbot/ask/} v2 avec SSE
+    \item[\checkmark] Fallback TF-IDF operationnel, bascule automatique validee
+    \item[\checkmark] Streaming visible dans l'interface React
+    \item[\checkmark] Sources et badge methode affiches
+    \item[\checkmark] Historique des conversations fonctionne (localStorage)
+    \item[\checkmark] Feedback connecte a l'API backend
+    \item[\checkmark] SplashScreen et routeur React en place
+    \item[\checkmark] 770 Q/R valides en base (themes 1 a 5)
+\end{itemize}
+\end{phase2box}
+
+\clearpage
+
+%%=============================================================
+\section{Semaine 3 --- Finalisation et Demo (J11 a J15)}
+%%=============================================================
+
+\subsection*{Objectifs de la semaine}
+\begin{itemize}
+    \item \back{} API stable et documentee, tests de charge reussis, documentation complete
+    \item \front{} Application React mobile entierement integree avec le backend RAG, prete pour la demo
+    \item \datas{} +280 Q/R (themes 6, 7, 8), dataset final livre pour l'index definitif
+    \item \db{} Schema final valide, index FAISS synchronise avec toutes les donnees, documentation livree
+\end{itemize}
+
+\subsection{Jour 11 --- Lundi : Integration globale}
+
+\begin{ragbox}[Backend --- J11]
+\begin{itemize}
+    \item[$\square$] Tester le backend avec le frontend React : verifier les CORS, les formats de reponse JSON, les codes d'erreur HTTP
+    \item[$\square$] Corriger les incompatibilites de format entre les deux equipes (noms de champs, casse, pagination)
+    \item[$\square$] Ajouter un cache memoire simple (dictionnaire Python) pour les embeddings des questions les plus frequentes (optionnel, si la latence est elevee)
+    \item[$\square$] Verifier que tous les tests unitaires passent toujours apres les corrections
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J11]
+\begin{itemize}
+    \item[$\square$] Basculer de l'API Phase 1 (TF-IDF) vers l'API Phase 2 (RAG) dans \texttt{services/api.js}
+    \item[$\square$] Tester chaque composant avec la vraie reponse RAG : streaming, sources, badge methode, feedback
+    \item[$\square$] Corriger les bugs d'integration identifies lors des tests croisés
+    \item[$\square$] Creer \textbf{AboutScreen} : ecran ``A propos'' accessible depuis le Header (icone info ou menu). Explique en langage simple ce qu'est le RAG, FAISS et le LLM. Bouton retour vers ChatScreen.
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J11]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome A collecte (9h--12h)} : Theme 6 --- Filieres et parcours, chaque membre choisit un sous-theme distinct. Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome B valide (13h--17h)} : valide la production du Binome A. Commit \texttt{faq\_filieres\_j11.json}.
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{840 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J11]
+\begin{itemize}
+    \item[$\square$] Import \texttt{faq\_filieres\_j11.json}, declencher rebuild FAISS partiel
+    \item[$\square$] Verifier la coherence relationnelle : FK, categories bien assignees, absence de doublons
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 12 --- Mardi : Polissage UI/UX et tests de charge}
+
+\begin{ragbox}[Backend --- J12]
+\begin{itemize}
+    \item[$\square$] Test de charge : lancer 50 requetes consecutives, verifier la stabilite du serveur et la coherence des reponses
+    \item[$\square$] Rediger \texttt{FLUX\_RAG.md} : explication du pipeline etape par etape (embed $\rightarrow$ FAISS $\rightarrow$ score $\rightarrow$ bascule $\rightarrow$ LLM $\rightarrow$ SSE)
+    \item[$\square$] Rediger \texttt{OLLAMA\_SETUP.md} : guide d'installation, demarrage, parametres utilises
+    \item[$\square$] Documenter tous les endpoints avec leur format exact (requete + reponse exemple + codes d'erreur)
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J12]
+\begin{itemize}
+    \item[$\square$] Animations d'apparition progressive des bulles : entree par le bas (\texttt{transform: translateY(20px) -> 0} en 200ms)
+    \item[$\square$] Gestion des erreurs reseau dans ErrorBanner : afficher un message convivial avec bouton ``Reessayer''
+    \item[$\square$] Verifier le responsive sur plusieurs largeurs : 360px (Galaxy A), 390px (iPhone 14), 430px (iPhone 14 Plus)
+    \item[$\square$] Tester sur navigateur mobile reel : comportement du clavier, scroll, tap, double-tap
+    \item[$\square$] Creer \textbf{StatsScreen} (optionnel) : ecran statistiques affichant le nombre de questions posees, taux de satisfaction (feedbacks positifs / total), methode la plus utilisee (RAG ou TF-IDF)
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J12]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome B collecte (9h--12h)} : Theme 6 --- Filieres (suite). Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome A valide (13h--17h)} : valide la production du Binome B. Fusionner en \texttt{faq\_filieres.json} definitif (140 Q/R).
+    \item[$\square$] Commit soir par Binome A : \texttt{faq\_filieres.json}
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{910 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J12]
+\begin{itemize}
+    \item[$\square$] Import \texttt{faq\_filieres.json}
+    \item[$\square$] Verifier les scores FAISS sur les nouvelles donnees (qualite des embeddings)
+    \item[$\square$] Rediger \texttt{FAISS\_SETUP.md} : construction de l'index, format de \texttt{metadata.json}, reload a chaud
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 13 --- Mercredi : Documentation et avant-demo}
+
+\begin{ragbox}[Backend --- J13]
+\begin{itemize}
+    \item[$\square$] Mettre a jour le README principal (section Phase 2) : architecture, installation, demarrage
+    \item[$\square$] Rediger \texttt{CHANGELOG.md} Phase 2 : liste de toutes les nouvelles fonctionnalites
+    \item[$\square$] Verifier la documentation de chaque endpoint : \texttt{/api/chatbot/ask/}, \texttt{/api/feedback/}, \texttt{/api/stats/}, \texttt{/api/reload-index/}
+\end{itemize}
+\end{ragbox}
+
+\begin{reactbox}[Frontend --- J13]
+\begin{itemize}
+    \item[$\square$] Finaliser SplashScreen : logo centre, animation fluide, redirection automatique apres 2s
+    \item[$\square$] Preparer le scenario de demo : 8 questions representatives (2 questions simples RAG, 2 questions de bascule TF-IDF, 2 questions de suivi de conversation multi-tours, 2 questions pour le feedback)
+    \item[$\square$] Revue de code frontend : lisibilite, suppression des \texttt{console.log}, nettoyage des imports inutilises
+    \item[$\square$] Pull Request finale \texttt{frontend} $\rightarrow$ \texttt{dev}
+\end{itemize}
+\end{reactbox}
+
+\begin{databox}[Data --- J13]
+\begin{itemize}
+    \item[$\square$] \textbf{Binome A collecte (9h--12h)} : Theme 7 --- Services administratifs, chaque membre choisit un sous-theme distinct. Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \textbf{Binome B valide (13h--17h)} : valide la production du Binome A. Commit \texttt{faq\_services\_admin\_j13.json}.
+    \item[$\square$] Lancer \texttt{verify\_quota.py} | Cumul : \textbf{980 Q/R valides}
+\end{itemize}
+\end{databox}
+
+\begin{dbbox}[Base de Donnees --- J13]
+\begin{itemize}
+    \item[$\square$] Import \texttt{faq\_services\_admin\_j13.json}
+    \item[$\square$] Audit final du schema relationnel : tous les champs ajoutes en Phase 2 sont renseignes
+    \item[$\square$] Rediger \texttt{GUIDE\_FORMAT\_JSON.md} : guide complet pour l'equipe Data (format, regles, exemples)
+    \item[$\square$] Pull Request \texttt{database} $\rightarrow$ \texttt{dev}
+\end{itemize}
+\end{dbbox}
+
+\subsection{Jour 14 --- Jeudi : Repetition generale et clotûre Data}
+
+Toutes les equipes convergent pour les tests finaux et la preparation de la demo.
+
+\subsubsection*{Matin --- Tests croises (9h--12h)}
+
+\begin{center}
+\begin{tabular}{|p{5cm}|c|c|c|}
+\hline
+\rowcolor{green!15}
+\textbf{Fonctionnalite} & \textbf{Backend} & \textbf{Frontend} & \textbf{Data} \\
+\hline
+Embedding + FAISS (top-3 pertinent) & \checkmark & & \\
+\hline
+LLM streaming SSE & \checkmark & \checkmark & \\
+\hline
+Fallback TF-IDF (bascule auto) & \checkmark & \checkmark & \\
+\hline
+Affichage sources + badge methode & & \checkmark & \\
+\hline
+Feedback connecte & \checkmark & \checkmark & \\
+\hline
+Historique conversations (localStorage) & & \checkmark & \\
+\hline
+Memoire conversationnelle (multi-tours) & \checkmark & \checkmark & \\
+\hline
+Indexation des nouvelles donnees & \checkmark & & \checkmark \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection*{Apres-midi --- Preparation demo (13h--17h)}
+
+\begin{itemize}
+    \item[$\square$] \back{} Rebuild index FAISS final avec le dataset complet
+    \item[$\square$] \back{} Tag \texttt{v2.0.0-rc} sur la branche \texttt{dev}
+    \item[$\square$] \front{} Tester le scenario de demo de bout en bout (les 8 questions preparees en J13)
+    \item[$\square$] \front{} Verifier streaming, sources, fallback, feedback, historique sur l'application finale
+    \item[$\square$] \datas{} \textbf{Binome B collecte (matin)} : Theme 7 suite + debut Theme 8 --- Vie etudiante. Total attendu : \textbf{70 Q/R bruts}. Remise a 12h.
+    \item[$\square$] \datas{} \textbf{Binome A valide (apres-midi)} : valide et commit \texttt{faq\_services\_admin.json} complet (140 Q/R)
+    \item[$\square$] \db{} Import \texttt{faq\_services\_admin.json} | Cumul : \textbf{$\geq$ 1050 Q/R}
+    \item[$\square$] \db{} Stats finales : total Q/R en base, repartition par theme, taux de champs remplis
+    \item[$\square$] Repetition demo (simulation 30 min, toutes equipes presentes)
+    \item[$\square$] Etablir la liste des ajustements a faire J15 matin
+\end{itemize}
+
+\subsection{Jour 15 --- Vendredi : Demo officielle et livraison}
+
+\subsubsection{Matin --- Derniers reglages (9h--13h)}
+\begin{itemize}
+    \item[$\square$] Corrections issues de la liste J14
+    \item[$\square$] \datas{} Commit \texttt{faq\_vie\_etudiante.json} (Theme 8) | Cumul final : \textbf{$\geq$ 1050 Q/R}
+    \item[$\square$] \db{} Import final + rebuild FAISS definitif sur le dataset complet
+    \item[$\square$] Merge \texttt{dev} $\rightarrow$ \texttt{main}, tag \texttt{v2.0.0}
+\end{itemize}
+
+\subsubsection{Apres-midi --- Demo officielle (14h--17h)}
+
+\begin{important}[Deroulement de la demo (45 min)]
+\begin{enumerate}
+    \item \textbf{Contexte et objectifs Phase 2} (5 min) : rappel des limites Phase 1, solutions adoptees, equipes impliquees
+    \item \textbf{Architecture RAG} (5 min) : schema question $\rightarrow$ MiniLM $\rightarrow$ FAISS $\rightarrow$ bascule $\rightarrow$ Phi-3 $\rightarrow$ reponse streamee
+    \item \textbf{Demonstration live} (25 min) :
+    \begin{itemize}
+        \item Question bien formulee $\rightarrow$ reponse RAG, streaming visible, badge \texttt{RAG}, sources affichees
+        \item Question mal formulee ou hors domaine $\rightarrow$ bascule TF-IDF, badge \texttt{TF-IDF}
+        \item Suivi de conversation multi-tours (memoire contextuelle)
+        \item Envoi d'un feedback (like / dislike) et confirmation visuelle
+        \item Ouverture de HistorySidebar et reprise d'une conversation passee
+    \end{itemize}
+    \item \textbf{Dataset} (5 min) : 1050+ Q/R, 8 themes couverts, presentation du processus binomes et de \texttt{verify\_quota.py}
+    \item \textbf{Questions et retrospective} (5 min)
+\end{enumerate}
+\end{important}
+
+\subsubsection{Soir --- Livraison finale}
+\begin{itemize}
+    \item[$\square$] Tag \texttt{v2.0.0} sur \texttt{main}, creation de la release GitHub avec notes de version
+    \item[$\square$] Archive des branches \texttt{backend}, \texttt{frontend}, \texttt{data}, \texttt{database}
+\end{itemize}
+
+\clearpage
+
+%%=============================================================
+\section{Architecture technique}
+%%=============================================================
+
+\subsection{Pipeline RAG}
+
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.2cm and 1.5cm,
+    box/.style={rectangle, rounded corners, draw, thick, minimum width=2.8cm, minimum height=0.8cm, align=center, font=\small},
+    decision/.style={diamond, draw, thick, minimum width=2cm, minimum height=1cm, align=center, font=\scriptsize\bfseries},
+    arr/.style={->, thick, >=stealth}
+]
+\node[box, fill=blue!10]  (q)      {Question\\utilisateur};
+\node[box, fill=purple!10, right=1.5cm of q] (emb)    {MiniLM\\encode()};
+\node[box, fill=purple!10, right=1.5cm of emb] (faiss)  {FAISS\\search(k=3)};
+\node[decision, right=1.5cm of faiss] (seuil) {Score\\$\geq$0.55?};
+\node[box, fill=green!10, above right=0.7cm and 1.5cm of seuil] (rag)   {RAG\\prompt+LLM};
+\node[box, fill=orange!10, below right=0.7cm and 1.5cm of seuil] (tfidf) {TF-IDF\\Fallback};
+\node[box, fill=blue!10, right=4cm of seuil] (rep)    {Reponse\\SSE stream};
+
+\draw[arr] (q) -- (emb);
+\draw[arr] (emb) -- (faiss);
+\draw[arr] (faiss) -- (seuil);
+\draw[arr] (seuil) -- node[above, font=\scriptsize]{Oui} (rag);
+\draw[arr] (seuil) -- node[below, font=\scriptsize]{Non} (tfidf);
+\draw[arr] (rag) -| (rep);
+\draw[arr] (tfidf) -| (rep);
+\end{tikzpicture}
+\end{center}
+
+\subsection{Structure des fichiers backend}
+
+\begin{lstlisting}[caption=Arborescence backend (engine)]
+backend/chatbot/
+  engine/
+    embedder.py          # Chargement MiniLM, encode()
+    faiss_search.py      # Index FAISS, search()
+    llm_client.py        # Client Ollama, generate() et generate_stream()
+    prompt_builder.py    # Construction prompt (contexte + historique)
+    rag_pipeline.py      # Orchestrateur principal
+    tfidf_fallback.py    # Encapsulation moteur TF-IDF Phase 1
+  views.py               # Endpoints Django
+  tests/
+    test_embedder.py
+    test_faiss_search.py
+    test_fallback.py
+scripts/
+  build_index.py         # Genere index.bin + metadata.json
+  reload_trigger.py      # Reload FAISS a chaud
+  import_json.py         # Import fichiers JSON v2 en base
+  verify_quota.py        # Verification quotas Data
+\end{lstlisting}
+
+\subsection{Structure des composants React}
+
+\begin{lstlisting}[caption=Arborescence frontend]
+supptic-chat/src/
+  screens/
+    SplashScreen.jsx     # Ecran d'accueil (2s, logo anime, fond bleu)
+    ChatScreen.jsx       # Ecran principal de chat (layout complet)
+    AboutScreen.jsx      # Presentation du projet RAG
+  components/
+    Header.jsx           # Barre de navigation superieure (sticky)
+    ChatBubble.jsx       # Bulle de message (user/bot + streaming)
+    InputBar.jsx         # Zone de saisie fixee en bas
+    FeedbackBar.jsx      # Boutons like/dislike/copier/recharger
+    SourcesCard.jsx      # Cartes sources pliables
+    MethodBadge.jsx      # Badge RAG (violet) ou TF-IDF (orange)
+    TypingIndicator.jsx  # Animation "..." pendant la generation
+    HistorySidebar.jsx   # Panneau historique (slide-in)
+    ErrorBanner.jsx      # Bandeau d'erreur reseau
+  hooks/
+    useChat.js           # Gestion messages + streaming SSE
+  services/
+    api.js               # Appels API Django
+\end{lstlisting}
+
+\clearpage
+
+%%=============================================================
+\section{Recapitulatif des livrables}
+%%=============================================================
+
+\begin{center}
+\begin{tabular}{>{\bfseries}l p{5.5cm} c}
+\toprule
+Equipe & Livrable & Deadline \\
+\midrule
+Backend  & \texttt{engine/} complet : embedder, faiss\_search, llm\_client, prompt\_builder, rag\_pipeline, tfidf\_fallback & J6 \\
+Backend  & Endpoint \texttt{/api/chatbot/ask/} v2 avec SSE et fallback & J7 \\
+Backend  & Tests unitaires : test\_embedder, test\_faiss\_search, test\_fallback & J9 \\
+Backend  & \texttt{FLUX\_RAG.md}, \texttt{OLLAMA\_SETUP.md}, \texttt{CHANGELOG.md}, README v2 & J13 \\
+\midrule
+Frontend & SplashScreen, Header, ChatBubble, InputBar, FeedbackBar, TypingIndicator, ErrorBanner & J5 \\
+Frontend & SourcesCard, MethodBadge, hook useChat(), streaming SSE & J7 \\
+Frontend & HistorySidebar, memoire conversationnelle (localStorage), routeur & J8 \\
+Frontend & AboutScreen, integration complete avec backend RAG & J13 \\
+\midrule
+Data     & \texttt{verify\_quota.py} operationnel & J1 \\
+Data     & \texttt{faq\_admissions.json} + \texttt{faq\_frais.json} (280 Q/R) & J4 \\
+Data     & \texttt{faq\_logement.json} + \texttt{faq\_emploi\_du\_temps.json} + \texttt{faq\_examens.json} (420 Q/R) & J10 \\
+Data     & \texttt{faq\_filieres.json} + \texttt{faq\_services\_admin.json} + \texttt{faq\_vie\_etudiante.json} (350 Q/R) & J14 \\
+Data     & \textbf{Total $\geq$ 1050 Q/R nouveaux valides} & J15 \\
+\midrule
+BD       & Migration champ \texttt{source} sur \texttt{FAQ} & J2 \\
+BD       & \texttt{import\_json.py} (import sans doublons) & J3 \\
+BD       & Migration champ \texttt{rag\_method} sur \texttt{Feedback} & J9 \\
+BD       & \texttt{reload\_trigger.py} (reload FAISS a chaud) & J8 \\
+BD       & Index FAISS synchronise apres chaque import & continu \\
+BD       & \texttt{FAISS\_SETUP.md}, \texttt{GUIDE\_FORMAT\_JSON.md}, \texttt{schema\_phase2.md} & J13 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\clearpage
+
+%%=============================================================
+\section{Indicateurs de succes}
+%%=============================================================
+
+\begin{center}
+\begin{tabular}{|p{5.5cm}|p{2.5cm}|p{5cm}|}
+\hline
+\rowcolor{green!15}
+\textbf{Critere} & \textbf{Objectif} & \textbf{Comment mesurer} \\
+\hline
+Q/R valides et en base & $\geq$ 1050 nouveaux & \texttt{verify\_quota.py} + stats BD \\
+\hline
+Taux de reponse RAG (score $\geq$ 0.55) & $>$ 60\% & Logs API sur 50 questions variees \\
+\hline
+Temps de reponse RAG & $<$ 3 s & Moyenne sur 20 requetes (\texttt{perf\_s2.md}) \\
+\hline
+Composants React fonctionnels & 100\% de la liste & Revue de code \\
+\hline
+Integration frontend-backend & Aucune erreur CORS & Test sur navigateur mobile reel \\
+\hline
+Tests unitaires backend & 100\% passants & \texttt{python manage.py test} \\
+\hline
+Demo reussie & \checkmark & Validation par l'equipe \\
+\hline
+\end{tabular}
+\end{center}
+
+%%=============================================================
+\section{Risques et plans de contingence}
+%%=============================================================
+
+\begin{center}
+\begin{tabular}{p{4.5cm} c p{2cm} p{5cm}}
+\toprule
+\textbf{Risque} & \textbf{Prob.} & \textbf{Impact} & \textbf{Plan B} \\
+\midrule
+Ollama/Phi-3 trop lent sur la machine de demo & Moyenne & Eleve & Reduire le contexte FAISS a 1 source, abaisser \texttt{num\_predict}, basculer sur TF-IDF seul le temps de la demo \\
+\midrule
+Quota Data non atteint un jour & Moyenne & Modere & Le lendemain, le binome collecteur cible un sous-theme plus simple pour recuperer les Q/R manquants \\
+\midrule
+Entrees JSON massivement rejetees & Faible & Modere & Script \texttt{auto\_correct.py} qui tente de corriger le format automatiquement avant rejet definitif \\
+\midrule
+React non maitrise par l'equipe & Moyenne & Eleve & Maintien de la PWA Phase 1 en parallele ; les composants Chat et Input sont priorises sur les ecrans secondaires \\
+\midrule
+FAISS index trop volumineux & Faible & Faible & Compression (\texttt{faiss.IndexIVFFlat}) \\
+\midrule
+Probleme de dependances Python & Faible & Eleve & Dockerfile de developpement commite des J1 \\
+\midrule
+CORS Django bloquant le frontend & Faible & Modere & Verifier \texttt{CORS\_ALLOWED\_ORIGINS} en J4, proxy Vite en developpement \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\clearpage
+
+%%=============================================================
+\section*{Synthese --- Phase 2 en bref}
+\addcontentsline{toc}{section}{Synthese}
+%%=============================================================
+
+\begin{phase2box}[3 semaines pour transformer le chatbot]
+\begin{center}
+\begin{tabular}{c l p{7cm}}
+\toprule
+\textbf{Semaine} & \textbf{Theme} & \textbf{Livrable principal} \\
+\midrule
+S1 & Fondations & MiniLM + FAISS + LLM installe + React setup + 350 Q/R \\
+S2 & Coeur intelligent & Pipeline RAG + Fallback TF-IDF + streaming + sources + historique + 420 Q/R \\
+S3 & Finalisation & Integration complete + tests + documentation + demo + 280 Q/R \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{phase2box}
+
+\begin{phase2box}[Ce qui est nouveau par rapport a la Phase 1]
+\begin{itemize}
+    \item[\checkmark] Recherche semantique (MiniLM) au lieu de TF-IDF seul
+    \item[\checkmark] Index vectoriel FAISS (\texttt{index.bin} + \texttt{metadata.json})
+    \item[\checkmark] Generation de reponse naturelle par LLM (Phi-3 / Ollama)
+    \item[\checkmark] Bascule automatique RAG $\leftrightarrow$ TF-IDF selon le score de confiance
+    \item[\checkmark] Interface React mobile (remplacement de la PWA)
+    \item[\checkmark] Streaming des reponses visible dans l'interface
+    \item[\checkmark] Affichage des sources et scores de confiance
+    \item[\checkmark] Historique des conversations (localStorage)
+    \item[\checkmark] Memoire conversationnelle (3 derniers echanges dans le prompt)
+    \item[\checkmark] 1050+ nouveaux Q/R produits par le processus de binomes circulaires
+    \item[\checkmark] Script \texttt{verify\_quota.py} garantissant les quotas quotidiens
+\end{itemize}
+\end{phase2box}
+
+\vfill
+\begin{center}
+\textit{Document prepare par :} \\
+\textbf{NKOUMOU TJADE} \\
+Chef de la Division de Programmation \\
+Club Informatique SUP'PTIC
+
+\vspace{0.5cm}
+\textbf{Bonne Phase 2 a toutes les equipes !}
+\end{center}
+
+\end{document}

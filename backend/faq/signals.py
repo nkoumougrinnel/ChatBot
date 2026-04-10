@@ -15,8 +15,13 @@ def update_faq_vector_on_feedback(sender, instance, created, **kwargs):
     Signal : quand un feedback est créé/modifié, met à jour le poids du vecteur
     et réajuste le score de similarité basé sur la satisfaction.
     
+<<<<<<< HEAD
     - Feedback positif (+) : augmente la popularité, le norm, et le score reste inchangé
     - Feedback négatif (-) : diminue la popularité, le norm, et réduit le score
+=======
+    - Feedback positif (+) : augmente la popularité et le score reste inchangé
+    - Feedback négatif (-) : diminue la popularité et réduit le score
+>>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
     
     Args:
         sender: Le modèle Feedback
@@ -45,6 +50,7 @@ def update_faq_vector_on_feedback(sender, instance, created, **kwargs):
         instance.save()
         print(f"[FAQ Signal] Feedback #{instance.id} négatif : score réduit de 30%")
     
+<<<<<<< HEAD
     # ===== 3. Mettre à jour le vecteur associé =====
     try:
         vector = FAQVector.objects.get(faq=faq)
@@ -63,4 +69,6 @@ def update_faq_vector_on_feedback(sender, instance, created, **kwargs):
     
     except FAQVector.DoesNotExist:
         print(f"[FAQ Signal] ⚠ Aucun vecteur trouvé pour FAQ #{faq.id}")
+=======
+>>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 
