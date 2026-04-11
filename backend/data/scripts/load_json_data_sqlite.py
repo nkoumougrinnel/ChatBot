@@ -88,7 +88,7 @@ class FAQJsonImporter:
             raise FileNotFoundError(f"Fichier JSON non trouvé: {self.json_path}")
         
         print(f"📂 Chargement du fichier: {self.json_path.name}")
-        with open(self.json_path, 'r', encoding='utf-8') as f:
+        with open(self.json_path, 'r', encoding='utf-8-sig') as f:
             data = json.load(f)
         
         # Validation basique
