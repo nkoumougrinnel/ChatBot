@@ -29,6 +29,34 @@ Validation réussie pour faq_admissions.json
 Catégorie: Admissions
 ```
 
+## verify_quota.py
+
+Vérifie qu’un fichier JSON contient un nombre minimum d’entrées validées.
+
+### Utilisation
+
+```bash
+python verify_quota.py --file faq_admissions_j1.json --quota 70
+```
+
+### Vérifications effectuées
+
+- Lecture du fichier JSON
+- Vérification que le contenu est une liste
+- Comptage des objets avec `valide: true`
+- Comparaison avec le quota demandé
+
+### Exemple de sortie
+
+```
+[verify_quota] Fichier : faq_admissions_j1.json
+ Total entrees : 75
+ Valides : 72
+ Rejets : 3
+ Quota attendu : 70
+ OK : quota atteint (72 >= 70)
+```
+
 ## stats_dataset.py
 
 Génère des statistiques complètes sur le dataset.
@@ -63,7 +91,7 @@ Total FAQs: 127 (112 validées)
 Total exemples alternatifs: 543
 Moyenne exemples/FAQ: 4.3
 
-Rà‰PARTITION PAR CATà‰GORIE:
+REPARTITION PAR CATEGORIE:
 - Admissions: 23 FAQs (20 validées)
 - Formation: 34 FAQs (32 validées)
 - Frais: 19 FAQs (18 validées)
@@ -77,4 +105,3 @@ COUVERTURE TEMPORELLE:
 
 TAUX DE VALIDATION: 88.2%
 ```
-
