@@ -126,4 +126,3 @@ Exemples :
 - Tests utilisateur
 - Validation des réponses
 - Contrôle de l'exactitude
-
