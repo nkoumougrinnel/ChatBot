@@ -1,0 +1,50 @@
+[
+  {
+    "vecteur_id": 0,
+    "intent": "faq_001",
+    "example": "Quels documents fournir pour s'inscrire à SUP'PTIC ?",
+    "response": "Le dossier comprend : formulaire d'inscription, photocopie du diplôme, acte de naissance, photos d'identité. Tous les documents doivent être fournis en 2 exemplaires.",
+    "categorie": "Admissions",
+    "source": "Service des admissions"
+  },
+  {
+    "vecteur_id": 1,
+    "intent": "faq_001",
+    "example": "Comment s'inscrire ?",
+    "response": "Le dossier comprend : formulaire d'inscription, photocopie du diplôme, acte de naissance, photos d'identité. Tous les documents doivent être fournis en 2 exemplaires.",
+    "categorie": "Admissions",
+    "source": "Service des admissions"
+  },
+  {
+    "vecteur_id": 2,
+    "intent": "faq_001",
+    "example": "Quelles pièces fournir ?",
+    "response": "Le dossier comprend : formulaire d'inscription, photocopie du diplôme, acte de naissance, photos d'identité. Tous les documents doivent être fournis en 2 exemplaires.",
+    "categorie": "Admissions",
+    "source": "Service des admissions"
+  },
+  {
+    "vecteur_id": 3,
+    "intent": "faq_002",
+    "example": "Quels sont les frais de scolarité ?",
+    "response": "Les frais de scolarité varient selon la filière choisie. Contactez le service des admissions pour les tarifs exacts.",
+    "categorie": "Admissions",
+    "source": "Service des admissions"
+  },
+  {
+    "vecteur_id": 4,
+    "intent": "faq_002",
+    "example": "C'est combien pour s'inscrire ?",
+    "response": "Les frais de scolarité varient selon la filière choisie. Contactez le service des admissions pour les tarifs exacts.",
+    "categorie": "Admissions",
+    "source": "Service des admissions"
+  },
+  {
+    "vecteur_id": 5,
+    "intent": "faq_002",
+    "example": "Quel est le coût de la formation ?",
+    "response": "Les frais de scolarité varient selon la filière choisie. Contactez le service des admissions pour les tarifs exacts.",
+    "categorie": "Admissions",
+    "source": "Service des admissions"
+  }
+]
