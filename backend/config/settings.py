@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'faq',
-    'chatbot',
+    'chatbot.apps.ChatbotConfig',
     'users',
 ]
 

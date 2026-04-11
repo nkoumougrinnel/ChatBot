@@ -186,10 +186,22 @@ if __name__ == "__main__":
     print(f"Index chargé : {stats['ntotal']} vecteurs, dim={stats['dim']}\n")
 
     test_questions = [
-        "C'est combien pour s'inscrire ?",
+        # Admission
+        "Comment intégrer SUP'PTIC ?",
         "Quels sont les frais de scolarité ?",
+        # Filières
+        "Quelles sont les filières disponibles ?",
+        "C'est quoi la filière management ? ",
+        # Vie pratique
+        "Où se trouve SUP'PTIC ?",
+        "Comment contacter l'administration ?",
+        # Conversationnel
+        "Bonjour, tu es qui ?",
+        "Merci pour ton aide",
+        # Carrières
+        "Quels débouchés apres SUP'PTIC ?",
         "Comment rejoindre le club informatique ?",
-        "Quel temps fait-il aujourd'hui ?",  # hors domaine
+        "Quel temps fait-il ?",  # hors domaine
     ]
 
     for question in test_questions:
