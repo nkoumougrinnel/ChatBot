@@ -55,7 +55,7 @@ def load_json_files(data_dir: Path) -> list[dict]:
 
     for json_file in json_files:
         try:
-            with open(json_file, "r", encoding="utf-8") as f:
+            with open(json_file, "r", encoding="utf-8-sig") as f:
                 data = json.load(f)
         except (json.JSONDecodeError, IOError) as e:
             print(f"[build_index]   ERREUR lecture '{json_file.name}' : {e}")
@@ -186,10 +186,21 @@ def quick_test(output_dir: Path, n_tests: int = 5) -> None:
     from embedder import encode
 
     test_questions = [
-        "C'est combien pour s'inscrire ?",
+        # Admission
+        "Comment intégrer SUP'PTIC ?",
         "Quels sont les frais de scolarité ?",
-        "Comment rejoindre le club informatique ?",
+        # Filières
         "Quelles sont les filières disponibles ?",
+        "C'est quoi la filière management ? ",
+        # Vie pratique
+        "Où se trouve SUP'PTIC ?",
+        "Comment contacter l'administration ?",
+        # Conversationnel
+        "Bonjour, tu es qui ?",
+        "Merci pour ton aide",
+        # Carrières
+        "Quels débouchés apres SUP'PTIC ?",
+        "Comment rejoindre le club informatique ?",
         "Quel temps fait-il ?",  # hors domaine
     ][:n_tests]
 
