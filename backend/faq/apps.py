@@ -1,13 +1,19 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import os
 
 =======
+=======
+>>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
 import os
 import sys
 import time
 from pathlib import Path
+<<<<<<< HEAD
 >>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
+=======
+>>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
 from django.apps import AppConfig
 
 
@@ -140,4 +146,7 @@ class FaqConfig(AppConfig):
             traceback.print_exc()
         
         print("[FAQ DEBUG] ready() terminé", file=sys.stderr)
+<<<<<<< HEAD
 >>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
+=======
+>>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7

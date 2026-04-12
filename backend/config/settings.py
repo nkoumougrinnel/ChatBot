@@ -80,7 +80,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'faq',
-    'chatbot',
+    'chatbot.apps.ChatbotConfig',
     'users',
 ]
 
@@ -88,11 +88,14 @@ INSTALLED_APPS = [
 # ─── Middleware ───────────────────────────────────────────────────────────────
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+<<<<<<< HEAD
     'whitenoise.middleware.WhiteNoiseMiddleware',
 =======
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 >>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
+=======
+>>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -101,8 +104,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 <<<<<<< HEAD
+<<<<<<< HEAD
 ]
 =======
+=======
+>>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 CSRF_TRUSTED_ORIGINS = [
@@ -279,4 +285,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
 CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization']
 CORS_ALLOW_ALL_ORIGINS = True
+<<<<<<< HEAD
 >>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
+=======
+>>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7

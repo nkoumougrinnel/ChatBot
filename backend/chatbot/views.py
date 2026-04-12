@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 """
 Vues API REST pour le moteur chatbot (intent detection + TF-IDF fallback).
 """
@@ -71,6 +72,8 @@ def ask_chatbot(request):
 
     # Étape 2 : Fallback TF-IDF + similarité cosinus
 =======
+=======
+>>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .services import get_chatbot_response

@@ -415,4 +415,7 @@ class FeedbackViewSet(viewsets.ModelViewSet):
                     password='anonymous'
                 )
             serializer.save(user=anon_user)
+<<<<<<< HEAD
 >>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
+=======
+>>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7

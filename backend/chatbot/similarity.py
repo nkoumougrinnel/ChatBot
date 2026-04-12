@@ -96,7 +96,7 @@ def load_conversational_rules():
     """
     try:
         if RULES_JSON_PATH.exists():
-            with open(RULES_JSON_PATH, 'r', encoding='utf-8') as f:
+            with open(RULES_JSON_PATH, 'r', encoding='utf-8-sig') as f:
                 data = json.load(f)
                 return data.get('conversational_rules', [])
         else:

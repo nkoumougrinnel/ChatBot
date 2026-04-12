@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 # Python
+=======
+# Environnement virtuel (Trés important pour votre dossier .venv)
+.venv/
+venv/
+ENV/
+env/
+
+# Django
+backend/db.sqlite3
+>>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
 __pycache__/
 *.py[cod]
 *.pyo
@@ -32,6 +43,7 @@ local_settings.py
 .DS_Store
 Thumbs.db
 
+<<<<<<< HEAD
 # Logs
 *.log
 
@@ -42,3 +54,15 @@ Thumbs.db
 # ngrok
 ngrok_back.yml
 ngrok_front.yml
+=======
+# NGrok configuration avec tokens (SENSIBLE - ne pas commiter)
+ngrok_front.yml
+ngrok_back.yml
+.vscode/
+.idea/
+
+# Frontend
+node_modules/
+.env__pycache__/
+*.pyc
+>>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
