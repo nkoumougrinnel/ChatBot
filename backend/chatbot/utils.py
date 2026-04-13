@@ -1,4 +1,4 @@
-﻿"""
+"""
 Utilitaires généraux pour l'application chatbot.
 Point d'entrée unique pour les fonctions du cœur du chatbot.
 """

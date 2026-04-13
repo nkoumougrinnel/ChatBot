@@ -1,4 +1,4 @@
-﻿# Frontend - Interfaces Utilisateur
+# Frontend - Interfaces Utilisateur
 
 Ce dossier contient les interfaces utilisateur du projet ChatBot.
 
@@ -58,4 +58,3 @@ Vérifiez dans les outils de dev (F12 â†’ Network):
 - âœ… `POST /api/chatbot/ask/` - Succès 200
 - âœ… `POST /api/feedback/` - Succès 201
 - âœ… `GET /api/stats/` - Succès 200
-

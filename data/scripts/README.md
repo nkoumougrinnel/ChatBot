@@ -29,6 +29,7 @@ Validation réussie pour faq_admissions.json
 Catégorie: Admissions
 ```
 
+## verify_quota.py
 ## import_json.py
 
 Importe un fichier JSON dans la base Django en ignorant les entrées déjà présentes selon l'identifiant JSON unique `id`.
@@ -96,7 +97,7 @@ Total FAQs: 127 (112 validées)
 Total exemples alternatifs: 543
 Moyenne exemples/FAQ: 4.3
 
-Rà‰PARTITION PAR CATà‰GORIE:
+REPARTITION PAR CATEGORIE:
 - Admissions: 23 FAQs (20 validées)
 - Formation: 34 FAQs (32 validées)
 - Frais: 19 FAQs (18 validées)

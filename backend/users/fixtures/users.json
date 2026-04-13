@@ -1,8 +1,4 @@
-﻿[
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
+[
   {
     "model": "users.customuser",
     "pk": 1,
@@ -29,7 +25,7 @@
       "is_staff": false,
       "is_superuser": false,
       "is_active": true,
-      "first_name": "Ã‰tudiant",
+      "first_name": "Étudiant",
       "last_name": "Test",
       "date_joined": "2026-02-10T00:00:00Z",
       "role": "etudiant"
