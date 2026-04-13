@@ -29,6 +29,39 @@ Validation réussie pour faq_admissions.json
 Catégorie: Admissions
 ```
 
+## import_json.py
+
+Importe un fichier JSON dans la base Django en ignorant les entrées déjà présentes selon l'identifiant JSON unique `id`.
+
+### Utilisation
+
+```bash
+python import_json.py --file data/json/validated/Inscription_admissions--condition_admission.json
+```
+
+### Options
+
+- `--dry-run`: simule l'import sans écrire en base
+
+### Comportement
+
+- lit un fichier JSON contenant une liste d'objets
+- crée les catégories manquantes
+- crée une FAQ par entrée
+- ignore les doublons si un `id` JSON existe déjà en base
+
+### Exemple de sortie
+
+```
+[DRY-RUN] Importer FAQ id=faq_001 question="Quels sont les critères académiques..."
+
+Résumé de l import:
+  Total Lignes : 25
+  Importées : 25
+  Ignorées (id dupliqué) : 0
+  Erreurs : 0
+```
+
 ## stats_dataset.py
 
 Génère des statistiques complètes sur le dataset.
