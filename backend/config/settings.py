@@ -63,7 +63,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.up.railway.app',
 ]
 
-
 ROOT_URLCONF = 'config.urls'
 
 CACHES = {
@@ -121,19 +120,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'   # dossier collectstatic
-STATICFILES_DIRS = [BASE_DIR / 'static'] # si tu as un dossier "static" dans ton projet
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ─── Modèle utilisateur ───────────────────────────────────────────────────────
 AUTH_USER_MODEL = 'users.CustomUser'
+
 # Django REST Framework configuration
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [

@@ -56,7 +56,7 @@ def load_vectorizer(path=VECTORIZER_PATH):
         path (Path): Chemin du fichier pickle
     
     Returns:
-        TfidfVectorizer ou None si fichier n'existe pas
+        TfidfVectorizer ou None si fichier n existe pas
     """
     global vectorizer
     
