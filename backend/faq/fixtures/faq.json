@@ -1,20 +1,10 @@
-<<<<<<< HEAD
-[
-
-=======
 ﻿[
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
   {
     "model": "faq.faq",
     "pk": 1,
     "fields": {
-<<<<<<< HEAD
-      "question": "Où se trouve SUP'PTIC ?",
-      "answer": "L'école est située à Yaoundé, quartier Elig-Essono.",
-=======
       "question": "OÃ¹ se trouve SUP'PTIC ?",
       "answer": "L'Ã©cole est situÃ©e Ã  YaoundÃ©, quartier Elig-Essono.",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "category": 1,
       "source": "Site officiel",
       "subtheme": "",
@@ -29,15 +19,9 @@
     "pk": 2,
     "fields": {
       "question": "Quels sont les frais d'inscription ?",
-<<<<<<< HEAD
-      "answer": "Les frais varient selon le cycle, veuillez consulter le service de scolarité.",
-      "category": 2,
-      "source": "Règlement 2026",
-=======
       "answer": "Les frais varient selon le cycle, veuillez consulter le service de scolaritÃ©.",
       "category": 2,
       "source": "RÃ¨glement 2026",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "subtheme": "",
       "is_active": true,
       "popularity": 0,
@@ -50,11 +34,7 @@
     "pk": 3,
     "fields": {
       "question": "Comment rejoindre le Club Informatique ?",
-<<<<<<< HEAD
-      "answer": "Inscrivez-vous directement auprès du bureau du club au bloc B.",
-=======
       "answer": "Inscrivez-vous directement auprÃ¨s du bureau du club au bloc B.",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "category": 3,
       "source": "Club Info",
       "subtheme": "",
@@ -69,11 +49,7 @@
     "pk": 4,
     "fields": {
       "question": "Dates des examens ?",
-<<<<<<< HEAD
-      "answer": "Le calendrier est affiché sur le panneau d'affichage central.",
-=======
       "answer": "Le calendrier est affichÃ© sur le panneau d'affichage central.",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "category": 2,
       "source": "DAAC",
       "subtheme": "",
@@ -87,17 +63,10 @@
     "model": "faq.faq",
     "pk": 5,
     "fields": {
-<<<<<<< HEAD
-      "question": "Y a-t-il une bibliothèque ?",
-      "answer": "Oui, elle est ouverte de 8h à 18h en semaine.",
-      "category": 1,
-      "source": "Guide étudiant",
-=======
       "question": "Y a-t-il une bibliothÃ¨que ?",
       "answer": "Oui, elle est ouverte de 8h Ã  18h en semaine.",
       "category": 1,
       "source": "Guide Ã©tudiant",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "subtheme": "",
       "is_active": true,
       "popularity": 0,
@@ -139,13 +108,8 @@
     "model": "faq.faq",
     "pk": 8,
     "fields": {
-<<<<<<< HEAD
-      "question": "Comment réinitialiser mon mot de passe ?",
-      "answer": "Contactez l'administrateur système avec votre carte d'étudiant.",
-=======
       "question": "Comment rÃ©initialiser mon mot de passe ?",
       "answer": "Contactez l'administrateur systÃ¨me avec votre carte d'Ã©tudiant.",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "category": 1,
       "source": "IT Support",
       "subtheme": "",
@@ -159,13 +123,8 @@
     "model": "faq.faq",
     "pk": 9,
     "fields": {
-<<<<<<< HEAD
-      "question": "Où manger sur le campus ?",
-      "answer": "Le restaurant universitaire est situé derrière le bâtiment principal.",
-=======
       "question": "OÃ¹ manger sur le campus ?",
       "answer": "Le restaurant universitaire est situÃ© derriÃ¨re le bÃ¢timent principal.",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "category": 3,
       "source": "Vie pratique",
       "subtheme": "",
@@ -179,13 +138,8 @@
     "model": "faq.faq",
     "pk": 10,
     "fields": {
-<<<<<<< HEAD
-      "question": "Heures d'ouverture de l'école ?",
-      "answer": "De 7h30 à 17h30 pour les services administratifs.",
-=======
       "question": "Heures d'ouverture de l'Ã©cole ?",
       "answer": "De 7h30 Ã  17h30 pour les services administratifs.",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "category": 1,
       "source": "Standard",
       "subtheme": "",
@@ -195,8 +149,4 @@
       "updated_at": "2026-02-10T00:00:00Z"
     }
   }
-<<<<<<< HEAD
 ]
-=======
-]
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 """
 URL configuration for config project.
 
@@ -16,7 +14,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 from django.contrib import admin
 from django.urls import path, include
 

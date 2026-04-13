@@ -1,19 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-import os
-
-=======
-=======
->>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
 import os
 import sys
 import time
 from pathlib import Path
-<<<<<<< HEAD
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
-=======
->>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
 from django.apps import AppConfig
 
 
@@ -24,38 +12,7 @@ class FaqConfig(AppConfig):
     def ready(self):
         """
         Initialiser le vectorizer TF-IDF au démarrage de Django.
-<<<<<<< HEAD
-        
-        Cela garantit que le vectorizer est entraîné et disponible
-        pour tous les requests API (et non seulement dans le shell).
-        """
-        
-        """
-        Note: Cette méthode est appelée deux fois par StatReloader.
-        On utilise une variable d'environnement pour éviter les appels redondants.
-        """
-        # Éviter d'initialiser deux fois à cause du StatReloader
-        if os.environ.get('_FAQ_VECTORIZER_INITIALIZED'):
-            return
-        
-        os.environ['_FAQ_VECTORIZER_INITIALIZED'] = '1'
-        
-        try:
-            from chatbot.vectorization import compute_and_store_vectors
-            print("[FAQ] Initialisation du vectorizer TF-IDF...")
-            compute_and_store_vectors()
-            print("[FAQ] ✓ Vectorizer entraîné et FAQVectors stockés en BD")
-        except Exception as e:
-            print(f"[FAQ] ⚠ Initialisation vectorizer échouée : {e}")
-            print("[FAQ] Le chatbot ne fonctionnera pas tant que ce problème n'est pas résolu")
-        
-        # ===== Importer les signaux =====
-        try:
-            from faq import signals
-            print("[FAQ] ✓ Signaux d'amélioration des scores chargés")
-        except Exception as e:
-            print(f"[FAQ] ⚠ Erreur lors du chargement des signaux : {e}")
-=======
+
         Version avec logging détaillé pour debug.
         """
         
@@ -146,7 +103,4 @@ class FaqConfig(AppConfig):
             traceback.print_exc()
         
         print("[FAQ DEBUG] ready() terminé", file=sys.stderr)
-<<<<<<< HEAD
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
-=======
->>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
+        

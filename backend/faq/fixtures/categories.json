@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-[
-=======
 ﻿[
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
   {
     "model": "faq.category",
     "pk": 1,
     "fields": {
-<<<<<<< HEAD
-      "name": "Général",
-=======
       "name": "GÃ©nÃ©ral",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "description": "Informations globales sur SUP'PTIC",
       "active": true
     }
@@ -20,13 +12,8 @@
     "model": "faq.category",
     "pk": 2,
     "fields": {
-<<<<<<< HEAD
-      "name": "Scolarité",
-      "description": "Inscriptions et diplômes",
-=======
       "name": "ScolaritÃ©",
       "description": "Inscriptions et diplÃ´mes",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "active": true
     }
   },
@@ -34,11 +21,7 @@
     "model": "faq.category",
     "pk": 3,
     "fields": {
-<<<<<<< HEAD
-      "name": "Vie Étudiante",
-=======
       "name": "Vie Ã‰tudiante",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "description": "Clubs et vie pratique",
       "active": true
     }
