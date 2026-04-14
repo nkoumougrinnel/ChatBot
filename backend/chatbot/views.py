@@ -1,43 +1,18 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
-from chatbot.intents_loader import load_intents
-from chatbot.train_intents import train_intent_classifier
-from chatbot.intent_detection import detect_intent
-from chatbot.utils import get_chatbot_response
+# ── Pipeline RAG Phase 2 ─────────────────────────────────────────────────────
+from chatbot.engine.rag_pipeline import ask, ask_stream, build_sse_event
 
-# ─── Singleton : chargement paresseux du modèle d'intents ────────────────────
-_intent_model = None
-_intents = None
+# ── Fallback Phase 1 (conservé) ───────────────────────────────────────────────
+from .services import get_chatbot_response
 
 
-def _get_intent_model():
-    """Charge et met en cache le modèle d'intents (une seule fois au démarrage)."""
-    global _intent_model, _intents
-    if _intent_model is not None:
-        return _intent_model, _intents
-
-    # Chercher les fichiers depuis la racine du repo (deux niveaux au-dessus de backend/)
-    backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    repo_root = os.path.dirname(backend_dir)
-
-    json_path = os.path.join(repo_root, 'data', 'supptic_chatbot_standard.json')
-    pkl_path = os.path.join(repo_root, 'models', 'intent_classifier.pkl')
-
-    if os.path.exists(json_path):
-        _intents = load_intents(json_path)
-        _intent_model = train_intent_classifier(_intents)
-    elif os.path.exists(pkl_path):
-        with open(pkl_path, 'rb') as f:
-            _intent_model = pickle.load(f)
-        _intents = []
-    else:
-        _intent_model = None
-        _intents = []
-
-    return _intent_model, _intents
-
+# ════════════════════════════════════════════════════════════════════════════
+# ENDPOINT PRINCIPAL — POST /api/chatbot/ask/
+# ════════════════════════════════════════════════════════════════════════════
 
 @api_view(["POST"])
 def ask_chatbot(request):
