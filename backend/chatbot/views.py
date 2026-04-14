@@ -1,97 +1,199 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 """
-Vues API REST pour le moteur chatbot (intent detection + TF-IDF fallback).
+views.py — Endpoints API du chatbot SUP'ONE.
+
+Phase 1 (conservé) :
+    POST /api/chatbot/ask/        → TF-IDF + intent detection
+
+Phase 2 (ajouté J6) :
+    POST /api/chatbot/ask/        → Pipeline RAG (MiniLM → FAISS → Phi-3)
+                                    avec streaming SSE et fallback TF-IDF automatique
+    POST /api/feedback/           → Enregistrement like/dislike
+    GET  /api/stats/              → Statistiques d'usage
+    POST /api/reload-index/       → Rechargement FAISS à chaud
 """
 
-import os
-import pickle
+import json
 
-from rest_framework.response import Response
+from django.http import StreamingHttpResponse
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
-from chatbot.intents_loader import load_intents
-from chatbot.train_intents import train_intent_classifier
-from chatbot.intent_detection import detect_intent
-from chatbot.utils import get_chatbot_response
+# ── Pipeline RAG Phase 2 ─────────────────────────────────────────────────────
+from chatbot.engine.rag_pipeline import ask, ask_stream, build_sse_event
 
-# ─── Singleton : chargement paresseux du modèle d'intents ────────────────────
-_intent_model = None
-_intents = None
+# ── Fallback Phase 1 (conservé) ───────────────────────────────────────────────
+from .services import get_chatbot_response
 
 
-def _get_intent_model():
-    """Charge et met en cache le modèle d'intents (une seule fois au démarrage)."""
-    global _intent_model, _intents
-    if _intent_model is not None:
-        return _intent_model, _intents
-
-    # Chercher les fichiers depuis la racine du repo (deux niveaux au-dessus de backend/)
-    backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    repo_root = os.path.dirname(backend_dir)
-
-    json_path = os.path.join(repo_root, 'data', 'supptic_chatbot_standard.json')
-    pkl_path = os.path.join(repo_root, 'models', 'intent_classifier.pkl')
-
-    if os.path.exists(json_path):
-        _intents = load_intents(json_path)
-        _intent_model = train_intent_classifier(_intents)
-    elif os.path.exists(pkl_path):
-        with open(pkl_path, 'rb') as f:
-            _intent_model = pickle.load(f)
-        _intents = []
-    else:
-        _intent_model = None
-        _intents = []
-
-    return _intent_model, _intents
-
+# ════════════════════════════════════════════════════════════════════════════
+# ENDPOINT PRINCIPAL — POST /api/chatbot/ask/
+# ════════════════════════════════════════════════════════════════════════════
 
 @api_view(["POST"])
 def ask_chatbot(request):
-    """Endpoint pour poser une question au chatbot."""
-    user_query = request.data.get("question")
-    if not user_query:
-        return Response({"error": "La question est vide"}, status=400)
-
-    intent_model, intents = _get_intent_model()
-
-    # Étape 1 : Détection d'intent (si modèle disponible)
-    if intent_model is not None and intents:
-        try:
-            intent, confidence, response = detect_intent(user_query, intent_model, intents)
-            if confidence >= 0.8:
-                return Response({
-                    "question": user_query,
-                    "intent": intent,
-                    "response": response,
-                    "confidence": confidence,
-                })
-        except Exception:
-            pass  # Fallback silencieux vers TF-IDF
-
-    # Étape 2 : Fallback TF-IDF + similarité cosinus
-=======
-=======
->>>>>>> fb9bdfb29e6815de2aae59a0c0fdc42fdc5b97f7
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .services import get_chatbot_response
-
-# Create your views here.
-@api_view(['POST'])
-def ask_chatbot(request):
-    """Vue API qui reçoit la question 
-    de l'utilisateur.
     """
-    user_query = request.data.get('question')
-    if not user_query:
-        return Response({"error": "La question est vide"}, status=400)
-    
-    # On appelle la fonction de service qui gère :
-    # 1. Le Cache
-    # 2. La recherche TF-IDF
-    # 3. Les seuils (0.6 / 0.8)
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
-    result = get_chatbot_response(user_query)
-    return Response(result)
+    Endpoint principal du chatbot — Phase 2 RAG.
+
+    Corps de la requête (JSON) :
+        {
+            "question": "C'est combien pour s'inscrire ?",
+            "history":  [                              ← optionnel
+                {"role": "user",      "content": "..."},
+                {"role": "assistant", "content": "..."}
+            ],
+            "stream": true                             ← optionnel, défaut false
+        }
+
+    Réponse sans streaming :
+        {
+            "answer":     "Les frais s'élèvent à...",
+            "sources":    [{"question": "...", "score": 0.87, "categorie": "...", "source": "..."}],
+            "method":     "RAG",
+            "best_score": 0.87
+        }
+
+    Réponse avec streaming (stream=true) :
+        Content-Type: text/event-stream
+        data: {"type": "meta",  "method": "RAG", "sources": [...], "best_score": 0.87}\n\n
+        data: {"type": "token", "content": "Les "}\n\n
+        data: {"type": "token", "content": "frais "}\n\n
+        ...
+        data: {"type": "done"}\n\n
+    """
+    question = request.data.get("question", "").strip()
+    if not question:
+        return Response({"error": "La question est vide."}, status=400)
+
+    history = request.data.get("history", None)
+    stream  = request.data.get("stream", False)
+
+    # ── Mode streaming SSE ────────────────────────────────────────────────
+    if stream:
+        def event_stream():
+            try:
+                for chunk in ask_stream(question, history):
+                    yield build_sse_event(chunk)
+            except Exception as e:
+                error_event = build_sse_event({"type": "error", "message": str(e)})
+                yield error_event
+
+        response = StreamingHttpResponse(
+            event_stream(),
+            content_type="text/event-stream"
+        )
+        response["Cache-Control"]               = "no-cache"
+        response["X-Accel-Buffering"]           = "no"   # désactive le buffer Nginx
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
+
+    # ── Mode réponse complète (non streamé) ───────────────────────────────
+    try:
+        result = ask(question, history)
+        return Response(result, status=200)
+    except Exception as e:
+        return Response({"error": f"Erreur pipeline RAG : {str(e)}"}, status=500)
+
+
+# ════════════════════════════════════════════════════════════════════════════
+# ENDPOINT FEEDBACK — POST /api/feedback/
+# ════════════════════════════════════════════════════════════════════════════
+
+@api_view(["POST"])
+def submit_feedback(request):
+    """
+    Enregistre un feedback like/dislike sur une réponse du chatbot.
+
+    Corps de la requête (JSON) :
+        {
+            "message_id": "abc123",
+            "type":       "like" | "dislike",
+            "method":     "RAG" | "TF-IDF"    ← optionnel
+        }
+    """
+    message_id = request.data.get("message_id", "")
+    fb_type    = request.data.get("type", "")
+    method     = request.data.get("method", "")
+
+    if fb_type not in ("like", "dislike"):
+        return Response(
+            {"error": "Le champ 'type' doit valoir 'like' ou 'dislike'."},
+            status=400
+        )
+
+    try:
+        from chatbot.models import Feedback
+        Feedback.objects.create(
+            message_id = message_id,
+            fb_type    = fb_type,
+            rag_method = method,
+        )
+        return Response({"status": "ok"}, status=201)
+    except Exception as e:
+        return Response({"error": str(e)}, status=500)
+
+
+# ════════════════════════════════════════════════════════════════════════════
+# ENDPOINT STATS — GET /api/stats/
+# ════════════════════════════════════════════════════════════════════════════
+
+@api_view(["GET"])
+def get_stats(request):
+    """
+    Retourne les statistiques d'usage du chatbot.
+
+    Réponse :
+        {
+            "total_questions":  142,
+            "rag_count":        98,
+            "tfidf_count":      44,
+            "likes":            87,
+            "dislikes":         12,
+            "index_stats":      {"ntotal": 420, "dim": 384, "loaded": true}
+        }
+    """
+    try:
+        from chatbot.models import Feedback
+        from chatbot.engine.faiss_search import get_index_stats
+
+        likes    = Feedback.objects.filter(fb_type="like").count()
+        dislikes = Feedback.objects.filter(fb_type="dislike").count()
+        rag      = Feedback.objects.filter(rag_method="RAG").count()
+        tfidf    = Feedback.objects.filter(rag_method="TF-IDF").count()
+
+        return Response({
+            "total_feedbacks": likes + dislikes,
+            "rag_count":       rag,
+            "tfidf_count":     tfidf,
+            "likes":           likes,
+            "dislikes":        dislikes,
+            "index_stats":     get_index_stats(),
+        }, status=200)
+    except Exception as e:
+        return Response({"error": str(e)}, status=500)
+
+
+# ════════════════════════════════════════════════════════════════════════════
+# ENDPOINT RELOAD INDEX — POST /api/reload-index/
+# ════════════════════════════════════════════════════════════════════════════
+
+@api_view(["POST"])
+def reload_index(request):
+    """
+    Recharge l'index FAISS à chaud sans redémarrer Django.
+    À appeler après un rebuild de l'index (build_index.py).
+
+    Réponse :
+        {"status": "ok", "message": "Index rechargé : 420 vecteurs"}
+    """
+    try:
+        from chatbot.engine.faiss_search import reload_index as faiss_reload
+        faiss_reload()
+        from chatbot.engine.faiss_search import get_index_stats
+        stats = get_index_stats()
+        return Response({
+            "status":  "ok",
+            "message": f"Index rechargé : {stats['ntotal']} vecteurs",
+            "stats":   stats,
+        }, status=200)
+    except Exception as e:
+        return Response({"error": str(e)}, status=500)
