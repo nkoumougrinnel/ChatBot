@@ -7,7 +7,6 @@ from rest_framework.response import Response
 from chatbot.engine.rag_pipeline import ask, ask_stream, build_sse_event
 
 # ── Fallback Phase 1 (conservé) ───────────────────────────────────────────────
-from .services import get_chatbot_response
 
 
 # ════════════════════════════════════════════════════════════════════════════

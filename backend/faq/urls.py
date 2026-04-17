@@ -7,7 +7,6 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     CategoryViewSet,
     FAQViewSet,
-    ChatbotAskViewSet,
     FeedbackViewSet,
     faq_stats,
     category_stats,
@@ -15,11 +14,12 @@ from .views import (
 
 router = DefaultRouter()
 router.register(r'categories', CategoryViewSet, basename='category')
-router.register(r'faq', FAQViewSet, basename='faq')
-router.register(r'feedback', FeedbackViewSet, basename='feedback')
-router.register(r'chatbot', ChatbotAskViewSet, basename='chatbot')
+router.register(r'faq',        FAQViewSet,      basename='faq')
+router.register(r'feedback',   FeedbackViewSet, basename='feedback')
 
 urlpatterns = [
+
+    # ── Phase 1 : routes DRF (inchangées) ────────────────────────────────
     path('', include(router.urls)),
     path('stats/', faq_stats, name='faq-stats'),
     path('stats/categories/', category_stats, name='category-stats'),
