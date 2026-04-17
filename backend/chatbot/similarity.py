@@ -1,5 +1,5 @@
 """
-Module de recherche FAQ - VERSION SIMPLIFIÉE v2.1
+Module de recherche FAQ - VERSION SIMPLIFIÉE v2.1 (CORRIGÉE)
 Conçu pour 6500+ FAQs avec 1GB RAM (Railway: 1 worker, 2 threads)
 
 ARCHITECTURE SIMPLIFIÉE (3 NIVEAUX):
@@ -64,14 +64,18 @@ _CATEGORY_CACHE = {
 def load_conversational_rules():
     """
     Charger les règles conversationnelles depuis le fichier JSON.
+    Gère les formats Liste [] et Dictionnaire {"conversational_rules": []}.
     
     Returns:
-        list: Liste de règles {'intent', 'patterns', 'response'}
+        list: Liste de règles
     """
     try:
         if RULES_JSON_PATH.exists():
             with open(RULES_JSON_PATH, 'r', encoding='utf-8-sig') as f:
                 data = json.load(f)
+                # CORRECTION: Vérifier si data est une liste ou un dictionnaire
+                if isinstance(data, list):
+                    return data
                 return data.get('conversational_rules', [])
         else:
             print(f"[Similarity] ⚠️ Fichier de règles non trouvé: {RULES_JSON_PATH}")
@@ -94,14 +98,6 @@ def compute_similarity_batch(user_vec: np.ndarray,
                              faq_vectors: List) -> List[Tuple[FAQ, float]]:
     """
     Calculer les similarités cosinus pour un batch de FAQVectors.
-    
-    Args:
-        user_vec: Vecteur TF-IDF de la question utilisateur
-        user_norm: Norme du vecteur utilisateur
-        faq_vectors: Liste de FAQVector objects
-    
-    Returns:
-        List de tuples (FAQ, score) triés par score décroissant
     """
     if not faq_vectors or user_norm == 0:
         return []
@@ -145,27 +141,39 @@ def compute_similarity_batch(user_vec: np.ndarray,
 def match_conversational_rule(question: str) -> Optional[str]:
     """
     NIVEAU 0: Matcher une question contre les règles conversationnelles.
-    
-    Args:
-        question (str): Question de l'utilisateur
-    
-    Returns:
-        str: Réponse directe si match trouvé, None sinon
+    Supporte les formats de clés: intent/patterns/response ET question/exemples/reponse_enrichie.
     """
     question_lower = question.lower().strip()
     
     # Chercher un match dans chaque règle
     for rule in CONVERSATIONAL_RULES:
-        intent = rule.get('intent', 'unknown')
-        patterns = rule.get('patterns', []) or rule.get('examples', [])
-        response = rule.get('response', '') or (rule.get('responses', []) and rule.get('responses')[0]) or ''
+        # Support multi-format pour les clés
+        intent = rule.get('intent') or rule.get('id') or 'unknown'
         
+        # Patterns: cherche 'patterns' ou 'exemples' ou la 'question' elle-même
+        patterns = rule.get('patterns', []) or rule.get('exemples', [])
+        main_q = rule.get('question')
+        if main_q:
+            if isinstance(patterns, list):
+                patterns.append(main_q)
+            else:
+                patterns = [main_q]
+                
+        # Response: cherche 'response' ou 'reponse_enrichie' ou le premier de 'responses'
+        response = (rule.get('response') or 
+                   rule.get('reponse_enrichie') or 
+                   (rule.get('responses', []) and rule.get('responses')[0]) or 
+                   '')
+        
+        if not patterns or not response:
+            continue
+
         for pattern in patterns:
             if not isinstance(pattern, str):
                 continue
             pattern_norm = pattern.lower().strip()
             if pattern_norm and pattern_norm in question_lower:
-                print(f"[Similarity L0] ✅ RÈGLE '{intent}' (pattern: '{pattern_norm}')")
+                print(f"[Similarity L0] ✅ RÈGLE '{intent}' (match: '{pattern_norm}')")
                 return response
     
     return None
@@ -178,11 +186,7 @@ def match_conversational_rule(question: str) -> Optional[str]:
 def get_categories_by_popularity():
     """
     Récupérer les catégories triées par popularité décroissante.
-    
-    Returns:
-        List[Category]: Catégories triées
     """
-    # Calculer popularité totale par catégorie
     categories = Category.objects.filter(active=True).annotate(
         total_popularity=Sum('faq__popularity'),
         faq_count=Count('faq', filter=models.Q(faq__is_active=True))
@@ -195,17 +199,7 @@ def search_in_category(category: Category, user_vec: np.ndarray, user_norm: floa
                       top_k: int = 3) -> Tuple[List[Tuple[FAQ, float]], float]:
     """
     Rechercher dans une catégorie spécifique.
-    
-    Args:
-        category: Catégorie à explorer
-        user_vec: Vecteur utilisateur
-        user_norm: Norme du vecteur
-        top_k: Nombre de résultats
-    
-    Returns:
-        Tuple de (résultats, meilleur_score)
     """
-    # Récupérer vecteurs de cette catégorie
     category_vectors = FAQVector.objects.filter(
         faq__category=category,
         faq__is_active=True
@@ -217,7 +211,6 @@ def search_in_category(category: Category, user_vec: np.ndarray, user_norm: floa
     if not category_vectors.exists():
         return [], 0.0
     
-    # Calcul des similarités
     results = compute_similarity_batch(user_vec, user_norm, list(category_vectors))
     
     if not results:
@@ -231,20 +224,6 @@ def search_by_popularity_with_cache(user_vec: np.ndarray, user_norm: float,
                                     top_k: int = 3) -> Optional[List[Dict]]:
     """
     NIVEAU 1: Recherche par catégories populaires avec cache.
-    
-    Processus:
-    1. Si cache existe → chercher d'abord dans catégorie cachée
-    2. Chercher dans catégories par ordre de popularité (1 par 1)
-    3. Stop dès que score d'une catégorie = 0 (plus rien à trouver)
-    4. Mettre à jour cache avec catégorie ayant meilleur score
-    
-    Args:
-        user_vec: Vecteur TF-IDF
-        user_norm: Norme du vecteur
-        top_k (int): Nombre de résultats
-    
-    Returns:
-        Liste de résultats si trouvé, None sinon
     """
     global _CATEGORY_CACHE
     
@@ -254,7 +233,6 @@ def search_by_popularity_with_cache(user_vec: np.ndarray, user_norm: float,
     best_score = 0.0
     best_category = None
     
-    # Liste des catégories à traiter
     categories = get_categories_by_popularity()
     
     if not categories:
@@ -275,7 +253,6 @@ def search_by_popularity_with_cache(user_vec: np.ndarray, user_norm: float,
                 best_score = score
                 best_category = cached_category
                 
-                # Si excellent score → retour immédiat
                 if score >= GOOD_SCORE_THRESHOLD:
                     print(f"[Similarity L1] ✅ TROUVÉ dans cache (score ≥ {GOOD_SCORE_THRESHOLD})")
                     return [{'faq': faq, 'score': s} for faq, s in best_results]
@@ -288,17 +265,14 @@ def search_by_popularity_with_cache(user_vec: np.ndarray, user_norm: float,
     print(f"[Similarity L1] 📊 Traitement de {len(categories)} catégories...")
     
     for category in categories:
-        # Skip si c'est la catégorie déjà testée en cache
         if _CATEGORY_CACHE['category_id'] == category.id:
             continue
         
         print(f"[Similarity L1] 🔎 Catégorie: '{category.name}'")
-        
         results, score = search_in_category(category, user_vec, user_norm, top_k)
         
         if score == 0:
-            print(f"[Similarity L1] ⚠️ Score nul pour '{category.name}' → STOP recherche")
-            break  # Plus rien à trouver dans les catégories suivantes
+            break
         
         print(f"[Similarity L1] 📈 Score: {score:.3f}")
         
@@ -307,7 +281,6 @@ def search_by_popularity_with_cache(user_vec: np.ndarray, user_norm: float,
             best_score = score
             best_category = category
             
-            # Si excellent score → retour immédiat
             if score >= GOOD_SCORE_THRESHOLD:
                 print(f"[Similarity L1] ✅ TROUVÉ (score ≥ {GOOD_SCORE_THRESHOLD})")
                 break
@@ -338,18 +311,9 @@ def search_fallback_global(user_vec: np.ndarray, user_norm: float,
                           top_k: int = 3) -> List[Dict]:
     """
     NIVEAU 2: Fallback - recherche dans TOUTES les catégories.
-    
-    Args:
-        user_vec: Vecteur TF-IDF
-        user_norm: Norme du vecteur
-        top_k (int): Nombre de résultats
-    
-    Returns:
-        Liste de résultats (meilleur score global)
     """
     print(f"[Similarity L2] 🔍 Fallback global...")
     
-    # Récupérer TOUS les vecteurs actifs (toutes catégories)
     all_vectors = FAQVector.objects.filter(
         faq__is_active=True
     ).select_related('faq', 'faq__category').only(
@@ -363,7 +327,6 @@ def search_fallback_global(user_vec: np.ndarray, user_norm: float,
     
     print(f"[Similarity L2] 📊 Recherche dans {all_vectors.count()} FAQs...")
     
-    # Calcul des similarités sur TOUT le corpus (par batch pour RAM)
     batch_size = 500
     best_results = []
     best_score = 0.0
@@ -391,37 +354,20 @@ def search_fallback_global(user_vec: np.ndarray, user_norm: float,
 
 def find_best_faq(question: str, top_k: int = 3, min_score: float = 0.0) -> List[Dict]:
     """
-    Fonction principale de recherche FAQ - Architecture simplifiée.
-    
-    Processus:
-    0. NIVEAU 0: Règles conversationnelles (JSON)
-    1. NIVEAU 1: Catégories par popularité + cache
-    2. NIVEAU 2: Fallback global (si nécessaire)
-    
-    Args:
-        question (str): Question de l'utilisateur
-        top_k (int): Nombre de résultats à retourner (défaut: 3)
-        min_score (float): Score minimum pour inclure un résultat (défaut: 0.0)
-    
-    Returns:
-        List[Dict]: Liste de {'faq': FAQ, 'score': float}
+    Fonction principale de recherche FAQ.
     """
     print("=" * 70)
     print(f"[Similarity] 🚀 RECHERCHE - '{question[:50]}...'")
     print("=" * 70)
     
-    # ═══════════════════════════════════════════════════════════════════
     # NIVEAU 0: RÈGLES CONVERSATIONNELLES
-    # ═══════════════════════════════════════════════════════════════════
     print("[Similarity L0] 🔍 Vérification règles...")
-    
     direct_response = match_conversational_rule(question)
     
     if direct_response:
         print("[Similarity L0] ✅ RÉPONSE DIRECTE")
         print("=" * 70)
         
-        # FAQ virtuelle pour compatibilité
         virtual_faq = type('VirtualFAQ', (), {
             'id': 0,
             'question': question,
@@ -434,9 +380,7 @@ def find_best_faq(question: str, top_k: int = 3, min_score: float = 0.0) -> List
     
     print("[Similarity L0] ⚠️ Aucune règle ne correspond")
     
-    # ═══════════════════════════════════════════════════════════════════
     # VECTORISATION
-    # ═══════════════════════════════════════════════════════════════════
     print("[Similarity] 🔢 Vectorisation...")
     user_vec, user_norm = compute_tfidf_vector(question)
     
@@ -454,9 +398,7 @@ def find_best_faq(question: str, top_k: int = 3, min_score: float = 0.0) -> List
         
         return [{'faq': virtual_faq, 'score': 0.0}]
     
-    # ═══════════════════════════════════════════════════════════════════
     # NIVEAU 1: CATÉGORIES PAR POPULARITÉ + CACHE
-    # ═══════════════════════════════════════════════════════════════════
     results = search_by_popularity_with_cache(user_vec, user_norm, top_k)
     
     if results:
@@ -464,9 +406,7 @@ def find_best_faq(question: str, top_k: int = 3, min_score: float = 0.0) -> List
         print("=" * 70)
         return [r for r in results if r['score'] >= min_score]
     
-    # ═══════════════════════════════════════════════════════════════════
     # NIVEAU 2: FALLBACK GLOBAL
-    # ═══════════════════════════════════════════════════════════════════
     print("[Similarity] ⚡ NIVEAU 2 (Fallback)...")
     results = search_fallback_global(user_vec, user_norm, top_k)
     
