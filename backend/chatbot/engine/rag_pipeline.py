@@ -18,19 +18,11 @@ from typing import Any
 
 # Imports moteur (imports relatifs si exécuté depuis Django,
 # imports directs si exécuté en script standalone)
-try:
-    from .embedder import encode
-    from .faiss_search import search_with_metadata, is_loaded as faiss_loaded
-    from .llm_client import generate, generate_stream
-    from .prompt_builder import build_prompt, build_no_context_prompt
-    from .tfidf_fallback import search as tfidf_search, is_loaded as tfidf_loaded
-except ImportError:
-    from embedder import encode
-    from faiss_search import search_with_metadata, is_loaded as faiss_loaded
-    from llm_client import generate, generate_stream
-    from prompt_builder import build_prompt, build_no_context_prompt
-    from tfidf_fallback import search as tfidf_search, is_loaded as tfidf_loaded
-
+from .embedder import encode
+from .faiss_search import search_with_metadata, is_loaded as faiss_loaded
+from .llm_client import generate, generate_stream
+from .prompt_builder import build_prompt, build_no_context_prompt
+from .tfidf_fallback import search as tfidf_search, is_loaded as tfidf_loaded
 
 # -------------------------------------------------------------------
 # Seuils de confiance (configurables)
@@ -230,7 +222,11 @@ if __name__ == "__main__":
 
     # Charger les modules dépendants
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-
+    
+    # Imports directs pour mode standalone
+    from embedder import encode as _encode
+    from faiss_search import load_index
+    
     # Initialiser FAISS et TF-IDF
     import faiss_search
     faiss_search.load_index()
