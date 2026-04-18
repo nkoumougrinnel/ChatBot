@@ -13,16 +13,33 @@ Expose :
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
 from collections.abc import Iterator
 from typing import Any
 
+# --- Résolution du sys.path AVANT les imports ---
+# Permet d'exécuter ce fichier directement (python rag_pipeline.py)
+# ET d'être importé normalement par Django.
+_ENGINE_DIR = Path(__file__).resolve().parent
+if str(_ENGINE_DIR) not in sys.path:
+    sys.path.insert(0, str(_ENGINE_DIR))
+
 # Imports moteur (imports relatifs si exécuté depuis Django,
 # imports directs si exécuté en script standalone)
-from .embedder import encode
-from .faiss_search import search_with_metadata, is_loaded as faiss_loaded
-from .llm_client import generate, generate_stream
-from .prompt_builder import build_prompt, build_no_context_prompt
-from .tfidf_fallback import search as tfidf_search, is_loaded as tfidf_loaded
+try:
+    from .embedder import encode
+    from .faiss_search import search_with_metadata, is_loaded as faiss_loaded
+    from .llm_client import generate, generate_stream
+    from .prompt_builder import build_prompt, build_no_context_prompt
+    from .tfidf_fallback import search as tfidf_search, is_loaded as tfidf_loaded
+except ImportError:
+    from embedder import encode
+    from faiss_search import search_with_metadata, is_loaded as faiss_loaded
+    from llm_client import generate, generate_stream
+    from prompt_builder import build_prompt, build_no_context_prompt
+    from tfidf_fallback import search as tfidf_search, is_loaded as tfidf_loaded
+
 
 # -------------------------------------------------------------------
 # Seuils de confiance (configurables)
@@ -217,16 +234,8 @@ def build_sse_event(data: Any) -> str:
 # Test rapide (exécutable directement : python rag_pipeline.py)
 # -------------------------------------------------------------------
 if __name__ == "__main__":
-    import sys, time
-    from pathlib import Path
+    import time
 
-    # Charger les modules dépendants
-    sys.path.insert(0, str(Path(__file__).resolve().parent))
-    
-    # Imports directs pour mode standalone
-    from embedder import encode as _encode
-    from faiss_search import load_index
-    
     # Initialiser FAISS et TF-IDF
     import faiss_search
     faiss_search.load_index()
