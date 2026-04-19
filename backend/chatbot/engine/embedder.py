@@ -8,6 +8,10 @@ Dépendance : pip install sentence-transformers
 """
 
 import numpy as np
+
+import os
+os.environ["TRANSFORMERS_OFFLINE"] = "1"
+os.environ["HF_DATASETS_OFFLINE"] = "1"
 from sentence_transformers import SentenceTransformer
 
 # -------------------------------------------------------------------
