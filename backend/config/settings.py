@@ -173,3 +173,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
 CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization', 'X-Requested-With']
+
+# Fonctionnement en mode hors ligne automatiquement
+os.environ["TRANSFORMERS_OFFLINE"] = "1"
+os.environ["HF_DATASETS_OFFLINE"] = "1"

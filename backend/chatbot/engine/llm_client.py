@@ -29,6 +29,9 @@ OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "phi3:mini")
 _DEFAULT_PARAMS = {
     "temperature": 0.3,       # faible pour des réponses factuelles
     "num_predict": 150,        # reduit de 512->150
+    "num_ctx": 512,
+    "num_thread": 4,
+    "num_gpu": 0,
     "stop": ["</s>", "[INST]", "[/INST]"],  # tokens d'arrêt Phi-3
     "top_p": 0.9,
 }
@@ -60,7 +63,7 @@ def _post(endpoint: str, payload: dict, stream: bool = False):
         method="POST",
     )
     try:
-        response = urllib.request.urlopen(req, timeout=120)
+        response = urllib.request.urlopen(req, timeout=180)
     except urllib.error.URLError as exc:
         raise ConnectionError(
             f"[llm_client] Impossible de joindre Ollama à '{url}'. "
