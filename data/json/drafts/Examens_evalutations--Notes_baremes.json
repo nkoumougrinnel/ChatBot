@@ -1,0 +1,562 @@
+[
+  {
+    "id": "faq_001",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Comment est organisée la structure pédagogique à SUP'PTIC ?",
+    "reponse_enrichie": "Les enseignements sont organisés en modules. Chaque module regroupe plusieurs UE (Unités d'Enseignement) et est associé à un nombre de crédits ainsi qu'à une moyenne seuil de validation. La validation d'un module permet d'acquérir les crédits correspondants.",
+    "exemples": [
+      "C'est quoi un module à SUP'PTIC ?",
+      "Comment sont regroupées les matières ?",
+      "Quelle est la différence entre un module et une UE ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_002",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Comment est calculée la moyenne d'un module ?",
+    "reponse_enrichie": "La moyenne d'un module est la moyenne des notes obtenues dans chacune des UE qui le composent. Lorsque cette moyenne atteint ou dépasse le seuil de validation du module, le module est dit 'fermé' et les crédits associés sont acquis.",
+    "exemples": [
+      "Comment calcule-t-on la moyenne d'un module ?",
+      "La moyenne du module c'est la moyenne de toutes les UE ?",
+      "Qu'est-ce qu'un module fermé ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_003",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Qu'est-ce qu'un module fermé et quelles en sont les conséquences ?",
+    "reponse_enrichie": "Un module est dit 'fermé' lorsque sa moyenne atteint le seuil de validation requis et qu'aucune note éliminatoire n'a été enregistrée dans ses UE. Une fois le module fermé, les crédits correspondants sont définitivement acquis et aucune note à l'intérieur du module ne peut plus être modifiée, même si certaines UE individuelles n'atteignent pas leur seuil propre.",
+    "exemples": [
+      "Que se passe-t-il quand un module est fermé ?",
+      "Peut-on repasser une UE quand le module est déjà fermé ?",
+      "Un module fermé veut dire que les crédits sont acquis ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_004",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Quelles sont les raisons pour lesquelles un module peut ne pas se fermer ?",
+    "reponse_enrichie": "Un module peut rester ouvert (non validé) dans deux cas principaux : soit la moyenne du module est inférieure au seuil de validation requis, soit une note éliminatoire a été obtenue dans l'une des UE du module. Dans ces deux cas, les crédits du module ne sont pas attribués.",
+    "exemples": [
+      "Pourquoi mon module n'est-il pas fermé ?",
+      "Une note éliminatoire empêche-t-elle de valider le module ?",
+      "Quelles conditions bloquent la validation d'un module ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_005",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Combien de crédits faut-il pour valider une année académique ?",
+    "reponse_enrichie": "Il faut obtenir 60 crédits au total pour valider une année académique, soit 30 crédits par semestre. Ces crédits sont acquis module par module dès lors que chaque module est validé (fermé).",
+    "exemples": [
+      "Combien de crédits pour passer en année supérieure ?",
+      "C'est combien de crédits par semestre ?",
+      "Faut-il vraiment 60 crédits pour valider l'année ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_006",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Peut-on être admis en classe supérieure sans avoir tous ses crédits ?",
+    "reponse_enrichie": "Oui, un étudiant ayant obtenu au minimum 42 crédits sur 60 peut être admis conditionnellement en classe supérieure. Il devra alors rattraper les 18 crédits manquants durant l'année suivante. Attention : sans ces crédits rattrapés, il ne pourra pas être admis à la classe d'après, même s'il valide entièrement sa nouvelle année.",
+    "exemples": [
+      "Peut-on passer en classe supérieure avec des crédits manquants ?",
+      "C'est quoi le minimum de crédits pour monter de classe ?",
+      "Que se passe-t-il si je n'ai pas mes 18 crédits en retard ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_007",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Que se passe-t-il si l'étudiant admis conditionnellement ne rattrape pas ses crédits en retard ?",
+    "reponse_enrichie": "Un étudiant admis conditionnellement avec 42 crédits doit obligatoirement rattraper les crédits des UE non validées durant l'année en cours. S'il ne le fait pas, il ne pourra pas être admis à la classe suivante même s'il valide intégralement sa nouvelle année académique.",
+    "exemples": [
+      "Que risque-t-on si on ne rattrape pas ses crédits en retard ?",
+      "Les crédits en retard bloquent-ils la progression ?",
+      "Peut-on avoir ses 60 crédits de l'année et quand même être bloqué ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_008",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Comment fonctionne la compensation entre les matières à SUP'PTIC ?",
+    "reponse_enrichie": "La compensation à SUP'PTIC est strictement intra-module : deux UE ne peuvent se compenser qu'au sein du même module. Une bonne note dans une UE peut compenser une note insuffisante dans une autre UE du même module, à condition que la moyenne du module atteigne le seuil requis et qu'aucune note éliminatoire ne soit présente.",
+    "exemples": [
+      "Peut-on compenser une mauvaise note avec une bonne note ?",
+      "La compensation fonctionne-t-elle entre deux modules différents ?",
+      "Une note insuffisante dans une UE peut-elle être compensée ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_009",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Comment est calculée la moyenne générale d'un étudiant ?",
+    "reponse_enrichie": "La moyenne générale est calculée à partir des moyennes de chaque module. Ce n'est pas une simple moyenne de toutes les UE : ce sont les moyennes de modules qui entrent en jeu.",
+    "exemples": [
+      "Comment calcule-t-on la moyenne générale ?",
+      "La moyenne générale c'est la moyenne de tous les modules ?",
+      "Les coefficients des modules influencent-ils la moyenne générale ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_010",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Comment est calculée la moyenne d'une UE avec CC et SN ?",
+    "reponse_enrichie": "Lorsqu'une UE est évaluée par contrôle continu (CC) et session normale (SN), la pondération est la suivante : CC compte pour 44% et SN pour 56% de la note finale de l'UE. La note maximale reste 20/20.",
+    "exemples": [
+      "Quelle est la pondération CC-SN pour une UE ?",
+      "Le CC compte pour combien dans ma note d'UE ?",
+      "Comment est calculée la note finale d'une UE avec examen ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_011",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Comment est calculée la moyenne d'une UE avec CC, TP et SN ?",
+    "reponse_enrichie": "Lorsqu'une UE comporte un contrôle continu (CC), des travaux pratiques (TP) et une session normale (SN), la pondération est : CC à 33%, TP à 25% et SN à 42%. La note maximale pour chacune de ces composantes est 20/20.",
+    "exemples": [
+      "Quelle est la pondération quand il y a des TP dans une UE ?",
+      "Le TP compte pour combien dans ma moyenne d'UE ?",
+      "Comment calcule-t-on la note d'une UE avec CC, TP et examen ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_012",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Certaines UE sont-elles évaluées uniquement par contrôle continu ?",
+    "reponse_enrichie": "Oui, certaines UE n'ont pas d'examen terminal ni de TP. Dans ce cas, la note finale de l'UE est entièrement basée sur le contrôle continu (CC), qui représente 100% de la note. La note maximale reste 20/20.",
+    "exemples": [
+      "Y a-t-il des UE sans examen à SUP'PTIC ?",
+      "Certaines matières sont-elles notées uniquement en CC ?",
+      "Comment fonctionne une UE 100% contrôle continu ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_013",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Quelle est la note maximale dans le système de notation de SUP'PTIC ?",
+    "reponse_enrichie": "La note maximale est 20/20, que ce soit pour le CC, le TP, la SN ou la moyenne finale d'une UE. Cette échelle s'applique uniformément à toutes les évaluations et à tous les modules.",
+    "exemples": [
+      "Sur combien sont les notes à SUP'PTIC ?",
+      "La note maximale est-elle la même pour le CC et l'examen ?",
+      "Peut-on avoir 20/20 partout ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_014",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Qu'est-ce qu'une note éliminatoire dans une UE ?",
+    "reponse_enrichie": "Une note éliminatoire est une note trop faible (généralement inférieure à 5/20) dans une composante ou une UE qui entraîne automatiquement l'échec du module, même si la moyenne du module serait par ailleurs suffisante. Elle empêche la fermeture du module et donc l'acquisition des crédits correspondants.",
+    "exemples": [
+      "C'est quoi une note éliminatoire ?",
+      "Une mauvaise note peut-elle bloquer tout un module ?",
+      "Comment savoir si ma note est éliminatoire ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_015",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "La note de validation d'une UE est-elle toujours 10/20 ?",
+    "reponse_enrichie": "Non, la note de validation varie selon les UE. Pour la plupart des UE, le seuil est de 10/20. Cependant, certaines UE ont un seuil de validation plus élevé, pouvant atteindre 12/20. Ce seuil est précisé dans le programme de chaque module.",
+    "exemples": [
+      "Certaines matières ont-elles un seuil de validation supérieur à 10 ?",
+      "Faut-il toujours 10/20 pour valider une UE ?",
+      "Quelle est la note de passage dans les UE ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_016",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Peut-on modifier une note dans un module déjà fermé ?",
+    "reponse_enrichie": "Non. Une fois qu'un module est fermé, aucune note à l'intérieur ne peut être modifiée. Cela s'applique même si l'une des UE du module n'atteint pas son propre seuil de validation individuel : la fermeture du module est définitive.",
+    "exemples": [
+      "Peut-on corriger une note après la fermeture du module ?",
+      "Est-ce qu'une note d'UE peut changer une fois le module validé ?",
+      "Que se passe-t-il si on détecte une erreur dans un module fermé ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_017",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Les UE de sport et de discipline sont-elles comptabilisées dans les modules ?",
+    "reponse_enrichie": "Oui, les UE comme le sport ou la discipline font partie intégrante d'un module. Elles disposent de leurs propres pondérations au sein du module et sont prises en compte dans le calcul de la moyenne du module, au même titre que les autres UE.",
+    "exemples": [
+      "Le sport entre-t-il dans le calcul des notes ?",
+      "La discipline est-elle notée et comptabilisée ?",
+      "Est-ce que le sport peut influencer la fermeture d'un module ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_018",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Qu'arrive-t-il à mes crédits si j'ai 42 crédits et que je passe en classe supérieure ?",
+    "reponse_enrichie": "Avec 42 crédits, tu es admis conditionnellement en classe supérieure. Les UE correspondant aux crédits manquants doivent être rattrapées durant cette nouvelle année. Sans cela, tu ne pourras pas progresser vers la classe suivante, même si tu valides entièrement ta nouvelle année.",
+    "exemples": [
+      "Que se passe-t-il si j'ai 42 crédits à la fin de l'année ?",
+      "Les 18 crédits manquants peuvent-ils être rattrapés l'année suivante ?",
+      "Être admis avec 42 crédits est-il risqué ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_019",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Combien de crédits minimum faut-il pour espérer passer en classe supérieure ?",
+    "reponse_enrichie": "Le minimum requis est de 42 crédits sur 60. En dessous de ce seuil, l'étudiant ne peut pas être admis en classe supérieure, même conditionnellement. L'idéal reste d'atteindre les 60 crédits pour une admission sans restriction.",
+    "exemples": [
+      "Quel est le minimum de crédits pour ne pas redoubler ?",
+      "Avec 40 crédits peut-on quand même passer ?",
+      "C'est quoi le seuil minimal pour être admis en classe supérieure ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_020",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Comment sont répartis les 60 crédits entre les deux semestres ?",
+    "reponse_enrichie": "Les 60 crédits annuels sont répartis équitablement à raison de 30 crédits par semestre. Chaque semestre est donc composé de modules dont la somme des crédits totalise 30. La validation de chaque module permet d'acquérir les crédits correspondants.",
+    "exemples": [
+      "Combien de crédits par semestre à SUP'PTIC ?",
+      "Les crédits sont-ils répartis à parts égales entre les deux semestres ?",
+      "Comment sont distribués les crédits dans l'année ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_021",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Peut-on contester la note d'une UE ou d'un module ?",
+    "reponse_enrichie": "Une contestation de note doit être formulée par écrit au service de scolarité dans les 5 jours ouvrables suivant la publication des résultats. Si le module concerné est déjà fermé, aucune modification de note n'est possible. La contestation n'est recevable que pour des modules encore ouverts.",
+    "exemples": [
+      "Comment contester une note à SUP'PTIC ?",
+      "Peut-on demander la révision d'une note après publication des résultats ?",
+      "La contestation est-elle possible si le module est fermé ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_022",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Quelle est la pondération du TP dans le calcul de la note d'une UE ?",
+    "reponse_enrichie": "Dans une UE évaluée avec CC, TP et SN, le TP représente 25% de la note finale. Le CC compte pour 33% et la SN pour 42%. Ces pondérations sont fixes et s'appliquent à toutes les UE ayant ce schéma d'évaluation.",
+    "exemples": [
+      "Le TP compte pour combien dans une UE ?",
+      "Quelle est la part du TP dans ma note finale ?",
+      "Si je rate mes TP, quel impact sur ma note d'UE ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_023",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Une UE non validée dans un module fermé doit-elle être repassée ?",
+    "reponse_enrichie": "Non. Si le module est fermé (validé), toutes les UE à l'intérieur sont définitivement acquises, même si certaines n'ont pas atteint leur seuil individuel de validation. La fermeture du module prime sur les notes individuelles des UE.",
+    "exemples": [
+      "Doit-on repasser une UE à 8/20 si le module est fermé ?",
+      "Une UE insuffisante dans un module fermé bloque-t-elle quelque chose ?",
+      "Peut-on être pénalisé par une UE faible si le module est validé ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_024",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Qu'est-ce que la SN (Session Normale) dans le système d'évaluation ?",
+    "reponse_enrichie": "La SN ou Session Normale désigne l'examen écrit de fin de semestre organisé pour chaque UE qui le prévoit. Elle constitue la composante la plus pondérée de la note finale : 56% dans le schéma CC-SN, et 42% dans le schéma CC-TP-SN. En cas d'absence ou d'échec, une session de rattrapage (SR) est généralement organisée pour la SN uniquement.",
+    "exemples": [
+      "C'est quoi la SN à SUP'PTIC ?",
+      "La SN c'est l'examen de fin de semestre ?",
+      "Quelle est la part de l'examen final dans la note ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_025",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Peut-on valider un module si l'une de ses UE a une note éliminatoire ?",
+    "reponse_enrichie": "Non. La présence d'une note éliminatoire (généralement inférieure à 5/20) dans l'une des UE d'un module empêche systématiquement la fermeture du module, quelle que soit la moyenne calculée. Le module reste ouvert et les crédits ne sont pas attribués tant que cette situation n'est pas résolue.",
+    "exemples": [
+      "Une note éliminatoire bloque-t-elle tout le module ?",
+      "Peut-on compenser une note éliminatoire avec les autres UE ?",
+      "Que faire si j'ai une note éliminatoire ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_026",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Quel est le rôle du CC dans l'évaluation des UE ?",
+    "reponse_enrichie": "Le CC (Contrôle Continu) est une évaluation réalisée en cours de semestre sous différentes formes : interrogations, devoirs, mini-projets, etc. Selon le type d'UE, il représente 44% (schéma CC-SN), 33% (schéma CC-TP-SN) ou 100% (UE CC uniquement) de la note finale.",
+    "exemples": [
+      "Le CC c'est quoi exactement ?",
+      "Comment est pris en compte le contrôle continu ?",
+      "Quelle est la part du CC dans ma note finale ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_027",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Peut-on repasser une UE appartenant à un module déjà fermé pour améliorer sa note ?",
+    "reponse_enrichie": "Non. Une fois qu'un module est fermé, aucune note ne peut être modifiée, et il n'est pas possible de repasser une UE dans ce module, même pour améliorer sa note. Les crédits sont acquis définitivement.",
+    "exemples": [
+      "Peut-on améliorer une note dans un module fermé ?",
+      "Est-il possible de repasser un examen dans un module validé ?",
+      "Les notes dans un module fermé sont-elles définitives ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_028",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Comment sont notés les TP dans le système d'évaluation des UE ?",
+    "reponse_enrichie": "Les travaux pratiques (TP) sont notés sur 20 points et constituent l'une des composantes de la note finale pour les UE suivant le schéma CC-TP-SN. Dans ce cas, les TP représentent 25% de la note finale de l'UE.",
+    "exemples": [
+      "Sur combien sont notés les TP ?",
+      "Comment sont évalués les travaux pratiques ?",
+      "Les TP sont-ils obligatoires pour valider une UE ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_029",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "La moyenne du module suffit-elle toujours pour le faire fermer ?",
+    "reponse_enrichie": "Non, la moyenne du module est nécessaire mais pas suffisante. Même si elle dépasse le seuil requis, le module ne peut pas se fermer si l'une de ses UE contient une note éliminatoire ou si une composante d'évaluation est manquante. Les deux conditions doivent être réunies : moyenne suffisante ET absence de toute note éliminatoire ou de vide d'évaluation.",
+    "exemples": [
+      "Peut-on avoir la moyenne du module et quand même ne pas le valider ?",
+      "La moyenne suffit-elle pour avoir les crédits du module ?",
+      "Quelles sont toutes les conditions pour fermer un module ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_030",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Comment est déterminé le classement des étudiants en fin d'année ?",
+    "reponse_enrichie": "Le classement annuel est établi sur la base de la moyenne générale, elle-même calculée à partir des moyennes de modules. En cas d'égalité, le nombre de crédits obtenus et les notes dans les modules à fort coefficient servent de critères de départage.",
+    "exemples": [
+      "Sur quelle base est établi le classement ?",
+      "La moyenne générale détermine-t-elle le rang ?",
+      "Qu'est-ce qui différencie deux étudiants avec la même moyenne ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_031",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Quelles sont les mentions accordées à SUP'PTIC ?",
+    "reponse_enrichie": "Les mentions sont attribuées en fonction de la moyenne générale annuelle : Passable (10–11,99/20), Assez Bien (12–13,99/20), Bien (14–15,99/20), Très Bien (16–17,99/20), Excellent (18–20/20). Elles figurent sur le relevé de notes officiel.",
+    "exemples": [
+      "Quelles sont les mentions à SUP'PTIC ?",
+      "À partir de quelle moyenne obtient-on une mention Bien ?",
+      "Comment sont déterminées les mentions ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_032",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Les absences à une évaluation ont-elles une incidence sur les notes ?",
+    "reponse_enrichie": "Si un étudiant est absent à une évaluation (CC, TP ou SN), aucune note n'est enregistrée : c'est un vide dans le calcul. Ce vide empêche automatiquement la fermeture du module contenant cette UE. Pour la SN, une session de rattrapage est généralement prévue. Pour le CC ou TP, la possibilité de rattrapage dépend de l'enseignant et n'est pas garantie.",
+    "exemples": [
+      "Que se passe-t-il si je suis absent à un examen ?",
+      "Une absence injustifiée vaut-elle 0 ?",
+      "Comment justifier une absence à un contrôle ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_033",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Quelle est la différence entre la note de validation d'un module et celle d'une UE ?",
+    "reponse_enrichie": "La note de validation d'une UE est le seuil individuel en dessous duquel une UE est considérée insuffisante (généralement 10/20, parfois 12/20 selon les UE). La note de validation d'un module est le seuil que doit atteindre la moyenne de l'ensemble des UE du module pour que celui-ci se ferme et que les crédits soient acquis. Ces deux seuils sont indépendants.",
+    "exemples": [
+      "C'est quoi la différence entre valider une UE et valider un module ?",
+      "Peut-on avoir une UE insuffisante et quand même valider le module ?",
+      "Le seuil d'un module et celui d'une UE sont-ils les mêmes ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_034",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Les crédits d'un module peuvent-ils être partiellement acquis ?",
+    "reponse_enrichie": "Non. Les crédits d'un module sont attribués en totalité ou pas du tout. Il n'y a pas d'acquisition partielle : soit le module se ferme et tous ses crédits sont acquis, soit il reste ouvert et aucun crédit n'est comptabilisé.",
+    "exemples": [
+      "Peut-on avoir la moitié des crédits d'un module ?",
+      "Les crédits sont-ils attribués UE par UE ou module par module ?",
+      "Si j'ai validé 3 UE sur 4 dans un module, est-ce que j'ai des crédits ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_035",
+    "categorie": "Examens et Évaluations",
+    "sous_theme": "Notes et Barème",
+    "question": "Comment savoir combien de crédits j'ai acquis à un instant donné ?",
+    "reponse_enrichie": "Le nombre de crédits acquis correspond à la somme des crédits des modules déjà fermés. Pour connaître ta situation exacte, tu peux consulter ton espace étudiant ou te rapprocher du service de scolarité qui peut te fournir un état de tes crédits à tout moment de l'année.",
+    "exemples": [
+      "Comment connaître mon nombre de crédits en cours d'année ?",
+      "Où voir combien de crédits j'ai déjà obtenus ?",
+      "Mon espace étudiant affiche-t-il mes crédits acquis ?"
+    ],
+    "sources": ["Retour des étudiants"],
+    "date_creation": "2026-04-20",
+    "version": "2.0",
+    "valide": false
+  }
+]
