@@ -1,0 +1,603 @@
+[
+  {
+    "id": "faq_001",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quelles sont les grandes filières de formation proposées à SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC propose deux grands cursus : (1) le cursus Ingénierie, qui couvre les télécommunications, les réseaux, l'informatique et la radiocommunication, et (2) le cursus Management, qui forme aux métiers de la gestion des entreprises des Postes et Télécommunications. Chaque cursus comprend un premier et un second cycle.",
+    "exemples": [
+      "Quelles formations existe-t-il à SUP'PTIC ?",
+      "SUP'PTIC propose quelles filières ?",
+      "Comment sont organisées les formations à SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/",
+      "https://e-supptic.cm/premier-cycle-yaounde/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_002",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Qu'est-ce que la filière Ingénieur des Travaux de Télécommunications (ITT) ?",
+    "reponse_enrichie": "La filière Ingénieur des Travaux de Télécommunications (ITT) est une formation de premier cycle de 3 ans, accessible sur concours aux titulaires d'un baccalauréat scientifique ou technique. Elle est dispensée à Yaoundé. À l'issue des 3 premiers semestres de tronc commun, les étudiants se spécialisent dans l'une des trois options : Informatique et Réseaux (IR), Réseaux et Télécommunications (RT), ou Radiocommunication (RC).",
+    "exemples": [
+      "C'est quoi la formation ITT à SUP'PTIC ?",
+      "La filière Ingénieur des Travaux de Télécoms forme à quoi ?",
+      "Comment fonctionne le cycle ITT ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_003",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quelles sont les spécialisations disponibles dans la filière ITT ?",
+    "reponse_enrichie": "Après le tronc commun des 3 premiers semestres, les étudiants de la filière ITT peuvent se spécialiser dans trois options : (1) Informatique et Réseaux (IR), (2) Réseaux et Télécommunications (RT), et (3) Radiocommunication (RC). Chaque option prépare à des métiers spécifiques du secteur numérique.",
+    "exemples": [
+      "Quelles options choisir en ITT ?",
+      "Il y a combien de spécialisations en Ingénieur des Travaux Télécoms ?",
+      "Quelle est la différence entre IR, RT et RC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_004",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Que fait un ingénieur formé dans la spécialité Informatique et Réseaux (IR) ?",
+    "reponse_enrichie": "Le technicien en Informatique et Réseaux (IR) a pour missions principales : l'installation et le paramétrage des réseaux internes d'une entreprise, la mise à jour et les contrôles réguliers de l'activité réseau, la maintenance de la sécurité du système ainsi que le traitement des problèmes matériels et logiciels, et la gestion des outils softwares et hardwares selon les besoins des utilisateurs.",
+    "exemples": [
+      "Que fait un ingénieur en Informatique et Réseaux ?",
+      "Quels sont les débouchés de la spécialité IR ?",
+      "À quoi prépare la filière Informatique et Réseaux ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_005",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Que fait un ingénieur formé dans la spécialité Réseaux et Télécommunications (RT) ?",
+    "reponse_enrichie": "Le diplômé en Réseaux et Télécommunications (RT) est capable d'installer, configurer et maintenir du matériel de téléphonie fixe ou mobile (autocommutateurs, routeurs VoIP), de concevoir des architectures de réseaux unifiés intégrant téléphonie, vidéo et informatique, de conseiller les entreprises sur l'évolution de leurs équipements, et de rédiger des propositions commerciales (devis, contrats de maintenance).",
+    "exemples": [
+      "Quels sont les métiers de la filière Réseaux et Télécoms ?",
+      "Que fait-on avec la spécialité RT à SUP'PTIC ?",
+      "La spécialisation RT, c'est quoi concrètement ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_006",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "À quoi prépare la spécialité Radiocommunication (RC) ?",
+    "reponse_enrichie": "La spécialité Radiocommunication (RC) forme des assistants d'ingénieurs et assistants chefs de projet capables de concevoir et mettre en œuvre des dispositifs de radiocommunication : téléphonie mobile, télévision numérique, boucle locale radio. Les diplômés réalisent des tests sur équipements hertziens, appliquent des méthodes de mesure hyperfréquence, et sont recherchés par les constructeurs de matériel électronique, les opérateurs télécoms et les sociétés de conseil.",
+    "exemples": [
+      "Que couvre la spécialité Radiocommunication ?",
+      "La RC forme à quels métiers ?",
+      "Qu'est-ce que la Radiocommunication à SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_007",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quelle est la durée de la formation d'Ingénieur des Travaux de Télécommunications ?",
+    "reponse_enrichie": "La formation d'Ingénieur des Travaux de Télécommunications dure 3 ans. Elle comprend un tronc commun les 3 premiers semestres, suivi d'une spécialisation. En 1ère année, l'étudiant effectue une visite d'entreprise ; en 2ème année, un stage d'imprégnation de 2 mois ; et en 3ème année, il soumet un projet de fin d'études.",
+    "exemples": [
+      "Combien d'années dure la formation ITT ?",
+      "Le cursus ITT se fait en combien de temps ?",
+      "Y a-t-il un stage dans la formation ITT ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_008",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quel est le niveau requis pour intégrer la filière Ingénieur des Travaux de Télécommunications ?",
+    "reponse_enrichie": "Pour intégrer la filière Ingénieur des Travaux de Télécommunications (ITT), il faut être titulaire d'un baccalauréat scientifique ou technique (séries scientifiques ou technologiques). L'accès se fait uniquement par voie de concours.",
+    "exemples": [
+      "Quel bac faut-il pour la filière ITT ?",
+      "Puis-je entrer en ITT avec un bac littéraire ?",
+      "Quels sont les prérequis pour la formation Ingénieur des Travaux Télécoms ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_009",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quel est le coût de la scolarité pour la filière ITT ?",
+    "reponse_enrichie": "Pour la filière Ingénieur des Travaux de Télécommunications, les frais annuels s'élèvent à 525 000 FCFA pour les étudiants camerounais, et 825 000 FCFA pour les étudiants étrangers. Ces frais incluent : 10 000 FCFA d'inscription, 10 000 FCFA pour les activités culturelles et sportives, 5 000 FCFA d'assurance, et 500 000 FCFA de scolarité (800 000 pour les étrangers).",
+    "exemples": [
+      "Combien coûte la formation ITT à SUP'PTIC ?",
+      "Quels sont les frais de scolarité en Ingénieur des Travaux Télécoms ?",
+      "La scolarité en ITT coûte combien pour un Camerounais ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_010",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Qu'est-ce que la filière Ingénieur des Télécommunications (IT) – second cycle ?",
+    "reponse_enrichie": "La filière Ingénieur des Télécommunications est un second cycle de 2 ans accessible sur concours aux titulaires d'une Licence, d'un Master 1 scientifique ou d'un diplôme d'Ingénieur des Travaux. Après un tronc commun au 1er semestre, les étudiants se spécialisent en Sécurité des Réseaux et Systèmes (SERES) ou en Services et Radiomobiles (SRM).",
+    "exemples": [
+      "C'est quoi le cycle Ingénieur des Télécommunications ?",
+      "Le second cycle IT forme à quoi ?",
+      "Quelle est la différence entre ITT et IT ?"
+    ],
+    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_011",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Que couvre la spécialité Sécurité des Réseaux et Systèmes (SERES) ?",
+    "reponse_enrichie": "La spécialité SERES (Sécurité des Réseaux et Systèmes) du second cycle Ingénieur forme des experts capables d'installer et paramétrer des réseaux d'entreprise sécurisés, d'effectuer des mises à jour et contrôles réguliers du réseau, de maintenir la sécurité des systèmes et traiter les incidents matériels et logiciels, et de gérer les outils softwares et hardwares. C'est une filière très recherchée dans le contexte actuel de la cybersécurité.",
+    "exemples": [
+      "Qu'est-ce que la filière SERES ?",
+      "SUP'PTIC forme-t-elle en cybersécurité ?",
+      "La spécialité Sécurité des Réseaux, c'est quoi ?"
+    ],
+    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_012",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Que couvre la spécialité Services et Radiomobiles (SRM) ?",
+    "reponse_enrichie": "La spécialité Services et Radiomobiles (SRM) forme des experts sur les protocoles et architectures des réseaux mobiles et fixes. Les apprenants étudient les systèmes les plus récents (LTE, LTE Advanced) ainsi que les évolutions futures : 5G, Internet des objets (IoT), virtualisation des réseaux mobiles (NFV/SDN) et cloud. C'est une formation orientée vers les technologies mobiles de dernière génération.",
+    "exemples": [
+      "Qu'est-ce que la spécialité SRM à SUP'PTIC ?",
+      "La filière Services et Radiomobiles forme à la 5G ?",
+      "SRM, qu'est-ce que ça veut dire et à quoi ça prépare ?"
+    ],
+    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_013",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quel est le coût de la scolarité pour le second cycle Ingénieur des Télécommunications ?",
+    "reponse_enrichie": "Pour le second cycle Ingénieur des Télécommunications, les frais s'élèvent à 625 000 FCFA pour les Camerounais et 825 000 FCFA pour les étrangers. Ces frais comprennent : 10 000 FCFA d'inscription, 10 000 FCFA d'activités culturelles et sportives, 5 000 FCFA d'assurance, et 600 000 FCFA de scolarité (800 000 pour les étrangers).",
+    "exemples": [
+      "Combien coûte le cycle Ingénieur des Télécoms ?",
+      "Quels sont les frais du second cycle IT ?",
+      "Le coût de la scolarité pour le Master télécoms ?"
+    ],
+    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_014",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quelle est la durée de la formation d'Ingénieur des Télécommunications (second cycle) ?",
+    "reponse_enrichie": "La formation d'Ingénieur des Télécommunications dure 2 ans. Elle inclut une période de stage de 5 mois. Le tronc commun se déroule au 1er semestre, et la spécialisation débute au 2ème semestre. Le diplôme délivré est celui d'Ingénieur des Télécommunications.",
+    "exemples": [
+      "Combien d'années pour devenir Ingénieur des Télécoms à SUP'PTIC ?",
+      "Le second cycle IT dure combien de temps ?",
+      "Y a-t-il un stage dans le second cycle ingénierie ?"
+    ],
+    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_015",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quel niveau faut-il pour intégrer le cycle Ingénieur des Télécommunications ?",
+    "reponse_enrichie": "Pour intégrer le second cycle Ingénieur des Télécommunications, il faut être titulaire d'une Licence, d'un Master 1 scientifique ou d'un diplôme d'Ingénieur des Travaux de Télécommunications. L'entrée se fait par concours.",
+    "exemples": [
+      "Faut-il une licence pour entrer en cycle Ingénieur des Télécoms ?",
+      "Quels diplômes donnent accès au second cycle ingénierie ?",
+      "Les titulaires d'ITT peuvent-ils continuer en cycle Ingénieur Télécoms ?"
+    ],
+    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_016",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Qu'est-ce que la formation Agent Technique des Télécommunications (campus de Buea) ?",
+    "reponse_enrichie": "La formation d'Agent Technique des Télécommunications est dispensée au campus de Buea et dure 1 an. Elle est accessible sur concours aux candidats titulaires du Probatoire scientifique. Elle forme des techniciens capables d'installer du matériel de télécommunications, électrique, électronique et électromécanique en atelier ou sur site. Le diplômé peut être amené à travailler de nuit et lors de fins de semaine.",
+    "exemples": [
+      "C'est quoi la formation Agent Technique Télécoms à Buea ?",
+      "Quelle est la durée de la formation Agent Technique ?",
+      "Peut-on s'inscrire à Buea avec le Probatoire ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/agents-techniques-techniciens-des-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_017",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Qu'est-ce que la formation Technicien des Télécommunications (campus de Buea) ?",
+    "reponse_enrichie": "La formation Technicien des Télécommunications est dispensée au campus de Buea sur 2 ans. Elle est accessible sur concours aux titulaires d'un baccalauréat scientifique ou d'un diplôme d'Agent Technique. Le Technicien télécoms assure la mise en service et la maintenance des équipements de communication, gère les données et veille à la sécurité des systèmes. La maîtrise de l'anglais est un atout majeur.",
+    "exemples": [
+      "La formation Technicien Télécoms à Buea, c'est quoi ?",
+      "Que fait un Technicien des Télécommunications ?",
+      "Peut-on entrer en Technicien Télécoms avec un bac scientifique ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/agents-techniques-techniciens-des-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_018",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quel est le coût de la scolarité pour les formations du campus de Buea (Agent Technique et Technicien) ?",
+    "reponse_enrichie": "Pour les formations Agent Technique et Technicien des Télécommunications dispensées au campus de Buea, les frais totaux s'élèvent à 225 000 FCFA par an, que l'étudiant soit camerounais ou étranger. Ces frais comprennent : 10 000 FCFA d'inscription, 10 000 FCFA pour les activités culturelles et sportives, 5 000 FCFA d'assurance, et 200 000 FCFA de scolarité.",
+    "exemples": [
+      "Combien coûte la scolarité à Buea ?",
+      "Quels sont les frais pour la formation Agent Technique à Buea ?",
+      "La formation Technicien Télécoms à Buea coûte combien ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/agents-techniques-techniciens-des-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_019",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Qu'est-ce que la filière Inspecteur des Postes et Télécommunications (premier cycle Management, Yaoundé) ?",
+    "reponse_enrichie": "Le premier cycle Management de Yaoundé prépare au diplôme d'Inspecteur des Postes et Télécommunications (IPT). Formation de 3 ans accessible sur concours à tout titulaire d'un baccalauréat (toutes séries). Après un tronc commun de 3 semestres, les étudiants choisissent parmi les spécialisations : Management (MGT), Techniques d'Exploitation Postale (TEP), Comptabilité et Finances (CF), Logistique et Transport (LT), ou Commerce et Distribution.",
+    "exemples": [
+      "La filière Inspecteur des P&T c'est quoi ?",
+      "Qu'est-ce que le premier cycle Management à SUP'PTIC ?",
+      "Le diplôme d'IPT se prépare comment à SUP'PTIC ?"
+    ],
+    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_020",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quelles sont les spécialisations du premier cycle Management à Yaoundé ?",
+    "reponse_enrichie": "Le premier cycle Management de Yaoundé propose 5 options de spécialisation : (1) Management (MGT) – gestion des entreprises de télécoms, (2) Techniques d'Exploitation Postale (TEP), (3) Comptabilité et Finances (CF), (4) Logistique et Transport (LT), et (5) Commerce et Distribution. Chaque option débouche sur des métiers spécifiques dans le secteur des P&T.",
+    "exemples": [
+      "Quelles sont les options en Management premier cycle ?",
+      "Il y a combien de spécialisations en IPT ?",
+      "Je veux faire la comptabilité, est-ce possible à SUP'PTIC ?"
+    ],
+    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_021",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "À quoi prépare la spécialité Management (MGT) du premier cycle ?",
+    "reponse_enrichie": "La spécialité Management (MGT) forme aux différents niveaux de gestion des entreprises : environnement institutionnel, commercial, finance, ressources humaines, communication, marketing et gestion de crise. Appliquée au secteur des télécoms, cette formation donne une vision globale du management des organisations et des entreprises de télécommunications en particulier.",
+    "exemples": [
+      "Qu'apprend-on en Management à SUP'PTIC ?",
+      "La filière MGT forme à quoi ?",
+      "La gestion des entreprises de télécoms s'apprend comment à SUP'PTIC ?"
+    ],
+    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_022",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "À quoi prépare la spécialité Comptabilité et Finances (CF) du premier cycle ?",
+    "reponse_enrichie": "La spécialité Comptabilité et Finances (CF) forme les étudiants aux bases de la comptabilité, de la finance d'entreprise, des techniques bancaires et d'assurance, de la gestion de portefeuilles clients et des produits financiers. Elle ouvre les portes des banques, assurances et entreprises industrielles et commerciales. Les étudiants acquièrent également des connaissances juridiques applicables aux projets financiers.",
+    "exemples": [
+      "La filière Comptabilité et Finances à SUP'PTIC forme à quoi ?",
+      "Peut-on travailler en banque avec un diplôme de SUP'PTIC ?",
+      "La spécialité CF, c'est quoi ?"
+    ],
+    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_023",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "À quoi prépare la spécialité Logistique et Transport (LT) du premier cycle ?",
+    "reponse_enrichie": "La spécialité Logistique et Transport (LT) forme des professionnels capables d'organiser le transport national et international de tous types de produits, d'assurer le dédouanement de marchandises et de gérer les activités d'entreposage, de réception et d'expédition. Les diplômés maîtrisent aussi les dimensions commerciales et managériales de la logistique et possèdent une solide culture économique et juridique.",
+    "exemples": [
+      "La filière Logistique et Transport forme à quoi ?",
+      "Peut-on faire la logistique à SUP'PTIC ?",
+      "Quels métiers avec la spécialité LT ?"
+    ],
+    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_024",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "À quoi prépare la spécialité Commerce et Distribution du premier cycle ?",
+    "reponse_enrichie": "La spécialité Commerce et Distribution prépare aux métiers de l'encadrement en commerce : gestion et organisation de points de vente, théâtralisation et vente de produits, management d'équipes de vente. Le diplômé dispose de compétences en gestion des personnes et des flux financiers, en négociation et vente, et maîtrise l'environnement commercial, économique et financier.",
+    "exemples": [
+      "Qu'est-ce que la filière Commerce et Distribution ?",
+      "Peut-on faire du commerce à SUP'PTIC ?",
+      "La spécialité Commerce forme à quels emplois ?"
+    ],
+    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_025",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quel est le coût de la scolarité du premier cycle Management à Yaoundé ?",
+    "reponse_enrichie": "Les frais annuels du premier cycle Management (Yaoundé) s'élèvent à 525 000 FCFA pour les étudiants camerounais et 825 000 FCFA pour les étrangers. Ces frais incluent : 10 000 FCFA d'inscription, 10 000 FCFA pour les activités culturelles et sportives, 5 000 FCFA d'assurance, et 500 000 FCFA de scolarité (800 000 FCFA pour les étrangers).",
+    "exemples": [
+      "Combien coûte la formation Inspecteur P&T à Yaoundé ?",
+      "Quel est le coût du premier cycle Management SUP'PTIC ?",
+      "Quels sont les frais de scolarité en Management IPT ?"
+    ],
+    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_026",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Qu'est-ce que le second cycle Management – Administrateur des Postes et Télécommunications ?",
+    "reponse_enrichie": "Le second cycle Management prépare au diplôme d'Administrateur des Postes et Télécommunications. C'est une formation de 2 ans (avec 5 mois de stage), accessible sur concours aux titulaires d'une licence, d'un Master 1 ou d'un diplôme d'Inspecteur. Après un tronc commun, les étudiants se spécialisent en Management des entreprises des P&T, Réglementation et Régulation, ou Logistique et Transport.",
+    "exemples": [
+      "C'est quoi le second cycle Management à SUP'PTIC ?",
+      "Le diplôme d'Administrateur P&T, comment le prépare-t-on ?",
+      "Que forme le second cycle Management ?"
+    ],
+    "sources": ["https://e-supptic.cm/second-cycle-yaounde/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_027",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "À quoi prépare le Master Management des entreprises des Postes et Télécommunications ?",
+    "reponse_enrichie": "Ce Master forme des cadres capables de piloter des entreprises et organisations des P&T. Les étudiants acquièrent des connaissances approfondies en marketing, management stratégique et international. La formation vise à former de futurs dirigeants ou chercheurs maîtrisant les problématiques spécifiques au secteur des postes et télécommunications.",
+    "exemples": [
+      "Que fait-on avec le Master Management P&T ?",
+      "Le Master en management des télécoms ouvre quels débouchés ?",
+      "Le second cycle Management forme des cadres ?"
+    ],
+    "sources": ["https://e-supptic.cm/second-cycle-yaounde/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_028",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quel est le coût de la scolarité du second cycle Management à Yaoundé ?",
+    "reponse_enrichie": "Les frais annuels du second cycle Management (Administrateur des P&T) s'élèvent à 625 000 FCFA pour les étudiants camerounais et 825 000 FCFA pour les étudiants étrangers. Ces frais comprennent 10 000 FCFA d'inscription, 10 000 FCFA pour les activités culturelles et sportives, 5 000 FCFA d'assurance et 600 000 FCFA de scolarité (800 000 FCFA pour les étrangers).",
+    "exemples": [
+      "Combien coûte le Master Management P&T à SUP'PTIC ?",
+      "Quels sont les frais du second cycle Management ?",
+      "Le diplôme d'Administrateur P&T coûte combien ?"
+    ],
+    "sources": ["https://e-supptic.cm/second-cycle-yaounde/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_029",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Y a-t-il des stages obligatoires dans les formations de SUP'PTIC ?",
+    "reponse_enrichie": "Oui, les stages sont intégrés à toutes les formations. Dans le premier cycle Ingénierie (ITT) : visite d'entreprise en 1ère année, stage d'imprégnation de 2 mois en 2ème année, et projet de fin d'études en 3ème année. Dans le second cycle Ingénierie (IT) : stage de 5 mois. Dans le premier et second cycle Management : stage de 2 mois et 5 mois respectivement.",
+    "exemples": [
+      "Les stages sont-ils obligatoires à SUP'PTIC ?",
+      "Combien de mois de stage à SUP'PTIC ?",
+      "Y a-t-il un projet de fin d'études à SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/",
+      "https://e-supptic.cm/premier-cycle-yaounde/",
+      "https://e-supptic.cm/ingenieur-des-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_030",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quels sont les diplômes délivrés à chaque niveau de formation à SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC délivre les diplômes suivants selon le niveau : Agent Technique des Télécommunications (1 an, Buea), Technicien des Télécommunications (2 ans, Buea), Ingénieur des Travaux de Télécommunications / Inspecteur des P&T (3 ans, Yaoundé – Bac+3/Licence), Ingénieur des Télécommunications / Administrateur des P&T (2 ans supplémentaires, Yaoundé – Bac+5/Master).",
+    "exemples": [
+      "Quels diplômes obtient-on à SUP'PTIC ?",
+      "SUP'PTIC délivre quel niveau de diplôme ?",
+      "Y a-t-il un diplôme de type Master à SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/",
+      "https://e-supptic.cm/ingenieur-des-telecommunications/",
+      "https://e-supptic.cm/premier-cycle-yaounde/",
+      "https://e-supptic.cm/second-cycle-yaounde/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_031",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Peut-on suivre toutes les formations à Yaoundé et à Buea ?",
+    "reponse_enrichie": "Non, les campus n'offrent pas les mêmes formations. Le campus de Buea propose exclusivement les formations Agent Technique des Télécommunications (1 an) et Technicien des Télécommunications (2 ans). Toutes les autres formations (Ingénieur ITT, IT, et cycles Management) sont dispensées exclusivement au campus de Yaoundé.",
+    "exemples": [
+      "Les formations de Yaoundé et Buea sont-elles les mêmes ?",
+      "Peut-on faire la formation ingénieur à Buea ?",
+      "Quelles formations sont disponibles au campus de Buea ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/agents-techniques-techniciens-des-telecommunications/",
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_032",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Peut-on entrer directement en 2ème année à SUP'PTIC (admission sur titre) ?",
+    "reponse_enrichie": "Oui, SUP'PTIC propose des admissions sur titre en 2ème année pour certains cycles. Cette procédure est prévue dans les concours officiels et permet à des candidats déjà titulaires de certains diplômes ou niveaux d'études d'intégrer directement la 2ème année. Les conditions précises sont définies dans chaque avis de concours.",
+    "exemples": [
+      "Peut-on entrer en 2ème année à SUP'PTIC ?",
+      "L'admission sur titre est-elle possible à SUP'PTIC ?",
+      "Je suis technicien, puis-je entrer directement en 2ème année ?"
+    ],
+    "sources": ["https://e-supptic.cm/concours-supptic/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_033",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "SUP'PTIC prépare-t-elle aussi à des certifications professionnelles internationales ?",
+    "reponse_enrichie": "Oui, SUP'PTIC dispose de Centres de Formation certifiants reconnus à l'international : un Centre de Formation CISCO (certifications réseau CCNA, etc.) et un Centre de Formation Huawei (certifications sur les équipements et réseaux Huawei). Ces certifications renforcent l'employabilité des étudiants au-delà du diplôme national.",
+    "exemples": [
+      "SUP'PTIC prépare-t-elle aux certifications CISCO ?",
+      "Peut-on avoir une certification Huawei à SUP'PTIC ?",
+      "Y a-t-il des certifications internationales à SUP'PTIC ?"
+    ],
+    "sources": ["https://e-supptic.cm/", "https://e-supptic.cm/nos-plus/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_034",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quelle est l'organisation pédagogique des formations (tronc commun + spécialisation) ?",
+    "reponse_enrichie": "Dans tous les cycles de SUP'PTIC, la formation commence par un tronc commun permettant d'acquérir les bases fondamentales, avant une phase de spécialisation. Dans les cycles de 3 ans (ITT / IPT), le tronc commun dure 3 semestres. Dans les cycles de 2 ans (IT / Administrateur P&T), le tronc commun occupe le 1er semestre, la spécialisation démarrant au 2ème semestre.",
+    "exemples": [
+      "Comment sont organisées les études à SUP'PTIC ?",
+      "Quand commence la spécialisation dans les formations de SUP'PTIC ?",
+      "Y a-t-il un tronc commun avant la spécialisation ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/",
+      "https://e-supptic.cm/ingenieur-des-telecommunications/",
+      "https://e-supptic.cm/premier-cycle-yaounde/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  },
+  {
+    "id": "faq_035",
+    "categorie": "Programmes Académiques",
+    "sous_theme": "Présentation des filières",
+    "question": "Quels équipements et infrastructures pédagogiques SUP'PTIC met-elle à disposition des étudiants ?",
+    "reponse_enrichie": "SUP'PTIC offre à ses étudiants des infrastructures modernes : laboratoires équipés, Centre de formation CISCO, Centre de formation Huawei, amphithéâtre de 400 places, Wifi haut débit, bus de transport, et aires de jeux pour le sport. Cet environnement favorise à la fois l'apprentissage pratique, la vie sociale et le bien-être des étudiants.",
+    "exemples": [
+      "Quels équipements trouve-t-on à SUP'PTIC ?",
+      "Y a-t-il le Wifi à SUP'PTIC ?",
+      "SUP'PTIC a-t-elle de grands amphithéâtres ?"
+    ],
+    "sources": ["https://e-supptic.cm/nos-plus/"],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": false
+  }
+]
