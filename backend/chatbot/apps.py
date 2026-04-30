@@ -6,5 +6,7 @@ class ChatbotConfig(AppConfig):
     def ready(self):
       """" Charge de l'index FAISS au demarrage de Django"""
       from chatbot.engine.faiss_search  import load_index
+      from chatbot.engine.tfidf_fallback import load as load_tfidf
       load_index()
+      load_tfidf()
  
