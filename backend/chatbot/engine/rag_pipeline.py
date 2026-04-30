@@ -44,9 +44,9 @@ except ImportError:
 # -------------------------------------------------------------------
 # Seuils de confiance (configurables)
 # -------------------------------------------------------------------
-SCORE_HIGH = float(__import__("os").environ.get("RAG_SCORE_HIGH", 0.55))
-SCORE_MED = float(__import__("os").environ.get("RAG_SCORE_MED", 0.1))
-FAISS_TOP_K = int(__import__("os").environ.get("RAG_TOP_K", 3))
+SCORE_HIGH = float(__import__("os").environ.get("RAG_SCORE_HIGH", 0.60))
+SCORE_MED = float(__import__("os").environ.get("RAG_SCORE_MED", 0.55))
+FAISS_TOP_K = int(__import__("os").environ.get("RAG_TOP_K", 1))
 
 # Message d'avertissement score moyen
 _WARNING_LOW_CONFIDENCE = (
