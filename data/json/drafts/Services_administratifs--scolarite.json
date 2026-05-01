@@ -1,0 +1,632 @@
+[
+  {
+    "id": "faq_001",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment obtenir une attestation de scolarité à SUP'PTIC ?",
+    "reponse_enrichie": "Pour obtenir une attestation de scolarité, il faut écrire une demande adressée au Directeur, accompagnée des photocopies des reçus de paiement et de l'acte de naissance.",
+    "exemples": [
+      "Où demander une attestation de scolarité ?",
+      "Comment avoir la preuve que je suis étudiant à SUP'PTIC ?",
+      "Il me faut une attestation d'inscription, comment faire ?"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_002",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Quel est le délai d'obtention d'un relevé de notes à SUP'PTIC ?",
+    "reponse_enrichie": "Le relevé de notes est délivré dans un délai de 1 à 5 jours ouvrables selon la disponibilité de l'administration.",
+    "exemples": [
+      "En combien de temps j'aurai mes relevés de notes ?",
+      "Combien de jours pour avoir mon relevé ?",
+      "Délai relevé de notes"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_003",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Quels documents faut-il fournir pour demander un relevé de notes ?",
+    "reponse_enrichie": "Pour obtenir un relevé de notes, il faut écrire une demande adressée au Directeur, accompagnée des pièces suivantes : photocopies du reçu de paiement, de l'acte de naissance et de la carte nationale d'identité (CNI).",
+    "exemples": [
+      "Que faut-il pour avoir son relevé de notes ?",
+      "Quelles pièces pour le relevé de notes ?",
+      "Documents nécessaires pour un relevé SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_004",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Y a-t-il des frais pour l'obtention d'une attestation de scolarité ?",
+    "reponse_enrichie": "Non, l'obtention d'une attestation de scolarité est gratuite à SUP'PTIC.",
+    "exemples": [
+      "L'attestation de scolarité est-elle payante ?",
+      "Combien coûte une attestation à SUP'PTIC ?",
+      "Est-ce qu'on paie pour avoir l'attestation de scolarité ?"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_005",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment obtenir une attestation de réussite à SUP'PTIC ?",
+    "reponse_enrichie": "Pour obtenir une attestation de réussite, il faut adresser une demande au Directeur avec les pièces suivantes : photocopies des reçus de paiement de toutes les classes du cycle, attestation de scolarité (à retirer auprès du service de scolarité après présentation du document attestant la correction du mémoire), et acte de naissance.",
+    "exemples": [
+      "Comment avoir une attestation de succès ?",
+      "J'ai réussi mes examens, comment obtenir l'attestation ?",
+      "Attestation de fin d'études"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_006",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Où se trouve le service de scolarité à SUP'PTIC Yaoundé ?",
+    "reponse_enrichie": "Le service de scolarité est localisé dans le bâtiment administratif principal du campus de Yaoundé, porte A08. Pour les heures d'ouverture exactes, renseignez-vous à l'accueil ou auprès du secrétariat.",
+    "exemples": [
+      "Où est le bureau de la scolarité ?",
+      "Où aller pour les démarches administratives à SUP'PTIC ?",
+      "Localisation du service des inscriptions"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_007",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Quels sont les horaires d'ouverture du service de scolarité ?",
+    "reponse_enrichie": "Le service de scolarité est généralement ouvert du lundi au vendredi, de 7h30 à 15h30. Ces horaires peuvent varier en période de vacances ou lors des délibérations.",
+    "exemples": [
+      "Quand est ouvert le service des inscriptions ?",
+      "À quelle heure je peux aller à la scolarité ?",
+      "Horaires service administratif SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_008",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment renouveler sa carte d'étudiant à SUP'PTIC ?",
+    "reponse_enrichie": "Le renouvellement de la carte d'étudiant se fait au service de scolarité durant une période dédiée à la confection des cartes, ouverte une fois par an. Il faut se renseigner auprès du service de scolarité pour connaître les dates exactes.",
+    "exemples": [
+      "Comment avoir une nouvelle carte étudiante ?",
+      "Ma carte étudiante est expirée, que faire ?",
+      "Renouvellement carte d'étudiant SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_009",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Peut-on demander un duplicata de la carte d'étudiant en cas de perte ?",
+    "reponse_enrichie": "En cas de perte de la carte d'étudiant, il faut contacter directement le service de scolarité pour connaître la procédure à suivre.",
+    "exemples": [
+      "J'ai perdu ma carte étudiante, que faire ?",
+      "Comment refaire une carte étudiante perdue ?",
+      "Duplicata carte d'étudiant SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_010",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment obtenir une attestation de fréquentation scolaire pour une bourse ?",
+    "reponse_enrichie": "Pour une bourse ou une demande de subvention, le service de scolarité délivre une attestation de fréquentation mentionnant l'année académique, le cycle et la filière de l'étudiant. La demande doit préciser l'usage destiné (bourse MINESUP, bourse étrangère, etc.).",
+    "exemples": [
+      "J'ai besoin d'une attestation pour ma demande de bourse",
+      "Quelle attestation fournir pour une bourse d'études ?",
+      "Attestation pour dossier de bourse SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_011",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Est-il possible de demander une attestation de scolarité en ligne à SUP'PTIC ?",
+    "reponse_enrichie": "Non, il n'est pas possible de demander une attestation de scolarité en ligne à SUP'PTIC. La demande doit être effectuée en personne au service de scolarité.",
+    "exemples": [
+      "Puis-je faire ma demande d'attestation sur internet ?",
+      "SUP'PTIC a-t-il un portail étudiant pour les demandes admin ?",
+      "Demande d'attestation en ligne SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_012",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Quand sont publiés les relevés de notes semestriels ?",
+    "reponse_enrichie": "Les relevés de notes sont disponibles après les délibérations de jury, généralement 2 à 4 semaines après la fin des examens. Les résultats sont communiqués par voie d'affichage sur les panneaux officiels de l'école.",
+    "exemples": [
+      "Quand sont disponibles les résultats semestriels ?",
+      "À quel moment je peux avoir mon relevé de notes ?",
+      "Publication résultats d'examens"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_013",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Combien d'exemplaires du relevé de notes peut-on obtenir ?",
+    "reponse_enrichie": "Vous pouvez généralement obtenir plusieurs copies certifiées conformes de votre relevé de notes. Le nombre d'exemplaires délivrés gratuitement et les frais éventuels pour des copies supplémentaires sont à vérifier auprès du service de scolarité.",
+    "exemples": [
+      "Peut-on avoir plusieurs copies du relevé de notes ?",
+      "Combien d'exemplaires de relevés je peux demander ?",
+      "Copies du relevé de notes"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_014",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment contester une note sur son relevé de notes ?",
+    "reponse_enrichie": "En cas d'erreur ou de contestation d'une note, l'étudiant doit adresser une demande écrite de révision au Chef de Division dans un délai maximal défini par le règlement intérieur, en joignant les justificatifs (copie d'examen, etc.).",
+    "exemples": [
+      "J'ai une erreur sur mon relevé, que faire ?",
+      "Comment signaler une note incorrecte ?",
+      "Réclamation sur les résultats d'examens"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_015",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment obtenir le parchemin (diplôme officiel) après obtention du titre ?",
+    "reponse_enrichie": "Le parchemin officiel est délivré lors d'une cérémonie officielle organisée par l'école. En attendant, une attestation provisoire de réussite est remise. Les lauréats sont informés par voie de communiqué officiel.",
+    "exemples": [
+      "Quand reçoit-on son diplôme à SUP'PTIC ?",
+      "Comment avoir son parchemin après la fin des études ?",
+      "Remise des diplômes"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_016",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Quelle est la procédure de réinscription pour les étudiants déjà admis ?",
+    "reponse_enrichie": "La réinscription a lieu en début de chaque année académique. L'étudiant doit se présenter au service de scolarité avec sa carte d'étudiant de l'année précédente, le reçu de paiement des frais de scolarité et des photos d'identité récentes.",
+    "exemples": [
+      "Comment se réinscrire pour la nouvelle année ?",
+      "Procédure de réinscription à SUP'PTIC",
+      "Que faire pour renouveler son inscription ?"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_017",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment faire une demande de transfert de dossier vers une autre institution ?",
+    "reponse_enrichie": "Pour un transfert de dossier, l'étudiant adresse une demande écrite à la Direction de SUP'PTIC, en précisant l'établissement d'accueil. Le dossier de transfert comprend : les relevés de notes, l'attestation d'inscription et le règlement des frais éventuels.",
+    "exemples": [
+      "Comment demander le transfert de mon dossier ?",
+      "Je veux changer d'école, comment récupérer mon dossier ?",
+      "Transfert d'inscription SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_018",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment obtenir une attestation de stage pour une entreprise partenaire ?",
+    "reponse_enrichie": "Une convention de stage est établie par le service de scolarité sur demande de l'étudiant. Il faut préciser le nom de l'entreprise, la période et le type de stage. Cette convention doit être signée par l'école et l'entreprise avant le début du stage.",
+    "exemples": [
+      "Comment avoir une lettre de stage de l'école ?",
+      "Convention de stage SUP'PTIC, comment faire ?",
+      "Demande de convention de stage à SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_019",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment obtenir une attestation d'achèvement de stage ?",
+    "reponse_enrichie": "À la fin du stage, l'entreprise remet une attestation de stage à l'étudiant. Ce document, accompagné du rapport de stage, doit être déposé au service de scolarité pour être archivé dans le dossier académique de l'étudiant.",
+    "exemples": [
+      "Comment valider mon stage à SUP'PTIC ?",
+      "Que faire après la fin de mon stage ?",
+      "Attestation de fin de stage SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_020",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Peut-on obtenir un certificat de bonne conduite à SUP'PTIC ?",
+    "reponse_enrichie": "Un certificat de bonne conduite peut être délivré par la Direction de SUP'PTIC sur demande écrite de l'étudiant, notamment pour des besoins de recrutement ou de mobilité académique. Il atteste de l'absence de sanctions disciplinaires.",
+    "exemples": [
+      "Comment avoir un certificat de bonne conduite ?",
+      "SUP'PTIC délivre-t-elle des certificats de bonne conduite ?",
+      "J'ai besoin d'un certificat de bonne conduite pour un emploi"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_021",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment signaler un problème sur son dossier administratif ?",
+    "reponse_enrichie": "En cas d'erreur ou d'anomalie dans votre dossier (nom mal orthographié, année d'inscription incorrecte, etc.), vous devez vous présenter en personne au service de scolarité avec les documents justificatifs pertinents (acte de naissance, baccalauréat, etc.).",
+    "exemples": [
+      "Il y a une erreur dans mon dossier, que faire ?",
+      "Mon nom est mal écrit dans mes documents, comment corriger ?",
+      "Correction d'erreur dossier étudiant SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_022",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Quels documents composent le dossier académique d'un étudiant à SUP'PTIC ?",
+    "reponse_enrichie": "Le dossier académique d'un étudiant comprend généralement : la fiche d'inscription, les copies des diplômes et actes d'état civil, les relevés de notes annuels, les attestations de stage, les certificats et distinctions obtenus, ainsi que la correspondance officielle.",
+    "exemples": [
+      "Qu'est-ce que contient mon dossier étudiant ?",
+      "Quels documents forment le dossier académique ?",
+      "Contenu du dossier scolaire SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_023",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment obtenir une attestation provisoire en fin d'année en attendant les résultats officiels ?",
+    "reponse_enrichie": "Après les examens de fin d'année, une attestation de passage ou de participation aux examens peut être délivrée par le service de scolarité. Elle sert de justificatif temporaire en attendant la délibération officielle du jury.",
+    "exemples": [
+      "J'ai besoin d'un document avant les résultats, que puis-je avoir ?",
+      "Existe-t-il une attestation provisoire de fin d'année ?",
+      "Document intermédiaire avant les résultats"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_024",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Un ancien étudiant de SUP'PTIC peut-il récupérer ses anciens relevés de notes ?",
+    "reponse_enrichie": "Les anciens étudiants peuvent demander des copies de leurs relevés de notes auprès du service des archives de SUP'PTIC. Cette demande doit être faite en personne ou par courrier officiel, accompagnée d'une pièce d'identité valide.",
+    "exemples": [
+      "Je suis alumni, comment récupérer mes anciens relevés ?",
+      "Peut-on demander des documents après avoir quitté l'école ?",
+      "Ancien étudiant : récupérer son relevé de notes"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_025",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment demander une lettre de recommandation auprès de l'administration ?",
+    "reponse_enrichie": "Une lettre de recommandation institutionnelle peut être demandée à la Direction ou à un chef de division. La demande doit être déposée au secrétariat au moins 2 semaines à l'avance, avec une description de l'usage prévu (candidature à l'étranger, emploi, master, etc.).",
+    "exemples": [
+      "Comment avoir une lettre de recommandation de l'école ?",
+      "Lettre de recommandation pour master à l'étranger SUP'PTIC",
+      "Demande de recommendation institutionnelle"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_026",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment faire une demande de congé académique (interruption d'études) ?",
+    "reponse_enrichie": "Pour une interruption temporaire des études, l'étudiant adresse une demande motivée au Directeur de SUP'PTIC, avec les justificatifs requis (raisons médicales, familiales, professionnelles). La décision est prise par la Direction et notifiée officiellement.",
+    "exemples": [
+      "Je veux suspendre mes études pour un an, comment faire ?",
+      "Peut-on prendre un congé académique à SUP'PTIC ?",
+      "Interruption d'études temporaire SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_027",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment obtenir une attestation de diplôme certifiée conforme ?",
+    "reponse_enrichie": "La certification conforme d'un diplôme ou d'une attestation se fait auprès du service de scolarité ou d'un officier d'état civil compétent. L'original doit être présenté pour que la copie certifiée conforme soit établie.",
+    "exemples": [
+      "Comment faire certifier mon diplôme SUP'PTIC ?",
+      "Où certifier conforme mes documents scolaires ?",
+      "Certification conforme d'attestation SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_028",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Quels sont les frais de scolarité à SUP'PTIC pour l'année académique en cours ?",
+    "reponse_enrichie": "Les frais de scolarité s'élèvent à 525 000 FCFA pour le cycle Licence et 625 000 FCFA pour le cycle Master.",
+    "exemples": [
+      "Combien coûte la scolarité à SUP'PTIC ?",
+      "Quels sont les frais d'inscription pour cette année ?",
+      "Montant des frais de scolarité SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_029",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment payer ses frais de scolarité à SUP'PTIC ?",
+    "reponse_enrichie": "Les frais de scolarité sont payés à la Campost (La Poste du Cameroun). Le reçu de paiement doit être conservé précieusement et présenté lors de chaque démarche administrative.",
+    "exemples": [
+      "Comment payer la scolarité à SUP'PTIC ?",
+      "Quels sont les modes de paiement acceptés ?",
+      "Paiement frais scolarité SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_030",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment obtenir un reçu ou une quittance de paiement de scolarité ?",
+    "reponse_enrichie": "Le reçu de paiement est délivré immédiatement après tout versement effectué à la Campost. En cas de perte, il est possible de se rendre à l'annexe Campost où le paiement a été effectué pour obtenir un duplicata, moyennant 2 500 FCFA.",
+    "exemples": [
+      "J'ai perdu mon reçu de paiement, que faire ?",
+      "Comment obtenir une preuve de paiement de mes frais ?",
+      "Duplicata reçu de paiement SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_031",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Existe-t-il des facilités de paiement pour les frais de scolarité à SUP'PTIC ?",
+    "reponse_enrichie": "Des arrangements de paiement en tranches peuvent exister pour les étudiants en difficulté financière. Renseignez-vous auprès du service de scolarité ou de la Direction pour connaître les modalités et conditions d'un paiement échelonné.",
+    "exemples": [
+      "Peut-on payer la scolarité en plusieurs fois ?",
+      "SUP'PTIC accepte-t-elle le paiement en tranches ?",
+      "Facilités de paiement frais scolarité"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_032",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment demander une mise à jour ou correction dans son dossier d'inscription ?",
+    "reponse_enrichie": "Pour toute modification du dossier d'inscription (changement de nom après mariage, correction d'état civil, etc.), il faut présenter au service de scolarité les documents officiels justificatifs (acte de mariage, jugement supplétif d'acte de naissance, etc.).",
+    "exemples": [
+      "Comment mettre à jour mon dossier scolaire ?",
+      "J'ai changé de nom, comment le signaler à l'école ?",
+      "Mise à jour informations dossier étudiant SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_033",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment savoir si son inscription à SUP'PTIC est bien confirmée ?",
+    "reponse_enrichie": "La confirmation d'inscription est attestée par la remise d'une carte d'étudiant valide et l'apparition de votre nom sur les listes officielles affichées. Vous pouvez également vous présenter au service de scolarité pour vérification.",
+    "exemples": [
+      "Comment vérifier que mon inscription est validée ?",
+      "Mon inscription a-t-elle bien été prise en compte ?",
+      "Vérification confirmation d'inscription SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_034",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment les étudiants étrangers régularisent-ils leur dossier administratif à SUP'PTIC ?",
+    "reponse_enrichie": "Les étudiants étrangers doivent fournir, en plus du dossier standard, une copie de leur passeport en cours de validité, un visa étudiant ou titre de séjour, et dans certains cas une apostille ou légalisation de leurs diplômes par les autorités compétentes de leur pays d'origine.",
+    "exemples": [
+      "Je suis étranger, quels documents supplémentaires fournir ?",
+      "Démarches administratives pour étudiants étrangers à SUP'PTIC",
+      "Dossier étudiant international SUP'PTIC"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_035",
+    "categorie": "Services Administratifs",
+    "sous_theme": "Scolarité",
+    "question": "Comment contacter le service de scolarité de SUP'PTIC ?",
+    "reponse_enrichie": "Vous pouvez contacter le service de scolarité de SUP'PTIC en vous rendant directement au campus de Yaoundé ou de Buea.",
+    "exemples": [
+      "Quel est le contact du service de scolarité ?",
+      "Email ou téléphone du service administratif SUP'PTIC",
+      "Comment joindre l'administration de SUP'PTIC ?"
+    ],
+    "sources": [
+      "Retour étudiants"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  }
+]
