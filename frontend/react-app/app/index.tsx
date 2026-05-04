@@ -22,7 +22,7 @@ import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
 // Composant pour les actions sous les messages du bot
 const MessageActions = ({ text }: { text: string }) => {
   const router = useRouter();
-  const handleShare = async () => { try { await Share.share({ message: text }); } catch (e) {} };
+  const handleShare = async () => { try { await Share.share({ message: text }); } catch {} };
   const handleCopy = async () => { await Clipboard.setStringAsync(text); Alert.alert("Copié", "Réponse copiée !"); };
 
   return (
