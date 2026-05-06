@@ -1,6 +1,6 @@
 [
   {
-    "id": "faq_001",
+    "id": "faq_071",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Qu'est-ce que SUP'PTIC ?",
@@ -10,13 +10,16 @@
       "Que représente SUP'PTIC ?",
       "Pouvez-vous me présenter SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/", "https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_002",
+    "id": "faq_072",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quand a été créée SUP'PTIC ?",
@@ -26,13 +29,16 @@
       "Depuis quand existe SUP'PTIC ?",
       "En quelle année a été fondée l'école ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/", "https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_003",
+    "id": "faq_073",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quel était le nom d'origine de SUP'PTIC à sa création ?",
@@ -42,13 +48,15 @@
       "Quel était l'ancien nom de l'école ?",
       "Comment se nommait l'école à sa fondation ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_004",
+    "id": "faq_074",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Comment s'appelait l'école après son premier changement de nom en 1982 ?",
@@ -58,13 +66,15 @@
       "Quand l'école est-elle devenue l'ENSPT ?",
       "C'était quoi l'ENSPT ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_005",
+    "id": "faq_075",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quand et comment l'ENSPT a-t-elle été réorganisée ?",
@@ -74,13 +84,15 @@
       "Quel décret a réorganisé l'ENSPT ?",
       "Comment l'école a-t-elle évolué en 1992 ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_006",
+    "id": "faq_076",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quand l'école a-t-elle adopté le système LMD ?",
@@ -90,13 +102,15 @@
       "L'école est-elle conforme au système LMD ?",
       "Quand l'école est passée sous MINESUP ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_007",
+    "id": "faq_077",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Pourquoi l'école a-t-elle changé de nom en 2016 ?",
@@ -106,13 +120,15 @@
       "Quelle est la raison du dernier changement de nom ?",
       "Qu'est-ce qui a motivé la transformation en SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_008",
+    "id": "faq_078",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quel décret a officialisé le nom SUP'PTIC ?",
@@ -122,13 +138,15 @@
       "Quel décret porte le nom SUP'PTIC ?",
       "Quand le décret de 2016 sur SUP'PTIC a-t-il été signé ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_009",
+    "id": "faq_079",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Que signifie l'acronyme SUP'PTIC ?",
@@ -138,13 +156,16 @@
       "Comment développer l'abréviation SUP'PTIC ?",
       "Quelle est la signification de SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/", "https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_010",
+    "id": "faq_080",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Combien d'années d'existence a SUP'PTIC ?",
@@ -154,13 +175,15 @@
       "Depuis combien de temps SUP'PTIC existe-t-elle ?",
       "SUP'PTIC a combien d'années d'expérience ?"
     ],
-    "sources": ["https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_011",
+    "id": "faq_081",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Combien de diplômés SUP'PTIC a-t-elle formés depuis sa création ?",
@@ -170,13 +193,16 @@
       "Quel est le nombre total de diplômés de l'école ?",
       "SUP'PTIC a formé combien de personnes ?"
     ],
-    "sources": ["https://e-supptic.cm/", "https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_012",
+    "id": "faq_082",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quelles sont les différentes dénominations qu'a portées l'école au fil du temps ?",
@@ -186,13 +212,15 @@
       "Comment l'école s'est-elle appelée au fil des années ?",
       "Retracez l'évolution du nom de l'école."
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_013",
+    "id": "faq_083",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Sous quelle tutelle se trouve SUP'PTIC ?",
@@ -202,13 +230,15 @@
       "De quel ministère dépend SUP'PTIC ?",
       "Quelle est la tutelle de l'école ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_014",
+    "id": "faq_084",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quelle est la mission principale de SUP'PTIC ?",
@@ -218,13 +248,15 @@
       "À quoi sert SUP'PTIC ?",
       "Que fait SUP'PTIC concrètement ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_015",
+    "id": "faq_085",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "SUP'PTIC fait-elle de la recherche ?",
@@ -234,13 +266,15 @@
       "Y a-t-il un volet recherche à SUP'PTIC ?",
       "SUP'PTIC produit-elle des travaux de recherche ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_016",
+    "id": "faq_086",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Qui est le directeur de SUP'PTIC ?",
@@ -250,13 +284,16 @@
       "Quel est le nom du directeur de l'école ?",
       "Qui est à la tête de SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/", "https://e-supptic.cm/directeur-watching-felix/"],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/directeur-watching-felix/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_017",
+    "id": "faq_087",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Où est située SUP'PTIC ?",
@@ -266,13 +303,16 @@
       "Dans quelle ville est l'école ?",
       "SUP'PTIC a-t-elle des campus en dehors de Yaoundé ?"
     ],
-    "sources": ["https://e-supptic.cm/", "https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_018",
+    "id": "faq_088",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Combien de campus possède SUP'PTIC ?",
@@ -282,13 +322,15 @@
       "Est-ce que SUP'PTIC a un campus à Buea ?",
       "Où sont les campus de SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_019",
+    "id": "faq_089",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quels types de cursus propose SUP'PTIC ?",
@@ -298,13 +340,15 @@
       "SUP'PTIC forme dans quels domaines ?",
       "Quels cursus choisir à SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_020",
+    "id": "faq_090",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quelle est la vision et les ambitions futures de SUP'PTIC ?",
@@ -314,13 +358,15 @@
       "Vers quoi s'oriente SUP'PTIC dans le futur ?",
       "Quelles nouvelles filières SUP'PTIC veut-elle créer ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_021",
+    "id": "faq_091",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quelle est l'adresse et les contacts de SUP'PTIC ?",
@@ -330,13 +376,16 @@
       "Quel est le numéro de téléphone de l'école ?",
       "Quelle est l'adresse email de SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/contactez-nous/", "https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/contactez-nous/",
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_022",
+    "id": "faq_092",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "SUP'PTIC est-elle une école publique ou privée ?",
@@ -346,13 +395,15 @@
       "L'État gère-t-il SUP'PTIC ?",
       "SUP'PTIC appartient à qui ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_023",
+    "id": "faq_093",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quelles infrastructures pédagogiques sont disponibles à SUP'PTIC ?",
@@ -362,13 +413,16 @@
       "SUP'PTIC a-t-elle des équipements modernes ?",
       "Quelles infrastructures trouve-t-on à l'école ?"
     ],
-    "sources": ["https://e-supptic.cm/", "https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_024",
+    "id": "faq_094",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Qu'est-ce que la SUP'PTIC Business Academy ?",
@@ -378,13 +432,16 @@
       "SUP'PTIC a-t-elle un incubateur de startups ?",
       "Comment fonctionne la Business Academy de SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/supptic-business-academy/", "https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/supptic-business-academy/",
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_025",
+    "id": "faq_095",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "SUP'PTIC est-elle reconnue à l'international ?",
@@ -394,13 +451,16 @@
       "Existe-t-il des partenariats internationaux avec SUP'PTIC ?",
       "SUP'PTIC est-elle certifiée à l'international ?"
     ],
-    "sources": ["https://e-supptic.cm/", "https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_026",
+    "id": "faq_096",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quels ont été les grands moments de l'évolution de SUP'PTIC ?",
@@ -410,13 +470,16 @@
       "Résumez l'évolution historique de SUP'PTIC.",
       "Qu'est-ce qui s'est passé d'important dans l'histoire de l'école ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/", "https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_027",
+    "id": "faq_097",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quelle est la devise ou les valeurs portées par SUP'PTIC ?",
@@ -426,13 +489,16 @@
       "Quelle est la philosophie de l'école ?",
       "SUP'PTIC a-t-elle une devise ?"
     ],
-    "sources": ["https://e-supptic.cm/", "https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_028",
+    "id": "faq_098",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "SUP'PTIC forme-t-elle des étudiants étrangers ?",
@@ -442,13 +508,16 @@
       "SUP'PTIC accepte-t-elle des étudiants internationaux ?",
       "Y a-t-il des étudiants non camerounais à SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/", "https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_029",
+    "id": "faq_099",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "SUP'PTIC propose-t-elle des formations continues ou à distance ?",
@@ -458,13 +527,16 @@
       "SUP'PTIC a-t-elle une plateforme e-learning ?",
       "Peut-on faire une formation continue à SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/", "https://training.e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://training.e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_030",
+    "id": "faq_100",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quels partenariats techniques et académiques SUP'PTIC entretient-elle ?",
@@ -474,13 +546,16 @@
       "Quels sont les partenaires de SUP'PTIC ?",
       "SUP'PTIC a-t-elle des partenariats avec des entreprises ?"
     ],
-    "sources": ["https://e-supptic.cm/nos-partenaires/", "https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/nos-partenaires/",
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_031",
+    "id": "faq_101",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quels diplômes délivre SUP'PTIC ?",
@@ -490,13 +565,16 @@
       "SUP'PTIC délivre-t-elle des licences et masters ?",
       "Quel niveau de diplôme sort-on de SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/", "https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_032",
+    "id": "faq_102",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "La reconversion professionnelle est-elle possible à SUP'PTIC ?",
@@ -506,13 +584,15 @@
       "SUP'PTIC accueille-t-elle des professionnels en reconversion ?",
       "Peut-on faire une formation de reconversion à SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_033",
+    "id": "faq_103",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "SUP'PTIC est-elle active sur les réseaux sociaux ?",
@@ -522,13 +602,15 @@
       "SUP'PTIC a-t-elle une page Facebook ?",
       "Sur quelle chaîne YouTube trouver les vidéos de SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_034",
+    "id": "faq_104",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "Quelles nouvelles filières SUP'PTIC envisage-t-elle de créer ?",
@@ -538,13 +620,15 @@
       "SUP'PTIC va-t-elle former en intelligence artificielle ?",
       "Quelles formations nouvelles prépare SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/a-propos-de-nous/"],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_035",
+    "id": "faq_105",
     "categorie": "Introduction",
     "sous_theme": "Historique de l'établissement",
     "question": "SUP'PTIC participe-t-elle à la vie culturelle et universitaire du Cameroun ?",
@@ -554,9 +638,12 @@
       "Qu'est-ce que l'UNIFAC à SUP'PTIC ?",
       "SUP'PTIC participe-t-elle aux activités nationales du MINESUP ?"
     ],
-    "sources": ["https://e-supptic.cm/11e-edition-unifac-2025/", "https://e-supptic.cm/"],
+    "sources": [
+      "https://e-supptic.cm/11e-edition-unifac-2025/",
+      "https://e-supptic.cm/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   }
 ]
