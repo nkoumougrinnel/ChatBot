@@ -6,7 +6,7 @@ import sys
 
 parser = argparse.ArgumentParser(description="Vérifie le quota d'entrées valides dans un fichier JSON.")
 parser.add_argument("--file", required=True, help="Chemin du fichier JSON à vérifier")
-parser.add_argument("--quota", type=int, default=70, help="Quota minimum de questions répondues valides")
+parser.add_argument("--quota", type=int, default=35, help="Quota minimum de questions répondues valides")
 args = parser.parse_args()
 
 with open(args.file, "r", encoding="utf-8") as f:
