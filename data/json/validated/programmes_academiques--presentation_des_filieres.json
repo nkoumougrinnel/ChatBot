@@ -1,6 +1,6 @@
 [
   {
-    "id": "faq_001",
+    "id": "faq_106",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quelles sont les grandes filières de formation proposées à SUP'PTIC ?",
@@ -16,10 +16,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_002",
+    "id": "faq_107",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Qu'est-ce que la filière Ingénieur des Travaux de Télécommunications (ITT) ?",
@@ -34,10 +34,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_003",
+    "id": "faq_108",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quelles sont les spécialisations disponibles dans la filière ITT ?",
@@ -52,10 +52,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_004",
+    "id": "faq_109",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Que fait un ingénieur formé dans la spécialité Informatique et Réseaux (IR) ?",
@@ -70,10 +70,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_005",
+    "id": "faq_110",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Que fait un ingénieur formé dans la spécialité Réseaux et Télécommunications (RT) ?",
@@ -88,10 +88,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_006",
+    "id": "faq_111",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "À quoi prépare la spécialité Radiocommunication (RC) ?",
@@ -106,10 +106,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_007",
+    "id": "faq_112",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quelle est la durée de la formation d'Ingénieur des Travaux de Télécommunications ?",
@@ -124,10 +124,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_008",
+    "id": "faq_113",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quel est le niveau requis pour intégrer la filière Ingénieur des Travaux de Télécommunications ?",
@@ -142,10 +142,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_009",
+    "id": "faq_114",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quel est le coût de la scolarité pour la filière ITT ?",
@@ -160,10 +160,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_010",
+    "id": "faq_115",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Qu'est-ce que la filière Ingénieur des Télécommunications (IT) – second cycle ?",
@@ -173,13 +173,15 @@
       "Le second cycle IT forme à quoi ?",
       "Quelle est la différence entre ITT et IT ?"
     ],
-    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-telecommunications/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_011",
+    "id": "faq_116",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Que couvre la spécialité Sécurité des Réseaux et Systèmes (SERES) ?",
@@ -189,13 +191,15 @@
       "SUP'PTIC forme-t-elle en cybersécurité ?",
       "La spécialité Sécurité des Réseaux, c'est quoi ?"
     ],
-    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-telecommunications/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_012",
+    "id": "faq_117",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Que couvre la spécialité Services et Radiomobiles (SRM) ?",
@@ -205,13 +209,15 @@
       "La filière Services et Radiomobiles forme à la 5G ?",
       "SRM, qu'est-ce que ça veut dire et à quoi ça prépare ?"
     ],
-    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-telecommunications/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_013",
+    "id": "faq_118",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quel est le coût de la scolarité pour le second cycle Ingénieur des Télécommunications ?",
@@ -221,13 +227,15 @@
       "Quels sont les frais du second cycle IT ?",
       "Le coût de la scolarité pour le Master télécoms ?"
     ],
-    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-telecommunications/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_014",
+    "id": "faq_119",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quelle est la durée de la formation d'Ingénieur des Télécommunications (second cycle) ?",
@@ -237,13 +245,15 @@
       "Le second cycle IT dure combien de temps ?",
       "Y a-t-il un stage dans le second cycle ingénierie ?"
     ],
-    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-telecommunications/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_015",
+    "id": "faq_120",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quel niveau faut-il pour intégrer le cycle Ingénieur des Télécommunications ?",
@@ -253,13 +263,15 @@
       "Quels diplômes donnent accès au second cycle ingénierie ?",
       "Les titulaires d'ITT peuvent-ils continuer en cycle Ingénieur Télécoms ?"
     ],
-    "sources": ["https://e-supptic.cm/ingenieur-des-telecommunications/"],
+    "sources": [
+      "https://e-supptic.cm/ingenieur-des-telecommunications/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_016",
+    "id": "faq_121",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Qu'est-ce que la formation Agent Technique des Télécommunications (campus de Buea) ?",
@@ -274,10 +286,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_017",
+    "id": "faq_122",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Qu'est-ce que la formation Technicien des Télécommunications (campus de Buea) ?",
@@ -292,10 +304,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_018",
+    "id": "faq_123",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quel est le coût de la scolarité pour les formations du campus de Buea (Agent Technique et Technicien) ?",
@@ -310,10 +322,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_019",
+    "id": "faq_124",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Qu'est-ce que la filière Inspecteur des Postes et Télécommunications (premier cycle Management, Yaoundé) ?",
@@ -323,13 +335,15 @@
       "Qu'est-ce que le premier cycle Management à SUP'PTIC ?",
       "Le diplôme d'IPT se prépare comment à SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "sources": [
+      "https://e-supptic.cm/premier-cycle-yaounde/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_020",
+    "id": "faq_125",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quelles sont les spécialisations du premier cycle Management à Yaoundé ?",
@@ -339,13 +353,15 @@
       "Il y a combien de spécialisations en IPT ?",
       "Je veux faire la comptabilité, est-ce possible à SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "sources": [
+      "https://e-supptic.cm/premier-cycle-yaounde/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_021",
+    "id": "faq_126",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "À quoi prépare la spécialité Management (MGT) du premier cycle ?",
@@ -355,13 +371,15 @@
       "La filière MGT forme à quoi ?",
       "La gestion des entreprises de télécoms s'apprend comment à SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "sources": [
+      "https://e-supptic.cm/premier-cycle-yaounde/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_022",
+    "id": "faq_127",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "À quoi prépare la spécialité Comptabilité et Finances (CF) du premier cycle ?",
@@ -371,13 +389,15 @@
       "Peut-on travailler en banque avec un diplôme de SUP'PTIC ?",
       "La spécialité CF, c'est quoi ?"
     ],
-    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "sources": [
+      "https://e-supptic.cm/premier-cycle-yaounde/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_023",
+    "id": "faq_128",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "À quoi prépare la spécialité Logistique et Transport (LT) du premier cycle ?",
@@ -387,13 +407,15 @@
       "Peut-on faire la logistique à SUP'PTIC ?",
       "Quels métiers avec la spécialité LT ?"
     ],
-    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "sources": [
+      "https://e-supptic.cm/premier-cycle-yaounde/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_024",
+    "id": "faq_129",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "À quoi prépare la spécialité Commerce et Distribution du premier cycle ?",
@@ -403,13 +425,15 @@
       "Peut-on faire du commerce à SUP'PTIC ?",
       "La spécialité Commerce forme à quels emplois ?"
     ],
-    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "sources": [
+      "https://e-supptic.cm/premier-cycle-yaounde/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_025",
+    "id": "faq_130",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quel est le coût de la scolarité du premier cycle Management à Yaoundé ?",
@@ -419,13 +443,15 @@
       "Quel est le coût du premier cycle Management SUP'PTIC ?",
       "Quels sont les frais de scolarité en Management IPT ?"
     ],
-    "sources": ["https://e-supptic.cm/premier-cycle-yaounde/"],
+    "sources": [
+      "https://e-supptic.cm/premier-cycle-yaounde/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_026",
+    "id": "faq_131",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Qu'est-ce que le second cycle Management – Administrateur des Postes et Télécommunications ?",
@@ -435,13 +461,15 @@
       "Le diplôme d'Administrateur P&T, comment le prépare-t-on ?",
       "Que forme le second cycle Management ?"
     ],
-    "sources": ["https://e-supptic.cm/second-cycle-yaounde/"],
+    "sources": [
+      "https://e-supptic.cm/second-cycle-yaounde/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_027",
+    "id": "faq_132",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "À quoi prépare le Master Management des entreprises des Postes et Télécommunications ?",
@@ -451,13 +479,15 @@
       "Le Master en management des télécoms ouvre quels débouchés ?",
       "Le second cycle Management forme des cadres ?"
     ],
-    "sources": ["https://e-supptic.cm/second-cycle-yaounde/"],
+    "sources": [
+      "https://e-supptic.cm/second-cycle-yaounde/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_028",
+    "id": "faq_133",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quel est le coût de la scolarité du second cycle Management à Yaoundé ?",
@@ -467,13 +497,15 @@
       "Quels sont les frais du second cycle Management ?",
       "Le diplôme d'Administrateur P&T coûte combien ?"
     ],
-    "sources": ["https://e-supptic.cm/second-cycle-yaounde/"],
+    "sources": [
+      "https://e-supptic.cm/second-cycle-yaounde/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_029",
+    "id": "faq_134",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Y a-t-il des stages obligatoires dans les formations de SUP'PTIC ?",
@@ -490,10 +522,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_030",
+    "id": "faq_135",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quels sont les diplômes délivrés à chaque niveau de formation à SUP'PTIC ?",
@@ -511,10 +543,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_031",
+    "id": "faq_136",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Peut-on suivre toutes les formations à Yaoundé et à Buea ?",
@@ -530,10 +562,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_032",
+    "id": "faq_137",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Peut-on entrer directement en 2ème année à SUP'PTIC (admission sur titre) ?",
@@ -543,13 +575,15 @@
       "L'admission sur titre est-elle possible à SUP'PTIC ?",
       "Je suis technicien, puis-je entrer directement en 2ème année ?"
     ],
-    "sources": ["https://e-supptic.cm/concours-supptic/"],
+    "sources": [
+      "https://e-supptic.cm/concours-supptic/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_033",
+    "id": "faq_138",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "SUP'PTIC prépare-t-elle aussi à des certifications professionnelles internationales ?",
@@ -559,13 +593,16 @@
       "Peut-on avoir une certification Huawei à SUP'PTIC ?",
       "Y a-t-il des certifications internationales à SUP'PTIC ?"
     ],
-    "sources": ["https://e-supptic.cm/", "https://e-supptic.cm/nos-plus/"],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/nos-plus/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_034",
+    "id": "faq_139",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quelle est l'organisation pédagogique des formations (tronc commun + spécialisation) ?",
@@ -582,10 +619,10 @@
     ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_035",
+    "id": "faq_140",
     "categorie": "Programmes Académiques",
     "sous_theme": "Présentation des filières",
     "question": "Quels équipements et infrastructures pédagogiques SUP'PTIC met-elle à disposition des étudiants ?",
@@ -595,9 +632,11 @@
       "Y a-t-il le Wifi à SUP'PTIC ?",
       "SUP'PTIC a-t-elle de grands amphithéâtres ?"
     ],
-    "sources": ["https://e-supptic.cm/nos-plus/"],
+    "sources": [
+      "https://e-supptic.cm/nos-plus/"
+    ],
     "date_creation": "2026-04-21",
     "version": "2.0",
-    "valide": false
+    "valide": true
   }
 ]
