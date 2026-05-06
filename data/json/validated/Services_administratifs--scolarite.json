@@ -1,6 +1,6 @@
 [
   {
-    "id": "faq_001",
+    "id": "faq_141",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment obtenir une attestation de scolarité à SUP'PTIC ?",
@@ -18,7 +18,7 @@
     "valide": true
   },
   {
-    "id": "faq_002",
+    "id": "faq_142",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Quel est le délai d'obtention d'un relevé de notes à SUP'PTIC ?",
@@ -36,7 +36,7 @@
     "valide": true
   },
   {
-    "id": "faq_003",
+    "id": "faq_143",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Quels documents faut-il fournir pour demander un relevé de notes ?",
@@ -54,7 +54,7 @@
     "valide": true
   },
   {
-    "id": "faq_004",
+    "id": "faq_144",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Y a-t-il des frais pour l'obtention d'une attestation de scolarité ?",
@@ -72,7 +72,7 @@
     "valide": true
   },
   {
-    "id": "faq_005",
+    "id": "faq_145",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment obtenir une attestation de réussite à SUP'PTIC ?",
@@ -90,7 +90,7 @@
     "valide": true
   },
   {
-    "id": "faq_006",
+    "id": "faq_146",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Où se trouve le service de scolarité à SUP'PTIC Yaoundé ?",
@@ -108,7 +108,7 @@
     "valide": true
   },
   {
-    "id": "faq_007",
+    "id": "faq_147",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Quels sont les horaires d'ouverture du service de scolarité ?",
@@ -126,7 +126,7 @@
     "valide": true
   },
   {
-    "id": "faq_008",
+    "id": "faq_148",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment renouveler sa carte d'étudiant à SUP'PTIC ?",
@@ -144,7 +144,7 @@
     "valide": true
   },
   {
-    "id": "faq_009",
+    "id": "faq_149",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Peut-on demander un duplicata de la carte d'étudiant en cas de perte ?",
@@ -162,7 +162,7 @@
     "valide": true
   },
   {
-    "id": "faq_010",
+    "id": "faq_150",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment obtenir une attestation de fréquentation scolaire pour une bourse ?",
@@ -180,7 +180,7 @@
     "valide": true
   },
   {
-    "id": "faq_011",
+    "id": "faq_151",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Est-il possible de demander une attestation de scolarité en ligne à SUP'PTIC ?",
@@ -198,7 +198,7 @@
     "valide": true
   },
   {
-    "id": "faq_012",
+    "id": "faq_152",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Quand sont publiés les relevés de notes semestriels ?",
@@ -216,7 +216,7 @@
     "valide": true
   },
   {
-    "id": "faq_013",
+    "id": "faq_153",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Combien d'exemplaires du relevé de notes peut-on obtenir ?",
@@ -234,7 +234,7 @@
     "valide": true
   },
   {
-    "id": "faq_014",
+    "id": "faq_154",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment contester une note sur son relevé de notes ?",
@@ -252,7 +252,7 @@
     "valide": true
   },
   {
-    "id": "faq_015",
+    "id": "faq_155",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment obtenir le parchemin (diplôme officiel) après obtention du titre ?",
@@ -270,7 +270,7 @@
     "valide": true
   },
   {
-    "id": "faq_016",
+    "id": "faq_156",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Quelle est la procédure de réinscription pour les étudiants déjà admis ?",
@@ -288,7 +288,7 @@
     "valide": true
   },
   {
-    "id": "faq_017",
+    "id": "faq_157",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment faire une demande de transfert de dossier vers une autre institution ?",
@@ -306,7 +306,7 @@
     "valide": true
   },
   {
-    "id": "faq_018",
+    "id": "faq_158",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment obtenir une attestation de stage pour une entreprise partenaire ?",
@@ -324,7 +324,7 @@
     "valide": true
   },
   {
-    "id": "faq_019",
+    "id": "faq_159",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment obtenir une attestation d'achèvement de stage ?",
@@ -342,7 +342,7 @@
     "valide": true
   },
   {
-    "id": "faq_020",
+    "id": "faq_160",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Peut-on obtenir un certificat de bonne conduite à SUP'PTIC ?",
@@ -360,7 +360,7 @@
     "valide": true
   },
   {
-    "id": "faq_021",
+    "id": "faq_161",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment signaler un problème sur son dossier administratif ?",
@@ -378,7 +378,7 @@
     "valide": true
   },
   {
-    "id": "faq_022",
+    "id": "faq_162",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Quels documents composent le dossier académique d'un étudiant à SUP'PTIC ?",
@@ -396,7 +396,7 @@
     "valide": true
   },
   {
-    "id": "faq_023",
+    "id": "faq_163",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment obtenir une attestation provisoire en fin d'année en attendant les résultats officiels ?",
@@ -414,7 +414,7 @@
     "valide": true
   },
   {
-    "id": "faq_024",
+    "id": "faq_164",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Un ancien étudiant de SUP'PTIC peut-il récupérer ses anciens relevés de notes ?",
@@ -432,7 +432,7 @@
     "valide": true
   },
   {
-    "id": "faq_025",
+    "id": "faq_165",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment demander une lettre de recommandation auprès de l'administration ?",
@@ -450,7 +450,7 @@
     "valide": true
   },
   {
-    "id": "faq_026",
+    "id": "faq_166",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment faire une demande de congé académique (interruption d'études) ?",
@@ -468,7 +468,7 @@
     "valide": true
   },
   {
-    "id": "faq_027",
+    "id": "faq_167",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment obtenir une attestation de diplôme certifiée conforme ?",
@@ -486,7 +486,7 @@
     "valide": true
   },
   {
-    "id": "faq_028",
+    "id": "faq_168",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Quels sont les frais de scolarité à SUP'PTIC pour l'année académique en cours ?",
@@ -504,7 +504,7 @@
     "valide": true
   },
   {
-    "id": "faq_029",
+    "id": "faq_169",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment payer ses frais de scolarité à SUP'PTIC ?",
@@ -522,7 +522,7 @@
     "valide": true
   },
   {
-    "id": "faq_030",
+    "id": "faq_170",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment obtenir un reçu ou une quittance de paiement de scolarité ?",
@@ -540,7 +540,7 @@
     "valide": true
   },
   {
-    "id": "faq_031",
+    "id": "faq_171",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Existe-t-il des facilités de paiement pour les frais de scolarité à SUP'PTIC ?",
@@ -558,7 +558,7 @@
     "valide": true
   },
   {
-    "id": "faq_032",
+    "id": "faq_172",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment demander une mise à jour ou correction dans son dossier d'inscription ?",
@@ -576,7 +576,7 @@
     "valide": true
   },
   {
-    "id": "faq_033",
+    "id": "faq_173",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment savoir si son inscription à SUP'PTIC est bien confirmée ?",
@@ -594,7 +594,7 @@
     "valide": true
   },
   {
-    "id": "faq_034",
+    "id": "faq_174",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment les étudiants étrangers régularisent-ils leur dossier administratif à SUP'PTIC ?",
@@ -612,7 +612,7 @@
     "valide": true
   },
   {
-    "id": "faq_035",
+    "id": "faq_175",
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment contacter le service de scolarité de SUP'PTIC ?",
