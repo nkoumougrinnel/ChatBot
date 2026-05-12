@@ -4,22 +4,22 @@
     "examples": [
       "C'est quoi SUP'PTIC ?",
       "Qu'est-ce que SUP'PTIC Cameroun ?",
-      "SUP'PTIC, c'est une Ã©cole ou une universitÃ© ?",
-      "SUP'PTIC, Ã§a veut dire quoi exactement ?",
-      "Qu'est-ce que SUP'PTIC YaoundÃ© ?",
-      "C'est quoi cette Ã©cole dont on parle, SUP'PTIC ?",
+      "SUP'PTIC, c'est une école ou une université ?",
+      "SUP'PTIC, ça veut dire quoi exactement ?",
+      "Qu'est-ce que SUP'PTIC Yaoundé ?",
+      "C'est quoi cette école dont on parle, SUP'PTIC ?",
       "J'ai entendu parler de SUP'PTIC, c'est quoi au juste ?",
-      "SUP'PTIC est-il un Ã©tablissement public ou privÃ© ?",
-      "Qu'est-ce que l'Ã©cole SUP'PTIC forme comme Ã©tudiants ?",
-      "SUP'PTIC c'est une grande Ã©cole ?",
-      "Pouvez-vous me prÃ©senter SUP'PTIC en quelques mots ?"
+      "SUP'PTIC est-il un établissement public ou privé ?",
+      "Qu'est-ce que l'école SUP'PTIC forme comme étudiants ?",
+      "SUP'PTIC c'est une grande école ?",
+      "Pouvez-vous me présenter SUP'PTIC en quelques mots ?"
     ],
     "responses": [
-      "SUP'PTIC (Ã‰cole Nationale SupÃ©rieure des Postes, des TÃ©lÃ©communications et des Technologies de l'Information et de la Communication) est un Ã©tablissement d'enseignement supÃ©rieur public camerounais, situÃ© Ã  YaoundÃ© au quartier Mvog'ada. PlacÃ©e sous la double tutelle du MinistÃ¨re des Postes et TÃ©lÃ©communications (MINPOSTEL) et du MinistÃ¨re de l'Enseignement SupÃ©rieur (MINESUP), elle forme des cadres et techniciens spÃ©cialisÃ©s dans les domaines des tÃ©lÃ©communications, des rÃ©seaux, de l'informatique et du numÃ©rique."
+      "SUP'PTIC (École Nationale Supérieure des Postes, des Télécommunications et des Technologies de l'Information et de la Communication) est un établissement d'enseignement supérieur public camerounais, situé à Yaoundé au quartier Mvog'ada. Placée sous la double tutelle du Ministère des Postes et Télécommunications (MINPOSTEL) et du Ministère de l'Enseignement Supérieur (MINESUP), elle forme des cadres et techniciens spécialisés dans les domaines des télécommunications, des réseaux, de l'informatique et du numérique."
     ],
     "metadata": {
       "categorie": "Introduction",
-      "sous_theme": "Historique de l'Ã©tablissement : crÃ©ation, Ã©volution, missions",
+      "sous_theme": "Historique de l'établissement : création, évolution, missions",
       "source": "https://e-supptic.cm/"
     }
   },
@@ -27,20 +27,20 @@
     "intent": "faq_introduction_historique_0",
     "examples": [
       "Depuis quand existe SUP'PTIC ?",
-      "Comment SUP'PTIC a-t-elle Ã©tÃ© crÃ©Ã©e ?",
+      "Comment SUP'PTIC a-t-elle été créée ?",
       "Quelle est l'histoire de SUP'PTIC ?",
       "SUP'PTIC a-t-elle toujours eu ce nom ?",
-      "Quand a Ã©tÃ© fondÃ©e l'Ã©cole SUP'PTIC ?",
-      "D'oÃ¹ vient le nom SUP'PTIC ?",
+      "Quand a été fondée l'école SUP'PTIC ?",
+      "D'où vient le nom SUP'PTIC ?",
       "SUP'PTIC s'appelait comment avant ?",
-      "Comment SUP'PTIC a Ã©voluÃ© depuis sa crÃ©ation ?"
+      "Comment SUP'PTIC a évolué depuis sa création ?"
     ],
     "responses": [
-      "SUP'PTIC a Ã©tÃ© crÃ©Ã©e le 3 octobre 1969 sous le nom d'Ã‰cole FÃ©dÃ©rale des Postes et TÃ©lÃ©communications. Elle est devenue l'ENSPT (Ã‰cole Nationale SupÃ©rieure des Postes et TÃ©lÃ©communications) en 1982, a adoptÃ© le systÃ¨me LMD en 2012, puis a pris son nom actuel SUP'PTIC par dÃ©cret prÃ©sidentiel NÂ°2016/425 du 26 octobre 2016. Depuis sa crÃ©ation, l'Ã©cole a formÃ© prÃ¨s de 10 000 diplÃ´mÃ©s."
+      "SUP'PTIC a été créée le 3 octobre 1969 sous le nom d'École Fédérale des Postes et Télécommunications. Elle est devenue l'ENSPT (École Nationale Supérieure des Postes et Télécommunications) en 1982, a adopté le système LMD en 2012, puis a pris son nom actuel SUP'PTIC par décret présidentiel N°2016/425 du 26 octobre 2016. Depuis sa création, l'école a formé près de 10 000 diplômés."
     ],
     "metadata": {
       "categorie": "Introduction",
-      "sous_theme": "Historique de l'Ã©tablissement : crÃ©ation, Ã©volution, missions",
+      "sous_theme": "Historique de l'établissement : création, évolution, missions",
       "source": "https://fr.wikipedia.org/wiki/%C3%89cole_nationale_des_postes_et_t%C3%A9l%C3%A9communications_et_des_technologies_de_l'information_et_de_la_communication"
     }
   },
@@ -48,104 +48,104 @@
     "intent": "faq_programmes_filieres_0",
     "examples": [
       "Quelles formations propose SUP'PTIC ?",
-      "Quelles sont les filiÃ¨res disponibles Ã  SUP'PTIC ?",
-      "On peut Ã©tudier quoi Ã  SUP'PTIC ?",
+      "Quelles sont les filières disponibles à SUP'PTIC ?",
+      "On peut étudier quoi à SUP'PTIC ?",
       "SUP'PTIC forme dans quels domaines ?",
       "Est-ce que SUP'PTIC propose des formations en informatique ?",
-      "Quelles spÃ©cialitÃ©s peut-on choisir Ã  SUP'PTIC ?",
-      "Il y a quoi comme cursus Ã  SUP'PTIC YaoundÃ© ?",
+      "Quelles spécialités peut-on choisir à SUP'PTIC ?",
+      "Il y a quoi comme cursus à SUP'PTIC Yaoundé ?",
       "SUP'PTIC propose-t-elle des licences et des masters ?",
-      "Quels diplÃ´mes peut-on obtenir Ã  SUP'PTIC ?"
+      "Quels diplômes peut-on obtenir à SUP'PTIC ?"
     ],
     "responses": [
-      "SUP'PTIC propose deux grandes filiÃ¨res : l'IngÃ©nierie et le Management. En IngÃ©nierie, on trouve les formations d'Agents Techniques et Techniciens des TÃ©lÃ©communications, d'IngÃ©nieur des Travaux des TÃ©lÃ©communications (avec des options en Informatique & RÃ©seaux, RÃ©seaux & TÃ©lÃ©communications, Radiocommunication), et d'IngÃ©nieur des TÃ©lÃ©communications (cycle Master). En Management, on trouve le premier cycle formant aux mÃ©tiers d'Inspecteur des Postes et TÃ©lÃ©communications (options : Management, Techniques d'Exploitation Postale, ComptabilitÃ© & Finances, Logistique & Transport, Commerce & Distribution) et un second cycle formant des Administrateurs des Postes et TÃ©lÃ©communications."
+      "SUP'PTIC propose deux grandes filières : l'Ingénierie et le Management. En Ingénierie, on trouve les formations d'Agents Techniques et Techniciens des Télécommunications, d'Ingénieur des Travaux des Télécommunications (avec des options en Informatique & Réseaux, Réseaux & Télécommunications, Radiocommunication), et d'Ingénieur des Télécommunications (cycle Master). En Management, on trouve le premier cycle formant aux métiers d'Inspecteur des Postes et Télécommunications (options : Management, Techniques d'Exploitation Postale, Comptabilité & Finances, Logistique & Transport, Commerce & Distribution) et un second cycle formant des Administrateurs des Postes et Télécommunications."
     ],
     "metadata": {
-      "categorie": "Programmes AcadÃ©miques",
-      "sous_theme": "PrÃ©sentation des filiÃ¨res : TÃ©lÃ©coms, RÃ©seaux, Informatique",
+      "categorie": "Programmes Académiques",
+      "sous_theme": "Présentation des filières : Télécoms, Réseaux, Informatique",
       "source": "https://e-supptic.cm/premier-cycle-yaounde/"
     }
   },
   {
     "intent": "faq_admissions_conditions_0",
     "examples": [
-      "Comment intÃ©grer SUP'PTIC ?",
-      "Quelles sont les conditions pour entrer Ã  SUP'PTIC ?",
-      "Faut-il passer un concours pour intÃ©grer SUP'PTIC ?",
-      "Comment s'inscrire Ã  SUP'PTIC YaoundÃ© ?",
-      "Quel bac faut-il pour entrer Ã  SUP'PTIC ?",
+      "Comment intégrer SUP'PTIC ?",
+      "Quelles sont les conditions pour entrer à SUP'PTIC ?",
+      "Faut-il passer un concours pour intégrer SUP'PTIC ?",
+      "Comment s'inscrire à SUP'PTIC Yaoundé ?",
+      "Quel bac faut-il pour entrer à SUP'PTIC ?",
       "SUP'PTIC, c'est sur concours ou sur dossier ?",
-      "Quelles sont les conditions d'admission Ã  SUP'PTIC ?",
-      "Peut-on entrer Ã  SUP'PTIC avec n'importe quel baccalaurÃ©at ?",
-      "Comment se passe l'entrÃ©e Ã  SUP'PTIC ?"
+      "Quelles sont les conditions d'admission à SUP'PTIC ?",
+      "Peut-on entrer à SUP'PTIC avec n'importe quel baccalauréat ?",
+      "Comment se passe l'entrée à SUP'PTIC ?"
     ],
     "responses": [
-      "L'entrÃ©e Ã  SUP'PTIC se fait par concours. Pour la filiÃ¨re IngÃ©nierie (IngÃ©nieur des Travaux des TÃ©lÃ©communications), il faut Ãªtre titulaire d'un baccalaurÃ©at scientifique ou technique. Pour la filiÃ¨re Management (Inspecteur des Postes et TÃ©lÃ©communications), tout baccalaurÃ©at est acceptÃ©. Les concours sont ouverts dans plusieurs villes du Cameroun (YaoundÃ©, Douala, Bafoussam, Garoua, etc.)."
+      "L'entrée à SUP'PTIC se fait par concours. Pour la filière Ingénierie (Ingénieur des Travaux des Télécommunications), il faut être titulaire d'un baccalauréat scientifique ou technique. Pour la filière Management (Inspecteur des Postes et Télécommunications), tout baccalauréat est accepté. Les concours sont ouverts dans plusieurs villes du Cameroun (Yaoundé, Douala, Bafoussam, Garoua, etc.)."
     ],
     "metadata": {
       "categorie": "Inscriptions et Admissions",
-      "sous_theme": "Conditions d'admission : critÃ¨res acadÃ©miques, prÃ©requis, diplÃ´mes acceptÃ©s",
+      "sous_theme": "Conditions d'admission : critères académiques, prérequis, diplômes acceptés",
       "source": "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
     }
   },
   {
     "intent": "faq_admissions_frais_0",
     "examples": [
-      "Combien coÃ»te la scolaritÃ© Ã  SUP'PTIC ?",
-      "Quels sont les frais de scolaritÃ© Ã  SUP'PTIC ?",
+      "Combien coûte la scolarité à SUP'PTIC ?",
+      "Quels sont les frais de scolarité à SUP'PTIC ?",
       "SUP'PTIC est-elle payante ?",
-      "C'est combien pour Ã©tudier Ã  SUP'PTIC ?",
-      "Quel est le montant des frais d'inscription Ã  SUP'PTIC ?",
-      "Les Ã©tudes Ã  SUP'PTIC sont-elles chÃ¨res ?",
-      "Combien faut-il prÃ©voir pour une annÃ©e Ã  SUP'PTIC ?",
-      "Quels sont les frais Ã  payer pour intÃ©grer SUP'PTIC ?"
+      "C'est combien pour étudier à SUP'PTIC ?",
+      "Quel est le montant des frais d'inscription à SUP'PTIC ?",
+      "Les études à SUP'PTIC sont-elles chères ?",
+      "Combien faut-il prévoir pour une année à SUP'PTIC ?",
+      "Quels sont les frais à payer pour intégrer SUP'PTIC ?"
     ],
     "responses": [
-      "Les frais de scolaritÃ© annuels Ã  SUP'PTIC s'Ã©lÃ¨vent Ã  525 000 FCFA pour les Ã©tudiants camerounais et 825 000 FCFA pour les Ã©tudiants Ã©trangers. Ce montant comprend les frais d'inscription (10 000 FCFA), les activitÃ©s culturelles et sportives (10 000 FCFA), l'assurance (5 000 FCFA) et la scolaritÃ© proprement dite (500 000 FCFA pour les Camerounais)."
+      "Les frais de scolarité annuels à SUP'PTIC s'élèvent à 525 000 FCFA pour les étudiants camerounais et 825 000 FCFA pour les étudiants étrangers. Ce montant comprend les frais d'inscription (10 000 FCFA), les activités culturelles et sportives (10 000 FCFA), l'assurance (5 000 FCFA) et la scolarité proprement dite (500 000 FCFA pour les Camerounais)."
     ],
     "metadata": {
       "categorie": "Inscriptions et Admissions",
-      "sous_theme": "Frais et paiements : montants, modalitÃ©s, Ã©chÃ©anciers, bourses",
+      "sous_theme": "Frais et paiements : montants, modalités, échéanciers, bourses",
       "source": "https://e-supptic.cm/premier-cycle-yaounde/"
     }
   },
   {
     "intent": "faq_admissions_etudiants_etrangers_0",
     "examples": [
-      "Est-ce que les Ã©trangers peuvent Ã©tudier Ã  SUP'PTIC ?",
-      "SUP'PTIC accueille-t-elle des Ã©tudiants d'autres pays ?",
-      "Je suis Ã©tranger, puis-je postuler Ã  SUP'PTIC ?",
-      "Un Ã©tudiant hors Cameroun peut-il intÃ©grer SUP'PTIC ?",
-      "SUP'PTIC est-elle accessible aux Ã©tudiants africains non camerounais ?",
-      "Quelles dÃ©marches pour un Ã©tudiant Ã©tranger qui veut rejoindre SUP'PTIC ?"
+      "Est-ce que les étrangers peuvent étudier à SUP'PTIC ?",
+      "SUP'PTIC accueille-t-elle des étudiants d'autres pays ?",
+      "Je suis étranger, puis-je postuler à SUP'PTIC ?",
+      "Un étudiant hors Cameroun peut-il intégrer SUP'PTIC ?",
+      "SUP'PTIC est-elle accessible aux étudiants africains non camerounais ?",
+      "Quelles démarches pour un étudiant étranger qui veut rejoindre SUP'PTIC ?"
     ],
     "responses": [
-      "Oui, SUP'PTIC accueille des Ã©tudiants Ã©trangers. Les frais de scolaritÃ© sont diffÃ©renciÃ©s : 825 000 FCFA par an pour les Ã©tudiants Ã©trangers, contre 525 000 FCFA pour les Camerounais. Les candidats Ã©trangers doivent se renseigner sur les procÃ©dures d'Ã©quivalence de diplÃ´mes et les dÃ©marches de visa auprÃ¨s de l'ambassade du Cameroun dans leur pays."
+      "Oui, SUP'PTIC accueille des étudiants étrangers. Les frais de scolarité sont différenciés : 825 000 FCFA par an pour les étudiants étrangers, contre 525 000 FCFA pour les Camerounais. Les candidats étrangers doivent se renseigner sur les procédures d'équivalence de diplômes et les démarches de visa auprès de l'ambassade du Cameroun dans leur pays."
     ],
     "metadata": {
       "categorie": "Inscriptions et Admissions",
-      "sous_theme": "Ã‰tudiants Ã©trangers : visas, Ã©quivalences, procÃ©dures spÃ©cifiques",
+      "sous_theme": "Étudiants étrangers : visas, équivalences, procédures spécifiques",
       "source": "https://e-supptic.cm/premier-cycle-yaounde/"
     }
   },
   {
     "intent": "faq_programmes_organisation_cours_0",
     "examples": [
-      "Comment sont organisÃ©s les cours Ã  SUP'PTIC ?",
-      "Les Ã©tudes Ã  SUP'PTIC durent combien de temps ?",
-      "La formation Ã  SUP'PTIC se passe comment concrÃ¨tement ?",
-      "Il y a des stages Ã  SUP'PTIC ?",
-      "Comment se dÃ©roule une annÃ©e acadÃ©mique Ã  SUP'PTIC ?",
-      "Combien d'annÃ©es faut-il pour obtenir un diplÃ´me Ã  SUP'PTIC ?",
-      "Est-ce qu'il y a des travaux pratiques Ã  SUP'PTIC ?",
-      "Comment fonctionne le systÃ¨me LMD Ã  SUP'PTIC ?"
+      "Comment sont organisés les cours à SUP'PTIC ?",
+      "Les études à SUP'PTIC durent combien de temps ?",
+      "La formation à SUP'PTIC se passe comment concrètement ?",
+      "Il y a des stages à SUP'PTIC ?",
+      "Comment se déroule une année académique à SUP'PTIC ?",
+      "Combien d'années faut-il pour obtenir un diplôme à SUP'PTIC ?",
+      "Est-ce qu'il y a des travaux pratiques à SUP'PTIC ?",
+      "Comment fonctionne le système LMD à SUP'PTIC ?"
     ],
     "responses": [
-      "Les formations de premier cycle (Licence) durent 3 ans. Durant les 3 premiers semestres, les Ã©tudiants suivent un tronc commun avant de se spÃ©cialiser dans leur option. En premiÃ¨re annÃ©e, une visite d'entreprise est organisÃ©e ; en deuxiÃ¨me annÃ©e, un stage d'imprÃ©gnation de 2 mois en entreprise est obligatoire ; en troisiÃ¨me annÃ©e, les Ã©tudiants soumettent un projet de fin d'Ã©tudes. SUP'PTIC applique le systÃ¨me LMD (Licence-Master-Doctorat)."
+      "Les formations de premier cycle (Licence) durent 3 ans. Durant les 3 premiers semestres, les étudiants suivent un tronc commun avant de se spécialiser dans leur option. En première année, une visite d'entreprise est organisée ; en deuxième année, un stage d'imprégnation de 2 mois en entreprise est obligatoire ; en troisième année, les étudiants soumettent un projet de fin d'études. SUP'PTIC applique le système LMD (Licence-Master-Doctorat)."
     ],
     "metadata": {
-      "categorie": "Programmes AcadÃ©miques",
-      "sous_theme": "Organisation des cours : semestres, crÃ©dits, UE",
+      "categorie": "Programmes Académiques",
+      "sous_theme": "Organisation des cours : semestres, crédits, UE",
       "source": "https://e-supptic.cm/ingenieur-des-travaux-de-telecommunications/"
     }
   },
@@ -153,39 +153,39 @@
     "intent": "faq_infrastructures_laboratoires_0",
     "examples": [
       "SUP'PTIC dispose-t-elle de laboratoires ?",
-      "Quelles infrastructures y a-t-il Ã  SUP'PTIC ?",
-      "Est-ce que SUP'PTIC a des Ã©quipements modernes ?",
-      "Y a-t-il des centres de formation certifiants Ã  SUP'PTIC ?",
-      "SUP'PTIC est-elle Ã©quipÃ©e pour former des ingÃ©nieurs ?",
-      "Quels outils et ressources sont disponibles pour les Ã©tudiants Ã  SUP'PTIC ?",
+      "Quelles infrastructures y a-t-il à SUP'PTIC ?",
+      "Est-ce que SUP'PTIC a des équipements modernes ?",
+      "Y a-t-il des centres de formation certifiants à SUP'PTIC ?",
+      "SUP'PTIC est-elle équipée pour former des ingénieurs ?",
+      "Quels outils et ressources sont disponibles pour les étudiants à SUP'PTIC ?",
       "Est-ce que SUP'PTIC a un partenariat avec de grandes entreprises tech ?"
     ],
     "responses": [
-      "SUP'PTIC dispose de laboratoires spÃ©cialisÃ©s, d'un centre de formation CISCO et d'un centre de formation HUAWEI. Elle est Ã©galement reconnue comme centre d'excellence de l'UIT (Union Internationale des TÃ©lÃ©communications). L'Ã©cole hÃ©berge aussi le SUP'PTIC Business Academy (SBA), un incubateur d'entreprises dÃ©diÃ© aux projets numÃ©riques, inaugurÃ© en 2018 avec un financement de l'Ã‰tat de 150 millions FCFA."
+      "SUP'PTIC dispose de laboratoires spécialisés, d'un centre de formation CISCO et d'un centre de formation HUAWEI. Elle est également reconnue comme centre d'excellence de l'UIT (Union Internationale des Télécommunications). L'école héberge aussi le SUP'PTIC Business Academy (SBA), un incubateur d'entreprises dédié aux projets numériques, inauguré en 2018 avec un financement de l'État de 150 millions FCFA."
     ],
     "metadata": {
       "categorie": "Infrastructures et Ressources",
-      "sous_theme": "Laboratoires et salles spÃ©cialisÃ©es",
+      "sous_theme": "Laboratoires et salles spécialisées",
       "source": "https://school.maligah.com/detail/ecole-nationale-sup%C3%A9rieure-des-postes-des-t%C3%A9l%C3%A9communications-et-des-technologies-de-l-information-et-de-la-communication/35830/"
     }
   },
   {
     "intent": "faq_carrieres_insertion_0",
     "examples": [
-      "Quels dÃ©bouchÃ©s aprÃ¨s SUP'PTIC ?",
-      "OÃ¹ travaillent les diplÃ´mÃ©s de SUP'PTIC ?",
-      "Est-ce qu'on trouve facilement du travail aprÃ¨s SUP'PTIC ?",
-      "Les diplÃ´mes de SUP'PTIC sont-ils reconnus par les entreprises ?",
-      "Quels mÃ©tiers peut-on exercer aprÃ¨s avoir Ã©tudiÃ© Ã  SUP'PTIC ?",
-      "SUP'PTIC, Ã§a mÃ¨ne Ã  quoi comme carriÃ¨re ?",
-      "Les ingÃ©nieurs de SUP'PTIC sont-ils recherchÃ©s sur le marchÃ© ?",
+      "Quels débouchés après SUP'PTIC ?",
+      "Où travaillent les diplômés de SUP'PTIC ?",
+      "Est-ce qu'on trouve facilement du travail après SUP'PTIC ?",
+      "Les diplômes de SUP'PTIC sont-ils reconnus par les entreprises ?",
+      "Quels métiers peut-on exercer après avoir étudié à SUP'PTIC ?",
+      "SUP'PTIC, ça mène à quoi comme carrière ?",
+      "Les ingénieurs de SUP'PTIC sont-ils recherchés sur le marché ?",
       "Quels sont les employeurs des anciens de SUP'PTIC ?"
     ],
     "responses": [
-      "Les diplÃ´mÃ©s de SUP'PTIC sont formÃ©s pour travailler dans les secteurs des tÃ©lÃ©communications, des postes, des rÃ©seaux informatiques et du numÃ©rique. Ils peuvent exercer dans des opÃ©rateurs tÃ©lÃ©coms, des entreprises de services numÃ©riques, des administrations publiques, des banques, des sociÃ©tÃ©s logistiques, et dans les postes et services postaux. L'Ã©cole a formÃ© prÃ¨s de 10 000 diplÃ´mÃ©s depuis sa crÃ©ation, actifs au Cameroun et dans d'autres pays africains."
+      "Les diplômés de SUP'PTIC sont formés pour travailler dans les secteurs des télécommunications, des postes, des réseaux informatiques et du numérique. Ils peuvent exercer dans des opérateurs télécoms, des entreprises de services numériques, des administrations publiques, des banques, des sociétés logistiques, et dans les postes et services postaux. L'école a formé près de 10 000 diplômés depuis sa création, actifs au Cameroun et dans d'autres pays africains."
     ],
     "metadata": {
-      "categorie": "CarriÃ¨res et Insertion Professionnelle",
+      "categorie": "Carrières et Insertion Professionnelle",
       "sous_theme": "Partenariats avec entreprises locales et internationales",
       "source": "https://e-supptic.cm/"
     }
@@ -193,40 +193,40 @@
   {
     "intent": "faq_carrieres_incubateur_0",
     "examples": [
-      "SUP'PTIC aide-t-elle les Ã©tudiants Ã  crÃ©er des entreprises ?",
-      "Y a-t-il un incubateur Ã  SUP'PTIC ?",
+      "SUP'PTIC aide-t-elle les étudiants à créer des entreprises ?",
+      "Y a-t-il un incubateur à SUP'PTIC ?",
       "C'est quoi le SUP'PTIC Business Academy ?",
       "Comment fonctionne l'incubateur de SUP'PTIC ?",
       "SUP'PTIC encourage-t-elle l'entrepreneuriat ?",
-      "Peut-on dÃ©velopper un projet de startup Ã  SUP'PTIC ?",
-      "SUP'PTIC Business Academy est ouvert Ã  qui ?"
+      "Peut-on développer un projet de startup à SUP'PTIC ?",
+      "SUP'PTIC Business Academy est ouvert à qui ?"
     ],
     "responses": [
-      "Le SUP'PTIC Business Academy (SBA) est l'incubateur d'entreprises de SUP'PTIC, inaugurÃ© en 2018. Il est ouvert aux diplÃ´mÃ©s de SUP'PTIC mais aussi Ã  tout porteur de projet dans le secteur numÃ©rique. Il offre un accompagnement technique, organisationnel et financier aux jeunes entrepreneurs. L'Ã‰tat a dotÃ© cet incubateur de 150 millions FCFA pour soutenir son plan de dÃ©veloppement."
+      "Le SUP'PTIC Business Academy (SBA) est l'incubateur d'entreprises de SUP'PTIC, inauguré en 2018. Il est ouvert aux diplômés de SUP'PTIC mais aussi à tout porteur de projet dans le secteur numérique. Il offre un accompagnement technique, organisationnel et financier aux jeunes entrepreneurs. L'État a doté cet incubateur de 150 millions FCFA pour soutenir son plan de développement."
     ],
     "metadata": {
-      "categorie": "CarriÃ¨res et Insertion Professionnelle",
-      "sous_theme": "Forums emploi et journÃ©es carriÃ¨res",
+      "categorie": "Carrières et Insertion Professionnelle",
+      "sous_theme": "Forums emploi et journées carrières",
       "source": "https://www.minpostel.gov.cm/index.php/fr/actualites/311-sup-ptic-business-academy-launches-its-activities"
     }
   },
   {
     "intent": "faq_vie_pratique_localisation_0",
     "examples": [
-      "OÃ¹ se trouve SUP'PTIC ?",
-      "SUP'PTIC est dans quel quartier de YaoundÃ© ?",
-      "Comment aller Ã  SUP'PTIC YaoundÃ© ?",
+      "Où se trouve SUP'PTIC ?",
+      "SUP'PTIC est dans quel quartier de Yaoundé ?",
+      "Comment aller à SUP'PTIC Yaoundé ?",
       "Quelle est l'adresse de SUP'PTIC ?",
-      "SUP'PTIC est-elle loin du centre-ville de YaoundÃ© ?",
+      "SUP'PTIC est-elle loin du centre-ville de Yaoundé ?",
       "SUP'PTIC a-t-elle plusieurs campus ?",
-      "Il y a une antenne de SUP'PTIC ailleurs qu'Ã  YaoundÃ© ?"
+      "Il y a une antenne de SUP'PTIC ailleurs qu'à Yaoundé ?"
     ],
     "responses": [
-      "SUP'PTIC est situÃ© Ã  YaoundÃ©, au quartier Mvog'ada dans le 6e arrondissement (dÃ©partement de Mfoundi). L'adresse postale est BP 8950. L'Ã©cole dispose Ã©galement d'une antenne Ã  Buea (rÃ©gion du Sud-Ouest), le Centre RÃ©gional de Formation des Postes et TÃ©lÃ©communications (CRFPT), qui forme notamment des ContrÃ´leurs et des Agents d'Exploitation des Postes et TÃ©lÃ©communications. Vous pouvez contacter l'Ã©cole au +237 222 233 700."
+      "SUP'PTIC est situé à Yaoundé, au quartier Mvog'ada dans le 6e arrondissement (département de Mfoundi). L'adresse postale est BP 8950. L'école dispose également d'une antenne à Buea (région du Sud-Ouest), le Centre Régional de Formation des Postes et Télécommunications (CRFPT), qui forme notamment des Contrôleurs et des Agents d'Exploitation des Postes et Télécommunications. Vous pouvez contacter l'école au +237 222 233 700."
     ],
     "metadata": {
       "categorie": "Vie Pratique",
-      "sous_theme": "Transport et accessibilitÃ© du campus",
+      "sous_theme": "Transport et accessibilité du campus",
       "source": "https://talim-afrique.com/afrique/cameroun/yaounde/supptic-ecole-nationale-superieure-des-postes-des-telecommunications-et-des-technologies-de-linformation-et-de-communication-du-cameroun/"
     }
   },
@@ -234,78 +234,78 @@
     "intent": "faq_communication_canaux_0",
     "examples": [
       "Comment contacter SUP'PTIC ?",
-      "SUP'PTIC est-elle sur les rÃ©seaux sociaux ?",
-      "OÃ¹ trouver les informations officielles de SUP'PTIC ?",
+      "SUP'PTIC est-elle sur les réseaux sociaux ?",
+      "Où trouver les informations officielles de SUP'PTIC ?",
       "Quel est le site web officiel de SUP'PTIC ?",
-      "Comment se tenir au courant des actualitÃ©s de SUP'PTIC ?",
+      "Comment se tenir au courant des actualités de SUP'PTIC ?",
       "SUP'PTIC a-t-elle une page Facebook ?",
       "Y a-t-il un email officiel pour joindre SUP'PTIC ?"
     ],
     "responses": [
-      "SUP'PTIC est joignable via son site officiel https://e-supptic.cm, par email Ã  contact@e-supptic.cm, par tÃ©lÃ©phone au +237 222 233 700 ou par fax au +237 222 235 005. L'Ã©cole est Ã©galement prÃ©sente sur Facebook et YouTube (@SUPPTIC_Cameroun) pour suivre ses actualitÃ©s."
+      "SUP'PTIC est joignable via son site officiel https://e-supptic.cm, par email à contact@e-supptic.cm, par téléphone au +237 222 233 700 ou par fax au +237 222 235 005. L'école est également présente sur Facebook et YouTube (@SUPPTIC_Cameroun) pour suivre ses actualités."
     ],
     "metadata": {
       "categorie": "Communication et Vie Institutionnelle",
-      "sous_theme": "Canaux officiels : site web, rÃ©seaux sociaux, mailing",
+      "sous_theme": "Canaux officiels : site web, réseaux sociaux, mailing",
       "source": "https://e-supptic.cm/"
     }
   },
   {
     "intent": "faq_admissions_concours_calendrier_0",
     "examples": [
-      "Quand ont lieu les concours d'entrÃ©e Ã  SUP'PTIC ?",
-      "Ã€ quelle pÃ©riode se dÃ©roulent les concours de SUP'PTIC ?",
-      "Les concours SUP'PTIC, c'est Ã  quelle date ?",
+      "Quand ont lieu les concours d'entrée à SUP'PTIC ?",
+      "À quelle période se déroulent les concours de SUP'PTIC ?",
+      "Les concours SUP'PTIC, c'est à quelle date ?",
       "Comment savoir quand s'ouvre le concours de SUP'PTIC ?",
-      "OÃ¹ consulter les rÃ©sultats du concours SUP'PTIC ?",
-      "Les rÃ©sultats du concours SUP'PTIC sont publiÃ©s quand et oÃ¹ ?",
-      "Comment Ãªtre informÃ© de l'ouverture des concours Ã  SUP'PTIC ?"
+      "Où consulter les résultats du concours SUP'PTIC ?",
+      "Les résultats du concours SUP'PTIC sont publiés quand et où ?",
+      "Comment être informé de l'ouverture des concours à SUP'PTIC ?"
     ],
     "responses": [
-      "Les concours d'entrÃ©e Ã  SUP'PTIC sont gÃ©nÃ©ralement organisÃ©s en milieu d'annÃ©e (autour du mois d'aoÃ»t) pour une rentrÃ©e en octobre. Les avis de concours et les rÃ©sultats sont publiÃ©s sur le site officiel https://e-supptic.cm, dans les rubriques \"Concours lancÃ©\" et \"RÃ©sultats concours\". Il est conseillÃ© de consulter rÃ©guliÃ¨rement le site et les canaux officiels pour ne pas manquer les dates."
+      "Les concours d'entrée à SUP'PTIC sont généralement organisés en milieu d'année (autour du mois d'août) pour une rentrée en octobre. Les avis de concours et les résultats sont publiés sur le site officiel https://e-supptic.cm, dans les rubriques \"Concours lancé\" et \"Résultats concours\". Il est conseillé de consulter régulièrement le site et les canaux officiels pour ne pas manquer les dates."
     ],
     "metadata": {
       "categorie": "Inscriptions et Admissions",
-      "sous_theme": "ProcÃ©dure en ligne/sur place : Ã©tapes dÃ©taillÃ©es, plateformes, dÃ©lais",
+      "sous_theme": "Procédure en ligne/sur place : étapes détaillées, plateformes, délais",
       "source": "https://e-supptic.cm/concours-supptic/"
     }
   },
   {
     "intent": "faq_programmes_management_options_0",
     "examples": [
-      "Quelles options choisir en management Ã  SUP'PTIC ?",
-      "SUP'PTIC propose-t-elle une formation en comptabilitÃ© ?",
-      "Est-ce qu'on peut faire de la logistique Ã  SUP'PTIC ?",
+      "Quelles options choisir en management à SUP'PTIC ?",
+      "SUP'PTIC propose-t-elle une formation en comptabilité ?",
+      "Est-ce qu'on peut faire de la logistique à SUP'PTIC ?",
       "SUP'PTIC forme-t-elle en commerce et distribution ?",
-      "Y a-t-il une option finance Ã  SUP'PTIC ?",
-      "Quelles sont les spÃ©cialitÃ©s du cycle management Ã  SUP'PTIC ?",
-      "SUP'PTIC, c'est uniquement pour les tÃ©lÃ©coms ou aussi pour d'autres secteurs ?"
+      "Y a-t-il une option finance à SUP'PTIC ?",
+      "Quelles sont les spécialités du cycle management à SUP'PTIC ?",
+      "SUP'PTIC, c'est uniquement pour les télécoms ou aussi pour d'autres secteurs ?"
     ],
     "responses": [
-      "La filiÃ¨re Management de SUP'PTIC propose 5 options au premier cycle (Licence) : Management des entreprises, Techniques d'Exploitation Postale, ComptabilitÃ© et Finances, Logistique et Transport, et Commerce & Distribution. Ces spÃ©cialitÃ©s sont appliquÃ©es Ã  l'environnement des postes, des tÃ©lÃ©communications et du numÃ©rique. Le tronc commun des 3 premiers semestres permet Ã  l'Ã©tudiant de faire un choix Ã©clairÃ© avant de se spÃ©cialiser."
+      "La filière Management de SUP'PTIC propose 5 options au premier cycle (Licence) : Management des entreprises, Techniques d'Exploitation Postale, Comptabilité et Finances, Logistique et Transport, et Commerce & Distribution. Ces spécialités sont appliquées à l'environnement des postes, des télécommunications et du numérique. Le tronc commun des 3 premiers semestres permet à l'étudiant de faire un choix éclairé avant de se spécialiser."
     ],
     "metadata": {
-      "categorie": "Programmes AcadÃ©miques",
-      "sous_theme": "PrÃ©sentation des filiÃ¨res : TÃ©lÃ©coms, RÃ©seaux, Informatique",
+      "categorie": "Programmes Académiques",
+      "sous_theme": "Présentation des filières : Télécoms, Réseaux, Informatique",
       "source": "https://e-supptic.cm/premier-cycle-yaounde/"
     }
   },
   {
     "intent": "faq_vie_etudiante_campus_0",
     "examples": [
-      "Comment se passe la vie Ã  SUP'PTIC ?",
-      "Y a-t-il des activitÃ©s en dehors des cours Ã  SUP'PTIC ?",
-      "SUP'PTIC a-t-elle des clubs ou associations Ã©tudiantes ?",
-      "La vie de campus Ã  SUP'PTIC, c'est comment ?",
-      "Y a-t-il des Ã©vÃ©nements culturels ou sportifs Ã  SUP'PTIC ?",
-      "SUP'PTIC organise-t-elle des activitÃ©s parascolaires ?"
+      "Comment se passe la vie à SUP'PTIC ?",
+      "Y a-t-il des activités en dehors des cours à SUP'PTIC ?",
+      "SUP'PTIC a-t-elle des clubs ou associations étudiantes ?",
+      "La vie de campus à SUP'PTIC, c'est comment ?",
+      "Y a-t-il des événements culturels ou sportifs à SUP'PTIC ?",
+      "SUP'PTIC organise-t-elle des activités parascolaires ?"
     ],
     "responses": [
-      "SUP'PTIC dispose d'une vie de campus animÃ©e avec des activitÃ©s culturelles et sportives incluses dans les frais de scolaritÃ© (10 000 FCFA/an). L'Ã©cole a notamment accueilli le Festival Universitaire des Arts et de la Culture (UNIFAC) du MINESUP. Les Ã©tudiants peuvent Ã©galement s'informer sur les clubs et associations via le site officiel, rubrique \"Vie de campus\"."
+      "SUP'PTIC dispose d'une vie de campus animée avec des activités culturelles et sportives incluses dans les frais de scolarité (10 000 FCFA/an). L'école a notamment accueilli le Festival Universitaire des Arts et de la Culture (UNIFAC) du MINESUP. Les étudiants peuvent également s'informer sur les clubs et associations via le site officiel, rubrique \"Vie de campus\"."
     ],
     "metadata": {
-      "categorie": "Vie Ã‰tudiante",
-      "sous_theme": "Clubs et associations : liste, inscriptions, activitÃ©s",
+      "categorie": "Vie Étudiante",
+      "sous_theme": "Clubs et associations : liste, inscriptions, activités",
       "source": "https://e-supptic.cm/"
     }
   }
