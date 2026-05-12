@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.pytest_cache/
+.pyre/
+.python-version
+env/
+venv/
+ENV/
+venv.bak/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# Node / React
+/frontend/react-app/node_modules/
+/frontend/react-app/.expo/
+/frontend/react-app/dist/
+/frontend/react-app/web-build/
+/frontend/react-app/expo-env.d.ts
+/frontend/react-app/.expo/
+/frontend/react-app/.vscode/
+/frontend/react-app/npm-debug.*
+/frontend/react-app/yarn-debug.*
+/frontend/react-app/yarn-error.*
+/frontend/react-app/*.orig.*
+/frontend/react-app/*.jks
+/frontend/react-app/*.p8
+/frontend/react-app/*.p12
+/frontend/react-app/*.key
+/frontend/react-app/*.mobileprovision
+/frontend/react-app/.metro-health-check*
+/frontend/react-app/.DS_Store
+/frontend/react-app/*.pem
+/frontend/react-app/.env*.local
+/frontend/react-app/*.tsbuildinfo
+/frontend/react-app/app-example
+/frontend/react-app/ios/
+/frontend/react-app/android/
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Environment variables
+.env
+.env.*
+
+# JetBrains
+.idea/
+
+# System files
+Thumbs.db
+Desktop.ini
