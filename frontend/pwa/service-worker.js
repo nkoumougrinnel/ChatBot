@@ -6,16 +6,16 @@ const RUNTIME_CACHE = "supone-ai-runtime-v2-1";
 
 // Ressources à mettre en cache lors de l'installation
 const PRECACHE_URLS = [
-  "/pwa/",
-  "/pwa/index.html",
-  "/pwa/offline.html",
-  "/pwa/demo.html",
+  "/",
+  "/index.html",
+  "/offline.html",
+  "/demo.html",
   "/css/styles.css",
   "/js/main.js",
-  "/pwa/js/pwa.js",
-  "/pwa/css/pwa-styles.css",
-  "/pwa/icons/icone.png",
-  "/pwa/manifest.json",
+  "/js/pwa.js",
+  "/css/pwa-styles.css",
+  "/icons/icone.png",
+  "/manifest.json",
   "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
 ];
