@@ -23,9 +23,9 @@ if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
       swRegistration = await navigator.serviceWorker.register(
-        "/pwa/service-worker.js",
+        "/service-worker.js",
         {
-          scope: "/pwa/",
+          scope: "/",
         },
       );
 
