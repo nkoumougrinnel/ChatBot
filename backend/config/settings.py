@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '192.168.10.82',
+    '192.168.29.82',
     '0.0.0.0',
     'patternable-felicitously-shaunta.ngrok-free.dev',
     '*.netlify.app',
