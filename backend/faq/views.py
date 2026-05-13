@@ -2,12 +2,14 @@
 Vues API REST pour le chatbot.
 
 Endpoints :
-- GET/POST /api/faq/ : lister et créer FAQs
-- GET /api/faq/{id}/ : détail FAQ
-- GET /api/categories/ : lister catégories
-- POST /api/categories/ : créer catégorie
-- POST /api/chatbot/ask/ : poser une question et obtenir réponses pertinentes
-- POST /api/feedback/ : envoyer un feedback
+- GET/POST /api/faq/         : lister et créer FAQs
+- GET      /api/faq/{id}/    : détail FAQ
+- GET      /api/categories/  : lister catégories
+- POST     /api/categories/  : créer catégorie
+- POST     /api/chatbot/ask/ : poser une question et obtenir réponses pertinentes
+- POST     /api/feedback/    : envoyer un feedback
+- GET      /api/stats/       : statistiques FAQ
+- GET      /api/stats/categories/ : statistiques par catégorie
 """
 
 from rest_framework import viewsets, status
@@ -17,6 +19,8 @@ from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.shortcuts import get_object_or_404
+from django.db.models import Count, Avg
+from django.core.cache import cache
 
 from faq.models import Category, FAQ, Feedback
 from faq.serializers import (
@@ -30,57 +34,101 @@ from faq.serializers import (
 from chatbot.utils import find_best_faq
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Catégories
+# ─────────────────────────────────────────────────────────────────────────────
+
 class CategoryViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet pour les catégories.
-    
-    Endpoints:
-    - GET /api/categories/ : lister catégories
-    - POST /api/categories/ : créer catégorie
-    - GET /api/categories/{id}/ : détail catégorie
-    - PUT /api/categories/{id}/ : modifier catégorie
-    - DELETE /api/categories/{id}/ : supprimer catégorie
-    """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [AllowAny]
-    
-    def get_permissions(self):
-        """Seules les lectures sont publiques; modifications requièrent authentification."""
-        if self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
-            permission_classes = [IsAuthenticated]
-        else:
-            permission_classes = [AllowAny]
-        return [permission() for permission in permission_classes]
 
+    def get_permissions(self):
+        if self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
+            return [IsAuthenticated()]
+        return [AllowAny()]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FAQs
+# ─────────────────────────────────────────────────────────────────────────────
 
 class FAQViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet pour les FAQs.
-    
-    Endpoints:
-    - GET /api/faq/ : lister FAQs
-    - POST /api/faq/ : créer FAQ
-    - GET /api/faq/{id}/ : détail FAQ
-    - PUT /api/faq/{id}/ : modifier FAQ
-    - DELETE /api/faq/{id}/ : supprimer FAQ
-    """
-    queryset = FAQ.objects.filter(is_active=True).prefetch_related('category', 'vector')
-    permission_classes = [AllowAny]
-    
+    queryset = FAQ.objects.filter(is_active=True).select_related('category')
+
     def get_serializer_class(self):
-        """Utiliser FAQListSerializer pour lister, FAQSerializer pour détail."""
         if self.action == 'list':
             return FAQListSerializer
         return FAQSerializer
-    
+
     def get_permissions(self):
-        """Lectures publiques; modifications authentifiées."""
         if self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
-            permission_classes = [IsAuthenticated]
-        else:
-            permission_classes = [AllowAny]
-        return [permission() for permission in permission_classes]
+            return [IsAuthenticated()]
+        return [AllowAny()]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Chatbot — endpoint principal
+# ─────────────────────────────────────────────────────────────────────────────
+
+class ChatbotAskViewSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+
+    @action(detail=False, methods=['post'], url_path='ask')
+    def ask(self, request):
+        serializer = QuestionRequestSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        question = serializer.validated_data['question']
+        top_k = serializer.validated_data.get('top_k', 3)
+
+        # 1. Cache
+        cache_key = f"query_{question.strip().lower()}"
+        cached = cache.get(cache_key)
+        if cached:
+            return Response(cached, status=status.HTTP_200_OK)
+
+        # 2. Recherche TF-IDF
+        try:
+            faq_results = find_best_faq(question, top_k=top_k)
+        except Exception as e:
+            return Response(
+                {'error': f'Erreur lors de la recherche : {str(e)}'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
+        # 3. Formatage + seuils de confiance
+        results = []
+        status_confidence = "not found"
+
+        for faq_result in faq_results:
+            faq = faq_result['faq']
+            score = faq_result['score']
+
+            if score >= 0.8:
+                status_confidence = "confident"
+            elif score >= 0.6 and status_confidence != "confident":
+                status_confidence = "uncertain"
+
+            results.append({
+                'faq_id': faq.id,
+                'question': faq.question,
+                'answer': faq.answer,
+                'score': round(score, 4),
+                'category': faq.category.name,
+            })
+
+        response_data = {
+            'question': question,
+            'results': results,
+            'count': len(results),
+            'status': status_confidence,
+        }
+
+        cache.set(cache_key, response_data, 3600)
+
+        response_serializer = ChatbotResponseSerializer(response_data)
+        return Response(response_serializer.data, status=status.HTTP_200_OK)
 
 
 class ChatbotAskViewSet(viewsets.ViewSet):
@@ -95,11 +143,6 @@ class ChatbotAskViewSet(viewsets.ViewSet):
     def ask(self, request):
         """
         Poser une question et retourner les FAQs les plus pertinentes.
-        
-        Intègre cache + seuils de confiance:
-        - Score < 0.6 : "not found"
-        - Score 0.6-0.8 : "uncertain"
-        - Score >= 0.8 : "confident"
         
         Body:
         {
@@ -119,8 +162,7 @@ class ChatbotAskViewSet(viewsets.ViewSet):
                     "category": "Support"
                 }
             ],
-            "count": 1,
-            "status": "confident"
+            "count": 1
         }
         """
         serializer = QuestionRequestSerializer(data=request.data)
@@ -146,7 +188,7 @@ class ChatbotAskViewSet(viewsets.ViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
         
-        # ===== 3. Appliquer les seuils et formater =====
+        # Formater les résultats
         results = []
         status_confidence = "not found"
         
@@ -179,21 +221,10 @@ class ChatbotAskViewSet(viewsets.ViewSet):
             'status': status_confidence,
         }
         
-        # ===== 4. Mettre en cache pour 1 heure =====
-        cache.set(cache_key, response_data, 3600)
-        
         response_serializer = ChatbotResponseSerializer(response_data)
         return Response(response_serializer.data, status=status.HTTP_200_OK)
 
-
 class FeedbackViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet pour les feedbacks utilisateurs.
-    
-    Endpoints:
-    - GET /api/feedback/ : lister feedbacks (admin)
-    - POST /api/feedback/ : créer feedback
-    """
     queryset = Feedback.objects.all().select_related('user', 'faq')
     serializer_class = FeedbackSerializer
 
@@ -225,7 +256,6 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         return Response(data)
     
     def get_permissions(self):
-        """POST public pour créer feedback; GET restreint."""
         if self.request.method == 'POST':
             permission_classes = [AllowAny]
         else:
@@ -236,9 +266,8 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         """Assigner l'utilisateur courant ou anonyme selon l'authentification."""
         from django.contrib.auth import get_user_model
         User = get_user_model()
-        
+
         if self.request.user and self.request.user.is_authenticated:
-            # Utilisateur authentifié
             serializer.save(user=self.request.user)
         else:
             # Utilisateur anonyme : créer/récupérer un user anonyme
@@ -251,3 +280,4 @@ class FeedbackViewSet(viewsets.ModelViewSet):
                     password='anonymous'
                 )
             serializer.save(user=anon_user)
+            

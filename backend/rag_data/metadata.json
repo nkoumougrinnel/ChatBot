@@ -1,0 +1,562 @@
+[
+  {
+    "vecteur_id": 0,
+    "intent": "faq_sqlite_1",
+    "example": "Quels sont les critères académiques pour être admis à SUP'PTIC ?",
+    "response": "Les critères varient selon la filière choisie. Pour les filières d'Ingénieurs des Travaux des Télécommunications (ITT) et Techniciens des Télécommunications (TT), il faut être titulaire d'un baccalauréat des séries scientifiques ou technologiques, ou d'un GCE Advanced Level obtenu en deux matières scientifiques au moins dont les mathématiques et la physique. Pour les filières d'Inspecteurs des Postes et Télécommunications (IPT) et Contrôleurs des Postes et Télécommunications (CPT), un baccalauréat toutes séries (y compris littéraire) ou un GCE Advanced Level en deux matières suffit.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_001]"
+  },
+  {
+    "vecteur_id": 1,
+    "intent": "faq_sqlite_1",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_001]",
+    "response": "Les critères varient selon la filière choisie. Pour les filières d'Ingénieurs des Travaux des Télécommunications (ITT) et Techniciens des Télécommunications (TT), il faut être titulaire d'un baccalauréat des séries scientifiques ou technologiques, ou d'un GCE Advanced Level obtenu en deux matières scientifiques au moins dont les mathématiques et la physique. Pour les filières d'Inspecteurs des Postes et Télécommunications (IPT) et Contrôleurs des Postes et Télécommunications (CPT), un baccalauréat toutes séries (y compris littéraire) ou un GCE Advanced Level en deux matières suffit.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_001]"
+  },
+  {
+    "vecteur_id": 2,
+    "intent": "faq_sqlite_2",
+    "example": "Peut-on être admis avec un bac littéraire ?",
+    "response": "Oui, un baccalauréat littéraire est accepté pour les filières Inspecteurs des Postes et Télécommunications (IPT) et Contrôleurs des Postes et Télécommunications (CPT). Pour ces deux filières, tout baccalauréat ou GCE Advanced Level obtenu en deux matières est suffisant, sans restriction de série. En revanche, pour les filières ITT et TT, un bac scientifique ou technologique (avec maths et physique) est obligatoire.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_002]"
+  },
+  {
+    "vecteur_id": 3,
+    "intent": "faq_sqlite_2",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_002]",
+    "response": "Oui, un baccalauréat littéraire est accepté pour les filières Inspecteurs des Postes et Télécommunications (IPT) et Contrôleurs des Postes et Télécommunications (CPT). Pour ces deux filières, tout baccalauréat ou GCE Advanced Level obtenu en deux matières est suffisant, sans restriction de série. En revanche, pour les filières ITT et TT, un bac scientifique ou technologique (avec maths et physique) est obligatoire.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_002]"
+  },
+  {
+    "vecteur_id": 4,
+    "intent": "faq_sqlite_3",
+    "example": "Les diplômes étrangers sont-ils acceptés ?",
+    "response": "Oui. Le texte officiel précise que tout diplôme ou titre reconnu équivalent au baccalauréat camerounais est accepté. Les candidats étrangers doivent toutefois noter qu'ils passent des tests spéciaux organisés par le Directeur de SUP'PTIC (Article 13), et que leurs dossiers sont soumis aux mêmes exigences que les candidats nationaux, notamment la présentation d'une pièce d'identité valide.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 13 [json_id:faq_003]"
+  },
+  {
+    "vecteur_id": 5,
+    "intent": "faq_sqlite_3",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 13 [json_id:faq_003]",
+    "response": "Oui. Le texte officiel précise que tout diplôme ou titre reconnu équivalent au baccalauréat camerounais est accepté. Les candidats étrangers doivent toutefois noter qu'ils passent des tests spéciaux organisés par le Directeur de SUP'PTIC (Article 13), et que leurs dossiers sont soumis aux mêmes exigences que les candidats nationaux, notamment la présentation d'une pièce d'identité valide.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 13 [json_id:faq_003]"
+  },
+  {
+    "vecteur_id": 6,
+    "intent": "faq_sqlite_4",
+    "example": "Y a-t-il une limite d'âge pour l'admission ?",
+    "response": "Il n'y a pas de limite d'âge maximum. En revanche, l'âge minimum est fixé à 15 ans révolus au 1er janvier 2025 pour toutes les filières (ITT, IPT, TT, CPT). Cette condition est identique pour les candidats masculins et féminins.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_004]"
+  },
+  {
+    "vecteur_id": 7,
+    "intent": "faq_sqlite_4",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_004]",
+    "response": "Il n'y a pas de limite d'âge maximum. En revanche, l'âge minimum est fixé à 15 ans révolus au 1er janvier 2025 pour toutes les filières (ITT, IPT, TT, CPT). Cette condition est identique pour les candidats masculins et féminins.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_004]"
+  },
+  {
+    "vecteur_id": 8,
+    "intent": "faq_sqlite_5",
+    "example": "Faut-il passer un concours pour être admis ?",
+    "response": "Oui. L'entrée en première année se fait obligatoirement sur concours national. Les épreuves diffèrent selon la filière : pour ITT et TT, les matières sont Mathématiques (3H, coeff. 3), Physique/TI (3H, coeff. 3) et Langues (2H, coeff. 2). Pour IPT et CPT, les matières sont Culture Générale (3H, coeff. 3), Mathématiques (3H, coeff. 3) et Langues (2H, coeff. 2). Une note éliminatoire inférieure à 5/20 dans l'une des épreuves entraîne l'élimination du candidat. Il existe aussi une voie d'admission directe en deuxième année sur étude de dossier pour les titulaires de certains diplômes (BTS, HND, DUT, DEUG, etc.).",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 5, 6 et 9 [json_id:faq_005]"
+  },
+  {
+    "vecteur_id": 9,
+    "intent": "faq_sqlite_5",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 5, 6 et 9 [json_id:faq_005]",
+    "response": "Oui. L'entrée en première année se fait obligatoirement sur concours national. Les épreuves diffèrent selon la filière : pour ITT et TT, les matières sont Mathématiques (3H, coeff. 3), Physique/TI (3H, coeff. 3) et Langues (2H, coeff. 2). Pour IPT et CPT, les matières sont Culture Générale (3H, coeff. 3), Mathématiques (3H, coeff. 3) et Langues (2H, coeff. 2). Une note éliminatoire inférieure à 5/20 dans l'une des épreuves entraîne l'élimination du candidat. Il existe aussi une voie d'admission directe en deuxième année sur étude de dossier pour les titulaires de certains diplômes (BTS, HND, DUT, DEUG, etc.).",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 5, 6 et 9 [json_id:faq_005]"
+  },
+  {
+    "vecteur_id": 10,
+    "intent": "faq_sqlite_6",
+    "example": "Quels sont les prérequis pour le concours ?",
+    "response": "Les prérequis sont : avoir au moins 15 ans au 1er janvier 2025, être titulaire d'un baccalauréat (scientifique ou technologique pour ITT/TT ; toutes séries pour IPT/CPT) ou d'un GCE Advanced Level équivalent, déposer un dossier complet avant le 8 août 2025 et s'acquitter des frais de dossier de 15 000 F CFA.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4 [json_id:faq_006]"
+  },
+  {
+    "vecteur_id": 11,
+    "intent": "faq_sqlite_6",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4 [json_id:faq_006]",
+    "response": "Les prérequis sont : avoir au moins 15 ans au 1er janvier 2025, être titulaire d'un baccalauréat (scientifique ou technologique pour ITT/TT ; toutes séries pour IPT/CPT) ou d'un GCE Advanced Level équivalent, déposer un dossier complet avant le 8 août 2025 et s'acquitter des frais de dossier de 15 000 F CFA.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4 [json_id:faq_006]"
+  },
+  {
+    "vecteur_id": 12,
+    "intent": "faq_sqlite_7",
+    "example": "Les étudiants étrangers peuvent-ils participer au concours ?",
+    "response": "Oui, des places sont explicitement réservées aux candidats étrangers. À SUP'PTIC Yaoundé, 5 places sont ouvertes pour les ITT et 5 pour les IPT. Au Centre de Buea, 5 places pour les TT et 5 pour les CPT. Les candidats étrangers passent des tests spéciaux organisés par le Directeur de l'école (Article 13), et doivent déposer leur dossier dans les mêmes délais que les candidats camerounais.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 3 et 13 [json_id:faq_007]"
+  },
+  {
+    "vecteur_id": 13,
+    "intent": "faq_sqlite_7",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 3 et 13 [json_id:faq_007]",
+    "response": "Oui, des places sont explicitement réservées aux candidats étrangers. À SUP'PTIC Yaoundé, 5 places sont ouvertes pour les ITT et 5 pour les IPT. Au Centre de Buea, 5 places pour les TT et 5 pour les CPT. Les candidats étrangers passent des tests spéciaux organisés par le Directeur de l'école (Article 13), et doivent déposer leur dossier dans les mêmes délais que les candidats camerounais.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 3 et 13 [json_id:faq_007]"
+  },
+  {
+    "vecteur_id": 14,
+    "intent": "faq_sqlite_8",
+    "example": "Quels diplômes techniques sont acceptés ?",
+    "response": "Les baccalauréats technologiques sont acceptés pour les filières ITT et TT. Pour l'admission directe en deuxième année ITT, les diplômes suivants sont reconnus : Diplôme de Technicien des Télécommunications de SUP'PTIC, DEUG, BTS, HND, DSEP, DUT en Télécommunications, Électronique, Électrotechnique ou Informatique.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 9 [json_id:faq_008]"
+  },
+  {
+    "vecteur_id": 15,
+    "intent": "faq_sqlite_8",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 9 [json_id:faq_008]",
+    "response": "Les baccalauréats technologiques sont acceptés pour les filières ITT et TT. Pour l'admission directe en deuxième année ITT, les diplômes suivants sont reconnus : Diplôme de Technicien des Télécommunications de SUP'PTIC, DEUG, BTS, HND, DSEP, DUT en Télécommunications, Électronique, Électrotechnique ou Informatique.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 9 [json_id:faq_008]"
+  },
+  {
+    "vecteur_id": 16,
+    "intent": "faq_sqlite_9",
+    "example": "Les candidats doivent-ils avoir une mention particulière au bac ?",
+    "response": "Non, aucune mention particulière au baccalauréat n'est exigée. La décision officielle ne mentionne aucun critère de mention. La sélection se fait uniquement sur la base des résultats au concours d'entrée.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_009]"
+  },
+  {
+    "vecteur_id": 17,
+    "intent": "faq_sqlite_9",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_009]",
+    "response": "Non, aucune mention particulière au baccalauréat n'est exigée. La décision officielle ne mentionne aucun critère de mention. La sélection se fait uniquement sur la base des résultats au concours d'entrée.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_009]"
+  },
+  {
+    "vecteur_id": 18,
+    "intent": "faq_sqlite_10",
+    "example": "Les candidats handicapés peuvent-ils participer au concours ?",
+    "response": "Oui. La décision officielle ne prévoit aucune exclusion liée au handicap. Les conditions d'admission sont les mêmes pour tous : être âgé d'au moins 15 ans et détenir le diplôme requis. À noter que le dossier doit inclure un certificat médical délivré par un médecin de la santé publique attestant l'aptitude aux travaux dans le domaine des Postes, Télécommunications et TIC.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4 [json_id:faq_010]"
+  },
+  {
+    "vecteur_id": 19,
+    "intent": "faq_sqlite_10",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4 [json_id:faq_010]",
+    "response": "Oui. La décision officielle ne prévoit aucune exclusion liée au handicap. Les conditions d'admission sont les mêmes pour tous : être âgé d'au moins 15 ans et détenir le diplôme requis. À noter que le dossier doit inclure un certificat médical délivré par un médecin de la santé publique attestant l'aptitude aux travaux dans le domaine des Postes, Télécommunications et TIC.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4 [json_id:faq_010]"
+  },
+  {
+    "vecteur_id": 20,
+    "intent": "faq_sqlite_11",
+    "example": "Les candidats doivent-ils fournir une attestation médicale ?",
+    "response": "Oui, c'est obligatoire. Le dossier doit contenir un certificat médical délivré par un médecin de la santé publique, attestant que le candidat est apte aux travaux dans le domaine des Postes, des Télécommunications et des Technologies de l'Information et de la Communication.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_011]"
+  },
+  {
+    "vecteur_id": 21,
+    "intent": "faq_sqlite_11",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_011]",
+    "response": "Oui, c'est obligatoire. Le dossier doit contenir un certificat médical délivré par un médecin de la santé publique, attestant que le candidat est apte aux travaux dans le domaine des Postes, des Télécommunications et des Technologies de l'Information et de la Communication.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_011]"
+  },
+  {
+    "vecteur_id": 22,
+    "intent": "faq_sqlite_12",
+    "example": "Les candidats doivent-ils maîtriser l'informatique avant l'admission ?",
+    "response": "Aucune maîtrise préalable de l'informatique n'est formellement exigée par le règlement du concours. Cependant, la matière Physique/TI fait partie des épreuves pour les filières ITT et TT. Une bonne base en sciences (maths, physique) est donc recommandée pour réussir.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 5 et 6 [json_id:faq_012]"
+  },
+  {
+    "vecteur_id": 23,
+    "intent": "faq_sqlite_12",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 5 et 6 [json_id:faq_012]",
+    "response": "Aucune maîtrise préalable de l'informatique n'est formellement exigée par le règlement du concours. Cependant, la matière Physique/TI fait partie des épreuves pour les filières ITT et TT. Une bonne base en sciences (maths, physique) est donc recommandée pour réussir.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 5 et 6 [json_id:faq_012]"
+  },
+  {
+    "vecteur_id": 24,
+    "intent": "faq_sqlite_13",
+    "example": "Les candidats doivent-ils avoir un bon niveau en anglais ?",
+    "response": "Une épreuve de Langues est au programme de toutes les filières (2H, coefficient 2, note éliminatoire < 5/20). Le concours est bilingue (français et anglais), les candidats anglophones composent dans leur langue. Une maîtrise fonctionnelle d'au moins une des deux langues officielles est donc indispensable pour ne pas être éliminé.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6 [json_id:faq_013]"
+  },
+  {
+    "vecteur_id": 25,
+    "intent": "faq_sqlite_13",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6 [json_id:faq_013]",
+    "response": "Une épreuve de Langues est au programme de toutes les filières (2H, coefficient 2, note éliminatoire < 5/20). Le concours est bilingue (français et anglais), les candidats anglophones composent dans leur langue. Une maîtrise fonctionnelle d'au moins une des deux langues officielles est donc indispensable pour ne pas être éliminé.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6 [json_id:faq_013]"
+  },
+  {
+    "vecteur_id": 26,
+    "intent": "faq_sqlite_14",
+    "example": "Les candidats doivent-ils fournir un casier judiciaire ?",
+    "response": "Non. La liste officielle des pièces à fournir (Article 4) ne mentionne pas de casier judiciaire. Les documents requis sont : acte de candidature, récépissé de paiement, acte de naissance, copie du diplôme ou attestation de réussite, attestation ou certificat de scolarité, certificat médical, 2 photos 4x4, photocopie de la CNI et une enveloppe timbrée.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_014]"
+  },
+  {
+    "vecteur_id": 27,
+    "intent": "faq_sqlite_14",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_014]",
+    "response": "Non. La liste officielle des pièces à fournir (Article 4) ne mentionne pas de casier judiciaire. Les documents requis sont : acte de candidature, récépissé de paiement, acte de naissance, copie du diplôme ou attestation de réussite, attestation ou certificat de scolarité, certificat médical, 2 photos 4x4, photocopie de la CNI et une enveloppe timbrée.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_014]"
+  },
+  {
+    "vecteur_id": 28,
+    "intent": "faq_sqlite_15",
+    "example": "Les candidats doivent-ils avoir une expérience professionnelle ?",
+    "response": "Non, aucune expérience professionnelle n'est requise pour l'entrée en première année. Le concours est ouvert à tout titulaire du baccalauréat requis, quel que soit son parcours professionnel.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_015]"
+  },
+  {
+    "vecteur_id": 29,
+    "intent": "faq_sqlite_15",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_015]",
+    "response": "Non, aucune expérience professionnelle n'est requise pour l'entrée en première année. Le concours est ouvert à tout titulaire du baccalauréat requis, quel que soit son parcours professionnel.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_015]"
+  },
+  {
+    "vecteur_id": 30,
+    "intent": "faq_sqlite_16",
+    "example": "Les candidats doivent-ils passer un entretien oral ?",
+    "response": "Non, le concours d'entrée à SUP'PTIC ne comprend aucune épreuve orale. Il est composé uniquement d'épreuves écrites : Mathématiques, Physique/TI et Langues pour les filières ITT/TT, et Culture Générale, Mathématiques et Langues pour les filières IPT/CPT.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6 [json_id:faq_016]"
+  },
+  {
+    "vecteur_id": 31,
+    "intent": "faq_sqlite_16",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6 [json_id:faq_016]",
+    "response": "Non, le concours d'entrée à SUP'PTIC ne comprend aucune épreuve orale. Il est composé uniquement d'épreuves écrites : Mathématiques, Physique/TI et Langues pour les filières ITT/TT, et Culture Générale, Mathématiques et Langues pour les filières IPT/CPT.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6 [json_id:faq_016]"
+  },
+  {
+    "vecteur_id": 32,
+    "intent": "faq_sqlite_17",
+    "example": "Les candidats doivent-ils fournir des lettres de recommandation ?",
+    "response": "Non. La liste officielle des pièces du dossier de candidature (Article 4) ne prévoit aucune lettre de recommandation. La sélection repose entièrement sur les résultats aux épreuves écrites du concours.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_017]"
+  },
+  {
+    "vecteur_id": 33,
+    "intent": "faq_sqlite_17",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_017]",
+    "response": "Non. La liste officielle des pièces du dossier de candidature (Article 4) ne prévoit aucune lettre de recommandation. La sélection repose entièrement sur les résultats aux épreuves écrites du concours.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_017]"
+  },
+  {
+    "vecteur_id": 34,
+    "intent": "faq_sqlite_18",
+    "example": "Les candidats doivent-ils avoir une moyenne minimale au bac ?",
+    "response": "Non, aucune moyenne minimale au baccalauréat n'est exigée. La décision officielle ne fixe aucun seuil de moyenne. Pour être autorisé à composer, il suffit d'être titulaire du diplôme requis et d'avoir un dossier complet.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_018]"
+  },
+  {
+    "vecteur_id": 35,
+    "intent": "faq_sqlite_18",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_018]",
+    "response": "Non, aucune moyenne minimale au baccalauréat n'est exigée. La décision officielle ne fixe aucun seuil de moyenne. Pour être autorisé à composer, il suffit d'être titulaire du diplôme requis et d'avoir un dossier complet.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_018]"
+  },
+  {
+    "vecteur_id": 36,
+    "intent": "faq_sqlite_19",
+    "example": "Les candidats doivent-ils fournir un projet de motivation ?",
+    "response": "Non. La liste des pièces à fournir (Article 4) n'inclut ni lettre de motivation ni projet personnel. Il faut uniquement un acte de candidature dûment rempli, disponible dans les délégations régionales, à SUP'PTIC ou en téléchargement sur www.e-supptic.cm.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_019]"
+  },
+  {
+    "vecteur_id": 37,
+    "intent": "faq_sqlite_19",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_019]",
+    "response": "Non. La liste des pièces à fournir (Article 4) n'inclut ni lettre de motivation ni projet personnel. Il faut uniquement un acte de candidature dûment rempli, disponible dans les délégations régionales, à SUP'PTIC ou en téléchargement sur www.e-supptic.cm.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_019]"
+  },
+  {
+    "vecteur_id": 38,
+    "intent": "faq_sqlite_20",
+    "example": "Les candidats doivent-ils avoir une bonne condition physique ?",
+    "response": "Le dossier exige un certificat médical délivré par un médecin de la santé publique attestant l'aptitude aux travaux dans le domaine des Postes, Télécommunications et TIC. Bien qu'il n'y ait pas de test sportif, une condition physique acceptable est donc indirectement requise par cette certification médicale.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_020]"
+  },
+  {
+    "vecteur_id": 39,
+    "intent": "faq_sqlite_20",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_020]",
+    "response": "Le dossier exige un certificat médical délivré par un médecin de la santé publique attestant l'aptitude aux travaux dans le domaine des Postes, Télécommunications et TIC. Bien qu'il n'y ait pas de test sportif, une condition physique acceptable est donc indirectement requise par cette certification médicale.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_020]"
+  },
+  {
+    "vecteur_id": 40,
+    "intent": "faq_sqlite_21",
+    "example": "Les candidats doivent-ils fournir des relevés de notes ?",
+    "response": "Non, les relevés de notes ne figurent pas dans la liste des pièces obligatoires. Il faut cependant fournir une copie certifiée conforme du diplôme ou de l'attestation de réussite, ainsi qu'une attestation ou certificat de scolarité pour les candidats ayant présenté les examens pour l'obtention du diplôme exigé.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_021]"
+  },
+  {
+    "vecteur_id": 41,
+    "intent": "faq_sqlite_21",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_021]",
+    "response": "Non, les relevés de notes ne figurent pas dans la liste des pièces obligatoires. Il faut cependant fournir une copie certifiée conforme du diplôme ou de l'attestation de réussite, ainsi qu'une attestation ou certificat de scolarité pour les candidats ayant présenté les examens pour l'obtention du diplôme exigé.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_021]"
+  },
+  {
+    "vecteur_id": 42,
+    "intent": "faq_sqlite_22",
+    "example": "Les candidats doivent-ils payer des frais de dossier ?",
+    "response": "Oui. Des frais de concours de 15 000 F CFA sont obligatoires et non remboursables (Article 10). Ce paiement se fait par versement dans les Bureaux de Poste au profit de l'Agent Comptable de SUP'PTIC, compte N° 150657330-19. Le récépissé de ce versement doit impérativement être joint au dossier.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 4 et 10 [json_id:faq_022]"
+  },
+  {
+    "vecteur_id": 43,
+    "intent": "faq_sqlite_22",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 4 et 10 [json_id:faq_022]",
+    "response": "Oui. Des frais de concours de 15 000 F CFA sont obligatoires et non remboursables (Article 10). Ce paiement se fait par versement dans les Bureaux de Poste au profit de l'Agent Comptable de SUP'PTIC, compte N° 150657330-19. Le récépissé de ce versement doit impérativement être joint au dossier.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 4 et 10 [json_id:faq_022]"
+  },
+  {
+    "vecteur_id": 44,
+    "intent": "faq_sqlite_23",
+    "example": "Les candidats doivent-ils fournir des photos d'identité ?",
+    "response": "Oui, deux (02) photos de format 4x4 récentes sont obligatoires dans le dossier de candidature.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_023]"
+  },
+  {
+    "vecteur_id": 45,
+    "intent": "faq_sqlite_23",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_023]",
+    "response": "Oui, deux (02) photos de format 4x4 récentes sont obligatoires dans le dossier de candidature.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_023]"
+  },
+  {
+    "vecteur_id": 46,
+    "intent": "faq_sqlite_24",
+    "example": "Les candidats doivent-ils fournir un acte de naissance ?",
+    "response": "Oui, une copie certifiée conforme de l'acte de naissance datant de moins de trois (03) mois est obligatoire dans le dossier.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_024]"
+  },
+  {
+    "vecteur_id": 47,
+    "intent": "faq_sqlite_24",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_024]",
+    "response": "Oui, une copie certifiée conforme de l'acte de naissance datant de moins de trois (03) mois est obligatoire dans le dossier.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_024]"
+  },
+  {
+    "vecteur_id": 48,
+    "intent": "faq_sqlite_25",
+    "example": "Les candidats doivent-ils fournir une copie du diplôme du bac ?",
+    "response": "Oui, une copie certifiée conforme du diplôme exigé ou de l'attestation de réussite est obligatoire. Pour les candidats ayant récemment passé l'examen mais n'ayant pas encore leur diplôme définitif, une attestation ou un certificat de scolarité est également accepté.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_025]"
+  },
+  {
+    "vecteur_id": 49,
+    "intent": "faq_sqlite_25",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_025]",
+    "response": "Oui, une copie certifiée conforme du diplôme exigé ou de l'attestation de réussite est obligatoire. Pour les candidats ayant récemment passé l'examen mais n'ayant pas encore leur diplôme définitif, une attestation ou un certificat de scolarité est également accepté.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_025]"
+  },
+  {
+    "vecteur_id": 50,
+    "intent": "faq_sqlite_26",
+    "example": "Les candidats doivent-ils avoir suivi des cours préparatoires ?",
+    "response": "Non, les cours préparatoires ne sont pas obligatoires. Les programmes du concours portent sur les programmes officiels des classes de terminale (séries scientifiques pour ITT/TT, séries littéraires pour IPT/CPT). Une bonne révision des programmes scolaires officiels est suffisante.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 5 [json_id:faq_026]"
+  },
+  {
+    "vecteur_id": 51,
+    "intent": "faq_sqlite_26",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 5 [json_id:faq_026]",
+    "response": "Non, les cours préparatoires ne sont pas obligatoires. Les programmes du concours portent sur les programmes officiels des classes de terminale (séries scientifiques pour ITT/TT, séries littéraires pour IPT/CPT). Une bonne révision des programmes scolaires officiels est suffisante.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 5 [json_id:faq_026]"
+  },
+  {
+    "vecteur_id": 52,
+    "intent": "faq_sqlite_27",
+    "example": "Les candidats doivent-ils fournir une preuve de nationalité ?",
+    "response": "Oui, une photocopie certifiée conforme de la Carte Nationale d'Identité (CNI) est obligatoire pour les candidats camerounais. Les candidats étrangers fournissent leur passeport ou document d'identité équivalent.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_027]"
+  },
+  {
+    "vecteur_id": 53,
+    "intent": "faq_sqlite_27",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_027]",
+    "response": "Oui, une photocopie certifiée conforme de la Carte Nationale d'Identité (CNI) est obligatoire pour les candidats camerounais. Les candidats étrangers fournissent leur passeport ou document d'identité équivalent.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_027]"
+  },
+  {
+    "vecteur_id": 54,
+    "intent": "faq_sqlite_28",
+    "example": "Les candidats doivent-ils fournir une preuve de résidence ?",
+    "response": "Non, aucun certificat de résidence n'est requis dans la liste officielle des pièces du dossier. Il faut cependant fournir une enveloppe format A4 timbrée à 1 000 F CFA à l'adresse du candidat, qui servira à l'envoi de la convocation.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_028]"
+  },
+  {
+    "vecteur_id": 55,
+    "intent": "faq_sqlite_28",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_028]",
+    "response": "Non, aucun certificat de résidence n'est requis dans la liste officielle des pièces du dossier. Il faut cependant fournir une enveloppe format A4 timbrée à 1 000 F CFA à l'adresse du candidat, qui servira à l'envoi de la convocation.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_028]"
+  },
+  {
+    "vecteur_id": 56,
+    "intent": "faq_sqlite_29",
+    "example": "Les candidats doivent-ils fournir un relevé bancaire ?",
+    "response": "Non, aucun relevé bancaire n'est exigé. Le seul document financier requis est le récépissé de versement des frais de concours de 15 000 F CFA effectué dans les Bureaux de Poste.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_029]"
+  },
+  {
+    "vecteur_id": 57,
+    "intent": "faq_sqlite_29",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_029]",
+    "response": "Non, aucun relevé bancaire n'est exigé. Le seul document financier requis est le récépissé de versement des frais de concours de 15 000 F CFA effectué dans les Bureaux de Poste.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_029]"
+  },
+  {
+    "vecteur_id": 58,
+    "intent": "faq_sqlite_30",
+    "example": "Les candidats doivent-ils fournir une autorisation parentale ?",
+    "response": "Non, aucune autorisation parentale n'est mentionnée dans les pièces requises. L'obtention du baccalauréat est considérée comme preuve de maturité suffisante pour postuler, même si le candidat est encore mineur (l'âge minimum est 15 ans).",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4 [json_id:faq_030]"
+  },
+  {
+    "vecteur_id": 59,
+    "intent": "faq_sqlite_30",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4 [json_id:faq_030]",
+    "response": "Non, aucune autorisation parentale n'est mentionnée dans les pièces requises. L'obtention du baccalauréat est considérée comme preuve de maturité suffisante pour postuler, même si le candidat est encore mineur (l'âge minimum est 15 ans).",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4 [json_id:faq_030]"
+  },
+  {
+    "vecteur_id": 60,
+    "intent": "faq_sqlite_31",
+    "example": "Quel est l'âge minimum pour se présenter au concours ?",
+    "response": "L'âge minimum est de 15 ans révolus au 1er janvier 2025, et cela vaut pour toutes les filières : Ingénieurs des Travaux des Télécommunications (ITT), Inspecteurs des Postes et Télécommunications (IPT), Techniciens des Télécommunications (TT) et Contrôleurs des Postes et Télécommunications (CPT). Il n'y a pas de limite d'âge maximum.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_031]"
+  },
+  {
+    "vecteur_id": 61,
+    "intent": "faq_sqlite_31",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_031]",
+    "response": "L'âge minimum est de 15 ans révolus au 1er janvier 2025, et cela vaut pour toutes les filières : Ingénieurs des Travaux des Télécommunications (ITT), Inspecteurs des Postes et Télécommunications (IPT), Techniciens des Télécommunications (TT) et Contrôleurs des Postes et Télécommunications (CPT). Il n'y a pas de limite d'âge maximum.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_031]"
+  },
+  {
+    "vecteur_id": 62,
+    "intent": "faq_sqlite_32",
+    "example": "Les candidats doivent-ils fournir une preuve de paiement des frais ?",
+    "response": "Oui, c'est obligatoire. Le récépissé de versement de 15 000 F CFA dans les Bureaux de Poste, au profit de l'Agent Comptable de SUP'PTIC (compte N° 150657330-19), doit impérativement être joint au dossier. Sans ce document, le dossier sera considéré comme incomplet et le candidat ne pourra pas concourir (Article 11).",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 4, 10 et 11 [json_id:faq_032]"
+  },
+  {
+    "vecteur_id": 63,
+    "intent": "faq_sqlite_32",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 4, 10 et 11 [json_id:faq_032]",
+    "response": "Oui, c'est obligatoire. Le récépissé de versement de 15 000 F CFA dans les Bureaux de Poste, au profit de l'Agent Comptable de SUP'PTIC (compte N° 150657330-19), doit impérativement être joint au dossier. Sans ce document, le dossier sera considéré comme incomplet et le candidat ne pourra pas concourir (Article 11).",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 4, 10 et 11 [json_id:faq_032]"
+  },
+  {
+    "vecteur_id": 64,
+    "intent": "faq_sqlite_33",
+    "example": "Les candidats doivent-ils fournir une preuve de scolarité antérieure ?",
+    "response": "Partiellement. Les candidats ayant présenté les examens pour l'obtention du diplôme exigé doivent fournir une attestation ou un certificat de scolarité. En dehors de ce cas, seule la copie certifiée du diplôme ou de l'attestation de réussite est requise.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_033]"
+  },
+  {
+    "vecteur_id": 65,
+    "intent": "faq_sqlite_33",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_033]",
+    "response": "Partiellement. Les candidats ayant présenté les examens pour l'obtention du diplôme exigé doivent fournir une attestation ou un certificat de scolarité. En dehors de ce cas, seule la copie certifiée du diplôme ou de l'attestation de réussite est requise.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4 [json_id:faq_033]"
+  },
+  {
+    "vecteur_id": 66,
+    "intent": "faq_sqlite_34",
+    "example": "Les candidats titulaires d'un GCE peuvent-ils participer au concours ?",
+    "response": "Oui. Le GCE Advanced Level est explicitement reconnu pour toutes les filières. Pour ITT et TT, il doit être obtenu en deux matières scientifiques au moins, dont les mathématiques et la physique. Pour IPT et CPT, un GCE A/L en deux matières quelconques suffit. Le concours est bilingue, les anglophones composent dans leur langue.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_034]"
+  },
+  {
+    "vecteur_id": 67,
+    "intent": "faq_sqlite_34",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_034]",
+    "response": "Oui. Le GCE Advanced Level est explicitement reconnu pour toutes les filières. Pour ITT et TT, il doit être obtenu en deux matières scientifiques au moins, dont les mathématiques et la physique. Pour IPT et CPT, un GCE A/L en deux matières quelconques suffit. Le concours est bilingue, les anglophones composent dans leur langue.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2 [json_id:faq_034]"
+  },
+  {
+    "vecteur_id": 68,
+    "intent": "faq_sqlite_35",
+    "example": "Y a-t-il des épreuves pratiques pendant le concours ?",
+    "response": "Non, le concours d'entrée ne comprend que des épreuves écrites. Pour les filières ITT et TT : Mathématiques (3H), Physique/TI (3H), Langues (2H). Pour les filières IPT et CPT : Culture Générale (3H), Mathématiques (3H), Langues (2H). Une fois admis et en formation, des travaux pratiques sont intégrés au cursus.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6 [json_id:faq_035]"
+  },
+  {
+    "vecteur_id": 69,
+    "intent": "faq_sqlite_35",
+    "example": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6 [json_id:faq_035]",
+    "response": "Non, le concours d'entrée ne comprend que des épreuves écrites. Pour les filières ITT et TT : Mathématiques (3H), Physique/TI (3H), Langues (2H). Pour les filières IPT et CPT : Culture Générale (3H), Mathématiques (3H), Langues (2H). Une fois admis et en formation, des travaux pratiques sont intégrés au cursus.",
+    "categorie": "Inscriptions et admissions",
+    "source": "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6 [json_id:faq_035]"
+  }
+]

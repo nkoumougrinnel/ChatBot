@@ -1,8 +1,8 @@
 # Environnement virtuel (Trés important pour votre dossier .venv)
 .venv/
 venv/
-ENV/
 env/
+ENV/
 
 # Django
 backend/db.sqlite3
@@ -11,11 +11,13 @@ __pycache__/
 *$py.class
 local_settings.py
 
-# Fichiers de log et temporaires
-*.log
-.tmp/
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
 
-# OS / IDE
+# OS
 .DS_Store
 Thumbs.db
 

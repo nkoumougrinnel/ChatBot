@@ -1,0 +1,99 @@
+[33m354d37f0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackend[m[33m)[m HEAD@{0}: commit: Sauvegarde de l'état des fonctionnalités
+[33m89b93b67[m HEAD@{1}: commit: feat(faq): activer les signaux Feedback en important faq.signals dans FaqConfig.ready()
+[33m5b15ecd9[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/backend[m[33m, [m[1;32mdev[m[33m)[m HEAD@{2}: checkout: moving from data to backend
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{3}: checkout: moving from backend to data
+[33m5b15ecd9[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/backend[m[33m, [m[1;32mdev[m[33m)[m HEAD@{4}: checkout: moving from data to backend
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{5}: checkout: moving from frontend to data
+[33m2e5ff3f4[m[33m ([m[1;31morigin/frontend[m[33m, [m[1;32mfrontend[m[33m)[m HEAD@{6}: checkout: moving from backend to frontend
+[33m5b15ecd9[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/backend[m[33m, [m[1;32mdev[m[33m)[m HEAD@{7}: reset: moving to 5b15ecd9d8b57d102b386c1ae19c2d7678753906
+[33me4925705[m HEAD@{8}: checkout: moving from dev to backend
+[33m5b15ecd9[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/backend[m[33m, [m[1;32mdev[m[33m)[m HEAD@{9}: checkout: moving from backend to dev
+[33me4925705[m HEAD@{10}: reset: moving to HEAD
+[33me4925705[m HEAD@{11}: commit (merge): Merge branch 'dev' into backend - Résolution des conflits
+[33mbe3b2542[m HEAD@{12}: checkout: moving from frontend to backend
+[33m2e5ff3f4[m[33m ([m[1;31morigin/frontend[m[33m, [m[1;32mfrontend[m[33m)[m HEAD@{13}: commit: Remove db.sqlite3 from version control
+[33m9b1f799f[m HEAD@{14}: checkout: moving from dev to frontend
+[33m5b15ecd9[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/backend[m[33m, [m[1;32mdev[m[33m)[m HEAD@{15}: commit: Remove db.sqlite3 from version control
+[33me05e1c9b[m HEAD@{16}: checkout: moving from backend to dev
+[33mbe3b2542[m HEAD@{17}: commit (merge): Remove db.sqlite3 from version control
+[33me32139ba[m HEAD@{18}: commit: Commit pour eviter conflit
+[33me16a88e3[m HEAD@{19}: reset: moving to HEAD
+[33me16a88e3[m HEAD@{20}: reset: moving to HEAD
+[33me16a88e3[m HEAD@{21}: commit: feat: Restauration des fonctionnalités BLOC1 et BLOC2
+[33m5166d438[m HEAD@{22}: commit: Restauration de l'état HEAD~3 (avant feedback et signaux)
+[33m594abc80[m HEAD@{23}: commit: build: Suppression services.py
+[33maa9816fd[m HEAD@{24}: commit: feat: Signaux d'amélioration des scores - Active Learning
+[33m2574ab46[m HEAD@{25}: commit: feat: API Feedback - support des utilisateurs anonymes
+[33m35275b6c[m HEAD@{26}: commit: Ajout des fixtures, correction de l'api stats et activation de l'app rest framework
+[33m1fbfeceb[m HEAD@{27}: reset: moving to HEAD
+[33m1fbfeceb[m HEAD@{28}: pull: Fast-forward
+[33me09a2e7e[m HEAD@{29}: checkout: moving from revert-7-frontend to backend
+[33mdc388153[m[33m ([m[1;32mrevert-7-frontend[m[33m)[m HEAD@{30}: checkout: moving from dev to revert-7-frontend
+[33me05e1c9b[m HEAD@{31}: pull: Fast-forward
+[33m5fdfc4c4[m HEAD@{32}: reset: moving to 5fdfc4c4
+[33m9b1f799f[m HEAD@{33}: reset: moving to 9b1f799f
+[33mf531e72b[m HEAD@{34}: checkout: moving from main to dev
+[33md347a568[m[33m ([m[1;32mmain[m[33m)[m HEAD@{35}: checkout: moving from dev to main
+[33mf531e72b[m HEAD@{36}: commit (merge): Resolution de conflit de apps.py et settings.py et .gitignore
+[33m9b640aa5[m HEAD@{37}: commit (merge): Resolution de conflit de apps.py et settings.py et .gitignore
+[33m95ea78c1[m HEAD@{38}: checkout: moving from frontend to dev
+[33m9b1f799f[m HEAD@{39}: checkout: moving from dev to frontend
+[33m95ea78c1[m HEAD@{40}: checkout: moving from frontend to dev
+[33m9b1f799f[m HEAD@{41}: commit (merge): Synchronisation avec la branche
+[33m2d12c5a6[m HEAD@{42}: commit: Scripts: Correctif chargement données CSV avec valeurs nulles
+[33mf1ff8084[m HEAD@{43}: commit: Data: Import FAQ harmonisé et nettoyé en format CSV uniforme
+[33m678846a7[m HEAD@{44}: commit: Frontend: Design responsive et input accessible sur tous les appareils
+[33mdd00392a[m HEAD@{45}: commit: Backend: Configuration CORS pour réseau et API REST
+[33m5fdfc4c4[m HEAD@{46}: pull: Fast-forward
+[33m268452e9[m HEAD@{47}: reset: moving to HEAD
+[33m268452e9[m HEAD@{48}: reset: moving to HEAD
+[33m268452e9[m HEAD@{49}: merge dev: updating HEAD
+[33m268452e9[m HEAD@{50}: merge dev: updating HEAD
+[33m268452e9[m HEAD@{51}: checkout: moving from frontend to frontend
+[33m268452e9[m HEAD@{52}: pull: Fast-forward
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{53}: checkout: moving from frontend to frontend
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{54}: checkout: moving from backend to frontend
+[33me09a2e7e[m HEAD@{55}: commit (merge): Resolution de conlits
+[33m6a9a36f6[m HEAD@{56}: commit: Ignore db.sqlite3
+[33m95ea78c1[m HEAD@{57}: checkout: moving from dev to backend
+[33m95ea78c1[m HEAD@{58}: checkout: moving from backend to dev
+[33m95ea78c1[m HEAD@{59}: checkout: moving from dev to backend
+[33m95ea78c1[m HEAD@{60}: checkout: moving from backend to dev
+[33m95ea78c1[m HEAD@{61}: checkout: moving from dev to backend
+[33m95ea78c1[m HEAD@{62}: merge backend: Fast-forward
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{63}: checkout: moving from backend to dev
+[33m95ea78c1[m HEAD@{64}: pull: Fast-forward
+[33m1fd725d4[m HEAD@{65}: commit: Creation des apis pour faq avec serializers, urls + configuration minimale pour entrainement automatique du vectorizeur au lancement du serveur
+[33me2cff64d[m HEAD@{66}: commit: documentation de l'architecture du process et du test de pipeline
+[33ma7a15e4d[m HEAD@{67}: commit: Deplacement de l'alogrithme de similarite vers similarity.py + ajout du chargemnt lazy de spacy
+[33mc1eb91cb[m HEAD@{68}: reset: moving to HEAD
+[33mc1eb91cb[m HEAD@{69}: commit (merge): Retrait de db.sqlite3 du suivi Git
+[33mba856708[m HEAD@{70}: commit: Commit pour eviter le conflit lors du push
+[33md8d99f00[m HEAD@{71}: pull: Fast-forward
+[33m9f07b1ec[m HEAD@{72}: commit: Suppression de manage.py à la racine
+[33m279ff1b7[m HEAD@{73}: commit: Adaptation de l'admin, application des migrations et creation du superutilisateur
+[33md479974b[m HEAD@{74}: commit: Deplacement des modeles vers les apps
+[33m38b85e3f[m HEAD@{75}: commit: Implementation de l'algorithme de vectorization en attente de test
+[33mb8297140[m HEAD@{76}: commit (merge): Merge de origin dev vers dev
+[33m0a90588a[m HEAD@{77}: commit: Preparation pour les fixtures en attente des données
+[33ma5a242c3[m HEAD@{78}: commit: Creation du wrapper de pretraitement
+[33m80ff943e[m HEAD@{79}: commit: Ajout de Spacy et nltk et comparaison
+[33m7e061be4[m HEAD@{80}: commit: Pretraitement texte en utilisant spacy
+[33m2ea09e3b[m HEAD@{81}: commit: Pretraitement texte en utilisant nltk
+[33m7952842b[m HEAD@{82}: commit: Rapport sur le changement de dependances pour python 3.13.12
+[33mfdaf5e0e[m HEAD@{83}: commit: Suppression du venv et ajout dans le .gitignore
+[33me8cf637d[m HEAD@{84}: merge origin/backend: Fast-forward
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{85}: checkout: moving from database to backend
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{86}: merge dev: Fast-forward
+[33md347a568[m[33m ([m[1;32mmain[m[33m)[m HEAD@{87}: checkout: moving from data to database
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{88}: merge dev: Fast-forward
+[33md347a568[m[33m ([m[1;32mmain[m[33m)[m HEAD@{89}: checkout: moving from backend to data
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{90}: merge dev: Fast-forward
+[33md347a568[m[33m ([m[1;32mmain[m[33m)[m HEAD@{91}: checkout: moving from frontend to backend
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{92}: merge dev: Fast-forward
+[33md347a568[m[33m ([m[1;32mmain[m[33m)[m HEAD@{93}: checkout: moving from dev to frontend
+[33ma34f7052[m[33m ([m[1;32mdatabase[m[33m, [m[1;32mdata[m[33m)[m HEAD@{94}: commit: Structuration de base
+[33md347a568[m[33m ([m[1;32mmain[m[33m)[m HEAD@{95}: checkout: moving from main to dev
+[33md347a568[m[33m ([m[1;32mmain[m[33m)[m HEAD@{96}: checkout: moving from dev to main
+[33md347a568[m[33m ([m[1;32mmain[m[33m)[m HEAD@{97}: checkout: moving from main to dev
+[33md347a568[m[33m ([m[1;32mmain[m[33m)[m HEAD@{98}: commit (initial): Reinitialisation du dépôt
