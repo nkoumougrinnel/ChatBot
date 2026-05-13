@@ -55,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://*.ngrok-free.app',
@@ -139,22 +138,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
 }
-# CORS Configuration - Allow frontend to access API
-CORS_ALLOWED_ORIGINS = [
-    # Local development (frontend on port 3000)
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'http://192.168.10.82:3000',
-    # NGrok frontend tunnel
-    'https://sharron-prehazard-gully.ngrok-free.dev',
-    # NGrok backend tunnel (for API calls)
-    'https://patternable-felicitously-shaunta.ngrok-free.dev',
-    # Railway deployment
-    "https://chatbot-production-5202.up.railway.app",
-    # Netlify deployment
-    'https://sup-one-ai.netlify.app',
-]
+
+# CORS
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
-CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization']
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization', 'X-Requested-With']
+
+# Fonctionnement en mode hors ligne automatiquement
+os.environ["TRANSFORMERS_OFFLINE"] = "1"
+os.environ["HF_DATASETS_OFFLINE"] = "1"

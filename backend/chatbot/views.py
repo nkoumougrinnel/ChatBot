@@ -1,3 +1,20 @@
+"""
+views.py — Endpoints API du chatbot SUP'ONE.
+
+Phase 1 (conservé) :
+    POST /api/chatbot/ask/        → TF-IDF + intent detection
+
+Phase 2 (ajouté J6) :
+    POST /api/chatbot/ask/        → Pipeline RAG (MiniLM → FAISS → Phi-3)
+                                    avec streaming SSE et fallback TF-IDF automatique
+    POST /api/feedback/           → Enregistrement like/dislike
+    GET  /api/stats/              → Statistiques d'usage
+    POST /api/reload-index/       → Rechargement FAISS à chaud
+"""
+
+import json
+
+from django.http import StreamingHttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.decorators import api_view

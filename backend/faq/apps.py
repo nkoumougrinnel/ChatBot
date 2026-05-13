@@ -12,6 +12,7 @@ class FaqConfig(AppConfig):
     def ready(self):
         """
         Initialiser le vectorizer TF-IDF au démarrage de Django.
+
         Version avec logging détaillé pour debug.
         """
         
@@ -102,3 +103,4 @@ class FaqConfig(AppConfig):
             traceback.print_exc()
         
         print("[FAQ DEBUG] ready() terminé", file=sys.stderr)
+        

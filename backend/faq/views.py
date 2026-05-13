@@ -224,7 +224,6 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         response_serializer = ChatbotResponseSerializer(response_data)
         return Response(response_serializer.data, status=status.HTTP_200_OK)
 
-
 class FeedbackViewSet(viewsets.ModelViewSet):
     queryset = Feedback.objects.all().select_related('user', 'faq')
     serializer_class = FeedbackSerializer
@@ -281,3 +280,4 @@ class FeedbackViewSet(viewsets.ModelViewSet):
                     password='anonymous'
                 )
             serializer.save(user=anon_user)
+            
