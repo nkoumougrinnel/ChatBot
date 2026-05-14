@@ -11,11 +11,7 @@ Endpoints :
 """
 
 from rest_framework import viewsets, status
-<<<<<<< HEAD
-from django.db.models import Count, Avg
-=======
 from django.db.models import Count, Avg, Q
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 from django.core.cache import cache
 from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
@@ -132,18 +128,11 @@ class ChatbotAskViewSet(viewsets.ViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         question = serializer.validated_data['question']
-<<<<<<< HEAD
-        top_k = serializer.validated_data.get('top_k', 3)
-        
-        # ===== 1. Vérifier le cache =====
-        cache_key = f"query_{question.strip().lower()}"
-=======
         top_k = serializer.validated_data.get('top_k', 1)
         
         # ===== 1. Vérifier le cache =====
         import hashlib
         cache_key = f"query_{hashlib.md5(question.strip().lower().encode()).hexdigest()}"
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
         cached_response = cache.get(cache_key)
         if cached_response:
             return Response(cached_response, status=status.HTTP_200_OK)
@@ -197,96 +186,6 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         return Response(response_serializer.data, status=status.HTTP_200_OK)
 
 
-<<<<<<< HEAD
-class ChatbotAskViewSet(viewsets.ViewSet):
-    """
-    Endpoint pour poser une question au chatbot.
-    
-    - POST /api/chatbot/ask/ : poser question et obtenir top-k réponses
-    """
-    permission_classes = [AllowAny]
-    
-    @action(detail=False, methods=['post'], url_path='ask')
-    def ask(self, request):
-        """
-        Poser une question et retourner les FAQs les plus pertinentes.
-        
-        Body:
-        {
-            "question": "Comment réinitialiser mon mot de passe ?",
-            "top_k": 3
-        }
-        
-        Response:
-        {
-            "question": "Comment réinitialiser mon mot de passe ?",
-            "results": [
-                {
-                    "faq_id": 1,
-                    "question": "...",
-                    "answer": "...",
-                    "score": 0.95,
-                    "category": "Support"
-                }
-            ],
-            "count": 1
-        }
-        """
-        serializer = QuestionRequestSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
-        question = serializer.validated_data['question']
-        top_k = serializer.validated_data.get('top_k', 3)
-        
-        # Appeler le pipeline de similarité
-        try:
-            faq_results = find_best_faq(question, top_k=top_k)
-        except Exception as e:
-            return Response(
-                {'error': f'Erreur lors de la recherche : {str(e)}'},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-        
-        # Formater les résultats
-        results = []
-        status_confidence = "not found"
-        
-        for faq_result in faq_results:
-            faq = faq_result['faq']
-            score = faq_result['score']
-            
-            # Déterminer le statut de confiance
-            if score < 0.6:
-                if status_confidence == "not found":
-                    status_confidence = "not found"
-            elif 0.6 <= score < 0.8:
-                if status_confidence != "confident":
-                    status_confidence = "uncertain"
-            else:
-                status_confidence = "confident"
-            
-            results.append({
-                'faq_id': faq.id,
-                'question': faq.question,
-                'answer': faq.answer,
-                'score': round(score, 4),
-                'category': faq.category.name,
-            })
-        
-        response_data = {
-            'question': question,
-            'results': results,
-            'count': len(results),
-            'status': status_confidence,
-        }
-        
-        response_serializer = ChatbotResponseSerializer(response_data)
-        return Response(response_serializer.data, status=status.HTTP_200_OK)
-
-
-=======
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
 class FeedbackViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour les feedbacks utilisateurs.
@@ -300,19 +199,11 @@ class FeedbackViewSet(viewsets.ModelViewSet):
 
     @api_view(['GET'])
     def faq_stats(request):
-<<<<<<< HEAD
-        """GET /api/stats/ - FAQ par taux de satisfaction"""
-        # Calcul de la moyenne des scores (sur le champ numeric `score_similarite`)
-        stats = FAQ.objects.annotate(
-            avg_satisfaction=Avg('feedback__score_similarite'),
-            total_feedbacks=Count('feedback')
-=======
         """GET /api/stats/ - FAQ par taux de satisfaction (count = feedbacks positifs)"""
         # Calcul de la moyenne des scores et compte des feedbacks POSITIFS
         stats = FAQ.objects.annotate(
             avg_satisfaction=Avg('feedback__score_similarite'),
             positive_feedbacks=Count('feedback', filter=Q(feedback__feedback_type='positif'))
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
         ).order_by('-avg_satisfaction')
         data = []
         for item in stats:
@@ -320,11 +211,7 @@ class FeedbackViewSet(viewsets.ModelViewSet):
                 "id": item.id,
                 "question": item.question,
                 "avg_score": round((item.avg_satisfaction or 0), 4),
-<<<<<<< HEAD
-                "count": item.total_feedbacks
-=======
                 "count": item.positive_feedbacks
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
             })
         return Response(data)
     
@@ -346,10 +233,6 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
     
     def perform_create(self, serializer):
-<<<<<<< HEAD
-
-=======
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
         """Assigner l'utilisateur courant ou anonyme selon l'authentification."""
         from django.contrib.auth import get_user_model
         User = get_user_model()
@@ -367,8 +250,4 @@ class FeedbackViewSet(viewsets.ModelViewSet):
                     email='anonymous@chatbot.local',
                     password='anonymous'
                 )
-<<<<<<< HEAD
             serializer.save(user=anon_user)
-=======
-            serializer.save(user=anon_user)
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482

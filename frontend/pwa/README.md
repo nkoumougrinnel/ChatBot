@@ -110,4 +110,3 @@ Consulter la console du navigateur (F12) pour :
 ## Migration
 
 Cette PWA sera maintenue pendant la transition vers l'application React dans `../react-app/`.
-

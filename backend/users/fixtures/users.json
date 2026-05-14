@@ -1,13 +1,4 @@
-<<<<<<< HEAD
 [
-
-=======
-﻿[
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
   {
     "model": "users.customuser",
     "pk": 1,
@@ -34,11 +25,7 @@
       "is_staff": false,
       "is_superuser": false,
       "is_active": true,
-<<<<<<< HEAD
       "first_name": "Étudiant",
-=======
-      "first_name": "Ã‰tudiant",
->>>>>>> 5d3964364534cdcbb97c8d55151f3aac0b45f482
       "last_name": "Test",
       "date_joined": "2026-02-10T00:00:00Z",
       "role": "etudiant"
