@@ -8,6 +8,7 @@ from .views import (
     CategoryViewSet,
     FAQViewSet,
     FeedbackViewSet,
+    ChatbotAskViewSet,
     faq_stats,
     category_stats,
 )
@@ -16,6 +17,7 @@ router = DefaultRouter()
 router.register(r'categories', CategoryViewSet, basename='category')
 router.register(r'faq',        FAQViewSet,      basename='faq')
 router.register(r'feedback',   FeedbackViewSet, basename='feedback')
+router.register(r'chatbot',    ChatbotAskViewSet, basename='chatbot')
 
 urlpatterns = [
 

@@ -129,18 +129,6 @@ class ChatbotAskViewSet(viewsets.ViewSet):
 
         response_serializer = ChatbotResponseSerializer(response_data)
         return Response(response_serializer.data, status=status.HTTP_200_OK)
-
-
-class ChatbotAskViewSet(viewsets.ViewSet):
-    """
-    Endpoint pour poser une question au chatbot.
-    
-    - POST /api/chatbot/ask/ : poser question et obtenir top-k réponses
-    """
-    permission_classes = [AllowAny]
-    
-    @action(detail=False, methods=['post'], url_path='ask')
-    def ask(self, request):
         """
         Poser une question et retourner les FAQs les plus pertinentes.
         
@@ -224,37 +212,37 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         response_serializer = ChatbotResponseSerializer(response_data)
         return Response(response_serializer.data, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def faq_stats(request):
+    """GET /api/stats/ - FAQ par taux de satisfaction (count = feedbacks positifs)"""
+    # Calcul de la moyenne des scores et compte des feedbacks POSITIFS
+    stats = FAQ.objects.annotate(
+        avg_satisfaction=Avg('feedback__score_similarite'),
+        positive_feedbacks=Count('feedback', filter=Q(feedback__feedback_type='positif'))
+    ).order_by('-avg_satisfaction')
+    data = []
+    for item in stats:
+        data.append({
+            "id": item.id,
+            "question": item.question,
+            "avg_score": round((item.avg_satisfaction or 0), 4),
+            "count": item.positive_feedbacks
+        })
+    return Response(data)
+
+
+@api_view(['GET'])
+def category_stats(request):
+    """GET /api/stats/categories/ - Répartition par catégorie"""
+    categories = Category.objects.annotate(faq_count=Count('faq'))
+    data = [{"name": cat.name, "count": cat.faq_count} for cat in categories]
+    return Response(data)
+
+
 class FeedbackViewSet(viewsets.ModelViewSet):
     queryset = Feedback.objects.all().select_related('user', 'faq')
     serializer_class = FeedbackSerializer
 
-    @api_view(['GET'])
-    def faq_stats(request):
-        """GET /api/stats/ - FAQ par taux de satisfaction (count = feedbacks positifs)"""
-        # Calcul de la moyenne des scores et compte des feedbacks POSITIFS
-        stats = FAQ.objects.annotate(
-            avg_satisfaction=Avg('feedback__score_similarite'),
-            positive_feedbacks=Count('feedback', filter=Q(feedback__feedback_type='positif'))
-        ).order_by('-avg_satisfaction')
-        data = []
-        for item in stats:
-            data.append({
-                "id": item.id,
-                "question": item.question,
-                "avg_score": round((item.avg_satisfaction or 0), 4),
-                "count": item.positive_feedbacks
-            })
-        return Response(data)
-    
-    @api_view(['GET'])
-    def category_stats(request):
-        """GET /api/stats/categories/ - Répartition par catégorie"""
-        categories = Category.objects.annotate(faq_count=Count('faq'))
-        serializer = CategorySerializer(categories, many=True)
-        # On adapte le format pour inclure le compte
-        data = [{"name": cat.name, "count": cat.faq_count} for cat in categories]
-        return Response(data)
-    
     def get_permissions(self):
         if self.request.method == 'POST':
             permission_classes = [AllowAny]
