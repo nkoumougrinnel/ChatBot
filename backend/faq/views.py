@@ -32,6 +32,7 @@ from faq.serializers import (
     ChatbotResponseSerializer,
 )
 from chatbot.utils import find_best_faq
+from chatbot.engine.tfidf_fallback import search as tfidf_search, is_loaded as tfidf_loaded
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -88,7 +89,7 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         if cached:
             return Response(cached, status=status.HTTP_200_OK)
 
-        # 2. Recherche TF-IDF
+        # 2. Recherche principale
         try:
             faq_results = find_best_faq(question, top_k=top_k)
         except Exception as e:
@@ -97,7 +98,29 @@ class ChatbotAskViewSet(viewsets.ViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
-        # 3. Formatage + seuils de confiance
+        # 3. Fallback TF-IDF historique si aucune FAQ active / aucun résultat
+        if not faq_results and tfidf_loaded():
+            tfidf_answer, tfidf_score, _ = tfidf_search(question)
+            if tfidf_answer:
+                results = [{
+                    'faq_id': 0,
+                    'question': question,
+                    'answer': tfidf_answer,
+                    'score': round(tfidf_score, 4),
+                    'category': 'fallback',
+                }]
+                status_confidence = 'confident' if tfidf_score >= 0.8 else 'uncertain' if tfidf_score >= 0.6 else 'not found'
+                response_data = {
+                    'question': question,
+                    'results': results,
+                    'count': len(results),
+                    'status': status_confidence,
+                }
+                cache.set(cache_key, response_data, 3600)
+                response_serializer = ChatbotResponseSerializer(response_data)
+                return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+        # 4. Formatage du résultat principal
         results = []
         status_confidence = "not found"
 
@@ -126,89 +149,6 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         }
 
         cache.set(cache_key, response_data, 3600)
-
-        response_serializer = ChatbotResponseSerializer(response_data)
-        return Response(response_serializer.data, status=status.HTTP_200_OK)
-        """
-        Poser une question et retourner les FAQs les plus pertinentes.
-        
-        Body:
-        {
-            "question": "Comment réinitialiser mon mot de passe ?",
-            "top_k": 3
-        }
-        
-        Response:
-        {
-            "question": "Comment réinitialiser mon mot de passe ?",
-            "results": [
-                {
-                    "faq_id": 1,
-                    "question": "...",
-                    "answer": "...",
-                    "score": 0.95,
-                    "category": "Support"
-                }
-            ],
-            "count": 1
-        }
-        """
-        serializer = QuestionRequestSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
-        question = serializer.validated_data['question']
-        top_k = serializer.validated_data.get('top_k', 1)
-        
-        # ===== 1. Vérifier le cache =====
-        import hashlib
-        cache_key = f"query_{hashlib.md5(question.strip().lower().encode()).hexdigest()}"
-        cached_response = cache.get(cache_key)
-        if cached_response:
-            return Response(cached_response, status=status.HTTP_200_OK)
-        
-        # ===== 2. Recherche TF-IDF =====
-        try:
-            faq_results = find_best_faq(question, top_k=top_k)
-        except Exception as e:
-            return Response(
-                {'error': f'Erreur lors de la recherche : {str(e)}'},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-        
-        # Formater les résultats
-        results = []
-        status_confidence = "not found"
-        
-        for faq_result in faq_results:
-            faq = faq_result['faq']
-            score = faq_result['score']
-            
-            # Déterminer le statut de confiance
-            if score < 0.6:
-                if status_confidence == "not found":
-                    status_confidence = "not found"
-            elif 0.6 <= score < 0.8:
-                if status_confidence != "confident":
-                    status_confidence = "uncertain"
-            else:
-                status_confidence = "confident"
-            
-            results.append({
-                'faq_id': faq.id,
-                'question': faq.question,
-                'answer': faq.answer,
-                'score': round(score, 4),
-                'category': faq.category.name,
-            })
-        
-        response_data = {
-            'question': question,
-            'results': results,
-            'count': len(results),
-            'status': status_confidence,
-        }
-        
         response_serializer = ChatbotResponseSerializer(response_data)
         return Response(response_serializer.data, status=status.HTTP_200_OK)
 

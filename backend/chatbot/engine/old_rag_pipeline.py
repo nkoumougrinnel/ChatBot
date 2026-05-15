@@ -1,18 +1,10 @@
 """
-rag_pipeline.py — Orchestrateur principal du pipeline RAG avec optimisations.
+rag_pipeline.py — Orchestrateur principal du pipeline RAG.
 
-Flux optimisé :
-    question → embed (MiniLM avec cache) → Recherche parallèle FAISS + TF-IDF avec timeout
-        → Sélection méthode basée sur score + seuil dynamique
-        → si RAG : prompt_builder → LLM (Phi-3)
-        → si TF-IDF : réponse directe
-
-Optimisations pour la réactivité :
-    - Cache LRU des embeddings (évite recalculs)
-    - Parallélisation asynchrone FAISS + TF-IDF avec timeout séparés
-    - Seuil dynamique basé sur statistiques des scores récents
-    - Chargement paresseux des modèles (via is_loaded())
-    - Logging des performances pour monitoring
+Flux :
+    question → embed (MiniLM) → FAISS (top-3) → vérifier score
+        → si score ≥ 0.55 : prompt_builder → LLM (Phi-3)
+        → si score < 0.55 : TF-IDF fallback
 
 Expose :
     ask(question, history)          -> dict  (réponse complète)
@@ -21,20 +13,20 @@ Expose :
 
 from __future__ import annotations
 
-import asyncio
 import sys
-import time
 from pathlib import Path
 from collections.abc import Iterator
 from typing import Any
-from functools import lru_cache
 
 # --- Résolution du sys.path AVANT les imports ---
+# Permet d'exécuter ce fichier directement (python rag_pipeline.py)
+# ET d'être importé normalement par Django.
 _ENGINE_DIR = Path(__file__).resolve().parent
 if str(_ENGINE_DIR) not in sys.path:
     sys.path.insert(0, str(_ENGINE_DIR))
 
-# Imports moteur
+# Imports moteur (imports relatifs si exécuté depuis Django,
+# imports directs si exécuté en script standalone)
 try:
     from .embedder import encode
     from .faiss_search import search_with_metadata, is_loaded as faiss_loaded
@@ -50,38 +42,11 @@ except ImportError:
 
 
 # -------------------------------------------------------------------
-# Configuration optimisée
+# Seuils de confiance (configurables)
 # -------------------------------------------------------------------
 SCORE_HIGH = float(__import__("os").environ.get("RAG_SCORE_HIGH", 0.55))
 SCORE_MED = float(__import__("os").environ.get("RAG_SCORE_MED", 0.1))
 FAISS_TOP_K = int(__import__("os").environ.get("RAG_TOP_K", 3))
-TIMEOUT_FAISS = float(__import__("os").environ.get("RAG_TIMEOUT_FAISS", 2.0))  # secondes
-TIMEOUT_TFIDF = float(__import__("os").environ.get("RAG_TIMEOUT_TFIDF", 1.0))  # secondes
-
-# Cache des embeddings (LRU pour éviter surcharge mémoire)
-@lru_cache(maxsize=1000)
-def _cached_encode(question: str) -> Any:
-    """Cache des embeddings pour éviter recalculs identiques."""
-    return encode(question)
-
-# Statistiques pour seuil dynamique
-_score_history = []
-SCORE_WINDOW = 100  # nombre de scores à garder en mémoire
-
-def _update_score_history(score: float):
-    """Met à jour l'historique des scores pour calcul du seuil dynamique."""
-    _score_history.append(score)
-    if len(_score_history) > SCORE_WINDOW:
-        _score_history.pop(0)
-
-def _get_dynamic_threshold() -> float:
-    """Calcule un seuil dynamique basé sur la moyenne des scores récents."""
-    if not _score_history:
-        return SCORE_HIGH
-    avg_score = sum(_score_history) / len(_score_history)
-    # Seuil dynamique : 80% de la moyenne, borné entre 0.3 et 0.8
-    dynamic = max(0.3, min(0.8, avg_score * 0.8))
-    return dynamic
 
 # Message d'avertissement score moyen
 _WARNING_LOW_CONFIDENCE = (
@@ -91,9 +56,8 @@ _WARNING_LOW_CONFIDENCE = (
 
 
 def _select_method(best_score: float) -> str:
-    """Retourne 'RAG', 'RAG_LOW' ou 'TF-IDF' selon le score FAISS et seuil dynamique."""
-    threshold = _get_dynamic_threshold()
-    if best_score >= threshold:
+    """Retourne 'RAG', 'RAG_LOW' ou 'TF-IDF' selon le score FAISS."""
+    if best_score >= SCORE_HIGH:
         return "RAG"
     elif best_score >= SCORE_MED:
         return "RAG_LOW"
@@ -101,62 +65,9 @@ def _select_method(best_score: float) -> str:
         return "TF-IDF"
 
 
-async def _async_faiss_search(query_vec, k: int = FAISS_TOP_K):
-    """Recherche FAISS asynchrone avec gestion d'erreurs."""
-    if not faiss_loaded():
-        return []
-    try:
-        # Utilise asyncio.to_thread pour rendre FAISS (synchrone) non-bloquant
-        contexts = await asyncio.to_thread(search_with_metadata, query_vec, k)
-        return contexts
-    except Exception as e:
-        print(f"[rag_pipeline] Erreur FAISS : {e}")
-        return []
-
-
-async def _async_tfidf_search(question: str):
-    """Recherche TF-IDF asynchrone avec gestion d'erreurs."""
-    if not tfidf_loaded():
-        return None, 0.0, ""
-    try:
-        result = await asyncio.to_thread(tfidf_search, question)
-        return result
-    except Exception as e:
-        print(f"[rag_pipeline] Erreur TF-IDF : {e}")
-        return None, 0.0, ""
-
-
-async def _parallel_search(question: str, query_vec) -> tuple[list, tuple]:
-    """
-    Recherche parallèle FAISS et TF-IDF avec timeout séparés.
-    Retourne le premier résultat disponible ou les deux si timeout pas atteint.
-    """
-    # Lancer les deux recherches en parallèle
-    faiss_task = asyncio.create_task(_async_faiss_search(query_vec))
-    tfidf_task = asyncio.create_task(_async_tfidf_search(question))
-
-    # Attendre FAISS avec timeout
-    try:
-        contexts = await asyncio.wait_for(faiss_task, timeout=TIMEOUT_FAISS)
-    except asyncio.TimeoutError:
-        print(f"[rag_pipeline] Timeout FAISS ({TIMEOUT_FAISS}s), annulation")
-        contexts = []
-        faiss_task.cancel()
-
-    # Attendre TF-IDF avec timeout
-    try:
-        tfidf_result = await asyncio.wait_for(tfidf_task, timeout=TIMEOUT_TFIDF)
-    except asyncio.TimeoutError:
-        print(f"[rag_pipeline] Timeout TF-IDF ({TIMEOUT_TFIDF}s), annulation")
-        tfidf_result = (None, 0.0, "")
-        tfidf_task.cancel()
-
-    return contexts, tfidf_result
-
-
 def ask(question: str, history: list[dict] | None = None) -> dict:
     """
-    Traite une question avec parallélisation asynchrone pour maximiser la réactivité.
+    Traite une question et retourne une réponse complète (non streamée).
 
     Args:
         question: La question posée par l'étudiant.
@@ -166,19 +77,20 @@ def ask(question: str, history: list[dict] | None = None) -> dict:
         dict avec les clés :
             answer  (str)   : texte de la réponse
             sources (list)  : liste de dicts {question, score, categorie, source}
-            method  (str)   : "RAG" ou "TF-IDF"
+            method  (str)   : "RAG", "RAG_LOW" ou "TF-IDF"
             best_score (float) : meilleur score FAISS ou TF-IDF
     """
-    start_time = time.time()
+    # --- Étape 1 : Vectorisation ---
+    query_vec = encode(question)
 
-    # --- Étape 1 : Vectorisation avec cache ---
-    query_vec = _cached_encode(question)
+    # --- Étape 2 : Recherche FAISS ---
+    contexts = []
+    best_score = 0.0
 
-    # --- Étape 2 : Recherche parallèle FAISS + TF-IDF ---
-    contexts, tfidf_result = asyncio.run(_parallel_search(question, query_vec))
-
-    best_score = contexts[0]["score"] if contexts else 0.0
-    _update_score_history(best_score)  # Mise à jour statistiques pour seuil dynamique
+    if faiss_loaded():
+        contexts = search_with_metadata(query_vec, k=FAISS_TOP_K)
+        if contexts:
+            best_score = contexts[0]["score"]
 
     method = _select_method(best_score)
 
@@ -211,13 +123,10 @@ def ask(question: str, history: list[dict] | None = None) -> dict:
 
     else:
         # Fallback TF-IDF
-        tfidf_answer, tfidf_score, _ = tfidf_result
-        answer = tfidf_answer or "Désolé, je n'ai pas trouvé de réponse pertinente."
+        tfidf_answer, tfidf_score, _ = tfidf_search(question)
+        answer = tfidf_answer
         best_score = tfidf_score
         sources = []  # TF-IDF ne retourne pas de sources structurées
-
-    elapsed = time.time() - start_time
-    print(f"[rag_pipeline] Question traitée en {elapsed:.2f}s, méthode: {method}, score: {best_score:.4f}")
 
     return {
         "answer": answer,
@@ -232,7 +141,7 @@ def ask_stream(
     history: list[dict] | None = None,
 ) -> Iterator[str | dict]:
     """
-    Traite une question en streaming SSE avec parallélisation.
+    Traite une question en streaming SSE.
 
     Yield order :
         1. dict {"type": "meta", "method": ..., "sources": ..., "best_score": ...}
@@ -248,14 +157,17 @@ def ask_stream(
     Yields:
         str ou dict selon le type d'événement.
     """
-    # Vectorisation avec cache
-    query_vec = _cached_encode(question)
+    # --- Vectorisation ---
+    query_vec = encode(question)
 
-    # Recherche parallèle
-    contexts, tfidf_result = asyncio.run(_parallel_search(question, query_vec))
+    # --- Recherche FAISS ---
+    contexts = []
+    best_score = 0.0
 
-    best_score = contexts[0]["score"] if contexts else 0.0
-    _update_score_history(best_score)
+    if faiss_loaded():
+        contexts = search_with_metadata(query_vec, k=FAISS_TOP_K)
+        if contexts:
+            best_score = contexts[0]["score"]
 
     method = _select_method(best_score)
 
@@ -269,7 +181,7 @@ def ask_stream(
         for ctx in contexts[:3]
     ] if method in ("RAG", "RAG_LOW") else []
 
-    # Envoi des métadonnées d'abord
+    # --- Envoi des métadonnées d'abord ---
     yield {
         "type": "meta",
         "method": method.replace("_LOW", ""),
@@ -278,10 +190,10 @@ def ask_stream(
         "low_confidence": method == "RAG_LOW",
     }
 
-    # Streaming de la réponse
+    # --- Streaming de la réponse ---
     if method in ("RAG", "RAG_LOW"):
         if method == "RAG_LOW":
-            yield _WARNING_LOW_CONFIDENCE
+            yield _WARNING_LOW_CONFIDENCE  # avertissement avant le texte LLM
 
         if contexts:
             prompt = build_prompt(question, contexts, history)
@@ -292,8 +204,9 @@ def ask_stream(
             yield token
 
     else:
-        tfidf_answer, _, _ = tfidf_result
-        yield tfidf_answer or "Désolé, je n'ai pas trouvé de réponse pertinente."
+        # TF-IDF : réponse complète en un seul chunk
+        tfidf_answer, tfidf_score, _ = tfidf_search(question)
+        yield tfidf_answer
 
     yield {"type": "done"}
 
@@ -330,7 +243,7 @@ if __name__ == "__main__":
     import tfidf_fallback
     tfidf_fallback.load()
 
-    print("=== Test rag_pipeline.py optimisé ===\n")
+    print("=== Test rag_pipeline.py ===\n")
 
     test_cases = [
         {

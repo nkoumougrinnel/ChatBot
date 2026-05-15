@@ -23,8 +23,10 @@ from pathlib import Path
 
 # ── Résolution des imports depuis n'importe quel répertoire courant ──────────
 _ENGINE = Path(__file__).resolve().parent / "chatbot" / "engine"
-if str(_ENGINE) not in sys.path:
-    sys.path.insert(0, str(_ENGINE))
+_BACKEND_ROOT = Path(__file__).resolve().parents[2]  # backend/
+for path in (_BACKEND_ROOT, _ENGINE):
+    if str(path) not in sys.path:
+        sys.path.insert(0, str(path))
 
 # ── Couleurs terminal ────────────────────────────────────────────────────────
 GREEN  = "\033[92m"

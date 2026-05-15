@@ -21,7 +21,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 # ── Pipeline RAG Phase 2 ─────────────────────────────────────────────────────
-from chatbot.engine.rag_pipeline import ask, ask_stream, build_sse_event
+from backend.chatbot.engine.old_rag_pipeline import ask, ask_stream, build_sse_event
 
 # ── Fallback Phase 1 (conservé) ───────────────────────────────────────────────
 
