@@ -1,0 +1,562 @@
+[
+  {
+    "id": "num_001",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Comment obtenir mes identifiants pour le Wi-Fi du campus ?",
+    "reponse_enrichie": "Les identifiants Wi-Fi sont généralement fournis lors de l'inscription définitive. Vous devez vous rapprocher du service informatique avec votre reçu de paiement et votre carte d'étudiant pour l'activation de votre compte personnel.",
+    "exemples": [
+      "Où récupérer mon mot de passe Wi-Fi ?",
+      "Qui contacter pour un problème de connexion ?",
+      "Procédure d'accès au réseau sans fil"
+    ],
+    "sources": ["Service Informatique SUP'PTIC"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_002",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Le Wi-Fi est-il disponible dans tous les bâtiments ?",
+    "reponse_enrichie": "Le réseau Wi-Fi couvre les zones principales du campus, notamment les salles de cours, la bibliothèque, les laboratoires et les zones de détente. Certains points d'accès peuvent avoir une portée limitée à l'intérieur des bâtiments administratifs.",
+    "exemples": [
+      "Couverture réseau du campus",
+      "Zones de connexion gratuite",
+      "Disponibilité du Wi-Fi en bibliothèque"
+    ],
+    "sources": ["Direction Technique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_003",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Quelle est la plateforme officielle d'e-learning de SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC utilise une plateforme basée sur Moodle, accessible à l'adresse https://training.e-supptic.cm/. C'est l'espace central pour consulter les cours, soumettre des devoirs et interagir avec les enseignants.",
+    "exemples": [
+      "Lien vers le Moodle de SUP'PTIC",
+      "Comment accéder aux cours en ligne ?",
+      "Plateforme de télé-enseignement"
+    ],
+    "sources": ["Plateforme E-learning"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_004",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Comment réinitialiser mon mot de passe sur la plateforme e-learning ?",
+    "reponse_enrichie": "Sur la page de connexion de https://training.e-supptic.cm/, cliquez sur 'Mot de passe oublié'. Un lien de réinitialisation sera envoyé à votre adresse email institutionnelle. Si le problème persiste, contactez le support technique.",
+    "exemples": [
+      "Perte de mot de passe Moodle",
+      "Récupération de compte e-learning",
+      "Support technique plateforme"
+    ],
+    "sources": ["Support IT"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_005",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Quels logiciels sont mis à disposition des étudiants en ingénierie ?",
+    "reponse_enrichie": "Les étudiants ont accès à des outils spécialisés comme MATLAB, Cisco Packet Tracer, et diverses suites de développement (IDE) installées dans les laboratoires informatiques. Des licences académiques peuvent être fournies selon le niveau d'étude.",
+    "exemples": [
+      "Logiciels de simulation réseau",
+      "Outils de programmation disponibles",
+      "Accès aux licences logicielles"
+    ],
+    "sources": ["Département Ingénierie"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_006",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Y a-t-il une limite de données pour l'utilisation du Wi-Fi ?",
+    "reponse_enrichie": "L'utilisation est généralement illimitée pour les besoins académiques. Cependant, le téléchargement de fichiers volumineux non liés aux études (films, jeux) est restreint pour garantir une bande passante équitable pour tous.",
+    "exemples": [
+      "Quota de téléchargement",
+      "Restrictions d'usage Wi-Fi",
+      "Politique d'utilisation équitable"
+    ],
+    "sources": ["Règlement informatique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_007",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Puis-je accéder à la plateforme e-learning depuis mon smartphone ?",
+    "reponse_enrichie": "Oui, la plateforme est 'responsive' et peut être consultée via un navigateur mobile. Vous pouvez également utiliser l'application mobile Moodle en configurant l'URL de SUP'PTIC.",
+    "exemples": [
+      "Application mobile e-learning",
+      "Accès Moodle sur téléphone",
+      "Compatibilité mobile"
+    ],
+    "sources": ["Guide utilisateur numérique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_008",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Comment accéder aux ressources de la bibliothèque numérique ?",
+    "reponse_enrichie": "La bibliothèque numérique est accessible via le portail étudiant. Elle regroupe des thèses, des mémoires et des abonnements à des revues scientifiques internationales en rapport avec les TIC.",
+    "exemples": [
+      "Accès aux thèses en ligne",
+      "Revues scientifiques numériques",
+      "Recherche documentaire à distance"
+    ],
+    "sources": ["Bibliothèque Centrale"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_009",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Le Wi-Fi est-il sécurisé ?",
+    "reponse_enrichie": "Le réseau utilise un protocole de sécurité WPA2-Enterprise. Chaque étudiant se connecte avec ses propres identifiants, ce qui assure une traçabilité et une protection des données personnelles sur le réseau local.",
+    "exemples": [
+      "Sécurité du réseau Wi-Fi",
+      "Chiffrement des données",
+      "Protection contre les intrusions"
+    ],
+    "sources": ["Service Sécurité Informatique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_010",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Comment savoir si un nouveau cours est disponible en ligne ?",
+    "reponse_enrichie": "Des notifications automatiques sont envoyées par email via la plateforme Moodle. Il est conseillé de vérifier régulièrement le tableau de bord de votre espace personnel.",
+    "exemples": [
+      "Alertes nouveaux cours",
+      "Notifications Moodle",
+      "Suivi des mises à jour pédagogiques"
+    ],
+    "sources": ["Scolarité"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_011",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Existe-t-il un laboratoire de langues numérique ?",
+    "reponse_enrichie": "Oui, SUP'PTIC dispose d'un laboratoire multimédia dédié à l'apprentissage des langues (Anglais/Français) avec des logiciels interactifs pour améliorer l'expression orale et la compréhension.",
+    "exemples": [
+      "Apprentissage des langues assisté par ordinateur",
+      "Logiciels de langues",
+      "Accès au labo de langues"
+    ],
+    "sources": ["Département des Langues"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_012",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Puis-je connecter plusieurs appareils au Wi-Fi ?",
+    "reponse_enrichie": "En règle générale, un étudiant peut connecter jusqu'à deux appareils simultanément (par exemple un ordinateur et un smartphone) avec ses identifiants.",
+    "exemples": [
+      "Nombre d'appareils autorisés",
+      "Connexion multi-appareils",
+      "Limitation de session"
+    ],
+    "sources": ["Support Technique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_013",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Les examens peuvent-ils se dérouler sur la plateforme numérique ?",
+    "reponse_enrichie": "Oui, certains contrôles continus et tests de niveau se font directement en ligne sous forme de QCM ou de dépôts de fichiers sur Moodle.",
+    "exemples": [
+      "Examens en ligne",
+      "Modalités des tests numériques",
+      "Évaluation sur Moodle"
+    ],
+    "sources": ["Direction des Études"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_014",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Comment obtenir une adresse email institutionnelle ?",
+    "reponse_enrichie": "L'adresse email (souvent prenom.nom@e-supptic.cm) est créée automatiquement après la validation de l'inscription. Elle est indispensable pour toutes les communications officielles.",
+    "exemples": [
+      "Création d'email étudiant",
+      "Format de l'adresse email",
+      "Usage de la messagerie académique"
+    ],
+    "sources": ["Service Informatique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_015",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Que faire si le Wi-Fi ne fonctionne pas dans ma salle ?",
+    "reponse_enrichie": "Signalez le problème au délégué de classe qui fera remonter l'information au service technique, ou rendez-vous directement au bureau du support informatique pour signaler une panne de borne.",
+    "exemples": [
+      "Signaler une panne réseau",
+      "Problème de borne Wi-Fi",
+      "Maintenance informatique"
+    ],
+    "sources": ["Support IT"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_016",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Les anciens étudiants gardent-ils accès à la plateforme ?",
+    "reponse_enrichie": "L'accès est généralement maintenu pendant un an après la diplomation pour permettre la récupération des ressources. Passé ce délai, le compte est archivé.",
+    "exemples": [
+      "Accès alumni e-learning",
+      "Durée de validité du compte",
+      "Archivage des données"
+    ],
+    "sources": ["Service Informatique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_017",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Qu'est-ce que la 'Boîte numérique de recueil d'observations' ?",
+    "reponse_enrichie": "C'est un outil disponible sur la plateforme e-learning permettant aux étudiants de soumettre anonymement ou non des suggestions pour l'amélioration des services de l'école.",
+    "exemples": [
+      "Suggestions en ligne",
+      "Amélioration des services",
+      "Feedback étudiant numérique"
+    ],
+    "sources": ["Direction de la Communication"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_018",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Le Wi-Fi est-il accessible 24h/24 ?",
+    "reponse_enrichie": "Oui, le réseau Wi-Fi reste actif en permanence, y compris le soir et les week-ends, pour permettre aux étudiants résidant à proximité ou travaillant tard de réviser.",
+    "exemples": [
+      "Horaires d'accès Wi-Fi",
+      "Connexion nocturne",
+      "Disponibilité week-end"
+    ],
+    "sources": ["Service Technique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_019",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Comment soumettre un devoir sur Moodle ?",
+    "reponse_enrichie": "Allez dans le cours concerné, cliquez sur l'activité 'Devoir', puis sur 'Ajouter un travail'. Glissez votre fichier et enregistrez. Vérifiez que le statut passe à 'Remis pour évaluation'.",
+    "exemples": [
+      "Dépôt de fichier Moodle",
+      "Soumission de projet en ligne",
+      "Confirmation de remise de devoir"
+    ],
+    "sources": ["Guide de l'étudiant"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_020",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Y a-t-il des formations gratuites sur les outils numériques ?",
+    "reponse_enrichie": "Oui, SUP'PTIC organise régulièrement des séminaires d'imprégnation au numérique pour les nouveaux étudiants afin de les familiariser avec Moodle, la recherche documentaire et les outils collaboratifs.",
+    "exemples": [
+      "Séminaire d'imprégnation numérique",
+      "Formation Moodle débutant",
+      "Ateliers outils TIC"
+    ],
+    "sources": ["Direction des Études"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_021",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Puis-je partager mes identifiants Wi-Fi avec un ami ?",
+    "reponse_enrichie": "Non, les identifiants sont strictement personnels. Toute activité illégale effectuée avec votre compte engagera votre responsabilité disciplinaire.",
+    "exemples": [
+      "Partage de compte Wi-Fi",
+      "Responsabilité de l'utilisateur",
+      "Confidentialité des accès"
+    ],
+    "sources": ["Règlement Intérieur"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_022",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Comment participer aux forums de discussion des cours ?",
+    "reponse_enrichie": "Dans chaque module de cours sur Moodle, un forum est souvent disponible. Cliquez sur 'Ajouter une discussion' pour poser une question ou répondez aux fils existants pour échanger avec vos camarades.",
+    "exemples": [
+      "Interaction sur les forums",
+      "Poser une question en ligne",
+      "Entraide entre étudiants"
+    ],
+    "sources": ["Plateforme E-learning"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_023",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Comment accéder aux simulateurs réseau à distance ?",
+    "reponse_enrichie": "Certains laboratoires virtuels sont accessibles via VPN ou via des interfaces web spécifiques fournies par les enseignants pour les travaux pratiques à domicile.",
+    "exemples": [
+      "Accès VPN étudiant",
+      "Laboratoires virtuels",
+      "TP à distance"
+    ],
+    "sources": ["Département Ingénierie"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_024",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Le Wi-Fi est-il disponible sur le campus de Buea ?",
+    "reponse_enrichie": "Oui, le campus de Buea bénéficie également d'une infrastructure réseau et d'un accès Wi-Fi pour les étudiants, synchronisé avec les mêmes identifiants que ceux de Yaoundé.",
+    "exemples": [
+      "Wi-Fi campus Buea",
+      "Interconnexion des campus",
+      "Services numériques à Buea"
+    ],
+    "sources": ["Direction Technique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_025",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Puis-je consulter mes notes sur la plateforme e-learning ?",
+    "reponse_enrichie": "Oui, les notes des contrôles continus effectués en ligne sont visibles dans la section 'Notes' de chaque cours sur Moodle. Les résultats finaux sont toutefois publiés sur le site principal.",
+    "exemples": [
+      "Consultation des notes CC",
+      "Relevé de notes numérique",
+      "Suivi des évaluations"
+    ],
+    "sources": ["Scolarité"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_026",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Comment utiliser l'incubateur SUP'PTIC Business Academy ?",
+    "reponse_enrichie": "L'incubateur offre des outils numériques de prototypage et un accompagnement pour les projets innovants. L'accès se fait sur sélection de projet via la plateforme dédiée.",
+    "exemples": [
+      "Accès à l'incubateur",
+      "Prototypage numérique",
+      "Accompagnement startup"
+    ],
+    "sources": ["SUP'PTIC Business Academy"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_027",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Y a-t-il un filtrage de contenu sur le Wi-Fi ?",
+    "reponse_enrichie": "Oui, pour des raisons de sécurité et de déontologie, l'accès à certains sites malveillants ou inappropriés est bloqué par le pare-feu de l'école.",
+    "exemples": [
+      "Sites bloqués",
+      "Filtrage web",
+      "Sécurité de navigation"
+    ],
+    "sources": ["Service Informatique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_028",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Comment contacter un enseignant via Moodle ?",
+    "reponse_enrichie": "Utilisez la messagerie interne de Moodle en cliquant sur l'icône de bulle en haut à droite, puis recherchez le nom de l'enseignant pour lui envoyer un message direct.",
+    "exemples": [
+      "Messagerie Moodle",
+      "Contacter un prof en ligne",
+      "Communication pédagogique"
+    ],
+    "sources": ["Guide utilisateur"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_029",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Où trouver les emplois du temps numériques ?",
+    "reponse_enrichie": "Les emplois du temps sont mis à jour hebdomadairement sur la plateforme e-learning dans la catégorie 'EMPLOIS DE TEMPS' et sur les écrans d'affichage numérique du campus.",
+    "exemples": [
+      "Planning des cours en ligne",
+      "Mise à jour emploi du temps",
+      "Affichage numérique"
+    ],
+    "sources": ["Scolarité"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_030",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Le Wi-Fi est-il gratuit pour tous les étudiants ?",
+    "reponse_enrichie": "Oui, l'accès au Wi-Fi est inclus dans les frais de scolarité et de services numériques payés lors de l'inscription annuelle.",
+    "exemples": [
+      "Coût du Wi-Fi",
+      "Frais numériques",
+      "Accès gratuit étudiant"
+    ],
+    "sources": ["Agence Comptable"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_031",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Puis-je télécharger les cours pour les lire hors ligne ?",
+    "reponse_enrichie": "Oui, la plupart des supports (PDF, vidéos) sont téléchargeables. L'application mobile Moodle permet également de synchroniser les cours pour une consultation sans connexion.",
+    "exemples": [
+      "Lecture hors ligne",
+      "Téléchargement de supports",
+      "Mode déconnecté Moodle"
+    ],
+    "sources": ["Plateforme E-learning"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_032",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Comment s'inscrire aux certifications Huawei via l'école ?",
+    "reponse_enrichie": "SUP'PTIC étant une Huawei ICT Academy, les inscriptions se font via la section dédiée sur la plateforme e-learning ou auprès du coordonnateur de l'académie Huawei au sein de l'école.",
+    "exemples": [
+      "Certification Huawei ICT",
+      "Huawei Academy SUP'PTIC",
+      "Inscription examens certifiants"
+    ],
+    "sources": ["Huawei ICT Academy SUP'PTIC"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_033",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Accès Wi-Fi",
+    "question": "Quelle est la vitesse moyenne du Wi-Fi ?",
+    "reponse_enrichie": "L'école dispose d'une connexion fibre optique haut débit. La vitesse par utilisateur varie selon l'affluence, mais elle est optimisée pour le streaming éducatif et la recherche.",
+    "exemples": [
+      "Débit internet campus",
+      "Performance Wi-Fi",
+      "Qualité de connexion"
+    ],
+    "sources": ["Service Technique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_034",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Plateformes collaboratives",
+    "question": "Comment signaler un bug sur la plateforme ?",
+    "reponse_enrichie": "Envoyez un email descriptif avec une capture d'écran à support@e-supptic.cm ou utilisez le formulaire de contact sur la plateforme.",
+    "exemples": [
+      "Signaler un problème technique",
+      "Bug Moodle",
+      "Assistance plateforme"
+    ],
+    "sources": ["Support IT"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "num_035",
+    "categorie": "Numérique étudiant",
+    "sous_theme": "Outils pédagogiques",
+    "question": "Existe-t-il un espace de stockage cloud pour les étudiants ?",
+    "reponse_enrichie": "Via votre compte institutionnel, vous pouvez bénéficier d'espaces de stockage sur des solutions partenaires ou sur le serveur de fichiers local pour vos projets de fin d'études.",
+    "exemples": [
+      "Stockage en ligne étudiant",
+      "Cloud académique",
+      "Sauvegarde de projets"
+    ],
+    "sources": ["Service Informatique"],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  }
+]

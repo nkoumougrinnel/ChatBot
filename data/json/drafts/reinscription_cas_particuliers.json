@@ -1,0 +1,537 @@
+[
+  {
+    "id": "faq_reins_001",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quelles sont les conditions générales de réinscription à SUP'PTIC ?",
+    "reponse_enrichie": "Les conditions générales de réinscription à SUP'PTIC incluent généralement la validation d'un certain nombre de crédits ou d'unités d'enseignement, le respect des délais administratifs et le paiement des frais de scolarité. Des détails spécifiques sont souvent précisés dans le règlement intérieur de l'établissement ou les circulaires annuelles.",
+    "exemples": [
+      "Quel est le calendrier de réinscription ?",
+      "Y a-t-il des prérequis académiques pour la réinscription ?",
+      "Quels documents sont nécessaires pour la réinscription ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_002",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quel est le délai pour la réinscription annuelle ?",
+    "reponse_enrichie": "Le délai de réinscription est généralement communiqué par l'administration de SUP'PTIC en début d'année académique via des avis officiels ou sur le site web. Il est crucial de respecter ces dates pour éviter des pénalités ou la perte de l'année académique.",
+    "exemples": [
+      "Où puis-je trouver le calendrier de réinscription ?",
+      "Que se passe-t-il si je rate la date limite de réinscription ?"
+    ],
+    "sources": ["Avis administratifs SUP'PTIC", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_003",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Peut-on se réinscrire après une interruption d'études ?",
+    "reponse_enrichie": "La réinscription après une interruption d'études est souvent possible, mais elle est soumise à des conditions spécifiques. Il peut être nécessaire de déposer une demande de réintégration, de justifier l'interruption et de satisfaire à d'éventuels critères académiques ou de capacité d'accueil.",
+    "exemples": [
+      "Comment demander une réintégration après une pause ?",
+      "Quels sont les documents à fournir pour une réintégration ?",
+      "Y a-t-il des frais supplémentaires pour une réintégration ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_004",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Qu'est-ce qu'un transfert d'études et comment le demander à SUP'PTIC ?",
+    "reponse_enrichie": "Un transfert d'études implique le changement d'établissement ou de filière. Pour le demander à SUP'PTIC, il faut généralement soumettre un dossier comprenant les relevés de notes, les programmes de cours suivis, une lettre de motivation et l'accord de l'établissement d'origine et d'accueil. Les critères d'admission sont basés sur l'équivalence des formations et la capacité d'accueil.",
+    "exemples": [
+      "Quels sont les critères d'éligibilité pour un transfert ?",
+      "Quels documents sont requis pour un dossier de transfert ?",
+      "Quel est le processus de décision pour les transferts ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_005",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quelles sont les conditions pour un transfert interne entre filières à SUP'PTIC ?",
+    "reponse_enrichie": "Les transferts internes à SUP'PTIC sont possibles sous certaines conditions, souvent liées aux résultats académiques de l'étudiant, à la cohérence du parcours envisagé et à la disponibilité des places dans la filière souhaitée. Une commission pédagogique examine généralement ces demandes.",
+    "exemples": [
+      "Quand puis-je demander un transfert interne ?",
+      "Mes notes sont-elles prises en compte pour un transfert interne ?",
+      "Y a-t-il des filières où les transferts internes sont plus difficiles ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_006",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Comment se déroule une demande de réorientation à SUP'PTIC ?",
+    "reponse_enrichie": "Une demande de réorientation à SUP'PTIC implique généralement un entretien avec un conseiller d'orientation ou le responsable pédagogique, la soumission d'un dossier expliquant les motivations et le projet professionnel, et l'évaluation des compétences acquises. L'objectif est d'assurer que la nouvelle orientation est adaptée au profil de l'étudiant.",
+    "exemples": [
+      "Qui contacter pour une demande de réorientation ?",
+      "Quels sont les délais pour déposer une demande de réorientation ?",
+      "La réorientation est-elle garantie ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_007",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quelles sont les implications financières d'une réorientation ?",
+    "reponse_enrichie": "Les implications financières d'une réorientation peuvent varier. Il peut y avoir des frais de dossier, des ajustements des frais de scolarité en fonction de la nouvelle filière, ou des remboursements partiels si la réorientation intervient en cours d'année. Il est conseillé de se renseigner auprès du service financier de SUP'PTIC.",
+    "exemples": [
+      "Les frais de scolarité sont-ils les mêmes après une réorientation ?",
+      "Puis-je obtenir un remboursement si je me réoriente en cours de semestre ?"
+    ],
+    "sources": ["Service financier SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_008",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Comment gérer une reprise d'études après un échec ou une longue absence ?",
+    "reponse_enrichie": "La reprise d'études après un échec ou une longue absence nécessite souvent une démarche administrative spécifique. Cela peut inclure une demande de dérogation, la validation d'acquis d'expérience (VAE) ou la reprise à un niveau inférieur. Un accompagnement pédagogique peut être proposé.",
+    "exemples": [
+      "Quelles sont les options après un échec universitaire ?",
+      "Puis-je reprendre mes études au même niveau après une longue absence ?",
+      "Existe-t-il un soutien pour les étudiants en reprise d'études ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_009",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Les crédits obtenus dans un autre établissement sont-ils reconnus par SUP'PTIC ?",
+    "reponse_enrichie": "La reconnaissance des crédits obtenus dans un autre établissement dépend des accords inter-universitaires, de la nature des cours et de l'évaluation par la commission pédagogique de SUP'PTIC. Il est essentiel de fournir les descriptifs de cours et les relevés de notes détaillés.",
+    "exemples": [
+      "Comment faire valider mes crédits ?",
+      "Quels types de cours sont éligibles à la reconnaissance ?",
+      "Y a-t-il une limite au nombre de crédits transférables ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_010",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Existe-t-il des bourses ou aides financières pour les étudiants en réorientation ou reprise d'études ?",
+    "reponse_enrichie": "SUP'PTIC peut proposer des bourses ou des aides financières spécifiques, ou orienter les étudiants vers des dispositifs nationaux ou internationaux. Les conditions d'éligibilité varient et sont souvent basées sur des critères sociaux ou académiques. Il est recommandé de contacter le service des affaires estudiantines.",
+    "exemples": [
+      "Quels sont les critères pour obtenir une bourse ?",
+      "Où puis-je trouver des informations sur les aides financières ?",
+      "Les étudiants en reprise d'études sont-ils éligibles aux bourses ?"
+    ],
+    "sources": ["Service des affaires estudiantines SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_011",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Comment contester une décision de refus de réinscription, de transfert ou de réorientation ?",
+    "reponse_enrichie": "En cas de refus, il est généralement possible de déposer un recours gracieux auprès de l'administration de SUP'PTIC, en fournissant des arguments solides et des pièces justificatives supplémentaires. Une commission de recours peut être saisie pour réexaminer la décision.",
+    "exemples": [
+      "Quel est le processus de recours ?",
+      "Quels documents dois-je joindre à mon recours ?",
+      "Quel est le délai pour déposer un recours ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_012",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Y a-t-il des quotas pour les transferts ou les réorientations à SUP'PTIC ?",
+    "reponse_enrichie": "Oui, il est fréquent que des quotas soient appliqués pour les transferts et les réorientations, en fonction de la capacité d'accueil des filières et des départements. Ces quotas visent à maintenir un équilibre pédagogique et à garantir des conditions d'apprentissage optimales.",
+    "exemples": [
+      "Comment connaître les quotas disponibles ?",
+      "Les quotas varient-ils d'une année à l'autre ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_013",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quels sont les critères de validation des acquis pour une reprise d'études ?",
+    "reponse_enrichie": "Les critères de validation des acquis pour une reprise d'études peuvent inclure l'évaluation des diplômes obtenus, de l'expérience professionnelle pertinente, et parfois des tests de niveau ou des entretiens. L'objectif est de déterminer le niveau d'intégration le plus approprié.",
+    "exemples": [
+      "Qu'est-ce que la VAE à SUP'PTIC ?",
+      "Comment mon expérience professionnelle est-elle évaluée ?",
+      "Dois-je passer des examens pour la validation des acquis ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_014",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Peut-on changer de cycle d'études (ex: Licence vers Master) via une réorientation ou un transfert ?",
+    "reponse_enrichie": "Le passage d'un cycle à un autre (Licence vers Master, par exemple) est généralement régi par des concours d'entrée ou des procédures d'admission spécifiques, plutôt que par de simples transferts ou réorientations. Cependant, des passerelles peuvent exister sous certaines conditions académiques.",
+    "exemples": [
+      "Comment passer de la Licence au Master à SUP'PTIC ?",
+      "Y a-t-il des concours spécifiques pour le Master ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_015",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quelles sont les conséquences d'une non-réinscription dans les délais ?",
+    "reponse_enrichie": "Une non-réinscription dans les délais peut entraîner la perte de l'année académique, la radiation des listes d'étudiants, et la nécessité de suivre une procédure de réintégration plus complexe et potentiellement payante pour reprendre les études ultérieurement.",
+    "exemples": [
+      "Puis-je être exclu si je ne me réinscris pas à temps ?",
+      "Comment puis-je régulariser ma situation après une non-réinscription ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_016",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Les étudiants étrangers ont-ils des procédures de réinscription ou de transfert spécifiques ?",
+    "reponse_enrichie": "Oui, les étudiants étrangers peuvent avoir des procédures de réinscription ou de transfert spécifiques, notamment en ce qui concerne les visas, les équivalences de diplômes et les démarches auprès des ambassades ou consulats. Il est recommandé de contacter le service des relations internationales de SUP'PTIC.",
+    "exemples": [
+      "Quels documents supplémentaires les étudiants étrangers doivent-ils fournir ?",
+      "Y a-t-il un service dédié aux étudiants internationaux ?"
+    ],
+    "sources": ["Service des relations internationales SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_017",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quels sont les motifs valables pour une demande de dérogation de réinscription ?",
+    "reponse_enrichie": "Les motifs valables pour une demande de dérogation de réinscription incluent généralement des raisons médicales graves, des cas de force majeure, des situations sociales difficiles ou des engagements professionnels exceptionnels. Chaque cas est examiné individuellement par une commission.",
+    "exemples": [
+      "Quels justificatifs sont acceptés pour une dérogation ?",
+      "Comment déposer une demande de dérogation ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_018",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "La réinscription est-elle automatique si toutes les conditions sont remplies ?",
+    "reponse_enrichie": "La réinscription n'est pas toujours automatique, même si toutes les conditions sont remplies. Une validation administrative est souvent nécessaire pour confirmer l'inscription et l'affectation pédagogique. Il est important de suivre toutes les étapes du processus.",
+    "exemples": [
+      "Dois-je vérifier le statut de ma réinscription ?",
+      "Comment savoir si ma réinscription est validée ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_019",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Peut-on se réinscrire dans une filière différente de celle d'origine après un échec ?",
+    "reponse_enrichie": "Oui, il est souvent possible de se réinscrire dans une filière différente après un échec, cela relève alors d'une démarche de réorientation. Les conditions dépendront des passerelles existantes et de l'adéquation du profil de l'étudiant avec les exigences de la nouvelle filière.",
+    "exemples": [
+      "Quelles sont les filières accessibles après un échec ?",
+      "Dois-je refaire une demande d'admission complète ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_020",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quels sont les documents à fournir pour une réinscription ?",
+    "reponse_enrichie": "Les documents requis pour une réinscription incluent généralement une fiche de réinscription dûment remplie, une preuve de paiement des frais de scolarité, une copie du relevé de notes de l'année précédente et parfois une attestation d'assurance. La liste exacte est fournie par l'administration.",
+    "exemples": [
+      "Où obtenir la fiche de réinscription ?",
+      "Dois-je fournir des photos d'identité ?"
+    ],
+    "sources": ["Administration SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_021",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Y a-t-il des frais de réinscription spécifiques pour les cas particuliers (transfert, réorientation) ?",
+    "reponse_enrichie": "Oui, des frais de dossier ou des frais administratifs spécifiques peuvent être appliqués pour les demandes de transfert ou de réorientation, en plus des frais de scolarité habituels. Il est important de se renseigner auprès du service financier.",
+    "exemples": [
+      "Combien coûtent les frais de transfert ?",
+      "Les frais de réorientation sont-ils remboursables ?"
+    ],
+    "sources": ["Service financier SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_022",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Comment les absences prolongées sont-elles gérées pour la réinscription ?",
+    "reponse_enrichie": "Les absences prolongées peuvent affecter la réinscription. Si l'absence est justifiée (maladie, service militaire, etc.), une demande de suspension d'études peut être accordée. Dans le cas contraire, une procédure de réintégration peut être nécessaire avec des conditions spécifiques.",
+    "exemples": [
+      "Comment demander une suspension d'études ?",
+      "Quelles sont les conséquences d'une absence non justifiée ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_023",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Peut-on se réinscrire en cours d'année académique ?",
+    "reponse_enrichie": "La réinscription en cours d'année académique est généralement exceptionnelle et soumise à des conditions très strictes, souvent liées à des cas de force majeure ou à des décisions administratives spécifiques. Il est rare de pouvoir intégrer un cursus après le début des cours.",
+    "exemples": [
+      "Dans quels cas peut-on se réinscrire en cours d'année ?",
+      "Quelles sont les démarches pour une réinscription tardive ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_024",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Comment les étudiants en situation de handicap gèrent-ils leur réinscription ou réorientation ?",
+    "reponse_enrichie": "Les étudiants en situation de handicap bénéficient généralement d'un accompagnement spécifique pour leur réinscription ou réorientation, avec des aménagements possibles des procédures et des conditions d'études. Il est conseillé de contacter le service dédié aux étudiants en situation de handicap.",
+    "exemples": [
+      "Quels sont les aménagements possibles pour les étudiants handicapés ?",
+      "Qui contacter pour un accompagnement spécifique ?"
+    ],
+    "sources": ["Service handicap SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_025",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Les étudiants boursiers ont-ils des règles de réinscription différentes ?",
+    "reponse_enrichie": "Oui, les étudiants boursiers peuvent avoir des règles de réinscription spécifiques, souvent liées au maintien de leurs résultats académiques et au respect des conditions d'attribution de leur bourse. Il est impératif de consulter les règlements de l'organisme de bourse et de SUP'PTIC.",
+    "exemples": [
+      "Quelles sont les conditions de maintien de bourse pour la réinscription ?",
+      "Qui contacter pour les questions relatives aux bourses ?"
+    ],
+    "sources": ["Organisme de bourse", "Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_026",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Comment se réinscrire après une année de césure ?",
+    "reponse_enrichie": "Après une année de césure, la réinscription nécessite généralement de suivre la procédure de réintégration, en fournissant l'attestation de fin de césure et en respectant les délais fixés par l'administration. Il est conseillé de maintenir le contact avec l'établissement pendant la césure.",
+    "exemples": [
+      "Quels documents pour la réinscription après une césure ?",
+      "Y a-t-il des conditions académiques pour la réintégration après une césure ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_027",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Peut-on faire une demande de transfert vers SUP'PTIC en cours de semestre ?",
+    "reponse_enrichie": "Les demandes de transfert vers SUP'PTIC en cours de semestre sont généralement très difficiles à obtenir et sont réservées à des situations exceptionnelles. La plupart des transferts sont traités avant le début de l'année académique ou entre deux semestres.",
+    "exemples": [
+      "Quelles sont les exceptions pour un transfert en cours de semestre ?",
+      "Quel est le meilleur moment pour demander un transfert ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_028",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Comment les redoublements sont-ils gérés en termes de réinscription ?",
+    "reponse_enrichie": "Les redoublements impliquent une réinscription dans la même année d'études. Les conditions de réinscription pour les redoublants sont généralement les mêmes que pour les autres étudiants, mais peuvent inclure des entretiens pédagogiques ou des avertissements académiques.",
+    "exemples": [
+      "Un redoublement est-il automatique ?",
+      "Y a-t-il une limite au nombre de redoublements autorisés ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_029",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quelles sont les démarches pour une réorientation vers une formation professionnelle ?",
+    "reponse_enrichie": "Une réorientation vers une formation professionnelle peut nécessiter des démarches spécifiques, comme la recherche de stages, la candidature à des programmes professionnalisants ou l'obtention de certifications. SUP'PTIC peut offrir des conseils d'orientation pour ces parcours.",
+    "exemples": [
+      "SUP'PTIC propose-t-il des formations professionnelles ?",
+      "Comment trouver un stage après une réorientation professionnelle ?"
+    ],
+    "sources": ["Service d'orientation SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_030",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Peut-on faire une réorientation vers une autre université après avoir commencé à SUP'PTIC ?",
+    "reponse_enrichie": "Oui, il est possible de se réorienter vers une autre université après avoir commencé à SUP'PTIC. Cela implique une procédure de transfert externe, avec les mêmes exigences de dossier et d'acceptation par l'établissement d'accueil que pour un transfert classique.",
+    "exemples": [
+      "Quelles sont les étapes pour un transfert vers une autre université ?",
+      "Mes crédits seront-ils reconnus par l'autre université ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_031",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quelles sont les conditions pour une réinscription en tant qu'auditeur libre ?",
+    "reponse_enrichie": "La réinscription en tant qu'auditeur libre permet de suivre des cours sans viser un diplôme. Les conditions incluent généralement le paiement de frais spécifiques et l'accord du responsable pédagogique. Les auditeurs libres n'ont pas toujours accès à toutes les ressources de l'établissement.",
+    "exemples": [
+      "Quels sont les avantages d'être auditeur libre ?",
+      "Les auditeurs libres peuvent-ils passer les examens ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_032",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Comment les étudiants salariés gèrent-ils leur réinscription et leur emploi ?",
+    "reponse_enrichie": "Les étudiants salariés peuvent bénéficier d'aménagements pour leur réinscription, comme des horaires de cours adaptés ou des régimes d'études spécifiques. Il est important de communiquer avec l'administration et les responsables pédagogiques pour trouver des solutions compatibles avec l'emploi.",
+    "exemples": [
+      "Existe-t-il des horaires aménagés pour les étudiants salariés ?",
+      "Comment concilier études et travail à SUP'PTIC ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_033",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Quelles sont les options pour les étudiants ayant des difficultés académiques pour se réinscrire ?",
+    "reponse_enrichie": "Les étudiants ayant des difficultés académiques peuvent se voir proposer des mesures d'accompagnement, comme du tutorat, des cours de soutien ou une réorientation vers une filière plus adaptée. La réinscription peut être conditionnée à l'acceptation de ces mesures.",
+    "exemples": [
+      "Quels soutiens sont offerts aux étudiants en difficulté ?",
+      "La réinscription est-elle possible après plusieurs échecs ?"
+    ],
+    "sources": ["Service pédagogique SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_034",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Comment les changements de programme d'études affectent-ils la réinscription ?",
+    "reponse_enrichie": "Les changements de programme d'études peuvent nécessiter une réinscription dans la nouvelle filière, avec une évaluation des équivalences de cours et des ajustements du parcours pédagogique. Il est important de se renseigner sur les modalités de transition.",
+    "exemples": [
+      "Dois-je refaire des cours si le programme change ?",
+      "Comment mes anciens crédits sont-ils pris en compte ?"
+    ],
+    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  },
+  {
+    "id": "faq_reins_035",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Réinscription et cas particuliers",
+    "question": "Où trouver le formulaire de demande de transfert ou de réorientation à SUP'PTIC ?",
+    "reponse_enrichie": "Les formulaires de demande de transfert ou de réorientation sont généralement disponibles sur le site web de SUP'PTIC, dans la section 'Scolarité' ou 'Admission', ou peuvent être retirés directement auprès du service des affaires académiques. Il est conseillé de vérifier la version la plus récente.",
+    "exemples": [
+      "Le formulaire est-il téléchargeable en ligne ?",
+      "Quel service gère les formulaires de transfert ?"
+    ],
+    "sources": ["Site web SUP'PTIC (à confirmer)", "Service des affaires académiques SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": false
+  }
+]
