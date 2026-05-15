@@ -1,0 +1,562 @@
+[
+    {
+      "id": "faq_secu_001",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Règlement intérieur",
+      "question": "Pourquoi le règlement intérieur est-il important à SUP'PTIC ?",
+      "reponse_enrichie": "Le règlement intérieur est important à SUP'PTIC car il permet de maintenir l'ordre et la discipline dans l'établissement, garantissant ainsi un cadre serein pour l'apprentissage.",
+      "exemples": [
+        "À quoi sert le règlement intérieur à SUP'PTIC ?",
+        "Le règlement intérieur est-il remis à chaque nouvel étudiant ?",
+        "Quelles sont les principales règles du règlement intérieur de SUP'PTIC ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_002",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Ponctualité et horaires",
+      "question": "Les étudiants doivent-ils respecter les horaires ?",
+      "reponse_enrichie": "Oui, le respect des horaires est obligatoire à SUP'PTIC. En cas de non-respect, les étudiants accumulent des heures d'absence qui peuvent entraîner des sanctions disciplinaires.",
+      "exemples": [
+        "Que se passe-t-il si un étudiant arrive souvent en retard ?",
+        "Les absences non justifiées entraînent-elles des sanctions à SUP'PTIC ?",
+        "Comment les heures d'absence sont-elles comptabilisées à SUP'PTIC ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_003",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Sécurité sur le campus",
+      "question": "Pourquoi la sécurité est-elle essentielle dans une école ?",
+      "reponse_enrichie": "La sécurité est essentielle dans une école car elle protège les étudiants, le personnel et les biens, créant ainsi un environnement propice à l'apprentissage.",
+      "exemples": [
+        "Quels dispositifs de sécurité existent à SUP'PTIC ?",
+        "La sécurité sur le campus inclut-elle la protection des biens matériels ?",
+        "Comment SUP'PTIC assure-t-elle la sécurité de ses étudiants ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_004",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Sécurité sur le campus",
+      "question": "Existe-t-il des agents de sécurité sur le campus ?",
+      "reponse_enrichie": "Oui, des agents de sécurité assurent la surveillance permanente du campus de SUP'PTIC pour garantir la sécurité de tous.",
+      "exemples": [
+        "Les agents de sécurité sont-ils présents à toutes les entrées du campus ?",
+        "Quel est le rôle des agents de sécurité à SUP'PTIC ?",
+        "Les agents de sécurité interviennent-ils en cas de conflit entre étudiants ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_005",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Comportements interdits",
+      "question": "Les comportements violents sont-ils autorisés ?",
+      "reponse_enrichie": "Non, toute forme de violence est strictement interdite sur le campus de SUP'PTIC et expose les auteurs à des sanctions disciplinaires sévères.",
+      "exemples": [
+        "Quelles sanctions s'appliquent en cas de violence sur le campus ?",
+        "Les bagarres entre étudiants sont-elles tolérées à SUP'PTIC ?",
+        "Comment signaler un acte de violence survenu sur le campus ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_006",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Respect et climat académique",
+      "question": "Pourquoi faut-il respecter les enseignants et le personnel ?",
+      "reponse_enrichie": "Il est indispensable de respecter les enseignants et le personnel pour maintenir un climat académique sain et favoriser des relations de travail harmonieuses.",
+      "exemples": [
+        "Quels comportements sont considérés comme irrespectueux envers les enseignants ?",
+        "Le manque de respect envers le personnel peut-il entraîner des sanctions ?",
+        "Comment les étudiants doivent-ils s'adresser aux enseignants à SUP'PTIC ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_007",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Tenue vestimentaire",
+      "question": "Les étudiants doivent-ils porter une tenue correcte ?",
+      "reponse_enrichie": "Oui, une tenue décente est exigée à SUP'PTIC. Les étudiants doivent avoir une coiffure sans rajouts et porter des chaussures fermées notamment le lundi.",
+      "exemples": [
+        "Quelles sont les exigences vestimentaires à SUP'PTIC ?",
+        "Les étudiants peuvent-ils venir en tenue décontractée les autres jours ?",
+        "Des sanctions sont-elles prévues en cas de non-respect du code vestimentaire ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_008",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Protection du matériel",
+      "question": "Les étudiants peuvent-ils dégrader le matériel de l'école ?",
+      "reponse_enrichie": "Non, les équipements de l'école doivent être préservés et utilisés avec soin. Toute dégradation volontaire du matériel expose l'étudiant à des sanctions.",
+      "exemples": [
+        "Que risque un étudiant qui endommage du matériel de l'école ?",
+        "Les étudiants sont-ils responsables du matériel qu'ils utilisent ?",
+        "Comment signaler un matériel endommagé à SUP'PTIC ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_009",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Sanctions disciplinaires",
+      "question": "Que risque un étudiant qui ne respecte pas le règlement ?",
+      "reponse_enrichie": "Un étudiant qui ne respecte pas le règlement intérieur peut recevoir une sanction disciplinaire dont la sévérité dépend de la nature et de la gravité de l'infraction.",
+      "exemples": [
+        "Quels types de sanctions disciplinaires existent à SUP'PTIC ?",
+        "Une sanction disciplinaire peut-elle entraîner le renvoi d'un étudiant ?",
+        "Comment contester une sanction disciplinaire à SUP'PTIC ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_010",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Propreté et entretien du campus",
+      "question": "Pourquoi faut-il maintenir la propreté du campus ?",
+      "reponse_enrichie": "Il est important de maintenir la propreté du campus pour offrir un environnement agréable, sain et propice au travail pour tous les membres de la communauté académique.",
+      "exemples": [
+        "Les étudiants participent-ils à l'entretien de la propreté du campus ?",
+        "Des sanctions sont-elles prévues pour ceux qui salissent le campus ?",
+        "Comment est organisée la gestion de la propreté à SUP'PTIC ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_011",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Droits et devoirs des étudiants",
+      "question": "Les étudiants ont-ils des droits à SUP'PTIC ?",
+      "reponse_enrichie": "Oui, les étudiants ont le droit à un environnement sécurisé, respectueux et avant tout à recevoir une formation de qualité à SUP'PTIC.",
+      "exemples": [
+        "Quels droits fondamentaux les étudiants ont-ils à SUP'PTIC ?",
+        "Les étudiants peuvent-ils revendiquer leurs droits auprès de l'administration ?",
+        "Un étudiant peut-il porter plainte en cas de violation de ses droits ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_012",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Droits et devoirs des étudiants",
+      "question": "Les étudiants ont-ils aussi des devoirs ?",
+      "reponse_enrichie": "Oui, en contrepartie de leurs droits, les étudiants ont le devoir de respecter les règles et le règlement intérieur de l'établissement.",
+      "exemples": [
+        "Quels sont les principaux devoirs des étudiants à SUP'PTIC ?",
+        "Le non-respect des devoirs entraîne-t-il des sanctions ?",
+        "Comment les devoirs des étudiants sont-ils communiqués à leur arrivée ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_013",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Comportements interdits",
+      "question": "Pourquoi faut-il éviter les bagarres sur le campus ?",
+      "reponse_enrichie": "Les bagarres doivent être évitées car elles perturbent la paix sur le campus et mettent en danger la sécurité physique des étudiants impliqués et des témoins.",
+      "exemples": [
+        "Quelles sont les conséquences d'une bagarre sur le campus ?",
+        "Comment prévenir les conflits entre étudiants à SUP'PTIC ?",
+        "Existe-t-il une procédure de médiation en cas de conflit entre étudiants ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_014",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Comportements interdits",
+      "question": "Les objets dangereux sont-ils autorisés ?",
+      "reponse_enrichie": "Non, les objets dangereux ainsi que les objets extravagants sont strictement interdits dans l'établissement afin de garantir la sécurité de tous.",
+      "exemples": [
+        "Quels objets sont considérés comme dangereux à SUP'PTIC ?",
+        "Que risque un étudiant surpris avec un objet interdit sur le campus ?",
+        "Comment les agents de sécurité contrôlent-ils l'entrée des objets sur le campus ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_015",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Protection du matériel",
+      "question": "Pourquoi faut-il protéger les équipements informatiques ?",
+      "reponse_enrichie": "Les équipements informatiques doivent être protégés car ils servent à la formation des étudiants et leur dégradation priverait tous les apprenants d'outils essentiels.",
+      "exemples": [
+        "Comment les étudiants doivent-ils utiliser les équipements informatiques ?",
+        "Que faire si un équipement informatique est endommagé accidentellement ?",
+        "Les étudiants sont-ils tenus responsables des équipements qu'ils utilisent ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_016",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Respect et climat académique",
+      "question": "Les étudiants doivent-ils respecter les salles de cours ?",
+      "reponse_enrichie": "Oui, les étudiants doivent respecter les salles de cours afin de garantir de bonnes conditions d'apprentissage pour tous.",
+      "exemples": [
+        "Quels comportements sont interdits dans les salles de cours ?",
+        "Comment entretenir correctement une salle de cours à SUP'PTIC ?",
+        "Les dégradations commises en salle de cours sont-elles sanctionnées ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_017",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Ponctualité et horaires",
+      "question": "Les retards répétés sont-ils acceptés ?",
+      "reponse_enrichie": "Non, les retards répétés ne sont pas acceptés à SUP'PTIC car ils sont considérés comme un manque de discipline et peuvent entraîner des sanctions.",
+      "exemples": [
+        "À partir de combien de retards un étudiant est-il sanctionné ?",
+        "Les retards répétés peuvent-ils entraîner une exclusion temporaire ?",
+        "Comment justifier un retard auprès de l'administration de SUP'PTIC ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_018",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Sécurité sur le campus",
+      "question": "Pourquoi les règles de sécurité doivent-elles être suivies ?",
+      "reponse_enrichie": "Les règles de sécurité doivent être suivies pour prévenir les accidents et incidents et ainsi maintenir la sécurité de l'ensemble des étudiants et du personnel sur le campus.",
+      "exemples": [
+        "Quelles règles de sécurité sont les plus importantes à respecter à SUP'PTIC ?",
+        "Des formations à la sécurité sont-elles dispensées aux étudiants ?",
+        "Que faire en cas d'incident sur le campus ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_019",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Règlement intérieur",
+      "question": "Les visiteurs doivent-ils respecter le règlement du campus ?",
+      "reponse_enrichie": "Oui, toutes les personnes présentes sur le campus de SUP'PTIC, y compris les visiteurs, sont tenues de respecter le règlement intérieur de l'établissement.",
+      "exemples": [
+        "Les visiteurs sont-ils informés du règlement intérieur à leur arrivée ?",
+        "Un visiteur peut-il être expulsé du campus en cas de non-respect des règles ?",
+        "Quelles règles s'appliquent spécifiquement aux visiteurs du campus ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_020",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Droits et devoirs des étudiants",
+      "question": "Les étudiants doivent-ils respecter les consignes des responsables ?",
+      "reponse_enrichie": "Oui, les étudiants doivent respecter les consignes des responsables afin d'assurer le bon fonctionnement de l'école et la sécurité de tous.",
+      "exemples": [
+        "Quelles consignes les étudiants doivent-ils impérativement suivre ?",
+        "Que se passe-t-il si un étudiant refuse d'obéir aux responsables ?",
+        "Les consignes des responsables sont-elles affichées sur le campus ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_021",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Sécurité sur le campus",
+      "question": "Pourquoi faut-il signaler les comportements suspects ?",
+      "reponse_enrichie": "Il est important de signaler les comportements suspects pour renforcer la sécurité du campus et prévenir tout incident ou danger potentiel.",
+      "exemples": [
+        "À qui signaler un comportement suspect sur le campus ?",
+        "Les dénonciations de comportements dangereux sont-elles protégées ?",
+        "Comment identifier un comportement suspect sur le campus de SUP'PTIC ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_022",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Comportements interdits",
+      "question": "Les téléphones peuvent-ils perturber les cours ?",
+      "reponse_enrichie": "Oui, les téléphones peuvent perturber les cours lorsqu'ils sont utilisés de manière inappropriée. Ils sont d'ailleurs interdits pendant les heures de cours à SUP'PTIC.",
+      "exemples": [
+        "L'utilisation du téléphone est-elle totalement interdite pendant les cours ?",
+        "Que risque un étudiant surpris avec son téléphone en cours ?",
+        "Les téléphones peuvent-ils être confisqués par les enseignants ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_023",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Protection du matériel",
+      "question": "Les étudiants doivent-ils prendre soin des laboratoires ?",
+      "reponse_enrichie": "Oui, les étudiants doivent prendre soin des laboratoires et utiliser correctement les équipements mis à leur disposition pour la formation.",
+      "exemples": [
+        "Quelles règles s'appliquent dans les laboratoires de SUP'PTIC ?",
+        "Que faire si un équipement de laboratoire est défectueux ?",
+        "Les étudiants sont-ils formés à l'utilisation correcte des équipements de laboratoire ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_024",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Respect et climat académique",
+      "question": "Pourquoi faut-il respecter les autres étudiants ?",
+      "reponse_enrichie": "Il faut respecter les autres étudiants pour favoriser une bonne ambiance académique et un environnement d'apprentissage harmonieux et bienveillant.",
+      "exemples": [
+        "Quels comportements traduisent un manque de respect entre étudiants ?",
+        "Le harcèlement entre étudiants est-il sanctionné à SUP'PTIC ?",
+        "Comment promouvoir le respect mutuel au sein de la communauté étudiante ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_025",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Fraude et intégrité académique",
+      "question": "Les fraudes pendant les examens sont-elles autorisées ?",
+      "reponse_enrichie": "Non, les fraudes aux examens sont strictement interdites. En cas de fraude avérée, le fautif est traduit devant le conseil de discipline et reçoit des sanctions proportionnelles à la gravité de ses actes.",
+      "exemples": [
+        "Quelles sanctions s'appliquent en cas de fraude aux examens à SUP'PTIC ?",
+        "Comment le conseil de discipline traite-t-il les cas de fraude ?",
+        "Quels actes sont considérés comme une fraude lors des examens ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_026",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Respect et climat académique",
+      "question": "Pourquoi faut-il éviter le bruit excessif dans l'école ?",
+      "reponse_enrichie": "Il faut éviter le bruit excessif dans l'école pour ne pas déranger le bon déroulement des cours et des autres activités académiques.",
+      "exemples": [
+        "Dans quels espaces le silence est-il particulièrement exigé à SUP'PTIC ?",
+        "Des sanctions existent-elles pour le bruit excessif en classe ?",
+        "Comment les étudiants peuvent-ils contribuer à maintenir le calme sur le campus ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_027",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Sanctions disciplinaires",
+      "question": "Les étudiants peuvent-ils être suspendus ?",
+      "reponse_enrichie": "Oui, un étudiant peut être suspendu en cas de faute grave, après examen de son dossier par les instances disciplinaires compétentes de SUP'PTIC.",
+      "exemples": [
+        "Quelles fautes peuvent entraîner la suspension d'un étudiant ?",
+        "La suspension est-elle définitive ou temporaire à SUP'PTIC ?",
+        "Un étudiant suspendu peut-il contester cette décision ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_028",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Ponctualité et horaires",
+      "question": "Pourquoi la ponctualité est-elle importante ?",
+      "reponse_enrichie": "La ponctualité est importante car elle démontre le sérieux de l'étudiant et son respect envers les cours, les enseignants et ses camarades.",
+      "exemples": [
+        "Comment la ponctualité est-elle évaluée à SUP'PTIC ?",
+        "La ponctualité influe-t-elle sur les notes ou appréciations des étudiants ?",
+        "Quelles habitudes permettent de développer la ponctualité ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_029",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Sécurité sur le campus",
+      "question": "Les règles de sécurité concernent-elles tout le monde ?",
+      "reponse_enrichie": "Oui, les règles de sécurité s'appliquent à toutes les personnes présentes sur le campus : étudiants, enseignants et visiteurs sans exception.",
+      "exemples": [
+        "Les enseignants sont-ils aussi soumis aux règles de sécurité du campus ?",
+        "Comment les règles de sécurité sont-elles communiquées à tous ?",
+        "Que se passe-t-il si un membre du personnel ne respecte pas les règles de sécurité ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_030",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Protection du matériel",
+      "question": "Les étudiants doivent-ils utiliser correctement les infrastructures ?",
+      "reponse_enrichie": "Oui, les étudiants doivent utiliser correctement toutes les infrastructures de l'école afin d'éviter les dégradations et préserver les équipements pour tous.",
+      "exemples": [
+        "Quelles infrastructures les étudiants utilisent-ils le plus à SUP'PTIC ?",
+        "Des consignes d'utilisation des infrastructures sont-elles affichées sur le campus ?",
+        "Comment signaler une infrastructure dégradée à l'administration ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_031",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Comportements interdits",
+      "question": "Pourquoi faut-il éviter les comportements irresponsables ?",
+      "reponse_enrichie": "Les comportements irresponsables doivent être évités car ils peuvent mettre en danger la sécurité des autres membres de la communauté académique.",
+      "exemples": [
+        "Quels comportements sont considérés comme irresponsables à SUP'PTIC ?",
+        "Les comportements irresponsables peuvent-ils nuire à l'ensemble des étudiants ?",
+        "Comment l'école sensibilise-t-elle les étudiants aux comportements responsables ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_032",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Propreté et entretien du campus",
+      "question": "Les étudiants doivent-ils respecter les espaces communs ?",
+      "reponse_enrichie": "Oui, les espaces communs doivent rester propres et utilisables par tous. Les étudiants sont responsables de leur bon entretien au quotidien.",
+      "exemples": [
+        "Quels espaces communs existent sur le campus de SUP'PTIC ?",
+        "Que faire si un espace commun est dégradé ou sale ?",
+        "Des règles spécifiques régissent-elles l'utilisation des espaces communs ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_033",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Sécurité sur le campus",
+      "question": "Pourquoi faut-il suivre les consignes en cas d'urgence ?",
+      "reponse_enrichie": "En cas d'urgence, il est impératif de suivre les consignes établies pour assurer la sécurité et l'évacuation ordonnée de l'ensemble des personnes présentes sur le campus.",
+      "exemples": [
+        "Quelles sont les consignes d'urgence à appliquer à SUP'PTIC ?",
+        "Des exercices d'évacuation sont-ils organisés sur le campus ?",
+        "Comment les étudiants sont-ils informés des procédures d'urgence ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_034",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Règlement intérieur",
+      "question": "Le règlement intérieur favorise-t-il une bonne organisation ?",
+      "reponse_enrichie": "Oui, le règlement intérieur favorise une bonne organisation en définissant clairement les règles et les responsabilités de chacun, facilitant ainsi le bon fonctionnement de l'établissement.",
+      "exemples": [
+        "Comment le règlement intérieur contribue-t-il à l'organisation de SUP'PTIC ?",
+        "Le règlement intérieur est-il régulièrement mis à jour ?",
+        "Comment les étudiants peuvent-ils proposer des améliorations au règlement intérieur ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    },
+    {
+      "id": "faq_secu_035",
+      "categorie": "Sécurité et règlement intérieur",
+      "sous_theme": "Discipline et réussite académique",
+      "question": "Pourquoi la discipline est-elle importante à SUP'PTIC ?",
+      "reponse_enrichie": "La discipline est importante à SUP'PTIC car elle contribue directement à la réussite académique des étudiants et au respect mutuel au sein de la communauté scolaire.",
+      "exemples": [
+        "Comment la discipline améliore-t-elle les résultats académiques ?",
+        "La discipline est-elle valorisée dans l'évaluation des étudiants ?",
+        "Quels exemples illustrent l'importance de la discipline à SUP'PTIC ?"
+      ],
+      "sources": ["Service académique"],
+      "date_creation": "2026-05-10",
+      "version": "2.0",
+      "valide": false
+    }
+  ]
