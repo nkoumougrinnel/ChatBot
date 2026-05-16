@@ -28,13 +28,17 @@ OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "phi3:mini")
 # Paramètres de génération
 _DEFAULT_PARAMS = {
     "temperature": 0.3,       # faible pour des réponses factuelles
-    "num_predict": 150,        # reduit de 512->150
-    "num_ctx": 512,
-    "num_thread": 4,
+    "num_predict": 350,        # reduit de 512->150
+    "num_ctx": 256,
+    "num_thread": 2,
     "num_gpu": 0,
     "stop": ["</s>", "[INST]", "[/INST]"],  # tokens d'arrêt Phi-3
     "top_p": 0.9,
 }
+# Sur un serveur dédié, augmenter les paramètres pour des réponses plus longues :
+# "num_predict": 512
+# "num_ctx": 512
+# "num_thread": 4
 
 
 def _post(endpoint: str, payload: dict, stream: bool = False):

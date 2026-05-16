@@ -132,7 +132,9 @@ def load_json_files(data_dir: Path) -> list[dict]:
             file_count += 1
 
         print(f"[build_index]   {json_file.name} : {file_count} entrées chargées")
-
+    entries = entries[:500]
+    # Sur un serveur dédié, charger toutes les entrées :
+    # entries = entries
     return entries
 
 
@@ -182,8 +184,14 @@ def build_index(entries: list[dict], output_dir: Path) -> tuple[int, int]:
 
     # --- Construction index FAISS (IndexFlatIP = produit interne sur vecteurs normalisés) ---
     print(f"[build_index] Construction de l'index FAISS (IndexFlatIP, dim={dim})...")
-    index = faiss.IndexFlatIP(dim)  # Inner Product = cosine sim sur vecteurs normalisés
+    quantizer = faiss.IndexFlatL2(dim)
+    index = faiss.IndexIVFFlat(quantizer, dim, 100)  # 100 clusters
+    index.train(vectors)
     index.add(vectors)
+
+    # Sur un serveur dédié, utiliser un index non quantifié pour des performances maximales :
+    # index = faiss.IndexFlatIP(dim)
+    # index.add(vectors)
     print(f"[build_index] Index FAISS construit : {index.ntotal} vecteurs")
 
     # --- Sauvegarde ---
@@ -266,6 +274,9 @@ def load_sqlite_entries(sqlite_db: Path) -> list[dict]:
         })
 
     print(f"[build_index]   {len(entries)} entrées lues depuis SQLite : {sqlite_db}")
+    entries = entries[:500]
+    # Sur un serveur dédié, charger toutes les entrées :
+    # entries = entries
     return entries
 
 

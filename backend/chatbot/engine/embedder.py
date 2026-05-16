@@ -59,7 +59,9 @@ def encode_batch(texts: list[str]) -> np.ndarray:
     if not texts:
         return np.empty((0, 384), dtype=np.float32)
     model = _get_model()
-    vectors = model.encode(texts, convert_to_numpy=True, normalize_embeddings=True, batch_size=64, show_progress_bar=False)
+    vectors = model.encode(texts, convert_to_numpy=True, normalize_embeddings=True, batch_size=16, show_progress_bar=False)
+    # Sur un serveur dédié, augmenter la taille des batchs pour accélérer :
+    # batch_size=64
     return vectors.astype(np.float32)
 
 

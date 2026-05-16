@@ -55,11 +55,16 @@ except ImportError:
 SCORE_HIGH = float(__import__("os").environ.get("RAG_SCORE_HIGH", 0.55))
 SCORE_MED = float(__import__("os").environ.get("RAG_SCORE_MED", 0.1))
 FAISS_TOP_K = int(__import__("os").environ.get("RAG_TOP_K", 3))
-TIMEOUT_FAISS = float(__import__("os").environ.get("RAG_TIMEOUT_FAISS", 2.0))  # secondes
-TIMEOUT_TFIDF = float(__import__("os").environ.get("RAG_TIMEOUT_TFIDF", 1.0))  # secondes
+TIMEOUT_FAISS = float(__import__("os").environ.get("RAG_TIMEOUT_FAISS", 1.0))  # secondes
+TIMEOUT_TFIDF = float(__import__("os").environ.get("RAG_TIMEOUT_TFIDF", 0.5))  # secondes
+# Sur un serveur dédié, augmenter les timeouts pour plus de robustesse :
+# TIMEOUT_FAISS = 2.0
+# TIMEOUT_TFIDF = 1.0
 
 # Cache des embeddings (LRU pour éviter surcharge mémoire)
-@lru_cache(maxsize=1000)
+@lru_cache(maxsize=500)
+# Sur un serveur dédié, augmenter la taille du cache :
+# @lru_cache(maxsize=2000)
 def _cached_encode(question: str) -> Any:
     """Cache des embeddings pour éviter recalculs identiques."""
     return encode(question)
