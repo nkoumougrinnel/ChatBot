@@ -3,21 +3,16 @@
     "name": "SUPONEAI",
     "slug": "SuponeAI",
     "version": "1.0.0",
+    "sdkVersion": "49.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logoAI.png",
     "scheme": "reactapp",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false,
       "softwareKeyboardLayoutMode": "resize"
-    },
-    "web": {
-      "output": "static"
     },
     "plugins": [
       "expo-router",
@@ -27,16 +22,12 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
-          "dark": {
-            "backgroundColor": "#000000"
-          }
+          "backgroundColor": "#ffffff"
         }
       ]
     ],
     "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
+      "typedRoutes": true
     }
   }
 }

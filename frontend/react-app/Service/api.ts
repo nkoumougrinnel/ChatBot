@@ -1,4 +1,4 @@
-export const BACKEND_BASE_URL = "http://192.168.29.82:8000";
+import { request } from './client';
 
 export type ChatbotResult = {
   faq_id: number;
@@ -19,18 +19,16 @@ export async function askChatbot(
   question: string,
   topK = 1,
 ): Promise<ChatbotResponse> {
-  const response = await fetch(`${BACKEND_BASE_URL}/api/chatbot/ask/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+  const res = await request('/api/chatbot/ask/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ question, top_k: topK }),
   });
 
-  if (!response.ok) {
-    const errorBody = await response.text();
-    throw new Error(`Erreur API chatbot (${response.status}): ${errorBody}`);
+  if (!res.ok) {
+    const text = await res.text?.();
+    throw new Error(`Erreur API chatbot: ${text ?? 'unknown'}`);
   }
 
-  return await response.json();
+  return await res.json();
 }

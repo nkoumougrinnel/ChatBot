@@ -8,10 +8,12 @@ import {
   View
 } from 'react-native';
 import { marquerCommeConnecte, sauvegarderToken } from '../Service/authStorage';
+import { saveUserProfile } from '../Service/user';
 
 
 export default function LoginScreen() {
   const [email,             setEmail]             = useState('');
+  const [nom,               setNom]               = useState('');
   const [motDePasse,        setMotDePasse]         = useState('');
   const [chargement,        setChargement]         = useState(false);
   const [mdpVisible,        setMdpVisible]         = useState(false);
@@ -20,7 +22,7 @@ export default function LoginScreen() {
   // Connexion : connexion et redirection vers l'ecran principal 
   // ============================================================
   async function seConnecter() {
-    if (!email.trim() || !motDePasse.trim()) {
+    if (!nom.trim() || !email.trim() || !motDePasse.trim()) {
       Alert.alert('Champs requis', 'Veuillez remplir tous les champs.');
       return;
     }
@@ -42,9 +44,11 @@ export default function LoginScreen() {
 
       console.log('Connexion simulée réussie:', donnees);
 
-      // ✅ Succès → on sauvegarde le token
+      // ✅ Succès → on sauvegarde le token et les infos utilisateur
       await sauvegarderToken(donnees.token);
       await marquerCommeConnecte();
+      // Sauvegarde du nom et de l'email pour affichage dans le profil
+      await saveUserProfile({ name: nom, email });
 
       // Redirection vers la page principale (index.tsx)
       router.replace('/');
@@ -69,6 +73,16 @@ export default function LoginScreen() {
 
       {/* FORMULAIRE */}
       <View style={styles.formulaire}>
+
+        <Text style={styles.etiquette}>Nom</Text>
+        <TextInput
+          style={styles.champ}
+          placeholder="Nom"
+          placeholderTextColor="#475569"
+          value={nom}
+          onChangeText={setNom}
+          autoCapitalize="words"
+        />
 
         <Text style={styles.etiquette}>Adresse e-mail</Text>
         <TextInput

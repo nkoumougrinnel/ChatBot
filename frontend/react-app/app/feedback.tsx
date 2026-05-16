@@ -1,8 +1,12 @@
 import { Picker } from '@react-native-picker/picker'; // N'oublie pas : npx expo install @react-native-picker/picker
 import React, { useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function FeedbackScreen() {
+  const router = useRouter();
   const [problemType, setProblemType] = useState('');
   const [comment, setComment] = useState('');
 
@@ -17,9 +21,16 @@ export default function FeedbackScreen() {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#f8faff' }}>
+      <View style={styles.navbar}>
+        <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
+          <Ionicons name="arrow-back" size={22} color="#fff" />
+        </TouchableOpacity>
+        <Text style={styles.navTitle}>Partager un feedback</Text>
+      </View>
+      <ScrollView style={styles.container}>
       <View style={styles.card}>
-        <Text style={styles.title}>Partager le feedback</Text>
+        <Text style={styles.titleWhite}>Partager le feedback</Text>
 
         <Text style={styles.label}>Type de problème</Text>
         {/* Conteneur stylisé pour le Picker */}
@@ -57,13 +68,18 @@ export default function FeedbackScreen() {
         </TouchableOpacity>
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  navbar: { height: 56, backgroundColor: '#2155CD', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12 },
+  backBtn: { padding: 8, marginRight: 8 },
+  navTitle: { color: '#fff', fontSize: 18, fontWeight: '700' },
   container: { flex: 1, backgroundColor: '#f8faff', padding: 20 },
   card: { backgroundColor: '#fff', borderRadius: 15, padding: 20, elevation: 3 },
   title: { fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginBottom: 25 },
+  titleWhite: { fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginBottom: 25, color: '#fff' },
   label: { fontSize: 14, color: '#333', marginBottom: 10, fontWeight: '600' },
   pickerContainer: {
     backgroundColor: '#fff',
