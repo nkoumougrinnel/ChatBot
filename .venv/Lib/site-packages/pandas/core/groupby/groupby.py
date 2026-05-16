@@ -34,6 +34,7 @@ import warnings
 
 import numpy as np
 
+from pandas._config import using_string_dtype
 from pandas._config.config import option_context
 
 from pandas._libs import (
@@ -85,6 +86,7 @@ from pandas.core.dtypes.common import (
     is_numeric_dtype,
     is_object_dtype,
     is_scalar,
+    is_string_dtype,
     needs_i8_conversion,
     pandas_dtype,
 )
@@ -1831,7 +1833,7 @@ class GroupBy(BaseGroupBy[NDFrameT]):
                         message=_apply_groupings_depr.format(
                             type(self).__name__, "apply"
                         ),
-                        category=DeprecationWarning,
+                        category=FutureWarning,
                         stacklevel=find_stack_level(),
                     )
             except TypeError:
@@ -1945,8 +1947,13 @@ class GroupBy(BaseGroupBy[NDFrameT]):
             # preserve the kind of exception that raised
             raise type(err)(msg) from err
 
-        if ser.dtype == object:
+        dtype = ser.dtype
+        if dtype == object:
             res_values = res_values.astype(object, copy=False)
+        elif is_string_dtype(dtype):
+            # mypy doesn't infer dtype is an ExtensionDtype
+            string_array_cls = dtype.construct_array_type()  # type: ignore[union-attr]
+            res_values = string_array_cls._from_sequence(res_values, dtype=dtype)
 
         # If we are DataFrameGroupBy and went through a SeriesGroupByPath
         # then we need to reshape
@@ -3150,7 +3157,7 @@ class GroupBy(BaseGroupBy[NDFrameT]):
                     npfunc=np.sum,
                 )
 
-            return self._reindex_output(result, fill_value=0)
+            return self._reindex_output(result, fill_value=0, method="sum")
 
     @final
     @doc(
@@ -4394,9 +4401,9 @@ class GroupBy(BaseGroupBy[NDFrameT]):
         starts, ends = lib.generate_slices(splitter._slabels, splitter.ngroups)
 
         def pre_processor(vals: ArrayLike) -> tuple[np.ndarray, DtypeObj | None]:
-            if is_object_dtype(vals.dtype):
+            if isinstance(vals.dtype, StringDtype) or is_object_dtype(vals.dtype):
                 raise TypeError(
-                    "'quantile' cannot be performed against 'object' dtypes!"
+                    f"dtype '{vals.dtype}' does not support operation 'quantile'"
                 )
 
             inference: DtypeObj | None = None
@@ -5568,6 +5575,7 @@ class GroupBy(BaseGroupBy[NDFrameT]):
         output: OutputFrameOrSeries,
         fill_value: Scalar = np.nan,
         qs: npt.NDArray[np.float64] | None = None,
+        method: str | None = None,
     ) -> OutputFrameOrSeries:
         """
         If we have categorical groupers, then we might want to make sure that
@@ -5628,6 +5636,24 @@ class GroupBy(BaseGroupBy[NDFrameT]):
                 "copy": False,
                 "fill_value": fill_value,
             }
+            if using_string_dtype() and method == "sum":
+                if isinstance(output, Series) and isinstance(output.dtype, StringDtype):
+                    d["fill_value"] = ""
+                    return output.reindex(**d)  # type: ignore[return-value, arg-type]
+                elif isinstance(output, DataFrame) and any(
+                    isinstance(dtype, StringDtype) for dtype in output.dtypes
+                ):
+                    orig_dtypes = output.dtypes
+                    indices = np.nonzero(output.dtypes == "string")[0]
+                    for idx in indices:
+                        output.isetitem(idx, output.iloc[:, idx].astype(object))
+                    output = output.reindex(**d)  # type: ignore[assignment, arg-type]
+                    for idx in indices:
+                        col = output.iloc[:, idx]
+                        output.isetitem(
+                            idx, col.mask(col == 0, "").astype(orig_dtypes.iloc[idx])
+                        )
+                    return output  # type: ignore[return-value]
             return output.reindex(**d)  # type: ignore[arg-type]
 
         # GH 13204

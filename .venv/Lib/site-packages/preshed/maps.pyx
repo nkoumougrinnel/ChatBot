@@ -35,14 +35,24 @@ cdef class PreshMap:
 
     property capacity:
         def __get__(self):
-            return self.c_map.length
+            cdef key_t length
+            with cython.critical_section(self):
+                # This might be atomic on some architectures
+                # but not everywhere, so needs a lock
+                length = self.c_map.length
+            return length
 
     def items(self):
         cdef key_t key
         cdef void* value
         cdef int i = 0
-        while map_iter(self.c_map, &i, &key, &value):
-            yield key, <size_t>value
+        while True:
+            with cython.critical_section(self):
+                it = map_iter(self.c_map, &i, &key, &value)
+            if it:
+                yield key, <size_t>value
+            else:
+                break
 
     def keys(self):
         for key, _ in self.items():
@@ -53,38 +63,52 @@ cdef class PreshMap:
             yield value
 
     def pop(self, key_t key, default=None):
-        cdef Result result = map_get_unless_missing(self.c_map, key)
-        map_clear(self.c_map, key)
+        cdef Result result
+        with cython.critical_section(self):
+            result = map_get_unless_missing(self.c_map, key)
+            map_clear(self.c_map, key)
         if result.found:
             return <size_t>result.value
         else:
             return default
 
     def __getitem__(self, key_t key):
-        cdef Result result = map_get_unless_missing(self.c_map, key)
+        cdef Result result
+        with cython.critical_section(self):
+            result = map_get_unless_missing(self.c_map, key)
         if result.found:
             return <size_t>result.value
         else:
             return None
 
     def __setitem__(self, key_t key, size_t value):
-        map_set(self.mem, self.c_map, key, <void*>value)
+        with cython.critical_section(self):
+            map_set(self.mem, self.c_map, key, <void*>value)
 
     def __delitem__(self, key_t key):
-        map_clear(self.c_map, key)
+        with cython.critical_section(self):
+            map_clear(self.c_map, key)
 
     def __len__(self):
-        return self.c_map.filled
+        cdef key_t filled
+        with cython.critical_section(self):
+            # This might be atomic on some architectures
+            # but not everywhere, so needs a lock
+            filled = self.c_map.filled
+        return filled
 
     def __contains__(self, key_t key):
-        cdef Result result = map_get_unless_missing(self.c_map, key)
+        cdef Result result
+        with cython.critical_section(self):
+            result = map_get_unless_missing(self.c_map, key)
         return True if result.found else False
 
     def __iter__(self):
         for key in self.keys():
             yield key
 
-    cdef inline void* get(self, key_t key) nogil:
+    # thread-unsafe low-level API
+    cdef inline void* get(self, key_t key) noexcept nogil:
         return map_get(self.c_map, key)
 
     cdef void set(self, key_t key, void* value) except *:
@@ -102,7 +126,7 @@ cdef class PreshMapArray:
         for i in range(length):
             map_init(self.mem, &self.maps[i], initial_size)
 
-    cdef inline void* get(self, size_t i, key_t key) nogil:
+    cdef inline void* get(self, size_t i, key_t key) noexcept nogil:
         return map_get(&self.maps[i], key)
 
     cdef void set(self, size_t i, key_t key, void* value) except *:
@@ -133,7 +157,7 @@ cdef void map_set(Pool mem, MapStruct* map_, key_t key, void* value) except *:
             _resize(mem, map_)
 
 
-cdef void* map_get(const MapStruct* map_, const key_t key) nogil:
+cdef void* map_get(const MapStruct* map_, const key_t key) noexcept nogil:
     if key == EMPTY_KEY:
         return map_.value_for_empty_key
     elif key == DELETED_KEY:
@@ -142,7 +166,7 @@ cdef void* map_get(const MapStruct* map_, const key_t key) nogil:
     return cell.value
 
 
-cdef Result map_get_unless_missing(const MapStruct* map_, const key_t key) nogil:
+cdef Result map_get_unless_missing(const MapStruct* map_, const key_t key) noexcept nogil:
     cdef Result result
     cdef Cell* cell
     result.found = 0
@@ -163,7 +187,7 @@ cdef Result map_get_unless_missing(const MapStruct* map_, const key_t key) nogil
     return result
 
 
-cdef void* map_clear(MapStruct* map_, const key_t key) nogil:
+cdef void* map_clear(MapStruct* map_, const key_t key) noexcept nogil:
     if key == EMPTY_KEY:
         value = map_.value_for_empty_key if map_.is_empty_key_set else NULL
         map_.is_empty_key_set = False
@@ -183,13 +207,13 @@ cdef void* map_clear(MapStruct* map_, const key_t key) nogil:
 
 
 cdef void* map_bulk_get(const MapStruct* map_, const key_t* keys, void** values,
-                        int n) nogil:
+                        int n) noexcept nogil:
     cdef int i
     for i in range(n):
         values[i] = map_get(map_, keys[i])
 
 
-cdef bint map_iter(const MapStruct* map_, int* i, key_t* key, void** value) nogil:
+cdef bint map_iter(const MapStruct* map_, int* i, key_t* key, void** value) noexcept nogil:
     '''Iterate over the filled items, setting the current place in i, and the
     key and value.  Return False when iteration finishes.
     '''
@@ -218,7 +242,7 @@ cdef bint map_iter(const MapStruct* map_, int* i, key_t* key, void** value) nogi
 
 
 @cython.cdivision
-cdef inline Cell* _find_cell(Cell* cells, const key_t size, const key_t key) nogil:
+cdef inline Cell* _find_cell(Cell* cells, const key_t size, const key_t key) noexcept nogil:
     # Modulo for powers-of-two via bitwise &
     cdef key_t i = (key & (size - 1))
     while cells[i].key != EMPTY_KEY and cells[i].key != key:
@@ -227,7 +251,7 @@ cdef inline Cell* _find_cell(Cell* cells, const key_t size, const key_t key) nog
 
 
 @cython.cdivision
-cdef inline Cell* _find_cell_for_insertion(Cell* cells, const key_t size, const key_t key) nogil:
+cdef inline Cell* _find_cell_for_insertion(Cell* cells, const key_t size, const key_t key) noexcept nogil:
     """Find the correct cell to insert a value, which could be a previously
     deleted cell. If we cross a deleted cell and the key is in the table, we
     mark the later cell as deleted, and return the earlier one."""

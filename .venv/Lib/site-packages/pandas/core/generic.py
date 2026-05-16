@@ -90,7 +90,10 @@ from pandas._typing import (
     npt,
 )
 from pandas.compat import PYPY
-from pandas.compat._constants import REF_COUNT
+from pandas.compat._constants import (
+    REF_COUNT,
+    WARNING_CHECK_DISABLED,
+)
 from pandas.compat._optional import import_optional_dependency
 from pandas.compat.numpy import function as nv
 from pandas.errors import (
@@ -2149,10 +2152,29 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
     def __array__(
         self, dtype: npt.DTypeLike | None = None, copy: bool_t | None = None
     ) -> np.ndarray:
+        if copy is False and not self._mgr.is_single_block and not self.empty:
+            # check this manually, otherwise ._values will already return a copy
+            # and np.array(values, copy=False) will not raise a warning
+            warnings.warn(
+                "Starting with NumPy 2.0, the behavior of the 'copy' keyword has "
+                "changed and passing 'copy=False' raises an error when returning "
+                "a zero-copy NumPy array is not possible. pandas will follow "
+                "this behavior starting with pandas 3.0.\nThis conversion to "
+                "NumPy requires a copy, but 'copy=False' was passed. Consider "
+                "using 'np.asarray(..)' instead.",
+                FutureWarning,
+                stacklevel=find_stack_level(),
+            )
         values = self._values
-        arr = np.asarray(values, dtype=dtype)
+        if copy is None:
+            # Note: branch avoids `copy=None` for NumPy 1.x support
+            arr = np.asarray(values, dtype=dtype)
+        else:
+            arr = np.array(values, dtype=dtype, copy=copy)
+
         if (
-            astype_is_view(values.dtype, arr.dtype)
+            copy is not True
+            and astype_is_view(values.dtype, arr.dtype)
             and using_copy_on_write()
             and self._mgr.is_single_block
         ):
@@ -7266,7 +7288,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
         """
         inplace = validate_bool_kwarg(inplace, "inplace")
         if inplace:
-            if not PYPY and using_copy_on_write():
+            if not PYPY and not WARNING_CHECK_DISABLED and using_copy_on_write():
                 if sys.getrefcount(self) <= REF_COUNT:
                     warnings.warn(
                         _chained_assignment_method_msg,
@@ -7275,6 +7297,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
                     )
             elif (
                 not PYPY
+                and not WARNING_CHECK_DISABLED
                 and not using_copy_on_write()
                 and self._is_view_after_cow_rules()
             ):
@@ -7569,7 +7592,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
         downcast = self._deprecate_downcast(downcast, "ffill")
         inplace = validate_bool_kwarg(inplace, "inplace")
         if inplace:
-            if not PYPY and using_copy_on_write():
+            if not PYPY and not WARNING_CHECK_DISABLED and using_copy_on_write():
                 if sys.getrefcount(self) <= REF_COUNT:
                     warnings.warn(
                         _chained_assignment_method_msg,
@@ -7578,6 +7601,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
                     )
             elif (
                 not PYPY
+                and not WARNING_CHECK_DISABLED
                 and not using_copy_on_write()
                 and self._is_view_after_cow_rules()
             ):
@@ -7773,7 +7797,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
         downcast = self._deprecate_downcast(downcast, "bfill")
         inplace = validate_bool_kwarg(inplace, "inplace")
         if inplace:
-            if not PYPY and using_copy_on_write():
+            if not PYPY and not WARNING_CHECK_DISABLED and using_copy_on_write():
                 if sys.getrefcount(self) <= REF_COUNT:
                     warnings.warn(
                         _chained_assignment_method_msg,
@@ -7782,6 +7806,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
                     )
             elif (
                 not PYPY
+                and not WARNING_CHECK_DISABLED
                 and not using_copy_on_write()
                 and self._is_view_after_cow_rules()
             ):
@@ -7944,7 +7969,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
 
         inplace = validate_bool_kwarg(inplace, "inplace")
         if inplace:
-            if not PYPY and using_copy_on_write():
+            if not PYPY and not WARNING_CHECK_DISABLED and using_copy_on_write():
                 if sys.getrefcount(self) <= REF_COUNT:
                     warnings.warn(
                         _chained_assignment_method_msg,
@@ -7953,6 +7978,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
                     )
             elif (
                 not PYPY
+                and not WARNING_CHECK_DISABLED
                 and not using_copy_on_write()
                 and self._is_view_after_cow_rules()
             ):
@@ -8396,7 +8422,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
         inplace = validate_bool_kwarg(inplace, "inplace")
 
         if inplace:
-            if not PYPY and using_copy_on_write():
+            if not PYPY and not WARNING_CHECK_DISABLED and using_copy_on_write():
                 if sys.getrefcount(self) <= REF_COUNT:
                     warnings.warn(
                         _chained_assignment_method_msg,
@@ -8405,6 +8431,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
                     )
             elif (
                 not PYPY
+                and not WARNING_CHECK_DISABLED
                 and not using_copy_on_write()
                 and self._is_view_after_cow_rules()
             ):
@@ -9038,7 +9065,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
         inplace = validate_bool_kwarg(inplace, "inplace")
 
         if inplace:
-            if not PYPY and using_copy_on_write():
+            if not PYPY and not WARNING_CHECK_DISABLED and using_copy_on_write():
                 if sys.getrefcount(self) <= REF_COUNT:
                     warnings.warn(
                         _chained_assignment_method_msg,
@@ -9047,6 +9074,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
                     )
             elif (
                 not PYPY
+                and not WARNING_CHECK_DISABLED
                 and not using_copy_on_write()
                 and self._is_view_after_cow_rules()
             ):
@@ -9387,7 +9415,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
         axis: Axis | lib.NoDefault = lib.no_default,
         closed: Literal["right", "left"] | None = None,
         label: Literal["right", "left"] | None = None,
-        convention: Literal["start", "end", "s", "e"] | lib.NoDefault = lib.no_default,
+        convention: Literal["start", "end", "s", "e"] = "start",
         kind: Literal["timestamp", "period"] | None | lib.NoDefault = lib.no_default,
         on: Level | None = None,
         level: Level | None = None,
@@ -9426,8 +9454,6 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
             For `PeriodIndex` only, controls whether to use the start or
             end of `rule`.
 
-            .. deprecated:: 2.2.0
-                Convert PeriodIndex to DatetimeIndex before resampling instead.
         kind : {{'timestamp', 'period'}}, optional, default None
             Pass 'timestamp' to convert the resulting index to a
             `DateTimeIndex` or 'period' to convert it to a `PeriodIndex`.
@@ -9592,6 +9618,55 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
         2000-01-01 00:06:00    26
         Freq: 3min, dtype: int64
 
+        For a Series with a PeriodIndex, the keyword `convention` can be
+        used to control whether to use the start or end of `rule`.
+
+        Resample a year by quarter using 'start' `convention`. Values are
+        assigned to the first quarter of the period.
+
+        >>> s = pd.Series(
+        ...     [1, 2], index=pd.period_range("2012-01-01", freq="Y", periods=2)
+        ... )
+        >>> s
+        2012    1
+        2013    2
+        Freq: Y-DEC, dtype: int64
+        >>> s.resample("Q", convention="start").asfreq()
+        2012Q1    1.0
+        2012Q2    NaN
+        2012Q3    NaN
+        2012Q4    NaN
+        2013Q1    2.0
+        2013Q2    NaN
+        2013Q3    NaN
+        2013Q4    NaN
+        Freq: Q-DEC, dtype: float64
+
+        Resample quarters by month using 'end' `convention`. Values are
+        assigned to the last month of the period.
+
+        >>> q = pd.Series(
+        ...     [1, 2, 3, 4], index=pd.period_range("2018-01-01", freq="Q", periods=4)
+        ... )
+        >>> q
+        2018Q1    1
+        2018Q2    2
+        2018Q3    3
+        2018Q4    4
+        Freq: Q-DEC, dtype: int64
+        >>> q.resample("M", convention="end").asfreq()
+        2018-03    1.0
+        2018-04    NaN
+        2018-05    NaN
+        2018-06    2.0
+        2018-07    NaN
+        2018-08    NaN
+        2018-09    3.0
+        2018-10    NaN
+        2018-11    NaN
+        2018-12    4.0
+        Freq: M, dtype: float64
+
         For DataFrame objects, the keyword `on` can be used to specify the
         column instead of the index for resampling.
 
@@ -9755,18 +9830,6 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
             )
         else:
             kind = None
-
-        if convention is not lib.no_default:
-            warnings.warn(
-                f"The 'convention' keyword in {type(self).__name__}.resample is "
-                "deprecated and will be removed in a future version. "
-                "Explicitly cast PeriodIndex to DatetimeIndex before resampling "
-                "instead.",
-                FutureWarning,
-                stacklevel=find_stack_level(),
-            )
-        else:
-            convention = "start"
 
         return get_resampler(
             cast("Series | DataFrame", self),
@@ -10956,7 +11019,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
         """
         inplace = validate_bool_kwarg(inplace, "inplace")
         if inplace:
-            if not PYPY and using_copy_on_write():
+            if not PYPY and not WARNING_CHECK_DISABLED and using_copy_on_write():
                 if sys.getrefcount(self) <= REF_COUNT:
                     warnings.warn(
                         _chained_assignment_method_msg,
@@ -10965,6 +11028,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
                     )
             elif (
                 not PYPY
+                and not WARNING_CHECK_DISABLED
                 and not using_copy_on_write()
                 and self._is_view_after_cow_rules()
             ):
@@ -11039,7 +11103,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
     ) -> Self | None:
         inplace = validate_bool_kwarg(inplace, "inplace")
         if inplace:
-            if not PYPY and using_copy_on_write():
+            if not PYPY and not WARNING_CHECK_DISABLED and using_copy_on_write():
                 if sys.getrefcount(self) <= REF_COUNT:
                     warnings.warn(
                         _chained_assignment_method_msg,
@@ -11048,6 +11112,7 @@ class NDFrame(PandasObject, indexing.IndexingMixin):
                     )
             elif (
                 not PYPY
+                and not WARNING_CHECK_DISABLED
                 and not using_copy_on_write()
                 and self._is_view_after_cow_rules()
             ):

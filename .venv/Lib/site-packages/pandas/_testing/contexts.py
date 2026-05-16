@@ -13,7 +13,10 @@ import uuid
 
 from pandas._config import using_copy_on_write
 
-from pandas.compat import PYPY
+from pandas.compat import (
+    PYPY,
+    WARNING_CHECK_DISABLED,
+)
 from pandas.errors import ChainedAssignmentError
 
 from pandas import set_option
@@ -78,14 +81,15 @@ def set_timezone(tz: str) -> Generator[None, None, None]:
     import time
 
     def setTZ(tz) -> None:
-        if tz is None:
-            try:
-                del os.environ["TZ"]
-            except KeyError:
-                pass
-        else:
-            os.environ["TZ"] = tz
-            time.tzset()
+        if hasattr(time, "tzset"):
+            if tz is None:
+                try:
+                    del os.environ["TZ"]
+                except KeyError:
+                    pass
+            else:
+                os.environ["TZ"] = tz
+                time.tzset()
 
     orig_tz = os.environ.get("TZ")
     setTZ(tz)
@@ -203,11 +207,11 @@ def raises_chained_assignment_error(warn=True, extra_warnings=(), extra_match=()
 
         return nullcontext()
 
-    if PYPY and not extra_warnings:
+    if (PYPY or WARNING_CHECK_DISABLED) and not extra_warnings:
         from contextlib import nullcontext
 
         return nullcontext()
-    elif PYPY and extra_warnings:
+    elif (PYPY or WARNING_CHECK_DISABLED) and extra_warnings:
         return assert_produces_warning(
             extra_warnings,
             match="|".join(extra_match),
@@ -246,7 +250,7 @@ def assert_cow_warning(warn=True, match=None, **kwargs):
     """
     from pandas._testing import assert_produces_warning
 
-    if not warn:
+    if not warn or WARNING_CHECK_DISABLED:
         from contextlib import nullcontext
 
         return nullcontext()

@@ -1,6 +1,8 @@
 import numpy as np
 import pytest
 
+from pandas.compat import WARNING_CHECK_DISABLED
+
 from pandas import (
     NA,
     ArrowDtype,
@@ -135,9 +137,9 @@ def test_interp_fill_functions_inplace(
         assert np.shares_memory(arr, get_array(df, "a")) is (dtype == "float64")
 
 
-def test_interpolate_cleaned_fill_method(using_copy_on_write):
-    # Check that "method is set to None" case works correctly
+def test_interpolate_cannot_with_object_dtype(using_copy_on_write):
     df = DataFrame({"a": ["a", np.nan, "c"], "b": 1})
+    df["a"] = df["a"].astype(object)
     df_orig = df.copy()
 
     msg = "DataFrame.interpolate with object dtype"
@@ -156,15 +158,16 @@ def test_interpolate_cleaned_fill_method(using_copy_on_write):
     tm.assert_frame_equal(df, df_orig)
 
 
-def test_interpolate_object_convert_no_op(using_copy_on_write):
+def test_interpolate_object_convert_no_op(using_copy_on_write, using_infer_string):
     df = DataFrame({"a": ["a", "b", "c"], "b": 1})
+    df["a"] = df["a"].astype(object)
     arr_a = get_array(df, "a")
     msg = "DataFrame.interpolate with method=pad is deprecated"
     with tm.assert_produces_warning(FutureWarning, match=msg):
         df.interpolate(method="pad", inplace=True)
 
     # Now CoW makes a copy, it should not!
-    if using_copy_on_write:
+    if using_copy_on_write and not using_infer_string:
         assert df._mgr._has_no_reference(0)
         assert np.shares_memory(arr_a, get_array(df, "a"))
 
@@ -403,7 +406,10 @@ def test_fillna_chained_assignment(using_copy_on_write):
             with option_context("mode.chained_assignment", None):
                 df[df.a > 5].fillna(100, inplace=True)
 
-        with tm.assert_produces_warning(FutureWarning, match="inplace method"):
+        with tm.assert_produces_warning(
+            FutureWarning if not WARNING_CHECK_DISABLED else None,
+            match="inplace method",
+        ):
             df["a"].fillna(100, inplace=True)
 
 
@@ -420,7 +426,10 @@ def test_interpolate_chained_assignment(using_copy_on_write, func):
             getattr(df[["a"]], func)(inplace=True)
         tm.assert_frame_equal(df, df_orig)
     else:
-        with tm.assert_produces_warning(FutureWarning, match="inplace method"):
+        with tm.assert_produces_warning(
+            FutureWarning if not WARNING_CHECK_DISABLED else None,
+            match="inplace method",
+        ):
             getattr(df["a"], func)(inplace=True)
 
         with tm.assert_produces_warning(None):
