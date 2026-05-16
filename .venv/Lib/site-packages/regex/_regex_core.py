@@ -4641,6 +4641,7 @@ POSITION_ESCAPES = {
     "m": StartOfWord(),
     "M": EndOfWord(),
     "Z": EndOfString(),
+    "z": EndOfString(),
 }
 ASCII_POSITION_ESCAPES = dict(POSITION_ESCAPES)
 ASCII_POSITION_ESCAPES.update({
