@@ -178,7 +178,7 @@ def compute_and_store_vectors():
     train_vectorizer(corpus)
     
     # OPTIMISATION: Traiter par batch pour éviter de charger 15000 FAQs en RAM
-    batch_size = 1000
+    batch_size = 500
     vectors_created = 0
     
     for i in range(0, total_faqs, batch_size):

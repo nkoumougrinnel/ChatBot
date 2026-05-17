@@ -55,8 +55,8 @@ except ImportError:
 SCORE_HIGH = float(__import__("os").environ.get("RAG_SCORE_HIGH", 0.55))
 SCORE_MED = float(__import__("os").environ.get("RAG_SCORE_MED", 0.1))
 FAISS_TOP_K = int(__import__("os").environ.get("RAG_TOP_K", 3))
-TIMEOUT_FAISS = float(__import__("os").environ.get("RAG_TIMEOUT_FAISS", 1.0))  # secondes
-TIMEOUT_TFIDF = float(__import__("os").environ.get("RAG_TIMEOUT_TFIDF", 0.5))  # secondes
+TIMEOUT_FAISS = float(__import__("os").environ.get("RAG_TIMEOUT_FAISS", 2.0))  # secondes
+TIMEOUT_TFIDF = float(__import__("os").environ.get("RAG_TIMEOUT_TFIDF", 1.0))  # secondes
 # Sur un serveur dédié, augmenter les timeouts pour plus de robustesse :
 # TIMEOUT_FAISS = 2.0
 # TIMEOUT_TFIDF = 1.0
