@@ -10,13 +10,13 @@ export default function Startup() {
   async function quandSplashEstTermine() {
     setSplashActif(false);
     const token = await lireToken();
-    //verification de l'existence du token
+    // Vérification de l'existence du token
     if (token) {
       // Token trouvé = utilisateur déjà connecté
-      // On va directement sur la page principale (index.tsx)
-      router.replace('/');
+      // On va directement sur l'interface principale du chat
+      router.replace('/drawer/chat');
     } else {
-      // Pas de token =première utilisation
+      // Pas de token = première utilisation
       // On affiche le formulaire de connexion
       router.replace('/login');
     }

@@ -8,6 +8,7 @@ import { askChatbot } from "../Service/api";
 import {
   ActivityIndicator,
   Alert,
+  Animated,
   FlatList,
   Keyboard,
   KeyboardAvoidingView,
@@ -20,14 +21,13 @@ import {
   View,
 } from "react-native";
 
-import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
+import AnimatedRN, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
-// --- CONFIGURATION ---
-const VS_CODE_BLUE = "#007ACC"; 
+const VS_CODE_BLUE = "#007ACC";
 const BOT_BUBBLE = "#f1f3f5";
 const BACKGROUND_COLOR = "#f8faff";
 
@@ -37,7 +37,6 @@ type Message = {
   sender: "user" | "bot";
 };
 
-// --- SOUS-COMPOSANTS ---
 const MessageActions = ({ text }: { text: string }) => {
   const router = useRouter();
   const [liked, setLiked] = useState(false);
@@ -77,19 +76,75 @@ const MessageActions = ({ text }: { text: string }) => {
   );
 };
 
-const TypingIndicator = () => (
-  <Animated.View entering={FadeInUp.duration(300)} style={styles.botMsgWrapper}>
-    <View style={[styles.bubble, styles.botBubble, styles.typingBubble]}>
-      <ActivityIndicator size="small" color={VS_CODE_BLUE} style={{ marginRight: 8 }} />
-      <Text style={styles.typingText}>Sup One AI réfléchit…</Text>
-    </View>
-  </Animated.View>
-);
+// ============================================================
+// ANIMATION "Supone réfléchit" — 3 points qui rebondissent
+// en vague l'un après l'autre
+// ============================================================
+const TypingIndicator = () => {
+  // Une valeur animée par point
+  const dot1 = useRef(new Animated.Value(0)).current;
+  const dot2 = useRef(new Animated.Value(0)).current;
+  const dot3 = useRef(new Animated.Value(0)).current;
 
-// --- COMPOSANT PRINCIPAL ---
+  useEffect(() => {
+    // Anime un point en boucle avec un délai de départ
+    const animer = (dot: Animated.Value, delai: number) => {
+      Animated.loop(
+        Animated.sequence([
+          // Pause initiale pour décaler chaque point
+          Animated.delay(delai),
+          // Monte le point vers le haut
+          Animated.timing(dot, {
+            toValue: -7,
+            duration: 280,
+            useNativeDriver: true,
+          }),
+          // Redescend le point à sa position initiale
+          Animated.timing(dot, {
+            toValue: 0,
+            duration: 280,
+            useNativeDriver: true,
+          }),
+          // Pause avant de recommencer la boucle
+          Animated.delay(500),
+        ])
+      ).start();
+    };
+
+    // Chaque point démarre avec 180ms de décalage
+    animer(dot1, 0);
+    animer(dot2, 180);
+    animer(dot3, 360);
+  }, []);
+
+  return (
+    <AnimatedRN.View entering={FadeInUp.duration(300)} style={styles.botMsgWrapper}>
+      <View style={[styles.bubble, styles.botBubble, styles.typingBubble]}>
+        {/* Texte */}
+        <Text style={styles.typingText}>Supone réfléchit</Text>
+
+        {/* Point 1 */}
+        <Animated.View style={{ transform: [{ translateY: dot1 }] }}>
+          <View style={styles.typingDot} />
+        </Animated.View>
+
+        {/* Point 2 */}
+        <Animated.View style={{ transform: [{ translateY: dot2 }] }}>
+          <View style={styles.typingDot} />
+        </Animated.View>
+
+        {/* Point 3 */}
+        <Animated.View style={{ transform: [{ translateY: dot3 }] }}>
+          <View style={styles.typingDot} />
+        </Animated.View>
+      </View>
+    </AnimatedRN.View>
+  );
+};
+
 export default function Index() {
   const { reset, sessionId } = useLocalSearchParams();
-  const navigation = useNavigation(); // Récupère le contrôleur de navigation
+  const navigation = useNavigation();
   const router = useRouter();
   const [userName, setUserName] = useState("Étudiant");
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
@@ -106,18 +161,11 @@ export default function Index() {
     setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
   };
 
-  // --- LIGNE CRUCIALE POUR LE DRAWER ---
-  // --- LIGNE CRUCIALE POUR LE DRAWER ---
   const openMenu = () => {
-    // 1. On essaie de récupérer le parent (le Drawer)
     const parent = navigation.getParent();
-    
     if (parent) {
-      // Si le parent existe, on lui envoie l'ordre d'ouverture
       parent.dispatch(DrawerActions.openDrawer());
     } else {
-      // 2. Si pas de parent, on tente une commande directe 
-      // (Utile selon la version de react-navigation/expo-router)
       navigation.dispatch(DrawerActions.openDrawer());
     }
   };
@@ -205,18 +253,12 @@ export default function Index() {
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <StatusBar barStyle="light-content" backgroundColor={VS_CODE_BLUE} translucent />
 
-      {/* HEADER AVEC ACTION MENU CORRIGÉE */}
       <View style={styles.customHeader}>
         <TouchableOpacity onPress={openMenu} style={styles.headerIcon}>
           <Ionicons name="menu" size={28} color="#fff" />
         </TouchableOpacity>
-        
         <Text style={styles.headerTitle}>Supone ai</Text>
-        
-        <TouchableOpacity 
-          onPress={() => router.push('/profile')}
-          style={styles.headerIcon}
-        >
+        <TouchableOpacity onPress={() => router.push('/profile')} style={styles.headerIcon}>
           <Ionicons name="person-circle-outline" size={30} color="#fff" />
         </TouchableOpacity>
       </View>
@@ -230,10 +272,9 @@ export default function Index() {
           ListFooterComponent={isTyping ? <TypingIndicator /> : null}
           ListHeaderComponent={
             chatHistory.length <= 1 ? (
-              <Animated.View entering={FadeInDown.duration(800)} style={styles.welcomeSection}>
+              <AnimatedRN.View entering={FadeInDown.duration(800)} style={styles.welcomeSection}>
                 <Text style={styles.greetingText}>Bonjour {userName} !</Text>
                 <Text style={styles.subGreetingText}>Besoin d'aide ?</Text>
-                
                 <View style={styles.suggestionsWrapper}>
                   {["📚 Histoire du SUP'PTIC", "🏠 Logement étudiant", "🎯 Clubs"].map((item, idx) => (
                     <TouchableOpacity key={idx} style={styles.suggestionChip} onPress={() => handleSend(item)}>
@@ -241,16 +282,16 @@ export default function Index() {
                     </TouchableOpacity>
                   ))}
                 </View>
-              </Animated.View>
+              </AnimatedRN.View>
             ) : null
           }
           renderItem={({ item }) => (
-            <Animated.View entering={FadeInUp.duration(350)} style={item.sender === "user" ? styles.userMsgWrapper : styles.botMsgWrapper}>
+            <AnimatedRN.View entering={FadeInUp.duration(350)} style={item.sender === "user" ? styles.userMsgWrapper : styles.botMsgWrapper}>
               <View style={[styles.bubble, item.sender === "user" ? styles.userBubble : styles.botBubble]}>
                 <Text style={item.sender === "user" ? styles.userText : styles.botText}>{item.text}</Text>
               </View>
               {item.sender === "bot" && item.id !== "1" && <MessageActions text={item.text} />}
-            </Animated.View>
+            </AnimatedRN.View>
           )}
           contentContainerStyle={styles.listContent}
         />
@@ -293,14 +334,14 @@ const styles = StyleSheet.create({
   greetingText: { fontSize: 24, color: "#64748b", marginBottom: 6 },
   subGreetingText: { fontSize: 34, fontWeight: "600", color: "#1e293b", marginBottom: 35 },
   suggestionsWrapper: { gap: 12 },
-  suggestionChip: { 
-    backgroundColor: "#fff", 
-    paddingVertical: 15, 
-    paddingHorizontal: 20, 
-    borderRadius: 25, 
-    alignSelf: "flex-start", 
-    borderWidth: 1, 
-    borderColor: "#e2e8f0" 
+  suggestionChip: {
+    backgroundColor: "#fff",
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    alignSelf: "flex-start",
+    borderWidth: 1,
+    borderColor: "#e2e8f0"
   },
   suggestionText: { color: "#334155", fontSize: 16, fontWeight: "500" },
   userMsgWrapper: { alignSelf: "flex-end", marginBottom: 20, maxWidth: "80%" },
@@ -313,18 +354,32 @@ const styles = StyleSheet.create({
   actionRow: { flexDirection: "row", gap: 6, marginTop: 8 },
   actionBtn: { padding: 8, borderRadius: 20, backgroundColor: "rgba(0,0,0,0.03)" },
   inputContainer: { backgroundColor: BACKGROUND_COLOR, paddingHorizontal: 16, paddingTop: 10 },
-  inputArea: { 
-    flexDirection: "row", 
-    alignItems: "center", 
-    backgroundColor: "#fff", 
-    borderRadius: 30, 
-    paddingHorizontal: 18, 
-    minHeight: 58, 
-    borderWidth: 1, 
-    borderColor: "#e2e8f0" 
+  inputArea: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 30,
+    paddingHorizontal: 18,
+    minHeight: 58,
+    borderWidth: 1,
+    borderColor: "#e2e8f0"
   },
   input: { flex: 1, fontSize: 16, paddingVertical: 10 },
-  sendButton: { backgroundColor: VS_CODE_BLUE, width: 40, height: 40, borderRadius: 20, alignItems: "center", justifyContent: "center", marginLeft: 10 },
-  typingBubble: { flexDirection: "row", alignItems: "center" },
-  typingText: { color: "#94a3b8", fontSize: 14, fontStyle: "italic" },
+  sendButton: {
+    backgroundColor: VS_CODE_BLUE,
+    width: 40, height: 40,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 10
+  },
+  // Styles de l'animation TypingIndicator
+  typingBubble: { flexDirection: "row", alignItems: "center", gap: 4 },
+  typingText: { color: "#94a3b8", fontSize: 14, fontStyle: "italic", marginRight: 4 },
+  typingDot: {
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+    backgroundColor: VS_CODE_BLUE,
+  },
 });

@@ -50,8 +50,8 @@ export default function LoginScreen() {
       // Sauvegarde du nom et de l'email pour affichage dans le profil
       await saveUserProfile({ name: nom, email });
 
-      // Redirection vers la page principale (index.tsx)
-      router.replace('/');
+      // Redirection vers l'interface principale du chat
+      router.replace('/drawer/chat');
 
     } catch (erreur: any) {
       Alert.alert('Erreur', erreur.message);

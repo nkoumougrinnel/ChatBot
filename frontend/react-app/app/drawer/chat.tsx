@@ -90,8 +90,8 @@ const ReflectionAnimation = () => {
   const opacity = useAnimatedStyle(() => ({
     opacity: withRepeat(
       withSequence(
-        withTiming(0.3, { duration: 800 }),
-        withTiming(0.8, { duration: 800 })
+        withTiming(0.4, { duration: 600 }),
+        withTiming(1, { duration: 600 })
       ),
       -1,
       true
@@ -101,16 +101,23 @@ const ReflectionAnimation = () => {
   return (
     <View style={styles.reflectionContainer}>
       <Animated.View style={[styles.reflectionBar, opacity]} />
-      <Animated.View style={[styles.reflectionBar, { width: "60%" }, opacity]} />
+      <Animated.View style={[styles.reflectionBar, { width: "70%" }, opacity]} />
+      <Animated.View style={[styles.reflectionBar, { width: "50%" }, opacity]} />
     </View>
   );
 };
 
 const TypingIndicator = ({ text }: { text: string }) => (
   <Animated.View entering={FadeInUp.duration(300)} style={styles.botMsgWrapper}>
-    <ReflectionAnimation />
     <View style={[styles.bubble, styles.botBubble]}>
-      <Text style={text ? styles.botText : styles.typingText}>{text || "..."}</Text>
+      {text ? (
+        <Text style={styles.botText}>{text}</Text>
+      ) : (
+        <>
+          <ReflectionAnimation />
+          <Text style={styles.typingText}>Supone est en train de répondre...</Text>
+        </>
+      )}
     </View>
   </Animated.View>
 );
@@ -138,17 +145,14 @@ export default function Index() {
   };
 
   // --- LIGNE CRUCIALE POUR LE DRAWER ---
-  // --- LIGNE CRUCIALE POUR LE DRAWER ---
   const openMenu = () => {
-    // 1. On essaie de récupérer le parent (le Drawer)
     const parent = navigation.getParent();
     
     if (parent) {
-      // Si le parent existe, on lui envoie l'ordre d'ouverture
+     
       parent.dispatch(DrawerActions.openDrawer());
     } else {
-      // 2. Si pas de parent, on tente une commande directe 
-      // (Utile selon la version de react-navigation/expo-router)
+    
       navigation.dispatch(DrawerActions.openDrawer());
     }
   };
@@ -227,7 +231,8 @@ export default function Index() {
       }
 
       setTypingMessage("");
-      const perChar = 0.1; // 0.1ms par caractère pour une saisie ultra rapide
+      await sleep(150); // pause avant de commencer l'animation de saisie
+      const perChar = 80; // 80 ms par caractère pour que l'animation soit visible
       for (let i = 1; i <= answer.length; i++) {
         setTypingMessage(answer.slice(0, i));
         scrollToBottom();
@@ -391,12 +396,12 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginBottom: 12,
     maxWidth: "85%",
+    gap: 6,
   },
   reflectionBar: {
-    height: 12,
-    backgroundColor: "#E2E8F0",
-    borderRadius: 6,
-    marginBottom: 8,
+    height: 16,
+    backgroundColor: "#cbd5e1",
+    borderRadius: 8,
     width: "80%",
   },
   spinnerShell: {
