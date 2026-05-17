@@ -1,6 +1,6 @@
 [
   {
-    "id": "faq_fraude_001",
+    "id": "faq_246",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Qu'est-ce qui est considéré comme une fraude aux examens à SUP'PTIC ?",
@@ -10,13 +10,16 @@
       "L'utilisation d'un téléphone portable pendant un examen est-elle une fraude ?",
       "Le plagiat dans un mémoire est-il considéré comme une fraude ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_002",
+    "id": "faq_247",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Quelles sont les sanctions encourues en cas de fraude avérée ?",
@@ -26,13 +29,16 @@
       "Une note de zéro est-elle la seule sanction possible ?",
       "La fraude peut-elle entraîner des poursuites judiciaires ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_003",
+    "id": "faq_248",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Qui est responsable de la détection et de la gestion des cas de fraude ?",
@@ -41,13 +47,16 @@
       "Un enseignant peut-il seul décider d'une sanction ?",
       "Existe-t-il un comité anti-fraude à SUP'PTIC ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_004",
+    "id": "faq_249",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Quelle est la procédure disciplinaire en cas de suspicion de fraude ?",
@@ -57,13 +66,16 @@
       "Combien de temps dure la procédure disciplinaire ?",
       "Puis-je faire appel d'une décision de sanction ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_005",
+    "id": "faq_250",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Les tentatives de fraude sont-elles sanctionnées de la même manière que les fraudes avérées ?",
@@ -72,13 +84,16 @@
       "Si je n'ai pas eu le temps de copier, suis-je quand même sanctionné ?",
       "Une tentative de fraude apparaît-elle sur mon dossier académique ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_006",
+    "id": "faq_251",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Quels sont les droits de l'étudiant accusé de fraude ?",
@@ -87,13 +102,16 @@
       "Puis-je avoir un avocat lors du conseil de discipline ?",
       "Combien de temps ai-je pour préparer ma défense ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_007",
+    "id": "faq_252",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Le plagiat est-il considéré comme une fraude à SUP'PTIC ?",
@@ -103,13 +121,16 @@
       "Quelles sont les conséquences du plagiat ?",
       "SUP'PTIC utilise-t-il des logiciels anti-plagiat ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_008",
+    "id": "faq_253",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Quelles sont les sanctions spécifiques pour le plagiat ?",
@@ -118,13 +139,16 @@
       "Un simple oubli de citation peut-il être considéré comme du plagiat ?",
       "Le plagiat peut-il empêcher l'obtention du diplôme ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_009",
+    "id": "faq_254",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Comment est constitué le conseil de discipline à SUP'PTIC ?",
@@ -133,13 +157,16 @@
       "Qui préside le conseil de discipline ?",
       "Les étudiants peuvent-ils siéger au conseil de discipline ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_010",
+    "id": "faq_255",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Les sanctions disciplinaires sont-elles inscrites sur le dossier universitaire ?",
@@ -148,13 +175,16 @@
       "Une exclusion temporaire est-elle visible par d'autres universités ?",
       "Comment une sanction disciplinaire peut-elle affecter ma carrière ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_011",
+    "id": "faq_256",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Peut-on contester une sanction disciplinaire ?",
@@ -163,13 +193,16 @@
       "Quel est le délai pour contester une sanction ?",
       "Quels sont les arguments recevables pour contester une sanction ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_012",
+    "id": "faq_257",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Quelles sont les mesures préventives mises en place par SUP'PTIC contre la fraude ?",
@@ -178,13 +211,16 @@
       "Y a-t-il des ateliers sur l'intégrité académique ?",
       "Comment les examens sont-ils surveillés ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_013",
+    "id": "faq_258",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Un étudiant peut-il être sanctionné pour complicité de fraude ?",
@@ -193,13 +229,16 @@
       "Si je prête mes notes à un ami qui les utilise pour tricher, suis-je responsable ?",
       "La complicité de fraude est-elle aussi grave que la fraude elle-même ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_014",
+    "id": "faq_259",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Quelles sont les conséquences d'une exclusion définitive de SUP'PTIC ?",
@@ -208,13 +247,16 @@
       "Puis-je m'inscrire dans une autre université après une exclusion définitive ?",
       "Une exclusion définitive est-elle réversible ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_015",
+    "id": "faq_260",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Le règlement intérieur de SUP'PTIC est-il accessible aux étudiants ?",
@@ -223,13 +265,16 @@
       "Où puis-je consulter le règlement intérieur ?",
       "Le règlement intérieur est-il mis à jour régulièrement ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_016",
+    "id": "faq_261",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Qu'est-ce qu'une sanction administrative et une sanction pénale en cas de fraude ?",
@@ -238,13 +283,17 @@
       "La fraude aux examens est-elle un délit pénal au Cameroun ?",
       "Quelles sont les différences entre une sanction administrative et pénale ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Législation camerounaise (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Législation camerounaise (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_017",
+    "id": "faq_262",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Les sanctions pour fraude sont-elles les mêmes pour tous les niveaux d'études (Licence, Master, Doctorat) ?",
@@ -253,13 +302,16 @@
       "Une fraude en Licence a-t-elle le même impact qu'en Master ?",
       "Les règles anti-fraude sont-elles plus strictes en Doctorat ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_018",
+    "id": "faq_263",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Comment est assurée la confidentialité des procédures disciplinaires ?",
@@ -268,13 +320,16 @@
       "Mon nom sera-t-il rendu public si je suis sanctionné ?",
       "Les informations de ma procédure sont-elles partagées avec d'autres étudiants ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_019",
+    "id": "faq_264",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Qu'est-ce que le principe de la non-rétroactivité des sanctions ?",
@@ -283,13 +338,16 @@
       "Une nouvelle règle anti-fraude peut-elle s'appliquer à un acte passé ?",
       "Si une sanction est allégée, puis-je en bénéficier rétroactivement ?"
     ],
-    "sources": ["Principes généraux du droit", "Pratiques universitaires générales"],
+    "sources": [
+      "Principes généraux du droit",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_020",
+    "id": "faq_265",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Les étudiants peuvent-ils être formés sur les règles d'intégrité académique ?",
@@ -298,13 +356,16 @@
       "Où puis-je trouver des ressources sur l'intégrité académique ?",
       "Ces formations sont-elles obligatoires ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_021",
+    "id": "faq_266",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Qu'est-ce qu'une fraude technologique (utilisation de gadgets électroniques) ?",
@@ -313,13 +374,16 @@
       "L'utilisation d'une calculatrice programmable est-elle toujours une fraude ?",
       "Puis-je garder mon téléphone éteint dans ma poche pendant un examen ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_022",
+    "id": "faq_267",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Comment les examens en ligne sont-ils sécurisés contre la fraude ?",
@@ -328,13 +392,16 @@
       "SUP'PTIC utilise-t-il le proctoring pour les examens en ligne ?",
       "Y a-t-il des règles spécifiques pour les examens à distance ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_023",
+    "id": "faq_268",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Quelles sont les sanctions pour la falsification de documents académiques ?",
@@ -343,13 +410,17 @@
       "Si je modifie mon relevé de notes, quelles sont les conséquences ?",
       "La falsification de documents est-elle un crime ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Législation camerounaise (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Législation camerounaise (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_024",
+    "id": "faq_269",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Le droit au silence s'applique-t-il lors d'une procédure disciplinaire pour fraude ?",
@@ -358,13 +429,16 @@
       "Dois-je répondre à toutes les questions du conseil de discipline ?",
       "Mon silence peut-il être retenu contre moi ?"
     ],
-    "sources": ["Principes généraux du droit", "Pratiques universitaires générales"],
+    "sources": [
+      "Principes généraux du droit",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_025",
+    "id": "faq_270",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Qu'est-ce qu'une sanction avec sursis ?",
@@ -373,13 +447,16 @@
       "Comment fonctionne une exclusion avec sursis ?",
       "Puis-je avoir une sanction avec sursis pour une fraude grave ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_026",
+    "id": "faq_271",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Les sanctions disciplinaires peuvent-elles être allégées ou annulées ?",
@@ -388,13 +465,16 @@
       "Comment demander l'allègement d'une sanction ?",
       "Une sanction peut-elle être effacée de mon dossier ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_027",
+    "id": "faq_272",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Quelles sont les responsabilités des enseignants en matière de lutte contre la fraude ?",
@@ -403,13 +483,16 @@
       "Un enseignant doit-il signaler toutes les suspicions de fraude ?",
       "Les enseignants sont-ils formés à la détection de la fraude ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_028",
+    "id": "faq_273",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Comment est définie la récidive en matière de fraude et quelles en sont les conséquences ?",
@@ -418,13 +501,16 @@
       "Une deuxième fraude entraîne-t-elle automatiquement l'exclusion ?",
       "Combien de temps une sanction reste-t-elle active pour la récidive ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_029",
+    "id": "faq_274",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Les examens blancs sont-ils soumis aux mêmes règles anti-fraude ?",
@@ -433,13 +519,16 @@
       "Puis-je tricher à un examen blanc sans conséquence ?",
       "Les règles de surveillance sont-elles les mêmes pour les examens blancs ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_030",
+    "id": "faq_275",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Qu'est-ce que l'usurpation d'identité lors d'un examen et quelles en sont les sanctions ?",
@@ -448,13 +537,17 @@
       "Si je passe l'examen à la place de quelqu'un, quelles sont les sanctions ?",
       "L'étudiant qui a demandé l'usurpation est-il aussi sanctionné ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Législation camerounaise (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Législation camerounaise (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_031",
+    "id": "faq_276",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Comment SUP'PTIC gère-t-il les cas de fraude collective ?",
@@ -463,13 +556,16 @@
       "Si toute une classe triche, tout le monde est-il sanctionné ?",
       "Comment prouver que je n'ai pas participé à une fraude collective ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_032",
+    "id": "faq_277",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Les étudiants peuvent-ils être exclus d'un cours pour comportement inapproprié sans lien avec la fraude ?",
@@ -478,13 +574,16 @@
       "Quelles sont les sanctions pour harcèlement ?",
       "Un enseignant peut-il me renvoyer définitivement de son cours ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_033",
+    "id": "faq_278",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Existe-t-il un code de conduite ou d'éthique à SUP'PTIC ?",
@@ -493,13 +592,16 @@
       "Où puis-je consulter le code de conduite ?",
       "Le code de conduite s'applique-t-il en dehors du campus ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_034",
+    "id": "faq_279",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Comment les cas de fraude sont-ils documentés et archivés ?",
@@ -508,13 +610,16 @@
       "Puis-je demander à consulter mon dossier de fraude ?",
       "Combien de temps les informations de fraude sont-elles conservées ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_fraude_035",
+    "id": "faq_280",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Y a-t-il des circonstances atténuantes ou aggravantes prises en compte lors de la détermination des sanctions ?",
@@ -523,9 +628,12 @@
       "Le fait d'être ma première fraude peut-il réduire ma sanction ?",
       "Si je reconnais ma fraude, ma sanction sera-t-elle moins sévère ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   }
 ]

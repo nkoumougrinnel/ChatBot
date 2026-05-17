@@ -1,0 +1,632 @@
+[
+  {
+    "id": "faq_386",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Pourquoi les stages sont-ils importants à SUP'PTIC ?",
+    "reponse_enrichie": "Les stages permettent aux étudiants d'appliquer les connaissances apprises en cours dans un contexte professionnel réel.",
+    "exemples": [
+      "Quels bénéfices un stage apporte-t-il à un étudiant ?",
+      "En quoi le stage complète-t-il la formation théorique ?",
+      "Pourquoi SUP'PTIC accorde-t-il de l'importance aux stages ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_387",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les stages sont-ils obligatoires ?",
+    "reponse_enrichie": "Oui, les stages sont obligatoires peu importe la filière choisie à SUP'PTIC.",
+    "exemples": [
+      "Est-ce qu'un étudiant peut terminer sa formation sans faire de stage ?",
+      "Le stage est-il exigé dans toutes les filières ?",
+      "Que se passe-t-il si un étudiant ne fait pas son stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_388",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "À quel moment les étudiants effectuent-ils leurs stages ?",
+    "reponse_enrichie": "Les stages se déroulent souvent pendant les vacances ou en fin d'année académique.",
+    "exemples": [
+      "Quand commence la période de stage à SUP'PTIC ?",
+      "Les stages ont-ils lieu pendant l'année scolaire ?",
+      "Y a-t-il une période fixe pour les stages ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_389",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Qu'est-ce qu'un stage académique ?",
+    "reponse_enrichie": "C'est une période de formation pratique en entreprise présidée par l'établissement, permettant à l'étudiant de mettre en pratique ses acquis théoriques.",
+    "exemples": [
+      "Quelle est la définition d'un stage académique ?",
+      "En quoi un stage académique diffère-t-il d'un emploi ?",
+      "Qui encadre le stage académique ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_390",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Quels sont les objectifs d'un stage ?",
+    "reponse_enrichie": "Les objectifs d'un stage sont de découvrir le monde professionnel et d'acquérir de l'expérience pratique dans son domaine d'études.",
+    "exemples": [
+      "Que doit-on apprendre lors d'un stage ?",
+      "Quels sont les résultats attendus après un stage ?",
+      "Comment le stage contribue-t-il à la formation ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_391",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "L'école aide-t-elle les étudiants à trouver des stages ?",
+    "reponse_enrichie": "Oui, SUP'PTIC aide les étudiants à trouver des stages grâce à ses relations avec plusieurs entreprises partenaires.",
+    "exemples": [
+      "SUP'PTIC a-t-elle des partenariats avec des entreprises pour les stages ?",
+      "Comment l'école facilite-t-elle la recherche de stage ?",
+      "Existe-t-il un service de placement pour les stagiaires ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_392",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Quels domaines accueillent les étudiants de SUP'PTIC ?",
+    "reponse_enrichie": "Les étudiants de SUP'PTIC sont accueillis principalement dans les domaines des télécommunications, réseaux, informatique et numérique.",
+    "exemples": [
+      "Dans quels secteurs peut-on effectuer un stage en sortant de SUP'PTIC ?",
+      "Les étudiants en télécommunications peuvent-ils faire des stages en informatique ?",
+      "Y a-t-il des entreprises spécialisées qui accueillent les stagiaires de SUP'PTIC ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_393",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les étudiants peuvent-ils chercher eux-mêmes leur stage ?",
+    "reponse_enrichie": "Oui, les étudiants peuvent chercher eux-mêmes leur stage avec l'accord préalable de l'administration de SUP'PTIC.",
+    "exemples": [
+      "Peut-on choisir librement son entreprise de stage ?",
+      "Faut-il l'autorisation de l'école pour postuler soi-même à un stage ?",
+      "Comment obtenir l'accord de l'administration pour son stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_394",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Qu'est-ce qu'une convention de stage ?",
+    "reponse_enrichie": "Une convention de stage est un document officiel qui encadre le stage et définit les droits et obligations de chaque partie impliquée.",
+    "exemples": [
+      "À quoi sert une convention de stage ?",
+      "La convention de stage est-elle obligatoire ?",
+      "Que contient une convention de stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_395",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Qui signe la convention de stage ?",
+    "reponse_enrichie": "La convention de stage est signée par trois parties : l'école (SUP'PTIC), l'entreprise d'accueil et l'étudiant stagiaire.",
+    "exemples": [
+      "Quelles sont les parties signataires d'une convention de stage ?",
+      "L'étudiant doit-il signer la convention de stage ?",
+      "Que se passe-t-il si une partie refuse de signer la convention ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_396",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Pourquoi la convention est-elle importante ?",
+    "reponse_enrichie": "La convention de stage est importante car elle protège les droits de toutes les parties concernées : l'étudiant, l'entreprise et l'établissement.",
+    "exemples": [
+      "Quels droits la convention de stage protège-t-elle ?",
+      "Peut-on faire un stage sans convention ?",
+      "La convention de stage a-t-elle une valeur juridique ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_397",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les stages sont-ils évalués ?",
+    "reponse_enrichie": "Oui, les stages sont évalués et comptent souvent dans la formation académique de l'étudiant.",
+    "exemples": [
+      "Comment est noté le stage à SUP'PTIC ?",
+      "Le stage influe-t-il sur la moyenne académique ?",
+      "Qui évalue le stage de l'étudiant ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_398",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les étudiants rédigent-ils un rapport de stage ?",
+    "reponse_enrichie": "Oui, après la fin du stage, les étudiants rédigent un rapport de stage qu'ils soumettent à l'établissement au service de la scolarité.",
+    "exemples": [
+      "Le rapport de stage est-il obligatoire ?",
+      "Où dépose-t-on le rapport de stage à SUP'PTIC ?",
+      "Quel délai a-t-on pour rendre le rapport de stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_399",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Pourquoi rédiger un rapport de stage ?",
+    "reponse_enrichie": "Le rapport de stage est rédigé pour présenter les activités réalisées durant le stage et les compétences acquises par l'étudiant.",
+    "exemples": [
+      "Que doit contenir un rapport de stage ?",
+      "Quelle est l'utilité du rapport de stage pour l'école ?",
+      "Comment structurer un rapport de stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_400",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les stages permettent-ils d'obtenir un emploi ?",
+    "reponse_enrichie": "Oui, les stages peuvent mener à un emploi car certaines entreprises recrutent directement leurs anciens stagiaires.",
+    "exemples": [
+      "Un stage peut-il déboucher sur un CDI ?",
+      "Les entreprises recrutent-elles leurs stagiaires à SUP'PTIC ?",
+      "Comment maximiser ses chances d'être recruté après un stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_401",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les étudiants ont-ils un encadreur pendant le stage ?",
+    "reponse_enrichie": "Oui, les étudiants bénéficient d'un double encadrement : un superviseur au sein de l'entreprise et un encadreur académique désigné par SUP'PTIC.",
+    "exemples": [
+      "Qui suit l'étudiant pendant son stage ?",
+      "Quel est le rôle de l'encadreur académique ?",
+      "L'entreprise désigne-t-elle un tuteur pour le stagiaire ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_402",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Quels comportements sont attendus en stage ?",
+    "reponse_enrichie": "En stage, les comportements attendus incluent le sérieux, la discipline, la ponctualité et le respect envers les collègues et la hiérarchie.",
+    "exemples": [
+      "Comment se comporter correctement en stage ?",
+      "Quelles attitudes sont valorisées par les entreprises lors d'un stage ?",
+      "Le stagiaire doit-il respecter le règlement intérieur de l'entreprise ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_403",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les stages développent-ils les compétences techniques ?",
+    "reponse_enrichie": "Oui, les stages permettent de développer les compétences techniques grâce aux travaux pratiques réalisés en entreprise.",
+    "exemples": [
+      "Quelles compétences techniques peut-on acquérir en stage ?",
+      "Le stage complète-t-il la formation pratique à l'école ?",
+      "Peut-on apprendre de nouveaux outils techniques en stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_404",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les étudiants apprennent-ils à travailler en équipe ?",
+    "reponse_enrichie": "Oui, le stage favorise la collaboration professionnelle et permet aux étudiants d'apprendre à travailler efficacement en équipe.",
+    "exemples": [
+      "Comment le stage développe-t-il l'esprit d'équipe ?",
+      "Le travail collectif est-il fréquent lors des stages ?",
+      "Quelles soft skills développe-t-on en stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_405",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Peut-on effectuer plusieurs stages pendant la formation ?",
+    "reponse_enrichie": "Oui, il est possible d'effectuer plusieurs stages pendant la formation, selon le parcours académique de l'étudiant.",
+    "exemples": [
+      "Combien de stages peut-on faire à SUP'PTIC ?",
+      "Chaque année académique prévoit-elle un stage ?",
+      "Y a-t-il une limite au nombre de stages autorisés ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_406",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les stages renforcent-ils la confiance des étudiants ?",
+    "reponse_enrichie": "Oui, les stages permettent aux étudiants de gagner en confiance grâce à l'expérience professionnelle acquise sur le terrain.",
+    "exemples": [
+      "Comment le stage améliore-t-il la confiance en soi ?",
+      "Le stage prépare-t-il psychologiquement au monde du travail ?",
+      "En quoi l'expérience pratique renforce-t-elle l'étudiant ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_407",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les entreprises offrent-elles parfois des primes ?",
+    "reponse_enrichie": "Oui, certaines entreprises rémunèrent les stagiaires, notamment après un travail bien accompli, sous forme de primes ou d'indemnités.",
+    "exemples": [
+      "Est-ce que les stages à SUP'PTIC sont rémunérés ?",
+      "Toutes les entreprises paient-elles leurs stagiaires ?",
+      "Comment sont calculées les primes des stagiaires ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_408",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Quels documents faut-il pour demander un stage ?",
+    "reponse_enrichie": "Pour demander un stage, il faut généralement fournir un CV, une demande de stage et une lettre de motivation.",
+    "exemples": [
+      "Quelles sont les pièces requises pour postuler à un stage ?",
+      "Faut-il un dossier particulier pour obtenir une convention de stage ?",
+      "Comment rédiger une bonne lettre de motivation pour un stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_409",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les stages aident-ils à comprendre le monde du travail ?",
+    "reponse_enrichie": "Oui, les stages permettent aux étudiants de découvrir les réalités professionnelles et de mieux comprendre le fonctionnement du monde du travail.",
+    "exemples": [
+      "Comment le stage prépare-t-il à la vie professionnelle ?",
+      "Quelles réalités du travail découvre-t-on en stage ?",
+      "Le stage change-t-il la vision de l'étudiant sur sa future carrière ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_410",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les étudiants peuvent-ils effectuer un stage à l'étranger ?",
+    "reponse_enrichie": "Oui, les étudiants peuvent effectuer un stage à l'étranger selon les partenariats internationaux disponibles avec SUP'PTIC.",
+    "exemples": [
+      "SUP'PTIC a-t-elle des partenaires à l'étranger pour les stages ?",
+      "Quelles démarches faut-il pour un stage international ?",
+      "Les stages à l'étranger sont-ils reconnus par l'école ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_411",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Pourquoi les entreprises accueillent-elles des stagiaires ?",
+    "reponse_enrichie": "Les entreprises accueillent des stagiaires dans l'objectif de former de futurs professionnels et de bénéficier de compétences nouvelles.",
+    "exemples": [
+      "Quel intérêt une entreprise a-t-elle à prendre un stagiaire ?",
+      "Les entreprises voient-elles les stagiaires comme de futurs employés ?",
+      "Comment les stagiaires contribuent-ils à l'entreprise ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_412",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les stages permettent-ils de créer des contacts professionnels ?",
+    "reponse_enrichie": "Oui, les stages permettent aux étudiants de développer leur réseau professionnel en établissant des contacts durables dans leur domaine.",
+    "exemples": [
+      "Comment le stage aide-t-il à construire un réseau professionnel ?",
+      "Les contacts noués en stage sont-ils utiles pour la carrière ?",
+      "Comment entretenir son réseau professionnel après un stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_413",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les conventions facilitent-elles les relations avec les entreprises ?",
+    "reponse_enrichie": "Oui, les conventions de stage officialisent les collaborations entre SUP'PTIC et les entreprises, facilitant ainsi les relations entre les deux parties.",
+    "exemples": [
+      "La convention de stage renforce-t-elle la confiance entre l'école et les entreprises ?",
+      "Comment les conventions améliorent-elles le partenariat école-entreprise ?",
+      "Les entreprises préfèrent-elles travailler avec des écoles qui ont des conventions ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_414",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les étudiants peuvent-ils être sanctionnés pendant un stage ?",
+    "reponse_enrichie": "Oui, les étudiants peuvent être sanctionnés en cas de mauvais comportement durant le stage, aussi bien par l'entreprise que par l'école.",
+    "exemples": [
+      "Quelles sanctions risque un stagiaire qui se comporte mal ?",
+      "L'école peut-elle exclure un étudiant qui a mal agi en stage ?",
+      "Que faire si un conflit survient entre le stagiaire et l'entreprise ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_415",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les stages améliorent-ils l'employabilité ?",
+    "reponse_enrichie": "Oui, les stages améliorent l'employabilité car l'expérience professionnelle est très valorisée par les recruteurs.",
+    "exemples": [
+      "Pourquoi les recruteurs valorisent-ils l'expérience en stage ?",
+      "Un stage améliore-t-il significativement un CV ?",
+      "Comment mettre en valeur son stage lors d'un entretien d'embauche ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_416",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les étudiants apprennent-ils à utiliser des outils professionnels ?",
+    "reponse_enrichie": "Oui, les stages permettent aux étudiants de se familiariser avec les équipements et logiciels utilisés en entreprise.",
+    "exemples": [
+      "Quels logiciels professionnels peut-on apprendre en stage ?",
+      "Les outils utilisés en entreprise sont-ils différents de ceux à l'école ?",
+      "Le stage permet-il d'acquérir des certifications sur des outils ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_417",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Pourquoi faut-il respecter les règles de l'entreprise ?",
+    "reponse_enrichie": "Il est essentiel de respecter les règles de l'entreprise pour maintenir un bon climat professionnel et favoriser une intégration réussie.",
+    "exemples": [
+      "Quelles règles doit-on respecter en tant que stagiaire ?",
+      "Le non-respect des règles peut-il entraîner la fin prématurée du stage ?",
+      "Comment s'adapter rapidement aux règles d'une nouvelle entreprise ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_418",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Les stages aident-ils à choisir une spécialisation ?",
+    "reponse_enrichie": "Oui, les stages permettent de mieux connaître son domaine et peuvent aider l'étudiant à choisir sa spécialisation future.",
+    "exemples": [
+      "Comment un stage aide-t-il à définir son orientation professionnelle ?",
+      "Peut-on changer de filière après une expérience de stage ?",
+      "Le stage est-il utile pour confirmer ou infirmer un choix de carrière ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_419",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Quels avantages les stages apportent-ils à SUP'PTIC ?",
+    "reponse_enrichie": "Les stages renforcent la qualité de la formation dispensée à SUP'PTIC en assurant un lien fort entre théorie et pratique professionnelle.",
+    "exemples": [
+      "En quoi les stages valorisent-ils l'image de SUP'PTIC ?",
+      "Les stages contribuent-ils à la réputation de l'école ?",
+      "Comment les retours des stagiaires améliorent-ils la formation ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_420",
+    "categorie": "Carrières",
+    "sous_theme": "Stages et conventions",
+    "question": "Pourquoi faut-il bien préparer son stage ?",
+    "reponse_enrichie": "Il est important de bien préparer son stage pour réussir son intégration dans l'entreprise et atteindre les objectifs fixés par l'école.",
+    "exemples": [
+      "Comment se préparer efficacement avant de commencer un stage ?",
+      "Quelles informations doit-on connaître sur l'entreprise avant le stage ?",
+      "Une bonne préparation influence-t-elle les résultats du stage ?"
+    ],
+    "sources": [
+      "Service académique"
+    ],
+    "date_creation": "2026-05-10",
+    "version": "2.0",
+    "valide": true
+  }
+]

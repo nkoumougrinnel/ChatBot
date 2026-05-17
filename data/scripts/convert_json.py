@@ -3,7 +3,12 @@ import json
 from pathlib import Path
 
 def convert(input_file: str, output_file: str):
-    with open(input_file, "r", encoding="utf-8-sig") as f:
+    # Resolve path relative to this script's directory
+    script_dir = Path(__file__).parent
+    input_path = script_dir.parent / input_file if not Path(input_file).is_absolute() else input_file
+    output_path = script_dir.parent / output_file if not Path(output_file).is_absolute() else output_file
+    
+    with open(input_path, "r", encoding="utf-8-sig") as f:
         data = json.load(f)
 
     # Gérer les deux structures possibles
@@ -22,9 +27,10 @@ def convert(input_file: str, output_file: str):
             "valide": True
         })
 
-    with open(output_file, "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(converted, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ {len(converted)} entrées converties → {output_file}")
-# Usage
-convert("theme3_transport_accessibilite.json", "faq3_converti_phase2.json")
+    print(f"✅ {len(converted)} entrées converties → {output_path}")
+
+# Usage - use correct filename with hyphens and path
+convert("json/drafts/theme3-transport-accesibilite.json", "json/faq3_converti_phase2.json")

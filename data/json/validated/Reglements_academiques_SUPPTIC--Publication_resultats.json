@@ -1,6 +1,6 @@
 [
   {
-    "id": "faq_pub_001",
+    "id": "faq_316",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Où et comment sont publiés les résultats des examens à SUP'PTIC ?",
@@ -10,13 +10,16 @@
       "Les résultats sont-ils affichés physiquement ?",
       "Faut-il un code pour accéder aux résultats en ligne ?"
     ],
-    "sources": ["Avis administratifs SUP'PTIC", "Pratiques universitaires générales"],
+    "sources": [
+      "Avis administratifs SUP'PTIC",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_002",
+    "id": "faq_317",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Quels sont les délais de publication des résultats après les examens ?",
@@ -25,13 +28,16 @@
       "Quand les résultats du premier semestre seront-ils disponibles ?",
       "Y a-t-il un délai maximum légal pour la publication des notes ?"
     ],
-    "sources": ["Calendrier académique SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Calendrier académique SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_003",
+    "id": "faq_318",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Comment accéder à mes résultats individuels ?",
@@ -40,13 +46,16 @@
       "J'ai oublié mon mot de passe pour le portail étudiant, que faire ?",
       "Mes résultats sont-ils envoyés par e-mail ?"
     ],
-    "sources": ["Portail étudiant SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Portail étudiant SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_004",
+    "id": "faq_319",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Peut-on consulter les copies d'examen après la publication des résultats ?",
@@ -56,13 +65,16 @@
       "Puis-je prendre des photos de ma copie d'examen ?",
       "Y a-t-il un délai pour consulter les copies ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_005",
+    "id": "faq_320",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Comment contester une note ou un résultat d'examen ?",
@@ -72,13 +84,16 @@
       "Quels documents dois-je fournir pour contester une note ?",
       "Qui examine les contestations de notes ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_006",
+    "id": "faq_321",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Quels sont les motifs valables pour une contestation de note ?",
@@ -87,13 +102,16 @@
       "Une mauvaise écriture peut-elle être un motif de contestation ?",
       "Puis-je contester une note si je pense que le correcteur n'a pas compris ma réponse ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_007",
+    "id": "faq_322",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Y a-t-il des frais pour contester une note ?",
@@ -102,13 +120,16 @@
       "Le dépôt d'une demande de révision est-il payant ?",
       "Les frais sont-ils remboursés si ma contestation est acceptée ?"
     ],
-    "sources": ["Service de la scolarité SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service de la scolarité SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_008",
+    "id": "faq_323",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Quel est le processus de décision suite à une contestation ?",
@@ -117,13 +138,16 @@
       "Combien de temps prend la décision après une contestation ?",
       "Puis-je faire appel de la décision de la commission ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_009",
+    "id": "faq_324",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les résultats des rattrapages sont-ils publiés séparément ?",
@@ -132,13 +156,16 @@
       "Quand sont publiés les résultats des rattrapages ?",
       "Le relevé de notes final inclut-il les notes de rattrapage ?"
     ],
-    "sources": ["Avis administratifs SUP'PTIC", "Pratiques universitaires générales"],
+    "sources": [
+      "Avis administratifs SUP'PTIC",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_010",
+    "id": "faq_325",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Comment obtenir un relevé de notes officiel ?",
@@ -148,13 +175,16 @@
       "Quel est le délai pour obtenir un relevé de notes ?",
       "Puis-je demander un relevé de notes en ligne ?"
     ],
-    "sources": ["Service de la scolarité SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service de la scolarité SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_011",
+    "id": "faq_326",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les résultats des concours d'entrée sont-ils publiés sur le même support ?",
@@ -163,13 +193,16 @@
       "Où trouver les résultats du concours d'entrée ?",
       "Les résultats du concours sont-ils définitifs ?"
     ],
-    "sources": ["Avis de concours SUP'PTIC", "Pratiques universitaires générales"],
+    "sources": [
+      "Avis de concours SUP'PTIC",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_012",
+    "id": "faq_327",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Quelles informations figurent sur le relevé de notes ?",
@@ -178,13 +211,16 @@
       "Mon classement est-il indiqué sur le relevé de notes ?",
       "Les absences sont-elles mentionnées ?"
     ],
-    "sources": ["Service de la scolarité SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service de la scolarité SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_013",
+    "id": "faq_328",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Peut-on demander une attestation de réussite avant la délivrance du diplôme ?",
@@ -193,13 +229,16 @@
       "Comment obtenir une attestation de réussite ?",
       "L'attestation de réussite est-elle payante ?"
     ],
-    "sources": ["Service de la scolarité SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service de la scolarité SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_014",
+    "id": "faq_329",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Quelles sont les conséquences d'une absence aux examens sur la publication des résultats ?",
@@ -208,13 +247,16 @@
       "Comment justifier une absence à un examen ?",
       "Une absence justifiée affecte-t-elle ma moyenne ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_015",
+    "id": "faq_330",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les résultats sont-ils anonymes lors de leur publication ?",
@@ -223,13 +265,16 @@
       "Mon nom apparaît-il sur les listes de résultats ?",
       "Comment puis-je retrouver mes résultats avec mon numéro matricule ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_016",
+    "id": "faq_331",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Qu'est-ce qu'une délibération du jury et quel est son rôle ?",
@@ -238,13 +283,16 @@
       "Quand ont lieu les délibérations du jury ?",
       "Le jury peut-il modifier mes notes ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_017",
+    "id": "faq_332",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Peut-on obtenir une explication orale de ses notes ?",
@@ -253,13 +301,16 @@
       "Comment contacter un enseignant pour discuter de ma note ?",
       "L'enseignant est-il obligé de me donner des explications ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_018",
+    "id": "faq_333",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les résultats des stages ou projets sont-ils inclus dans la publication générale ?",
@@ -268,13 +319,16 @@
       "Comment est noté mon stage ?",
       "Les rapports de stage sont-ils consultables ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_019",
+    "id": "faq_334",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Qu'est-ce qu'une mention (Passable, Assez Bien, Bien, Très Bien) et comment l'obtient-on ?",
@@ -283,13 +337,16 @@
       "Quelle moyenne faut-il pour avoir la mention Bien ?",
       "Une mention a-t-elle un impact sur mon avenir professionnel ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_020",
+    "id": "faq_335",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les résultats peuvent-ils être modifiés après leur publication initiale ?",
@@ -298,13 +355,16 @@
       "Une erreur de saisie peut-elle être corrigée après la publication ?",
       "Si une fraude est découverte plus tard, ma note peut-elle changer ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_021",
+    "id": "faq_336",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Qu'est-ce qu'un jury de compensation et comment fonctionne-t-il ?",
@@ -313,13 +373,16 @@
       "Quelles sont les conditions pour bénéficier de la compensation ?",
       "Toutes les matières sont-elles compensables ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_022",
+    "id": "faq_337",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les étudiants peuvent-ils être ajournés sans possibilité de rattrapage ?",
@@ -328,13 +391,16 @@
       "Dans quels cas un ajournement sans rattrapage est-il prononcé ?",
       "Puis-je contester un ajournement sans rattrapage ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_023",
+    "id": "faq_338",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Comment les étudiants en échange ou en mobilité voient-ils leurs résultats publiés ?",
@@ -343,13 +409,16 @@
       "Mes notes de l'étranger sont-elles converties ?",
       "Qui est responsable de la transmission de mes résultats ?"
     ],
-    "sources": ["Service des relations internationales SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service des relations internationales SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_024",
+    "id": "faq_339",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les parents peuvent-ils accéder aux résultats de leurs enfants ?",
@@ -358,13 +427,17 @@
       "Puis-je donner mon autorisation à mes parents pour qu'ils voient mes notes ?",
       "Les résultats des étudiants mineurs sont-ils envoyés aux parents ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Législation sur la protection des données", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Législation sur la protection des données",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_025",
+    "id": "faq_340",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Quelles sont les démarches en cas de perte ou de non-réception du relevé de notes ?",
@@ -373,13 +446,16 @@
       "Combien coûte un duplicata de relevé de notes ?",
       "Quel est le délai pour recevoir un duplicata ?"
     ],
-    "sources": ["Service de la scolarité SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service de la scolarité SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_026",
+    "id": "faq_341",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les résultats des examens sont-ils définitifs après la délibération du jury ?",
@@ -388,13 +464,16 @@
       "Une fois les résultats publiés, peuvent-ils encore changer ?",
       "Qu'est-ce qu'une erreur matérielle dans les résultats ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_027",
+    "id": "faq_342",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Comment les résultats sont-ils utilisés pour la progression académique (passage en année supérieure) ?",
@@ -403,13 +482,16 @@
       "Quelle moyenne faut-il pour passer en année supérieure ?",
       "Si je valide toutes mes matières mais pas ma moyenne, que se passe-t-il ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_028",
+    "id": "faq_343",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Y a-t-il des statistiques de réussite ou d'échec publiées par SUP'PTIC ?",
@@ -418,13 +500,16 @@
       "Où puis-je trouver les statistiques de réussite de SUP'PTIC ?",
       "Ces statistiques sont-elles publiques ?"
     ],
-    "sources": ["Rapports institutionnels SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Rapports institutionnels SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_029",
+    "id": "faq_344",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Comment les résultats sont-ils communiqués aux entreprises partenaires pour les stages ?",
@@ -433,13 +518,17 @@
       "Mon entreprise de stage peut-elle demander mes notes à SUP'PTIC ?",
       "Dois-je donner mon accord pour la transmission de mes notes ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Législation sur la protection des données", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Législation sur la protection des données",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_030",
+    "id": "faq_345",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Y a-t-il une cérémonie de remise des diplômes à SUP'PTIC ?",
@@ -448,13 +537,16 @@
       "Quand a lieu la cérémonie de remise des diplômes ?",
       "Puis-je inviter ma famille à la cérémonie ?"
     ],
-    "sources": ["Communication SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Communication SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_031",
+    "id": "faq_346",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Comment les résultats sont-ils pris en compte pour l'attribution des bourses d'excellence ?",
@@ -463,13 +555,17 @@
       "Quelle moyenne faut-il pour une bourse d'excellence ?",
       "Les bourses d'excellence sont-elles renouvelables ?"
     ],
-    "sources": ["Organismes de bourse", "Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Organismes de bourse",
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_032",
+    "id": "faq_347",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les résultats des projets de recherche sont-ils publiés ou archivés ?",
@@ -478,13 +574,16 @@
       "Où puis-je consulter les mémoires des anciens étudiants ?",
       "Mon mémoire sera-t-il publié ?"
     ],
-    "sources": ["Bibliothèque SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Bibliothèque SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_033",
+    "id": "faq_348",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Comment les résultats sont-ils utilisés pour l'orientation professionnelle ?",
@@ -493,13 +592,16 @@
       "Les entreprises regardent-elles mes notes ?",
       "Une bonne moyenne peut-elle m'aider à trouver un emploi ?"
     ],
-    "sources": ["Service d'orientation professionnelle SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service d'orientation professionnelle SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_034",
+    "id": "faq_349",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Y a-t-il un système de crédits (ECTS) à SUP'PTIC et comment sont-ils validés par les résultats ?",
@@ -508,13 +610,16 @@
       "Combien de crédits faut-il pour valider un semestre ?",
       "Les crédits sont-ils transférables à d'autres universités ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_pub_035",
+    "id": "faq_350",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Comment les résultats sont-ils pris en compte pour les admissions en Master ou Doctorat à SUP'PTIC ?",
@@ -523,9 +628,12 @@
       "Quelle moyenne est requise pour entrer en Master à SUP'PTIC ?",
       "Les lettres de recommandation sont-elles importantes pour l'admission en Doctorat ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   }
 ]

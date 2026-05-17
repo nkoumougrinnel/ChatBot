@@ -1,6 +1,6 @@
 [
   {
-    "id": "faq_reins_001",
+    "id": "faq_351",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quelles sont les conditions générales de réinscription à SUP'PTIC ?",
@@ -10,13 +10,16 @@
       "Y a-t-il des prérequis académiques pour la réinscription ?",
       "Quels documents sont nécessaires pour la réinscription ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_002",
+    "id": "faq_352",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quel est le délai pour la réinscription annuelle ?",
@@ -25,13 +28,16 @@
       "Où puis-je trouver le calendrier de réinscription ?",
       "Que se passe-t-il si je rate la date limite de réinscription ?"
     ],
-    "sources": ["Avis administratifs SUP'PTIC", "Pratiques universitaires générales"],
+    "sources": [
+      "Avis administratifs SUP'PTIC",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_003",
+    "id": "faq_353",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Peut-on se réinscrire après une interruption d'études ?",
@@ -41,13 +47,16 @@
       "Quels sont les documents à fournir pour une réintégration ?",
       "Y a-t-il des frais supplémentaires pour une réintégration ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_004",
+    "id": "faq_354",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Qu'est-ce qu'un transfert d'études et comment le demander à SUP'PTIC ?",
@@ -57,13 +66,16 @@
       "Quels documents sont requis pour un dossier de transfert ?",
       "Quel est le processus de décision pour les transferts ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_005",
+    "id": "faq_355",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quelles sont les conditions pour un transfert interne entre filières à SUP'PTIC ?",
@@ -73,13 +85,16 @@
       "Mes notes sont-elles prises en compte pour un transfert interne ?",
       "Y a-t-il des filières où les transferts internes sont plus difficiles ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_006",
+    "id": "faq_356",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Comment se déroule une demande de réorientation à SUP'PTIC ?",
@@ -89,13 +104,16 @@
       "Quels sont les délais pour déposer une demande de réorientation ?",
       "La réorientation est-elle garantie ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_007",
+    "id": "faq_357",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quelles sont les implications financières d'une réorientation ?",
@@ -104,13 +122,16 @@
       "Les frais de scolarité sont-ils les mêmes après une réorientation ?",
       "Puis-je obtenir un remboursement si je me réoriente en cours de semestre ?"
     ],
-    "sources": ["Service financier SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service financier SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_008",
+    "id": "faq_358",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Comment gérer une reprise d'études après un échec ou une longue absence ?",
@@ -120,13 +141,16 @@
       "Puis-je reprendre mes études au même niveau après une longue absence ?",
       "Existe-t-il un soutien pour les étudiants en reprise d'études ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_009",
+    "id": "faq_359",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Les crédits obtenus dans un autre établissement sont-ils reconnus par SUP'PTIC ?",
@@ -136,13 +160,16 @@
       "Quels types de cours sont éligibles à la reconnaissance ?",
       "Y a-t-il une limite au nombre de crédits transférables ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_010",
+    "id": "faq_360",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Existe-t-il des bourses ou aides financières pour les étudiants en réorientation ou reprise d'études ?",
@@ -152,13 +179,16 @@
       "Où puis-je trouver des informations sur les aides financières ?",
       "Les étudiants en reprise d'études sont-ils éligibles aux bourses ?"
     ],
-    "sources": ["Service des affaires estudiantines SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service des affaires estudiantines SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_011",
+    "id": "faq_361",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Comment contester une décision de refus de réinscription, de transfert ou de réorientation ?",
@@ -168,13 +198,16 @@
       "Quels documents dois-je joindre à mon recours ?",
       "Quel est le délai pour déposer un recours ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_012",
+    "id": "faq_362",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Y a-t-il des quotas pour les transferts ou les réorientations à SUP'PTIC ?",
@@ -183,13 +216,16 @@
       "Comment connaître les quotas disponibles ?",
       "Les quotas varient-ils d'une année à l'autre ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_013",
+    "id": "faq_363",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quels sont les critères de validation des acquis pour une reprise d'études ?",
@@ -199,13 +235,16 @@
       "Comment mon expérience professionnelle est-elle évaluée ?",
       "Dois-je passer des examens pour la validation des acquis ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_014",
+    "id": "faq_364",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Peut-on changer de cycle d'études (ex: Licence vers Master) via une réorientation ou un transfert ?",
@@ -214,13 +253,16 @@
       "Comment passer de la Licence au Master à SUP'PTIC ?",
       "Y a-t-il des concours spécifiques pour le Master ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_015",
+    "id": "faq_365",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quelles sont les conséquences d'une non-réinscription dans les délais ?",
@@ -229,13 +271,16 @@
       "Puis-je être exclu si je ne me réinscris pas à temps ?",
       "Comment puis-je régulariser ma situation après une non-réinscription ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_016",
+    "id": "faq_366",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Les étudiants étrangers ont-ils des procédures de réinscription ou de transfert spécifiques ?",
@@ -244,13 +289,16 @@
       "Quels documents supplémentaires les étudiants étrangers doivent-ils fournir ?",
       "Y a-t-il un service dédié aux étudiants internationaux ?"
     ],
-    "sources": ["Service des relations internationales SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service des relations internationales SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_017",
+    "id": "faq_367",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quels sont les motifs valables pour une demande de dérogation de réinscription ?",
@@ -259,13 +307,16 @@
       "Quels justificatifs sont acceptés pour une dérogation ?",
       "Comment déposer une demande de dérogation ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_018",
+    "id": "faq_368",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "La réinscription est-elle automatique si toutes les conditions sont remplies ?",
@@ -274,13 +325,16 @@
       "Dois-je vérifier le statut de ma réinscription ?",
       "Comment savoir si ma réinscription est validée ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_019",
+    "id": "faq_369",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Peut-on se réinscrire dans une filière différente de celle d'origine après un échec ?",
@@ -289,13 +343,16 @@
       "Quelles sont les filières accessibles après un échec ?",
       "Dois-je refaire une demande d'admission complète ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_020",
+    "id": "faq_370",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quels sont les documents à fournir pour une réinscription ?",
@@ -304,13 +361,16 @@
       "Où obtenir la fiche de réinscription ?",
       "Dois-je fournir des photos d'identité ?"
     ],
-    "sources": ["Administration SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Administration SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_021",
+    "id": "faq_371",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Y a-t-il des frais de réinscription spécifiques pour les cas particuliers (transfert, réorientation) ?",
@@ -319,13 +379,16 @@
       "Combien coûtent les frais de transfert ?",
       "Les frais de réorientation sont-ils remboursables ?"
     ],
-    "sources": ["Service financier SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service financier SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_022",
+    "id": "faq_372",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Comment les absences prolongées sont-elles gérées pour la réinscription ?",
@@ -334,13 +397,16 @@
       "Comment demander une suspension d'études ?",
       "Quelles sont les conséquences d'une absence non justifiée ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_023",
+    "id": "faq_373",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Peut-on se réinscrire en cours d'année académique ?",
@@ -349,13 +415,16 @@
       "Dans quels cas peut-on se réinscrire en cours d'année ?",
       "Quelles sont les démarches pour une réinscription tardive ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_024",
+    "id": "faq_374",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Comment les étudiants en situation de handicap gèrent-ils leur réinscription ou réorientation ?",
@@ -364,13 +433,16 @@
       "Quels sont les aménagements possibles pour les étudiants handicapés ?",
       "Qui contacter pour un accompagnement spécifique ?"
     ],
-    "sources": ["Service handicap SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service handicap SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_025",
+    "id": "faq_375",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Les étudiants boursiers ont-ils des règles de réinscription différentes ?",
@@ -379,13 +451,17 @@
       "Quelles sont les conditions de maintien de bourse pour la réinscription ?",
       "Qui contacter pour les questions relatives aux bourses ?"
     ],
-    "sources": ["Organisme de bourse", "Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Organisme de bourse",
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_026",
+    "id": "faq_376",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Comment se réinscrire après une année de césure ?",
@@ -394,13 +470,16 @@
       "Quels documents pour la réinscription après une césure ?",
       "Y a-t-il des conditions académiques pour la réintégration après une césure ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_027",
+    "id": "faq_377",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Peut-on faire une demande de transfert vers SUP'PTIC en cours de semestre ?",
@@ -409,13 +488,16 @@
       "Quelles sont les exceptions pour un transfert en cours de semestre ?",
       "Quel est le meilleur moment pour demander un transfert ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_028",
+    "id": "faq_378",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Comment les redoublements sont-ils gérés en termes de réinscription ?",
@@ -424,13 +506,16 @@
       "Un redoublement est-il automatique ?",
       "Y a-t-il une limite au nombre de redoublements autorisés ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_029",
+    "id": "faq_379",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quelles sont les démarches pour une réorientation vers une formation professionnelle ?",
@@ -439,13 +524,16 @@
       "SUP'PTIC propose-t-il des formations professionnelles ?",
       "Comment trouver un stage après une réorientation professionnelle ?"
     ],
-    "sources": ["Service d'orientation SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service d'orientation SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_030",
+    "id": "faq_380",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Peut-on faire une réorientation vers une autre université après avoir commencé à SUP'PTIC ?",
@@ -454,13 +542,16 @@
       "Quelles sont les étapes pour un transfert vers une autre université ?",
       "Mes crédits seront-ils reconnus par l'autre université ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_031",
+    "id": "faq_381",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quelles sont les conditions pour une réinscription en tant qu'auditeur libre ?",
@@ -469,13 +560,16 @@
       "Quels sont les avantages d'être auditeur libre ?",
       "Les auditeurs libres peuvent-ils passer les examens ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_032",
+    "id": "faq_382",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Comment les étudiants salariés gèrent-ils leur réinscription et leur emploi ?",
@@ -484,13 +578,16 @@
       "Existe-t-il des horaires aménagés pour les étudiants salariés ?",
       "Comment concilier études et travail à SUP'PTIC ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_033",
+    "id": "faq_383",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Quelles sont les options pour les étudiants ayant des difficultés académiques pour se réinscrire ?",
@@ -499,13 +596,16 @@
       "Quels soutiens sont offerts aux étudiants en difficulté ?",
       "La réinscription est-elle possible après plusieurs échecs ?"
     ],
-    "sources": ["Service pédagogique SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Service pédagogique SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_034",
+    "id": "faq_384",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Comment les changements de programme d'études affectent-ils la réinscription ?",
@@ -514,13 +614,16 @@
       "Dois-je refaire des cours si le programme change ?",
       "Comment mes anciens crédits sont-ils pris en compte ?"
     ],
-    "sources": ["Règlement intérieur SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   },
   {
-    "id": "faq_reins_035",
+    "id": "faq_385",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Réinscription et cas particuliers",
     "question": "Où trouver le formulaire de demande de transfert ou de réorientation à SUP'PTIC ?",
@@ -529,9 +632,13 @@
       "Le formulaire est-il téléchargeable en ligne ?",
       "Quel service gère les formulaires de transfert ?"
     ],
-    "sources": ["Site web SUP'PTIC (à confirmer)", "Service des affaires académiques SUP'PTIC (à confirmer)", "Pratiques universitaires générales"],
+    "sources": [
+      "Site web SUP'PTIC (à confirmer)",
+      "Service des affaires académiques SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
     "date_creation": "2026-05-15",
     "version": "1.0",
-    "valide": false
+    "valide": true
   }
 ]
