@@ -22,7 +22,7 @@
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Quel est le délai d'obtention d'un relevé de notes à SUP'PTIC ?",
-    "reponse_enrichie": "Le relevé de notes est délivré dans un délai de 1 à 5 jours ouvrables selon la disponibilité de l'administration.",
+    "reponse_enrichie": "Le délai dépends uniquement de la disponibilité de l'administration.",
     "exemples": [
       "En combien de temps j'aurai mes relevés de notes ?",
       "Combien de jours pour avoir mon relevé ?",
@@ -76,7 +76,7 @@
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment obtenir une attestation de réussite à SUP'PTIC ?",
-    "reponse_enrichie": "Pour obtenir une attestation de réussite, il faut adresser une demande au Directeur avec les pièces suivantes : photocopies des reçus de paiement de toutes les classes du cycle, attestation de scolarité (à retirer auprès du service de scolarité après présentation du document attestant la correction du mémoire), et acte de naissance.",
+    "reponse_enrichie": "Le seul document servant d'attestation de réussite est le relevé de l'année concernée.",
     "exemples": [
       "Comment avoir une attestation de succès ?",
       "J'ai réussi mes examens, comment obtenir l'attestation ?",
@@ -130,7 +130,7 @@
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Comment renouveler sa carte d'étudiant à SUP'PTIC ?",
-    "reponse_enrichie": "Le renouvellement de la carte d'étudiant se fait au service de scolarité durant une période dédiée à la confection des cartes, ouverte une fois par an. Il faut se renseigner auprès du service de scolarité pour connaître les dates exactes.",
+    "reponse_enrichie": "Le renouvellement de la carte d'étudiant se fait au niveau du boukarou durant une période dédiée à la confection des cartes, ouverte une fois par an. Il faut se renseigner auprès du service de scolarité pour connaître les dates exactes.",
     "exemples": [
       "Comment avoir une nouvelle carte étudiante ?",
       "Ma carte étudiante est expirée, que faire ?",
@@ -202,7 +202,7 @@
     "categorie": "Services Administratifs",
     "sous_theme": "Scolarité",
     "question": "Quand sont publiés les relevés de notes semestriels ?",
-    "reponse_enrichie": "Les relevés de notes sont disponibles après les délibérations de jury, généralement 2 à 4 semaines après la fin des examens. Les résultats sont communiqués par voie d'affichage sur les panneaux officiels de l'école.",
+    "reponse_enrichie": "Les relevés de notes sont disponibles après les délibérations de jury, généralement 4 à 6 semaines après la fin des examens. Les résultats sont communiqués par voie d'affichage sur les panneaux officiels de l'école.",
     "exemples": [
       "Quand sont disponibles les résultats semestriels ?",
       "À quel moment je peux avoir mon relevé de notes ?",

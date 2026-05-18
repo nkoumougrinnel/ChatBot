@@ -41,7 +41,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Comment accéder à mes résultats individuels ?",
-    "reponse_enrichie": "L'accès aux résultats individuels se fait généralement via un portail étudiant sécurisé, où chaque étudiant peut se connecter avec ses identifiants personnels. Il est important de ne pas partager ces informations pour garantir la confidentialité.",
+    "reponse_enrichie": "Les résultats s'affichent uniquement au boukarou et de manière collective.",
     "exemples": [
       "J'ai oublié mon mot de passe pour le portail étudiant, que faire ?",
       "Mes résultats sont-ils envoyés par e-mail ?"
@@ -59,7 +59,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Peut-on consulter les copies d'examen après la publication des résultats ?",
-    "reponse_enrichie": "La consultation des copies d'examen est un droit pour les étudiants. Les modalités (dates, lieux, prise de rendez-vous) sont généralement communiquées après la publication des résultats. Cela permet de comprendre les erreurs et d'améliorer les performances futures.",
+    "reponse_enrichie": "La consultation des copies d'examen n'est pas possible sauf lors des controles continus et certains TP en fonction de l'enseignant.",
     "exemples": [
       "Comment demander à consulter ma copie ?",
       "Puis-je prendre des photos de ma copie d'examen ?",
@@ -97,7 +97,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Quels sont les motifs valables pour une contestation de note ?",
-    "reponse_enrichie": "Les motifs valables pour une contestation de note incluent une erreur matérielle (erreur de calcul, oubli de correction), une non-conformité de l'épreuve avec le programme, un vice de procédure lors de l'examen, ou une erreur manifeste d'appréciation du correcteur.",
+    "reponse_enrichie": "Les motifs valables pour une contestation de note incluent une erreur matérielle (erreur de calcul, oubli de correction) ou une erreur manifeste d'appréciation du correcteur.",
     "exemples": [
       "Une mauvaise écriture peut-elle être un motif de contestation ?",
       "Puis-je contester une note si je pense que le correcteur n'a pas compris ma réponse ?"
@@ -133,7 +133,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Quel est le processus de décision suite à une contestation ?",
-    "reponse_enrichie": "Suite à une contestation, une commission pédagogique ou un jury d'examen peut être réuni pour réexaminer la copie ou la situation. La décision est ensuite communiquée à l'étudiant, et elle est généralement définitive au niveau de l'établissement.",
+    "reponse_enrichie": "Suite à une contestation, l'enseignant concerné étudie et révise celle-ci. La décision est ensuite communiquée à l'étudiant, et elle est généralement définitive au niveau de l'établissement.",
     "exemples": [
       "Combien de temps prend la décision après une contestation ?",
       "Puis-je faire appel de la décision de la commission ?"
@@ -224,7 +224,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Peut-on demander une attestation de réussite avant la délivrance du diplôme ?",
-    "reponse_enrichie": "Oui, il est possible de demander une attestation de réussite provisoire après la proclamation des résultats finaux et avant la délivrance officielle du diplôme. Cette attestation a une valeur officielle et peut être utilisée pour des démarches administratives ou professionnelles.",
+    "reponse_enrichie": "Non l'établissement fourni juste le relevé notes ce qui office de preuve que l'année dernière a été validée.",
     "exemples": [
       "Comment obtenir une attestation de réussite ?",
       "L'attestation de réussite est-elle payante ?"
@@ -260,7 +260,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les résultats sont-ils anonymes lors de leur publication ?",
-    "reponse_enrichie": "Pour des raisons de confidentialité, les résultats publiés publiquement (sur les tableaux d'affichage ou en ligne) sont souvent anonymisés, c'est-à-dire qu'ils utilisent le numéro matricule de l'étudiant plutôt que son nom complet. L'accès aux noms est réservé aux relevés individuels.",
+    "reponse_enrichie": "Pour des raisons de confidentialité, les résultats publiés publiquement.",
     "exemples": [
       "Mon nom apparaît-il sur les listes de résultats ?",
       "Comment puis-je retrouver mes résultats avec mon numéro matricule ?"
@@ -386,7 +386,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les étudiants peuvent-ils être ajournés sans possibilité de rattrapage ?",
-    "reponse_enrichie": "Dans certains cas extrêmes, notamment en cas de résultats très faibles ou de non-respect des règles académiques, un étudiant peut être ajourné sans possibilité de rattrapage. Cette décision est prise par le jury après examen approfondi du dossier.",
+    "reponse_enrichie": "Dans certains cas extrêmes, notamment en cas de résultats très faibles lors des controles continus ou de non-respect des règles académiques, un étudiant peut être ajourné sans possibilité de rattrapage.",
     "exemples": [
       "Dans quels cas un ajournement sans rattrapage est-il prononcé ?",
       "Puis-je contester un ajournement sans rattrapage ?"
@@ -422,7 +422,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les parents peuvent-ils accéder aux résultats de leurs enfants ?",
-    "reponse_enrichie": "L'accès aux résultats des étudiants majeurs est strictement confidentiel et réservé à l'étudiant lui-même. Les parents ne peuvent y accéder qu'avec l'autorisation écrite de l'étudiant. Pour les étudiants mineurs, les parents peuvent avoir un accès direct selon les règles de l'établissement.",
+    "reponse_enrichie": "Oui, les parents peuvent accéder aux résultats de leurs enfants en ayant confirmé leur identité",
     "exemples": [
       "Puis-je donner mon autorisation à mes parents pour qu'ils voient mes notes ?",
       "Les résultats des étudiants mineurs sont-ils envoyés aux parents ?"
@@ -441,7 +441,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Quelles sont les démarches en cas de perte ou de non-réception du relevé de notes ?",
-    "reponse_enrichie": "En cas de perte ou de non-réception d'un relevé de notes, l'étudiant doit contacter le service de la scolarité de SUP'PTIC pour demander un duplicata. Des frais peuvent être appliqués pour la réédition du document.",
+    "reponse_enrichie": "En cas de perte ou de non-réception d'un relevé de notes, l'étudiant doit contacter le service de la scolarité de SUP'PTIC pour demander un duplicata. Des frais vont être appliqués pour la réédition du document.",
     "exemples": [
       "Combien coûte un duplicata de relevé de notes ?",
       "Quel est le délai pour recevoir un duplicata ?"
@@ -569,7 +569,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
     "question": "Les résultats des projets de recherche sont-ils publiés ou archivés ?",
-    "reponse_enrichie": "Les résultats des projets de recherche, notamment les mémoires de Master ou les thèses de Doctorat, sont généralement archivés à la bibliothèque de SUP'PTIC et peuvent être consultables. Certains peuvent être publiés dans des revues scientifiques ou présentés lors de conférences.",
+    "reponse_enrichie": "Les résultats des projets de recherche, notamment les mémoires de Master, sont généralement archivés à la bibliothèque de SUP'PTIC et peuvent être consultables. Certains peuvent être publiés dans des revues scientifiques ou présentés lors de conférences.",
     "exemples": [
       "Où puis-je consulter les mémoires des anciens étudiants ?",
       "Mon mémoire sera-t-il publié ?"
@@ -622,8 +622,8 @@
     "id": "faq_350",
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Publication des résultats",
-    "question": "Comment les résultats sont-ils pris en compte pour les admissions en Master ou Doctorat à SUP'PTIC ?",
-    "reponse_enrichie": "Les résultats obtenus en Licence sont un critère essentiel pour l'admission en Master, et ceux du Master pour le Doctorat à SUP'PTIC. Les dossiers de candidature sont examinés sur la base des relevés de notes, des mentions obtenues, et parfois d'un classement. Un bon dossier académique est un atout majeur.",
+    "question": "Comment les résultats sont-ils pris en compte pour les admissions en Master à SUP'PTIC ?",
+    "reponse_enrichie": "Les résultats obtenus en Licence sont un critère essentiel pour l'admission en Master à SUP'PTIC. Les dossiers de candidature sont examinés sur la base des relevés de notes, des mentions obtenues, et parfois d'un classement ainsi que la non participation à un conseil de discipline. Un bon dossier académique est un atout majeur.",
     "exemples": [
       "Quelle moyenne est requise pour entrer en Master à SUP'PTIC ?",
       "Les lettres de recommandation sont-elles importantes pour l'admission en Doctorat ?"

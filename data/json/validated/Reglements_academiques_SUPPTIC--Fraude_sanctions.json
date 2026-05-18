@@ -4,7 +4,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Qu'est-ce qui est considéré comme une fraude aux examens à SUP'PTIC ?",
-    "reponse_enrichie": "La fraude aux examens à SUP'PTIC inclut, sans s'y limiter, l'utilisation de documents non autorisés, la communication entre étudiants, la substitution d'identité, le plagiat, et toute tentative de tromperie lors d'une évaluation. Le règlement intérieur de l'établissement détaille ces infractions.",
+    "reponse_enrichie": "La fraude aux examens à SUP'PTIC inclut, sans s'y limiter, l'utilisation de documents non autorisés, la corruption, la communication entre étudiants, la substitution d'identité, le plagiat, et toute tentative de tromperie lors d'une évaluation. Le règlement intérieur de l'établissement détaille ces infractions.",
     "exemples": [
       "Est-ce que copier sur un voisin est une fraude ?",
       "L'utilisation d'un téléphone portable pendant un examen est-elle une fraude ?",
@@ -60,7 +60,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Quelle est la procédure disciplinaire en cas de suspicion de fraude ?",
-    "reponse_enrichie": "En cas de suspicion de fraude, l'étudiant est généralement convoqué devant une commission ou un conseil de discipline. Il a le droit d'être entendu, de présenter sa défense et d'être assisté. Une enquête est menée pour établir les faits avant toute décision.",
+    "reponse_enrichie": "En cas de suspicion de fraude, l'étudiant est généralement convoqué devant une commission ou un conseil de discipline. Il a le droit d'être entendu, de présenter sa défense et d'être assisté",
     "exemples": [
       "Ai-je le droit d'être accompagné lors d'un conseil de discipline ?",
       "Combien de temps dure la procédure disciplinaire ?",
@@ -188,7 +188,7 @@
     "categorie": "Règlements académiques SUP'PTIC",
     "sous_theme": "Fraude et sanctions",
     "question": "Peut-on contester une sanction disciplinaire ?",
-    "reponse_enrichie": "Oui, l'étudiant a le droit de contester une sanction disciplinaire. Il peut généralement faire un recours gracieux auprès de l'autorité qui a prononcé la sanction, puis un recours hiérarchique, et enfin un recours contentieux devant les juridictions administratives.",
+    "reponse_enrichie": "Oui, l'étudiant a le droit de plaider contre une sanction disciplinaire. Il peut généralement faire un recours gracieux auprès de l'autorité qui a prononcé la sanction, puis un recours hiérarchique, et enfin un recours contentieux devant les juridictions administratives.",
     "exemples": [
       "Quel est le délai pour contester une sanction ?",
       "Quels sont les arguments recevables pour contester une sanction ?"
