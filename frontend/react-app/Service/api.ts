@@ -1,4 +1,4 @@
-export const BACKEND_BASE_URL = "http://192.168.29.82:8000";
+export const BACKEND_BASE_URL = "http://10.227.132.171:8000";
 
 export type ChatbotResult = {
   faq_id: number;
