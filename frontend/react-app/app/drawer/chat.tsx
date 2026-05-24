@@ -21,9 +21,11 @@ import {
 } from "react-native";
 
 import Animated, {
+   Easing,
   FadeInDown,
   FadeInUp,
   useAnimatedStyle,
+  useSharedValue, 
   withRepeat,
   withTiming,
   withSequence,
@@ -86,26 +88,75 @@ const MessageActions = ({ text }: { text: string }) => {
   );
 };
 
-const ReflectionAnimation = () => {
-  const opacity = useAnimatedStyle(() => ({
-    opacity: withRepeat(
-      withSequence(
-        withTiming(0.4, { duration: 600 }),
-        withTiming(1, { duration: 600 })
-      ),
+const CircularSpinner = () => {
+  const DOT_COUNT = 7;
+  const RADIUS = 13;
+  const DOT_SIZE = 7;
+  const rotation = useSharedValue(0);
+
+  useEffect(() => {
+    rotation.value = withRepeat(
+      withTiming(360, { duration: 1100, easing: Easing.linear }),
       -1,
-      true
-    ),
+      false
+    );
+  }, []);
+
+  const animStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: `${rotation.value}deg` }],
   }));
 
   return (
-    <View style={styles.reflectionContainer}>
-      <Animated.View style={[styles.reflectionBar, opacity]} />
-      <Animated.View style={[styles.reflectionBar, { width: "70%" }, opacity]} />
-      <Animated.View style={[styles.reflectionBar, { width: "50%" }, opacity]} />
+    <View style={spinnerStyles.shell}>
+      <Animated.View style={[spinnerStyles.wheel, animStyle]}>
+        {Array.from({ length: DOT_COUNT }).map((_, i) => {
+          const angle = (i / DOT_COUNT) * 2 * Math.PI;
+          const x = RADIUS * Math.cos(angle);
+          const y = RADIUS * Math.sin(angle);
+          const opacity = 0.2 + (i / DOT_COUNT) * 0.8;
+          return (
+            <View
+              key={i}
+              style={[
+                spinnerStyles.dot,
+                {
+                  opacity,
+                  transform: [
+                    { translateX: x },
+                    { translateY: y },
+                  ],
+                },
+              ]}
+            />
+          );
+        })}
+      </Animated.View>
     </View>
   );
 };
+
+const spinnerStyles = StyleSheet.create({
+  shell: {
+    width: 46,
+    height: 46,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 6,
+  },
+  wheel: {
+    width: 7,
+    height: 7,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  dot: {
+    position: "absolute",
+    width: 7,
+    height: 7,
+    borderRadius: 3.5,
+    backgroundColor: VS_CODE_BLUE,
+  },
+});
 
 const TypingIndicator = ({ text }: { text: string }) => (
   <Animated.View entering={FadeInUp.duration(300)} style={styles.botMsgWrapper}>
@@ -113,10 +164,7 @@ const TypingIndicator = ({ text }: { text: string }) => (
       {text ? (
         <Text style={styles.botText}>{text}</Text>
       ) : (
-        <>
-          <ReflectionAnimation />
-          <Text style={styles.typingText}>Supone est en train de répondre...</Text>
-        </>
+        <CircularSpinner />
       )}
     </View>
   </Animated.View>
@@ -158,14 +206,55 @@ export default function Index() {
   };
 
   useEffect(() => {
-    if (reset) {
-      setChatHistory([{ id: "1", text: "Bonjour ! Je suis Supone. Pose-moi une question sur le SUP'PTIC.", sender: "bot" }]);
-      setCurrentSessionId(null);
-      setInputText("");
-      setIsTyping(false);
-    }
-  }, [reset]);
+  if (reset === "true") {
+    // Nouvelle discussion voulue explicitement
+    setChatHistory([{ id: "1", text: "Bonjour ! Je suis Supone. Pose-moi une question sur le SUP'PTIC.", sender: "bot" }]);
+    setCurrentSessionId(null);
+    setInputText("");
+    setIsTyping(false);
+  } else if (!sessionId && !reset) {
+    // Retour depuis feedback ou autre page — restaure la dernière session
+    const restoreLast = async () => {
+      try {
+        const saved = await AsyncStorage.getItem("chat_history");
+        if (saved) {
+          const sessions = JSON.parse(saved);
+          if (sessions.length > 0) {
+            const last = sessions[0]; // la plus récente
+            setChatHistory(last.messages);
+            setCurrentSessionId(last.id);
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    restoreLast();
+  }
+}, [reset]);
 
+useEffect(() => {
+  if (!currentSessionId && chatHistory.length === 1) {
+    const saveWelcome = async () => {
+      try {
+        const id = Date.now().toString();
+        const newSession = {
+          id,
+          title: "Nouvelle discussion",
+          messages: chatHistory,
+        };
+        const saved = await AsyncStorage.getItem("chat_history");
+        let sessions = saved ? JSON.parse(saved) : [];
+        sessions.unshift(newSession);
+        await AsyncStorage.setItem("chat_history", JSON.stringify(sessions));
+        setCurrentSessionId(id);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    saveWelcome();
+  }
+}, [chatHistory, currentSessionId]);
   useEffect(() => {
     if (sessionId) {
       const loadSession = async () => {
@@ -222,22 +311,31 @@ export default function Index() {
     setIsTyping(true);
 
     try {
-      let answer: string;
-      if (USE_STATIC_RESPONSE) {
-        answer = STATIC_RESPONSE;
-      } else {
-        const response = await askChatbot(messageToSend, 3);
-        answer = response.results.length > 0 ? response.results[0].answer : "Désolé, je n'ai pas compris.";
-      }
+const start = Date.now(); 
 
-      setTypingMessage("");
-      await sleep(150); // pause avant de commencer l'animation de saisie
-      const perChar = 80; // 80 ms par caractère pour que l'animation soit visible
-      for (let i = 1; i <= answer.length; i++) {
-        setTypingMessage(answer.slice(0, i));
-        scrollToBottom();
-        await sleep(perChar);
-      }
+let answer: string;
+if (USE_STATIC_RESPONSE) {
+  answer = STATIC_RESPONSE;
+} else {
+  const response = await askChatbot(messageToSend, 3);
+  answer = response.results.length > 0 ? response.results[0].answer : "Désolé, je n'ai pas compris.";
+}
+
+// Calcule le temps restant pour atteindre 2s minimum
+const elapsed = Date.now() - start;
+const remaining = Math.max(0, 2000 - elapsed);
+await sleep(remaining); // ← attend seulement ce qu'il manque
+
+setTypingMessage("");
+await sleep(150);
+      const wordList = answer.split(" ");
+let built = "";
+for (let i = 0; i < wordList.length; i++) {
+  built = built ? built + " " + wordList[i] : wordList[i];
+  setTypingMessage(built);
+  scrollToBottom();
+  await sleep(85 + Math.random() * 35); // 85–120ms par mot
+}
       const botMsg: Message = { id: (Date.now() + 1).toString(), text: answer, sender: "bot" };
       const finalHistory = [...withUser, botMsg];
       setChatHistory(finalHistory);
