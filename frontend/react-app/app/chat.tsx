@@ -171,14 +171,55 @@ export default function Index() {
   };
 
   useEffect(() => {
-    if (reset) {
-      setChatHistory([{ id: "1", text: "Bonjour ! Je suis Supone. Pose-moi une question sur le SUP'PTIC.", sender: "bot" }]);
-      setCurrentSessionId(null);
-      setInputText("");
-      setIsTyping(false);
-    }
-  }, [reset]);
+  if (reset === "true") {
+    // Nouvelle discussion voulue explicitement
+    setChatHistory([{ id: "1", text: "Bonjour ! Je suis Supone. Pose-moi une question sur le SUP'PTIC.", sender: "bot" }]);
+    setCurrentSessionId(null);
+    setInputText("");
+    setIsTyping(false);
+  } else if (!sessionId && !reset) {
+    // Retour depuis feedback ou autre page — restaure la dernière session
+    const restoreLast = async () => {
+      try {
+        const saved = await AsyncStorage.getItem("chat_history");
+        if (saved) {
+          const sessions = JSON.parse(saved);
+          if (sessions.length > 0) {
+            const last = sessions[0]; // la plus récente
+            setChatHistory(last.messages);
+            setCurrentSessionId(last.id);
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    restoreLast();
+  }
+}, [reset]);
 
+useEffect(() => {
+  if (!currentSessionId && chatHistory.length === 1) {
+    const saveWelcome = async () => {
+      try {
+        const id = Date.now().toString();
+        const newSession = {
+          id,
+          title: "Nouvelle discussion",
+          messages: chatHistory,
+        };
+        const saved = await AsyncStorage.getItem("chat_history");
+        let sessions = saved ? JSON.parse(saved) : [];
+        sessions.unshift(newSession);
+        await AsyncStorage.setItem("chat_history", JSON.stringify(sessions));
+        setCurrentSessionId(id);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    saveWelcome();
+  }
+}, [chatHistory, currentSessionId]);
   useEffect(() => {
     if (sessionId) {
       const loadSession = async () => {
