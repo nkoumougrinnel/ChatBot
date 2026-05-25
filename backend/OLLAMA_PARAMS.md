@@ -1,6 +1,7 @@
 # Paramètres Ollama — Phi-3 Mini
 
 ## Modèle utilisé
+
 - **Modèle** : `phi3:mini`
 - **URL** : `http://localhost:11434`
 

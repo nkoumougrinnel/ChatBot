@@ -1,58 +1,175 @@
 """
 views.py — Endpoints API du chatbot SUP'ONE.
 
-Phase 1 (conservé) :
-    POST /api/chatbot/ask/        → TF-IDF + intent detection
+Chaque événement SSE envoyé au frontend est un objet JSON avec un champ `type` :
 
-Phase 2 (ajouté J6) :
-    POST /api/chatbot/ask/        → Pipeline RAG (MiniLM → FAISS → Phi-3)
-                                    avec streaming SSE et fallback TF-IDF automatique
-    POST /api/feedback/           → Enregistrement like/dislike
-    GET  /api/stats/              → Statistiques d'usage
-    POST /api/reload-index/       → Rechargement FAISS à chaud
+    { "type": "status",  "status": "thinking"|"searching"|"streaming" }
+        → Animation côté frontend (indicateur de chargement, recherche, etc.)
+
+    { "type": "meta",    "method": "CONV"|"DIRECT"|"LLM", "score": float,
+                         "source": { "question": str, "categorie": str } | null }
+        → Permet au frontend de choisir l'animation de bulle (ex: badge méthode RAG)
+
+    { "type": "token",   "content": str }
+        → Fragment de texte à ajouter progressivement dans la bulle
+
+    { "type": "done",    "elapsed_ms": int }
+        → Fin de réponse ; le frontend arrête l'animation et affiche un bouton feedback
+
+    { "type": "error",   "message": str }
+        → Erreur à afficher dans la bulle
 """
 
 import json
+import time
 
 from django.http import StreamingHttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 
-# ── Pipeline RAG Phase 2 ─────────────────────────────────────────────────────
-from chatbot.engine.rag_pipeline import ask, ask_stream, build_sse_event
-
-# ── Fallback Phase 1 (conservé) ───────────────────────────────────────────────
+from chatbot.engine.rag_pipeline import ask_stream
+from chatbot.engine.llm_client_persistent import generate_stream, check_availability
 
 
-# ════════════════════════════════════════════════════════════════════════════
-# ENDPOINT PRINCIPAL — POST /api/chatbot/ask/
-# ════════════════════════════════════════════════════════════════════════════
+# ---------------------------------------------------------------------------
+# Helpers SSE
+# ---------------------------------------------------------------------------
+
+def _sse(payload: dict) -> str:
+    """Sérialise un dict en ligne SSE (data: ...\n\n)."""
+    return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
+
+
+# ---------------------------------------------------------------------------
+# Endpoints
+# ---------------------------------------------------------------------------
+
+@api_view(["GET"])
+def llm_status(request):
+    """
+    Vérifie la disponibilité du serveur Ollama et du modèle.
+
+    GET /api/chatbot/status/
+
+    Response 200:
+        {
+            "available": bool,
+            "model_loaded": bool,
+            "model": str,
+            "error": str | null
+        }
+    """
+    return Response(check_availability())
+
 
 @api_view(["POST"])
 def ask_chatbot(request):
-    """Endpoint pour poser une question au chatbot."""
-    user_query = request.data.get("question")
-    if not user_query:
+    """
+    Pose une question au chatbot via le pipeline RAG en streaming SSE.
+
+    POST /api/chatbot/ask/
+    Body JSON : { "question": str, "history": list | null }
+
+    Flux SSE émis dans l'ordre :
+        1. status  → "thinking"   (démarrage immédiat, frontend affiche un loader)
+        2. status  → "searching"  (FAISS en cours)
+        3. meta    → méthode + score + source
+        4. status  → "streaming"  (seulement pour LLM, avant les tokens)
+        5. token*  → fragments de texte
+        6. done    → elapsed_ms
+    """
+    question = request.data.get("question", "").strip()
+    if not question:
         return Response({"error": "La question est vide"}, status=400)
 
-    intent_model, intents = _get_intent_model()
+    history = request.data.get("history")
+    if history is not None and not isinstance(history, list):
+        history = None
 
-    # Étape 1 : Détection d'intent (si modèle disponible)
-    if intent_model is not None and intents:
+    def event_generator():
+        t_start = time.time()
+
+        # ── 1. Démarrage immédiat ──────────────────────────────────────────
+        yield _sse({"type": "status", "status": "thinking"})
+
         try:
-            intent, confidence, response = detect_intent(user_query, intent_model, intents)
-            if confidence >= 0.8:
-                return Response({
-                    "question": user_query,
-                    "intent": intent,
-                    "response": response,
-                    "confidence": confidence,
-                })
-        except Exception:
-            pass  # Fallback silencieux vers TF-IDF
+            pipeline = ask_stream(question, history)
+            method = None
 
-    # Étape 2 : Fallback TF-IDF + similarité cosinus
-    result = get_chatbot_response(user_query)
-    return Response(result)
+            for event in pipeline:
+                # ── Événement de méta-données du pipeline ─────────────────
+                if isinstance(event, dict):
+                    ev_type = event.get("type")
+
+                    if ev_type == "meta":
+                        method = event.get("method")
+
+                        # Juste avant la meta, on indique "searching" pour FAISS
+                        if method in ("DIRECT", "LLM"):
+                            yield _sse({"type": "status", "status": "searching"})
+
+                        # Transmet la meta au frontend
+                        yield _sse({
+                            "type": "meta",
+                            "method": method,
+                            "score": event.get("score", 0.0),
+                            "source": event.get("source"),   # None pour LLM/CONV
+                        })
+
+                        # Si LLM, on préviendra juste avant le premier token
+                        if method == "LLM":
+                            yield _sse({"type": "status", "status": "streaming"})
+
+                    elif ev_type == "done":
+                        elapsed = round((time.time() - t_start) * 1000)
+                        yield _sse({"type": "done", "elapsed_ms": elapsed})
+
+                # ── Fragment de texte ──────────────────────────────────────
+                elif isinstance(event, str):
+                    yield _sse({"type": "token", "content": event})
+
+        except Exception as exc:  # noqa: BLE001
+            yield _sse({"type": "error", "message": str(exc)})
+            elapsed = round((time.time() - t_start) * 1000)
+            yield _sse({"type": "done", "elapsed_ms": elapsed})
+
+    return StreamingHttpResponse(
+        event_generator(),
+        content_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
+
+
+@api_view(["POST"])
+def test_llm_latency(request):
+    """
+    Mesure la latence brute du LLM (debug uniquement).
+
+    POST /api/chatbot/test-llm/
+    Body JSON : { "prompt": str }
+
+    Response 200:
+        {
+            "prompt_length": int,
+            "response": str,
+            "llm_time": float,
+            "response_length": int
+        }
+    """
+    prompt = request.data.get("prompt", "").strip()
+    if not prompt:
+        return Response({"error": "Prompt vide"}, status=400)
+
+    try:
+        t_start = time.time()
+        response_text = "".join(generate_stream(prompt))
+        llm_time = round(time.time() - t_start, 2)
+
+        return Response({
+            "prompt_length": len(prompt),
+            "response": response_text,
+            "llm_time": llm_time,
+            "response_length": len(response_text),
+        })
+    except Exception as exc:  # noqa: BLE001
+        return Response({"error": str(exc)}, status=500)
