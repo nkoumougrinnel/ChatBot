@@ -104,4 +104,3 @@ Les fichiers sont organisés par domaine fonctionnel :
 - Mise à  jour régulière des informations
 - Validation croisée des sources
 - Tests d'intégration avec le moteur de recherche
-

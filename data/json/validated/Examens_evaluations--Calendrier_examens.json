@@ -1,632 +1,562 @@
 [
-  {
-    "id": "faq_176",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quand commencent les examens du premier semestre ?",
-    "reponse_enrichie": "Les examens du premier semestre, appelés Session Normale (SN) du semestre 1, débutent généralement à la fin du mois de janvier et se poursuivent début février. Ces dates sont fixées par l'administration en fonction de la fin des cours et sont communiquées aux étudiants via les panneaux d'affichage et les groupes WhatsApp de promotion. Il est conseillé de consulter le planning détaillé dès sa publication pour bien organiser vos révisions.",
-    "exemples": [
-      "Quelle est la date des examens du semestre 1 ?",
-      "Quand se déroulent les épreuves de Session Normale du premier semestre ?",
-      "À quelle période commencent les examens ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_177",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quand se tiennent les examens du second semestre ?",
-    "reponse_enrichie": "Les examens du second semestre, correspondant à la Session Normale (SN) du semestre 2, se déroulent généralement en juin, après la fin des cours. Cette période marque la clôture de l'année académique pour les étudiants n'ayant pas de rattrapage. Le planning précis est affiché au moins deux semaines avant le début des épreuves et partagé sur les groupes WhatsApp de chaque promotion.",
-    "exemples": [
-      "Quelle est la date des examens du semestre 2 ?",
-      "Quand ont lieu les épreuves de fin d'année ?",
-      "À quelle période se déroulent les examens de juin ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_178",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Comment est publié le calendrier des examens ?",
-    "reponse_enrichie": "Le calendrier des examens est publié de deux façons principales. D'une part, il est affiché physiquement sur le babillard (panneau d'affichage) situé en face de l'administration, qui constitue la source officielle. D'autre part, grâce à l'implication des délégués de classe, il est relayé numériquement dans les différents groupes WhatsApp de promotion. Il est recommandé de vérifier régulièrement ces deux canaux afin de ne manquer aucune mise à jour ou modification.",
-    "exemples": [
-      "Où trouver le planning des examens ?",
-      "Comment consulter les dates des épreuves ?",
-      "Le calendrier est-il en ligne ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_179",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Peut-on modifier la date d'un examen ?",
-    "reponse_enrichie": "La modification d'une date d'examen est exceptionnelle et n'est possible qu'en cas de force majeure dûment constatée (grève, crise sanitaire, problème sécuritaire ou technique grave). Toute demande de modification doit être soumise à l'administration, qui seule est habilitée à valider un changement de calendrier. Une fois la nouvelle date arrêtée, elle est communiquée officiellement par voie d'affichage et via les groupes WhatsApp. Les raisons personnelles ou de convenance ne constituent pas un motif valable de report.",
-    "exemples": [
-      "Est-il possible de changer une date ?",
-      "Comment reporter un examen ?",
-      "Qui décide de la modification des épreuves ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_180",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quand sont affichés les plannings détaillés des examens ?",
-    "reponse_enrichie": "Les plannings détaillés des examens, précisant les matières, les jours, les horaires et les salles, sont affichés au moins deux semaines avant le début des épreuves. Ce délai vous permet d'anticiper votre organisation personnelle et de planifier vos révisions en conséquence. Pensez à consulter régulièrement le babillard et vos groupes WhatsApp de promotion pour être informé de toute modification éventuelle.",
-    "exemples": [
-      "À quel moment le planning est publié ?",
-      "Combien de temps avant les examens le planning est disponible ?",
-      "Quand consulter le programme des épreuves ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_181",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les examens peuvent-ils être reportés en cas de grève ?",
-    "reponse_enrichie": "Oui. En cas de grève du personnel enseignant ou administratif entraînant une perturbation majeure du fonctionnement de l'école, les examens prévus sont reprogrammés à une date ultérieure. La décision est prise par l'administration, qui communique la nouvelle date par voie d'affichage officiel et via les groupes WhatsApp de promotion. Les étudiants sont invités à rester attentifs aux annonces officielles et à ne pas se fier aux rumeurs.",
-    "exemples": [
-      "Que se passe-t-il en cas de grève ?",
-      "Les examens sont-ils reportés si les cours sont suspendus ?",
-      "Comment gérer une perturbation du calendrier ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_182",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les étudiants sont-ils informés par email des dates d'examen ?",
-    "reponse_enrichie": "Non, l'école ne procède pas à l'envoi de courriers électroniques pour communiquer les dates d'examen. La diffusion se fait principalement par affichage sur le babillard officiel situé en face de l'administration, et par relais numérique dans les groupes WhatsApp de chaque promotion, grâce à l'implication des délégués de classe. Il est donc important de rejoindre le groupe WhatsApp de votre promotion dès le début de l'année pour ne manquer aucune information importante.",
-    "exemples": [
-      "Reçoit-on les dates par email ?",
-      "Comment les étudiants sont-ils informés ?",
-      "Est-ce que le planning est envoyé par courrier électronique ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_183",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les examens peuvent-ils être déplacés pour raisons sanitaires ?",
-    "reponse_enrichie": "Oui. En cas de crise sanitaire (épidémie, pandémie ou toute situation mettant en danger la santé des étudiants et du personnel), l'administration peut décider de reporter les examens à une date ultérieure, voire d'en adapter les modalités (passage en ligne, réduction du nombre de candidats par salle, etc.). Les nouvelles dispositions sont communiquées officiellement par voie d'affichage et via WhatsApp. Dans ce type de situation, il convient de se référer uniquement aux annonces officielles de l'école.",
-    "exemples": [
-      "Que se passe-t-il en cas de pandémie ?",
-      "Les examens sont-ils reportés pour raisons sanitaires ?",
-      "Comment adapter le calendrier en cas de crise ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_184",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les examens de rattrapage ont-ils un calendrier spécifique ?",
-    "reponse_enrichie": "Oui, les examens de rattrapage (Session de Rattrapage – SR) disposent d'un calendrier distinct de celui de la Session Normale. Ils sont généralement programmés environ un mois après la fin de la session principale, aussi bien pour le semestre 1 que pour le semestre 2. Le planning du rattrapage est affiché sur le babillard et partagé sur les groupes WhatsApp dès sa validation par l'administration. Seuls les étudiants ayant échoué à une ou plusieurs matières lors de la Session Normale et dont les modules ne sont pas encore fermés sont concernés.",
-    "exemples": [
-      "Quand ont lieu les rattrapages ?",
-      "Y a-t-il un planning spécial pour les rattrapages ?",
-      "Combien de temps après les examens principaux se tiennent les rattrapages ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_185",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les examens peuvent-ils être déplacés pour raisons personnelles ?",
-    "reponse_enrichie": "Non. Les raisons personnelles (voyage, contraintes familiales, convenance personnelle, etc.) ne constituent pas un motif valable pour demander le report ou le déplacement d'un examen. Le calendrier des épreuves est établi de façon à garantir l'équité entre tous les étudiants, et il reste donc fixe une fois validé. En cas d'absence non justifiée, la note de 0 est appliquée pour la matière concernée. Seules des situations de force majeure (maladie grave justifiée par un certificat médical, décès d'un proche, etc.) peuvent, à titre exceptionnel, faire l'objet d'une demande auprès de l'administration.",
-    "exemples": [
-      "Puis-je demander un report pour raisons personnelles ?",
-      "Les examens peuvent-ils être déplacés pour convenance personnelle ?",
-      "Est-ce possible de modifier une date pour motif privé ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_186",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quand sont programmés les examens pratiques (Travaux Pratiques – TP) ?",
-    "reponse_enrichie": "Les évaluations des Travaux Pratiques (TP) ne suivent pas le même calendrier que les examens écrits. Elles se déroulent généralement à la fin de chaque séance ou série de séances de TP, sous forme de rapport de TP à remettre à l'enseignant responsable. Ce rapport constitue l'évaluation principale de la partie pratique et entre dans le calcul de la note finale selon la pondération définie (CC = 35%, TP = 25%, SN = 40% pour les matières avec TP). Il n'existe donc pas de session d'examen pratique unique et centralisée : chaque enseignant fixe ses propres modalités et délais de rendu.",
-    "exemples": [
-      "Quelle est la date des examens pratiques ?",
-      "Quand se déroulent les TP d'examen ?",
-      "Les épreuves pratiques ont-elles un calendrier spécifique ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_187",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quand sont organisés les examens de Contrôle Continu ?",
-    "reponse_enrichie": "Les examens de Contrôle Continu (CC) ne sont pas regroupés en une session unique : ils se déroulent tout au long du semestre, au terme des heures prévues pour chaque enseignement. Chaque enseignant organise son évaluation à la fin de son module ou à l'issue d'un certain nombre de séances. Il peut s'agir de devoirs sur table, de tests écrits, d'exposés ou de travaux pratiques notés. Ces évaluations comptent pour une part significative de la note finale (en moyenne 40% pour les matières sans TP, et 35% pour celles avec TP).",
-    "exemples": [
-      "Quelle est la date des partiels ?",
-      "Quand ont lieu les mi-semestres ?",
-      "À quelle période se tiennent les partiels ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_188",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Comment sont communiquées les modifications de planning ?",
-    "reponse_enrichie": "Toute modification du planning des examens est communiquée via deux canaux principaux : l'affichage sur les panneaux officiels de l'école (babillard en face de l'administration) et l'envoi de messages sur les groupes WhatsApp de promotion, relayés par les délégués de classe. En cas de modification urgente, le message WhatsApp est généralement le canal le plus rapide. Il est donc vivement conseillé de faire partie du groupe WhatsApp de votre promotion et de vérifier régulièrement les affichages, particulièrement dans les jours précédant les examens.",
-    "exemples": [
-      "Comment savoir si une date change ?",
-      "Où consulter les modifications du calendrier ?",
-      "Les changements sont-ils envoyés par email ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_189",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quand sont fixées les soutenances de fin d'études ?",
-    "reponse_enrichie": "Les soutenances de fin d'études (mémoires, projets de fin de cycle ou rapports de stage) sont généralement programmées en juillet, après la session d'examens du second semestre. Elles constituent l'étape finale du cursus académique pour les étudiants en dernière année. Les dates précises sont fixées par l'administration en lien avec les encadreurs, et communiquées aux étudiants concernés par voie d'affichage et via les groupes WhatsApp. Il est recommandé de se rapprocher de votre encadreur bien à l'avance pour préparer votre soutenance dans les meilleures conditions.",
-    "exemples": [
-      "Quelle est la date des soutenances ?",
-      "Quand se déroulent les présentations finales ?",
-      "À quelle période ont lieu les soutenances ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_190",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les examens peuvent-ils être déplacés pour raisons climatiques ?",
-    "reponse_enrichie": "Oui, mais uniquement dans des cas extrêmes rendant l'accès à l'école ou le déroulement des épreuves véritablement impossible (inondations majeures, tempêtes exceptionnelles, etc.). Une simple pluie ou des conditions météorologiques ordinaires ne justifient pas un report. Si un tel report est décidé, l'administration en informe les étudiants par affichage officiel et via les groupes WhatsApp dans les meilleurs délais, avec communication de la nouvelle date.",
-    "exemples": [
-      "Que se passe-t-il en cas de pluie forte ?",
-      "Les examens sont-ils déplacés en cas de météo défavorable ?",
-      "Comment gérer une perturbation climatique ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_191",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quand sont publiés les horaires détaillés des épreuves ?",
-    "reponse_enrichie": "Les horaires détaillés des épreuves (heure de début, salle attribuée, durée de chaque matière) sont publiés en règle générale une à deux semaines avant le début des examens. Ils sont affichés sur le babillard officiel de l'école et partagés dans les groupes WhatsApp de promotion. Pensez à vérifier ces informations régulièrement, car des ajustements de dernière minute sont toujours possibles. Arriver en avance le jour de l'examen est fortement recommandé.",
-    "exemples": [
-      "Quand consulter les horaires ?",
-      "À quel moment les heures sont affichées ?",
-      "Les horaires sont-ils disponibles en ligne ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_192",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les étudiants peuvent-ils demander un aménagement de planning ?",
-    "reponse_enrichie": "En règle générale, non. Une fois le planning des examens établi et validé par l'administration, il est considéré comme définitif. Les demandes individuelles d'aménagement ne sont pas prises en compte, afin de garantir l'équité entre tous les étudiants. Seules des situations d'extrême urgence et dûment documentées (force majeure, hospitalisation, etc.) peuvent éventuellement être soumises à l'administration pour examen. Il convient dans ce cas de se manifester le plus tôt possible auprès du service concerné, en fournissant les justificatifs nécessaires.",
-    "exemples": [
-      "Puis-je demander un changement d'horaire ?",
-      "Les étudiants handicapés ont-ils un planning adapté ?",
-      "Comment obtenir un aménagement de calendrier ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_193",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quand sont organisés les examens de rattrapage ?",
-    "reponse_enrichie": "Les examens de rattrapage (Session de Rattrapage – SR) sont organisés après chaque session principale, aussi bien pour le semestre 1 que pour le semestre 2. Ils se tiennent généralement environ un mois après la fin de la Session Normale correspondante. Le calendrier précis du rattrapage est affiché sur le babillard de l'administration et communiqué via les groupes WhatsApp de promotion. Seuls les étudiants éligibles (ayant échoué en SN avec des modules non encore fermés) sont autorisés à s'y présenter.",
-    "exemples": [
-      "Quelle est la date des rattrapages ?",
-      "Quand se déroulent les épreuves de rattrapage ?",
-      "À quelle période ont lieu les rattrapages ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_194",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les examens peuvent-ils être annulés ?",
-    "reponse_enrichie": "L'annulation définitive d'un examen est une mesure exceptionnelle qui n'intervient qu'en cas de force majeure avérée (catastrophe, crise majeure, etc.). Dans la très grande majorité des cas, si une perturbation survient, les épreuves ne sont pas annulées mais reportées à une date ultérieure fixée par l'administration. Tout report ou annulation est communiqué officiellement par affichage sur le babillard et via les groupes WhatsApp. Les étudiants sont invités à ne pas tenir compte des rumeurs et à attendre les annonces officielles.",
-    "exemples": [
-      "Est-ce possible d'annuler une épreuve ?",
-      "Les examens peuvent-ils être supprimés ?",
-      "Que se passe-t-il en cas d'annulation ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_195",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quelles sont les conditions pour avoir accès au rattrapage ?",
-    "reponse_enrichie": "L'accès à la Session de Rattrapage (SR) est soumis à deux conditions cumulatives : avoir échoué à une ou plusieurs matières lors de la Session Normale (c'est-à-dire avoir obtenu une note insuffisante), et que les modules concernés ne soient pas encore fermés (c'est-à-dire qu'une compensation n'ait pas déjà validé la matière). Un étudiant ayant été absent sans justification à la Session Normale peut également se voir refuser l'accès au rattrapage pour la matière concernée. Il est conseillé de vérifier sa situation auprès de l'administration ou de son délégué après la publication des résultats.",
-    "exemples": [
-      "Qui peut aller au rattrapage ?",
-      "Quelles conditions pour passer le rattrapage ?",
-      "Est-ce possible d'avoir un rattrapage si on a été absent ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_196",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quand sont organisés les examens de contrôle continu ?",
-    "reponse_enrichie": "Les examens de Contrôle Continu (CC) n'ont pas de session centralisée : ils sont programmés par chaque enseignant à la fin de son module, selon le planning interne de l'école. Ils peuvent prendre la forme de devoirs sur table, de tests, d'exposés ou de travaux notés. Chaque étudiant doit donc suivre attentivement les indications de chacun de ses enseignants concernant la date et les modalités du CC. Ces évaluations contribuent de manière significative à la note finale (35 à 40% selon la matière).",
-    "exemples": [
-      "Quelle est la date des contrôles continus ?",
-      "Quand se déroulent les évaluations intermédiaires ?",
-      "À quelle période ont lieu les contrôles ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_197",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les examens peuvent-ils être déplacés pour raisons administratives ?",
-    "reponse_enrichie": "Oui. Des contraintes d'ordre administratif (indisponibilité des salles, chevauchement avec un événement institutionnel, réorganisation interne, etc.) peuvent amener l'administration à modifier les dates d'un ou de plusieurs examens. Dans ce cas, la décision est prise par la direction et communiquée officiellement aux étudiants par voie d'affichage sur le babillard et via les groupes WhatsApp, avec indication de la nouvelle date retenue. Les étudiants sont invités à consulter régulièrement ces canaux, surtout à l'approche des sessions d'examens.",
-    "exemples": [
-      "Que se passe-t-il si l'administration change une date ?",
-      "Les examens peuvent-ils être déplacés par la direction ?",
-      "Comment gérer une modification administrative ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_198",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quelles sont les conditions pour accéder au Contrôle Continu ?",
-    "reponse_enrichie": "Pour être évalué en Contrôle Continu (CC), l'étudiant doit être régulièrement inscrit à l'école pour l'année académique en cours et avoir une assiduité suffisante aux cours, fixée à au moins 70% des séances de chaque matière. En deçà de ce seuil, l'enseignant est en droit de refuser la participation de l'étudiant à l'évaluation CC. L'assiduité est donc un facteur déterminant, car le CC représente une part importante de la note finale (35 à 40% selon la matière). Il est conseillé de signaler toute absence justifiée à l'enseignant concerné.",
-    "exemples": [
-      "Qui peut participer au Contrôle Continu ?",
-      "Quelles conditions pour être évalué en CC ?",
-      "Est-ce obligatoire d'assister aux cours pour le CC ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_199",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les étudiants sont-ils informés des changements par SMS ?",
-    "reponse_enrichie": "Pas par SMS à proprement parler, mais les étudiants sont rapidement informés des modifications urgentes du calendrier via les groupes WhatsApp de promotion, dans lesquels les délégués de classe relayent les annonces officielles de l'administration. Ce canal est actuellement le plus réactif pour les communications de dernière minute. En parallèle, les changements sont toujours affichés sur le babillard officiel de l'école. Il est donc essentiel de faire partie du groupe WhatsApp de votre promotion pour recevoir ces informations en temps réel.",
-    "exemples": [
-      "Reçoit-on un SMS en cas de changement ?",
-      "Comment les étudiants sont-ils prévenus rapidement ?",
-      "Les modifications sont-elles communiquées par téléphone ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_200",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Comment se comptabilisent les notes ?",
-    "reponse_enrichie": "Le calcul de la note finale varie selon que la matière comporte ou non des Travaux Pratiques (TP). Pour les matières sans TP, la note est répartie comme suit : Contrôle Continu (CC) = 40% et Session Normale (SN) = 60%. Pour les matières avec TP, la répartition est : CC = 35%, TP = 25% et SN = 40%. En cas d'échec à la Session Normale, l'étudiant éligible peut passer la Session de Rattrapage (SR) : la note obtenue au rattrapage remplace alors celle de la SN pour le calcul final. Il est important de noter que la note du CC reste acquise et ne peut pas être repassée.",
-    "exemples": [
-      "Comment est calculée la moyenne ?",
-      "Quelle part représente le Contrôle Continu ?",
-      "Le rattrapage remplace-t-il la note initiale ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_201",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les examens peuvent-ils être déplacés pour raisons techniques ?",
-    "reponse_enrichie": "Oui. En cas de panne ou de problème technique majeur rendant le déroulement normal des épreuves impossible (panne d'électricité prolongée, défaillance du matériel informatique pour des examens nécessitant des équipements spécifiques, etc.), l'administration peut décider de reporter les examens concernés. La nouvelle date est alors communiquée officiellement par affichage sur le babillard et via les groupes WhatsApp. Les pannes mineures ou les inconforts ponctuels ne constituent pas un motif suffisant de report.",
-    "exemples": [
-      "Que se passe-t-il en cas de panne ?",
-      "Les examens sont-ils déplacés pour raisons techniques ?",
-      "Comment gérer une perturbation technique ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_202",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quelles sont les conditions pour avoir accès à la Session Normale ?",
-    "reponse_enrichie": "L'accès à la Session Normale (SN) est conditionné par le règlement des frais de scolarité, selon un calendrier progressif : pour le semestre 1, il est nécessaire d'avoir réglé au moins la moitié des frais d'inscription ; pour le semestre 2, la totalité des frais doit avoir été acquittée. Un étudiant n'ayant pas satisfait à ces conditions financières peut se voir refuser l'accès aux salles d'examen. Il est donc fortement conseillé de régulariser sa situation administrative le plus tôt possible, et au plus tard avant le début de la session concernée.",
-    "exemples": [
-      "Qui peut passer la Session Normale ?",
-      "Quelles conditions pour participer aux examens principaux ?",
-      "Est-ce obligatoire d'avoir validé le Contrôle Continu ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_203",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les étudiants peuvent-ils demander un report pour maladie ?",
-    "reponse_enrichie": "Un report d'examen pour raisons médicales n'est pas accordé pour la Session Normale (SN) ni pour la Session de Rattrapage (SR). En revanche, pour le Contrôle Continu (CC) uniquement, un étudiant empêché de composer en raison d'une maladie peut, sur présentation d'un certificat médical valide auprès de l'administration, solliciter une session de remplacement pour l'évaluation manquée. Cette disposition est exceptionnelle et soumise à l'appréciation de l'enseignant et de l'administration. Il est impératif de signaler son absence et de fournir le justificatif dans les meilleurs délais.",
-    "exemples": [
-      "Puis-je reporter un examen pour maladie ?",
-      "Les étudiants malades ont-ils un report ?",
-      "Comment demander un report médical ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_204",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Quand sont organisés les examens de fin d'année académique ?",
-    "reponse_enrichie": "Les examens de fin d'année académique correspondent à la Session Normale (SN) du second semestre, qui se déroule généralement en juin, après la fin des cours. Pour les étudiants de dernière année, cela peut être suivi des soutenances de mémoire ou de projet de fin de cycle, programmées quant à elles en juillet. Le planning complet est affiché sur le babillard officiel et communiqué via les groupes WhatsApp en temps voulu.",
-    "exemples": [
-      "Quelle est la date des examens de fin d'année ?",
-      "Quand se déroulent les épreuves finales ?",
-      "À quelle période ont lieu les examens annuels ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_205",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les examens peuvent-ils être déplacés pour raisons de sécurité ?",
-    "reponse_enrichie": "Oui. En cas de menace sécuritaire sérieuse ou de trouble à l'ordre public rendant l'accès au campus ou le déroulement serein des épreuves impossible, l'administration peut décider de reporter les examens. Cette décision est communiquée dans les meilleurs délais par voie d'affichage officiel et via les groupes WhatsApp. Les étudiants sont invités à ne pas se déplacer si une alerte officielle a été émise, et à attendre les instructions de l'école avant de prendre toute initiative.",
-    "exemples": [
-      "Que se passe-t-il en cas de problème de sécurité ?",
-      "Les examens sont-ils déplacés pour raisons sécuritaires ?",
-      "Comment gérer une perturbation sécuritaire ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_206",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "C'est quoi la Session Normale ?",
-    "reponse_enrichie": "La Session Normale (SN) est la période officielle d'examens semestriels organisée à la fin de chaque semestre. Elle regroupe l'ensemble des épreuves écrites de toutes les matières du semestre concerné, et se tient après la fin des cours. La SN représente une part importante de la note finale : 60% pour les matières sans TP et 40% pour les matières avec TP. Tout étudiant régulièrement inscrit et à jour de ses frais de scolarité (moitié pour le semestre 1, totalité pour le semestre 2) est autorisé à y participer.",
-    "exemples": [
-      "Comment fonctionne la Session Normale ?",
-      "Quand se déroulent les examens principaux ?",
-      "Quelles épreuves composent la Session Normale ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_207",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les étudiants sont-ils informés des changements par affichage ?",
-    "reponse_enrichie": "Oui, l'affichage sur les panneaux officiels de l'école (babillard situé en face de l'administration) constitue le canal de communication institutionnel et de référence pour toutes les modifications de planning. Tout changement de date, d'horaire ou de salle est systématiquement affiché à cet endroit. En complément, les délégués de classe relaient ces informations sur les groupes WhatsApp de promotion pour une diffusion plus rapide. En cas de doute, c'est toujours l'affichage officiel qui fait foi.",
-    "exemples": [
-      "Où consulter les changements de planning ?",
-      "Les modifications sont-elles affichées ?",
-      "Comment savoir si une date change ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_208",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "C'est quoi le Contrôle Continu ?",
-    "reponse_enrichie": "Le Contrôle Continu (CC) est un mode d'évaluation progressive réalisé tout au long du semestre, en parallèle des cours. Il peut prendre différentes formes selon l'enseignant : devoirs sur table, tests de connaissances, exposés, présentations orales ou travaux notés. L'objectif est d'évaluer régulièrement la progression de l'étudiant, plutôt que de tout concentrer sur un examen final. Le CC entre dans le calcul de la note finale à hauteur de 40% pour les matières sans TP et 35% pour les matières avec TP. La participation au CC est obligatoire pour tout étudiant inscrit et assidu (au moins 70% de présence aux cours).",
-    "exemples": [
-      "Comment fonctionne le Contrôle Continu ?",
-      "Quels types d'épreuves composent le CC ?",
-      "Le Contrôle Continu est-il obligatoire ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_209",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Les examens peuvent-ils être déplacés pour raisons pédagogiques ?",
-    "reponse_enrichie": "Non. Une fois le Examens et evaluations établi et validé par l'administration, il ne peut pas être modifié pour des raisons purement pédagogiques (cours non terminés, programme non achevé, changement de contenu, etc.). Ce principe garantit l'équité entre tous les étudiants et assure la bonne organisation des sessions. Si un enseignant estime que le programme n'est pas complet, il lui appartient d'adapter son contenu dans le temps imparti, et non de demander un report de l'examen.",
-    "exemples": [
-      "Les examens peuvent-ils être déplacés pour adapter les cours ?",
-      "Que se passe-t-il si le programme change ?",
-      "Les dates sont-elles modifiées pour raisons pédagogiques ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  },
-  {
-    "id": "faq_210",
-    "categorie": "Examens et evaluations",
-    "sous_theme": "Calendrier des examens",
-    "question": "Comment sont structurés les examens à SUP'PTIC ?",
-    "reponse_enrichie": "À SUP'PTIC, le système d'évaluation repose sur trois composantes complémentaires. Le Contrôle Continu (CC), réalisé tout au long du semestre par chaque enseignant, représente 35 à 40% de la note finale selon la matière. La Session Normale (SN), qui regroupe les épreuves écrites organisées à la fin de chaque semestre, représente 40 à 60% de la note finale. Enfin, les Travaux Pratiques (TP), évalués via des rapports remis à l'enseignant, représentent 25% de la note finale pour les matières concernées. En cas d'échec à la SN, la Session de Rattrapage (SR) permet à l'étudiant éligible de tenter d'améliorer sa note, celle-ci remplaçant alors la note de la SN.",
-    "exemples": [
-      "Comment se déroulent les examens à SUP'PTIC ?",
-      "Quelles sont les étapes d'évaluation ?",
-      "Quels types d'examens sont organisés ?"
-    ],
-    "sources": [
-      "Retour étudiants"
-    ],
-    "date_creation": "2026-05-10",
-    "version": "2.0",
-    "valide": true
-  }
+    {
+        "id": "faq_001",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quand commencent les examens du premier semestre ?",
+        "reponse_enrichie": "Les examens du premier semestre, appelés Session Normale (SN) du semestre 1, débutent généralement à la fin du mois de janvier et se poursuivent début février. Ces dates sont fixées par l'administration en fonction de la fin des cours et sont communiquées aux étudiants via les panneaux d'affichage et les groupes WhatsApp de promotion. Il est conseillé de consulter le planning détaillé dès sa publication pour bien organiser vos révisions.",
+        "exemples": [
+            "Quelle est la date des examens du semestre 1 ?",
+            "Quand se déroulent les épreuves de Session Normale du premier semestre ?",
+            "À quelle période commencent les examens ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_002",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quand se tiennent les examens du second semestre ?",
+        "reponse_enrichie": "Les examens du second semestre, correspondant à la Session Normale (SN) du semestre 2, se déroulent généralement en juin, après la fin des cours. Cette période marque la clôture de l'année académique pour les étudiants n'ayant pas de rattrapage. Le planning précis est affiché au moins deux semaines avant le début des épreuves et partagé sur les groupes WhatsApp de chaque promotion.",
+        "exemples": [
+            "Quelle est la date des examens du semestre 2 ?",
+            "Quand ont lieu les épreuves de fin d'année ?",
+            "À quelle période se déroulent les examens de juin ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_003",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Comment est publié le calendrier des examens ?",
+        "reponse_enrichie": "Le calendrier des examens est publié de deux façons principales. D'une part, il est affiché physiquement sur le babillard (panneau d'affichage) situé en face de l'administration, qui constitue la source officielle. D'autre part, grâce à l'implication des délégués de classe, il est relayé numériquement dans les différents groupes WhatsApp de promotion. Il est recommandé de vérifier régulièrement ces deux canaux afin de ne manquer aucune mise à jour ou modification.",
+        "exemples": [
+            "Où trouver le planning des examens ?",
+            "Comment consulter les dates des épreuves ?",
+            "Le calendrier est-il en ligne ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_004",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Peut-on modifier la date d'un examen ?",
+        "reponse_enrichie": "La modification d'une date d'examen est exceptionnelle et n'est possible qu'en cas de force majeure dûment constatée (grève, crise sanitaire, problème sécuritaire ou technique grave). Toute demande de modification doit être soumise à l'administration, qui seule est habilitée à valider un changement de calendrier. Une fois la nouvelle date arrêtée, elle est communiquée officiellement par voie d'affichage et via les groupes WhatsApp. Les raisons personnelles ou de convenance ne constituent pas un motif valable de report.",
+        "exemples": [
+            "Est-il possible de changer une date ?",
+            "Comment reporter un examen ?",
+            "Qui décide de la modification des épreuves ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_005",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quand sont affichés les plannings détaillés des examens ?",
+        "reponse_enrichie": "Les plannings détaillés des examens, précisant les matières, les jours, les horaires et les salles, sont affichés au moins deux semaines avant le début des épreuves. Ce délai vous permet d'anticiper votre organisation personnelle et de planifier vos révisions en conséquence. Pensez à consulter régulièrement le babillard et vos groupes WhatsApp de promotion pour être informé de toute modification éventuelle.",
+        "exemples": [
+            "À quel moment le planning est publié ?",
+            "Combien de temps avant les examens le planning est disponible ?",
+            "Quand consulter le programme des épreuves ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_006",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les examens peuvent-ils être reportés en cas de grève ?",
+        "reponse_enrichie": "Oui. En cas de grève du personnel enseignant ou administratif entraînant une perturbation majeure du fonctionnement de l'école, les examens prévus sont reprogrammés à une date ultérieure. La décision est prise par l'administration, qui communique la nouvelle date par voie d'affichage officiel et via les groupes WhatsApp de promotion. Les étudiants sont invités à rester attentifs aux annonces officielles et à ne pas se fier aux rumeurs.",
+        "exemples": [
+            "Que se passe-t-il en cas de grève ?",
+            "Les examens sont-ils reportés si les cours sont suspendus ?",
+            "Comment gérer une perturbation du calendrier ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_007",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les étudiants sont-ils informés par email des dates d'examen ?",
+        "reponse_enrichie": "Non, l'école ne procède pas à l'envoi de courriers électroniques pour communiquer les dates d'examen. La diffusion se fait principalement par affichage sur le babillard officiel situé en face de l'administration, et par relais numérique dans les groupes WhatsApp de chaque promotion, grâce à l'implication des délégués de classe. Il est donc important de rejoindre le groupe WhatsApp de votre promotion dès le début de l'année pour ne manquer aucune information importante.",
+        "exemples": [
+            "Reçoit-on les dates par email ?",
+            "Comment les étudiants sont-ils informés ?",
+            "Est-ce que le planning est envoyé par courrier électronique ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_008",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les examens peuvent-ils être déplacés pour raisons sanitaires ?",
+        "reponse_enrichie": "Oui. En cas de crise sanitaire (épidémie, pandémie ou toute situation mettant en danger la santé des étudiants et du personnel), l'administration peut décider de reporter les examens à une date ultérieure, voire d'en adapter les modalités (passage en ligne, réduction du nombre de candidats par salle, etc.). Les nouvelles dispositions sont communiquées officiellement par voie d'affichage et via WhatsApp. Dans ce type de situation, il convient de se référer uniquement aux annonces officielles de l'école.",
+        "exemples": [
+            "Que se passe-t-il en cas de pandémie ?",
+            "Les examens sont-ils reportés pour raisons sanitaires ?",
+            "Comment adapter le calendrier en cas de crise ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_009",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les examens de rattrapage ont-ils un calendrier spécifique ?",
+        "reponse_enrichie": "Oui, les examens de rattrapage (Session de Rattrapage – SR) disposent d'un calendrier distinct de celui de la Session Normale. Ils sont généralement programmés environ un mois après la fin de la session principale, aussi bien pour le semestre 1 que pour le semestre 2. Le planning du rattrapage est affiché sur le babillard et partagé sur les groupes WhatsApp dès sa validation par l'administration. Seuls les étudiants ayant échoué à une ou plusieurs matières lors de la Session Normale et dont les modules ne sont pas encore fermés sont concernés.",
+        "exemples": [
+            "Quand ont lieu les rattrapages ?",
+            "Y a-t-il un planning spécial pour les rattrapages ?",
+            "Combien de temps après les examens principaux se tiennent les rattrapages ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_010",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les examens peuvent-ils être déplacés pour raisons personnelles ?",
+        "reponse_enrichie": "Non. Les raisons personnelles (voyage, contraintes familiales, convenance personnelle, etc.) ne constituent pas un motif valable pour demander le report ou le déplacement d'un examen. Le calendrier des épreuves est établi de façon à garantir l'équité entre tous les étudiants, et il reste donc fixe une fois validé. En cas d'absence non justifiée, la note de 0 est appliquée pour la matière concernée. Seules des situations de force majeure (maladie grave justifiée par un certificat médical, décès d'un proche, etc.) peuvent, à titre exceptionnel, faire l'objet d'une demande auprès de l'administration.",
+        "exemples": [
+            "Puis-je demander un report pour raisons personnelles ?",
+            "Les examens peuvent-ils être déplacés pour convenance personnelle ?",
+            "Est-ce possible de modifier une date pour motif privé ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_011",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quand sont programmés les examens pratiques (Travaux Pratiques – TP) ?",
+        "reponse_enrichie": "Les évaluations des Travaux Pratiques (TP) ne suivent pas le même calendrier que les examens écrits. Elles se déroulent généralement à la fin de chaque séance ou série de séances de TP, sous forme de rapport de TP à remettre à l'enseignant responsable. Ce rapport constitue l'évaluation principale de la partie pratique et entre dans le calcul de la note finale selon la pondération définie (CC = 35%, TP = 25%, SN = 40% pour les matières avec TP). Il n'existe donc pas de session d'examen pratique unique et centralisée : chaque enseignant fixe ses propres modalités et délais de rendu.",
+        "exemples": [
+            "Quelle est la date des examens pratiques ?",
+            "Quand se déroulent les TP d'examen ?",
+            "Les épreuves pratiques ont-elles un calendrier spécifique ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_012",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quand sont organisés les examens de Contrôle Continu ?",
+        "reponse_enrichie": "Les examens de Contrôle Continu (CC) ne sont pas regroupés en une session unique : ils se déroulent tout au long du semestre, au terme des heures prévues pour chaque enseignement. Chaque enseignant organise son évaluation à la fin de son module ou à l'issue d'un certain nombre de séances. Il peut s'agir de devoirs sur table, de tests écrits, d'exposés ou de travaux pratiques notés. Ces évaluations comptent pour une part significative de la note finale (en moyenne 40% pour les matières sans TP, et 35% pour celles avec TP).",
+        "exemples": [
+            "Quelle est la date des partiels ?",
+            "Quand ont lieu les mi-semestres ?",
+            "À quelle période se tiennent les partiels ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_013",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Comment sont communiquées les modifications de planning ?",
+        "reponse_enrichie": "Toute modification du planning des examens est communiquée via deux canaux principaux : l'affichage sur les panneaux officiels de l'école (babillard en face de l'administration) et l'envoi de messages sur les groupes WhatsApp de promotion, relayés par les délégués de classe. En cas de modification urgente, le message WhatsApp est généralement le canal le plus rapide. Il est donc vivement conseillé de faire partie du groupe WhatsApp de votre promotion et de vérifier régulièrement les affichages, particulièrement dans les jours précédant les examens.",
+        "exemples": [
+            "Comment savoir si une date change ?",
+            "Où consulter les modifications du calendrier ?",
+            "Les changements sont-ils envoyés par email ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_014",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quand sont fixées les soutenances de fin d'études ?",
+        "reponse_enrichie": "Les soutenances de fin d'études (mémoires, projets de fin de cycle ou rapports de stage) sont généralement programmées en juillet, après la session d'examens du second semestre. Elles constituent l'étape finale du cursus académique pour les étudiants en dernière année. Les dates précises sont fixées par l'administration en lien avec les encadreurs, et communiquées aux étudiants concernés par voie d'affichage et via les groupes WhatsApp. Il est recommandé de se rapprocher de votre encadreur bien à l'avance pour préparer votre soutenance dans les meilleures conditions.",
+        "exemples": [
+            "Quelle est la date des soutenances ?",
+            "Quand se déroulent les présentations finales ?",
+            "À quelle période ont lieu les soutenances ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_015",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les examens peuvent-ils être déplacés pour raisons climatiques ?",
+        "reponse_enrichie": "Oui, mais uniquement dans des cas extrêmes rendant l'accès à l'école ou le déroulement des épreuves véritablement impossible (inondations majeures, tempêtes exceptionnelles, etc.). Une simple pluie ou des conditions météorologiques ordinaires ne justifient pas un report. Si un tel report est décidé, l'administration en informe les étudiants par affichage officiel et via les groupes WhatsApp dans les meilleurs délais, avec communication de la nouvelle date.",
+        "exemples": [
+            "Que se passe-t-il en cas de pluie forte ?",
+            "Les examens sont-ils déplacés en cas de météo défavorable ?",
+            "Comment gérer une perturbation climatique ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_016",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quand sont publiés les horaires détaillés des épreuves ?",
+        "reponse_enrichie": "Les horaires détaillés des épreuves (heure de début, salle attribuée, durée de chaque matière) sont publiés en règle générale une à deux semaines avant le début des examens. Ils sont affichés sur le babillard officiel de l'école et partagés dans les groupes WhatsApp de promotion. Pensez à vérifier ces informations régulièrement, car des ajustements de dernière minute sont toujours possibles. Arriver en avance le jour de l'examen est fortement recommandé.",
+        "exemples": [
+            "Quand consulter les horaires ?",
+            "À quel moment les heures sont affichées ?",
+            "Les horaires sont-ils disponibles en ligne ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_017",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les étudiants peuvent-ils demander un aménagement de planning ?",
+        "reponse_enrichie": "En règle générale, non. Une fois le planning des examens établi et validé par l'administration, il est considéré comme définitif. Les demandes individuelles d'aménagement ne sont pas prises en compte, afin de garantir l'équité entre tous les étudiants. Seules des situations d'extrême urgence et dûment documentées (force majeure, hospitalisation, etc.) peuvent éventuellement être soumises à l'administration pour examen. Il convient dans ce cas de se manifester le plus tôt possible auprès du service concerné, en fournissant les justificatifs nécessaires.",
+        "exemples": [
+            "Puis-je demander un changement d'horaire ?",
+            "Les étudiants handicapés ont-ils un planning adapté ?",
+            "Comment obtenir un aménagement de calendrier ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_018",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quand sont organisés les examens de rattrapage ?",
+        "reponse_enrichie": "Les examens de rattrapage (Session de Rattrapage – SR) sont organisés après chaque session principale, aussi bien pour le semestre 1 que pour le semestre 2. Ils se tiennent généralement environ un mois après la fin de la Session Normale correspondante. Le calendrier précis du rattrapage est affiché sur le babillard de l'administration et communiqué via les groupes WhatsApp de promotion. Seuls les étudiants éligibles (ayant échoué en SN avec des modules non encore fermés) sont autorisés à s'y présenter.",
+        "exemples": [
+            "Quelle est la date des rattrapages ?",
+            "Quand se déroulent les épreuves de rattrapage ?",
+            "À quelle période ont lieu les rattrapages ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_019",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les examens peuvent-ils être annulés ?",
+        "reponse_enrichie": "L'annulation définitive d'un examen est une mesure exceptionnelle qui n'intervient qu'en cas de force majeure avérée (catastrophe, crise majeure, etc.). Dans la très grande majorité des cas, si une perturbation survient, les épreuves ne sont pas annulées mais reportées à une date ultérieure fixée par l'administration. Tout report ou annulation est communiqué officiellement par affichage sur le babillard et via les groupes WhatsApp. Les étudiants sont invités à ne pas tenir compte des rumeurs et à attendre les annonces officielles.",
+        "exemples": [
+            "Est-ce possible d'annuler une épreuve ?",
+            "Les examens peuvent-ils être supprimés ?",
+            "Que se passe-t-il en cas d'annulation ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_020",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quelles sont les conditions pour avoir accès au rattrapage ?",
+        "reponse_enrichie": "L'accès à la Session de Rattrapage (SR) est soumis à deux conditions cumulatives : avoir échoué à une ou plusieurs matières lors de la Session Normale (c'est-à-dire avoir obtenu une note insuffisante), et que les modules concernés ne soient pas encore fermés (c'est-à-dire qu'une compensation n'ait pas déjà validé la matière). Un étudiant ayant été absent sans justification à la Session Normale peut également se voir refuser l'accès au rattrapage pour la matière concernée. Il est conseillé de vérifier sa situation auprès de l'administration ou de son délégué après la publication des résultats.",
+        "exemples": [
+            "Qui peut aller au rattrapage ?",
+            "Quelles conditions pour passer le rattrapage ?",
+            "Est-ce possible d'avoir un rattrapage si on a été absent ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_021",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quand sont organisés les examens de contrôle continu ?",
+        "reponse_enrichie": "Les examens de Contrôle Continu (CC) n'ont pas de session centralisée : ils sont programmés par chaque enseignant à la fin de son module, selon le planning interne de l'école. Ils peuvent prendre la forme de devoirs sur table, de tests, d'exposés ou de travaux notés. Chaque étudiant doit donc suivre attentivement les indications de chacun de ses enseignants concernant la date et les modalités du CC. Ces évaluations contribuent de manière significative à la note finale (35 à 40% selon la matière).",
+        "exemples": [
+            "Quelle est la date des contrôles continus ?",
+            "Quand se déroulent les évaluations intermédiaires ?",
+            "À quelle période ont lieu les contrôles ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_022",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les examens peuvent-ils être déplacés pour raisons administratives ?",
+        "reponse_enrichie": "Oui. Des contraintes d'ordre administratif (indisponibilité des salles, chevauchement avec un événement institutionnel, réorganisation interne, etc.) peuvent amener l'administration à modifier les dates d'un ou de plusieurs examens. Dans ce cas, la décision est prise par la direction et communiquée officiellement aux étudiants par voie d'affichage sur le babillard et via les groupes WhatsApp, avec indication de la nouvelle date retenue. Les étudiants sont invités à consulter régulièrement ces canaux, surtout à l'approche des sessions d'examens.",
+        "exemples": [
+            "Que se passe-t-il si l'administration change une date ?",
+            "Les examens peuvent-ils être déplacés par la direction ?",
+            "Comment gérer une modification administrative ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_023",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quelles sont les conditions pour accéder au Contrôle Continu ?",
+        "reponse_enrichie": "Pour être évalué en Contrôle Continu (CC), l'étudiant doit être régulièrement inscrit à l'école pour l'année académique en cours et avoir une assiduité suffisante aux cours, fixée à au moins 70% des séances de chaque matière. En deçà de ce seuil, l'enseignant est en droit de refuser la participation de l'étudiant à l'évaluation CC. L'assiduité est donc un facteur déterminant, car le CC représente une part importante de la note finale (35 à 40% selon la matière). Il est conseillé de signaler toute absence justifiée à l'enseignant concerné.",
+        "exemples": [
+            "Qui peut participer au Contrôle Continu ?",
+            "Quelles conditions pour être évalué en CC ?",
+            "Est-ce obligatoire d'assister aux cours pour le CC ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_024",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les étudiants sont-ils informés des changements par SMS ?",
+        "reponse_enrichie": "Pas par SMS à proprement parler, mais les étudiants sont rapidement informés des modifications urgentes du calendrier via les groupes WhatsApp de promotion, dans lesquels les délégués de classe relayent les annonces officielles de l'administration. Ce canal est actuellement le plus réactif pour les communications de dernière minute. En parallèle, les changements sont toujours affichés sur le babillard officiel de l'école. Il est donc essentiel de faire partie du groupe WhatsApp de votre promotion pour recevoir ces informations en temps réel.",
+        "exemples": [
+            "Reçoit-on un SMS en cas de changement ?",
+            "Comment les étudiants sont-ils prévenus rapidement ?",
+            "Les modifications sont-elles communiquées par téléphone ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_025",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Comment se comptabilisent les notes ?",
+        "reponse_enrichie": "Le calcul de la note finale varie selon que la matière comporte ou non des Travaux Pratiques (TP). Pour les matières sans TP, la note est répartie comme suit : Contrôle Continu (CC) = 40% et Session Normale (SN) = 60%. Pour les matières avec TP, la répartition est : CC = 35%, TP = 25% et SN = 40%. En cas d'échec à la Session Normale, l'étudiant éligible peut passer la Session de Rattrapage (SR) : la note obtenue au rattrapage remplace alors celle de la SN pour le calcul final. Il est important de noter que la note du CC reste acquise et ne peut pas être repassée.",
+        "exemples": [
+            "Comment est calculée la moyenne ?",
+            "Quelle part représente le Contrôle Continu ?",
+            "Le rattrapage remplace-t-il la note initiale ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_026",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les examens peuvent-ils être déplacés pour raisons techniques ?",
+        "reponse_enrichie": "Oui. En cas de panne ou de problème technique majeur rendant le déroulement normal des épreuves impossible (panne d'électricité prolongée, défaillance du matériel informatique pour des examens nécessitant des équipements spécifiques, etc.), l'administration peut décider de reporter les examens concernés. La nouvelle date est alors communiquée officiellement par affichage sur le babillard et via les groupes WhatsApp. Les pannes mineures ou les inconforts ponctuels ne constituent pas un motif suffisant de report.",
+        "exemples": [
+            "Que se passe-t-il en cas de panne ?",
+            "Les examens sont-ils déplacés pour raisons techniques ?",
+            "Comment gérer une perturbation technique ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_027",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quelles sont les conditions pour avoir accès à la Session Normale ?",
+        "reponse_enrichie": "L'accès à la Session Normale (SN) est conditionné par le règlement des frais de scolarité, selon un calendrier progressif : pour le semestre 1, il est nécessaire d'avoir réglé au moins la moitié des frais d'inscription ; pour le semestre 2, la totalité des frais doit avoir été acquittée. Un étudiant n'ayant pas satisfait à ces conditions financières peut se voir refuser l'accès aux salles d'examen. Il est donc fortement conseillé de régulariser sa situation administrative le plus tôt possible, et au plus tard avant le début de la session concernée.",
+        "exemples": [
+            "Qui peut passer la Session Normale ?",
+            "Quelles conditions pour participer aux examens principaux ?",
+            "Est-ce obligatoire d'avoir validé le Contrôle Continu ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_028",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les étudiants peuvent-ils demander un report pour maladie ?",
+        "reponse_enrichie": "Un report d'examen pour raisons médicales n'est pas accordé pour la Session Normale (SN) ni pour la Session de Rattrapage (SR). En revanche, pour le Contrôle Continu (CC) uniquement, un étudiant empêché de composer en raison d'une maladie peut, sur présentation d'un certificat médical valide auprès de l'administration, solliciter une session de remplacement pour l'évaluation manquée. Cette disposition est exceptionnelle et soumise à l'appréciation de l'enseignant et de l'administration. Il est impératif de signaler son absence et de fournir le justificatif dans les meilleurs délais.",
+        "exemples": [
+            "Puis-je reporter un examen pour maladie ?",
+            "Les étudiants malades ont-ils un report ?",
+            "Comment demander un report médical ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_029",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Quand sont organisés les examens de fin d'année académique ?",
+        "reponse_enrichie": "Les examens de fin d'année académique correspondent à la Session Normale (SN) du second semestre, qui se déroule généralement en juin, après la fin des cours. Pour les étudiants de dernière année, cela peut être suivi des soutenances de mémoire ou de projet de fin de cycle, programmées quant à elles en juillet. Le planning complet est affiché sur le babillard officiel et communiqué via les groupes WhatsApp en temps voulu.",
+        "exemples": [
+            "Quelle est la date des examens de fin d'année ?",
+            "Quand se déroulent les épreuves finales ?",
+            "À quelle période ont lieu les examens annuels ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_030",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les examens peuvent-ils être déplacés pour raisons de sécurité ?",
+        "reponse_enrichie": "Oui. En cas de menace sécuritaire sérieuse ou de trouble à l'ordre public rendant l'accès au campus ou le déroulement serein des épreuves impossible, l'administration peut décider de reporter les examens. Cette décision est communiquée dans les meilleurs délais par voie d'affichage officiel et via les groupes WhatsApp. Les étudiants sont invités à ne pas se déplacer si une alerte officielle a été émise, et à attendre les instructions de l'école avant de prendre toute initiative.",
+        "exemples": [
+            "Que se passe-t-il en cas de problème de sécurité ?",
+            "Les examens sont-ils déplacés pour raisons sécuritaires ?",
+            "Comment gérer une perturbation sécuritaire ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_031",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "C'est quoi la Session Normale ?",
+        "reponse_enrichie": "La Session Normale (SN) est la période officielle d'examens semestriels organisée à la fin de chaque semestre. Elle regroupe l'ensemble des épreuves écrites de toutes les matières du semestre concerné, et se tient après la fin des cours. La SN représente une part importante de la note finale : 60% pour les matières sans TP et 40% pour les matières avec TP. Tout étudiant régulièrement inscrit et à jour de ses frais de scolarité (moitié pour le semestre 1, totalité pour le semestre 2) est autorisé à y participer.",
+        "exemples": [
+            "Comment fonctionne la Session Normale ?",
+            "Quand se déroulent les examens principaux ?",
+            "Quelles épreuves composent la Session Normale ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_032",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les étudiants sont-ils informés des changements par affichage ?",
+        "reponse_enrichie": "Oui, l'affichage sur les panneaux officiels de l'école (babillard situé en face de l'administration) constitue le canal de communication institutionnel et de référence pour toutes les modifications de planning. Tout changement de date, d'horaire ou de salle est systématiquement affiché à cet endroit. En complément, les délégués de classe relaient ces informations sur les groupes WhatsApp de promotion pour une diffusion plus rapide. En cas de doute, c'est toujours l'affichage officiel qui fait foi.",
+        "exemples": [
+            "Où consulter les changements de planning ?",
+            "Les modifications sont-elles affichées ?",
+            "Comment savoir si une date change ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_033",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "C'est quoi le Contrôle Continu ?",
+        "reponse_enrichie": "Le Contrôle Continu (CC) est un mode d'évaluation progressive réalisé tout au long du semestre, en parallèle des cours. Il peut prendre différentes formes selon l'enseignant : devoirs sur table, tests de connaissances, exposés, présentations orales ou travaux notés. L'objectif est d'évaluer régulièrement la progression de l'étudiant, plutôt que de tout concentrer sur un examen final. Le CC entre dans le calcul de la note finale à hauteur de 40% pour les matières sans TP et 35% pour les matières avec TP. La participation au CC est obligatoire pour tout étudiant inscrit et assidu (au moins 70% de présence aux cours).",
+        "exemples": [
+            "Comment fonctionne le Contrôle Continu ?",
+            "Quels types d'épreuves composent le CC ?",
+            "Le Contrôle Continu est-il obligatoire ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_034",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Les examens peuvent-ils être déplacés pour raisons pédagogiques ?",
+        "reponse_enrichie": "Non. Une fois le Examens et evaluations établi et validé par l'administration, il ne peut pas être modifié pour des raisons purement pédagogiques (cours non terminés, programme non achevé, changement de contenu, etc.). Ce principe garantit l'équité entre tous les étudiants et assure la bonne organisation des sessions. Si un enseignant estime que le programme n'est pas complet, il lui appartient d'adapter son contenu dans le temps imparti, et non de demander un report de l'examen.",
+        "exemples": [
+            "Les examens peuvent-ils être déplacés pour adapter les cours ?",
+            "Que se passe-t-il si le programme change ?",
+            "Les dates sont-elles modifiées pour raisons pédagogiques ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    },
+    {
+        "id": "faq_035",
+        "categorie": "Examens et evaluations",
+        "sous_theme": "Calendrier des examens",
+        "question": "Comment sont structurés les examens à SUP'PTIC ?",
+        "reponse_enrichie": "À SUP'PTIC, le système d'évaluation repose sur trois composantes complémentaires. Le Contrôle Continu (CC), réalisé tout au long du semestre par chaque enseignant, représente 35 à 40% de la note finale selon la matière. La Session Normale (SN), qui regroupe les épreuves écrites organisées à la fin de chaque semestre, représente 40 à 60% de la note finale. Enfin, les Travaux Pratiques (TP), évalués via des rapports remis à l'enseignant, représentent 25% de la note finale pour les matières concernées. En cas d'échec à la SN, la Session de Rattrapage (SR) permet à l'étudiant éligible de tenter d'améliorer sa note, celle-ci remplaçant alors la note de la SN.",
+        "exemples": [
+            "Comment se déroulent les examens à SUP'PTIC ?",
+            "Quelles sont les étapes d'évaluation ?",
+            "Quels types d'examens sont organisés ?"
+        ],
+        "sources": ["Retour étudiants"],
+        "date_creation": "2026-05-10",
+        "version": "2.0",
+        "valide": true
+    }
 ]
