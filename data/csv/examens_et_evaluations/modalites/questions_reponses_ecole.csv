@@ -1,0 +1,101 @@
+Question,Réponse
+Quelle est l'école concernée par ce document ?,L'École Nationale Supérieure des Postes et des Télécommunications et des TIC de Yaoundé.
+Quel club a décidé de mettre sur pied un chatbot ?,Le club info de l'école.
+Quel est l'objectif du chatbot ?,Faciliter la vie estudiantine.
+Combien de semestres compte chaque niveau d'étude ?,Chaque niveau couvre 2 semestres.
+Quels sont les deux cycles de formation proposés par l'école ?,Le cycle ingénieur et le cycle inspecteur.
+Quel cycle ne comporte pas de travaux pratiques (TP) ?,Le cycle inspecteur.
+Quel est le thème principal des questions/réponses ?,Les examens et les modalités d'évaluations.
+Qui a rédigé le texte de base ?,Un étudiant de l'école.
+Où se situe l'école mentionnée ?,À Yaoundé.
+À quoi sert le cumul des notes ?,À valider une matière sans passer par le rattrapage.
+Quelles sont les trois notes possibles pour une matière en session normale ?,"La note de contrôle continu (CC), la note de travaux pratiques (Tp) et la note d'examen."
+Quand a lieu la session de rattrapage ?,Lorsque le cumul des autres notes n'atteint pas la note requise pour valider la matière.
+De quoi dépend la note requise pour valider une matière ?,"Du niveau d'étude, de la matière et du semestre."
+Quelles sont les deux valeurs possibles pour la note de validation ?,"Soit 10, soit 12."
+Que signifie l'abréviation CC ?,Contrôle Continu.
+Que signifie l'abréviation Tp ?,Travaux Pratiques.
+Est-ce que toutes les matières ont une note de Tp ?,"Non, le cycle inspecteur n'en a pas."
+Comment appelle-t-on l'examen de fin de semestre ?,La session normale.
+Que se passe-t-il si un étudiant n'atteint pas 10 ou 12 selon la matière ?,Il doit passer la session de rattrapage.
+Le CC est-il obligatoire ?,"Oui, il fait partie des composantes de la note finale."
+La note de TP est-elle la même pour tous ?,"Non, elle dépend de l'évaluation du professeur."
+Peut-on valider une matière uniquement avec le CC ?,"Non, il faut le cumul des notes (CC, TP, Examen)."
+La note de rattrapage remplace-t-elle toutes les autres notes ?,Elle intervient si le cumul des autres notes est insuffisant.
+Le cycle ingénieur a-t-il des TP ?,"Oui, contrairement au cycle inspecteur."
+La note de validation est-elle fixe pour toutes les matières ?,"Non, elle peut être de 10 ou 12."
+Quand se déroulent généralement les contrôles continus ?,À la fin de chaque cours.
+Quelles séances précèdent généralement la fin d'un cours pour un CC ?,Les séances de TD (Travaux Dirigés).
+Qui communique la date et le lieu du CC ?,Le professeur de la matière.
+Quand le professeur doit-il communiquer les infos sur le CC ?,Toujours à l'avance.
+Quand se déroule l'évaluation des TP ?,Généralement à la fin de la séance de TP.
+Quels sont les modes d'évaluation possibles pour les TP ?,"Rapport de séances, test écrit, test pratique ou évaluation d'un projet."
+De quoi dépend le mode d'évaluation des TP ?,Du professeur et de la matière concernée.
+Un projet peut-il servir d'évaluation de TP ?,"Oui, c'est l'un des modes possibles."
+Quelle est la condition de présence pour être admis au CC ?,Avoir participé à au moins 70% du quota horaire de la matière.
+Que se passe-t-il si on a moins de 70% de présence ?,L'accès à la salle d'examen pour le CC n'est pas permis.
+Le lieu du CC est-il toujours le même ?,"Non, il est communiqué par le professeur."
+Les TD sont-ils liés aux CC ?,"Oui, les cours se terminent généralement par des TD avant le CC."
+L'évaluation des TP est-elle forcément un examen écrit ?,"Non, cela peut être un rapport ou un projet."
+Le quota horaire est-il important pour les CC ?,"Oui, il faut 70% de présence."
+Qui décide du mode d'évaluation des TP ?,Le professeur concerné.
+Pendant quels mois se déroule généralement la session normale ?,Entre janvier et février.
+De quoi dépend la date exacte de la session normale ?,Du planning des activités de l'école.
+Combien de temps à l'avance la période d'examen est-elle communiquée ?,"Généralement une à deux semaines à l'avance, ou plus."
+Pourquoi la période d'examen est-elle communiquée à l'avance ?,Pour que les étudiants puissent se préparer efficacement.
+Quelles informations sont communiquées en plus du planning d'examen ?,La disposition des étudiants dans les salles de classe.
+Quels documents sont requis pour accéder à la salle d'examen ?,Une pièce d'identité et le reçu de paiement des frais de scolarité.
+Peut-on entrer en salle d'examen sans pièce d'identité ?,"Non, elle est obligatoire pour l'accès."
+Le reçu de scolarité est-il nécessaire pour les examens ?,"Oui, il doit être présenté à l'entrée."
+Quel est le délai de retard maximum autorisé en salle d'examen ?,15 minutes.
+Que se passe-t-il après 15 minutes de retard ?,Le candidat n'est plus admis en salle.
+Le planning d'examen est-il secret ?,"Non, il est toujours communiqué à l'avance."
+La disposition en salle est-elle aléatoire ?,"Non, elle est planifiée et communiquée à l'avance."
+L'examen de fin de semestre est-il le même que le CC ?,"Non, c'est la session normale."
+La période d'examen peut-elle changer ?,Elle dépend du planning des activités de l'école.
+Est-ce que 20 minutes de retard sont acceptées ?,"Non, la limite est de 15 minutes."
+Où est traduit un étudiant surpris en train de tricher ?,Au conseil de discipline.
+Quelles sont les conséquences d'une tricherie ?,L'étudiant sera sanctionné selon son forfait.
+Quelles consignes les candidats doivent-ils suivre ?,Toutes les consignes données lors du déroulement des épreuves.
+Quels éléments du comportement sont pris en compte dans la discipline ?,"La présence aux cours, la participation à la levée des couleurs et le style vestimentaire."
+Quand a lieu la levée des couleurs ?,Chaque lundi matin à 7h 15min.
+La participation à la levée des couleurs est-elle évaluée ?,"Oui, elle entre dans le cadre de la discipline."
+Le style vestimentaire est-il important ?,"Oui, il fait partie des critères de discipline."
+Pourquoi est-il important d'être discipliné lors des délibérations ?,Cela peut sauver l'étudiant et lui éviter le rattrapage.
+La tricherie est-elle tolérée ?,"Non, elle est sévèrement sanctionnée."
+La présence en cours influe-t-elle sur la discipline ?,"Oui, c'est un critère majeur."
+Qui décide des sanctions en cas de fraude ?,Le conseil de discipline.
+La discipline peut-elle aider à valider une matière ?,"Oui, lors des délibérations pour éviter le rattrapage."
+À quelle heure précise commence la levée des couleurs ?,À 7h 15min.
+Quel jour de la semaine a lieu la levée des couleurs ?,Le lundi matin.
+Le comportement global de l'étudiant est-il noté ?,Il est pris en compte et entré dans le cadre de la discipline.
+Combien de crédits comporte chaque niveau ?,60 crédits.
+Quel est le nombre minimum de crédits pour passer au niveau supérieur ?,Au moins 45 crédits.
+Que se passe-t-il pour les 15 crédits restants si on en a validé 45 ?,Ils devront être validés l'année académique suivante.
+Que se passe-t-il si les crédits restants ne sont pas validés l'année suivante ?,L'étudiant ne pourra pas évoluer en niveau.
+Que se passe-t-il si un étudiant a moins de 45 crédits ?,Il doit reprendre le niveau (redoubler).
+Quels sont les frais à payer en cas de redoublement ?,La moitié des frais de scolarité.
+Peut-on passer avec 40 crédits ?,"Non, il en faut au moins 45."
+Un étudiant avec 50 crédits passe-t-il au niveau supérieur ?,"Oui, mais il devra valider les 10 crédits restants plus tard."
+Le passage de niveau est-il automatique ?,"Non, il dépend de la validation des crédits."
+Combien de crédits faut-il valider au total par an ?,60 crédits.
+"Si je valide 45 crédits, suis-je définitivement quitte ?","Non, il faut valider les 15 restants l'année suivante."
+Le redoublement coûte-t-il le prix fort ?,"Non, la moitié des frais de scolarité."
+L'évolution en niveau est-elle possible avec des dettes de crédits ?,"Oui, si on a au moins 45 crédits, mais pour un an seulement."
+Que signifie 'reprendre le niveau' ?,Redoubler l'année d'étude.
+Les 60 crédits sont-ils répartis sur les deux semestres ?,"Oui, puisque le niveau couvre 2 semestres."
+Le chatbot est-il destiné aux professeurs ?,"Non, il est fait pour faciliter la vie étudiante."
+Les TP sont-ils évalués par un seul mode ?,"Non, le mode varie selon le professeur et la matière."
+La pièce d'identité est-elle demandée pour les CC ?,"Le texte précise l'accès aux salles d'examen (session normale), mais la discipline s'applique partout."
+Le conseil de discipline est-il clément avec les tricheurs ?,"Non, ils sont sanctionnés selon leur forfait."
+Le style vestimentaire fait-il partie de la note de CC ?,"Non, il fait partie du cadre de la discipline."
+Peut-on éviter le rattrapage grâce à la discipline ?,"Oui, lors des délibérations."
+Le planning d'examen inclut-il la disposition des places ?,"Oui, la disposition des étudiants est communiquée."
+Les frais de scolarité doivent-ils être payés pour passer les examens ?,"Oui, le reçu de paiement est exigé."
+Le professeur peut-il changer la date du CC au dernier moment ?,Le texte dit qu'il communique 'toujours à l'avance'.
+Les séances de TD sont-elles facultatives pour le CC ?,Le texte suggère qu'elles font partie du cursus menant au CC.
+Le cycle inspecteur est-il plus court ?,"Le texte ne le précise pas, mais il n'a pas de TP."
+Quelle est la sanction pour un retard de 10 minutes ?,Il est encore admis (la limite est 15 min).
+La levée des couleurs est-elle obligatoire ?,"Oui, elle est prise en compte pour la discipline."
+Peut-on valider une matière avec une note de 11 ?,"Cela dépend, car la note requise est soit 10, soit 12."
+Qui a décidé de créer le chatbot ?,Les membres du club info de l'école.

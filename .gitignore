@@ -31,3 +31,4 @@ ngrok_back.yml
 node_modules/
 .env__pycache__/
 *.pyc
+.d.ts
