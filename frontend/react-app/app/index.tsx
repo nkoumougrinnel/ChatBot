@@ -244,11 +244,12 @@ export default function Index() {
     scrollToBottom();
 
     try {
-      const apiResponse = await askChatbot(messageToSend, 3);
+      const apiResponse = await askChatbot(messageToSend);
       const answer =
-        apiResponse.results.length > 0
-          ? apiResponse.results[0].answer
-          : "Je n'ai pas trouvé de réponse précise. Peux-tu reformuler ta question ?";
+        apiResponse.error && !apiResponse.answer
+          ? apiResponse.error
+          : apiResponse.answer ||
+            "Je n'ai pas trouvé de réponse précise. Peux-tu reformuler ta question ?";
 
       const botMsg: Message = {
         id: (Date.now() + 1).toString(),
