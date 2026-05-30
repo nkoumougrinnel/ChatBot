@@ -45,8 +45,12 @@ api_urlpatterns = [
     path('chatbot/ask/',          ask_chatbot,     name='chatbot-ask'),
     path('chatbot/test-llm/',     test_llm_latency, name='chatbot-test-llm'),
     path('chatbot/reload-index/', reload_index,    name='chatbot-reload-index'),
+    path('api/', include('faq.urls')),
+    path('api/', include('chatbot.urls')),
 ]
 
 urlpatterns = [
     path('api/', include(api_urlpatterns)),
+    path('api/', include('faq.urls')),
+    path('api/', include('chatbot.urls')),
 ]

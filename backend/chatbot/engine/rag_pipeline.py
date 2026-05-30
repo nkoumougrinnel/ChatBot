@@ -1,368 +1,349 @@
 """
-rag_pipeline.py — Orchestrateur principal du pipeline RAG avec optimisations.
+rag_pipeline.py — Orchestrateur du pipeline RAG à 4 niveaux (Génération 3 — LLM réactivé).
 
-Flux optimisé :
-    question → embed (MiniLM avec cache) → Recherche parallèle FAISS + TF-IDF avec timeout
-        → Sélection méthode basée sur score + seuil dynamique
-        → si RAG : prompt_builder → LLM (Phi-3)
-        → si TF-IDF : réponse directe
+Niveau 1 — CONV    : regex sur formules conversationnelles → réponse hardcodée   < 1 ms
+Niveau 2 — DIRECT  : score FAISS >= 0.55 → réponse FAISS directe, sans LLM      ~150 ms
+Niveau 3 — TFIDF   : 0.30 <= score < 0.55 → réponse TF-IDF directe, sans LLM   ~50 ms
+Niveau 4 — LLM     : score < 0.30 → top-3 FAISS injectés dans prompt Phi-3      ~15-30 s
+           OFFBASE  : score < 0.30 ET Ollama indisponible → refus propre          < 1 ms
 
-Optimisations pour la réactivité :
-    - Cache LRU des embeddings (évite recalculs)
-    - Parallélisation asynchrone FAISS + TF-IDF avec timeout séparés
-    - Seuil dynamique basé sur statistiques des scores récents
-    - Chargement paresseux des modèles (via is_loaded())
-    - Logging des performances pour monitoring
+Règle Gen3 :
+  - Le LLM est appelé UNIQUEMENT quand FAISS ne trouve rien (score < SCORE_LLM).
+  - Les top-3 résultats FAISS sont toujours passés en contexte, même avec de faibles scores.
+  - Si Ollama est indisponible, le pipeline bascule proprement sur le refus OFFBASE.
 
-Expose :
-    ask(question, history)          -> dict  (réponse complète)
-    ask_stream(question, history)   -> Iterator[str | dict]  (streaming SSE)
+Ce module est le seul point d'entrée appelé par views.py.
 """
 
 from __future__ import annotations
 
-import asyncio
-import sys
+import logging
 import time
-from pathlib import Path
-from collections.abc import Iterator
-from typing import Any
+from dataclasses import dataclass, field
 from functools import lru_cache
+from collections.abc import Iterator
 
-# --- Résolution du sys.path AVANT les imports ---
-_ENGINE_DIR = Path(__file__).resolve().parent
-if str(_ENGINE_DIR) not in sys.path:
-    sys.path.insert(0, str(_ENGINE_DIR))
+import numpy as np
 
-# Imports moteur
 try:
-    from .embedder import encode
-    from .faiss_search import search_with_metadata, is_loaded as faiss_loaded
-    from .llm_client import generate, generate_stream
-    from .prompt_builder import build_prompt, build_no_context_prompt
-    from .tfidf_fallback import search as tfidf_search, is_loaded as tfidf_loaded
+    from .embedder       import encode
+    from .faiss_search   import search_with_metadata, SCORE_DIRECT, SCORE_LLM, is_loaded as faiss_is_loaded, get_index_stats
+    from .prompt_builder import detect_conv, build_prompt
+    from .tfidf_fallback import search as tfidf_search, is_loaded as tfidf_is_loaded, get_stats as tfidf_stats
+    from .llm_client     import check_availability, generate, generate_stream
 except ImportError:
-    from embedder import encode
-    from faiss_search import search_with_metadata, is_loaded as faiss_loaded
-    from llm_client import generate, generate_stream
-    from prompt_builder import build_prompt, build_no_context_prompt
-    from tfidf_fallback import search as tfidf_search, is_loaded as tfidf_loaded
+    from embedder       import encode
+    from faiss_search   import search_with_metadata, SCORE_DIRECT, SCORE_LLM, is_loaded as faiss_is_loaded, get_index_stats
+    from prompt_builder import detect_conv, build_prompt
+    from tfidf_fallback import search as tfidf_search, is_loaded as tfidf_is_loaded, get_stats as tfidf_stats
+    from llm_client     import check_availability, generate, generate_stream
+
+logger = logging.getLogger(__name__)
 
 
 # -------------------------------------------------------------------
-# Configuration optimisée
+# Structure de retour (pour ask())
 # -------------------------------------------------------------------
-SCORE_HIGH = float(__import__("os").environ.get("RAG_SCORE_HIGH", 0.55))
-SCORE_MED = float(__import__("os").environ.get("RAG_SCORE_MED", 0.1))
-FAISS_TOP_K = int(__import__("os").environ.get("RAG_TOP_K", 3))
-TIMEOUT_FAISS = float(__import__("os").environ.get("RAG_TIMEOUT_FAISS", 2.0))  # secondes
-TIMEOUT_TFIDF = float(__import__("os").environ.get("RAG_TIMEOUT_TFIDF", 1.0))  # secondes
-# Sur un serveur dédié, augmenter les timeouts pour plus de robustesse :
-# TIMEOUT_FAISS = 2.0
-# TIMEOUT_TFIDF = 1.0
-
-# Cache des embeddings (LRU pour éviter surcharge mémoire)
-@lru_cache(maxsize=500)
-# Sur un serveur dédié, augmenter la taille du cache :
-# @lru_cache(maxsize=2000)
-def _cached_encode(question: str) -> Any:
-    """Cache des embeddings pour éviter recalculs identiques."""
-    return encode(question)
-
-# Statistiques pour seuil dynamique
-_score_history = []
-SCORE_WINDOW = 100  # nombre de scores à garder en mémoire
-
-def _update_score_history(score: float):
-    """Met à jour l'historique des scores pour calcul du seuil dynamique."""
-    _score_history.append(score)
-    if len(_score_history) > SCORE_WINDOW:
-        _score_history.pop(0)
-
-def _get_dynamic_threshold() -> float:
-    """Calcule un seuil dynamique basé sur la moyenne des scores récents."""
-    if not _score_history:
-        return SCORE_HIGH
-    avg_score = sum(_score_history) / len(_score_history)
-    # Seuil dynamique : 80% de la moyenne, borné entre 0.3 et 0.8
-    dynamic = max(0.3, min(0.8, avg_score * 0.8))
-    return dynamic
-
-# Message d'avertissement score moyen
-_WARNING_LOW_CONFIDENCE = (
-    "⚠️ Cette réponse est approximative — la pertinence est modérée. "
-    "Vérifiez auprès du secrétariat si nécessaire.\n\n"
-)
+@dataclass
+class PipelineResult:
+    answer:     str
+    level:      str                           # 'conv'|'direct'|'tfidf'|'llm'|'offbase'
+    score:      float = 0.0
+    latency_ms: float = 0.0
+    source:     str = ""
+    categorie:  str = ""
+    method:     str = ""
+    contexts:   list[dict] = field(default_factory=list)
 
 
-def _select_method(best_score: float) -> str:
-    """Retourne 'RAG', 'RAG_LOW' ou 'TF-IDF' selon le score FAISS et seuil dynamique."""
-    threshold = _get_dynamic_threshold()
-    if best_score >= threshold:
-        return "RAG"
-    elif best_score >= SCORE_MED:
-        return "RAG_LOW"
-    else:
-        return "TF-IDF"
+# -------------------------------------------------------------------
+# Cache sémantique (LRU sur les questions fréquentes)
+# -------------------------------------------------------------------
+@lru_cache(maxsize=256)
+def _cached_encode(text: str) -> tuple:
+    return tuple(encode(text).tolist())
 
 
-async def _async_faiss_search(query_vec, k: int = FAISS_TOP_K):
-    """Recherche FAISS asynchrone avec gestion d'erreurs."""
-    if not faiss_loaded():
-        return []
+def _get_vec(text: str) -> np.ndarray:
+    return np.array(_cached_encode(text), dtype=np.float32)
+
+
+def _ms(t0: float) -> float:
+    return round((time.time() - t0) * 1000, 1)
+
+
+# -------------------------------------------------------------------
+# Construction des événements SSE (spec W3C text/event-stream)
+# -------------------------------------------------------------------
+def build_sse_event(data: str, event: str | None = None) -> str:
+    safe_data = str(data).replace("\r\n", " ").replace("\n", " ").replace("\r", " ")
+    lines = []
+    if event:
+        lines.append(f"event: {event.strip()}")
+    lines.append(f"data: {safe_data}")
+    return "\n".join(lines) + "\n\n"
+
+
+# -------------------------------------------------------------------
+# Pipeline principal — réponse complète (non streamée)
+# -------------------------------------------------------------------
+def ask(
+    question: str,
+    history:  list[dict] | None = None,
+) -> PipelineResult:
+    t0 = time.time()
+    question = question.strip()
+
+    if not question:
+        return PipelineResult(
+            answer="Veuillez saisir une question.",
+            level="conv", method="empty", latency_ms=_ms(t0),
+        )
+
+    # Niveau 1 — CONV
+    conv_answer = detect_conv(question)
+    if conv_answer:
+        logger.info("[pipeline] CONV '%s'", question[:50])
+        return PipelineResult(
+            answer=conv_answer, level="conv",
+            method="regex", latency_ms=_ms(t0),
+        )
+
+    # Vectorisation + FAISS
+    query_vec  = _get_vec(question)
+    contexts   = search_with_metadata(query_vec, k=3)
+    best       = contexts[0] if contexts else None
+    best_score = best["score"] if best else 0.0
+    logger.info("[pipeline] FAISS score=%.4f | '%s'", best_score, question[:50])
+
+    # Niveau 2 — DIRECT
+    if best and best_score >= SCORE_DIRECT:
+        answer = best["response"].strip() or (
+            "Information disponible mais réponse vide. Contactez le secrétariat."
+        )
+        logger.info("[pipeline] DIRECT (score=%.4f)", best_score)
+        return PipelineResult(
+            answer=answer, level="direct", score=best_score,
+            latency_ms=_ms(t0), source=best.get("source", ""),
+            categorie=best.get("categorie", ""), method="faiss_direct",
+            contexts=contexts,
+        )
+
+    # Niveau 3 — TFIDF
+    if best and best_score >= SCORE_LLM:
+        if not tfidf_is_loaded():
+            logger.error("[pipeline] ERREUR SYSTÈME : TF-IDF non chargé.")
+            raise RuntimeError(
+                "Pipeline Gen3 mal initialisé : TF-IDF non chargé. "
+                "Appelez tfidf_fallback.load() avant d'utiliser le pipeline."
+            )
+        tfidf_answer, tfidf_score, _ = tfidf_search(question)
+        logger.info(
+            "[pipeline] TFIDF direct (faiss=%.4f, tfidf=%.4f) | '%s'",
+            best_score, tfidf_score, question[:50],
+        )
+        return PipelineResult(
+            answer=tfidf_answer, level="tfidf", score=best_score,
+            latency_ms=_ms(t0), source="tfidf_cache",
+            categorie=best.get("categorie", "") if best else "",
+            method="tfidf_direct", contexts=contexts,
+        )
+
+    # Niveau 4 — LLM (score < SCORE_LLM)
+    # Les top-3 contextes FAISS sont injectés dans le prompt même avec de faibles scores.
+    ollama = check_availability()
+    if not ollama["available"]:
+        logger.warning(
+            "[pipeline] OFFBASE — Ollama indisponible (score=%.4f) : %s",
+            best_score, ollama["error"],
+        )
+        return PipelineResult(
+            answer=(
+                "Je n'ai pas cette information dans ma base de données SUP'PTIC. "
+                "Pour plus de détails, contactez directement le secrétariat."
+            ),
+            level="offbase", score=best_score,
+            latency_ms=_ms(t0), method="offbase",
+        )
+
+    prompt = build_prompt(question, contexts, history)
+    logger.info("[pipeline] LLM (score=%.4f) | '%s'", best_score, question[:50])
     try:
-        # Utilise asyncio.to_thread pour rendre FAISS (synchrone) non-bloquant
-        contexts = await asyncio.to_thread(search_with_metadata, query_vec, k)
-        return contexts
-    except Exception as e:
-        print(f"[rag_pipeline] Erreur FAISS : {e}")
-        return []
+        llm_answer = generate(prompt, level="llm")
+    except Exception as exc:
+        logger.error("[pipeline] LLM erreur : %s", exc)
+        return PipelineResult(
+            answer=(
+                "Je n'ai pas cette information dans ma base de données SUP'PTIC. "
+                "Pour plus de détails, contactez directement le secrétariat."
+            ),
+            level="offbase", score=best_score,
+            latency_ms=_ms(t0), method="offbase_llm_error",
+        )
+
+    return PipelineResult(
+        answer=llm_answer, level="llm", score=best_score,
+        latency_ms=_ms(t0), source="ollama",
+        categorie=best.get("categorie", "") if best else "",
+        method="llm_phi3", contexts=contexts,
+    )
 
 
-async def _async_tfidf_search(question: str):
-    """Recherche TF-IDF asynchrone avec gestion d'erreurs."""
-    if not tfidf_loaded():
-        return None, 0.0, ""
-    try:
-        result = await asyncio.to_thread(tfidf_search, question)
-        return result
-    except Exception as e:
-        print(f"[rag_pipeline] Erreur TF-IDF : {e}")
-        return None, 0.0, ""
-
-
-async def _parallel_search(question: str, query_vec) -> tuple[list, tuple]:
-    """
-    Recherche parallèle FAISS et TF-IDF avec timeout séparés.
-    Retourne le premier résultat disponible ou les deux si timeout pas atteint.
-    """
-    # Lancer les deux recherches en parallèle
-    faiss_task = asyncio.create_task(_async_faiss_search(query_vec))
-    tfidf_task = asyncio.create_task(_async_tfidf_search(question))
-
-    # Attendre FAISS avec timeout
-    try:
-        contexts = await asyncio.wait_for(faiss_task, timeout=TIMEOUT_FAISS)
-    except asyncio.TimeoutError:
-        print(f"[rag_pipeline] Timeout FAISS ({TIMEOUT_FAISS}s), annulation")
-        contexts = []
-        faiss_task.cancel()
-
-    # Attendre TF-IDF avec timeout
-    try:
-        tfidf_result = await asyncio.wait_for(tfidf_task, timeout=TIMEOUT_TFIDF)
-    except asyncio.TimeoutError:
-        print(f"[rag_pipeline] Timeout TF-IDF ({TIMEOUT_TFIDF}s), annulation")
-        tfidf_result = (None, 0.0, "")
-        tfidf_task.cancel()
-
-    return contexts, tfidf_result
-
-
-def ask(question: str, history: list[dict] | None = None) -> dict:
-    """
-    Traite une question avec parallélisation asynchrone pour maximiser la réactivité.
-
-    Args:
-        question: La question posée par l'étudiant.
-        history:  Liste des derniers échanges (optionnel).
-
-    Returns:
-        dict avec les clés :
-            answer  (str)   : texte de la réponse
-            sources (list)  : liste de dicts {question, score, categorie, source}
-            method  (str)   : "RAG" ou "TF-IDF"
-            best_score (float) : meilleur score FAISS ou TF-IDF
-    """
-    start_time = time.time()
-
-    # --- Étape 1 : Vectorisation avec cache ---
-    query_vec = _cached_encode(question)
-
-    # --- Étape 2 : Recherche parallèle FAISS + TF-IDF ---
-    contexts, tfidf_result = asyncio.run(_parallel_search(question, query_vec))
-
-    best_score = contexts[0]["score"] if contexts else 0.0
-    _update_score_history(best_score)  # Mise à jour statistiques pour seuil dynamique
-
-    method = _select_method(best_score)
-
-    # --- Étape 3 : Branchement RAG vs TF-IDF ---
-    if method in ("RAG", "RAG_LOW"):
-        # Construction du prompt
-        if contexts:
-            prompt = build_prompt(question, contexts, history)
-        else:
-            prompt = build_no_context_prompt(question)
-
-        # Génération LLM
-        raw_answer = generate(prompt)
-
-        # Préfixe d'avertissement si score moyen
-        if method == "RAG_LOW":
-            answer = _WARNING_LOW_CONFIDENCE + raw_answer
-        else:
-            answer = raw_answer
-
-        sources = [
-            {
-                "question": ctx["example"],
-                "score": round(ctx["score"], 4),
-                "categorie": ctx["categorie"],
-                "source": ctx["source"],
-            }
-            for ctx in contexts[:3]
-        ]
-
-    else:
-        # Fallback TF-IDF
-        tfidf_answer, tfidf_score, _ = tfidf_result
-        answer = tfidf_answer or "Désolé, je n'ai pas trouvé de réponse pertinente."
-        best_score = tfidf_score
-        sources = []  # TF-IDF ne retourne pas de sources structurées
-
-    elapsed = time.time() - start_time
-    print(f"[rag_pipeline] Question traitée en {elapsed:.2f}s, méthode: {method}, score: {best_score:.4f}")
-
-    return {
-        "answer": answer,
-        "sources": sources,
-        "method": method.replace("_LOW", ""),  # "RAG" ou "TF-IDF" pour l'API
-        "best_score": round(best_score, 4),
-    }
-
-
+# -------------------------------------------------------------------
+# Pipeline streaming SSE
+# -------------------------------------------------------------------
 def ask_stream(
     question: str,
-    history: list[dict] | None = None,
-) -> Iterator[str | dict]:
+    history:  list[dict] | None = None,
+) -> Iterator[str]:
     """
-    Traite une question en streaming SSE avec parallélisation.
+    Générateur SSE pour StreamingHttpResponse Django.
 
-    Yield order :
-        1. dict {"type": "meta", "method": ..., "sources": ..., "best_score": ...}
-        2. str (fragments de texte du LLM) — ou str unique si TF-IDF
-        3. dict {"type": "done"}
-
-    Compatible avec Django StreamingHttpResponse + text/event-stream.
-
-    Args:
-        question: La question posée.
-        history:  Historique optionnel.
-
-    Yields:
-        str ou dict selon le type d'événement.
+    Protocole émis :
+        event: start\\ndata: <level>|<method>\\n\\n   — métadonnées
+        data: <texte>\\n\\n                           — token(s) de réponse
+        event: done\\ndata: <latency_ms>\\n\\n         — fin
+        event: error\\ndata: <message>\\n\\n           — erreur système
     """
-    # Vectorisation avec cache
-    query_vec = _cached_encode(question)
+    t0 = time.time()
+    question = question.strip()
 
-    # Recherche parallèle
-    contexts, tfidf_result = asyncio.run(_parallel_search(question, query_vec))
+    # --- Question vide ---
+    if not question:
+        yield build_sse_event("conv|empty", event="start")
+        yield build_sse_event("Veuillez saisir une question.")
+        yield build_sse_event(_ms(t0), event="done")
+        return
 
-    best_score = contexts[0]["score"] if contexts else 0.0
-    _update_score_history(best_score)
+    # --- Niveau 1 — CONV ---
+    conv_answer = detect_conv(question)
+    if conv_answer:
+        logger.info("[stream] CONV '%s'", question[:50])
+        yield build_sse_event("conv|regex", event="start")
+        yield build_sse_event(conv_answer)
+        yield build_sse_event(_ms(t0), event="done")
+        return
 
-    method = _select_method(best_score)
+    # --- Vectorisation + FAISS ---
+    query_vec  = _get_vec(question)
+    contexts   = search_with_metadata(query_vec, k=3)
+    best       = contexts[0] if contexts else None
+    best_score = best["score"] if best else 0.0
+    logger.info("[stream] FAISS score=%.4f | '%s'", best_score, question[:50])
 
-    sources = [
-        {
-            "question": ctx["example"],
-            "score": round(ctx["score"], 4),
-            "categorie": ctx["categorie"],
-            "source": ctx["source"],
-        }
-        for ctx in contexts[:3]
-    ] if method in ("RAG", "RAG_LOW") else []
+    # --- Niveau 2 — DIRECT ---
+    if best and best_score >= SCORE_DIRECT:
+        answer = best["response"].strip() or (
+            "Information disponible mais réponse vide. Contactez le secrétariat."
+        )
+        logger.info("[stream] DIRECT (score=%.4f)", best_score)
+        yield build_sse_event("direct|faiss_direct", event="start")
+        yield build_sse_event(answer)
+        yield build_sse_event(_ms(t0), event="done")
+        return
 
-    # Envoi des métadonnées d'abord
-    yield {
-        "type": "meta",
-        "method": method.replace("_LOW", ""),
-        "sources": sources,
-        "best_score": round(best_score, 4),
-        "low_confidence": method == "RAG_LOW",
+    # --- Niveau 3 — TFIDF ---
+    if best and best_score >= SCORE_LLM:
+        if not tfidf_is_loaded():
+            logger.error("[stream] ERREUR SYSTÈME : TF-IDF non chargé.")
+            yield build_sse_event(
+                "Pipeline mal initialisé : TF-IDF absent. Contactez l'administrateur.",
+                event="error",
+            )
+            yield build_sse_event(_ms(t0), event="done")
+            return
+        tfidf_answer, tfidf_score, _ = tfidf_search(question)
+        logger.info(
+            "[stream] TFIDF direct (faiss=%.4f, tfidf=%.4f) | '%s'",
+            best_score, tfidf_score, question[:50],
+        )
+        yield build_sse_event("tfidf|tfidf_direct", event="start")
+        yield build_sse_event(tfidf_answer)
+        yield build_sse_event(_ms(t0), event="done")
+        return
+
+    # --- Niveau 4 — LLM (score < SCORE_LLM) ---
+    ollama = check_availability()
+    if not ollama["available"]:
+        logger.warning(
+            "[stream] OFFBASE — Ollama indisponible (score=%.4f) : %s",
+            best_score, ollama["error"],
+        )
+        yield build_sse_event("offbase|offbase", event="start")
+        yield build_sse_event(
+            "Je n'ai pas cette information dans ma base de données SUP'PTIC. "
+            "Pour plus de détails, contactez directement le secrétariat."
+        )
+        yield build_sse_event(_ms(t0), event="done")
+        return
+
+    prompt = build_prompt(question, contexts, history)
+    logger.info("[stream] LLM (score=%.4f) | '%s'", best_score, question[:50])
+    yield build_sse_event("llm|llm_phi3", event="start")
+
+    try:
+        for token in generate_stream(prompt, level="llm"):
+            yield build_sse_event(token)
+    except Exception as exc:
+        logger.error("[stream] LLM erreur streaming : %s", exc)
+        yield build_sse_event(str(exc), event="error")
+
+    yield build_sse_event(_ms(t0), event="done")
+
+
+# -------------------------------------------------------------------
+# Santé du pipeline
+# -------------------------------------------------------------------
+def health() -> dict:
+    ollama = check_availability()
+    return {
+        "faiss_loaded":     faiss_is_loaded(),
+        "faiss_stats":      get_index_stats(),
+        "tfidf_loaded":     tfidf_is_loaded(),
+        "tfidf_stats":      tfidf_stats(),
+        "ollama_available": ollama["available"],
+        "ollama_model":     ollama["model"],
+        "ollama_error":     ollama["error"],
+        "cache_size":       _cached_encode.cache_info().currsize,
+        "ready":            faiss_is_loaded() and tfidf_is_loaded(),
     }
 
-    # Streaming de la réponse
-    if method in ("RAG", "RAG_LOW"):
-        if method == "RAG_LOW":
-            yield _WARNING_LOW_CONFIDENCE
-
-        if contexts:
-            prompt = build_prompt(question, contexts, history)
-        else:
-            prompt = build_no_context_prompt(question)
-
-        for token in generate_stream(prompt):
-            yield token
-
-    else:
-        tfidf_answer, _, _ = tfidf_result
-        yield tfidf_answer or "Désolé, je n'ai pas trouvé de réponse pertinente."
-
-    yield {"type": "done"}
-
-
-def build_sse_event(data: Any) -> str:
-    """
-    Formate un événement pour Django StreamingHttpResponse (text/event-stream).
-
-    Args:
-        data: str (token texte) ou dict (métadonnées / done).
-
-    Returns:
-        Chaîne formatée SSE : "data: <json>\n\n"
-    """
-    import json as _json
-
-    if isinstance(data, str):
-        payload = _json.dumps({"type": "token", "content": data}, ensure_ascii=False)
-    else:
-        payload = _json.dumps(data, ensure_ascii=False)
-    return f"data: {payload}\n\n"
-
 
 # -------------------------------------------------------------------
-# Test rapide (exécutable directement : python rag_pipeline.py)
+# Test rapide (python rag_pipeline.py)
 # -------------------------------------------------------------------
 if __name__ == "__main__":
-    import time
+    import sys
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-    # Initialiser FAISS et TF-IDF
-    import faiss_search
-    faiss_search.load_index()
+    from faiss_search   import load_index
+    from tfidf_fallback import load as tfidf_load
 
-    import tfidf_fallback
-    tfidf_fallback.load()
+    print("=== Test rag_pipeline.py — Génération 3 (LLM réactivé) ===\n")
+    load_index()
+    tfidf_load()
 
-    print("=== Test rag_pipeline.py optimisé ===\n")
+    h = health()
+    print(f"Health : faiss={h['faiss_loaded']} | tfidf={h['tfidf_loaded']} | ollama={h['ollama_available']}\n")
 
     test_cases = [
-        {
-            "question": "C'est combien pour s'inscrire à SUP'PTIC ?",
-            "history": None,
-        },
-        {
-            "question": "Et pour les boursiers ?",
-            "history": [
-                {"role": "user", "content": "C'est combien pour s'inscrire ?"},
-                {"role": "assistant", "content": "Les frais sont de 500 000 FCFA par an."},
-            ],
-        },
-        {
-            "question": "Quel temps fait-il aujourd'hui ?",  # hors domaine
-            "history": None,
-        },
+        ("Bonjour !",                        "conv"),
+        ("Merci beaucoup",                   "conv"),
+        ("C'est combien pour s'inscrire ?",  "direct"),
+        ("Comment rejoindre le club info ?", "direct"),
+        ("tarif scol",                       "tfidf"),
+        ("Quel temps fait-il aujourd'hui ?", "llm"),    # score < 0.30 → LLM si Ollama dispo
     ]
 
-    for tc in test_cases:
-        print(f"Question : '{tc['question']}'")
-        t0 = time.time()
-        result = ask(tc["question"], tc["history"])
-        elapsed = time.time() - t0
-        print(f"  Méthode : {result['method']} | Score : {result['best_score']:.4f} | {elapsed:.2f}s")
-        print(f"  Réponse : {result['answer'][:120]}...")
-        if result["sources"]:
-            for s in result["sources"]:
-                print(f"  Source : [{s['categorie']}] score={s['score']:.4f}")
-        print()
+    for question, expected in test_cases:
+        result = ask(question)
+        status = "OK" if result.level == expected else f"KO (attendu: {expected})"
+        print(
+            f"[{result.level.upper():7}] [{status}] {question}\n"
+            f"  score={result.score:.4f} | {result.latency_ms:.0f}ms | {result.method}\n"
+            f"  → {result.answer[:100]}\n"
+        )
+
+    print("=== Test ask_stream ===\n")
+    for raw in ask_stream("Quel est le processus d'admission ?"):
+        print(repr(raw))
