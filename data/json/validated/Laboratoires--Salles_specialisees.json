@@ -1,0 +1,632 @@
+[
+  {
+    "id": "faq_526",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Importance pédagogique",
+    "question": "Pourquoi les laboratoires sont-ils importants à SUP’PTIC ?",
+    "reponse_enrichie": "Ils permettent aux étudiants de réaliser des travaux pratiques.",
+    "exemples": [
+      "Quelle est l'utilité des laboratoires à SUP'PTIC ?",
+      "Pourquoi les laboratoires sont-ils essentiels pour les étudiants de SUP'PTIC ?",
+      "En quoi consistent les avantages des laboratoires pour les étudiants à SUP'PTIC ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_527",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Organisation et types de laboratoires",
+    "question": "Quels types de laboratoires trouve-t-on à SUP’PTIC ?",
+    "reponse_enrichie": "Des laboratoires réseaux, informatiques et télécommunications.",
+    "exemples": [
+      "Quels sont les laboratoires disponibles à SUP'PTIC ?",
+      "Quels types de laboratoires peut-on trouver à SUP'PTIC ?",
+      "Quels sont les différents laboratoires présents à SUP'PTIC ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_528",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Travaux pratiques",
+    "question": "Pourquoi les travaux pratiques sont-ils nécessaires ?",
+    "reponse_enrichie": "Ils aident à mieux comprendre les notions théoriques.",
+    "exemples": [
+      "Pourquoi est-il important de faire des travaux pratiques ?",
+      "Quel est le rôle des travaux pratiques dans la formation ?",
+      "En quoi les travaux pratiques contribuent-ils à l'apprentissage ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_529",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Équipements et matériel",
+    "question": "Les étudiants utilisent-ils des équipements spécialisés ?",
+    "reponse_enrichie": "Oui, selon leur domaine de formation.",
+    "exemples": [
+      "Est-ce que les étudiants ont accès à des équipements spécifiques à leur formation ?",
+      "Les étudiants utilisent-ils du matériel spécialisé dans leurs cours ?",
+      "Y a-t-il des équipements particuliers que les étudiants doivent utiliser selon leur filière ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_530",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Salles informatiques",
+    "question": "Les salles informatiques sont-elles importantes ?",
+    "reponse_enrichie": "Oui, elles facilitent l’apprentissage des outils numériques.",
+    "exemples": [
+      "Les salles informatiques sont-elles essentielles pour nos cours ?",
+      "Est-ce que les salles informatiques jouent un rôle important dans notre formation ?",
+      "Pourquoi les salles informatiques sont-elles nécessaires à SUP'PTIC ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_531",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Maintenance et entretien",
+    "question": "Pourquoi faut-il entretenir les laboratoires ?",
+    "reponse_enrichie": "Pour garantir leur bon fonctionnement et leur durabilité.",
+    "exemples": [
+      "Pourquoi est-il important d'entretenir les laboratoires à SUP'PTIC?",
+      "Quels sont les motifs pour lesquels il faut entretenir les laboratoires?",
+      "Pourquoi doit-on assurer l'entretien régulier des laboratoires?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_532",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Sécurité et règles d'utilisation",
+    "question": "Les étudiants doivent-ils respecter les consignes de sécurité ?",
+    "reponse_enrichie": "Oui, afin d’éviter les accidents.",
+    "exemples": [
+      "Les étudiants sont-ils tenus de suivre les consignes de sécurité ?",
+      "Est-il obligatoire pour les étudiants de respecter les règles de sécurité ?",
+      "Les étudiants doivent-ils observer les consignes de sécurité ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_533",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Formation professionnelle",
+    "question": "Les laboratoires permettent-ils de développer les compétences techniques ?",
+    "reponse_enrichie": "Oui, grâce aux manipulations pratiques.",
+    "exemples": [
+      "Les laboratoires offrent-ils des opportunités pour renforcer ses compétences techniques ?",
+      "Peut-on améliorer ses compétences techniques en utilisant les laboratoires ?",
+      "Les séances en laboratoire contribuent-elles au développement des compétences techniques ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_534",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Équipements et matériel",
+    "question": "Les équipements modernes améliorent-ils la formation ?",
+    "reponse_enrichie": "Oui, ils permettent une meilleure expérience d’apprentissage.",
+    "exemples": [
+      "Les équipements modernes contribuent-ils à améliorer la formation ?",
+      "L'utilisation d'équipements modernes facilite-t-elle l'apprentissage ?",
+      "Les technologies actuelles rendent-elles la formation plus efficace ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_535",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Organisation et horaires",
+    "question": "Les étudiants peuvent-ils utiliser les laboratoires en groupe ?",
+    "reponse_enrichie": "Oui, plusieurs travaux se font en équipe.",
+    "exemples": [
+      "Est-ce que les étudiants peuvent travailler en groupe dans les laboratoires ?",
+      "Les étudiants ont-ils la possibilité d'utiliser les laboratoires en équipe ?",
+      "Peut-on faire des travaux en groupe dans les laboratoires à SUP'PTIC ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_536",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Organisation et types de laboratoires",
+    "question": "Pourquoi les salles spécialisées sont-elles utiles ?",
+    "reponse_enrichie": "Elles permettent des formations adaptées à chaque domaine.",
+    "exemples": [
+      "Quels sont les avantages des salles spécialisées à SUP'PTIC ?",
+      "Pourquoi est-il important d'avoir des salles dédiées pour chaque domaine ?",
+      "En quoi les salles spécialisées contribuent-elles à la formation des étudiants ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_537",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Formation professionnelle",
+    "question": "Les laboratoires aident-ils à préparer le monde professionnel ?",
+    "reponse_enrichie": "Oui, ils rapprochent les étudiants des réalités du terrain.",
+    "exemples": [
+      "Les laboratoires sont-ils utiles pour se préparer au monde du travail ?",
+      "Les équipements en laboratoire facilitent-ils l'insertion professionnelle ?",
+      "Les laboratoires aident-ils à mieux comprendre les exigences du marché du travail ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_538",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Formation professionnelle",
+    "question": "Les étudiants apprennent-ils à utiliser des logiciels spécialisés ?",
+    "reponse_enrichie": "Oui, dans les salles informatiques et techniques.",
+    "exemples": [
+      "Les étudiants sont-ils formés à l'utilisation de logiciels spécifiques ?",
+      "Les cours incluent-ils l'apprentissage de logiciels spécialisés ?",
+      "Les étudiants ont-ils des sessions pour apprendre à utiliser des logiciels techniques ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_539",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Sécurité et règles d'utilisation",
+    "question": "Pourquoi faut-il manipuler les équipements avec soin ?",
+    "reponse_enrichie": "Pour éviter les pannes et les dommages.",
+    "exemples": [
+      "Pourquoi est-il important de manipuler les équipements avec précaution ?",
+      "Quels sont les motifs de manipuler les équipements avec soin ?",
+      "Pourquoi doit-on faire attention lors de la manipulation des équipements ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_540",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Travaux pratiques",
+    "question": "Les travaux pratiques renforcent-ils la compréhension des cours ?",
+    "reponse_enrichie": "Oui, ils rendent les notions plus concrètes.",
+    "exemples": [
+      "Les travaux pratiques aident-ils à mieux comprendre les cours ?",
+      "Les TP facilitent-ils la compréhension des notions enseignées ?",
+      "Les exercices pratiques renforcent-ils la compréhension des concepts ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_541",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Travaux pratiques",
+    "question": "Les étudiants peuvent-ils effectuer des simulations techniques ?",
+    "reponse_enrichie": "Oui, grâce aux outils disponibles dans les laboratoires.",
+    "exemples": [
+      "Les étudiants ont-ils la possibilité de faire des simulations techniques ?",
+      "Est-ce que les étudiants peuvent réaliser des simulations techniques à SUP'PTIC ?",
+      "Les simulations techniques sont-elles accessibles aux étudiants ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_542",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Salles multimédias",
+    "question": "Pourquoi les salles multimédias sont-elles importantes ?",
+    "reponse_enrichie": "Elles facilitent les présentations et formations interactives.",
+    "exemples": [
+      "Quels sont les avantages des salles multimédias à SUP'PTIC ?",
+      "Pourquoi est-il important d'utiliser les salles multimédias pour nos cours ?",
+      "En quoi les salles multimédias contribuent-elles à notre apprentissage ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_543",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Organisation et horaires",
+    "question": "Les enseignants utilisent-ils les laboratoires pendant les cours ?",
+    "reponse_enrichie": "Oui, pour les démonstrations pratiques.",
+    "exemples": [
+      "Les enseignants ont-ils recours aux laboratoires lors des cours ?",
+      "Est-ce que les professeurs utilisent les laboratoires en classe ?",
+      "Les enseignants se servent-ils des laboratoires pour leurs démonstrations pendant les cours ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_544",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Innovation et recherche",
+    "question": "Les laboratoires favorisent-ils la recherche ?",
+    "reponse_enrichie": "Oui, ils permettent certaines expérimentations.",
+    "exemples": [
+      "Les laboratoires encouragent-ils la recherche et l'expérimentation ?",
+      "Est-ce que les laboratoires facilitent la recherche à SUP'PTIC ?",
+      "Les laboratoires permettent-ils de faire des expérimentations pour la recherche ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_545",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Sécurité et règles d'utilisation",
+    "question": "Les étudiants doivent-ils suivre des règles dans les laboratoires ?",
+    "reponse_enrichie": "Oui, pour assurer la sécurité et l’ordre.",
+    "exemples": [
+      "Est-il nécessaire pour les étudiants de respecter des règles en laboratoire ?",
+      "Les étudiants doivent-ils observer des consignes lors des séances en laboratoire ?",
+      "Faut-il suivre des règles spécifiques en laboratoire à SUP'PTIC ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_546",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Équipements et matériel",
+    "question": "Les équipements techniques coûtent-ils cher ?",
+    "reponse_enrichie": "Oui, c’est pourquoi ils doivent être bien entretenus.",
+    "exemples": [
+      "Les équipements techniques ont-ils un prix élevé ?",
+      "Est-ce que les équipements techniques coûtent beaucoup d'argent ?",
+      "Faut-il prévoir un budget important pour les équipements techniques ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_547",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Formation professionnelle",
+    "question": "Les laboratoires améliorent-ils la qualité de la formation ?",
+    "reponse_enrichie": "Oui, ils rendent l’apprentissage plus pratique.",
+    "exemples": [
+      "Les laboratoires contribuent-ils à améliorer la formation?",
+      "En quoi les laboratoires renforcent-ils la qualité de l'enseignement?",
+      "Les laboratoires rendent-ils la formation plus pratique?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_548",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Formation professionnelle",
+    "question": "Les étudiants apprennent-ils à résoudre des problèmes techniques ?",
+    "reponse_enrichie": "Oui, grâce aux exercices pratiques.",
+    "exemples": [
+      "Est-ce que l'école enseigne la résolution de problèmes techniques ?",
+      "Les étudiants sont-ils formés à résoudre des problèmes techniques ?",
+      "L'apprentissage inclut-il la résolution de problèmes techniques pour les étudiants ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_549",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Sécurité et règles d'utilisation",
+    "question": "Pourquoi faut-il éviter de manger dans les laboratoires ?",
+    "reponse_enrichie": "Pour protéger les équipements et maintenir la propreté.",
+    "exemples": [
+      "Pourquoi est-il interdit de manger dans les laboratoires ?",
+      "Quels sont les risques à manger dans les salles de laboratoire ?",
+      "Pourquoi doit-on éviter de consommer des aliments dans les laboratoires ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_550",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Salles spécialisées",
+    "question": "Les salles spécialisées permettent-elles des démonstrations ?",
+    "reponse_enrichie": "Oui, plusieurs expériences y sont réalisées.",
+    "exemples": [
+      "Les salles spécialisées offrent-elles la possibilité de faire des démonstrations ?",
+      "Peut-on réaliser des démonstrations dans les salles spécialisées ?",
+      "Les salles dédiées permettent-elles de faire des expériences en démonstration ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_551",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Travaux pratiques",
+    "question": "Les étudiants peuvent-ils poser des questions pendant les travaux pratiques ?",
+    "reponse_enrichie": "Oui, afin de mieux comprendre les manipulations.",
+    "exemples": [
+      "Les étudiants ont-ils le droit de poser des questions lors des travaux pratiques ?",
+      "Peut-on poser des questions pendant les séances de travaux pratiques ?",
+      "Les étudiants peuvent-ils intervenir pour poser des questions durant les TP ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_552",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Projets académiques",
+    "question": "Les laboratoires sont-ils utiles pour les projets académiques ?",
+    "reponse_enrichie": "Oui, plusieurs projets y sont développés.",
+    "exemples": [
+      "Les laboratoires sont-ils importants pour réaliser des projets à SUP'PTIC ?",
+      "Est-ce que les laboratoires aident dans le développement des projets étudiants ?",
+      "Les laboratoires jouent-ils un rôle dans les projets académiques à SUP'PTIC ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_553",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Organisation et règles d'utilisation",
+    "question": "Les étudiants doivent-ils partager les équipements ?",
+    "reponse_enrichie": "Oui, dans le respect des autres utilisateurs.",
+    "exemples": [
+      "Les étudiants ont-ils besoin de partager les équipements ?",
+      "Est-il obligatoire pour les étudiants de partager les appareils ?",
+      "Les étudiants doivent-ils utiliser les équipements en commun ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_554",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Innovation et recherche",
+    "question": "Les salles spécialisées encouragent-elles l’innovation ?",
+    "reponse_enrichie": "Oui, elles stimulent la créativité et les expérimentations.",
+    "exemples": [
+      "Les salles spécialisées favorisent-elles l'innovation ?",
+      "Est-ce que les salles spécialisées encouragent la créativité et l'expérimentation ?",
+      "Les espaces spécialisés soutiennent-ils l'innovation à SUP'PTIC ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_555",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Organisation et horaires",
+    "question": "Pourquoi faut-il respecter les horaires d’utilisation des laboratoires ?",
+    "reponse_enrichie": "Pour assurer une bonne organisation.",
+    "exemples": [
+      "Pourquoi est-il important de respecter les horaires d'accès aux laboratoires ?",
+      "Quels sont les enjeux du respect des horaires d’utilisation des laboratoires ?",
+      "Pourquoi doit-on suivre strictement les plages horaires pour utiliser les laboratoires ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_556",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Travaux pratiques",
+    "question": "Les laboratoires permettent-ils de tester des équipements réseaux ?",
+    "reponse_enrichie": "Oui, particulièrement dans les filières techniques.",
+    "exemples": [
+      "Peut-on utiliser les laboratoires pour tester des équipements réseaux ?",
+      "Les laboratoires sont-ils adaptés pour tester des équipements réseaux ?",
+      "Est-il possible de faire des essais d'équipements réseaux dans les laboratoires ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_557",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Travaux pratiques",
+    "question": "Les étudiants développent-ils leur autonomie grâce aux travaux pratiques ?",
+    "reponse_enrichie": "Oui, ils apprennent à travailler de manière indépendante.",
+    "exemples": [
+      "Les travaux pratiques aident-ils les étudiants à devenir plus autonomes ?",
+      "Est-ce que les TP favorisent l'autonomie des étudiants ?",
+      "Les étudiants développent-ils leur capacité d'indépendance lors des travaux pratiques ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_558",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Salles spécialisées",
+    "question": "Les salles spécialisées facilitent-elles les apprentissages modernes ?",
+    "reponse_enrichie": "Oui, grâce aux technologies disponibles.",
+    "exemples": [
+      "Les salles spécialisées contribuent-elles à améliorer les apprentissages modernes ?",
+      "Les technologies présentes dans les salles spécialisées facilitent-elles l'apprentissage actuel ?",
+      "Est-ce que les salles spécialisées aident à l'apprentissage avec les méthodes modernes ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_559",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Importance pédagogique",
+    "question": "Pourquoi les laboratoires sont-ils essentiels dans une école technique ?",
+    "reponse_enrichie": "Parce qu’ils complètent efficacement la théorie.",
+    "exemples": [
+      "Quel est le rôle des laboratoires dans une école technique ?",
+      "Pourquoi faut-il des laboratoires dans une formation technique ?",
+      "En quoi les laboratoires sont-ils importants pour les étudiants en école technique ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_560",
+    "categorie": "Laboratoires et salles spécialisées",
+    "sous_theme": "Travaux pratiques",
+    "question": "Les travaux pratiques préparent-ils les étudiants à l’emploi ?",
+    "reponse_enrichie": "Oui, ils développent des compétences professionnelles importantes.",
+    "exemples": [
+      "Les travaux pratiques aident-ils à préparer les étudiants au monde du travail ?",
+      "Est-ce que les TP permettent aux étudiants de se préparer à leur future carrière ?",
+      "Les exercices pratiques contribuent-ils à l'insertion professionnelle des étudiants ?"
+    ],
+    "sources": [
+      "Entretien avec le personnel"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  }
+]

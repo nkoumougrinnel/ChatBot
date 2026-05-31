@@ -1,0 +1,649 @@
+[
+  {
+    "id": "faq_071",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Qu'est-ce que SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC (École Nationale des Postes et Télécommunications et des Technologies de l'Information et de la Communication) est un établissement d'enseignement professionnel et technique camerounais fondé le 03 octobre 1969. C'est la grande école de référence pour la formation dans les domaines des Postes, Télécommunications et TIC au Cameroun.",
+    "exemples": [
+      "C'est quoi SUP'PTIC ?",
+      "Que représente SUP'PTIC ?",
+      "Pouvez-vous me présenter SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_072",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quand a été créée SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC a été créée le 03 octobre 1969 par le gouvernement du Cameroun. À sa création, elle portait le nom d'École Fédérale des Postes et Télécommunications. Elle compte ainsi plus de 56 années d'existence et d'expérience dans la formation professionnelle spécialisée.",
+    "exemples": [
+      "Quelle est la date de création de SUP'PTIC ?",
+      "Depuis quand existe SUP'PTIC ?",
+      "En quelle année a été fondée l'école ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_073",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quel était le nom d'origine de SUP'PTIC à sa création ?",
+    "reponse_enrichie": "À sa création en 1969, l'école s'appelait l'École Fédérale des Postes et Télécommunications. Elle était alors placée sous la tutelle du Ministère des Postes et Télécommunications du Cameroun.",
+    "exemples": [
+      "Comment s'appelait SUP'PTIC avant ?",
+      "Quel était l'ancien nom de l'école ?",
+      "Comment se nommait l'école à sa fondation ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_074",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Comment s'appelait l'école après son premier changement de nom en 1982 ?",
+    "reponse_enrichie": "Le 14 octobre 1982, l'École Fédérale des Postes et Télécommunications a changé de dénomination pour devenir l'École Nationale des Postes et Télécommunications (ENSPT). Ce changement de nom a marqué une nouvelle étape dans son évolution institutionnelle.",
+    "exemples": [
+      "Que signifie ENSPT ?",
+      "Quand l'école est-elle devenue l'ENSPT ?",
+      "C'était quoi l'ENSPT ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_075",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quand et comment l'ENSPT a-t-elle été réorganisée ?",
+    "reponse_enrichie": "En 1992, l'ENSPT a été réorganisée conformément au décret gouvernemental N° 92/050 du 24 mars 1992. Cette réorganisation a permis de restructurer l'établissement pour mieux répondre aux besoins du secteur des télécommunications en pleine évolution.",
+    "exemples": [
+      "Quand a eu lieu la réorganisation de l'école ?",
+      "Quel décret a réorganisé l'ENSPT ?",
+      "Comment l'école a-t-elle évolué en 1992 ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_076",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quand l'école a-t-elle adopté le système LMD ?",
+    "reponse_enrichie": "En 2012, l'ENSPT a adopté le système Licence-Master-Doctorat (LMD), s'alignant ainsi sur les standards internationaux de l'enseignement supérieur. C'est également à ce moment qu'elle a été placée sous la tutelle académique du Ministère de l'Enseignement Supérieur (MINESUP).",
+    "exemples": [
+      "Depuis quand SUP'PTIC applique le système LMD ?",
+      "L'école est-elle conforme au système LMD ?",
+      "Quand l'école est passée sous MINESUP ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_077",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Pourquoi l'école a-t-elle changé de nom en 2016 ?",
+    "reponse_enrichie": "Le changement de nom en 2016 est intervenu dans un contexte mondial et national marqué par le développement rapide des nouvelles technologies de l'information, de la communication et de l'économie numérique. Ce changement reflétait la volonté de l'école d'embrasser pleinement ces nouvelles réalités technologiques.",
+    "exemples": [
+      "Pourquoi l'école s'appelle maintenant SUP'PTIC ?",
+      "Quelle est la raison du dernier changement de nom ?",
+      "Qu'est-ce qui a motivé la transformation en SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_078",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quel décret a officialisé le nom SUP'PTIC ?",
+    "reponse_enrichie": "C'est le décret présidentiel N°2016/425 du 26 octobre 2016 qui a officialisé le changement de dénomination de l'école en École Nationale des Postes et Télécommunications et des Technologies de l'Information et de la Communication (SUP'PTIC), appellation toujours en vigueur.",
+    "exemples": [
+      "Quel est le texte juridique qui a créé SUP'PTIC ?",
+      "Quel décret porte le nom SUP'PTIC ?",
+      "Quand le décret de 2016 sur SUP'PTIC a-t-il été signé ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_079",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Que signifie l'acronyme SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC est l'abréviation de l'École Nationale Supérieure des Postes, des Télécommunications et des Technologies de l'Information et de la Communication. L'acronyme combine « SUP » pour Supérieure et « PTIC » pour Postes, Télécommunications et TIC.",
+    "exemples": [
+      "Que veut dire SUP'PTIC ?",
+      "Comment développer l'abréviation SUP'PTIC ?",
+      "Quelle est la signification de SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_080",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Combien d'années d'existence a SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC dispose de 56 années d'existence depuis sa fondation en 1969. Cette longue histoire témoigne de son rôle central dans la formation des professionnels du secteur des Postes, Télécommunications et TIC au Cameroun et en Afrique centrale.",
+    "exemples": [
+      "Quel est l'âge de SUP'PTIC ?",
+      "Depuis combien de temps SUP'PTIC existe-t-elle ?",
+      "SUP'PTIC a combien d'années d'expérience ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_081",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Combien de diplômés SUP'PTIC a-t-elle formés depuis sa création ?",
+    "reponse_enrichie": "Depuis sa création, SUP'PTIC a formé et diplômé plus de 10 000 personnes (le compteur officiel affiche +10 941 diplômes délivrés). Ces diplômés ont contribué au progrès du Cameroun et d'autres communautés dans les domaines des télécommunications et des TIC.",
+    "exemples": [
+      "Combien d'anciens élèves a formés SUP'PTIC ?",
+      "Quel est le nombre total de diplômés de l'école ?",
+      "SUP'PTIC a formé combien de personnes ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_082",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quelles sont les différentes dénominations qu'a portées l'école au fil du temps ?",
+    "reponse_enrichie": "L'école a porté successivement les noms suivants : (1) École Fédérale des Postes et Télécommunications (1969), (2) École Nationale des Postes et Télécommunications – ENSPT (1982), (3) ENSPT réorganisée (1992), puis (4) École Nationale des Postes et Télécommunications et des TIC – SUP'PTIC (2016, décret N°2016/425).",
+    "exemples": [
+      "Quels ont été les noms successifs de l'école ?",
+      "Comment l'école s'est-elle appelée au fil des années ?",
+      "Retracez l'évolution du nom de l'école."
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_083",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Sous quelle tutelle se trouve SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC bénéficie d'une triple tutelle : (1) la tutelle technique du Ministère des Postes et Télécommunications (MINPOSTEL), (2) la tutelle académique du Ministère de l'Enseignement Supérieur (MINESUP), et (3) la tutelle financière du Ministère des Finances (MINFI). Ce dispositif garantit une gouvernance équilibrée et rigoureuse.",
+    "exemples": [
+      "Qui supervise SUP'PTIC ?",
+      "De quel ministère dépend SUP'PTIC ?",
+      "Quelle est la tutelle de l'école ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_084",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quelle est la mission principale de SUP'PTIC ?",
+    "reponse_enrichie": "La mission principale de SUP'PTIC est d'assurer la formation technique spécialisée et la formation continue dans les domaines des Postes, des Télécommunications et des TIC, ainsi que la recherche appliquée. Elle forme des agents et cadres pour le secteur public et privé, tout en accompagnant la reconversion professionnelle.",
+    "exemples": [
+      "Quel est le rôle de SUP'PTIC ?",
+      "À quoi sert SUP'PTIC ?",
+      "Que fait SUP'PTIC concrètement ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_085",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "SUP'PTIC fait-elle de la recherche ?",
+    "reponse_enrichie": "Oui, la recherche appliquée fait partie intégrante des missions de SUP'PTIC. L'école conduit des recherches dans les domaines des postes, des télécommunications, des TIC, ainsi qu'en gestion des entreprises du secteur. Elle ambitionne également de développer une école doctorale.",
+    "exemples": [
+      "Est-ce que SUP'PTIC fait de la recherche scientifique ?",
+      "Y a-t-il un volet recherche à SUP'PTIC ?",
+      "SUP'PTIC produit-elle des travaux de recherche ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_086",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Qui est le directeur de SUP'PTIC ?",
+    "reponse_enrichie": "M. WATCHING Félix a été directeur de SUP'PTIC du 04 décembre 2017 au 04 décembre 2025, soit 8 années d'engagement exemplaire. Sous sa direction, l'établissement s'est repositionné comme un acteur majeur de l'émergence numérique au Cameroun. Un nouveau directeur est en place depuis décembre 2025.",
+    "exemples": [
+      "Qui dirige SUP'PTIC ?",
+      "Quel est le nom du directeur de l'école ?",
+      "Qui est à la tête de SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/directeur-watching-felix/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_087",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Où est située SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC dispose de deux campus : le campus principal est situé à Yaoundé, la capitale du Cameroun, et il existe également un campus à Buea dans la région du Sud-Ouest. Ces deux implantations permettent de former des étudiants anglophones et francophones.",
+    "exemples": [
+      "Où se trouve SUP'PTIC ?",
+      "Dans quelle ville est l'école ?",
+      "SUP'PTIC a-t-elle des campus en dehors de Yaoundé ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_088",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Combien de campus possède SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC possède 2 campus : un à Yaoundé (campus principal) et un à Buea. Le campus de Buea est connu sous l'appellation Centre Régional de Formation des Postes et Télécommunications (CRFPT Buea) et accueille principalement les étudiants anglophones.",
+    "exemples": [
+      "SUP'PTIC a combien de sites ?",
+      "Est-ce que SUP'PTIC a un campus à Buea ?",
+      "Où sont les campus de SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_089",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quels types de cursus propose SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC propose deux grands types de cursus : (1) le cursus Ingénierie, qui prépare aux métiers techniques des télécommunications, et (2) le cursus Management, qui forme aux métiers de la gestion dans le secteur des Postes et Télécommunications. Les deux filières suivent le système LMD.",
+    "exemples": [
+      "Quelles sont les filières disponibles à SUP'PTIC ?",
+      "SUP'PTIC forme dans quels domaines ?",
+      "Quels cursus choisir à SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_090",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quelle est la vision et les ambitions futures de SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC est résolument tournée vers la modernisation de ses infrastructures et le développement de nouvelles formations. Elle envisage l'introduction de filières en intelligence artificielle, Internet des objets, géomatique, économie numérique, cybersécurité, la construction d'une bibliothèque numérique (financement BAD) et d'un Centre de Compétences en Fibre Optique.",
+    "exemples": [
+      "Quels sont les projets de développement de SUP'PTIC ?",
+      "Vers quoi s'oriente SUP'PTIC dans le futur ?",
+      "Quelles nouvelles filières SUP'PTIC veut-elle créer ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_091",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quelle est l'adresse et les contacts de SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC est joignable aux coordonnées suivantes : Téléphone : +237 222 233 700 | Fax : +237 222 235 005 | Email : contact@e-supptic.cm. Le site web officiel est https://e-supptic.cm. L'école est présente sur Facebook, YouTube et LinkedIn.",
+    "exemples": [
+      "Comment contacter SUP'PTIC ?",
+      "Quel est le numéro de téléphone de l'école ?",
+      "Quelle est l'adresse email de SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/contactez-nous/",
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_092",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "SUP'PTIC est-elle une école publique ou privée ?",
+    "reponse_enrichie": "SUP'PTIC est un établissement public d'enseignement supérieur professionnel et technique, créé et financé par l'État camerounais. Elle est placée sous la triple tutelle des ministères des Postes et Télécommunications, de l'Enseignement Supérieur et des Finances.",
+    "exemples": [
+      "SUP'PTIC est publique ou privée ?",
+      "L'État gère-t-il SUP'PTIC ?",
+      "SUP'PTIC appartient à qui ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_093",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quelles infrastructures pédagogiques sont disponibles à SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC dispose de laboratoires équipés, de centres de formation spécialisés (CISCO, Huawei), d'un Centre d'excellence UIT, d'un incubateur d'entreprises (SUP'PTIC Business Academy) et d'une plateforme d'e-learning. Ces équipements garantissent une formation pratique et en adéquation avec les réalités du marché.",
+    "exemples": [
+      "Quels laboratoires y a-t-il à SUP'PTIC ?",
+      "SUP'PTIC a-t-elle des équipements modernes ?",
+      "Quelles infrastructures trouve-t-on à l'école ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_094",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Qu'est-ce que la SUP'PTIC Business Academy ?",
+    "reponse_enrichie": "La SUP'PTIC Business Academy (SBA) est l'incubateur d'entreprises de l'école, inauguré le 21 septembre 2018 en présence du Ministre des Postes et Télécommunications. Doté de 150 millions FCFA par l'État, il accompagne les porteurs de projets innovants dans le secteur numérique, offrant accueil, formation, hébergement et soutien technique, organisationnel et financier.",
+    "exemples": [
+      "C'est quoi la SBA de SUP'PTIC ?",
+      "SUP'PTIC a-t-elle un incubateur de startups ?",
+      "Comment fonctionne la Business Academy de SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/supptic-business-academy/",
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_095",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "SUP'PTIC est-elle reconnue à l'international ?",
+    "reponse_enrichie": "Oui, SUP'PTIC bénéficie d'une reconnaissance internationale. Elle est notamment un Centre d'Excellence de l'Union Internationale des Télécommunications (UIT), dispose d'un Centre de Formation CISCO et d'un Centre Huawei, et entretient des partenariats académiques et professionnels avec des institutions étrangères.",
+    "exemples": [
+      "SUP'PTIC est-elle reconnue hors du Cameroun ?",
+      "Existe-t-il des partenariats internationaux avec SUP'PTIC ?",
+      "SUP'PTIC est-elle certifiée à l'international ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_096",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quels ont été les grands moments de l'évolution de SUP'PTIC ?",
+    "reponse_enrichie": "Les grandes étapes sont : 1969 (création sous le nom École Fédérale des P&T), 1982 (renommage en ENSPT), 1992 (réorganisation par décret), 2012 (adoption du LMD et intégration au MINESUP), 2016 (transformation en SUP'PTIC par décret présidentiel), 2018 (inauguration de la Business Academy), 2025 (accueil de l'UNIFAC et changement de direction).",
+    "exemples": [
+      "Quels sont les jalons de l'histoire de SUP'PTIC ?",
+      "Résumez l'évolution historique de SUP'PTIC.",
+      "Qu'est-ce qui s'est passé d'important dans l'histoire de l'école ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_097",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quelle est la devise ou les valeurs portées par SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC est animée par un esprit d'innovation et la recherche de l'excellence. L'école prône également la convivialité, l'unité et le partage, comme en témoignent ses cérémonies d'accueil des nouveaux étudiants. Son slogan invite à 'bâtir son avenir dans un environnement propice à la recherche, à l'innovation et à l'excellence'.",
+    "exemples": [
+      "Quelles sont les valeurs de SUP'PTIC ?",
+      "Quelle est la philosophie de l'école ?",
+      "SUP'PTIC a-t-elle une devise ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_098",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "SUP'PTIC forme-t-elle des étudiants étrangers ?",
+    "reponse_enrichie": "Oui, SUP'PTIC accueille des étudiants de diverses nationalités étrangères. Le site officiel indique qu'une partie des plus de 10 000 diplômés provient de l'étranger. L'école contribue ainsi au développement d'autres communautés au-delà des frontières camerounaises.",
+    "exemples": [
+      "Des étrangers peuvent-ils s'inscrire à SUP'PTIC ?",
+      "SUP'PTIC accepte-t-elle des étudiants internationaux ?",
+      "Y a-t-il des étudiants non camerounais à SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_099",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "SUP'PTIC propose-t-elle des formations continues ou à distance ?",
+    "reponse_enrichie": "Oui, SUP'PTIC propose des formations continues et dispose d'une plateforme d'e-learning accessible à l'adresse https://training.e-supptic.cm. Cette plateforme permet aux étudiants et enseignants de suivre des cours, de recevoir des évaluations et de travailler à distance, en complément des enseignements en présentiel.",
+    "exemples": [
+      "Est-il possible de se former en ligne à SUP'PTIC ?",
+      "SUP'PTIC a-t-elle une plateforme e-learning ?",
+      "Peut-on faire une formation continue à SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/",
+      "https://training.e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_100",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quels partenariats techniques et académiques SUP'PTIC entretient-elle ?",
+    "reponse_enrichie": "SUP'PTIC entretient des partenariats importants notamment avec CISCO (Centre de formation certifié), Huawei (Centre de formation), l'Union Internationale des Télécommunications – UIT (Centre d'excellence), MTN Cameroon et CAMTEL, premier partenaire de l'école. Ces partenariats renforcent l'adéquation formation-emploi.",
+    "exemples": [
+      "Avec qui SUP'PTIC collabore-t-elle ?",
+      "Quels sont les partenaires de SUP'PTIC ?",
+      "SUP'PTIC a-t-elle des partenariats avec des entreprises ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/nos-partenaires/",
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_101",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quels diplômes délivre SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC délivre des diplômes dans le cadre du système LMD : des licences professionnelles (Bac+3) et des masters (Bac+5) dans les filières Ingénierie et Management des Télécommunications et TIC. Les diplômes sont reconnus par l'État camerounais et le MINESUP.",
+    "exemples": [
+      "Quels diplômes peut-on obtenir à SUP'PTIC ?",
+      "SUP'PTIC délivre-t-elle des licences et masters ?",
+      "Quel niveau de diplôme sort-on de SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/",
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_102",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "La reconversion professionnelle est-elle possible à SUP'PTIC ?",
+    "reponse_enrichie": "Oui, la formation de personnes en reconversion professionnelle dans le domaine des Postes et Télécommunications fait explicitement partie des missions de SUP'PTIC. Des formations continues et certifiantes sont proposées à cet effet pour les professionnels souhaitant évoluer vers le secteur numérique.",
+    "exemples": [
+      "Puis-je me reconvertir dans les télécoms via SUP'PTIC ?",
+      "SUP'PTIC accueille-t-elle des professionnels en reconversion ?",
+      "Peut-on faire une formation de reconversion à SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_103",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "SUP'PTIC est-elle active sur les réseaux sociaux ?",
+    "reponse_enrichie": "Oui, SUP'PTIC est présente sur plusieurs plateformes sociales : Facebook (page officielle), YouTube (chaîne @SUPPTIC_Cameroun), LinkedIn et X (anciennement Twitter). Ces canaux permettent de suivre les actualités, événements et annonces de l'école.",
+    "exemples": [
+      "Comment suivre SUP'PTIC sur les réseaux sociaux ?",
+      "SUP'PTIC a-t-elle une page Facebook ?",
+      "Sur quelle chaîne YouTube trouver les vidéos de SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_104",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "Quelles nouvelles filières SUP'PTIC envisage-t-elle de créer ?",
+    "reponse_enrichie": "SUP'PTIC envisage d'introduire des formations dans des domaines émergents tels que : l'intelligence artificielle et les réseaux intelligents, l'Internet des objets (IoT), la géomatique, l'économie numérique, la cybersécurité et le droit du numérique. Un MBA en gestion des télécommunications et un Master en Sécurité et Audit des Systèmes sont également planifiés.",
+    "exemples": [
+      "Y a-t-il de nouvelles filières à venir à SUP'PTIC ?",
+      "SUP'PTIC va-t-elle former en intelligence artificielle ?",
+      "Quelles formations nouvelles prépare SUP'PTIC ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/a-propos-de-nous/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_105",
+    "categorie": "Introduction",
+    "sous_theme": "Historique de l'établissement",
+    "question": "SUP'PTIC participe-t-elle à la vie culturelle et universitaire du Cameroun ?",
+    "reponse_enrichie": "Oui, SUP'PTIC est très active dans la vie universitaire camerounaise. En décembre 2025, l'école a accueilli la 11ᵉ édition du Festival Universitaire des Arts et de la Culture (UNIFAC), organisé par le MINESUP. Ce festival met en valeur l'entrepreneuriat culturel et l'innovation artistique en milieu universitaire.",
+    "exemples": [
+      "SUP'PTIC organise-t-elle des événements culturels ?",
+      "Qu'est-ce que l'UNIFAC à SUP'PTIC ?",
+      "SUP'PTIC participe-t-elle aux activités nationales du MINESUP ?"
+    ],
+    "sources": [
+      "https://e-supptic.cm/11e-edition-unifac-2025/",
+      "https://e-supptic.cm/"
+    ],
+    "date_creation": "2026-04-21",
+    "version": "2.0",
+    "valide": true
+  }
+]

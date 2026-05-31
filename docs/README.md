@@ -18,4 +18,3 @@ docs/
 - `phase1/` : documents historiques et fonctionnels de la première phase
 - `phase2/` : documentation de la deuxième phase, y compris architecture, roadmap et onboarding spécifique
 - `setup/` : étapes de configuration, installation et déploiement
-

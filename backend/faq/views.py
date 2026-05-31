@@ -2,6 +2,7 @@
 Vues API REST pour le chatbot.
 
 Endpoints :
+<<<<<<< HEAD
 - GET/POST /api/faq/ : lister et créer FAQs
 - GET /api/faq/{id}/ : détail FAQ
 - GET /api/categories/ : lister catégories
@@ -11,12 +12,31 @@ Endpoints :
 """
 
 from rest_framework import viewsets, status
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from django.shortcuts import get_object_or_404
+=======
+- GET/POST /api/faq/         : lister et créer FAQs
+- GET      /api/faq/{id}/    : détail FAQ
+- GET      /api/categories/  : lister catégories
+- POST     /api/categories/  : créer catégorie
+- POST     /api/chatbot/ask/ : poser une question et obtenir réponses pertinentes
+- POST     /api/feedback/    : envoyer un feedback
+- GET      /api/stats/       : statistiques FAQ
+- GET      /api/stats/categories/ : statistiques par catégorie
+"""
+
+from rest_framework import viewsets, status
 from django.db.models import Count, Avg, Q
 from django.core.cache import cache
 from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.shortcuts import get_object_or_404
+from django.db.models import Count, Avg
+from django.core.cache import cache
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
 
 from faq.models import Category, FAQ, Feedback
 from faq.serializers import (
@@ -30,6 +50,7 @@ from faq.serializers import (
 from chatbot.utils import find_best_faq
 
 
+<<<<<<< HEAD
 class CategoryViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour les catégories.
@@ -81,6 +102,103 @@ class FAQViewSet(viewsets.ModelViewSet):
         else:
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
+=======
+# ─────────────────────────────────────────────────────────────────────────────
+# Catégories
+# ─────────────────────────────────────────────────────────────────────────────
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+    def get_permissions(self):
+        if self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
+            return [IsAuthenticated()]
+        return [AllowAny()]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FAQs
+# ─────────────────────────────────────────────────────────────────────────────
+
+class FAQViewSet(viewsets.ModelViewSet):
+    queryset = FAQ.objects.filter(is_active=True).select_related('category')
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return FAQListSerializer
+        return FAQSerializer
+
+    def get_permissions(self):
+        if self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
+            return [IsAuthenticated()]
+        return [AllowAny()]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Chatbot — endpoint principal
+# ─────────────────────────────────────────────────────────────────────────────
+
+class ChatbotAskViewSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+
+    @action(detail=False, methods=['post'], url_path='ask')
+    def ask(self, request):
+        serializer = QuestionRequestSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        question = serializer.validated_data['question']
+        top_k = serializer.validated_data.get('top_k', 3)
+
+        # 1. Cache
+        cache_key = f"query_{question.strip().lower()}"
+        cached = cache.get(cache_key)
+        if cached:
+            return Response(cached, status=status.HTTP_200_OK)
+
+        # 2. Recherche TF-IDF
+        try:
+            faq_results = find_best_faq(question, top_k=top_k)
+        except Exception as e:
+            return Response(
+                {'error': f'Erreur lors de la recherche : {str(e)}'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
+        # 3. Formatage + seuils de confiance
+        results = []
+        status_confidence = "not found"
+
+        for faq_result in faq_results:
+            faq = faq_result['faq']
+            score = faq_result['score']
+
+            if score >= 0.8:
+                status_confidence = "confident"
+            elif score >= 0.6 and status_confidence != "confident":
+                status_confidence = "uncertain"
+
+            results.append({
+                'faq_id': faq.id,
+                'question': faq.question,
+                'answer': faq.answer,
+                'score': round(score, 4),
+                'category': faq.category.name,
+            })
+
+        response_data = {
+            'question': question,
+            'results': results,
+            'count': len(results),
+            'status': status_confidence,
+        }
+
+        cache.set(cache_key, response_data, 3600)
+
+        response_serializer = ChatbotResponseSerializer(response_data)
+        return Response(response_serializer.data, status=status.HTTP_200_OK)
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
 
 
 class ChatbotAskViewSet(viewsets.ViewSet):
@@ -95,11 +213,6 @@ class ChatbotAskViewSet(viewsets.ViewSet):
     def ask(self, request):
         """
         Poser une question et retourner les FAQs les plus pertinentes.
-        
-        Intègre cache + seuils de confiance:
-        - Score < 0.6 : "not found"
-        - Score 0.6-0.8 : "uncertain"
-        - Score >= 0.8 : "confident"
         
         Body:
         {
@@ -119,8 +232,7 @@ class ChatbotAskViewSet(viewsets.ViewSet):
                     "category": "Support"
                 }
             ],
-            "count": 1,
-            "status": "confident"
+            "count": 1
         }
         """
         serializer = QuestionRequestSerializer(data=request.data)
@@ -128,6 +240,11 @@ class ChatbotAskViewSet(viewsets.ViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         question = serializer.validated_data['question']
+<<<<<<< HEAD
+        top_k = serializer.validated_data.get('top_k', 3)
+        
+        # Appeler le pipeline de similarité
+=======
         top_k = serializer.validated_data.get('top_k', 1)
         
         # ===== 1. Vérifier le cache =====
@@ -138,6 +255,7 @@ class ChatbotAskViewSet(viewsets.ViewSet):
             return Response(cached_response, status=status.HTTP_200_OK)
         
         # ===== 2. Recherche TF-IDF =====
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
         try:
             faq_results = find_best_faq(question, top_k=top_k)
         except Exception as e:
@@ -146,8 +264,13 @@ class ChatbotAskViewSet(viewsets.ViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
         
-        # ===== 3. Appliquer les seuils et formater =====
+        # Formater les résultats
         results = []
+<<<<<<< HEAD
+        for faq_result in faq_results:
+            faq = faq_result['faq']
+            score = faq_result['score']
+=======
         status_confidence = "not found"
         
         for faq_result in faq_results:
@@ -164,6 +287,7 @@ class ChatbotAskViewSet(viewsets.ViewSet):
             else:
                 status_confidence = "confident"
             
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
             results.append({
                 'faq_id': faq.id,
                 'question': faq.question,
@@ -176,15 +300,16 @@ class ChatbotAskViewSet(viewsets.ViewSet):
             'question': question,
             'results': results,
             'count': len(results),
+<<<<<<< HEAD
+=======
             'status': status_confidence,
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
         }
-        
-        # ===== 4. Mettre en cache pour 1 heure =====
-        cache.set(cache_key, response_data, 3600)
         
         response_serializer = ChatbotResponseSerializer(response_data)
         return Response(response_serializer.data, status=status.HTTP_200_OK)
 
+<<<<<<< HEAD
 
 class FeedbackViewSet(viewsets.ModelViewSet):
     """
@@ -196,36 +321,16 @@ class FeedbackViewSet(viewsets.ModelViewSet):
     """
     queryset = Feedback.objects.all().select_related('user', 'faq')
     serializer_class = FeedbackSerializer
-
-    @api_view(['GET'])
-    def faq_stats(request):
-        """GET /api/stats/ - FAQ par taux de satisfaction (count = feedbacks positifs)"""
-        # Calcul de la moyenne des scores et compte des feedbacks POSITIFS
-        stats = FAQ.objects.annotate(
-            avg_satisfaction=Avg('feedback__score_similarite'),
-            positive_feedbacks=Count('feedback', filter=Q(feedback__feedback_type='positif'))
-        ).order_by('-avg_satisfaction')
-        data = []
-        for item in stats:
-            data.append({
-                "id": item.id,
-                "question": item.question,
-                "avg_score": round((item.avg_satisfaction or 0), 4),
-                "count": item.positive_feedbacks
-            })
-        return Response(data)
-    
-    @api_view(['GET'])
-    def category_stats(request):
-        """GET /api/stats/categories/ - Répartition par catégorie"""
-        categories = Category.objects.annotate(faq_count=Count('faq'))
-        serializer = CategorySerializer(categories, many=True)
-        # On adapte le format pour inclure le compte
-        data = [{"name": cat.name, "count": cat.faq_count} for cat in categories]
-        return Response(data)
     
     def get_permissions(self):
         """POST public pour créer feedback; GET restreint."""
+=======
+class FeedbackViewSet(viewsets.ModelViewSet):
+    queryset = Feedback.objects.all().select_related('user', 'faq')
+    serializer_class = FeedbackSerializer
+
+    def get_permissions(self):
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
         if self.request.method == 'POST':
             permission_classes = [AllowAny]
         else:
@@ -233,12 +338,19 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
     
     def perform_create(self, serializer):
+<<<<<<< HEAD
+        """Définir l'utilisateur courant lors de la création."""
+        if self.request.user.is_authenticated:
+            serializer.save(user=self.request.user)
+        else:
+            # Feedback anonyme : utiliser un utilisateur par défaut (optionnel)
+            serializer.save()
+=======
         """Assigner l'utilisateur courant ou anonyme selon l'authentification."""
         from django.contrib.auth import get_user_model
         User = get_user_model()
-        
+
         if self.request.user and self.request.user.is_authenticated:
-            # Utilisateur authentifié
             serializer.save(user=self.request.user)
         else:
             # Utilisateur anonyme : créer/récupérer un user anonyme
@@ -251,3 +363,34 @@ class FeedbackViewSet(viewsets.ModelViewSet):
                     password='anonymous'
                 )
             serializer.save(user=anon_user)
+
+
+@api_view(['GET'])
+def faq_stats(request):
+    """GET /api/stats/ - FAQ par taux de satisfaction (count = feedbacks positifs)"""
+    # Calcul de la moyenne des scores et compte des feedbacks POSITIFS
+    stats = FAQ.objects.annotate(
+        avg_satisfaction=Avg('feedback__score_similarite'),
+        positive_feedbacks=Count('feedback', filter=Q(feedback__feedback_type='positif'))
+    ).order_by('-avg_satisfaction')
+    data = []
+    for item in stats:
+        data.append({
+            "id": item.id,
+            "question": item.question,
+            "avg_score": round((item.avg_satisfaction or 0), 4),
+            "count": item.positive_feedbacks
+        })
+    return Response(data)
+
+
+@api_view(['GET'])
+def category_stats(request):
+    """GET /api/stats/categories/ - Répartition par catégorie"""
+    categories = Category.objects.annotate(faq_count=Count('faq'))
+    serializer = CategorySerializer(categories, many=True)
+    # On adapte le format pour inclure le compte
+    data = [{"name": cat.name, "count": cat.faq_count} for cat in categories]
+    return Response(data)
+            
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e

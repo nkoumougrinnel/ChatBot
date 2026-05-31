@@ -1,0 +1,43 @@
+# docker-compose.yml
+
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: chatbot_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_ORIGINS=*
+    restart: unless-stopped
+    networks:
+      - chatbot_network
+    command: serve
+
+  django:
+    build: .
+    container_name: chatbot_django
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings
+      - PYTHONPATH=/app
+      - OLLAMA_HOST=ollama:11434
+      - DEBUG=1
+    depends_on:
+      - ollama
+    networks:
+      - chatbot_network
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+
+networks:
+  chatbot_network:
+    driver: bridge
