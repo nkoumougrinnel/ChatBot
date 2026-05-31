@@ -6,11 +6,10 @@
 [build]
 # Docker est prioritaire sur Nixpacks si un Dockerfile est présent
 builder = "DOCKERFILE"
-dockerfilePath = "backend/Dockerfile"
+dockerfilePath = "Dockerfile"
+# Le contexte de build par défaut est la racine du dépôt (où se trouve railway.toml)
+# Tous les chemins dans le Dockerfile sont relatifs à ce contexte.
 
-# Répertoire de contexte de build (dossier backend/)
-# Tous les chemins dans le Dockerfile sont relatifs à ce contexte
-buildContext = "backend"
 
 [deploy]
 # Railway injecte $PORT automatiquement — le CMD du Dockerfile l'utilise
