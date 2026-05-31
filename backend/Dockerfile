@@ -52,7 +52,7 @@ RUN python backend/manage.py collectstatic --noinput
 # Port exposé
 EXPOSE 8000
 
-# Démarrage — utilise $PORT injecté par Railway
+# Démarrage — utilise $PORT injecté par Railwa
 CMD gunicorn config.wsgi:application \
     --bind 0.0.0.0:$PORT \
     --workers 2 \
