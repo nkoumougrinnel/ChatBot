@@ -17,7 +17,7 @@ startCommand = ""
 
 # Health check sur l'endpoint de statut du pipeline
 healthcheckPath = "/api/chatbot/status/"
-healthcheckTimeout = 60
+healthcheckTimeout = 180
 
 # Redémarrage automatique en cas de crash
 restartPolicyType = "ON_FAILURE"
