@@ -1,36 +1,33 @@
-# 📌 ChatBot SUP'PTIC – Prototype
+﻿# ChatBot SUP'PTIC – Phase 2
 
-**Période :** 8 février — 13 février 2026  
 **Réalisé par :** Club Informatique SUP'PTIC
 
 ---
 
-## 🎯 Présentation
+## Passage à la Phase 2
 
-Ce **ChatBot SUP'PTIC** est un prototype développé par le Club Informatique SUP'PTIC. L'objectif est de fournir aux étudiants et personnels de SUP'PTIC un **outil interactif intelligent** capable de :
+Le projet a maintenant quitté la Phase 1 pour entrer en **Phase 2**. Les documents de la Phase 1 restent disponibles dans `docs/phase1/` à titre historique, mais l'activité principale se concentre désormais sur :
 
-- Répondre automatiquement aux questions fréquentes (FAQ)
-- Fournir des informations pertinentes sur les services et ressources de l'école
-
-Ce projet est une démonstration concrète de l'application de technologies modernes en informatique pour créer des solutions utiles et efficaces.
-
----
-
-## ⚙️ Fonctionnalités Principales
-
-| Fonctionnalité                | Description                                                                         |
-| ----------------------------- | ----------------------------------------------------------------------------------- |
-| 🔍 **Recherche TF-IDF**       | Algorithme de similarité cosinus pour trouver la réponse pertinente parmi 1000+ FAQ |
-| 🗄️ **Base de données Django** | Modèles complets : Utilisateurs, Catégories, FAQ, Vecteurs, Feedback                |
-| 🌐 **API REST**               | Endpoints pour poser des questions, gérer les FAQ, collecter des statistiques       |
-| 💬 **Interface web**          | Chat interactif en HTML/CSS/JS, design responsive, connexion directe à l'API        |
-| 👍👎 **Feedback utilisateur** | Système de satisfaction intégré (like/dislike + commentaire optionnel)              |
-| 📊 **Statistiques**           | Suivi des performances et taux de satisfaction par catégorie                        |
+- `docs/phase2/architecture/`
+- `docs/phase2/documentation_technique/`
+- `docs/phase2/roadmap/`
 
 ---
 
-## 🧩 Architecture Projet
+## Présentation
 
+Ce **ChatBot SUP'PTIC** est désormais en **Phase 2**, avec une évolution majeure vers une architecture RAG (Retrieval-Augmented Generation). Le projet conserve les bases du chatbot FAQ, mais ajoute :
+
+- une architecture hybride RAG + TF-IDF
+- un index FAISS pour la recherche vectorielle
+- un LLM local via Ollama pour enrichir les réponses
+- une interface plus riche avec historique de conversation
+
+---
+
+## Fonctionnalités principales
+
+<<<<<<< HEAD
 ```
 ChatBot/
 ├── .venv/              # Environnement virtuel Python
@@ -61,71 +58,70 @@ ChatBot/
 ├── README.md            # Documentation principale (ce fichier)
 └── requirements.txt     # Dépendances Python
 ```
+=======
+| Fonctionnalité           | Description                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------ |
+| Pipeline RAG             | Recherche de documents par embeddings MiniLM, index FAISS, puis génération LLM |
+| Bascule RAG / TF-IDF     | Passage automatique entre RAG et TF-IDF selon le score de confiance            |
+| API REST v2              | Endpoint `/api/chatbot/ask/` amélioré avec fallback, sources et méthode        |
+| Historique conversation  | Stockage local (localStorage) des conversations et navigation multi-tours      |
+| Retour utilisateur       | Feedback positif/négatif avec traçage de la méthode utilisée (RAG ou TF-IDF)   |
+| Passage au React         | Interface web migrée vers React, chat responsive, badge de méthode et streaming SSE |
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
 
 ---
 
-## 👥 Organisation des Équipes (10 personnes)
+## Architecture du projet
 
-| Équipe                    | Effectif | Missions                                                          |
-| ------------------------- | -------- | ----------------------------------------------------------------- |
-| **Base de Données**       | 2        | Modèles Django, migrations, optimisation, scripts import/export   |
-| **Structuration Données** | 4        | Génération massive CSV avec IA, nettoyage, validation (1000+ Q/R) |
-| **Backend**               | 2        | API Django REST, TF-IDF, similarité cosinus, endpoints sécurisés  |
-| **Frontend**              | 2        | Interface chat HTML/CSS/JS, design responsive, connexion API      |
+Le dépôt est organisé ainsi :
 
----
-
-## 📚 Dépendances Principales
-
-```txt
-Django==4.2.7
-djangorestframework==3.14.0
-django-cors-headers==4.3.1
-scikit-learn==1.3.2
-pandas==2.1.3
-numpy==1.26.2
-```
+- `backend/` : application Django, API, gestion des FAQ et du moteur de similarité
+- `frontend/` : interface utilisateur et application PWA
+- `data/` : jeux de données, scripts et documentation de données
+- `docs/` : documentation générale et par phase
+- `requirements.txt` : dépendances Python
 
 ---
 
-## 🔧 API REST – Endpoints Principaux
+## Documentation Phase 2
 
-| Méthode | Endpoint            | Description                                            |
-| ------- | ------------------- | ------------------------------------------------------ |
-| `POST`  | `/api/chatbot/ask/` | Poser une question → retourne top 3 résultats + scores |
-| `GET`   | `/api/faq/`         | Lister toutes les FAQ (avec pagination)                |
-| `GET`   | `/api/categories/`  | Lister les catégories de FAQ                           |
-| `POST`  | `/api/feedback/`    | Enregistrer un feedback utilisateur (like/dislike)     |
-| `GET`   | `/api/stats/`       | Statistiques : taux satisfaction, FAQ populaires       |
+La documentation de la Phase 2 est le bon point d'entrée :
 
-**Exemple de requête :**
+- `docs/phase2/README.md` : résumé de la Phase 2
+- `docs/phase2/architecture/` : documents d'architecture système
+- `docs/phase2/documentation_technique/` : documentation technique
+- `docs/phase2/roadmap/` : feuille de route Phase 2
 
-```bash
-curl -X POST http://localhost:8000/api/chatbot/ask/ \
-  -H "Content-Type: application/json" \
-  -d '{"question": "Quand sont les examens?"}'
-```
+Pour les éléments de configuration et de déploiement, consultez également :
 
-**Réponse :**
-
-```json
-{
-  "results": [
-    {
-      "id": 1,
-      "question": "Quand se déroulent les examens?",
-      "answer": "Les examens ont lieu...",
-      "category": "Examens",
-      "score": 0.92
-    }
-  ]
-}
-```
+- `docs/setup/NGROK_SETUP.md`
+- `backend/doc/` : spécifications backend détaillées
+- `frontend/README.md` : documentation frontend
 
 ---
 
-## 📅 Planning Détaillé (6 jours)
+## Installation rapide
 
+1. Créez et activez un environnement virtuel :
+   ```powershell
+   python -m venv .venv
+   .venv\Scripts\Activate.ps1
+   ```
+2. Installez les dépendances :
+   ```powershell
+   pip install -r requirements.txt
+   ```
+3. Lancez le serveur Django :
+   ```powershell
+   python backend/manage.py runserver
+   ```
+4. Ouvrez `http://localhost:8000/` dans votre navigateur.
+
+---
+
+## Notes
+
+<<<<<<< HEAD
 ### **Jour 1-2** : Fondations et Premières Vagues
 
 - Initialiser dépôt Git et projet Django
@@ -298,3 +294,8 @@ Les fichiers suivants seront générés au cours du projet :
 ---
 
 **Let's build something amazing together!** 🚀
+=======
+- Le contenu principal de la Phase 2 est dans `docs/phase2/`.
+- Les documents de la Phase 1 sont conservés dans `docs/phase1/` pour référence historique.
+- Vérifiez l'encodage UTF-8 si vous éditez des fichiers de documentation.
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e

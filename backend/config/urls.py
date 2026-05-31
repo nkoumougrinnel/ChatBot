@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 URL configuration for config project.
 
@@ -14,10 +15,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+=======
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
     path('api/', include('faq.urls')),
+=======
+    path('api/', include('chatbot.urls')),
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
 ]

@@ -1,0 +1,65 @@
+# .dockerignore
+# Environnements virtuels
+venv/
+.venv/
+env/
+.env
+
+# Fichiers Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Logs
+*.log
+logs/
+
+# Bases de données
+*.sqlite3
+*.db
+
+# Fichiers temporaires
+temp/
+tmp/
+temp_data/
+
+# Dossiers de données
+data/raw/
+data/processed/
+*.csv
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Scripts locaux
+scripts/local/
+*.sh
+!scripts/entrypoint.sh
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
