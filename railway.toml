@@ -1,28 +1,11 @@
-# ─────────────────────────────────────────────────────────────────
-# railway.toml — Backend SUP'ONE
-# Déploiement depuis la branche `backend` du dépôt
-# ─────────────────────────────────────────────────────────────────
-
 [build]
-# Docker est prioritaire sur Nixpacks si un Dockerfile est présent
 builder = "DOCKERFILE"
-dockerfilePath = "Dockerfile"
-# Le contexte de build par défaut est la racine du dépôt (où se trouve railway.toml)
-# Tous les chemins dans le Dockerfile sont relatifs à ce contexte.
-
+dockerfilePath = "backend/Dockerfile"
+buildContext = "backend"
 
 [deploy]
-# Railway injecte $PORT automatiquement — le CMD du Dockerfile l'utilise
 startCommand = ""
-
-# Health check sur l'endpoint de statut du pipeline
 healthcheckPath = "/api/chatbot/status/"
 healthcheckTimeout = 180
-
-# Redémarrage automatique en cas de crash
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
-
-[environments.production]
-# Variables supplémentaires spécifiques à la production
-# (les secrets sont définis dans le dashboard Railway, pas ici)
