@@ -32,11 +32,11 @@ try:
     from .tfidf_fallback import search as tfidf_search, is_loaded as tfidf_is_loaded, get_stats as tfidf_stats
     from .llm_client     import check_availability, generate, generate_stream
 except ImportError:
-    from embedder       import encode
-    from faiss_search   import search_with_metadata, SCORE_DIRECT, SCORE_LLM, is_loaded as faiss_is_loaded, get_index_stats
-    from prompt_builder import detect_conv, build_prompt
-    from tfidf_fallback import search as tfidf_search, is_loaded as tfidf_is_loaded, get_stats as tfidf_stats
-    from llm_client     import check_availability, generate, generate_stream
+    from chatbot.engine.embedder       import encode
+    from chatbot.engine.faiss_search   import search_with_metadata, SCORE_DIRECT, SCORE_LLM, is_loaded as faiss_is_loaded, get_index_stats
+    from chatbot.engine.prompt_builder import detect_conv, build_prompt
+    from chatbot.engine.tfidf_fallback import search as tfidf_search, is_loaded as tfidf_is_loaded, get_stats as tfidf_stats
+    from chatbot.engine.llm_client     import check_availability, generate, generate_stream
 
 logger = logging.getLogger(__name__)
 

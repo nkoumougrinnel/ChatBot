@@ -1,40 +1,56 @@
-// ============================================================
-// Gestion du token de connexion (AsyncStorage).
-// ============================================================
+// Service/authStorage.tsx — SUP'ONE
+// Persistance locale du token et des données utilisateur via AsyncStorage.
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import type { User } from "./api";
 
-const CLE_TOKEN = '@mon_app:token_utilisateur';
-const CLE_CONNEXION = '@mon_app:deja_connecte';
+const KEY_TOKEN = "@supone:auth_token";
+const KEY_USER  = "@supone:user";
 
-// Sauvegarde le token après connexion réussie
+// ─── Token ────────────────────────────────────────────────────────
+
 export async function sauvegarderToken(token: string): Promise<void> {
-  await AsyncStorage.setItem(CLE_TOKEN, token);
+  await AsyncStorage.setItem(KEY_TOKEN, token);
 }
 
-// Lit le token → null si jamais connecté
 export async function lireToken(): Promise<string | null> {
-  return await AsyncStorage.getItem(CLE_TOKEN);
+  return AsyncStorage.getItem(KEY_TOKEN);
 }
 
-// Supprime le token → déconnexion
 export async function supprimerToken(): Promise<void> {
-  await AsyncStorage.removeItem(CLE_TOKEN);
+  await AsyncStorage.removeItem(KEY_TOKEN);
 }
 
-// Appelé après une connexion réussie → marque comme connecté
-export async function marquerCommeConnecte(): Promise<void> {
-  await AsyncStorage.setItem(CLE_CONNEXION, 'oui');
+// ─── Utilisateur ──────────────────────────────────────────────────
+
+export async function sauvegarderUser(user: User): Promise<void> {
+  await AsyncStorage.setItem(KEY_USER, JSON.stringify(user));
 }
 
-// Vérifie si l'utilisateur s'est déjà connecté
-// Retourne true → déjà connecté / false → première fois
-export async function estDejaConnecte(): Promise<boolean> {
-  const valeur = await AsyncStorage.getItem(CLE_CONNEXION);
-  return valeur === 'oui';
+export async function lireUser(): Promise<User | null> {
+  const raw = await AsyncStorage.getItem(KEY_USER);
+  if (!raw) return null;
+  try { return JSON.parse(raw) as User; } catch { return null; }
 }
 
-// Réinitialise → l'utilisateur devra se reconnecter
+export async function supprimerUser(): Promise<void> {
+  await AsyncStorage.removeItem(KEY_USER);
+}
+
+// ─── Connexion / Déconnexion complète ────────────────────────────
+
+/** Sauvegarde token + user après un login réussi. */
+export async function marquerCommeConnecte(token: string, user: User): Promise<void> {
+  await Promise.all([sauvegarderToken(token), sauvegarderUser(user)]);
+}
+
+/** Supprime token + user → déconnexion complète. */
 export async function seDeconnecter(): Promise<void> {
-  await AsyncStorage.removeItem(CLE_CONNEXION);
+  await Promise.all([supprimerToken(), supprimerUser()]);
+}
+
+/** Retourne le prénom ou username pour l'affichage dans le chat. */
+export async function lireNomAffichage(): Promise<string> {
+  const user = await lireUser();
+  return user?.first_name || user?.username || "Étudiant";
 }

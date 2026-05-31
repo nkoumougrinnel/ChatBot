@@ -1,6 +1,7 @@
 # Environnement virtuel (Trés important pour votre dossier .venv)
 .venv/
 venv/
+.env # Clés d'API et mots de passe secrets
 env/
 ENV/
 
