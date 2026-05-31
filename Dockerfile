@@ -51,7 +51,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PORT=8000
 
 # Collecter les fichiers statiques (sans base de données requise)
-RUN python manage.py collectstatic --noinput
+RUN python backend/manage.py collectstatic --noinput
 
 # Port exposé
 EXPOSE 8000
