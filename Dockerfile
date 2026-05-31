@@ -1,54 +1,63 @@
-# Dockerfile
-# Image de base python 3.12
-FROM python:3.12-slim-bullseye
-# Eviter les messages interactifs
-ENV DEBIAN FRONTEND=noninteractive
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONDONTWRITTEBYCODE=1
-# Variables d'environnement pour Ollama
-ENV OLLAMA_HOST=0.0.0.0
-ENV OLLAMA_ORIGINS=*
-ENV OLLLAMA_MODELS=/root/.ollama/OLLLAMA_MODELS
-# Definir e repertoire de travail
-WORKDIR /app
-# Installer les dependences systeme
-RUN apt-get update && apt-get install -y \
- # Pour compiler les packages python
- gcc \
- g++ \
- make \
- # Pour FAISS
- libopenblas-dev \
- liblapack-dev \
- # Pour Ollama (binaires)
- curl \
- wget \
- git \
- # Utilitaires
- vim \
- htop \
- && rm -rf /var/lib/apt/lists/*
-# installer Ollama
-RUN curl -fsSLhttps://ollama.com/install.sh | sh
-# Creer un utilisateur non-root pour la securite
-RUN useradd -m -u 1000 -s /bin/bash appuser
-# Copier les dependences Python
-COPY requirements.txt .
-# Installer les dependences Python
-RUN pip install --no-cache-dir -r requirements.txt
-# Copier tout le code source
-COPY --chown=appuser:appuser . .
-# Donner les permissions a l'utilisateur
-RUN chown -R appuser:appuser /app
-RUN chown -R appuser:appuser /root/.ollama
-# Changer pour l'utilisateur non-root
-USER appuser
-# Exposer les ports
-# 8000: Django
-# 11434: Ollama API
-EXPOSE 8000 11434
-# Script d'entree
-COPY scripts/entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
+# ─────────────────────────────────────────────────────────────────
+# Dockerfile — Backend SUP'ONE (Django + FAISS + MiniLM)
+# Image cible : python:3.11-slim  (plus stable que 3.13 sur Railway)
+# ─────────────────────────────────────────────────────────────────
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+# ── Étape 1 : builder ───────────────────────────────────────────
+FROM python:3.11-slim AS builder
+
+WORKDIR /app
+
+# Dépendances système pour FAISS, numpy, psycopg2
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --upgrade pip && \
+    pip wheel --no-cache-dir --wheel-dir /wheels -r requirements.txt
+
+
+# ── Étape 2 : image finale ──────────────────────────────────────
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Runtime libs pour psycopg2 et FAISS
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq5 \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copier les wheels compilés et installer
+COPY --from=builder /wheels /wheels
+RUN pip install --no-cache-dir --find-links /wheels -r /wheels/../requirements.txt 2>/dev/null || \
+    pip install --no-cache-dir /wheels/*.whl
+
+# Copier le code source
+COPY . .
+
+# Variables d'environnement par défaut (surchargées par Railway)
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    DJANGO_SETTINGS_MODULE=config.settings \
+    TRANSFORMERS_OFFLINE=1 \
+    HF_DATASETS_OFFLINE=1 \
+    PORT=8000
+
+# Collecter les fichiers statiques (sans base de données requise)
+RUN python manage.py collectstatic --noinput
+
+# Port exposé
+EXPOSE 8000
+
+# Démarrage — utilise $PORT injecté par Railway
+CMD gunicorn config.wsgi:application \
+    --bind 0.0.0.0:$PORT \
+    --workers 2 \
+    --threads 4 \
+    --worker-class gthread \
+    --timeout 120 \
+    --keep-alive 5 \
+    --log-level info

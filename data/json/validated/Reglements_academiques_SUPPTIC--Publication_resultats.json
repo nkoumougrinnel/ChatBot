@@ -1,0 +1,639 @@
+[
+  {
+    "id": "faq_316",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Où et comment sont publiés les résultats des examens à SUP'PTIC ?",
+    "reponse_enrichie": "Les résultats des examens à SUP'PTIC sont généralement publiés sur le site web officiel de l'établissement, sur les tableaux d'affichage au sein du campus, et parfois via des plateformes numériques dédiées aux étudiants. Les modalités exactes sont précisées par l'administration.",
+    "exemples": [
+      "Quel est le lien du site web pour les résultats ?",
+      "Les résultats sont-ils affichés physiquement ?",
+      "Faut-il un code pour accéder aux résultats en ligne ?"
+    ],
+    "sources": [
+      "Avis administratifs SUP'PTIC",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_317",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Quels sont les délais de publication des résultats après les examens ?",
+    "reponse_enrichie": "Les délais de publication des résultats varient en fonction du type d'examen (partiel, final, rattrapage) et de la charge de travail des correcteurs. SUP'PTIC s'efforce de respecter des délais raisonnables, souvent indiqués dans le calendrier académique ou par des communications spécifiques.",
+    "exemples": [
+      "Quand les résultats du premier semestre seront-ils disponibles ?",
+      "Y a-t-il un délai maximum légal pour la publication des notes ?"
+    ],
+    "sources": [
+      "Calendrier académique SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_318",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Comment accéder à mes résultats individuels ?",
+    "reponse_enrichie": "Les résultats s'affichent uniquement au boukarou et de manière collective.",
+    "exemples": [
+      "J'ai oublié mon mot de passe pour le portail étudiant, que faire ?",
+      "Mes résultats sont-ils envoyés par e-mail ?"
+    ],
+    "sources": [
+      "Portail étudiant SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_319",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Peut-on consulter les copies d'examen après la publication des résultats ?",
+    "reponse_enrichie": "La consultation des copies d'examen n'est pas possible sauf lors des controles continus et certains TP en fonction de l'enseignant.",
+    "exemples": [
+      "Comment demander à consulter ma copie ?",
+      "Puis-je prendre des photos de ma copie d'examen ?",
+      "Y a-t-il un délai pour consulter les copies ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_320",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Comment contester une note ou un résultat d'examen ?",
+    "reponse_enrichie": "Pour contester une note, l'étudiant doit généralement déposer une demande de révision de copie ou de réexamen auprès du service de la scolarité, en respectant les délais impartis. La demande doit être motivée et peut entraîner une nouvelle correction ou un examen par une commission pédagogique.",
+    "exemples": [
+      "Quel est le délai pour déposer une contestation ?",
+      "Quels documents dois-je fournir pour contester une note ?",
+      "Qui examine les contestations de notes ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_321",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Quels sont les motifs valables pour une contestation de note ?",
+    "reponse_enrichie": "Les motifs valables pour une contestation de note incluent une erreur matérielle (erreur de calcul, oubli de correction) ou une erreur manifeste d'appréciation du correcteur.",
+    "exemples": [
+      "Une mauvaise écriture peut-elle être un motif de contestation ?",
+      "Puis-je contester une note si je pense que le correcteur n'a pas compris ma réponse ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_322",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Y a-t-il des frais pour contester une note ?",
+    "reponse_enrichie": "Généralement, il n'y a pas de frais directs pour contester une note, car c'est un droit de l'étudiant. Cependant, certaines procédures peuvent impliquer des frais administratifs minimes pour la gestion du dossier. Il est préférable de se renseigner auprès du service concerné.",
+    "exemples": [
+      "Le dépôt d'une demande de révision est-il payant ?",
+      "Les frais sont-ils remboursés si ma contestation est acceptée ?"
+    ],
+    "sources": [
+      "Service de la scolarité SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_323",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Quel est le processus de décision suite à une contestation ?",
+    "reponse_enrichie": "Suite à une contestation, l'enseignant concerné étudie et révise celle-ci. La décision est ensuite communiquée à l'étudiant, et elle est généralement définitive au niveau de l'établissement.",
+    "exemples": [
+      "Combien de temps prend la décision après une contestation ?",
+      "Puis-je faire appel de la décision de la commission ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_324",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Les résultats des rattrapages sont-ils publiés séparément ?",
+    "reponse_enrichie": "Oui, les résultats des sessions de rattrapage sont généralement publiés séparément des résultats de la session normale. Ils suivent un calendrier spécifique et sont accessibles via les mêmes canaux de diffusion que les résultats initiaux.",
+    "exemples": [
+      "Quand sont publiés les résultats des rattrapages ?",
+      "Le relevé de notes final inclut-il les notes de rattrapage ?"
+    ],
+    "sources": [
+      "Avis administratifs SUP'PTIC",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_325",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Comment obtenir un relevé de notes officiel ?",
+    "reponse_enrichie": "Un relevé de notes officiel peut être demandé auprès du service de la scolarité de SUP'PTIC. Il est généralement délivré après validation des résultats de l'année ou du cycle, et peut être soumis à des frais administratifs.",
+    "exemples": [
+      "Combien coûte un relevé de notes ?",
+      "Quel est le délai pour obtenir un relevé de notes ?",
+      "Puis-je demander un relevé de notes en ligne ?"
+    ],
+    "sources": [
+      "Service de la scolarité SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_326",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Les résultats des concours d'entrée sont-ils publiés sur le même support ?",
+    "reponse_enrichie": "Les résultats des concours d'entrée à SUP'PTIC sont souvent publiés sur le site web du Ministère de l'Enseignement Supérieur ou sur le site de SUP'PTIC, ainsi que par voie d'affichage. Les modalités sont spécifiées dans l'avis de concours.",
+    "exemples": [
+      "Où trouver les résultats du concours d'entrée ?",
+      "Les résultats du concours sont-ils définitifs ?"
+    ],
+    "sources": [
+      "Avis de concours SUP'PTIC",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_327",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Quelles informations figurent sur le relevé de notes ?",
+    "reponse_enrichie": "Le relevé de notes officiel inclut généralement le nom de l'étudiant, son numéro matricule, l'intitulé des cours suivis, les notes obtenues pour chaque matière, les crédits ECTS associés, la moyenne générale, et la mention obtenue. Il est signé et tamponné par l'administration.",
+    "exemples": [
+      "Mon classement est-il indiqué sur le relevé de notes ?",
+      "Les absences sont-elles mentionnées ?"
+    ],
+    "sources": [
+      "Service de la scolarité SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_328",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Peut-on demander une attestation de réussite avant la délivrance du diplôme ?",
+    "reponse_enrichie": "Non l'établissement fourni juste le relevé notes ce qui office de preuve que l'année dernière a été validée.",
+    "exemples": [
+      "Comment obtenir une attestation de réussite ?",
+      "L'attestation de réussite est-elle payante ?"
+    ],
+    "sources": [
+      "Service de la scolarité SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_329",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Quelles sont les conséquences d'une absence aux examens sur la publication des résultats ?",
+    "reponse_enrichie": "Une absence non justifiée à un examen entraîne généralement une note de zéro à l'épreuve concernée. Si l'absence est justifiée (certificat médical, cas de force majeure), l'étudiant peut être autorisé à passer une épreuve de remplacement ou à se présenter à la session de rattrapage.",
+    "exemples": [
+      "Comment justifier une absence à un examen ?",
+      "Une absence justifiée affecte-t-elle ma moyenne ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_330",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Les résultats sont-ils anonymes lors de leur publication ?",
+    "reponse_enrichie": "Pour des raisons de confidentialité, les résultats publiés publiquement.",
+    "exemples": [
+      "Mon nom apparaît-il sur les listes de résultats ?",
+      "Comment puis-je retrouver mes résultats avec mon numéro matricule ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_331",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Qu'est-ce qu'une délibération du jury et quel est son rôle ?",
+    "reponse_enrichie": "La délibération du jury est une réunion des enseignants et de l'administration pour valider les résultats des examens, attribuer les mentions, et statuer sur les cas particuliers (compensation, ajournement, redoublement). C'est l'étape finale avant la proclamation des résultats.",
+    "exemples": [
+      "Quand ont lieu les délibérations du jury ?",
+      "Le jury peut-il modifier mes notes ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_332",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Peut-on obtenir une explication orale de ses notes ?",
+    "reponse_enrichie": "En plus de la consultation des copies, il est parfois possible d'obtenir une explication orale de ses notes auprès de l'enseignant concerné, notamment en cas de doute ou de besoin de clarification. Il est recommandé de prendre rendez-vous avec l'enseignant.",
+    "exemples": [
+      "Comment contacter un enseignant pour discuter de ma note ?",
+      "L'enseignant est-il obligé de me donner des explications ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_333",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Les résultats des stages ou projets sont-ils inclus dans la publication générale ?",
+    "reponse_enrichie": "Oui, les évaluations des stages, projets de fin d'études ou autres travaux pratiques sont généralement intégrées dans le calcul de la moyenne générale et figurent sur le relevé de notes final. Leurs modalités d'évaluation sont spécifiques et définies par les départements.",
+    "exemples": [
+      "Comment est noté mon stage ?",
+      "Les rapports de stage sont-ils consultables ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_334",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Qu'est-ce qu'une mention (Passable, Assez Bien, Bien, Très Bien) et comment l'obtient-on ?",
+    "reponse_enrichie": "Une mention est une distinction attribuée en fonction de la moyenne générale obtenue par l'étudiant. Les seuils pour chaque mention (Passable, Assez Bien, Bien, Très Bien) sont définis dans le règlement intérieur de SUP'PTIC et récompensent l'excellence académique.",
+    "exemples": [
+      "Quelle moyenne faut-il pour avoir la mention Bien ?",
+      "Une mention a-t-elle un impact sur mon avenir professionnel ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_335",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Les résultats peuvent-ils être modifiés après leur publication initiale ?",
+    "reponse_enrichie": "Les résultats sont considérés comme définitifs après leur publication officielle et la délibération du jury. Cependant, des modifications peuvent intervenir en cas d'erreur matérielle avérée suite à une contestation, ou si une fraude est détectée après la publication.",
+    "exemples": [
+      "Une erreur de saisie peut-elle être corrigée après la publication ?",
+      "Si une fraude est découverte plus tard, ma note peut-elle changer ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_336",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Qu'est-ce qu'un jury de compensation et comment fonctionne-t-il ?",
+    "reponse_enrichie": "Un jury de compensation permet, sous certaines conditions, de valider une unité d'enseignement ou une année d'études même si certaines notes sont insuffisantes, grâce à la compensation avec des notes plus élevées obtenues dans d'autres matières. Les règles de compensation sont définies par SUP'PTIC.",
+    "exemples": [
+      "Quelles sont les conditions pour bénéficier de la compensation ?",
+      "Toutes les matières sont-elles compensables ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_337",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Les étudiants peuvent-ils être ajournés sans possibilité de rattrapage ?",
+    "reponse_enrichie": "Dans certains cas extrêmes, notamment en cas de résultats très faibles lors des controles continus ou de non-respect des règles académiques, un étudiant peut être ajourné sans possibilité de rattrapage.",
+    "exemples": [
+      "Dans quels cas un ajournement sans rattrapage est-il prononcé ?",
+      "Puis-je contester un ajournement sans rattrapage ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_338",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Comment les étudiants en échange ou en mobilité voient-ils leurs résultats publiés ?",
+    "reponse_enrichie": "Les résultats des étudiants en échange ou en mobilité sont généralement transmis par l'établissement d'accueil à SUP'PTIC, qui se charge ensuite de les intégrer au dossier académique de l'étudiant et de les publier selon ses propres modalités. Les équivalences de notes sont établies au préalable.",
+    "exemples": [
+      "Mes notes de l'étranger sont-elles converties ?",
+      "Qui est responsable de la transmission de mes résultats ?"
+    ],
+    "sources": [
+      "Service des relations internationales SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_339",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Les parents peuvent-ils accéder aux résultats de leurs enfants ?",
+    "reponse_enrichie": "Oui, les parents peuvent accéder aux résultats de leurs enfants en ayant confirmé leur identité",
+    "exemples": [
+      "Puis-je donner mon autorisation à mes parents pour qu'ils voient mes notes ?",
+      "Les résultats des étudiants mineurs sont-ils envoyés aux parents ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Législation sur la protection des données",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_340",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Quelles sont les démarches en cas de perte ou de non-réception du relevé de notes ?",
+    "reponse_enrichie": "En cas de perte ou de non-réception d'un relevé de notes, l'étudiant doit contacter le service de la scolarité de SUP'PTIC pour demander un duplicata. Des frais vont être appliqués pour la réédition du document.",
+    "exemples": [
+      "Combien coûte un duplicata de relevé de notes ?",
+      "Quel est le délai pour recevoir un duplicata ?"
+    ],
+    "sources": [
+      "Service de la scolarité SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_341",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Les résultats des examens sont-ils définitifs après la délibération du jury ?",
+    "reponse_enrichie": "Oui, les résultats des examens sont considérés comme définitifs après la délibération du jury et leur proclamation officielle. Toute modification ultérieure est exceptionnelle et ne peut intervenir qu'en cas d'erreur matérielle avérée ou de fraude détectée a posteriori.",
+    "exemples": [
+      "Une fois les résultats publiés, peuvent-ils encore changer ?",
+      "Qu'est-ce qu'une erreur matérielle dans les résultats ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_342",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Comment les résultats sont-ils utilisés pour la progression académique (passage en année supérieure) ?",
+    "reponse_enrichie": "Les résultats des examens sont déterminants pour la progression académique. La validation d'une année ou d'un semestre est conditionnée par l'obtention d'une moyenne générale minimale et la validation des unités d'enseignement. Le règlement intérieur précise les conditions de passage.",
+    "exemples": [
+      "Quelle moyenne faut-il pour passer en année supérieure ?",
+      "Si je valide toutes mes matières mais pas ma moyenne, que se passe-t-il ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_343",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Y a-t-il des statistiques de réussite ou d'échec publiées par SUP'PTIC ?",
+    "reponse_enrichie": "SUP'PTIC peut publier des statistiques générales sur la réussite et l'échec de ses étudiants, souvent dans le cadre de rapports annuels ou d'évaluations institutionnelles. Ces statistiques sont agrégées et ne permettent pas d'identifier les individus.",
+    "exemples": [
+      "Où puis-je trouver les statistiques de réussite de SUP'PTIC ?",
+      "Ces statistiques sont-elles publiques ?"
+    ],
+    "sources": [
+      "Rapports institutionnels SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_344",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Comment les résultats sont-ils communiqués aux entreprises partenaires pour les stages ?",
+    "reponse_enrichie": "Les résultats académiques des étudiants en stage ne sont communiqués aux entreprises partenaires qu'avec l'accord explicite de l'étudiant, dans le respect de la confidentialité des données personnelles. Généralement, c'est l'étudiant qui fournit son relevé de notes à l'entreprise.",
+    "exemples": [
+      "Mon entreprise de stage peut-elle demander mes notes à SUP'PTIC ?",
+      "Dois-je donner mon accord pour la transmission de mes notes ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Législation sur la protection des données",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_345",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Y a-t-il une cérémonie de remise des diplômes à SUP'PTIC ?",
+    "reponse_enrichie": "Oui, SUP'PTIC organise généralement une cérémonie de remise des diplômes pour célébrer la réussite de ses étudiants. Les dates et modalités de cette cérémonie sont communiquées aux diplômés en temps voulu.",
+    "exemples": [
+      "Quand a lieu la cérémonie de remise des diplômes ?",
+      "Puis-je inviter ma famille à la cérémonie ?"
+    ],
+    "sources": [
+      "Communication SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_346",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Comment les résultats sont-ils pris en compte pour l'attribution des bourses d'excellence ?",
+    "reponse_enrichie": "Les résultats académiques sont un critère majeur pour l'attribution des bourses d'excellence. Les étudiants ayant les meilleures moyennes générales ou des performances remarquables dans des domaines spécifiques peuvent être éligibles. Les critères exacts sont définis par les organismes de bourse et SUP'PTIC.",
+    "exemples": [
+      "Quelle moyenne faut-il pour une bourse d'excellence ?",
+      "Les bourses d'excellence sont-elles renouvelables ?"
+    ],
+    "sources": [
+      "Organismes de bourse",
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_347",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Les résultats des projets de recherche sont-ils publiés ou archivés ?",
+    "reponse_enrichie": "Les résultats des projets de recherche, notamment les mémoires de Master, sont généralement archivés à la bibliothèque de SUP'PTIC et peuvent être consultables. Certains peuvent être publiés dans des revues scientifiques ou présentés lors de conférences.",
+    "exemples": [
+      "Où puis-je consulter les mémoires des anciens étudiants ?",
+      "Mon mémoire sera-t-il publié ?"
+    ],
+    "sources": [
+      "Bibliothèque SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_348",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Comment les résultats sont-ils utilisés pour l'orientation professionnelle ?",
+    "reponse_enrichie": "Les résultats académiques sont un indicateur important pour l'orientation professionnelle, car ils attestent des compétences et des connaissances acquises. Ils sont souvent demandés par les employeurs et peuvent influencer les choix de carrière ou l'accès à certains postes.",
+    "exemples": [
+      "Les entreprises regardent-elles mes notes ?",
+      "Une bonne moyenne peut-elle m'aider à trouver un emploi ?"
+    ],
+    "sources": [
+      "Service d'orientation professionnelle SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_349",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Y a-t-il un système de crédits (ECTS) à SUP'PTIC et comment sont-ils validés par les résultats ?",
+    "reponse_enrichie": "Oui, SUP'PTIC utilise un système de crédits (souvent ECTS) pour valider les unités d'enseignement. Chaque matière ou module a une valeur en crédits, et la validation de ces crédits est conditionnée par l'obtention d'une note minimale. L'accumulation des crédits permet la validation des semestres et des années.",
+    "exemples": [
+      "Combien de crédits faut-il pour valider un semestre ?",
+      "Les crédits sont-ils transférables à d'autres universités ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_350",
+    "categorie": "Règlements académiques SUP'PTIC",
+    "sous_theme": "Publication des résultats",
+    "question": "Comment les résultats sont-ils pris en compte pour les admissions en Master à SUP'PTIC ?",
+    "reponse_enrichie": "Les résultats obtenus en Licence sont un critère essentiel pour l'admission en Master à SUP'PTIC. Les dossiers de candidature sont examinés sur la base des relevés de notes, des mentions obtenues, et parfois d'un classement ainsi que la non participation à un conseil de discipline. Un bon dossier académique est un atout majeur.",
+    "exemples": [
+      "Quelle moyenne est requise pour entrer en Master à SUP'PTIC ?",
+      "Les lettres de recommandation sont-elles importantes pour l'admission en Doctorat ?"
+    ],
+    "sources": [
+      "Règlement intérieur SUP'PTIC (à confirmer)",
+      "Pratiques universitaires générales"
+    ],
+    "date_creation": "2026-05-15",
+    "version": "1.0",
+    "valide": true
+  }
+]
