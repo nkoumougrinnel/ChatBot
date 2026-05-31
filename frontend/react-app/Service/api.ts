@@ -1,4 +1,4 @@
-export const BACKEND_BASE_URL = "http://10.227.132.171:8000";
+export { BACKEND_BASE_URL } from "./client";
 
 export type ChatbotGen3Response = {
   answer: string;
