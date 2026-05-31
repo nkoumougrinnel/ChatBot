@@ -35,6 +35,10 @@ COPY --from=builder /wheels /wheels
 RUN pip install --no-cache-dir --find-links /wheels -r /wheels/../requirements.txt 2>/dev/null || \
     pip install --no-cache-dir /wheels/*.whl
 
+# Télécharger le modèle spaCy fr_core_news_sm
+# `spacy` doit être installé via `requirements.txt` pour que cette commande fonctionne.
+RUN python -m spacy download fr_core_news_sm
+
 # Copier le code source
 COPY . .
 
