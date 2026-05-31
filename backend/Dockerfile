@@ -53,11 +53,6 @@ RUN python backend/manage.py collectstatic --noinput
 EXPOSE 8000
 
 # Démarrage — utilise $PORT injecté par Railwa
-CMD gunicorn config.wsgi:application \
-    --bind 0.0.0.0:$PORT \
-    --workers 2 \
-    --threads 4 \
-    --worker-class gthread \
-    --timeout 120 \
-    --keep-alive 5 \
-    --log-level info
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+CMD ["./entrypoint.sh"]
