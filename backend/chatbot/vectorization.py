@@ -1,5 +1,7 @@
 """
 Module de tokenisation et vecteur TF-IDF.
+<<<<<<< HEAD
+=======
 VERSION OPTIMISÉE pour corpus de 15000+ FAQs avec 1GB RAM.
 
 Optimisations clés:
@@ -7,6 +9,7 @@ Optimisations clés:
 2. Limite de features (max_features=3000) pour réduire dimensionnalité
 3. Traitement par batch lors de l'initialisation
 4. float32 au lieu de float64 partout
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
 
 Ce module fournit des utilitaires pour entraîner un `TfidfVectorizer`,
 calculer le vecteur TF-IDF d'une chaîne de caractères et stocker ces vecteurs
@@ -20,6 +23,18 @@ Fonctions principales :
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
+<<<<<<< HEAD
+from faq.models import FAQ, FAQVector
+
+# Vectorizer TF-IDF global (initialement non entraîné)
+vectorizer = None
+
+
+def train_vectorizer(corpus):
+    """
+    Entraîner et mémoriser un `TfidfVectorizer` sur un corpus donné.
+
+=======
 import pickle
 from pathlib import Path
 from faq.models import FAQ, FAQVector
@@ -82,6 +97,7 @@ def train_vectorizer(corpus):
     - norm=None : Pas de normalisation (on le fait manuellement)
     - dtype=np.float32 : Économise 50% de RAM
     
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
     Args:
         corpus (iterable[str]): itérable de documents (questions) servant
             d'ensemble d'entraînement pour le TF-IDF.
@@ -90,6 +106,12 @@ def train_vectorizer(corpus):
         TfidfVectorizer: l'instance entraînée du vectorizer
     """
     global vectorizer
+<<<<<<< HEAD
+    # Créer un nouveau vectorizer (paramètres par défaut)
+    vectorizer = TfidfVectorizer()
+    # Ajuster le vectorizer sur le corpus fourni
+    vectorizer.fit(corpus)
+=======
     
     # OPTIMISATION: Limiter le nombre de features pour réduire la dimensionnalité
     # 3000 features au lieu de tout le vocabulaire = -60% RAM
@@ -107,26 +129,44 @@ def train_vectorizer(corpus):
     # Sauvegarder sur disque pour réutilisation
     save_vectorizer(vectorizer)
     
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
     return vectorizer
 
 
 def compute_tfidf_vector(text):
     """
     Calculer le vecteur TF-IDF d'une chaîne de caractères et sa norme euclidienne.
+<<<<<<< HEAD
+
+=======
     
     OPTIMISATION: Le vectorizer est chargé UNE FOIS depuis le disque au lieu
     d'être rechargé à chaque requête.
     
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
     Args:
         text (str): le texte à transformer en vecteur TF-IDF
 
     Returns:
+<<<<<<< HEAD
+        tuple[numpy.ndarray, float]: (vecteur numpy 1D, norme L2 du vecteur)
+=======
         tuple[numpy.ndarray, float]: (vecteur numpy 1D float32, norme L2 du vecteur)
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
 
     Raises:
         ValueError: si le `vectorizer` n'a pas encore été entraîné.
     """
     global vectorizer
+<<<<<<< HEAD
+    if vectorizer is None:
+        # Protéger contre l'utilisation avant entraînement
+        raise ValueError("Vectorizer not trained. Call train_vectorizer first.")
+    # Transformer le texte en vecteur TF-IDF (format sparse → dense)
+    vector = vectorizer.transform([text]).toarray()[0]
+    # Calculer la norme L2 (utile pour la similarité cosinus)
+    norm = np.linalg.norm(vector)
+=======
     
     # Charger le vectorizer si pas encore fait
     if vectorizer is None:
@@ -147,6 +187,7 @@ def compute_tfidf_vector(text):
     # Calculer la norme L2 (utile pour la similarité cosinus)
     norm = np.linalg.norm(vector)
     
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
     return vector, norm
 
 
@@ -154,6 +195,32 @@ def compute_and_store_vectors():
     """
     Construire un vectorizer à partir de toutes les questions de la base,
     puis calculer et sauvegarder le vecteur TF-IDF pour chaque FAQ.
+<<<<<<< HEAD
+
+    Comportement:
+    - Récupère le corpus (liste des questions) depuis le modèle `FAQ`.
+    - Entraîne le `TfidfVectorizer` sur ce corpus.
+    - Pour chaque FAQ, calcule le vecteur et la norme, puis met à jour
+      ou crée une instance `FAQVector` liée.
+    """
+    # Récupérer toutes les questions (itérable de chaînes)
+    corpus = FAQ.objects.values_list("question", flat=True)
+    # Entraîner le vectorizer sur ce corpus
+    train_vectorizer(corpus)
+
+    # Parcourir chaque FAQ et stocker son vecteur TF-IDF
+    for faq in FAQ.objects.all():
+        # Calculer vecteur et norme pour la question
+        vector, norm = compute_tfidf_vector(faq.question)
+        # Convertir le vecteur en liste pour le stockage JSON-serializable
+        FAQVector.objects.update_or_create(
+            faq=faq,
+            defaults={
+                "tfidf_vector": vector.tolist(),
+                "norm": norm,
+            },
+        )
+=======
     
     OPTIMISATION: Traitement par batch de 1000 FAQs pour économiser RAM.
     
@@ -209,3 +276,4 @@ def compute_and_store_vectors():
         print(f"[Vectorization] Progression: {progress}/{total_faqs} FAQs ({int(progress/total_faqs*100)}%)")
     
     print(f"[Vectorization] ✅ {vectors_created} vecteurs calculés et stockés")
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e

@@ -427,7 +427,36 @@ function attachFeedbackListeners() {
 }
 
 /**
- * Envoie une question à l'API
+ * Lit un flux SSE JSON (Gen3) et appelle onEvent pour chaque événement.
+ */
+async function parseSSEStream(response, onEvent) {
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    const blocks = buffer.split("\n\n");
+    buffer = blocks.pop() || "";
+
+    for (const block of blocks) {
+      for (const line of block.split("\n")) {
+        if (!line.startsWith("data: ")) continue;
+        try {
+          onEvent(JSON.parse(line.slice(6)));
+        } catch (err) {
+          console.warn("SSE parse error:", err);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Envoie une question à l'API Gen3 (streaming SSE)
  */
 async function ask(question) {
   if (isProcessing) return;
@@ -439,12 +468,9 @@ async function ask(question) {
   lastUserQuestion = question.trim();
   appendBubble(question, "user");
 
-  // Animation de recherche avec typing effect
   const loadingBubble = appendBubble('<span class="muted"><i class="bi bi-search"></i> </span>', "bot");
   const loadingTextSpan = loadingBubble.querySelector('.muted');
-  
-  // Animation de typing pour le texte de recherche (sans attendre la fin)
-  typeText(loadingTextSpan, 'Recherche dans la FAQ...', 30);
+  typeText(loadingTextSpan, 'Sup\'ONE réfléchit...', 30);
 
   const startTime = Date.now();
 
@@ -453,40 +479,49 @@ async function ask(question) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        Accept: "text/event-stream",
       },
-      body: JSON.stringify({ question, top_k: 1 }), // On demande 1 seul résultat
+      body: JSON.stringify({ question }),
     });
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
 
-    const data = await response.json();
+    let answer = "";
+    let meta = null;
+    let errorMsg = null;
 
-    // S'assurer qu'au moins 1 seconde s'est écoulée
+    await parseSSEStream(response, (evt) => {
+      if (evt.type === "status" && evt.status === "searching") {
+        typeText(loadingTextSpan, 'Recherche dans la FAQ...', 30);
+      }
+      if (evt.type === "meta") meta = evt;
+      if (evt.type === "token") answer += evt.content;
+      if (evt.type === "error") errorMsg = evt.message;
+    });
+
     const elapsed = Date.now() - startTime;
-    const minDelay = 1000; // 1 seconde minimum
+    const minDelay = 1000;
     if (elapsed < minDelay) {
       await new Promise((resolve) => setTimeout(resolve, minDelay - elapsed));
     }
 
     loadingBubble.remove();
 
-    // Vérifier la confiance de la réponse
-    const topResult = data.results && data.results[0];
-    const confidence = topResult ? Number(topResult.score) : 0;
+    const messageId = Date.now().toString();
+    const methodLabel = meta?.method || "—";
+    const level = meta?.level || "";
 
-    // ============================================
-    // LOGIQUE DES 3 SEUILS
-    // ============================================
-    
-    if (confidence < CONFIDENCE_THRESHOLD_LOW) {
-      // SEUIL 1: 0 - 0.5 → Aucune réponse trouvée
+    if (errorMsg && !answer) {
+      const errorBubble = appendBubble("", "bot");
+      await typeText(errorBubble, errorMsg, 10);
+      return;
+    }
+
+    if (level === "offbase" && !answer.trim()) {
       const lowConfBubble = appendBubble("", "bot");
       await typeText(lowConfBubble, createNoAnswerResponseText(), 10);
-
-      // Ajouter les actions suggérées
       lowConfBubble.insertAdjacentHTML(
         "beforeend",
         `
@@ -499,63 +534,36 @@ async function ask(question) {
         </div>
         `,
       );
-    } else if (confidence < CONFIDENCE_THRESHOLD_MED) {
-      // SEUIL 2: 0.5 - 0.7 → Suggestion (hésitation)
-      const medConfBubble = appendBubble("", "bot");
-      const medResponse = createMediumConfidenceResponse(topResult);
-      
-      // Animation de typing avec HTML en temps réel
-      await typeHTML(medConfBubble, medResponse, 10);
-
-      // Pas de boutons de feedback dans ce cas
-    } else {
-      // SEUIL 3: > 0.7 → Réponse complète avec boutons
-      const botBubble = appendBubble("", "bot");
-
-      // Ajouter data-faq-id à la bulle principale
-      botBubble.setAttribute('data-faq-id', topResult.faq_id);
-
-      // Question
-      botBubble.innerHTML = `<div class="result-question"><i class="bi bi-pin-angle-fill"></i> ${topResult.question}</div>`;
-      await new Promise((r) => setTimeout(r, 300));
-
-      // Réponse avec animation
-      botBubble.insertAdjacentHTML(
-        "beforeend",
-        `<div class="result-answer"></div>`,
-      );
-      await typeText(
-        botBubble.querySelector(".result-answer"),
-        topResult.answer,
-        10,
-      );
-
-      // Extraire les métadonnées
-      const categoryText = topResult.category || "";
-      const scoreNum = Number(topResult.score);
-      const scoreText = Number.isFinite(scoreNum) ? scoreNum.toFixed(2) : "—";
-      const faqId = topResult.faq_id || "";
-
-      // Ajouter meta + feedback
-      botBubble.insertAdjacentHTML(
-        "beforeend",
-        `
-        <div class="result-meta">
-          <span><i class="bi bi-tags"></i> ${categoryText}</span>
-          <span><i class="bi bi-star-fill"></i> Score: ${scoreText}</span>
-        </div>
-        <div class="feedback">
-          <button class="feedback-btn up" aria-label="like" data-faq-id="${faqId}"><i class="bi bi-hand-thumbs-up"></i></button>
-          <button class="feedback-btn down" aria-label="dislike" data-faq-id="${faqId}"><i class="bi bi-hand-thumbs-down"></i></button>
-          <button class="feedback-btn copy" aria-label="copy" data-faq-id="${faqId}"><i class="bi bi-clipboard"></i></button>
-          <button class="feedback-btn share" aria-label="share" data-faq-id="${faqId}"><i class="bi bi-share"></i></button>
-        </div>
-        `,
-      );
-
-      // Attacher les événements aux boutons de feedback APRÈS l'animation
-      attachFeedbackListeners();
+      return;
     }
+
+    const botBubble = appendBubble("", "bot");
+    botBubble.setAttribute("data-faq-id", messageId);
+
+    botBubble.insertAdjacentHTML("beforeend", `<div class="result-answer"></div>`);
+    await typeText(
+      botBubble.querySelector(".result-answer"),
+      answer || errorMsg || createNoAnswerResponseText(),
+      10,
+    );
+
+    botBubble.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="result-meta">
+        <span><i class="bi bi-cpu"></i> ${methodLabel}</span>
+        ${level ? `<span><i class="bi bi-diagram-3"></i> ${level.toUpperCase()}</span>` : ""}
+      </div>
+      <div class="feedback">
+        <button class="feedback-btn up" aria-label="like" data-faq-id="${messageId}"><i class="bi bi-hand-thumbs-up"></i></button>
+        <button class="feedback-btn down" aria-label="dislike" data-faq-id="${messageId}"><i class="bi bi-hand-thumbs-down"></i></button>
+        <button class="feedback-btn copy" aria-label="copy" data-faq-id="${messageId}"><i class="bi bi-clipboard"></i></button>
+        <button class="feedback-btn share" aria-label="share" data-faq-id="${messageId}"><i class="bi bi-share"></i></button>
+      </div>
+      `,
+    );
+
+    attachFeedbackListeners();
   } catch (error) {
     console.error("Erreur lors de la requête:", error);
 

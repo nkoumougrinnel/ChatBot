@@ -1,0 +1,4 @@
+/* /index.html 200
+# Cette règle redirige TOUTES les URLs vers index.html avec code 200.
+# React Router prend ensuite en charge le routing côté client.
+# Obligatoire pour les SPA (Single Page Applications) sur Netlify.

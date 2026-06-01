@@ -23,6 +23,8 @@ __all__ = [
     'compute_cosine_similarity',
     'find_best_faq',
 ]
+<<<<<<< HEAD
+=======
 
 def get_chatbot_response(question: str, top_k: int = 3):
     """
@@ -59,3 +61,4 @@ def get_chatbot_response(question: str, top_k: int = 3):
         "status": status,
     }
 
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e

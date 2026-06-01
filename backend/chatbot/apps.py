@@ -1,5 +1,11 @@
 from django.apps import AppConfig
 
+<<<<<<< HEAD
+
+class ChatbotConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'chatbot'
+=======
 class ChatbotConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'chatbot'
@@ -28,3 +34,4 @@ class ChatbotConfig(AppConfig):
                 print(f"[ChatbotConfig] ⚠ Ollama non disponible : {status['error']}")
         except Exception as e:
             print(f"[ChatbotConfig] ✗ Erreur init LLM session : {e}")
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e

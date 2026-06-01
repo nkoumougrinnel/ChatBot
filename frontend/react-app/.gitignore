@@ -41,3 +41,8 @@ app-example
 # generated native folders
 /ios
 /android
+# local env files
+.env.local
+.env.production
+dist/
+node_modules/

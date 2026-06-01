@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+# README — data/
+
+Dossier de structuration des données : CSV, scripts d'import/export et outils de validation.
+
+Équipe assignée: Base de Données et Structuration de données
+
+Consignes:
+- Génération massive de Q/R via IA → stocker CSV dans `csv/`
+- Scripts d'import/export dans `scripts/`
+- Tests et nettoyages sur branches locales
+=======
 ﻿# Données - Dataset FAQ ChatBot
 
 Ce dossier contient les données d'entraînement et de test pour le chatbot SUP'PTIC.
@@ -104,3 +116,4 @@ Les fichiers sont organisés par domaine fonctionnel :
 - Mise à  jour régulière des informations
 - Validation croisée des sources
 - Tests d'intégration avec le moteur de recherche
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e

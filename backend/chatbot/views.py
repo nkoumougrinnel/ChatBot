@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+from django.shortcuts import render
+
+# Create your views here.
+=======
 """
 views.py — Endpoints API du chatbot SUP'ONE.
 
@@ -173,3 +178,4 @@ def test_llm_latency(request):
         })
     except Exception as exc:  # noqa: BLE001
         return Response({"error": str(exc)}, status=500)
+>>>>>>> 63bc96bc834531acd7719edd6e3541982a2ed93e
