@@ -1,300 +1,187 @@
-# 📌 ChatBot SUP'PTIC – Prototype
+# ChatBot SUP'PTIC — Assistant FAQ intelligent (SUP'ONE)
 
-**Période :** 8 février — 13 février 2026  
-**Réalisé par :** Club Informatique SUP'PTIC
-
----
-
-## 🎯 Présentation
-
-Ce **ChatBot SUP'PTIC** est un prototype développé par le Club Informatique SUP'PTIC. L'objectif est de fournir aux étudiants et personnels de SUP'PTIC un **outil interactif intelligent** capable de :
-
-- Répondre automatiquement aux questions fréquentes (FAQ)
-- Fournir des informations pertinentes sur les services et ressources de l'école
-
-Ce projet est une démonstration concrète de l'application de technologies modernes en informatique pour créer des solutions utiles et efficaces.
+Assistant conversationnel pour l'**École Supérieure des Postes, Télécommunications
+et Technologies de l'Information et de la Communication (SUP'PTIC)**, développé par
+le Club Informatique. Il répond aux questions fréquentes des étudiants et du
+personnel à partir d'une base de FAQ, via un backend Django REST et un frontend web.
 
 ---
 
-## ⚙️ Fonctionnalités Principales
+## Présentation
 
-| Fonctionnalité                | Description                                                                         |
-| ----------------------------- | ----------------------------------------------------------------------------------- |
-| 🔍 **Recherche TF-IDF**       | Algorithme de similarité cosinus pour trouver la réponse pertinente parmi 1000+ FAQ |
-| 🗄️ **Base de données Django** | Modèles complets : Utilisateurs, Catégories, FAQ, Vecteurs, Feedback                |
-| 🌐 **API REST**               | Endpoints pour poser des questions, gérer les FAQ, collecter des statistiques       |
-| 💬 **Interface web**          | Chat interactif en HTML/CSS/JS, design responsive, connexion directe à l'API        |
-| 👍👎 **Feedback utilisateur** | Système de satisfaction intégré (like/dislike + commentaire optionnel)              |
-| 📊 **Statistiques**           | Suivi des performances et taux de satisfaction par catégorie                        |
+Le projet combine deux approches de recherche de réponse :
+
+1. **Phase 1 — Recherche TF-IDF** (`faq` + `chatbot`) : vectorisation TF-IDF des
+   questions et similarité cosinus sur la base FAQ stockée en base de données.
+   Exposée sous `/api/`.
+2. **Gen3 — Pipeline RAG** (`chatbot/engine`) : pipeline à 4 niveaux
+   (règles conversationnelles → recherche sémantique FAISS → repli TF-IDF →
+   génération LLM via Google Gemini). Exposé sous `/api/v2/`.
+
+Le pipeline Gen3 dépend de bibliothèques optionnelles. S'il ne peut pas être
+chargé (dépendances ou artefacts absents), **l'API Phase 1 reste pleinement
+fonctionnelle**.
 
 ---
 
-## 🧩 Architecture Projet
+## Fonctionnalités
+
+| Fonctionnalité | Description |
+| --- | --- |
+| Recherche TF-IDF | Similarité cosinus sur la base FAQ, recherche par catégories optimisée pour la RAM |
+| Pipeline RAG Gen3 | FAISS (embeddings MiniLM) + repli TF-IDF + génération Gemini, en streaming SSE |
+| API REST | Endpoints pour interroger, gérer les FAQ et collecter des statistiques |
+| Interface web (PWA) | Chat interactif (`frontend/advanced_chat/`), responsive, hors-ligne |
+| Feedback utilisateur | Like / dislike + commentaire, ajustant la popularité et les scores |
+| Statistiques | Suivi de la satisfaction et des FAQ populaires |
+
+---
+
+## Architecture du projet
 
 ```
 ChatBot/
-├── .venv/              # Environnement virtuel Python
-│
 ├── backend/
-│   ├── config/          # Paramètres Django (settings, urls, wsgi)
-│   ├── faq/             # App gestion FAQ
-│   ├── chatbot/         # App algorithme TF-IDF et prétraitement texte
-│   ├── users/           # App utilisateurs + feedback
+│   ├── config/            # Réglages Django (settings, urls, wsgi, asgi)
+│   ├── faq/               # FAQ, catégories, feedback + API Phase 1 (/api/)
+│   ├── chatbot/           # Prétraitement, TF-IDF, similarité
+│   │   └── engine/        # Pipeline RAG Gen3 (FAISS, Gemini, TF-IDF) → /api/v2/
+│   ├── users/             # Modèle utilisateur personnalisé
+│   ├── data/              # JSON (règles conversationnelles, bases) + scripts
 │   ├── manage.py
-│   └── db.sqlite3       # Base de données SQLite
+│   ├── Procfile / runtime.txt
+│   └── requirements.txt   # -> pointe vers le requirements.txt racine
 │
 ├── frontend/
-│   ├── index.html       # Page principale du chatbot
-│   ├── css/
-│   │   └── styles.css   # Styles responsive
-│   ├── js/
-│   │   └── app.js       # Logique du chatbot (fetch API, UI)
-│   └── assets/
+│   ├── index.html, app.js, style.css   # Démo simple
+│   └── advanced_chat/     # Application PWA (main.js, styles.css, service-worker…)
 │
-├── data/
-│   ├── csv/             # Fichiers CSV générés par catégories/sous-thèmes
-│   └── scripts/         # Scripts import/export
-│
-├── docs/
-│   └── README_API.md
-│
-├── README.md            # Documentation principale (ce fichier)
-└── requirements.txt     # Dépendances Python
+├── data/                  # Corpus CSV / JSON
+├── docs/                  # Documentation technique (backend, API)
+├── .env.example           # Modèle de configuration d'environnement
+├── requirements.txt       # Dépendances (fichier canonique)
+└── README.md
 ```
 
 ---
 
-## 👥 Organisation des Équipes (10 personnes)
+## Prérequis
 
-| Équipe                    | Effectif | Missions                                                          |
-| ------------------------- | -------- | ----------------------------------------------------------------- |
-| **Base de Données**       | 2        | Modèles Django, migrations, optimisation, scripts import/export   |
-| **Structuration Données** | 4        | Génération massive CSV avec IA, nettoyage, validation (1000+ Q/R) |
-| **Backend**               | 2        | API Django REST, TF-IDF, similarité cosinus, endpoints sécurisés  |
-| **Frontend**              | 2        | Interface chat HTML/CSS/JS, design responsive, connexion API      |
+- Python 3.10+
+- pip et virtualenv
+- (Optionnel, pour Gen3) une clé API Google Gemini
 
 ---
 
-## 📚 Dépendances Principales
+## Installation et lancement
 
-```txt
-Django==4.2.7
-djangorestframework==3.14.0
-django-cors-headers==4.3.1
-scikit-learn==1.3.2
-pandas==2.1.3
-numpy==1.26.2
+```powershell
+# 1. Cloner et créer l'environnement virtuel
+git clone <repository-url>
+cd ChatBot
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1      # (Linux/macOS : source .venv/bin/activate)
+
+# 2. Installer les dépendances
+pip install -r requirements.txt
+
+# 3. Configurer l'environnement
+copy .env.example .env            # puis éditer .env (SECRET_KEY, GEMINI_API_KEY…)
+
+# 4. Initialiser la base de données
+cd backend
+python manage.py migrate
+
+# 5. (Optionnel) Charger des données de démonstration
+python manage.py loaddata faq/fixtures/*.json
+
+# 6. Lancer le serveur de développement
+python manage.py runserver
 ```
 
+- **API** : http://localhost:8000/api/
+- **Frontend** : ouvrir `frontend/advanced_chat/index.html` (ou servir le dossier).
+
+### Variables d'environnement
+
+Toutes les variables sont décrites dans [`.env.example`](.env.example). En
+développement, définissez `DEBUG=True`. En production, `SECRET_KEY` est
+**obligatoire** (le serveur refuse de démarrer sans elle quand `DEBUG=False`).
+
 ---
 
-## 🔧 API REST – Endpoints Principaux
+## API REST
 
-| Méthode | Endpoint            | Description                                            |
-| ------- | ------------------- | ------------------------------------------------------ |
-| `POST`  | `/api/chatbot/ask/` | Poser une question → retourne top 3 résultats + scores |
-| `GET`   | `/api/faq/`         | Lister toutes les FAQ (avec pagination)                |
-| `GET`   | `/api/categories/`  | Lister les catégories de FAQ                           |
-| `POST`  | `/api/feedback/`    | Enregistrer un feedback utilisateur (like/dislike)     |
-| `GET`   | `/api/stats/`       | Statistiques : taux satisfaction, FAQ populaires       |
+### Phase 1 — `/api/`
 
-**Exemple de requête :**
+| Méthode | Endpoint | Description |
+| --- | --- | --- |
+| `POST` | `/api/chatbot/ask/` | Poser une question → top-k résultats TF-IDF + scores |
+| `GET` | `/api/faq/` | Lister les FAQ (paginé) |
+| `GET` | `/api/categories/` | Lister les catégories |
+| `POST` | `/api/feedback/` | Enregistrer un feedback (like/dislike) |
+| `GET` | `/api/stats/` | Statistiques de satisfaction |
+
+### Gen3 (RAG) — `/api/v2/`
+
+| Méthode | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/api/v2/chatbot/status/` | État du LLM (Gemini) et du pipeline |
+| `POST` | `/api/v2/chatbot/ask/` | Question via le pipeline RAG (SSE ou JSON) |
+| `POST` | `/api/v2/chatbot/test-llm/` | Mesure de latence LLM (debug) |
+| `GET` | `/api/v2/chatbot/reload-index/` | Recharge l'index FAISS à chaud |
+
+**Exemple :**
 
 ```bash
 curl -X POST http://localhost:8000/api/chatbot/ask/ \
   -H "Content-Type: application/json" \
-  -d '{"question": "Quand sont les examens?"}'
+  -d '{"question": "Quand sont les examens ?", "top_k": 3}'
 ```
-
-**Réponse :**
 
 ```json
 {
+  "question": "Quand sont les examens ?",
   "results": [
-    {
-      "id": 1,
-      "question": "Quand se déroulent les examens?",
-      "answer": "Les examens ont lieu...",
-      "category": "Examens",
-      "score": 0.92
-    }
-  ]
+    { "faq_id": 1, "question": "...", "answer": "...", "category": "Examens", "score": 0.92 }
+  ],
+  "count": 1,
+  "status": "confident"
 }
 ```
 
 ---
 
-## 📅 Planning Détaillé (6 jours)
+## Tests
 
-### **Jour 1-2** : Fondations et Premières Vagues
-
-- Initialiser dépôt Git et projet Django
-- Créer modèles Django (FAQ, Utilisateurs, Feedback, Vecteurs)
-- Générer 400 Q/R (par vagues de 100)
-- Implémenter prétraitement texte basique
-- **Objectif :** 400 Q/R en base de données
-
-### **Jour 3-4** : Algorithme et Intégration
-
-- Implémenter TF-IDF vectorizer
-- Créer endpoints API REST
-- Générer 600 Q/R supplémentaires
-- Intégrer frontend basique
-- **Objectif :** 1000 Q/R, API complète, interface de base
-
-### **Jour 5** : Documentation et Démo
-
-- Documentation API complète (`README_API.md`)
-- Système feedback opérationnel
-- Pages "statistiques" et "À propos"
-- Répétition démo (3x minimum)
-- **Objectif :** Démonstration préparée et documentée
-
-### **Jour 6** : Finalisation et Livraison
-
-- Derniers ajustements UI/UX
-- Déploiement sur serveur test
-- Finalisation README principal
-- **Démonstration officielle (18h)**
-
----
-
-## 📦 Livrables Attendus (13 février 18h)
-
-✅ **Code**
-
-- Projet Django complet (3 apps : `faq`, `chatbot`, `users`)
-- Frontend HTML/CSS/JS fonctionnel avec feedback
-- Base de données avec 1000+ Q/R validées
-- API REST testée et fonctionnelle
-
-✅ **Documentation**
-
-- `README.md` complet (ce fichier)
-- `README_API.md` (spécifications et exemples)
-
-✅ **Démonstration**
-
-- Application déployée et accessible
-- Présentation PowerPoint (10-15 slides)
-- Scénario démo préparé et répété
-- 10 questions test impressionnantes
-
----
-
-## 📊 Indicateurs de Succès
-
-| Critère                  | Objectif | Mesure                        |
-| ------------------------ | -------- | ----------------------------- |
-| **Q/R en base**          | 1000+    | `SELECT COUNT(*) FROM faq`    |
-| **Taux réponse**         | >70%     | Questions avec score > 0.6    |
-| **API fonctionnelle**    | 100%     | Tous endpoints testés ✓       |
-| **Interface utilisable** | ✓        | Chat + feedback opérationnels |
-| **Documentation**        | ✓        | README + API + BD complètes   |
-| **Démo prête**           | ✓        | Scénario testé 3x minimum     |
-
----
-
-## ⚠️ Points d'Attention Critiques
-
-### Risques Identifiés
-
-- **Synchronisation équipes** → Réunions quotidiennes (matin + soir)
-- **Qualité vs Quantité** → Validation systématique 20% des Q/R
-- **Scope creep** → NE PAS ajouter fonctionnalités non prévues
-- **Fatigue production** → Pauses régulières, rotation des tâches
-
-### Bonnes Pratiques
-
-- 🔄 **Commits Git** : min. 2 par personne par jour
-- 💬 **Communication** : groupe Telegram/WhatsApp actif
-- 🐛 **Bug tracking** : fichier partagé centralisé
-- ✅ **Tests** : après chaque feature importante
-- ☕ **Pauses** : régulières pour éviter la fatigue
-
----
-
-## 🚀 Installation et Lancement Rapide
-
-### Prérequis
-
-- Python 3.10+
-- pip
-- Git
-
-### Setup (Windows PowerShell)
-
-```powershell
-# Cloner et entrer dans le dossier
-git clone <repository-url>
-cd chatbot-supptic
-
-# Créer environnement virtuel
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-
-# Installer dépendances
-pip install -r requirements.txt
-
-# Initialiser base de données
+```bash
 cd backend
-python manage.py makemigrations
-python manage.py migrate
-
-# (Optionnel) Charger données démo
-python manage.py loaddata fixtures/demo_faq.json
-
-# Lancer serveur Django
-python manage.py runserver
+python manage.py test
 ```
 
-### Accès Application
-
-- **Backend API** : http://localhost:8000/api/
-- **Frontend** : Ouvrir `frontend/index.html` dans navigateur
+La suite couvre les modèles, le signal de feedback et les endpoints de l'app
+`faq`, ainsi que les fonctions de recherche de l'app `chatbot`.
 
 ---
 
-## 🔧 Modules Clés à Implémenter
+## Déploiement
 
-### Backend (`chatbot/utils.py`)
+Le projet est prêt pour un déploiement de type **Railway / Gunicorn + WhiteNoise** :
 
-```python
-def preprocess_text(text: str) -> str:
-    """Tokenisation, suppression stopwords FR, normalisation."""
-
-def train_vectorizer(corpus: List[str]) -> TfidfVectorizer:
-    """Entraîner TF-IDF sur le corpus FAQ."""
-
-def compute_tfidf_vector(text: str, vectorizer) -> np.ndarray:
-    """Vecteur TF-IDF pour une requête."""
-
-def compute_cosine_similarity(vec1, vec2) -> float:
-    """Similarité cosinus entre deux vecteurs."""
-
-def find_best_faq(question: str, top_k: int = 3) -> List[Dict]:
-    """Trouver top K réponses + scores."""
-```
+- `requirements.txt` (racine) : dépendances installées au build.
+- `railway.json` / `Procfile` : commande de démarrage Gunicorn.
+- Définir au minimum `SECRET_KEY`, `DEBUG=False`, `DATABASE_URL` et
+  `CORS_ALLOWED_ORIGINS` ; `GEMINI_API_KEY` pour activer le niveau LLM.
 
 ---
 
-## 📚 Documentation Complémentaire
+## Documentation complémentaire
 
-Les fichiers suivants seront générés au cours du projet :
-
-- **`README_API.md`** : Spécifications API détaillées, exemples cURL, authentification
-
----
-
-## 🎯 Objectif Final
-
-✨ **1000+ Q/R validées**  
-✨ **Algorithme TF-IDF robuste**  
-✨ **API REST sécurisée**  
-✨ **Interface web responsive**  
-✨ **Documentation technique complète**  
-✨ **Démonstration impressionnante**
+- `docs/backend/` : architecture, API, intents, pipeline de tests.
+- `backend/chatbot/engine/README.md` : détail du pipeline RAG Gen3.
 
 ---
 
-**Let's build something amazing together!** 🚀
+## Crédits
+
+Développé par le **Club Informatique SUP'PTIC**.
