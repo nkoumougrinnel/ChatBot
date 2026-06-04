@@ -40,6 +40,15 @@ Le projet est un assistant FAQ pour **SUP'PTIC** avec deux pipelines de réponse
 | `frontend/advanced_chat/` | HTML/JS vanilla + PWA | Version historique |
 | `frontend/` (racine) | HTML simple | Redirection / démo minimale |
 
+### Interface React (`frontend/app`)
+
+- Layout type **ChatGPT** : fil centré, composer en bas, suggestions en pills
+- Thèmes **clair** et **sombre** (bouton dans l’en-tête, préférence mémorisée)
+- Palette SUP'PTIC (`#1a4594`, fond sombre `#070f1f`)
+- Pas d’affichage technique (méthode, score, latence) dans le chat
+- Feedback discret (pouce haut / bas + commentaire optionnel)
+- **APK Android** : même UI, barre de statut adaptée au thème, gestion clavier — voir **[MOBILE.md](MOBILE.md)**
+
 ---
 
 ## 2. Prérequis
@@ -101,6 +110,7 @@ ChatBot/
 │
 └── docs/
     ├── GUIDE_COMPLET.md        # Ce document
+    ├── MOBILE.md               # APK Android, thèmes, dépannage mobile
     └── backend/                # Docs techniques détaillées
 ```
 
@@ -196,7 +206,7 @@ Django charge `.env` depuis **`backend/.env`** puis **la racine du projet** (`.e
 SECRET_KEY=dev-only-change-in-production
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
-CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+CORS_ALLOWED_ORIGINS=http://localhost:5174,http://127.0.0.1:5174
 DATABASE_URL=
 GEMINI_API_KEY=
 HF_OFFLINE=1
@@ -229,12 +239,12 @@ Exemples :
 VITE_API_URL=https://chatbot-production-5202.up.railway.app
 
 # Émulateur Android + backend local sur PC
-VITE_API_URL=http://10.0.2.2:8000
+VITE_API_URL=http://10.0.2.2:8001
 
 # Téléphone physique + backend sur le même Wi-Fi
-VITE_API_URL=http://192.168.1.42:8000
+VITE_API_URL=http://192.168.1.42:8001
 
-# Dev Vite : laisser vide ou ne pas définir — le proxy `/api` → :8000 suffit
+# Dev Vite : laisser vide ou ne pas définir — le proxy `/api` → :8001 suffit
 ```
 
 Copier le modèle :
@@ -265,13 +275,13 @@ copy .env.example .env
 
 ```powershell
 cd backend
-python manage.py runserver
+python manage.py runserver 127.0.0.1:8001
 ```
 
 Dans un autre terminal :
 
 ```powershell
-curl http://127.0.0.1:8000/api/health/
+curl http://127.0.0.1:8001/api/health/
 ```
 
 Réponse attendue (extrait) :
@@ -297,7 +307,7 @@ Si `phase1` vaut `indexing_required` : exécutez `python manage.py rebuild_vecto
 ```powershell
 cd backend
 $env:DEBUG="True"
-python manage.py runserver
+python manage.py runserver 127.0.0.1:8001
 ```
 
 **Terminal 2 — Frontend React**
@@ -307,13 +317,13 @@ cd frontend\app
 npm run dev
 ```
 
-Ouvrir : **http://localhost:5173**
+Ouvrir : **http://localhost:5174**
 
-Le proxy Vite redirige `/api/*` vers `http://127.0.0.1:8000` (voir `frontend/app/vite.config.js`).
+Le proxy Vite redirige `/api/*` vers `http://127.0.0.1:8001` (voir `frontend/app/vite.config.js`).
 
 ### Autres frontends
 
-**PWA vanilla** : servir `frontend/advanced_chat/` (Live Server, `npx serve`, etc.) et pointer l’API vers `:8000` (voir `main.js`).
+**PWA vanilla** : servir `frontend/advanced_chat/` (Live Server, `npx serve`, etc.) et pointer l’API vers `:8001` (voir `main.js`).
 
 **Preview build production** :
 
@@ -323,15 +333,17 @@ npm run build
 npm run preview
 ```
 
-→ http://localhost:4173 (proxy API identique au dev).
+→ http://localhost:4174 (proxy API identique au dev).
 
 ### Admin Django
 
-http://127.0.0.1:8000/admin/ — créer un superutilisateur avec `createsuperuser` si besoin.
+http://127.0.0.1:8001/admin/ — créer un superutilisateur avec `createsuperuser` si besoin.
 
 ---
 
 ## 8. Tests
+
+### Tests unitaires Django
 
 ```powershell
 cd backend
@@ -340,13 +352,35 @@ python manage.py test
 
 Couverture : modèles FAQ, feedback, endpoints Phase 1, recherche chatbot.
 
-**Test manuel du pipeline Gen3** :
+### Suite complète (Gen3 + feedback + Phase 1)
+
+Backend démarré sur **8001**, puis :
+
+```powershell
+cd backend
+python scripts/test_full_suite.py
+```
+
+Vérifie notamment : réponses cohérentes (inscription, frais, localisation), feedback like/dislike, endpoints Phase 1.
+
+### Test manuel du pipeline Gen3
 
 ```powershell
 python backend\scripts\test_pipeline_api.py
 ```
 
-(Backend doit tourner sur le port 8000.)
+(Backend doit tourner sur le port 8001.)
+
+### Import FAQ depuis JSON
+
+```powershell
+cd backend
+python manage.py import_faq_json
+python manage.py rebuild_vectors
+python manage.py setup_gen3 --allow-download
+```
+
+Le script `load_json_data.py` ignore automatiquement `conversational_rules.json` (format non FAQ).
 
 ---
 
@@ -366,7 +400,7 @@ python backend\scripts\test_pipeline_api.py
 **Exemple :**
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/chatbot/ask/ \
+curl -X POST http://127.0.0.1:8001/api/chatbot/ask/ \
   -H "Content-Type: application/json" \
   -d "{\"question\": \"Quels sont les frais d'inscription ?\", \"top_k\": 3}"
 ```
@@ -382,7 +416,7 @@ curl -X POST http://127.0.0.1:8000/api/chatbot/ask/ \
 **Exemple streaming :**
 
 ```bash
-curl -N -X POST http://127.0.0.1:8000/api/v2/chatbot/ask/ \
+curl -N -X POST http://127.0.0.1:8001/api/v2/chatbot/ask/ \
   -H "Content-Type: application/json" \
   -H "Accept: text/event-stream" \
   -d "{\"question\": \"Où se trouve SUP'PTIC ?\", \"stream\": true}"
@@ -491,6 +525,8 @@ En production (`DEBUG=False`), seules les origines listées dans `CORS_ALLOWED_O
 
 ## 12. APK Android (Capacitor)
 
+> **Documentation détaillée mobile** : [MOBILE.md](MOBILE.md) (UI native, clavier, scénarios réseau, checklist distribution).
+
 ### 12.1 Prérequis
 
 - Node.js + `npm install` dans `frontend/app`
@@ -568,7 +604,7 @@ npm run android:open
 
 | Cause | Solution |
 |-------|----------|
-| Backend arrêté | `python manage.py runserver` |
+| Backend arrêté | `python manage.py runserver 127.0.0.1:8001` |
 | Mauvaise `VITE_API_URL` | Rebuild après correction du `.env` |
 | CORS | Ajouter l’origine frontend dans `CORS_ALLOWED_ORIGINS` |
 | APK + backend local | Utiliser l’IP LAN du PC, pas `localhost` |
@@ -643,6 +679,7 @@ Installer **Android SDK Platform 35** via Android Studio → SDK Manager.
 | Document | Contenu |
 |----------|---------|
 | [README.md](../README.md) | Présentation projet |
+| [MOBILE.md](MOBILE.md) | **APK Android** — build, réseau, UI, dépannage |
 | [backend/README.md](../backend/README.md) | Commandes backend rapides |
 | [frontend/app/README.md](../frontend/app/README.md) | React, PWA, APK |
 | [docs/backend/ARCHITECTURE.md](backend/ARCHITECTURE.md) | Architecture détaillée |

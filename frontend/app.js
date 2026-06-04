@@ -5,8 +5,8 @@ const API_BASE = (() => {
   const host = window.location.hostname;
   if (host.includes("ngrok-free.dev")) return "https://patternable-felicitously-shaunta.ngrok-free.dev";
   if (host.includes("netlify.app")) return "https://chatbot-production-5202.up.railway.app";
-  if (host.includes("192.168") || host.startsWith("10.")) return `http://${host}:8000`;
-  return "http://localhost:8000";
+  if (host.includes("192.168") || host.startsWith("10.")) return `http://${host}:8001`;
+  return "http://localhost:8001";
 })();
 
 const API_URL = `${API_BASE}/api/chatbot/ask/`;

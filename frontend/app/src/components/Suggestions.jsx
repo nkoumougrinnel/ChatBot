@@ -1,5 +1,3 @@
-const ICONS = ['📚', '🎓', '🎯', '📋']
-
 export function Suggestions({ items, disabled, onSelect }) {
   if (!items?.length) return null
   return (
@@ -9,14 +7,11 @@ export function Suggestions({ items, disabled, onSelect }) {
           key={text}
           type="button"
           className="suggestion-chip"
-          style={{ animationDelay: `${i * 60}ms` }}
+          style={{ animationDelay: `${i * 50}ms` }}
           disabled={disabled}
           onClick={() => onSelect(text)}
         >
-          <span className="suggestion-chip__icon" aria-hidden>
-            {ICONS[i % ICONS.length]}
-          </span>
-          <span className="suggestion-chip__text">{text}</span>
+          {text}
         </button>
       ))}
     </div>

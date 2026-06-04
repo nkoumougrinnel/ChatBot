@@ -79,12 +79,33 @@ class FAQListSerializer(serializers.ModelSerializer):
         read_only_fields = fields
 
 
+def _resolve_faq_fast(question: str) -> FAQ | None:
+    """Résolution rapide via TF-IDF (évite le scan complet Phase 1)."""
+    from chatbot.engine.tfidf_fallback import search_top_k
+
+    hits = search_top_k(question, k=1)
+    if not hits or float(hits[0].get("score", 0)) < 0.32:
+        return None
+    ref_q = (hits[0].get("question") or "").strip()
+    if not ref_q:
+        return None
+    faq = FAQ.objects.filter(is_active=True, question__iexact=ref_q).first()
+    if faq:
+        return faq
+    return FAQ.objects.filter(is_active=True, question__icontains=ref_q[:80]).first()
+
+
 class FeedbackSerializer(serializers.ModelSerializer):
     """Sérialisation des feedbacks utilisateurs."""
-    
+
     user_username = serializers.CharField(source='user.username', read_only=True)
     faq_question = serializers.CharField(source='faq.question', read_only=True)
-    
+    faq = serializers.PrimaryKeyRelatedField(
+        queryset=FAQ.objects.filter(is_active=True),
+        required=False,
+        allow_null=True,
+    )
+
     class Meta:
         model = Feedback
         fields = [
@@ -100,6 +121,28 @@ class FeedbackSerializer(serializers.ModelSerializer):
             'created_at',
         ]
         read_only_fields = ['id', 'user', 'user_username', 'created_at']
+
+    def validate(self, attrs):
+        faq = attrs.get('faq')
+        question = (attrs.get('question_utilisateur') or '').strip()
+
+        if not faq:
+            if not question:
+                raise serializers.ValidationError({
+                    'question_utilisateur': "Requis lorsque l'identifiant FAQ n'est pas fourni.",
+                })
+            faq = _resolve_faq_fast(question)
+            if not faq:
+                raise serializers.ValidationError(
+                    'Aucune FAQ correspondante pour enregistrer ce feedback.'
+                )
+            attrs['faq'] = faq
+            if attrs.get('score_similarite') is None:
+                attrs['score_similarite'] = 0.0
+        elif not question:
+            attrs['question_utilisateur'] = faq.question
+
+        return attrs
 
 
 class QuestionRequestSerializer(serializers.Serializer):

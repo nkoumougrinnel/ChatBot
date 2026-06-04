@@ -69,7 +69,7 @@
         "blague du jour", "histoire amusante", "fais-moi sourire",
         "tu es drôle", "donne-moi une blague", "je veux rire"
       ],
-      "response": "Pourquoi les développeurs préfèrent-ils le mode sombre ? Parce que la lumière attire les bugs ! 😄"
+      "response": "Pourquoi les développeurs préfèrent-ils le mode sombre ? Parce que la lumière attire les bugs."
     },
     {
       "intent": "age_bot",

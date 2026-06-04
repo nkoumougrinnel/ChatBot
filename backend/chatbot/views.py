@@ -139,7 +139,7 @@ def ask_chatbot(request):
         try:
             ask_fn, _, _ = _pipeline()
             result = ask_fn(question, history)
-            return JsonResponse({
+            payload = {
                 "answer":     result.answer,
                 "method":     _LEVEL_TO_METHOD.get(result.level, result.level.upper()),
                 "level":      result.level,
@@ -147,7 +147,10 @@ def ask_chatbot(request):
                 "latency_ms": result.latency_ms,
                 "source":     result.source,
                 "categorie":  result.categorie,
-            })
+            }
+            if result.faq_id is not None:
+                payload["faq_id"] = result.faq_id
+            return JsonResponse(payload)
         except Exception as exc:
             return JsonResponse({"error": str(exc)}, status=500)
 

@@ -188,7 +188,7 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         
         # ===== 2. Recherche TF-IDF =====
         try:
-            faq_results = find_best_faq(question, top_k=top_k)
+            faq_results = find_best_faq(question, top_k=top_k, min_score=0.52)
         except Exception as e:
             return Response(
                 {'error': f'Erreur lors de la recherche : {str(e)}'},

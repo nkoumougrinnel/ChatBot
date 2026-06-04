@@ -12,7 +12,7 @@
 ngrok start --config ngrok_front.yml frontend
 ```
 
-### Terminal 2 - Backend (port 8000)
+### Terminal 2 - Backend (port 8001)
 
 ```bash
 ngrok start --config ngrok_back.yml backend

@@ -29,12 +29,12 @@ User = apps.get_model('users', 'CustomUser')
 
 def clear_database():
     """Vider les tables FAQ et Category avant l'import et réinitialiser les séquences."""
-    print("\n🗑️  Vidage de la base de données...")
+    print("\n Vidage de la base de données...")
     faq_count = FAQ.objects.count()
     cat_count = Category.objects.count()
     FAQ.objects.all().delete()
     Category.objects.all().delete()
-    print(f"  ✓ Supprimé {faq_count} FAQs et {cat_count} Catégories")
+    print(f"  OK Supprimé {faq_count} FAQs et {cat_count} Catégories")
     
     # Réinitialiser les séquences/auto-increment
     from django.db import connection
@@ -44,16 +44,16 @@ def clear_database():
     try:
         cursor.execute("ALTER SEQUENCE faq_faq_id_seq RESTART WITH 1")
         cursor.execute("ALTER SEQUENCE faq_category_id_seq RESTART WITH 1")
-        print("  ✓ Réinitialisé les séquences de la BD (PostgreSQL)")
+        print("  OK Réinitialisé les séquences de la BD (PostgreSQL)")
     except Exception as e:
-        print(f"  ⚠️ Impossible de réinitialiser les séquences: {e}")
+        print(f"  [ATTENTION] Impossible de réinitialiser les séquences: {e}")
     
     print("=" * 80)
 
 
 def create_admin_user():
     """Créer ou réinitialiser le superuser admin."""
-    print("\n👤 Création du superuser admin...")
+    print("\nCréation du superuser admin...")
     
     # Supprimer l'admin existant s'il existe
     User.objects.filter(username='admin').delete()
@@ -64,8 +64,52 @@ def create_admin_user():
         email='admin@example.com',
         password='admin'
     )
-    print(f"  ✓ Superuser admin créé (password: admin)")
+    print(f"  OK Superuser admin créé (password: admin)")
     print("=" * 80)
+
+
+# Fichiers lus par le pipeline conversationnel / RAG, pas importés en table FAQ
+SKIP_FAQ_IMPORT_NAMES = frozenset({
+    'conversational_rules.json',
+})
+
+
+def classify_json_for_faq_import(path: Path) -> str:
+    """
+    Retourne 'faq_list', 'conversational_rules' ou 'unsupported'.
+    """
+    with open(path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    if isinstance(data, dict):
+        if 'conversational_rules' in data:
+            return 'conversational_rules'
+        return 'unsupported'
+    if isinstance(data, list) and data and isinstance(data[0], dict):
+        return 'faq_list'
+    if isinstance(data, list):
+        return 'faq_list'
+    return 'unsupported'
+
+
+def filter_faq_json_files(paths: list[Path]) -> list[Path]:
+    """Ne garde que les JSON importables comme FAQ Django."""
+    kept = []
+    for path in paths:
+        if path.name in SKIP_FAQ_IMPORT_NAMES:
+            print(
+                f"[SKIP] {path.name} - regles conversationnelles "
+                "(utilise par le chatbot, pas import FAQ)"
+            )
+            continue
+        kind = classify_json_for_faq_import(path)
+        if kind == 'conversational_rules':
+            print(f"[SKIP] {path.name} - regles conversationnelles")
+            continue
+        if kind != 'faq_list':
+            print(f"[SKIP] {path.name} - format non FAQ")
+            continue
+        kept.append(path)
+    return kept
 
 
 class FAQJsonImporter:
@@ -91,7 +135,7 @@ class FAQJsonImporter:
         if not self.json_path or not self.json_path.exists():
             raise FileNotFoundError(f"Fichier JSON non trouvé: {self.json_path}")
         
-        print(f"📂 Chargement du fichier: {self.json_path.name}")
+        print(f"[FICHIER] Chargement du fichier: {self.json_path.name}")
         with open(self.json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
@@ -99,7 +143,7 @@ class FAQJsonImporter:
         if not isinstance(data, list):
             raise ValueError("Le fichier JSON doit contenir une liste d'objets FAQ")
         
-        print(f"   ✓ {len(data)} FAQ(s) trouvée(s)")
+        print(f"   OK {len(data)} FAQ(s) trouvée(s)")
         return data
     
     def normaliser_chaine(self, texte):
@@ -115,7 +159,7 @@ class FAQJsonImporter:
         
         if not nom_normalise:
             nom_normalise = "Non catégorisé"
-            print("   ⚠️ Catégorie vide, utilisation de 'Non catégorisé'")
+            print("   [ATTENTION] Catégorie vide, utilisation de 'Non catégorisé'")
         
         # Vérifier le cache
         if nom_normalise in self.categories_cache:
@@ -138,7 +182,7 @@ class FAQJsonImporter:
             )
             self.stats['categories_crees'] += 1
             created = True
-            print(f"   ✦ Nouvelle catégorie créée: '{nom_normalise[:80]}...'")
+            print(f"   - Nouvelle catégorie créée: '{nom_normalise[:80]}...'")
         except Category.MultipleObjectsReturned:
             # Prendre la première en cas de doublon
             category = Category.objects.filter(
@@ -244,10 +288,10 @@ class FAQJsonImporter:
                     
             except Exception as e:
                 self.stats['erreurs'] += 1
-                print(f"   ❌ Erreur pour example '{example[:60]}...': {e}")
+                print(f"   [ERREUR] Erreur pour example '{example[:60]}...': {e}")
         
         # Afficher résumé pour cet intent
-        print(f"✅ [{idx}/{total}] Intent '{intent}': {faqs_creees} créées, {faqs_maj} MAJ, {faqs_ignorees} ignorées")
+        print(f"[OK] [{idx}/{total}] Intent '{intent}': {faqs_creees} créées, {faqs_maj} MAJ, {faqs_ignorees} ignorées")
         
         return faqs_creees, faqs_maj, faqs_ignorees
     
@@ -313,15 +357,15 @@ class FAQJsonImporter:
         data = self.load_json(json_path)
         total = len(data)
         
-        print("\n🚀 DÉBUT DE L'IMPORTATION")
+        print("\nDÉBUT DE L'IMPORTATION")
         print("=" * 80)
         
         # Détecter le format du fichier
         if data and 'intent' in data[0] and 'examples' in data[0]:
-            print("📋 Format détecté: NOUVEAU (intent/examples/responses)")
+            print("[FORMAT] Format détecté: NOUVEAU (intent/examples/responses)")
             format_type = 'nouveau'
         else:
-            print("📋 Format détecté: ANCIEN (question/reponse)")
+            print("[FORMAT] Format détecté: ANCIEN (question/reponse)")
             format_type = 'ancien'
         
         print()
@@ -345,42 +389,42 @@ class FAQJsonImporter:
                     if faq_existant:
                         # Mise à jour
                         modifie, statut = self.mettre_a_jour_faq(faq_existant, donnee)
-                        prefix = "🔄" if modifie else "⏭️"
+                        prefix = "[MAJ]" if modifie else "[SKIP]"
                         print(f"{prefix} [{idx}/{total}] FAQ #{faq_existant.id}: {donnee['question'][:80]}... [{statut}]")
                     else:
                         # Création
                         faq = self.creer_faq(donnee)
-                        print(f"✅ [{idx}/{total}] FAQ #{faq.id} créée: {donnee['question'][:80]}...")
+                        print(f"[OK] [{idx}/{total}] FAQ #{faq.id} créée: {donnee['question'][:80]}...")
                 
                 # COMMIT tous les BATCH_SIZE items pour éviter timeout
                 if idx % BATCH_SIZE == 0:
                     connection.close()  # Fermer l'ancienne connexion
-                    print(f"💾 Sauvegarde intermédiaire ({idx}/{total} traités)...")
+                    print(f"[SAVE] Sauvegarde intermédiaire ({idx}/{total} traités)...")
                 
             except Exception as e:
                 self.stats['erreurs'] += 1
-                print(f"❌ [{idx}/{total}] ERREUR: {e}")
+                print(f"[ERREUR] [{idx}/{total}] ERREUR: {e}")
                 print(f"   Donnée: {json.dumps(item, ensure_ascii=False)[:200]}...")
         
         print("\n" + "=" * 80)
-        print("📊 RÉSUMÉ DE L'IMPORTATION")
+        print("[RESUME] RÉSUMÉ DE L'IMPORTATION")
         print("=" * 80)
-        print(f"🏷️  Catégories:")
-        print(f"   ✦ Créées: {self.stats['categories_crees']}")
-        print(f"   ✓ Existantes: {self.stats['categories_existantes']}")
+        print(f" Catégories:")
+        print(f"   - Créées: {self.stats['categories_crees']}")
+        print(f"   OK Existantes: {self.stats['categories_existantes']}")
         print(f"❓ FAQs:")
-        print(f"   ✅ Créées: {self.stats['faqs_crees']}")
-        print(f"   🔄 Mises à jour: {self.stats['faqs_mises_a_jour']}")
-        print(f"   ⏭️  Ignorées (déjà à jour): {self.stats['faqs_ignorees']}")
+        print(f"   [OK] Créées: {self.stats['faqs_crees']}")
+        print(f"   [MAJ] Mises à jour: {self.stats['faqs_mises_a_jour']}")
+        print(f"   [IGNORE]  Ignorées (déjà à jour): {self.stats['faqs_ignorees']}")
         if self.stats['erreurs'] > 0:
-            print(f"   ❌ Erreurs: {self.stats['erreurs']}")
+            print(f"   [ERREUR] Erreurs: {self.stats['erreurs']}")
         
         return self.stats
     
     def dry_run(self, json_path=None):
         """Simuler l'import sans écrire en base."""
         data = self.load_json(json_path)
-        print("\n🚀 SIMULATION D'IMPORT (dry run)")
+        print("\nSIMULATION D'IMPORT (dry run)")
         print("=" * 80)
         
         categories_uniques = set()
@@ -399,19 +443,19 @@ class FAQJsonImporter:
                     questions_vues.add(donnee['question'])
                     
             except Exception as e:
-                print(f"❌ Erreur dans l'item: {e}")
+                print(f"[ERREUR] Erreur dans l'item: {e}")
         
-        print(f"\n📊 Statistiques:")
+        print(f"\n[RESUME] Statistiques:")
         print(f"   • Total FAQ dans fichier: {len(data)}")
         print(f"   • Catégories uniques: {len(categories_uniques)}")
         print(f"   • Doublons de questions: {len(doublons_questions)}")
         
         if doublons_questions:
-            print("\n⚠️  Doublons détectés (seront mis à jour):")
+            print("\n[ATTENTION]  Doublons détectés (seront mis à jour):")
             for q in list(doublons_questions)[:5]:
                 print(f"   • {q[:100]}...")
         
-        print("\n🏷️  Catégories trouvées:")
+        print("\n Catégories trouvées:")
         for cat in sorted(categories_uniques):
             print(f"   • {cat}")
         
@@ -448,14 +492,14 @@ def split_fichier_par_categorie(json_path, output_dir=None):
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(items, f, indent=2, ensure_ascii=False)
         fichiers_crees.append(output_path)
-        print(f"✅ Créé: {output_path.name} ({len(items)} FAQ)")
+        print(f"[OK] Créé: {output_path.name} ({len(items)} FAQ)")
     
     return fichiers_crees
 
 
 def verifier_integrite_base():
     """Vérifier l'intégrité des données en base."""
-    print("\n🔍 VÉRIFICATION DE L'INTÉGRITÉ")
+    print("\n[VERIF] VÉRIFICATION DE L'INTÉGRITÉ")
     print("=" * 80)
     
     # Catégories orphelines
@@ -465,14 +509,14 @@ def verifier_integrite_base():
             categories_orphelines.append(cat.name)
     
     if categories_orphelines:
-        print(f"⚠️  Catégories sans FAQ: {len(categories_orphelines)}")
+        print(f"[ATTENTION]  Catégories sans FAQ: {len(categories_orphelines)}")
         for cat in categories_orphelines[:10]:
             print(f"   • {cat[:100]}...")
     
     # FAQs sans catégorie valide
     faqs_orphelines = FAQ.objects.filter(category__isnull=True).count()
     if faqs_orphelines > 0:
-        print(f"❌ FAQs sans catégorie: {faqs_orphelines}")
+        print(f"[ERREUR] FAQs sans catégorie: {faqs_orphelines}")
     
     # FAQs en double (même question exacte)
     from django.db.models import Count
@@ -481,11 +525,11 @@ def verifier_integrite_base():
     ).filter(count__gt=1)
     
     if doublons:
-        print(f"⚠️  FAQs en double (même question): {len(doublons)}")
+        print(f"[ATTENTION]  FAQs en double (même question): {len(doublons)}")
         for d in doublons[:5]:
             print(f"   • {d['question'][:100]}... ({d['count']} fois)")
     
-    print("✅ Vérification terminée")
+    print("[OK] Vérification terminée")
 
 
 def main():
@@ -504,18 +548,22 @@ def main():
     data_json_dir = Path(__file__).resolve().parent.parent / 'json'
     
     if not data_json_dir.exists():
-        print(f"❌ Répertoire non trouvé: {data_json_dir}")
+        print(f"[ERREUR] Répertoire non trouvé: {data_json_dir}")
         return
     
-    # Trouver tous les fichiers JSON
-    json_files = sorted(data_json_dir.glob('*.json'))
+    # Trouver tous les fichiers JSON (hors règles conversationnelles)
+    all_json = sorted(data_json_dir.glob('*.json'))
+    json_files = filter_faq_json_files(all_json)
     
+    if not all_json:
+        print(f"[ERREUR] Aucun fichier JSON trouvé dans {data_json_dir}")
+        return
     if not json_files:
-        print(f"❌ Aucun fichier JSON trouvé dans {data_json_dir}")
+        print(f"[ERREUR] Aucun fichier FAQ importable dans {data_json_dir}")
         return
     
-    print(f"📁 Répertoire data/json: {data_json_dir}")
-    print(f"📄 Fichiers JSON trouvés: {len(json_files)}")
+    print(f"[DOSSIER] Répertoire data/json: {data_json_dir}")
+    print(f"[FICHIER] Fichiers FAQ à importer: {len(json_files)} / {len(all_json)}")
     for f in json_files:
         print(f"   • {f.name}")
     
@@ -542,11 +590,11 @@ def main():
         'erreurs': 0
     }
     
-    print("\n🚀 DÉBUT DE L'IMPORTATION DES FICHIERS JSON")
+    print("\nDÉBUT DE L'IMPORTATION DES FICHIERS JSON")
     print("=" * 80)
     
     for idx, json_file in enumerate(json_files, 1):
-        print(f"\n📄 [{idx}/{len(json_files)}] Import de: {json_file.name}")
+        print(f"\n[FICHIER] [{idx}/{len(json_files)}] Import de: {json_file.name}")
         print("-" * 80)
         
         if args.dry_run:
@@ -560,17 +608,17 @@ def main():
     # Afficher le résumé final si pas de dry-run
     if not args.dry_run:
         print("\n" + "=" * 80)
-        print("📊 RÉSUMÉ FINAL DE L'IMPORTATION")
+        print("[RESUME] RÉSUMÉ FINAL DE L'IMPORTATION")
         print("=" * 80)
-        print(f"🏷️  Catégories:")
-        print(f"   ✦ Créées: {total_stats['categories_crees']}")
-        print(f"   ✓ Existantes: {total_stats['categories_existantes']}")
+        print(f" Catégories:")
+        print(f"   - Créées: {total_stats['categories_crees']}")
+        print(f"   OK Existantes: {total_stats['categories_existantes']}")
         print(f"❓ FAQs:")
-        print(f"   ✅ Créées: {total_stats['faqs_crees']}")
-        print(f"   🔄 Mises à jour: {total_stats['faqs_mises_a_jour']}")
-        print(f"   ⏭️  Ignorées: {total_stats['faqs_ignorees']}")
+        print(f"   [OK] Créées: {total_stats['faqs_crees']}")
+        print(f"   [MAJ] Mises à jour: {total_stats['faqs_mises_a_jour']}")
+        print(f"   [IGNORE]  Ignorées: {total_stats['faqs_ignorees']}")
         if total_stats['erreurs'] > 0:
-            print(f"   ❌ Erreurs: {total_stats['erreurs']}")
+            print(f"   [ERREUR] Erreurs: {total_stats['erreurs']}")
         
         verifier_integrite_base()
 

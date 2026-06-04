@@ -56,7 +56,31 @@ def _faq_data_directories() -> list[Path]:
 _DATA_DIR = _faq_data_directories()[0] if _faq_data_directories() else (_BASE_DIR.parent / "data")
 
 # Seuil en dessous duquel la réponse TF-IDF est jugée non pertinente
-_MIN_SCORE = float(os.environ.get("TFIDF_MIN_SCORE", "0.05"))
+_MIN_SCORE = float(os.environ.get("TFIDF_MIN_SCORE", "0.35"))
+_TFIDF_BATCH = int(os.environ.get("TFIDF_BATCH_SIZE", "800"))
+
+
+def _best_similarity(query_vec, matrix) -> tuple[int, float]:
+    """Recherche du meilleur score par lots (évite OOM sur grande matrice sparse)."""
+    n_rows = matrix.shape[0]
+    if n_rows == 0:
+        return 0, 0.0
+
+    best_idx = 0
+    best_score = -1.0
+    batch = max(100, _TFIDF_BATCH)
+
+    for start in range(0, n_rows, batch):
+        end = min(start + batch, n_rows)
+        chunk = matrix[start:end]
+        sims = cosine_similarity(query_vec, chunk).flatten()
+        local_i = int(np.argmax(sims))
+        local_score = float(sims[local_i])
+        if local_score > best_score:
+            best_score = local_score
+            best_idx = start + local_i
+
+    return best_idx, best_score
 
 # -------------------------------------------------------------------
 # État interne (thread-safe)
@@ -235,9 +259,7 @@ def search(query: str) -> tuple[str, float, str]:
         )
 
     query_vec = _vectorizer.transform([query])
-    scores    = cosine_similarity(query_vec, _tfidf_matrix).flatten()
-    best_idx  = int(np.argmax(scores))
-    best_score = float(scores[best_idx])
+    best_idx, best_score = _best_similarity(query_vec, _tfidf_matrix)
 
     if best_score < _MIN_SCORE:
         return (
@@ -260,14 +282,25 @@ def search_top_k(query: str, k: int = 3) -> list[dict]:
     if _vectorizer is None or _tfidf_matrix is None or not _faq_entries:
         return []
 
-    query_vec   = _vectorizer.transform([query])
-    scores      = cosine_similarity(query_vec, _tfidf_matrix).flatten()
-    top_indices = np.argsort(scores)[::-1][:k]
+    query_vec = _vectorizer.transform([query])
+    n_rows = _tfidf_matrix.shape[0]
+    batch = max(100, _TFIDF_BATCH)
+    top_scores: list[tuple[float, int]] = []
+
+    for start in range(0, n_rows, batch):
+        end = min(start + batch, n_rows)
+        sims = cosine_similarity(query_vec, _tfidf_matrix[start:end]).flatten()
+        for local_i, score in enumerate(sims):
+            top_scores.append((float(score), start + local_i))
+
+    top_scores.sort(key=lambda x: x[0], reverse=True)
+    top_indices = [idx for _, idx in top_scores[:k]]
+    scores_map = {idx: sc for sc, idx in top_scores}
 
     return [
         {
             "answer":    _faq_entries[int(i)]["answer"],
-            "score":     float(scores[i]),
+            "score":     float(scores_map.get(i, 0.0)),
             "question":  _faq_entries[int(i)]["question"],
             "categorie": _faq_entries[int(i)].get("categorie", "Général"),
             "method":    "TF-IDF",

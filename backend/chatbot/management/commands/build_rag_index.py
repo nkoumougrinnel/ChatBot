@@ -72,7 +72,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS("Cache TF-IDF Gen3 pret."))
 
         self.stdout.write("")
-        self.stdout.write("Redemarrez Django : python manage.py runserver")
+        self.stdout.write("Redemarrez Django : python manage.py runserver 127.0.0.1:8001")
         self.stdout.write("Test : GET /api/v2/chatbot/status/")
         if not os.environ.get("GEMINI_API_KEY"):
             self.stdout.write(self.style.WARNING(

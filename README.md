@@ -88,7 +88,7 @@ copy .env.example .env
 
 cd backend
 python manage.py setup_demo
-python manage.py runserver
+python manage.py runserver 127.0.0.1:8001
 ```
 
 Dans un second terminal :
@@ -99,8 +99,8 @@ npm install
 npm run dev
 ```
 
-- **API** : http://127.0.0.1:8000/api/health/
-- **Frontend** : http://localhost:5173
+- **API** : http://127.0.0.1:8001/api/health/
+- **Frontend** : http://localhost:5174
 
 > **Documentation complète** (installation, Gen3, déploiement Railway/Netlify, APK Android, dépannage) : **[docs/GUIDE_COMPLET.md](docs/GUIDE_COMPLET.md)**
 
@@ -136,7 +136,7 @@ développement, définissez `DEBUG=True`. En production, `SECRET_KEY` est
 **Exemple :**
 
 ```bash
-curl -X POST http://localhost:8000/api/chatbot/ask/ \
+curl -X POST http://localhost:8001/api/chatbot/ask/ \
   -H "Content-Type: application/json" \
   -d '{"question": "Quand sont les examens ?", "top_k": 3}'
 ```
@@ -185,6 +185,8 @@ Variables minimales en production : `SECRET_KEY`, `DEBUG=False`, `DATABASE_URL`,
 | Document | Description |
 |----------|-------------|
 | **[docs/GUIDE_COMPLET.md](docs/GUIDE_COMPLET.md)** | Guide d’exécution et de déploiement (complet) |
+| **[docs/MOBILE.md](docs/MOBILE.md)** | Application Android (APK Capacitor) |
+| [frontend/app/README.md](frontend/app/README.md) | Frontend React, PWA, build APK |
 | [docs/README.md](docs/README.md) | Index de la documentation |
 | [docs/backend/](docs/backend/) | Architecture, API, tests |
 | [backend/chatbot/engine/README.md](backend/chatbot/engine/README.md) | Pipeline RAG Gen3 |

@@ -19,6 +19,21 @@
     "model": "faq.faq",
     "pk": 2,
     "fields": {
+      "question": "Comment s'inscrire à SUP'PTIC ?",
+      "answer": "Remplissez le formulaire d'inscription en ligne sur le site officiel, déposez vos pièces justificatives (relevés de notes, diplôme, pièce d'identité) et réglez les frais d'inscription auprès du service de scolarité.",
+      "category": 2,
+      "source": "Admissions",
+      "subtheme": "",
+      "is_active": true,
+      "popularity": 0,
+      "created_at": "2026-02-10T00:00:00Z",
+      "updated_at": "2026-02-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "faq.faq",
+    "pk": 11,
+    "fields": {
       "question": "Quels sont les frais d'inscription ?",
       "answer": "Les frais varient selon le cycle, veuillez consulter le service de scolarité.",
       "category": 2,

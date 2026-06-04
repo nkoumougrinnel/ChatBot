@@ -17,11 +17,11 @@ const API_BASE = (() => {
 
   // Network IP detected, use same IP for API
   if (host.includes("192.168") || host.includes("10.")) {
-    return `http://${host}:8000`;
+    return `http://${host}:8001`;
   }
 
   // Local development
-  return "http://localhost:8000";
+  return "http://localhost:8001";
 })();
 
 const API_URL = `${API_BASE}/api/chatbot/ask/`;

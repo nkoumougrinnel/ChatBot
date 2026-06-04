@@ -1,5 +1,6 @@
-const THRESH_LOW = 0.5
-const THRESH_MED = 0.7
+/** Seuils alignés sur le backend Phase 1 (cohérence question ↔ réponse) */
+const THRESH_LOW = 0.52
+const THRESH_MED = 0.68
 
 const STATUS_LABELS = {
   thinking: 'Réflexion…',
@@ -12,7 +13,7 @@ export function getApiBase() {
   const isNative = window.Capacitor?.isNativePlatform?.() === true
 
   if (isNative) {
-    return import.meta.env.VITE_API_URL || 'http://10.0.2.2:8000'
+    return import.meta.env.VITE_API_URL || 'http://10.0.2.2:8001'
   }
 
   if (import.meta.env.DEV && (host === 'localhost' || host === '127.0.0.1')) {
@@ -25,14 +26,17 @@ export function getApiBase() {
     return 'https://chatbot-production-5202.up.railway.app'
   }
   if (host.includes('192.168') || host.startsWith('10.')) {
-    return `http://${host}:8000`
+    return `http://${host}:8001`
   }
-  return import.meta.env.VITE_API_URL || 'http://localhost:8000'
+  return import.meta.env.VITE_API_URL || 'http://localhost:8001'
 }
 
 export async function fetchHealth() {
   const base = getApiBase()
-  const res = await fetch(`${base}/api/health/`, { signal: AbortSignal.timeout(8000) })
+  const res = await fetch(`${base}/api/health/`, {
+    signal: AbortSignal.timeout(12000),
+    cache: 'no-store',
+  })
   if (!res.ok) throw new Error('health')
   const data = await res.json()
   if (data.phase1 === 'indexing_required') {
@@ -41,6 +45,45 @@ export async function fetchHealth() {
     )
   }
   return data
+}
+
+/** @returns {'checking'|'online'|'degraded'|'offline'} */
+export function resolveServerStatus(healthData, fetchFailed = false) {
+  if (fetchFailed || !healthData) return 'offline'
+  if (!healthData.database) return 'offline'
+  if (healthData.status === 'error') return 'offline'
+  if (healthData.phase1 === 'indexing_required' || healthData.phase1 === 'empty') {
+    return 'degraded'
+  }
+  return 'online'
+}
+
+export async function submitFeedback({
+  faqId,
+  feedbackType,
+  question,
+  score = null,
+  comment = '',
+}) {
+  const base = getApiBase()
+  const payload = {
+    feedback_type: feedbackType,
+    question_utilisateur: question,
+    comment: comment || '',
+    score_similarite: score,
+  }
+  if (faqId != null) payload.faq = faqId
+
+  const res = await fetch(`${base}/api/feedback/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.detail || `Feedback ${res.status}`)
+  }
+  return res.json()
 }
 
 export async function fetchSuggestions() {
@@ -101,15 +144,13 @@ export async function askGen3Stream(question, onEvent) {
   if (!res.ok) throw new Error(`Gen3 ${res.status}`)
 
   let answer = ''
-  let method = ''
   let elapsedMs = null
 
   for await (const payload of parseSSE(res.body.getReader())) {
     if (payload.type === 'status') {
       onEvent?.({ type: 'status', label: STATUS_LABELS[payload.status] || payload.status })
     } else if (payload.type === 'meta') {
-      method = payload.method || ''
-      onEvent?.({ type: 'meta', method })
+      onEvent?.({ type: 'meta' })
     } else if (payload.type === 'token' && payload.content) {
       answer += payload.content
       onEvent?.({ type: 'token', content: payload.content, answer })
@@ -121,7 +162,7 @@ export async function askGen3Stream(question, onEvent) {
   }
 
   if (!answer.trim()) throw new Error('Réponse vide')
-  return { answer, method, mode: 'gen3', elapsedMs }
+  return { answer, mode: 'gen3', elapsedMs }
 }
 
 export async function askPhase1(question) {
@@ -139,14 +180,17 @@ export async function askPhase1(question) {
   if (score < THRESH_LOW) {
     return {
       mode: 'low',
-      text: "Je n'ai pas trouvé d'information précise. Reformulez votre question ou contactez le support SUP'ONE.",
+      text:
+        "Je n'ai pas trouvé d'information correspondant à votre question dans notre base. " +
+        "Reformulez avec des termes plus précis (inscription, frais, filière…) ou contactez le secrétariat SUP'PTIC.",
     }
   }
   if (score < THRESH_MED) {
-    const q = (top.question || '').replace(/\?$/, '')
     return {
       mode: 'medium',
-      text: `Je ne suis pas totalement sûr — vouliez-vous dire : « ${q} » ?`,
+      text:
+        "Votre question est proche de plusieurs sujets de notre base, mais la correspondance n'est pas assez fiable. " +
+        "Merci de préciser votre demande (par exemple : inscription Licence, frais de scolarité, dates d'examen).",
     }
   }
   return {
@@ -163,8 +207,8 @@ export async function ask(question, { gen3Available, onEvent }) {
   if (gen3Available) {
     try {
       return await askGen3Stream(question, onEvent)
-    } catch {
-      /* fallback Phase 1 */
+    } catch (err) {
+      console.warn('[SUP\'ONE] Gen3 indisponible, repli Phase 1:', err)
     }
   }
   onEvent?.({ type: 'status', label: 'Recherche dans la FAQ…' })

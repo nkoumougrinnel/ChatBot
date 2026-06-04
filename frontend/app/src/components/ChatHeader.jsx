@@ -1,70 +1,103 @@
-import { IconDownload, IconPlus, IconRefresh } from './Icons'
+import { IconDownload, IconMoon, IconNewChat, IconRefresh, IconSun } from './Icons'
+
+const STATUS_LABELS = {
+  checking: 'Vérification…',
+  online: 'En ligne',
+  degraded: 'Service partiel',
+  offline: 'Hors ligne',
+}
 
 export function ChatHeader({
-  online,
-  pipelineLabel,
+  serverStatus = 'checking',
+  faqCount,
   onNewChat,
   onInstall,
   canInstall,
   onRefresh,
   refreshing,
+  isDark,
+  onToggleTheme,
 }) {
-  const showRetry = online === false && onRefresh
+  const showRetry = serverStatus === 'offline' && onRefresh
+  const statusText = STATUS_LABELS[serverStatus] || '…'
+  const subtitle =
+    faqCount != null && serverStatus !== 'offline'
+      ? `${statusText} · ${faqCount.toLocaleString('fr-FR')} FAQ`
+      : statusText
 
   return (
     <header className="header">
       <button
         type="button"
-        className="header-btn"
+        className="header-btn header-btn--new-chat"
         onClick={onNewChat}
         aria-label="Nouvelle conversation"
         title="Nouvelle conversation"
       >
-        <IconPlus />
+        <IconNewChat />
       </button>
 
       <div className="header-brand">
-        <img src="/icon.png" alt="" className="header-logo" width={44} height={44} />
+        <div className="header-logo-wrap">
+          <img src="/icon.png" alt="" className="header-logo" width={32} height={32} />
+          <span className={`header-live-dot header-live-dot--${serverStatus}`} aria-hidden />
+        </div>
         <div className="header-titles">
-          <h1>SUP&apos;ONE AI</h1>
-          <p className={`header-status ${online === false ? 'offline' : online ? 'online' : ''}`}>
-            <span className="status-pulse" />
-            {online === null
-              ? 'Connexion…'
-              : online
-                ? `En ligne${pipelineLabel && pipelineLabel !== '…' ? ` · ${pipelineLabel}` : ''}`
-                : 'Hors ligne'}
+          <h1>
+            <span>SUP&apos;ONE AI</span>
+          </h1>
+          <p className={`header-status header-status--${serverStatus}`}>
+            <span className={`status-pulse status-pulse--${serverStatus}`} />
+            {subtitle}
           </p>
         </div>
-        {online && pipelineLabel && pipelineLabel !== '…' && (
-          <span className="header-pipeline-pill">{pipelineLabel}</span>
-        )}
       </div>
 
-      {showRetry ? (
+      <div className="header-actions">
         <button
           type="button"
-          className={`header-btn header-btn--accent ${refreshing ? 'header-btn--spin' : ''}`}
-          onClick={onRefresh}
-          disabled={refreshing}
-          aria-label="Réessayer la connexion"
-          title="Réessayer"
+          className="header-btn"
+          onClick={onToggleTheme}
+          aria-label={isDark ? 'Activer le mode clair' : 'Activer le mode sombre'}
+          title={isDark ? 'Mode clair' : 'Mode sombre'}
         >
-          <IconRefresh />
+          {isDark ? <IconSun /> : <IconMoon />}
         </button>
-      ) : canInstall ? (
-        <button
-          type="button"
-          className="header-btn header-btn--accent"
-          onClick={onInstall}
-          aria-label="Installer l'application"
-          title="Installer"
-        >
-          <IconDownload />
-        </button>
-      ) : (
-        <div className="header-spacer" aria-hidden />
-      )}
+
+        {showRetry ? (
+          <button
+            type="button"
+            className={`header-btn header-btn--accent ${refreshing ? 'header-btn--spin' : ''}`}
+            onClick={onRefresh}
+            disabled={refreshing}
+            aria-label="Réessayer la connexion"
+            title="Réessayer"
+          >
+            <IconRefresh />
+          </button>
+        ) : canInstall ? (
+          <button
+            type="button"
+            className="header-btn header-btn--accent"
+            onClick={onInstall}
+            aria-label="Installer l'application"
+            title="Installer"
+          >
+            <IconDownload />
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="header-btn"
+            onClick={onRefresh}
+            disabled={refreshing || serverStatus === 'checking'}
+            aria-label="Actualiser le statut serveur"
+            title="Actualiser"
+          >
+            <IconRefresh />
+          </button>
+        )}
+      </div>
     </header>
   )
 }

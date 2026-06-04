@@ -25,8 +25,8 @@ _METADATA_PATH = _RAG_DATA_DIR / "metadata.json"
 # -------------------------------------------------------------------
 # Seuils de confiance — importés par rag_pipeline.py
 # -------------------------------------------------------------------
-SCORE_DIRECT = float(os.environ.get("SCORE_DIRECT", "0.55"))  # Niveau 2 → réponse directe
-SCORE_LLM    = float(os.environ.get("SCORE_LLM",    "0.30"))  # En dessous → OFFBASE
+SCORE_DIRECT = float(os.environ.get("SCORE_DIRECT", "0.52"))  # Niveau 2 → réponse directe FAISS
+SCORE_LLM    = float(os.environ.get("SCORE_LLM",    "0.30"))  # Zone TF-IDF / repli FAISS
 
 # -------------------------------------------------------------------
 # État interne (thread-safe)

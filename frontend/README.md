@@ -14,7 +14,7 @@ Le frontend recommandé est dans **`app/`** :
 ```bash
 cd app
 npm install
-npm run dev      # http://localhost:5173
+npm run dev      # http://localhost:5174
 npm run build    # production → dist/
 ```
 

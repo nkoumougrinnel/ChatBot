@@ -4,6 +4,8 @@
 
 **[GUIDE_COMPLET.md](GUIDE_COMPLET.md)** — Installation locale, configuration, exécution, tests, déploiement backend (Railway), frontend (Netlify/Vercel), APK Android et dépannage.
 
+**[MOBILE.md](MOBILE.md)** — Application Android (Capacitor) : build APK, `VITE_API_URL`, thèmes clair/sombre, clavier, checklist distribution.
+
 ## Documentation technique backend
 
 | Fichier | Sujet |

@@ -40,6 +40,6 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(
             f"Backend pret : {faq_count} FAQs, {vector_count} vecteurs."
         ))
-        self.stdout.write("  API : http://127.0.0.1:8000/api/health/")
+        self.stdout.write("  API : http://127.0.0.1:8001/api/health/")
         self.stdout.write("  Gen3 RAG : python manage.py setup_gen3")
-        self.stdout.write("  Frontend React : http://127.0.0.1:5173")
+        self.stdout.write("  Frontend React : http://127.0.0.1:5174")

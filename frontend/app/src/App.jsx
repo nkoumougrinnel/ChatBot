@@ -11,6 +11,8 @@ import { Welcome } from './components/Welcome'
 import { IconArrowDown } from './components/Icons'
 import { useChat } from './hooks/useChat'
 import { usePwaInstall } from './hooks/usePwaInstall'
+import { useNativeKeyboard } from './hooks/useNativeKeyboard'
+import { useTheme } from './hooks/useTheme'
 import './App.css'
 
 const isNative = Capacitor.isNativePlatform()
@@ -18,6 +20,8 @@ const isNative = Capacitor.isNativePlatform()
 export default function App() {
   const chat = useChat()
   const pwa = usePwaInstall()
+  const { isDark, toggleTheme } = useTheme()
+  useNativeKeyboard()
   const [showScrollFab, setShowScrollFab] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
 
@@ -49,18 +53,26 @@ export default function App() {
           <InstallBanner onInstall={handleInstall} onDismiss={pwa.dismiss} />
         )}
 
-        {chat.online === false && (
+        {chat.serverStatus === 'offline' && (
           <OfflineBanner onRetry={handleRefresh} retrying={refreshing} />
         )}
 
+        {chat.serverStatus === 'degraded' && (
+          <div className="degraded-banner" role="status">
+            Base FAQ en cours d&apos;indexation — certaines réponses peuvent être limitées.
+          </div>
+        )}
+
         <ChatHeader
-          online={chat.online}
-          pipelineLabel={chat.pipelineLabel}
+          serverStatus={chat.serverStatus}
+          faqCount={chat.healthInfo?.faq_count}
           onNewChat={chat.resetChat}
           onInstall={handleInstall}
           canInstall={pwa.canInstall}
           onRefresh={handleRefresh}
           refreshing={refreshing}
+          isDark={isDark}
+          onToggleTheme={toggleTheme}
         />
 
         <main
@@ -69,21 +81,27 @@ export default function App() {
           onScroll={handleScroll}
           aria-live="polite"
         >
-          {chat.showWelcome && <Welcome />}
-          {chat.showWelcome && (
-            <Suggestions
-              items={chat.suggestions}
-              disabled={chat.isProcessing}
-              onSelect={chat.sendMessage}
-            />
-          )}
-          {chat.messages.map((msg) => (
-            <MessageBubble
-              key={msg.id}
-              message={msg}
-              onCopy={() => chat.showToastMsg('Réponse copiée')}
-            />
-          ))}
+          <div className="message-list__inner">
+            {chat.showWelcome && (
+              <>
+                <Welcome />
+                <Suggestions
+                  items={chat.suggestions}
+                  disabled={chat.isProcessing}
+                  onSelect={chat.sendMessage}
+                />
+              </>
+            )}
+            {chat.messages.map((msg) => (
+              <MessageBubble
+                key={msg.id}
+                message={msg}
+                onCopy={() => chat.showToastMsg('Réponse copiée')}
+                onSubmitFeedback={chat.sendFeedback}
+                onToast={chat.showToastMsg}
+              />
+            ))}
+          </div>
         </main>
 
         {showScrollFab && (
@@ -101,7 +119,7 @@ export default function App() {
         )}
 
         <Composer
-          disabled={chat.isProcessing || chat.online === false}
+          disabled={chat.isProcessing || chat.serverStatus === 'offline'}
           onSend={chat.sendMessage}
           compact={isNative}
         />
