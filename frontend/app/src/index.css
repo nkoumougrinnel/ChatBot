@@ -1,0 +1,70 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #1a4594;
+  --primary-light: #3b82f6;
+  --primary-glow: rgba(59, 130, 246, 0.45);
+  --bg-deep: #070f1f;
+  --bg-mid: #0f2744;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-strong: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #f8fafc;
+  --text-muted: rgba(248, 250, 252, 0.62);
+  --bot-bg: #ffffff;
+  --bot-text: #0f172a;
+  --error: #ef4444;
+  --error-bg: rgba(239, 68, 68, 0.12);
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --radius-lg: 28px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --tap-highlight: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-deep);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  -webkit-tap-highlight-color: var(--tap-highlight);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -53,8 +53,9 @@ ChatBot/
 │   └── requirements.txt   # -> pointe vers le requirements.txt racine
 │
 ├── frontend/
-│   ├── index.html, app.js, style.css   # Démo simple
-│   └── advanced_chat/     # Application PWA (main.js, styles.css, service-worker…)
+│   ├── app/               # React + Vite + PWA + APK Android (recommandé)
+│   ├── index.html, app.js # Démo simple
+│   └── advanced_chat/     # PWA vanilla JS (historique)
 │
 ├── data/                  # Corpus CSV / JSON
 ├── docs/                  # Documentation technique (backend, API)
@@ -68,39 +69,40 @@ ChatBot/
 ## Prérequis
 
 - Python 3.10+
+- Node.js 18+ (frontend React)
 - pip et virtualenv
-- (Optionnel, pour Gen3) une clé API Google Gemini
+- (Optionnel, pour Gen3) clé API Google Gemini
+- (APK Android) JDK 21 + Android SDK — voir le guide complet
 
 ---
 
-## Installation et lancement
+## Démarrage rapide
 
 ```powershell
-# 1. Cloner et créer l'environnement virtuel
 git clone <repository-url>
 cd ChatBot
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1      # (Linux/macOS : source .venv/bin/activate)
-
-# 2. Installer les dépendances
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+copy .env.example .env
 
-# 3. Configurer l'environnement
-copy .env.example .env            # puis éditer .env (SECRET_KEY, GEMINI_API_KEY…)
-
-# 4. Initialiser la base de données
 cd backend
-python manage.py migrate
-
-# 5. (Optionnel) Charger des données de démonstration
-python manage.py loaddata faq/fixtures/*.json
-
-# 6. Lancer le serveur de développement
+python manage.py setup_demo
 python manage.py runserver
 ```
 
-- **API** : http://localhost:8000/api/
-- **Frontend** : ouvrir `frontend/advanced_chat/index.html` (ou servir le dossier).
+Dans un second terminal :
+
+```powershell
+cd frontend\app
+npm install
+npm run dev
+```
+
+- **API** : http://127.0.0.1:8000/api/health/
+- **Frontend** : http://localhost:5173
+
+> **Documentation complète** (installation, Gen3, déploiement Railway/Netlify, APK Android, dépannage) : **[docs/GUIDE_COMPLET.md](docs/GUIDE_COMPLET.md)**
 
 ### Variables d'environnement
 
@@ -166,19 +168,26 @@ La suite couvre les modèles, le signal de feedback et les endpoints de l'app
 
 ## Déploiement
 
-Le projet est prêt pour un déploiement de type **Railway / Gunicorn + WhiteNoise** :
+| Composant | Hébergement type | Fichier de référence |
+|-----------|------------------|----------------------|
+| Backend API | Railway (Gunicorn + Postgres) | `railway.json` |
+| Frontend PWA | Netlify / Vercel (`dist/`) | `frontend/app/` |
+| Application Android | APK Capacitor (build local) | `frontend/app/android/` |
 
-- `requirements.txt` (racine) : dépendances installées au build.
-- `railway.json` / `Procfile` : commande de démarrage Gunicorn.
-- Définir au minimum `SECRET_KEY`, `DEBUG=False`, `DATABASE_URL` et
-  `CORS_ALLOWED_ORIGINS` ; `GEMINI_API_KEY` pour activer le niveau LLM.
+Variables minimales en production : `SECRET_KEY`, `DEBUG=False`, `DATABASE_URL`, `CORS_ALLOWED_ORIGINS`, `VITE_API_URL` (frontend).
+
+**Procédure détaillée** : [docs/GUIDE_COMPLET.md](docs/GUIDE_COMPLET.md) (sections 10 à 14).
 
 ---
 
-## Documentation complémentaire
+## Documentation
 
-- `docs/backend/` : architecture, API, intents, pipeline de tests.
-- `backend/chatbot/engine/README.md` : détail du pipeline RAG Gen3.
+| Document | Description |
+|----------|-------------|
+| **[docs/GUIDE_COMPLET.md](docs/GUIDE_COMPLET.md)** | Guide d’exécution et de déploiement (complet) |
+| [docs/README.md](docs/README.md) | Index de la documentation |
+| [docs/backend/](docs/backend/) | Architecture, API, tests |
+| [backend/chatbot/engine/README.md](backend/chatbot/engine/README.md) | Pipeline RAG Gen3 |
 
 ---
 

@@ -18,7 +18,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.shortcuts import get_object_or_404
 
-from faq.models import Category, FAQ, Feedback
+from faq.models import Category, FAQ, FAQVector, Feedback
 from faq.serializers import (
     CategorySerializer,
     FAQSerializer,
@@ -28,6 +28,55 @@ from faq.serializers import (
     ChatbotResponseSerializer,
 )
 from chatbot.utils import find_best_faq
+
+
+@api_view(['GET'])
+def health_check(request):
+    """
+    GET /api/health/ — État du backend pour le frontend (connexion, FAQ, Gen3).
+    """
+    from django.db import connection
+
+    db_ok = True
+    try:
+        connection.ensure_connection()
+    except Exception:
+        db_ok = False
+
+    faq_count = FAQ.objects.filter(is_active=True).count()
+    vector_count = FAQVector.objects.count()
+    phase1_ready = faq_count > 0 and vector_count >= faq_count
+
+    gen3_available = False
+    pipeline_info = None
+    try:
+        from chatbot.engine.rag_pipeline import health as pipeline_health
+        pipeline_info = pipeline_health()
+        gen3_available = bool(
+            pipeline_info.get('ready') or pipeline_info.get('faiss_loaded')
+        )
+    except Exception:
+        pass
+
+    overall = 'ok' if db_ok and phase1_ready else ('degraded' if db_ok else 'error')
+
+    return Response({
+        'status': overall,
+        'database': db_ok,
+        'faq_count': faq_count,
+        'vector_count': vector_count,
+        'phase1': 'ready' if phase1_ready else ('empty' if faq_count == 0 else 'indexing_required'),
+        'gen3': {
+            'available': gen3_available,
+            'pipeline': pipeline_info,
+        },
+        'endpoints': {
+            'ask': '/api/chatbot/ask/',
+            'health': '/api/health/',
+            'stats': '/api/stats/',
+            'ask_v2': '/api/v2/chatbot/ask/',
+        },
+    })
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

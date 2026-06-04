@@ -89,6 +89,16 @@ class ApiTests(APITestCase):
         self.category = Category.objects.create(name="Support")
         self.faq = FAQ.objects.create(question="Q1", answer="A1", category=self.category)
 
+    def test_health_endpoint_is_public(self):
+        response = self.client.get("/api/health/")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.json()
+        self.assertIn("status", data)
+        self.assertIn("faq_count", data)
+        self.assertIn("vector_count", data)
+        self.assertIn("endpoints", data)
+        self.assertIn(data["phase1"], ("ready", "empty", "indexing_required"))
+
     def test_list_categories_is_public(self):
         response = self.client.get("/api/categories/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)

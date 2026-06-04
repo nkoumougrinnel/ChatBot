@@ -1,0 +1,38 @@
+{
+  "name": "supone-ai",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "cap:init": "npx cap init \"SUP'ONE AI\" com.supptic.suponeai --web-dir dist",
+    "cap:sync": "npm run build && npx cap sync android",
+    "android:open": "npx cap open android",
+    "android:build": "npm run cap:sync && cd android && .\\gradlew.bat assembleDebug",
+    "android:build:win": "powershell -NoProfile -Command \"$j = Get-ChildItem 'C:\\Program Files\\Microsoft\\jdk-21*' -ErrorAction SilentlyContinue | Select-Object -First 1; if (-not $j) { $j = Get-ChildItem 'C:\\Program Files\\Microsoft\\jdk-17*' | Select-Object -First 1 }; if ($j) { $env:JAVA_HOME = $j.FullName }; npm run android:build\""
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.2.0",
+    "@capacitor/core": "^7.2.0",
+    "@capacitor/splash-screen": "^7.0.1",
+    "@capacitor/status-bar": "^7.0.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.2.0",
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "vite": "^8.0.12",
+    "vite-plugin-pwa": "^1.3.0"
+  }
+}

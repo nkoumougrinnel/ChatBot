@@ -177,6 +177,9 @@
                     </div>
                 </div>
                 <div class="controls">
+                    <button class="new-chat-btn" id="new-chat-btn" aria-label="Nouvelle conversation" title="Nouvelle conversation">
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
                     <button class="profile-btn" id="profile-toggle" aria-label="Profil utilisateur">
                         <i class="bi bi-person-circle"></i>
                     </button>
@@ -187,8 +190,9 @@
         <!-- Zone de conversation -->
         <main class="chat-body" id="thread" aria-live="polite">
             <div class="welcome-message" id="welcome-section">
+                <div class="welcome-icon"><i class="bi bi-chat-heart-fill"></i></div>
                 <h2>Bienvenue sur SUP'ONE AI</h2>
-                <p>Posez vos questions sur la FAQ de l'établissement</p>
+                <p>Votre assistant pour l'histoire, les admissions, la vie étudiante et bien plus.</p>
             </div>
 
             <!-- Suggestions dynamiques (chargées depuis l'API) -->
@@ -197,14 +201,23 @@
             </div>
         </main>
 
+        <!-- Bouton retour en bas de conversation -->
+        <button id="scroll-bottom-btn" class="scroll-bottom-btn" aria-label="Aller en bas" hidden>
+            <i class="bi bi-arrow-down"></i>
+        </button>
+
         <!-- Zone de saisie -->
         <footer class="chat-footer">
             <form id="composer" class="input-group-custom" autocomplete="off">
-                <input id="input" type="text" placeholder="Tapez votre question ici..." maxlength="500" />
+                <input id="input" type="text" placeholder="Posez votre question sur SUP'ONE..." maxlength="500" aria-label="Votre question" />
                 <button type="submit" id="send" class="send-btn" aria-label="Envoyer">
                     <i class="bi bi-send-fill"></i>
                 </button>
             </form>
+            <div class="input-meta">
+                <span id="char-counter" class="char-counter">0 / 500</span>
+                <span id="pipeline-badge" class="pipeline-badge">Phase 1</span>
+            </div>
         </footer>
 
         <!-- Toast de notification -->

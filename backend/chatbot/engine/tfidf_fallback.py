@@ -33,7 +33,27 @@ _BASE_DIR        = Path(__file__).resolve().parent.parent.parent  # backend/
 _TFIDF_CACHE_PATH = Path(
     os.environ.get("TFIDF_CACHE_PATH", _BASE_DIR / "rag_data" / "tfidf_cache.pkl")
 )
-_DATA_DIR = Path(os.environ.get("FAQ_DATA_DIR", _BASE_DIR.parent / "data"))
+def _faq_data_directories() -> list[Path]:
+    """Répertoires JSON à indexer pour le fallback TF-IDF Gen3."""
+    dirs: list[Path] = []
+    env_dir = os.environ.get("FAQ_DATA_DIR")
+    if env_dir:
+        dirs.append(Path(env_dir))
+    dirs.extend([
+        _BASE_DIR.parent / "data",
+        _BASE_DIR / "data" / "json",
+    ])
+    seen: set[str] = set()
+    out: list[Path] = []
+    for d in dirs:
+        resolved = str(d.resolve())
+        if d.is_dir() and resolved not in seen:
+            seen.add(resolved)
+            out.append(d)
+    return out
+
+
+_DATA_DIR = _faq_data_directories()[0] if _faq_data_directories() else (_BASE_DIR.parent / "data")
 
 # Seuil en dessous duquel la réponse TF-IDF est jugée non pertinente
 _MIN_SCORE = float(os.environ.get("TFIDF_MIN_SCORE", "0.05"))
@@ -61,6 +81,8 @@ def _load_faq_from_json(data_dir: Path) -> list[dict]:
         return entries
 
     for json_file in sorted(data_dir.glob("*.json")):
+        if json_file.name == "conversational_rules.json":
+            continue
         try:
             with open(json_file, "r", encoding="utf-8") as f:
                 data = json.load(f)
@@ -69,31 +91,44 @@ def _load_faq_from_json(data_dir: Path) -> list[dict]:
             for item in items:
                 if not isinstance(item, dict):
                     continue
-                question  = item.get("question", "").strip()
-                answer    = item.get(
-                    "reponse_enrichie",
-                    item.get("answer", item.get("response", ""))
-                ).strip()
-                examples  = item.get("exemples", item.get("examples", []))
-                categorie = item.get("categorie", "Général")
+                meta = item.get("metadata") or {}
+                categorie = item.get("categorie") or meta.get("categorie", "Général")
 
-                if not question or not answer:
+                responses = item.get("responses")
+                if isinstance(responses, list):
+                    answer = (responses[0] or "").strip() if responses else ""
+                else:
+                    answer = (
+                        item.get("reponse_enrichie")
+                        or item.get("answer")
+                        or item.get("response")
+                        or (responses or "")
+                    )
+                    if isinstance(answer, str):
+                        answer = answer.strip()
+                    else:
+                        answer = ""
+
+                examples = item.get("exemples", item.get("examples", []))
+                if examples:
+                    for ex in examples:
+                        if ex and isinstance(ex, str) and ex.strip() and answer:
+                            entries.append({
+                                "question":    ex.strip(),
+                                "answer":      answer,
+                                "categorie":   categorie,
+                                "source_file": json_file.name,
+                            })
                     continue
 
-                entries.append({
-                    "question":    question,
-                    "answer":      answer,
-                    "categorie":   categorie,
-                    "source_file": json_file.name,
-                })
-                for ex in examples:
-                    if ex and isinstance(ex, str) and ex.strip():
-                        entries.append({
-                            "question":    ex.strip(),
-                            "answer":      answer,
-                            "categorie":   categorie,
-                            "source_file": json_file.name,
-                        })
+                question = item.get("question", "").strip()
+                if question and answer:
+                    entries.append({
+                        "question":    question,
+                        "answer":      answer,
+                        "categorie":   categorie,
+                        "source_file": json_file.name,
+                    })
 
         except (json.JSONDecodeError, KeyError) as exc:
             logger.error("[tfidf] Erreur lecture '%s' : %s", json_file.name, exc)
@@ -142,8 +177,10 @@ def load(
             except (pickle.UnpicklingError, KeyError) as exc:
                 logger.warning("[tfidf] Cache corrompu (%s) — reconstruction...", exc)
 
-        logger.info("[tfidf] Construction depuis les JSON dans '%s'...", data_dir)
-        _faq_entries = _load_faq_from_json(data_dir)
+        logger.info("[tfidf] Construction depuis les JSON FAQ...")
+        _faq_entries = []
+        for directory in _faq_data_directories():
+            _faq_entries.extend(_load_faq_from_json(directory))
         if not _faq_entries:
             logger.warning("[tfidf] Aucune entrée FAQ chargée.")
             return

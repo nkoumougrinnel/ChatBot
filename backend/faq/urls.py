@@ -16,6 +16,7 @@ from faq.views import (
     FAQViewSet,
     ChatbotAskViewSet,
     FeedbackViewSet,
+    health_check,
 )
 
 # Initialiser le router DRF
@@ -30,6 +31,7 @@ router.register(r'chatbot', ChatbotAskViewSet, basename='chatbot')
 # URLs patterns
 urlpatterns = [
     path('', include(router.urls)),
+    path('health/', health_check, name='api-health'),
     path('stats/', FeedbackViewSet.faq_stats, name='faq-stats'),
     path('stats/categories/', FeedbackViewSet.category_stats, name='category-stats'),
 ]

@@ -25,8 +25,16 @@ const API_BASE = (() => {
 })();
 
 const API_URL = `${API_BASE}/api/chatbot/ask/`;
+const API_V2_URL = `${API_BASE}/api/v2/chatbot/ask/`;
+const API_HEALTH_URL = `${API_BASE}/api/health/`;
 const API_FEEDBACK_URL = `${API_BASE}/api/feedback/`;
 const API_STATS_URL = `${API_BASE}/api/stats/`;
+
+const STATUS_LABELS = {
+  thinking: "Réflexion en cours",
+  searching: "Recherche dans la base de connaissances",
+  generating: "Génération de la réponse",
+};
 
 // Seuils de confiance pour les réponses (0-1)
 const CONFIDENCE_THRESHOLD_LOW = 0.5;   // En dessous: aucune réponse
@@ -40,9 +48,17 @@ const sendBtn = document.getElementById("send");
 const toast = document.getElementById("toast");
 const suggestionsGrid = document.getElementById("suggestions");
 const welcomeSection = document.getElementById("welcome-section");
+const connectionStatus = document.getElementById("connection-status");
+const statusDot = document.querySelector(".status-dot");
+const pipelineBadge = document.getElementById("pipeline-badge");
+const charCounter = document.getElementById("char-counter");
+const scrollBottomBtn = document.getElementById("scroll-bottom-btn");
+const newChatBtn = document.getElementById("new-chat-btn");
 
 // État de l'application
 let isProcessing = false;
+let gen3Available = false;
+let questionCount = 0;
 let lastUserQuestion = "";
 let hasAskedQuestion = false;
 let activeFeedbackStates = new Map();
@@ -58,6 +74,91 @@ function showToast(msg, duration = 3000) {
   setTimeout(() => {
     toast.classList.remove("show");
   }, duration);
+}
+
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function formatMessageHtml(text) {
+  return escapeHtml(text).replace(/\n/g, "<br>");
+}
+
+function updateCharCounter() {
+  if (!charCounter) return;
+  const len = input.value.length;
+  charCounter.textContent = `${len} / 500`;
+  charCounter.classList.toggle("near-limit", len > 450);
+}
+
+function setConnectionState(online, label) {
+  if (connectionStatus) connectionStatus.textContent = label;
+  if (statusDot) {
+    statusDot.style.background = online ? "var(--success)" : "var(--warning)";
+  }
+}
+
+function setPipelineBadge(label) {
+  if (pipelineBadge) pipelineBadge.textContent = label;
+}
+
+async function checkBackendHealth() {
+  try {
+    const res = await fetch(API_HEALTH_URL, { signal: AbortSignal.timeout(5000) });
+    if (!res.ok) throw new Error("health failed");
+    const data = await res.json();
+    gen3Available = Boolean(data.gen3?.available);
+    setConnectionState(true, gen3Available ? "En ligne · IA avancée" : "En ligne");
+    setPipelineBadge(gen3Available ? "Pipeline IA" : "FAQ intelligente");
+    return data;
+  } catch {
+    gen3Available = false;
+    setConnectionState(false, "Hors ligne");
+    setPipelineBadge("Mode local");
+    return null;
+  }
+}
+
+function createStatusBubble(initialText = "Réflexion en cours") {
+  const bubble = appendBubble(
+    `<div class="status-line"><span class="typing-dots"><span></span><span></span><span></span></span> <span class="status-text">${escapeHtml(initialText)}</span></div>`,
+    "bot",
+  );
+  bubble.classList.add("status-bubble");
+  return bubble;
+}
+
+function updateStatusBubble(bubble, text) {
+  const el = bubble?.querySelector(".status-text");
+  if (el) el.textContent = text;
+}
+
+function removeStatusBubble(bubble) {
+  bubble?.remove();
+}
+
+function showScrollBottomIfNeeded() {
+  if (!scrollBottomBtn) return;
+  scrollBottomBtn.hidden = isUserAtBottom();
+}
+
+function resetConversation() {
+  const keepWelcome = `
+    <div class="welcome-message" id="welcome-section">
+      <div class="welcome-icon"><i class="bi bi-chat-heart-fill"></i></div>
+      <h2>Bienvenue sur SUP'ONE AI</h2>
+      <p>Votre assistant pour l'histoire, les admissions, la vie étudiante et bien plus.</p>
+    </div>
+    <div class="suggestions-grid" id="suggestions"></div>`;
+  thread.innerHTML = keepWelcome;
+  hasAskedQuestion = false;
+  userHasScrolledManually = false;
+  activeFeedbackStates.clear();
+  loadDynamicSuggestions();
+  input.focus();
+  showToast("Nouvelle conversation");
 }
 
 /**
@@ -142,6 +243,8 @@ function initProfileModal() {
  * Charge les suggestions dynamiques depuis l'API feedback (top 3 feedbacks positifs)
  */
 async function loadDynamicSuggestions() {
+  const grid = document.getElementById("suggestions");
+  if (!grid) return;
   try {
     const response = await fetch(API_STATS_URL);
     if (!response.ok) {
@@ -163,8 +266,7 @@ async function loadDynamicSuggestions() {
       return;
     }
 
-    // Créer les cartes de suggestions
-    suggestionsGrid.innerHTML = positiveFeedbacks
+    grid.innerHTML = positiveFeedbacks
       .map((item, index) => {
         const icons = ["bi-star-fill", "bi-heart-fill", "bi-lightbulb-fill"];
         const icon = icons[index] || "bi-chat-dots-fill";
@@ -188,7 +290,9 @@ async function loadDynamicSuggestions() {
  * Charge les suggestions par défaut si l'API échoue
  */
 function loadDefaultSuggestions() {
-  suggestionsGrid.innerHTML = `
+  const grid = document.getElementById("suggestions");
+  if (!grid) return;
+  grid.innerHTML = `
     <button class="suggestion-card" data-question="Quelle est l'histoire de SUP'ONE ?">
       <span class="suggestion-icon"><i class="bi bi-book"></i></span>
       <span class="suggestion-text">Quelle est l'histoire de SUP'ONE ?</span>
@@ -209,7 +313,9 @@ function loadDefaultSuggestions() {
  * Attache les événements de clic aux suggestions
  */
 function attachSuggestionListeners() {
-  const suggestionCards = suggestionsGrid.querySelectorAll(".suggestion-card");
+  const grid = document.getElementById("suggestions");
+  if (!grid) return;
+  const suggestionCards = grid.querySelectorAll(".suggestion-card");
   suggestionCards.forEach((card) => {
     card.addEventListener("click", () => {
       const question = card.getAttribute("data-question");
@@ -376,21 +482,19 @@ async function typeHTML(element, htmlContent, speed = 20) {
 function hideWelcomeAndSuggestions() {
   if (!hasAskedQuestion) {
     hasAskedQuestion = true;
+    const welcome = document.getElementById("welcome-section");
+    const suggestions = document.getElementById("suggestions");
 
-    if (welcomeSection) {
-      welcomeSection.style.opacity = "0";
-      welcomeSection.style.transform = "translateY(-10px)";
-      setTimeout(() => {
-        welcomeSection.style.display = "none";
-      }, 300);
+    if (welcome) {
+      welcome.style.opacity = "0";
+      welcome.style.transform = "translateY(-10px)";
+      setTimeout(() => { welcome.style.display = "none"; }, 300);
     }
 
-    if (suggestionsGrid) {
-      suggestionsGrid.style.opacity = "0";
-      suggestionsGrid.style.transform = "translateY(10px)";
-      setTimeout(() => {
-        suggestionsGrid.classList.add("hidden");
-      }, 300);
+    if (suggestions) {
+      suggestions.style.opacity = "0";
+      suggestions.style.transform = "translateY(10px)";
+      setTimeout(() => { suggestions.classList.add("hidden"); }, 300);
     }
   }
 }
@@ -430,7 +534,139 @@ function attachFeedbackListeners() {
 }
 
 /**
- * Envoie une question à l'API
+ * Pipeline Gen3 — réponse en streaming SSE
+ */
+async function askViaGen3(question, statusBubble) {
+  const response = await fetch(API_V2_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
+    body: JSON.stringify({ question, stream: true }),
+  });
+
+  if (!response.ok) throw new Error(`Gen3 HTTP ${response.status}`);
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let answerBubble = null;
+  let fullAnswer = "";
+  let method = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() || "";
+
+    for (const line of lines) {
+      if (!line.startsWith("data: ")) continue;
+      let payload;
+      try {
+        payload = JSON.parse(line.slice(6));
+      } catch {
+        continue;
+      }
+
+      if (payload.type === "status" && payload.status) {
+        updateStatusBubble(statusBubble, STATUS_LABELS[payload.status] || payload.status);
+      } else if (payload.type === "meta") {
+        method = payload.method || "";
+        removeStatusBubble(statusBubble);
+        answerBubble = appendBubble("", "bot");
+        if (method) {
+          answerBubble.insertAdjacentHTML(
+            "beforeend",
+            `<div class="pipeline-tag"><i class="bi bi-cpu"></i> ${escapeHtml(method)}</div>`,
+          );
+        }
+      } else if (payload.type === "token" && payload.content) {
+        if (!answerBubble) {
+          removeStatusBubble(statusBubble);
+          answerBubble = appendBubble("", "bot");
+        }
+        fullAnswer += payload.content;
+        let contentEl = answerBubble.querySelector(".stream-content");
+        if (!contentEl) {
+          contentEl = document.createElement("div");
+          contentEl.className = "stream-content";
+          answerBubble.appendChild(contentEl);
+        }
+        contentEl.innerHTML = formatMessageHtml(fullAnswer);
+        autoScrollIfNeeded();
+      } else if (payload.type === "error") {
+        throw new Error(payload.message || "Erreur pipeline");
+      }
+    }
+  }
+
+  if (!answerBubble && !fullAnswer) throw new Error("Réponse vide");
+  return { method, answer: fullAnswer };
+}
+
+/**
+ * Pipeline Phase 1 — FAQ TF-IDF avec seuils de confiance
+ */
+async function askViaPhase1(question, statusBubble) {
+  updateStatusBubble(statusBubble, "Recherche dans la FAQ...");
+
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({ question, top_k: 1 }),
+  });
+
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const data = await response.json();
+  removeStatusBubble(statusBubble);
+
+  const topResult = data.results && data.results[0];
+  const confidence = topResult ? Number(topResult.score) : 0;
+
+  if (confidence < CONFIDENCE_THRESHOLD_LOW) {
+    const lowConfBubble = appendBubble("", "bot");
+    await typeText(lowConfBubble, createNoAnswerResponseText(), 10);
+    lowConfBubble.insertAdjacentHTML(
+      "beforeend",
+      `<div class="low-confidence-actions"><ul>
+        <li><i class="bi bi-arrow-repeat"></i> Reformuler votre question</li>
+        <li><i class="bi bi-envelope"></i> Contacter le support SUP'ONE</li>
+        <li><i class="bi bi-book"></i> Consulter la FAQ complète</li>
+      </ul></div>`,
+    );
+  } else if (confidence < CONFIDENCE_THRESHOLD_MED) {
+    const medConfBubble = appendBubble("", "bot");
+    await typeHTML(medConfBubble, createMediumConfidenceResponse(topResult), 10);
+  } else {
+    const botBubble = appendBubble("", "bot");
+    botBubble.setAttribute("data-faq-id", topResult.faq_id);
+    botBubble.innerHTML = `<div class="result-question"><i class="bi bi-pin-angle-fill"></i> ${escapeHtml(topResult.question)}</div>`;
+    await new Promise((r) => setTimeout(r, 200));
+    botBubble.insertAdjacentHTML("beforeend", `<div class="result-answer"></div>`);
+    await typeText(botBubble.querySelector(".result-answer"), topResult.answer, 10);
+
+    const categoryText = topResult.category || "";
+    const scoreText = Number(topResult.score).toFixed(2);
+    const faqId = topResult.faq_id || "";
+    botBubble.insertAdjacentHTML(
+      "beforeend",
+      `<div class="result-meta">
+        <span><i class="bi bi-tags"></i> ${escapeHtml(categoryText)}</span>
+        <span><i class="bi bi-star-fill"></i> Score: ${scoreText}</span>
+      </div>
+      <div class="feedback">
+        <button class="feedback-btn up" aria-label="like" data-faq-id="${faqId}"><i class="bi bi-hand-thumbs-up"></i></button>
+        <button class="feedback-btn down" aria-label="dislike" data-faq-id="${faqId}"><i class="bi bi-hand-thumbs-down"></i></button>
+        <button class="feedback-btn copy" aria-label="copy" data-faq-id="${faqId}"><i class="bi bi-clipboard"></i></button>
+        <button class="feedback-btn share" aria-label="share" data-faq-id="${faqId}"><i class="bi bi-share"></i></button>
+      </div>`,
+    );
+    attachFeedbackListeners();
+  }
+}
+
+/**
+ * Envoie une question — Gen3 si disponible, sinon Phase 1
  */
 async function ask(question) {
   if (isProcessing) return;
@@ -438,153 +674,45 @@ async function ask(question) {
   isProcessing = true;
   sendBtn.disabled = true;
   hideWelcomeAndSuggestions();
-
-  // Stocke la question pour le feedback
   lastUserQuestion = question.trim();
+  questionCount += 1;
 
-  // Affiche la question de l'utilisateur
-  appendBubble(question, "user");
+  const statQuestions = document.getElementById("stat-questions");
+  if (statQuestions) statQuestions.textContent = String(questionCount);
 
-  // Animation de recherche avec typing effect
-  const loadingBubble = appendBubble('<span class="muted"><i class="bi bi-search"></i> </span>', "bot");
-  const loadingTextSpan = loadingBubble.querySelector('.muted');
-  
-  // Animation de typing pour le texte de recherche (sans attendre la fin)
-  typeText(loadingTextSpan, 'Recherche dans la FAQ...', 30);
-
+  appendBubble(escapeHtml(question), "user");
+  const statusBubble = createStatusBubble();
   const startTime = Date.now();
 
   try {
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ question, top_k: 1 }), // On demande 1 seul résultat
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    // S'assurer qu'au moins 1 seconde s'est écoulée
-    const elapsed = Date.now() - startTime;
-    const minDelay = 1000; // 1 seconde minimum
-    if (elapsed < minDelay) {
-      await new Promise((resolve) => setTimeout(resolve, minDelay - elapsed));
-    }
-
-    loadingBubble.remove();
-
-    // Vérifier la confiance de la réponse
-    const topResult = data.results && data.results[0];
-    const confidence = topResult ? Number(topResult.score) : 0;
-
-    // ============================================
-    // LOGIQUE DES 3 SEUILS
-    // ============================================
-    
-    if (confidence < CONFIDENCE_THRESHOLD_LOW) {
-      // SEUIL 1: 0 - 0.5 → Aucune réponse trouvée
-      const lowConfBubble = appendBubble("", "bot");
-      await typeText(lowConfBubble, createNoAnswerResponseText(), 10);
-
-      // Ajouter les actions suggérées
-      lowConfBubble.insertAdjacentHTML(
-        "beforeend",
-        `
-        <div class="low-confidence-actions">
-          <ul>
-            <li><i class="bi bi-arrow-repeat"></i> Reformuler votre question</li>
-            <li><i class="bi bi-envelope"></i> Contacter le support SUP'ONE</li>
-            <li><i class="bi bi-book"></i> Consulter la FAQ complète</li>
-          </ul>
-        </div>
-        `,
-      );
-    } else if (confidence < CONFIDENCE_THRESHOLD_MED) {
-      // SEUIL 2: 0.5 - 0.7 → Suggestion (hésitation)
-      const medConfBubble = appendBubble("", "bot");
-      const medResponse = createMediumConfidenceResponse(topResult);
-      
-      // Animation de typing avec HTML en temps réel
-      await typeHTML(medConfBubble, medResponse, 10);
-
-      // Pas de boutons de feedback dans ce cas
+    if (gen3Available) {
+      try {
+        await askViaGen3(question, statusBubble);
+      } catch {
+        gen3Available = false;
+        setPipelineBadge("FAQ intelligente");
+        await askViaPhase1(question, statusBubble);
+      }
     } else {
-      // SEUIL 3: > 0.7 → Réponse complète avec boutons
-      const botBubble = appendBubble("", "bot");
-
-      // Ajouter data-faq-id à la bulle principale
-      botBubble.setAttribute('data-faq-id', topResult.faq_id);
-
-      // Question
-      botBubble.innerHTML = `<div class="result-question"><i class="bi bi-pin-angle-fill"></i> ${topResult.question}</div>`;
-      await new Promise((r) => setTimeout(r, 300));
-
-      // Réponse avec animation
-      botBubble.insertAdjacentHTML(
-        "beforeend",
-        `<div class="result-answer"></div>`,
-      );
-      await typeText(
-        botBubble.querySelector(".result-answer"),
-        topResult.answer,
-        10,
-      );
-
-      // Extraire les métadonnées
-      const categoryText = topResult.category || "";
-      const scoreNum = Number(topResult.score);
-      const scoreText = Number.isFinite(scoreNum) ? scoreNum.toFixed(2) : "—";
-      const faqId = topResult.faq_id || "";
-
-      // Ajouter meta + feedback
-      botBubble.insertAdjacentHTML(
-        "beforeend",
-        `
-        <div class="result-meta">
-          <span><i class="bi bi-tags"></i> ${categoryText}</span>
-          <span><i class="bi bi-star-fill"></i> Score: ${scoreText}</span>
-        </div>
-        <div class="feedback">
-          <button class="feedback-btn up" aria-label="like" data-faq-id="${faqId}"><i class="bi bi-hand-thumbs-up"></i></button>
-          <button class="feedback-btn down" aria-label="dislike" data-faq-id="${faqId}"><i class="bi bi-hand-thumbs-down"></i></button>
-          <button class="feedback-btn copy" aria-label="copy" data-faq-id="${faqId}"><i class="bi bi-clipboard"></i></button>
-          <button class="feedback-btn share" aria-label="share" data-faq-id="${faqId}"><i class="bi bi-share"></i></button>
-        </div>
-        `,
-      );
-
-      // Attacher les événements aux boutons de feedback APRÈS l'animation
-      attachFeedbackListeners();
+      await askViaPhase1(question, statusBubble);
     }
   } catch (error) {
     console.error("Erreur lors de la requête:", error);
-
-    // S'assurer que le délai minimum est respecté même en cas d'erreur
-    const elapsed = Date.now() - startTime;
-    const minDelay = 1000;
-    if (elapsed < minDelay) {
-      await new Promise((resolve) => setTimeout(resolve, minDelay - elapsed));
-    }
-
-    loadingBubble.remove();
-
-    const errorBubble = appendBubble('<span class="muted"><i class="bi bi-x-circle"></i> </span>', "bot");
-    const errorTextSpan = errorBubble.querySelector('.muted');
+    removeStatusBubble(statusBubble);
+    const errorBubble = appendBubble("", "bot");
     await typeText(
-      errorTextSpan,
-      'Une erreur est survenue. Veuillez réessayer.',
+      errorBubble,
+      "Impossible de joindre le serveur. Vérifiez que le backend est démarré, puis réessayez.",
       10,
     );
+    setConnectionState(false, "Hors ligne");
   } finally {
+    const elapsed = Date.now() - startTime;
+    if (elapsed < 600) await new Promise((r) => setTimeout(r, 600 - elapsed));
     isProcessing = false;
     sendBtn.disabled = false;
     input.focus();
+    showScrollBottomIfNeeded();
   }
 }
 
@@ -828,7 +956,7 @@ function showNegativeFeedbackModal(faqId) {
  * Détecte quand l'utilisateur scroll manuellement pour désactiver l'auto-scroll
  */
 thread.addEventListener('scroll', () => {
-  // Vérifier si l'utilisateur a scrollé vers le haut (pas en bas)
+  showScrollBottomIfNeeded();
   if (!isUserAtBottom()) {
     userHasScrolledManually = true;
     
@@ -891,20 +1019,31 @@ input.addEventListener("input", () => {
   } else {
     sendBtn.classList.remove("has-text");
   }
+  updateCharCounter();
 });
+
+if (newChatBtn) {
+  newChatBtn.addEventListener("click", () => {
+    if (!isProcessing) resetConversation();
+  });
+}
+
+if (scrollBottomBtn) {
+  scrollBottomBtn.addEventListener("click", () => {
+    userHasScrolledManually = false;
+    thread.scrollTo({ top: thread.scrollHeight, behavior: "smooth" });
+    scrollBottomBtn.hidden = true;
+  });
+}
 
 /**
  * Initialisation au chargement
  */
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
   input.focus();
-  console.log("SUP'ONE AI initialisé");
-  console.log("API:", API_URL);
-
-  // Charger les suggestions dynamiques
+  updateCharCounter();
+  await checkBackendHealth();
   loadDynamicSuggestions();
-  
-  // Initialiser la modal de profil
   initProfileModal();
 });
 

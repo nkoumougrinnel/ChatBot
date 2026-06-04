@@ -26,5 +26,6 @@ urlpatterns = [
 # afin d'éviter toute collision avec /api/chatbot/ask/ (Phase 1).
 try:
     urlpatterns.append(path('api/v2/', include('chatbot.urls')))
+    logger.info("Routes Gen3 montees sous /api/v2/")
 except Exception as exc:  # pragma: no cover - dépend de l'environnement
-    logger.warning("Routes Gen3 (chatbot) non montées : %s", exc)
+    logger.error("Routes Gen3 (chatbot) non montees : %s", exc, exc_info=True)

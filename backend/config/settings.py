@@ -43,6 +43,15 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.netlify.app',
     'https://*.ngrok-free.app',
 ]
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS += [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        'http://localhost:5500',
+        'http://127.0.0.1:5500',
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+    ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -98,13 +107,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
-}
+_db_url = os.getenv('DATABASE_URL', '').strip()
+if _db_url:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=_db_url,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -152,7 +170,12 @@ else:
     ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
-CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization', 'X-Requested-With']
+CORS_ALLOW_HEADERS = [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+    'Accept',
+]
 
 # Durcissement de sécurité actif uniquement hors développement.
 if not DEBUG:

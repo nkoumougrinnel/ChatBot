@@ -12,7 +12,7 @@ n'est pas modifié. Seul ce fichier change.
 
 Variables d'environnement :
     GEMINI_API_KEY   (obligatoire)
-    GEMINI_MODEL     (défaut : gemini-1.5-flash)
+    GEMINI_MODEL     (défaut : gemini-2.0-flash)
 
 Installation :
     pip install google-generativeai
@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 # Configuration
 # -------------------------------------------------------------------
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_MODEL   = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
+GEMINI_MODEL   = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash")
 
 if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
