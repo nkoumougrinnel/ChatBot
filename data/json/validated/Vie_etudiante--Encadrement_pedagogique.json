@@ -1,0 +1,632 @@
+[
+  {
+    "id": "faq_211",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Quel est le rôle d'un tuteur à SUP'PTIC ?",
+    "reponse_enrichie": "Le tuteur est un étudiant de niveau supérieur ou un professionnel qui accompagne les étudiants plus jeunes dans l'assimilation des cours techniques et l'adaptation à la vie de l'école.",
+    "exemples": [
+      "Missions du tuteur",
+      "Accompagnement par les pairs",
+      "Soutien académique"
+    ],
+    "sources": [
+      "Direction des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_212",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Qu'est-ce qu'un enseignant référent ?",
+    "reponse_enrichie": "L'enseignant référent est un membre du corps professoral désigné pour suivre un groupe d'étudiants. Il sert de conseiller académique et de premier point de contact pour les difficultés pédagogiques.",
+    "exemples": [
+      "Rôle du référent",
+      "Conseiller académique",
+      "Suivi personnalisé"
+    ],
+    "sources": [
+      "Règlement des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_213",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Comment devenir tuteur à SUP'PTIC ?",
+    "reponse_enrichie": "Pour devenir tuteur, il faut avoir d'excellents résultats académiques et postuler lors des appels à candidatures lancés par la Direction des Études en début d'année.",
+    "exemples": [
+      "Candidature tutorat",
+      "Critères pour être tuteur",
+      "Devenir tuteur étudiant"
+    ],
+    "sources": [
+      "Scolarité"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_214",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Comment connaître mon enseignant référent ?",
+    "reponse_enrichie": "La liste des enseignants référents par classe est affichée au début de chaque semestre sur les tableaux d'affichage de la scolarité et sur la plateforme e-learning.",
+    "exemples": [
+      "Liste des référents",
+      "Affectation des enseignants",
+      "Où trouver mon conseiller ?"
+    ],
+    "sources": [
+      "Affichage Scolarité"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_215",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le tutorat est-il gratuit pour les étudiants ?",
+    "reponse_enrichie": "Oui, le tutorat organisé par l'école est un service gratuit destiné à favoriser la réussite de tous les étudiants.",
+    "exemples": [
+      "Coût du tutorat",
+      "Accès au soutien scolaire",
+      "Gratuité de l'encadrement"
+    ],
+    "sources": [
+      "Direction des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_216",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "À quelle fréqufaqe dois-je rfaqontrer mon enseignant référent ?",
+    "reponse_enrichie": "Il est recommandé de rfaqontrer son référent au moins une fois par semestre pour faire le point sur ses résultats, ou dès que des difficultés académiques apparaissent.",
+    "exemples": [
+      "Fréqufaqe des rendez-vous",
+      "Suivi pédagogique",
+      "Entretien individuel"
+    ],
+    "sources": [
+      "Guide de l'étudiant"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_217",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Où se déroulent les séances de tutorat ?",
+    "reponse_enrichie": "Les séances se déroulent généralement dans les salles de classe après les cours officiels ou dans les salles de travail de la bibliothèque.",
+    "exemples": [
+      "Lieu du tutorat",
+      "Salles de soutien",
+      "Organisation des séances"
+    ],
+    "sources": [
+      "Planning des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_218",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "L'enseignant référent peut-il m'aider pour mon orientation ?",
+    "reponse_enrichie": "Oui, il est là pour vous conseiller sur le choix des options, les spécialités en ingénierie ou management, et pour discuter de votre projet professionnel.",
+    "exemples": [
+      "Conseil en orientation",
+      "Choix de spécialité",
+      "Projet professionnel"
+    ],
+    "sources": [
+      "Service Orientation"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_219",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Les Encadrement pedagogique sont-ils formés ?",
+    "reponse_enrichie": "Oui, les étudiants Encadrement pedagogique reçoivent une formation pédagogique de base dispensée par les enseignants pour apprendre à transmettre efficacement leurs connaissances.",
+    "exemples": [
+      "Formation des Encadrement pedagogique",
+      "Compétences pédagogiques",
+      "Préparation au tutorat"
+    ],
+    "sources": [
+      "Direction des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_220",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Que faire si je ne m'entends pas avec mon enseignant référent ?",
+    "reponse_enrichie": "En cas de difficulté relationnelle majeure, vous pouvez demander un changement de référent auprès du Chef de Département en justifiant votre demande.",
+    "exemples": [
+      "Changement de référent",
+      "Problème relationnel",
+      "Médiation pédagogique"
+    ],
+    "sources": [
+      "Chef de Département"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_221",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le tutorat concerne-t-il toutes les matières ?",
+    "reponse_enrichie": "Le tutorat se concentre principalement sur les matières fondamentales et techniques (Mathématiques, Physique, Programmation, Réseaux) où les étudiants rfaqontrent le plus de difficultés.",
+    "exemples": [
+      "Matières tutorées",
+      "Soutien en mathématiques",
+      "Aide en programmation"
+    ],
+    "sources": [
+      "Coordination du Tutorat"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_222",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "L'enseignant référent suit-il mes absences ?",
+    "reponse_enrichie": "Oui, il reçoit des rapports réguliers sur l'assiduité de ses étudiants et peut vous convoquer en cas d'absentéisme répété pour en comprendre les raisons.",
+    "exemples": [
+      "Suivi de l'assiduité",
+      "Contrôle des absences",
+      "Alerte décrochage"
+    ],
+    "sources": [
+      "Règlement Intérieur"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_223",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Comment savoir quand a lieu la prochaine séance de tutorat ?",
+    "reponse_enrichie": "Le calendrier des séances est publié sur la plateforme e-learning et affiché par les délégués de classe.",
+    "exemples": [
+      "Planning tutorat",
+      "Horaires des séances",
+      "Calendrier de soutien"
+    ],
+    "sources": [
+      "Plateforme E-learning"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_224",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le référent intervient-il dans les problèmes personnels ?",
+    "reponse_enrichie": "Bien que son rôle soit pédagogique, il peut vous orienter vers le service social ou médical de l'école si vos problèmes personnels impactent vos études.",
+    "exemples": [
+      "Aide sociale",
+      "Difficultés personnelles",
+      "Orientation vers services spécialisés"
+    ],
+    "sources": [
+      "Service Social"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_225",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Les Encadrement pedagogique sont-ils rémunérés ?",
+    "reponse_enrichie": "Le tutorat étudiant est souvent basé sur le volontariat, mais il peut être valorisé par des points de bonus ou des certificats d'engagement utiles pour le CV.",
+    "exemples": [
+      "Valorisation du tutorat",
+      "Bonus étudiant",
+      "Certificat de tutorat"
+    ],
+    "sources": [
+      "Direction des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_226",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Mon référent est-il forcément un de mes professeurs ?",
+    "reponse_enrichie": "Généralement oui, il s'agit d'un enseignant qui intervient dans votre filière, ce qui lui permet de mieux comprendre le contexte de vos études.",
+    "exemples": [
+      "Profil du référent",
+      "Enseignant de la filière",
+      "Expertise pédagogique"
+    ],
+    "sources": [
+      "Scolarité"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_227",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Puis-je demander un tuteur spécifique ?",
+    "reponse_enrichie": "Les groupes de tutorat sont constitués par l'école, mais vous pouvez exprimer une préférfaqe si un tuteur particulier a une expertise qui correspond à votre besoin.",
+    "exemples": [
+      "Choix du tuteur",
+      "Affectation aux groupes",
+      "Demande personnalisée"
+    ],
+    "sources": [
+      "Coordination pédagogique"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_228",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le référent participe-t-il aux conseils de classe ?",
+    "reponse_enrichie": "Oui, il apporte son éclairage sur le parcours individuel des étudiants qu'il suit lors des délibérations.",
+    "exemples": [
+      "Rôle en conseil de classe",
+      "Délibérations",
+      "Défense du dossier étudiant"
+    ],
+    "sources": [
+      "Direction des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_229",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le tutorat existe-t-il pour les masters ?",
+    "reponse_enrichie": "En Master, l'encadrement prend plutôt la forme d'un mentorat par des professionnels ou des chercheurs pour accompagner les projets de fin d'études.",
+    "exemples": [
+      "Tutorat en Master",
+      "Mentorat professionnel",
+      "Accompagnement recherche"
+    ],
+    "sources": [
+      "Département Master"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_230",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Comment contacter mon référent en dehors des cours ?",
+    "reponse_enrichie": "Vous pouvez le contacter via la messagerie Moodle ou par email institutionnel pour solliciter un rendez-vous pendant ses heures de permanfaqe.",
+    "exemples": [
+      "Prendre rendez-vous",
+      "Email du référent",
+      "Heures de permanfaqe"
+    ],
+    "sources": [
+      "Guide de l'étudiant"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_231",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Quelles sont les qualités d'un bon tuteur ?",
+    "reponse_enrichie": "Un bon tuteur doit faire preuve de patience, de pédagogie, d'écoute et avoir une parfaite maîtrise de la matière concernée.",
+    "exemples": [
+      "Qualités requises",
+      "Profil du tuteur idéal",
+      "Compétfaqes relationnelles"
+    ],
+    "sources": [
+      "Charte du Tutorat"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_232",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le référent peut-il m'aider à trouver un stage ?",
+    "reponse_enrichie": "Oui, il peut vous conseiller sur les entreprises cibles et valider la pertinfaqe pédagogique de vos missions de stage.",
+    "exemples": [
+      "Aide à la recherche de stage",
+      "Validation de stage",
+      "Réseau professionnel"
+    ],
+    "sources": [
+      "Service des Stages"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_233",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le tutorat est-il obligatoire ?",
+    "reponse_enrichie": "Non, il est facultatif mais fortement recommandé pour les étudiants ayant des lacunes ou souhaitant approfondir certaines notions.",
+    "exemples": [
+      "Obligation de présence",
+      "Volontariat",
+      "Recommandation pédagogique"
+    ],
+    "sources": [
+      "Direction des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_234",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le référent change-t-il chaque année ?",
+    "reponse_enrichie": "Dans la mesure du possible, l'école essaie de maintenir le même référent sur un cycle (par exemple les 3 ans de Licence) pour assurer une continuité dans le suivi.",
+    "exemples": [
+      "Continuité du suivi",
+      "Changement annuel",
+      "Stabilité de l'encadrement"
+    ],
+    "sources": [
+      "Scolarité"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_235",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Puis-je être tuteur dans plusieurs matières ?",
+    "reponse_enrichie": "Oui, si vous avez les compétences requises et que votre emploi du temps le permet, vous pouvez faqadrer plusieurs modules.",
+    "exemples": [
+      "Cumul de tutorat",
+      "Polyvalence du tuteur",
+      "Gestion du temps"
+    ],
+    "sources": [
+      "Coordination pédagogique"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_236",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le référent a-t-il accès à mes notes ?",
+    "reponse_enrichie": "Oui, il a accès à vos résultats académiques pour pouvoir analyser vos forces et vos faiblesses et vous conseiller au mieux.",
+    "exemples": [
+      "Accès aux résultats",
+      "Analyse des notes",
+      "Confidentialité des données"
+    ],
+    "sources": [
+      "Système d'Information Académique"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_237",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le tutorat aide-t-il pour la préparation des examens ?",
+    "reponse_enrichie": "Absolument, des séances intensives de tutorat sont souvent organisées à l'approche des examens pour réviser les points clés du programme.",
+    "exemples": [
+      "Révisions examens",
+      "Préparation intensive",
+      "Annales et exercices"
+    ],
+    "sources": [
+      "Association des Étudiants"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_238",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le référent peut-il justifier une absence ?",
+    "reponse_enrichie": "Non, les justifications d'absence doivent être déposées à la scolarité. Cependant, vous devez informer votre référent de vos absences prolongées.",
+    "exemples": [
+      "Justification d'absence",
+      "Information du référent",
+      "Procédure administrative"
+    ],
+    "sources": [
+      "Règlement Intérieur"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_239",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Comment évaluer la qualité de mon tuteur ?",
+    "reponse_enrichie": "À la fin de chaque semestre, un questionnaire de satisfaction est proposé aux étudiants pour évaluer l'efficacité du dispositif de tutorat.",
+    "exemples": [
+      "Évaluation du tutorat",
+      "Questionnaire de satisfaction",
+      "Amélioration du service"
+    ],
+    "sources": [
+      "Cellule Qualité"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_240",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le référent est-il le même pour toute la classe ?",
+    "reponse_enrichie": "Non, une classe est généralement divisée en petits groupes, chacun ayant son propre enseignant référent pour garantir un suivi de proximité.",
+    "exemples": [
+      "Répartition par groupes",
+      "Nombre d'étudiants par référent",
+      "Suivi de proximité"
+    ],
+    "sources": [
+      "Direction des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_241",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le tutorat peut-il se faire en ligne ?",
+    "reponse_enrichie": "Oui, via les forums Moodle ou des groupes de discussion officiels, les Encadrement pedagogique peuvent répondre aux questions à distance.",
+    "exemples": [
+      "Tutorat numérique",
+      "Aide en ligne",
+      "Forums de soutien"
+    ],
+    "sources": [
+      "Plateforme E-learning"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_242",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le référent peut-il m'aider pour une demande de bourse ?",
+    "reponse_enrichie": "Il peut fournir un avis pédagogique ou une lettre de recommandation si votre dossier de bourse nécessite une évaluation de votre sérieux et de votre potentiel.",
+    "exemples": [
+      "Lettre de recommandation",
+      "Avis pédagogique",
+      "Dossier de bourse"
+    ],
+    "sources": [
+      "Service Social"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_243",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Y a-t-il un tuteur pour les travaux pratiques (TP) ?",
+    "reponse_enrichie": "Oui, des Encadrement pedagogique de laboratoire assistent souvent les enseignants pendant les séances de TP pour aider à la manipulation des équipements.",
+    "exemples": [
+      "Aide en TP",
+      "Tuteur de laboratoire",
+      "Support technique pédagogique"
+    ],
+    "sources": [
+      "Département Technique"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_244",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Le référent est-il présent lors des soutenances ?",
+    "reponse_enrichie": "Souvent, l'enseignant référent fait partie du jury ou assiste à la soutenance de ses étudiants pour témoigner de leur évolution.",
+    "exemples": [
+      "Jury de soutenance",
+      "Présence aux examens oraux",
+      "Accompagnement final"
+    ],
+    "sources": [
+      "Direction des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  },
+  {
+    "id": "faq_245",
+    "categorie": "Vie étudiante",
+    "sous_theme": "Encadrement pedagogique",
+    "question": "Comment signaler un problème avec un tuteur ?",
+    "reponse_enrichie": "Vous pouvez en parler à votre délégué ou directement au coordonnateur du tutorat à la Direction des Études.",
+    "exemples": [
+      "Réclamation tutorat",
+      "Problème avec un tuteur",
+      "Médiation étudiant"
+    ],
+    "sources": [
+      "Direction des Études"
+    ],
+    "date_creation": "2026-05-14",
+    "version": "1.0",
+    "valide": true
+  }
+]

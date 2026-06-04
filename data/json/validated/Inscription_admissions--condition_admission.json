@@ -1,0 +1,665 @@
+[
+  {
+    "id": "faq_001",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Quels sont les critères académiques pour être admis à SUP'PTIC ?",
+    "reponse_enrichie": "Les critères varient selon la filière choisie. Pour les filières d'Ingénieurs des Travaux des Télécommunications (ITT) et Techniciens des Télécommunications (TT), il faut être titulaire d'un baccalauréat des séries scientifiques ou technologiques, ou d'un GCE Advanced Level obtenu en deux matières scientifiques au moins dont les mathématiques et la physique. Pour les filières d'Inspecteurs des Postes et Télécommunications (IPT) et Contrôleurs des Postes et Télécommunications (CPT), un baccalauréat toutes séries (y compris littéraire) ou un GCE Advanced Level en deux matières suffit.",
+    "exemples": [
+      "Quels diplômes sont acceptés à SUP'PTIC ?",
+      "Faut-il un bac scientifique pour entrer à SUP'PTIC ?",
+      "Quelles conditions scolaires pour entrer à SUP'PTIC ?",
+      "Puis-je entrer avec un bac littéraire ?",
+      "Le bac technique est-il accepté ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_002",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Peut-on être admis avec un bac littéraire ?",
+    "reponse_enrichie": "Oui, un baccalauréat littéraire est accepté pour les filières Inspecteurs des Postes et Télécommunications (IPT) et Contrôleurs des Postes et Télécommunications (CPT). Pour ces deux filières, tout baccalauréat ou GCE Advanced Level obtenu en deux matières est suffisant, sans restriction de série. En revanche, pour les filières ITT et TT, un bac scientifique ou technologique (avec maths et physique) est obligatoire.",
+    "exemples": [
+      "Est-ce que le bac L est valable pour SUP'PTIC ?",
+      "Puis-je entrer avec un bac littéraire ?",
+      "Le bac A est-il accepté à SUP'PTIC ?",
+      "Quelle filière puis-je intégrer avec un bac littéraire ?",
+      "Les séries littéraires sont-elles admises ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_003",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les diplômes étrangers sont-ils acceptés ?",
+    "reponse_enrichie": "Oui. Le texte officiel précise que tout diplôme ou titre reconnu équivalent au baccalauréat camerounais est accepté. Les candidats étrangers doivent toutefois noter qu'ils passent des tests spéciaux organisés par le Directeur de SUP'PTIC (Article 13), et que leurs dossiers sont soumis aux mêmes exigences que les candidats nationaux, notamment la présentation d'une pièce d'identité valide.",
+    "exemples": [
+      "Puis-je postuler avec un diplôme étranger ?",
+      "Les diplômes internationaux sont-ils valables à SUP'PTIC ?",
+      "Comment faire reconnaître mon diplôme étranger ?",
+      "Un bac obtenu hors du Cameroun est-il accepté ?",
+      "Je suis ressortissant d'un autre pays, puis-je m'inscrire ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 13"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_004",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Y a-t-il une limite d'âge pour l'admission ?",
+    "reponse_enrichie": "Il n'y a pas de limite d'âge maximum. En revanche, l'âge minimum est fixé à 15 ans révolus au 1er janvier 2025 pour toutes les filières (ITT, IPT, TT, CPT). Cette condition est identique pour les candidats masculins et féminins.",
+    "exemples": [
+      "Quel est l'âge minimum pour postuler à SUP'PTIC ?",
+      "Y a-t-il une restriction d'âge pour le concours ?",
+      "Puis-je postuler si j'ai plus de 30 ans ?",
+      "À quel âge peut-on s'inscrire au concours SUP'PTIC ?",
+      "Peut-on postuler à 15 ans ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_005",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Faut-il passer un concours pour être admis ?",
+    "reponse_enrichie": "Oui. L'entrée en première année se fait obligatoirement sur concours national. Les épreuves diffèrent selon la filière : pour ITT et TT, les matières sont Mathématiques (3H, coeff. 3), Physique/TI (3H, coeff. 3) et Langues (2H, coeff. 2). Pour IPT et CPT, les matières sont Culture Générale (3H, coeff. 3), Mathématiques (3H, coeff. 3) et Langues (2H, coeff. 2). Une note éliminatoire inférieure à 5/20 dans l'une des épreuves entraîne l'élimination du candidat. Il existe aussi une voie d'admission directe en deuxième année sur étude de dossier pour les titulaires de certains diplômes (BTS, HND, DUT, DEUG, etc.).",
+    "exemples": [
+      "Est-ce que l'entrée à SUP'PTIC est sur concours ?",
+      "Quelles épreuves pour le concours SUP'PTIC ?",
+      "Comment se fait la sélection à SUP'PTIC ?",
+      "Peut-on entrer sans passer le concours ?",
+      "Y a-t-il d'autres voies d'admission ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 5, 6 et 9"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_006",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Quels sont les prérequis pour le concours ?",
+    "reponse_enrichie": "Les prérequis sont : avoir au moins 15 ans au 1er janvier 2025, être titulaire d'un baccalauréat (scientifique ou technologique pour ITT/TT ; toutes séries pour IPT/CPT) ou d'un GCE Advanced Level équivalent, déposer un dossier complet avant le 8 août 2025 et s'acquitter des frais de dossier de 15 000 F CFA.",
+    "exemples": [
+      "Quelles conditions pour participer au concours SUP'PTIC ?",
+      "Quels prérequis pour l'examen d'entrée ?",
+      "Faut-il un bac spécifique pour le concours ?",
+      "Qu'est-ce qu'il faut pour s'inscrire au concours ?",
+      "Quelles sont les conditions minimales pour postuler ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_007",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les étudiants étrangers peuvent-ils participer au concours ?",
+    "reponse_enrichie": "Oui, des places sont explicitement réservées aux candidats étrangers. À SUP'PTIC Yaoundé, 5 places sont ouvertes pour les ITT et 5 pour les IPT. Au Centre de Buea, 5 places pour les TT et 5 pour les CPT. Les candidats étrangers passent des tests spéciaux organisés par le Directeur de l'école (Article 13), et doivent déposer leur dossier dans les mêmes délais que les candidats camerounais.",
+    "exemples": [
+      "Puis-je passer le concours SUP'PTIC en tant qu'étranger ?",
+      "Les étrangers sont-ils admis à SUP'PTIC ?",
+      "Combien de places sont réservées aux étrangers ?",
+      "Comment un étudiant étranger postule à SUP'PTIC ?",
+      "Je suis togolais, puis-je m'inscrire à SUP'PTIC ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 3 et 13"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_008",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Quels diplômes techniques sont acceptés ?",
+    "reponse_enrichie": "Les baccalauréats technologiques sont acceptés pour les filières ITT et TT. Pour l'admission directe en deuxième année ITT, les diplômes suivants sont reconnus : Diplôme de Technicien des Télécommunications de SUP'PTIC, DEUG, BTS, HND, DSEP, DUT en Télécommunications, Électronique, Électrotechnique ou Informatique.",
+    "exemples": [
+      "Est-ce que le bac technique est valable pour SUP'PTIC ?",
+      "Quels bacs technologiques sont admis ?",
+      "Puis-je entrer avec un bac en génie électrique ?",
+      "Le BTS est-il accepté pour une admission directe en 2ème année ?",
+      "Quels diplômes permettent une admission en 2ème année ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 9"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_009",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils avoir une mention particulière au bac ?",
+    "reponse_enrichie": "Non, aucune mention particulière au baccalauréat n'est exigée. La décision officielle ne mentionne aucun critère de mention. La sélection se fait uniquement sur la base des résultats au concours d'entrée.",
+    "exemples": [
+      "Faut-il une mention pour entrer à SUP'PTIC ?",
+      "Quelle note minimale au bac est requise ?",
+      "Puis-je postuler avec une mention Passable ?",
+      "La mention Bien est-elle obligatoire ?",
+      "Une mauvaise note au bac m'empêche-t-elle de postuler ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_010",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats handicapés peuvent-ils participer au concours ?",
+    "reponse_enrichie": "Oui. La décision officielle ne prévoit aucune exclusion liée au handicap. Les conditions d'admission sont les mêmes pour tous : être âgé d'au moins 15 ans et détenir le diplôme requis. À noter que le dossier doit inclure un certificat médical délivré par un médecin de la santé publique attestant l'aptitude aux travaux dans le domaine des Postes, Télécommunications et TIC.",
+    "exemples": [
+      "Les personnes handicapées peuvent-elles postuler à SUP'PTIC ?",
+      "Comment s'inscrire au concours avec un handicap ?",
+      "Le handicap est-il un motif de refus à SUP'PTIC ?",
+      "Y a-t-il des aménagements pour les candidats handicapés ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_011",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir une attestation médicale ?",
+    "reponse_enrichie": "Oui, c'est obligatoire. Le dossier doit contenir un certificat médical délivré par un médecin de la santé publique, attestant que le candidat est apte aux travaux dans le domaine des Postes, des Télécommunications et des Technologies de l'Information et de la Communication.",
+    "exemples": [
+      "Faut-il un certificat médical pour le dossier ?",
+      "Dois-je présenter une attestation de santé pour SUP'PTIC ?",
+      "Quel type de document médical est requis ?",
+      "Qui peut délivrer le certificat médical ?",
+      "Le certificat médical doit-il être récent ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_012",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils maîtriser l'informatique avant l'admission ?",
+    "reponse_enrichie": "Aucune maîtrise préalable de l'informatique n'est formellement exigée par le règlement du concours. Cependant, la matière Physique/TI fait partie des épreuves pour les filières ITT et TT. Une bonne base en sciences (maths, physique) est donc recommandée pour réussir.",
+    "exemples": [
+      "Faut-il savoir utiliser un ordinateur pour le concours ?",
+      "L'informatique est-elle au programme du concours ?",
+      "Dois-je maîtriser l'informatique avant d'entrer à SUP'PTIC ?",
+      "Est-ce obligatoire d'avoir des compétences numériques pour postuler ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 5 et 6"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_013",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils avoir un bon niveau en anglais ?",
+    "reponse_enrichie": "Une épreuve de Langues est au programme de toutes les filières (2H, coefficient 2, note éliminatoire < 5/20). Le concours est bilingue (français et anglais), les candidats anglophones composent dans leur langue. Une maîtrise fonctionnelle d'au moins une des deux langues officielles est donc indispensable pour ne pas être éliminé.",
+    "exemples": [
+      "Faut-il parler anglais pour le concours SUP'PTIC ?",
+      "Le niveau d'anglais est-il évalué au concours ?",
+      "Puis-je composer en français si je ne parle pas anglais ?",
+      "L'épreuve de langues est-elle obligatoire ?",
+      "Le concours est-il bilingue ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_014",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir un casier judiciaire ?",
+    "reponse_enrichie": "Non. La liste officielle des pièces à fournir (Article 4) ne mentionne pas de casier judiciaire. Les documents requis sont : acte de candidature, récépissé de paiement, acte de naissance, copie du diplôme ou attestation de réussite, attestation ou certificat de scolarité, certificat médical, 2 photos 4x4, photocopie de la CNI et une enveloppe timbrée.",
+    "exemples": [
+      "Dois-je présenter un casier judiciaire pour le dossier ?",
+      "Est-ce obligatoire d'avoir un casier vierge pour SUP'PTIC ?",
+      "Quels documents légaux sont requis pour l'inscription ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_015",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils avoir une expérience professionnelle ?",
+    "reponse_enrichie": "Non, aucune expérience professionnelle n'est requise pour l'entrée en première année. Le concours est ouvert à tout titulaire du baccalauréat requis, quel que soit son parcours professionnel.",
+    "exemples": [
+      "Faut-il avoir travaillé avant de postuler à SUP'PTIC ?",
+      "Est-ce que l'expérience professionnelle est exigée ?",
+      "Puis-je postuler directement après le bac sans expérience ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_016",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils passer un entretien oral ?",
+    "reponse_enrichie": "Non, le concours d'entrée à SUP'PTIC ne comprend aucune épreuve orale. Il est composé uniquement d'épreuves écrites : Mathématiques, Physique/TI et Langues pour les filières ITT/TT, et Culture Générale, Mathématiques et Langues pour les filières IPT/CPT.",
+    "exemples": [
+      "Y a-t-il un entretien oral au concours SUP'PTIC ?",
+      "Dois-je passer une interview pour entrer ?",
+      "Le concours comporte-t-il une épreuve orale ?",
+      "Comment se déroule le concours d'entrée ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_017",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir des lettres de recommandation ?",
+    "reponse_enrichie": "Non. La liste officielle des pièces du dossier de candidature (Article 4) ne prévoit aucune lettre de recommandation. La sélection repose entièrement sur les résultats aux épreuves écrites du concours.",
+    "exemples": [
+      "Faut-il des lettres de recommandation pour SUP'PTIC ?",
+      "Qui peut rédiger une recommandation pour le dossier ?",
+      "Une lettre de professeur est-elle nécessaire ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_018",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils avoir une moyenne minimale au bac ?",
+    "reponse_enrichie": "Non, aucune moyenne minimale au baccalauréat n'est exigée. La décision officielle ne fixe aucun seuil de moyenne. Pour être autorisé à composer, il suffit d'être titulaire du diplôme requis et d'avoir un dossier complet.",
+    "exemples": [
+      "Quelle moyenne faut-il avoir eu au bac ?",
+      "Y a-t-il une note minimale au bac pour postuler ?",
+      "Puis-je postuler avec 10/20 au bac ?",
+      "Une mauvaise note au bac m'empêche-t-elle de m'inscrire ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_019",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir un projet de motivation ?",
+    "reponse_enrichie": "Non. La liste des pièces à fournir (Article 4) n'inclut ni lettre de motivation ni projet personnel. Il faut uniquement un acte de candidature dûment rempli, disponible dans les délégations régionales, à SUP'PTIC ou en téléchargement sur www.e-supptic.cm.",
+    "exemples": [
+      "Dois-je écrire une lettre de motivation pour SUP'PTIC ?",
+      "Faut-il un projet personnel pour le dossier ?",
+      "Comment dois-je présenter ma motivation dans le dossier ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_020",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils avoir une bonne condition physique ?",
+    "reponse_enrichie": "Le dossier exige un certificat médical délivré par un médecin de la santé publique attestant l'aptitude aux travaux dans le domaine des Postes, Télécommunications et TIC. Bien qu'il n'y ait pas de test sportif, une condition physique acceptable est donc indirectement requise par cette certification médicale.",
+    "exemples": [
+      "Faut-il être sportif pour entrer à SUP'PTIC ?",
+      "Y a-t-il un test physique au concours ?",
+      "Que signifie l'aptitude physique pour SUP'PTIC ?",
+      "Le certificat médical évalue-t-il la condition physique ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_021",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir des relevés de notes ?",
+    "reponse_enrichie": "Non, les relevés de notes ne figurent pas dans la liste des pièces obligatoires. Il faut cependant fournir une copie certifiée conforme du diplôme ou de l'attestation de réussite, ainsi qu'une attestation ou certificat de scolarité pour les candidats ayant présenté les examens pour l'obtention du diplôme exigé.",
+    "exemples": [
+      "Quels relevés de notes dois-je fournir ?",
+      "Dois-je présenter mes bulletins scolaires ?",
+      "Est-ce obligatoire de joindre ses notes au dossier ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_022",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils payer des frais de dossier ?",
+    "reponse_enrichie": "Oui. Des frais de concours de 15 000 F CFA sont obligatoires et non remboursables (Article 10). Ce paiement se fait par versement dans les Bureaux de Poste au profit de l'Agent Comptable de SUP'PTIC, compte N° 150657330-19. Le récépissé de ce versement doit impérativement être joint au dossier.",
+    "exemples": [
+      "Combien coûtent les frais d'inscription au concours SUP'PTIC ?",
+      "Les frais de dossier sont-ils remboursables ?",
+      "Comment payer les frais de concours ?",
+      "Où effectuer le paiement des 15 000 F CFA ?",
+      "Quel est le numéro de compte pour le versement ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 4 et 10"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_023",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir des photos d'identité ?",
+    "reponse_enrichie": "Oui, deux (02) photos de format 4x4 récentes sont obligatoires dans le dossier de candidature.",
+    "exemples": [
+      "Combien de photos faut-il pour le dossier SUP'PTIC ?",
+      "Quel format de photo est requis pour l'inscription ?",
+      "Les photos doivent-elles être récentes ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_024",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir un acte de naissance ?",
+    "reponse_enrichie": "Oui, une copie certifiée conforme de l'acte de naissance datant de moins de trois (03) mois est obligatoire dans le dossier.",
+    "exemples": [
+      "Faut-il un acte de naissance pour le concours ?",
+      "L'acte de naissance doit-il être récent ?",
+      "De quand doit dater l'acte de naissance pour le dossier SUP'PTIC ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_025",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir une copie du diplôme du bac ?",
+    "reponse_enrichie": "Oui, une copie certifiée conforme du diplôme exigé ou de l'attestation de réussite est obligatoire. Pour les candidats ayant récemment passé l'examen mais n'ayant pas encore leur diplôme définitif, une attestation ou un certificat de scolarité est également accepté.",
+    "exemples": [
+      "Dois-je fournir mon diplôme du bac pour le dossier ?",
+      "L'attestation de réussite est-elle acceptée à la place du diplôme ?",
+      "Que faire si je n'ai pas encore mon diplôme en main ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_026",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils avoir suivi des cours préparatoires ?",
+    "reponse_enrichie": "Non, les cours préparatoires ne sont pas obligatoires. Les programmes du concours portent sur les programmes officiels des classes de terminale (séries scientifiques pour ITT/TT, séries littéraires pour IPT/CPT). Une bonne révision des programmes scolaires officiels est suffisante.",
+    "exemples": [
+      "Faut-il une préparation spéciale pour le concours ?",
+      "Existe-t-il des classes préparatoires pour SUP'PTIC ?",
+      "Puis-je postuler sans avoir suivi de cours de préparation ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 5"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_027",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir une preuve de nationalité ?",
+    "reponse_enrichie": "Oui, une photocopie certifiée conforme de la Carte Nationale d'Identité (CNI) est obligatoire pour les candidats camerounais. Les candidats étrangers fournissent leur passeport ou document d'identité équivalent.",
+    "exemples": [
+      "Quels documents d'identité fournir pour s'inscrire ?",
+      "La CNI est-elle obligatoire dans le dossier ?",
+      "Un passeport peut-il remplacer la CNI ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_028",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir une preuve de résidence ?",
+    "reponse_enrichie": "Non, aucun certificat de résidence n'est requis dans la liste officielle des pièces du dossier. Il faut cependant fournir une enveloppe format A4 timbrée à 1 000 F CFA à l'adresse du candidat, qui servira à l'envoi de la convocation.",
+    "exemples": [
+      "Faut-il un certificat de résidence pour s'inscrire ?",
+      "Dois-je fournir une preuve de domicile ?",
+      "Pourquoi faut-il une enveloppe timbrée dans le dossier ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_029",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir un relevé bancaire ?",
+    "reponse_enrichie": "Non, aucun relevé bancaire n'est exigé. Le seul document financier requis est le récépissé de versement des frais de concours de 15 000 F CFA effectué dans les Bureaux de Poste.",
+    "exemples": [
+      "Dois-je montrer mes finances pour le dossier ?",
+      "Un relevé bancaire est-il obligatoire ?",
+      "Quels justificatifs financiers faut-il pour SUP'PTIC ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_030",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir une autorisation parentale ?",
+    "reponse_enrichie": "Non, aucune autorisation parentale n'est mentionnée dans les pièces requises. L'obtention du baccalauréat est considérée comme preuve de maturité suffisante pour postuler, même si le candidat est encore mineur (l'âge minimum est 15 ans).",
+    "exemples": [
+      "Faut-il une autorisation des parents pour s'inscrire ?",
+      "Un mineur de 15 ans a-t-il besoin d'une autorisation parentale ?",
+      "Quels documents parentaux faut-il fournir ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 2 et 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_031",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Quel est l'âge minimum pour se présenter au concours ?",
+    "reponse_enrichie": "L'âge minimum est de 15 ans révolus au 1er janvier 2025, et cela vaut pour toutes les filières : Ingénieurs des Travaux des Télécommunications (ITT), Inspecteurs des Postes et Télécommunications (IPT), Techniciens des Télécommunications (TT) et Contrôleurs des Postes et Télécommunications (CPT). Il n'y a pas de limite d'âge maximum.",
+    "exemples": [
+      "Y a-t-il un âge minimum pour le concours SUP'PTIC ?",
+      "Puis-je postuler si je n'ai pas encore 18 ans ?",
+      "À quel âge peut-on composer le concours SUP'PTIC ?",
+      "Un élève de 15 ans peut-il s'inscrire ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_032",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir une preuve de paiement des frais ?",
+    "reponse_enrichie": "Oui, c'est obligatoire. Le récépissé de versement de 15 000 F CFA dans les Bureaux de Poste, au profit de l'Agent Comptable de SUP'PTIC (compte N° 150657330-19), doit impérativement être joint au dossier. Sans ce document, le dossier sera considéré comme incomplet et le candidat ne pourra pas concourir (Article 11).",
+    "exemples": [
+      "Dois-je joindre le reçu de paiement au dossier ?",
+      "Quels justificatifs de paiement sont demandés ?",
+      "Que se passe-t-il si je ne joins pas le récépissé ?",
+      "Comment payer les frais de concours ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Articles 4, 10 et 11"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_033",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats doivent-ils fournir une preuve de scolarité antérieure ?",
+    "reponse_enrichie": "Partiellement. Les candidats ayant présenté les examens pour l'obtention du diplôme exigé doivent fournir une attestation ou un certificat de scolarité. En dehors de ce cas, seule la copie certifiée du diplôme ou de l'attestation de réussite est requise.",
+    "exemples": [
+      "Quels documents de scolarité fournir pour le dossier ?",
+      "Dois-je présenter une attestation scolaire ?",
+      "Le certificat de scolarité est-il obligatoire ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 4"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_034",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Les candidats titulaires d'un GCE peuvent-ils participer au concours ?",
+    "reponse_enrichie": "Oui. Le GCE Advanced Level est explicitement reconnu pour toutes les filières. Pour ITT et TT, il doit être obtenu en deux matières scientifiques au moins, dont les mathématiques et la physique. Pour IPT et CPT, un GCE A/L en deux matières quelconques suffit. Le concours est bilingue, les anglophones composent dans leur langue.",
+    "exemples": [
+      "Les anglophones peuvent-ils composer le concours SUP'PTIC ?",
+      "Le GCE Advanced Level est-il accepté ?",
+      "Faut-il obligatoirement avoir le bac francophone ?",
+      "Quelle filière puis-je intégrer avec un GCE A/L en sciences ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 2"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  },
+  {
+    "id": "faq_035",
+    "categorie": "Inscriptions et admissions",
+    "sous_theme": "Conditions d'admission",
+    "question": "Y a-t-il des épreuves pratiques pendant le concours ?",
+    "reponse_enrichie": "Non, le concours d'entrée ne comprend que des épreuves écrites. Pour les filières ITT et TT : Mathématiques (3H), Physique/TI (3H), Langues (2H). Pour les filières IPT et CPT : Culture Générale (3H), Mathématiques (3H), Langues (2H). Une fois admis et en formation, des travaux pratiques sont intégrés au cursus.",
+    "exemples": [
+      "L'examen d'entrée est-il pratique ?",
+      "Y a-t-il des TP au concours SUP'PTIC ?",
+      "Le concours comprend-il des épreuves sur ordinateur ?",
+      "Comment se déroulent les épreuves du concours ?"
+    ],
+    "sources": [
+      "DECISION N°1825024 MINESUP/MPT/SG/DAUQ/SDEAC du 28 MAI 2025 - Article 6"
+    ],
+    "date_creation": "2026-04-10",
+    "version": "2.0",
+    "valide": true
+  }
+]
