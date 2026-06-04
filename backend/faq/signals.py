@@ -4,9 +4,13 @@ Signaux Django pour l'app FAQ.
 Recalcule les poids et scores des vecteurs suite aux feedbacks utilisateurs.
 """
 
+import logging
+
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from faq.models import Feedback, FAQVector
+
+logger = logging.getLogger(__name__)
 
 
 @receiver(post_save, sender=Feedback)
@@ -43,7 +47,7 @@ def update_faq_vector_on_feedback(sender, instance, created, **kwargs):
         # (le score original reste inchangé en DB, mais il reflète mieux l'insatisfaction)
         instance.score_similarite = instance.score_similarite * 0.7
         instance.save()
-        print(f"[FAQ Signal] Feedback #{instance.id} négatif : score réduit de 30%")
+        logger.debug("Feedback #%s négatif : score réduit de 30%%", instance.id)
     
     # ===== 3. Mettre à jour le vecteur associé =====
     try:
@@ -58,9 +62,12 @@ def update_faq_vector_on_feedback(sender, instance, created, **kwargs):
             vector.norm = max(vector.norm * 0.9, 0.1)  # Min 0.1
         
         vector.save()
-        
-        print(f"[FAQ Signal] FAQ #{faq.id} mise à jour: popularity={faq.popularity}, norm={vector.norm:.3f}")
-    
+
+        logger.debug(
+            "FAQ #%s mise à jour: popularity=%s, norm=%.3f",
+            faq.id, faq.popularity, vector.norm,
+        )
+
     except FAQVector.DoesNotExist:
-        print(f"[FAQ Signal] ⚠ Aucun vecteur trouvé pour FAQ #{faq.id}")
+        logger.warning("Aucun vecteur trouvé pour FAQ #%s", faq.id)
 

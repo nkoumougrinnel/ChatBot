@@ -35,13 +35,12 @@ def get_chatbot_response(question: str, top_k: int = 3):
     Returns:
         dict: Résultats formatés avec les FAQs pertinentes.
     """
-    # Étape 1 : Calculer le vecteur TF-IDF de la question
-    user_vector = compute_tfidf_vector(question)
+    # Étape 1 : Trouver les FAQs les plus pertinentes
+    # (find_best_faq attend la question brute : il gère lui-même la
+    # vectorisation TF-IDF et les règles conversationnelles).
+    faq_results = find_best_faq(question, top_k=top_k)
 
-    # Étape 2 : Trouver les FAQs les plus pertinentes
-    faq_results = find_best_faq(user_vector, top_k)
-
-    # Étape 3 : Déterminer le statut de confiance
+    # Étape 2 : Déterminer le statut de confiance
     if not faq_results:
         status = "not found"
     elif faq_results[0]["score"] < 0.6:
@@ -51,7 +50,7 @@ def get_chatbot_response(question: str, top_k: int = 3):
     else:
         status = "confident"
 
-    # Étape 4 : Formater la réponse
+    # Étape 3 : Formater la réponse
     return {
         "question": question,
         "results": faq_results,
