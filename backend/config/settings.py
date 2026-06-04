@@ -2,14 +2,18 @@ import os
 from pathlib import Path
 
 import dj_database_url
-from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Charge les variables d'environnement depuis un fichier .env si présent
-# (recherche backend/.env puis la racine du projet).
-load_dotenv(BASE_DIR / '.env')
-load_dotenv(BASE_DIR.parent / '.env')
+# (recherche backend/.env puis la racine du projet). python-dotenv est
+# optionnel : son absence ne doit pas empêcher Django de démarrer.
+try:
+    from dotenv import load_dotenv
+    load_dotenv(BASE_DIR / '.env')
+    load_dotenv(BASE_DIR.parent / '.env')
+except ImportError:
+    pass
 
 
 def env_list(name, default=''):
