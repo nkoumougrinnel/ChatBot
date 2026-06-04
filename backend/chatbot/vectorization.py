@@ -18,14 +18,20 @@ Fonctions principales :
 - `compute_and_store_vectors()` : calcule et persiste les vecteurs pour toutes les FAQ.
 """
 
-from sklearn.feature_extraction.text import TfidfVectorizer
-import numpy as np
+import logging
 import pickle
+import tempfile
 from pathlib import Path
+
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 from faq.models import FAQ, FAQVector
 
+logger = logging.getLogger(__name__)
+
 # Chemin pour sauvegarder le vectorizer entraîné
-VECTORIZER_PATH = Path('/tmp/tfidf_vectorizer.pkl')
+VECTORIZER_PATH = Path(tempfile.gettempdir()) / 'tfidf_vectorizer.pkl'
 
 # Vectorizer TF-IDF global (chargé depuis le disque)
 vectorizer = None
@@ -42,9 +48,9 @@ def save_vectorizer(vec, path=VECTORIZER_PATH):
     try:
         with open(path, 'wb') as f:
             pickle.dump(vec, f)
-        print(f"[Vectorization] Vectorizer sauvegardé: {path}")
+        logger.info(f"[Vectorization] Vectorizer sauvegardé: {path}")
     except Exception as e:
-        print(f"[Vectorization] Erreur sauvegarde: {e}")
+        logger.error("[Vectorization] Erreur sauvegarde: %s", e)
 
 
 def load_vectorizer(path=VECTORIZER_PATH):
@@ -55,7 +61,7 @@ def load_vectorizer(path=VECTORIZER_PATH):
         path (Path): Chemin du fichier pickle
     
     Returns:
-        TfidfVectorizer ou None si fichier n'existe pas
+        TfidfVectorizer ou None si fichier n existe pas
     """
     global vectorizer
     
@@ -63,10 +69,10 @@ def load_vectorizer(path=VECTORIZER_PATH):
         try:
             with open(path, 'rb') as f:
                 vectorizer = pickle.load(f)
-            print(f"[Vectorization] Vectorizer chargé depuis: {path}")
+            logger.info(f"[Vectorization] Vectorizer chargé depuis: {path}")
             return vectorizer
         except Exception as e:
-            print(f"[Vectorization] Erreur chargement: {e}")
+            logger.error("[Vectorization] Erreur chargement: %s", e)
             return None
     
     return None
@@ -99,9 +105,9 @@ def train_vectorizer(corpus):
     )
     
     # Ajuster le vectorizer sur le corpus fourni
-    print(f"[Vectorization] Entraînement sur {len(corpus)} questions...")
+    logger.info(f"[Vectorization] Entraînement sur {len(corpus)} questions...")
     vectorizer.fit(corpus)
-    print(f"[Vectorization] Vocabulaire: {len(vectorizer.vocabulary_)} mots")
+    logger.info(f"[Vectorization] Vocabulaire: {len(vectorizer.vocabulary_)} mots")
     
     # Sauvegarder sur disque pour réutilisation
     save_vectorizer(vectorizer)
@@ -133,7 +139,7 @@ def compute_tfidf_vector(text):
         
         # Si toujours pas de vectorizer, essayer de l'entraîner
         if vectorizer is None:
-            print("[Vectorization] Vectorizer non trouvé, entraînement à la demande...")
+            logger.info("[Vectorization] Vectorizer non trouvé, entraînement à la demande...")
             corpus = list(FAQ.objects.values_list('question', flat=True))
             if corpus:
                 train_vectorizer(corpus)
@@ -163,21 +169,21 @@ def compute_and_store_vectors():
       ou crée une instance `FAQVector` liée.
     """
     # Récupérer toutes les questions (itérable de chaînes)
-    print("[Vectorization] Récupération du corpus...")
+    logger.info("[Vectorization] Récupération du corpus...")
     corpus = list(FAQ.objects.values_list("question", flat=True))
     
     if not corpus:
-        print("[Vectorization] Aucune FAQ en base, skip")
+        logger.info("[Vectorization] Aucune FAQ en base, skip")
         return
     
     total_faqs = len(corpus)
-    print(f"[Vectorization] Corpus: {total_faqs} FAQs")
+    logger.info(f"[Vectorization] Corpus: {total_faqs} FAQs")
     
     # Entraîner le vectorizer sur ce corpus
     train_vectorizer(corpus)
     
     # OPTIMISATION: Traiter par batch pour éviter de charger 15000 FAQs en RAM
-    batch_size = 1000
+    batch_size = 500
     vectors_created = 0
     
     for i in range(0, total_faqs, batch_size):
@@ -205,6 +211,6 @@ def compute_and_store_vectors():
         
         # Afficher la progression
         progress = min(i + batch_size, total_faqs)
-        print(f"[Vectorization] Progression: {progress}/{total_faqs} FAQs ({int(progress/total_faqs*100)}%)")
+        logger.info(f"[Vectorization] Progression: {progress}/{total_faqs} FAQs ({int(progress/total_faqs*100)}%)")
     
-    print(f"[Vectorization] ✅ {vectors_created} vecteurs calculés et stockés")
+    logger.info(f"[Vectorization] ✅ {vectors_created} vecteurs calculés et stockés")
