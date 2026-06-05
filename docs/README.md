@@ -6,6 +6,8 @@
 
 **[DEPLOIEMENT.md](DEPLOIEMENT.md)** — **Mise en production** : Railway (backend), Netlify/Vercel (frontend PWA), CI GitHub, checklist.
 
+**[DOCKER.md](DOCKER.md)** — **Serveur Docker** : Compose (Postgres + API + Nginx), volumes, bootstrap, HTTPS.
+
 **[MOBILE.md](MOBILE.md)** — Application Android (Capacitor) : build APK, `VITE_API_URL`, thèmes clair/sombre, clavier, checklist distribution.
 
 ## Documentation technique backend

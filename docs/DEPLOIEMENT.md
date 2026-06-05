@@ -4,6 +4,7 @@ Guide pas à pas pour mettre en production le chatbot SUP'PTIC.
 
 | Composant | Plateforme | Fichiers de config |
 |-----------|------------|-------------------|
+| **Serveur dédié / VPS** | **Docker Compose** (recommandé on-premise) | `docker-compose.yml`, `deploy/docker.env.example` — **[DOCKER.md](DOCKER.md)** |
 | **Backend API** (Django + Postgres) | [Railway](https://railway.app) | `railway.json`, `nixpacks.toml`, `deploy/railway.env.example` |
 | **Frontend PWA** (React + Vite) | [Netlify](https://netlify.com) (recommandé) ou [Vercel](https://vercel.com) | `frontend/app/netlify.toml`, `frontend/app/vercel.json` |
 | **APK Android** | Build local (Capacitor) | [MOBILE.md](MOBILE.md) |

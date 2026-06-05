@@ -1,0 +1,39 @@
+# Git & IDE
+.git
+.gitignore
+.cursor
+.vscode
+.idea
+*.md
+!backend/**/README.md
+
+# Python local
+.venv
+venv
+__pycache__
+*.py[cod]
+*.sqlite3
+backend/staticfiles
+backend/rag_data
+.pytest_cache
+.mypy_cache
+
+# Node / frontend build local
+frontend/app/node_modules
+frontend/app/dist
+frontend/app/android
+frontend/app/.env
+frontend/app/.env.*
+
+# Données générées / lourdes (reconstruites au bootstrap)
+*.log
+terminals
+
+# Secrets
+.env
+.env.*
+!deploy/*.env.example
+!frontend/app/.env.example
+
+# CI / déploiement cloud (non requis dans l'image)
+.github

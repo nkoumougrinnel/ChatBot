@@ -170,12 +170,13 @@ La suite couvre les modèles, le signal de feedback et les endpoints de l'app
 
 | Composant | Plateforme | Fichiers |
 |-----------|------------|----------|
+| **Serveur / VPS** | **Docker Compose** | `docker-compose.yml`, [docs/DOCKER.md](docs/DOCKER.md) |
 | Backend API | **Railway** (Gunicorn + Postgres) | `railway.json`, `nixpacks.toml`, `deploy/railway.env.example` |
 | Frontend PWA | **Netlify** ou Vercel | `frontend/app/netlify.toml`, `deploy/netlify.env.example` |
 | Application Android | Build local (Capacitor) | [docs/MOBILE.md](docs/MOBILE.md) |
 | CI | GitHub Actions | `.github/workflows/ci.yml` |
 
-**Procédure pas à pas** : **[docs/DEPLOIEMENT.md](docs/DEPLOIEMENT.md)**
+**Cloud** : [docs/DEPLOIEMENT.md](docs/DEPLOIEMENT.md) — **Serveur Docker** : [docs/DOCKER.md](docs/DOCKER.md)
 
 ---
 
@@ -183,7 +184,8 @@ La suite couvre les modèles, le signal de feedback et les endpoints de l'app
 
 | Document | Description |
 |----------|-------------|
-| **[docs/DEPLOIEMENT.md](docs/DEPLOIEMENT.md)** | Mise en production (Railway + Netlify) |
+| **[docs/DOCKER.md](docs/DOCKER.md)** | Déploiement serveur (Docker Compose) |
+| **[docs/DEPLOIEMENT.md](docs/DEPLOIEMENT.md)** | Mise en production cloud (Railway + Netlify) |
 | **[docs/GUIDE_COMPLET.md](docs/GUIDE_COMPLET.md)** | Guide d’exécution locale et configuration |
 | **[docs/MOBILE.md](docs/MOBILE.md)** | Application Android (APK Capacitor) |
 | [frontend/app/README.md](frontend/app/README.md) | Frontend React, PWA, build APK |

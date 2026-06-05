@@ -93,7 +93,9 @@ ChatBot/
 ├── requirements.txt          # Dépendances Python (canonique, déploiement)
 ├── railway.json              # Déploiement Railway (healthcheck, start)
 ├── nixpacks.toml             # Build Python 3.13 sur Railway
-├── deploy/                   # Modèles de variables (Railway, Netlify)
+├── deploy/                   # Modèles de variables (Docker, Railway, Netlify)
+├── docker-compose.yml        # Déploiement serveur (Postgres + API + Nginx)
+├── docker/                   # Dockerfiles et config Nginx
 ├── .github/workflows/ci.yml  # Tests backend + build frontend
 │
 ├── backend/
