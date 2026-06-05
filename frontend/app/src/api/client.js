@@ -8,27 +8,32 @@ const STATUS_LABELS = {
   generating: 'Génération de la réponse…',
 }
 
+function normalizeBase(url) {
+  return url ? String(url).replace(/\/$/, '') : ''
+}
+
 export function getApiBase() {
   const host = window.location.hostname
   const isNative = window.Capacitor?.isNativePlatform?.() === true
+  const configured = normalizeBase(import.meta.env.VITE_API_URL)
 
   if (isNative) {
-    return import.meta.env.VITE_API_URL || 'http://10.0.2.2:8001'
+    return configured || 'http://10.0.2.2:8001'
   }
 
   if (import.meta.env.DEV && (host === 'localhost' || host === '127.0.0.1')) {
     return ''
   }
-  if (host.includes('ngrok-free.dev')) {
-    return 'https://patternable-felicitously-shaunta.ngrok-free.dev'
+
+  if (configured) {
+    return configured
   }
-  if (host.includes('netlify.app')) {
-    return 'https://chatbot-production-5202.up.railway.app'
-  }
+
   if (host.includes('192.168') || host.startsWith('10.')) {
     return `http://${host}:8001`
   }
-  return import.meta.env.VITE_API_URL || 'http://localhost:8001'
+
+  return ''
 }
 
 export async function fetchHealth() {

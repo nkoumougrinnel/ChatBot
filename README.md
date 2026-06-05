@@ -168,15 +168,14 @@ La suite couvre les modèles, le signal de feedback et les endpoints de l'app
 
 ## Déploiement
 
-| Composant | Hébergement type | Fichier de référence |
-|-----------|------------------|----------------------|
-| Backend API | Railway (Gunicorn + Postgres) | `railway.json` |
-| Frontend PWA | Netlify / Vercel (`dist/`) | `frontend/app/` |
-| Application Android | APK Capacitor (build local) | `frontend/app/android/` |
+| Composant | Plateforme | Fichiers |
+|-----------|------------|----------|
+| Backend API | **Railway** (Gunicorn + Postgres) | `railway.json`, `nixpacks.toml`, `deploy/railway.env.example` |
+| Frontend PWA | **Netlify** ou Vercel | `frontend/app/netlify.toml`, `deploy/netlify.env.example` |
+| Application Android | Build local (Capacitor) | [docs/MOBILE.md](docs/MOBILE.md) |
+| CI | GitHub Actions | `.github/workflows/ci.yml` |
 
-Variables minimales en production : `SECRET_KEY`, `DEBUG=False`, `DATABASE_URL`, `CORS_ALLOWED_ORIGINS`, `VITE_API_URL` (frontend).
-
-**Procédure détaillée** : [docs/GUIDE_COMPLET.md](docs/GUIDE_COMPLET.md) (sections 10 à 14).
+**Procédure pas à pas** : **[docs/DEPLOIEMENT.md](docs/DEPLOIEMENT.md)**
 
 ---
 
@@ -184,7 +183,8 @@ Variables minimales en production : `SECRET_KEY`, `DEBUG=False`, `DATABASE_URL`,
 
 | Document | Description |
 |----------|-------------|
-| **[docs/GUIDE_COMPLET.md](docs/GUIDE_COMPLET.md)** | Guide d’exécution et de déploiement (complet) |
+| **[docs/DEPLOIEMENT.md](docs/DEPLOIEMENT.md)** | Mise en production (Railway + Netlify) |
+| **[docs/GUIDE_COMPLET.md](docs/GUIDE_COMPLET.md)** | Guide d’exécution locale et configuration |
 | **[docs/MOBILE.md](docs/MOBILE.md)** | Application Android (APK Capacitor) |
 | [frontend/app/README.md](frontend/app/README.md) | Frontend React, PWA, build APK |
 | [docs/README.md](docs/README.md) | Index de la documentation |

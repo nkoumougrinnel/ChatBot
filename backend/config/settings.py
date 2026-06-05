@@ -36,11 +36,13 @@ if not DEBUG and SECRET_KEY == 'django-insecure-change-me-in-production':
 ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', 'localhost,127.0.0.1,0.0.0.0') + [
     '.up.railway.app',
     '.netlify.app',
+    '.vercel.app',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.up.railway.app',
     'https://*.netlify.app',
+    'https://*.vercel.app',
     'https://*.ngrok-free.app',
 ]
 if DEBUG:
@@ -167,6 +169,7 @@ else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         r'^https://.*\.up\.railway\.app$',
         r'^https://.*\.netlify\.app$',
+        r'^https://.*\.vercel\.app$',
     ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']

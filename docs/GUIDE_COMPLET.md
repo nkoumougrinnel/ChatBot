@@ -17,6 +17,7 @@ Documentation d’exécution locale, de configuration, de tests et de déploieme
 9. [API REST](#9-api-rest)
 10. [Déploiement backend (Railway)](#10-déploiement-backend-railway)
 11. [Déploiement frontend (PWA / site statique)](#11-déploiement-frontend-pwa--site-statique)
+    - Guide détaillé pas à pas : **[DEPLOIEMENT.md](DEPLOIEMENT.md)**
 12. [APK Android (Capacitor)](#12-apk-android-capacitor)
 13. [Dépannage](#13-dépannage)
 14. [Checklist production](#14-checklist-production)
@@ -90,7 +91,10 @@ Le projet est un assistant FAQ pour **SUP'PTIC** avec deux pipelines de réponse
 ChatBot/
 ├── .env.example              # Modèle variables backend (racine)
 ├── requirements.txt          # Dépendances Python (canonique, déploiement)
-├── railway.json              # Commande de démarrage Railway
+├── railway.json              # Déploiement Railway (healthcheck, start)
+├── nixpacks.toml             # Build Python 3.13 sur Railway
+├── deploy/                   # Modèles de variables (Railway, Netlify)
+├── .github/workflows/ci.yml  # Tests backend + build frontend
 │
 ├── backend/
 │   ├── config/               # settings.py, urls.py, wsgi
@@ -428,16 +432,20 @@ Documentation technique : `docs/backend/API_REST_IMPLEMENTATION.md`, `backend/ch
 
 ## 10. Déploiement backend (Railway)
 
+> **Procédure complète** (variables, bootstrap données, checklist) : **[DEPLOIEMENT.md](DEPLOIEMENT.md)**
+
 ### 10.1 Principe
 
-Le fichier `railway.json` définit :
+Fichiers de déploiement à la racine :
 
-1. Build via Nixpacks (détection Python)
-2. Au démarrage : `migrate` → `collectstatic` → **Gunicorn**
+| Fichier | Rôle |
+|---------|------|
+| `railway.json` | Healthcheck `/api/health/`, commande de démarrage |
+| `nixpacks.toml` | Python 3.13, `pip install -r requirements.txt` |
+| `backend/scripts/start_production.py` | migrate → collectstatic → Gunicorn |
+| `deploy/railway.env.example` | Modèle de variables Railway |
 
-```json
-"startCommand": "cd backend && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn config.wsgi --bind [::]$PORT"
-```
+Au démarrage : migrations, fichiers statiques, puis **Gunicorn** (timeout 120 s pour le pipeline ML).
 
 ### 10.2 Étapes Railway
 
@@ -497,14 +505,12 @@ Sortie : **`frontend/app/dist/`** (fichiers statiques + service worker PWA).
 
 ### 11.2 Netlify
 
-1. Site → **Import** du dépôt ou déploiement manuel du dossier `dist/`.
-2. **Build settings** (si build CI) :
-   - Base directory : `frontend/app`
-   - Build command : `npm run build`
-   - Publish directory : `dist`
-3. Variable d’environnement Netlify : `VITE_API_URL=https://...railway.app`
-4. Ajouter l’URL Netlify dans `CORS_ALLOWED_ORIGINS` du backend.
+Le fichier `frontend/app/netlify.toml` configure build, redirections SPA et cache PWA.
 
+1. Site → **Import** du dépôt GitHub.
+2. **Base directory** : `frontend/app` (build/publish lus depuis `netlify.toml`).
+3. Variable Netlify : `VITE_API_URL=https://...railway.app` (voir `deploy/netlify.env.example`).
+4. Ajouter l'URL Netlify dans `CORS_ALLOWED_ORIGINS` du backend.
 ### 11.3 Vercel
 
 Même principe : root `frontend/app`, framework Vite, variable `VITE_API_URL`, output `dist`.
@@ -679,6 +685,7 @@ Installer **Android SDK Platform 35** via Android Studio → SDK Manager.
 | Document | Contenu |
 |----------|---------|
 | [README.md](../README.md) | Présentation projet |
+| [DEPLOIEMENT.md](DEPLOIEMENT.md) | **Production** — Railway, Netlify, Vercel, CI |
 | [MOBILE.md](MOBILE.md) | **APK Android** — build, réseau, UI, dépannage |
 | [backend/README.md](../backend/README.md) | Commandes backend rapides |
 | [frontend/app/README.md](../frontend/app/README.md) | React, PWA, APK |

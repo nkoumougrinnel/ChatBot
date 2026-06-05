@@ -1,6 +1,6 @@
 # Backend Django — SUP'ONE AI
 
-> Guide complet (installation, déploiement Railway, variables d’environnement) : **[../docs/GUIDE_COMPLET.md](../docs/GUIDE_COMPLET.md)**
+> Installation locale : **[../docs/GUIDE_COMPLET.md](../docs/GUIDE_COMPLET.md)** — Production Railway : **[../docs/DEPLOIEMENT.md](../docs/DEPLOIEMENT.md)**
 
 ## Démarrage rapide
 

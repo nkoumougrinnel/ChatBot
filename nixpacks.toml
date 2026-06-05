@@ -1,0 +1,11 @@
+# Configuration Nixpacks — déploiement Railway (backend Django)
+# https://nixpacks.com/docs/configuration/file
+
+[variables]
+NIXPACKS_PYTHON_VERSION = "3.13"
+
+[phases.install]
+cmds = ["pip install -r requirements.txt"]
+
+[start]
+cmd = "cd backend && python scripts/start_production.py"
