@@ -5,6 +5,7 @@ import { SplashScreen } from '@capacitor/splash-screen'
 import './index.css'
 import App from './App.jsx'
 import { syncNativeStatusBar } from './utils/nativeChrome.js'
+import ErrorBoundary from './ErrorBoundary.jsx'
 
 ;(function initTheme() {
   try {
@@ -36,6 +37,8 @@ if (Capacitor.isNativePlatform()) {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </StrictMode>,
 )

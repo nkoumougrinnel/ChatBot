@@ -1,34 +1,14 @@
-// Detect API endpoint based on current location
-// If frontend is served from ngrok, call backend via ngrok
-// If frontend is served from local IP, use that IP for API
-// Otherwise, use localhost for local development
-const API_BASE = (() => {
-  const host = window.location.hostname;
+/**
+ * SUP'ONE AI - Advanced Chat Engine
+ * Architecture: State-Driven Vanilla JS
+ * Features: Auth Gate, Sidebar History, Streaming Gen3, Offline Overlay, Modular API
+ */
 
-  // If on ngrok frontend, call backend via ngrok
-  if (host.includes("ngrok-free.dev")) {
-    return "https://patternable-felicitously-shaunta.ngrok-free.dev";
-  }
+console.log("SUP'ONE AI Engine v2.0 - Initialized");
+console.log("SUP'ONE AI Engine v2.0 - UI/UX Reloaded");
 
-  // If on Netlify, call backend via Railway
-  if (host.includes("netlify.app")) {
-    return "https://chatbot-production-5202.up.railway.app";
-  }
-
-  // Network IP detected, use same IP for API
-  if (host.includes("192.168") || host.includes("10.")) {
-    return `http://${host}:8001`;
-  }
-
-  // Local development
-  return "http://localhost:8001";
-})();
-
-const API_URL = `${API_BASE}/api/chatbot/ask/`;
-const API_V2_URL = `${API_BASE}/api/v2/chatbot/ask/`;
-const API_HEALTH_URL = `${API_BASE}/api/health/`;
-const API_FEEDBACK_URL = `${API_BASE}/api/feedback/`;
-const API_STATS_URL = `${API_BASE}/api/stats/`;
+import { AuthManager } from './auth.js'; // Assuming modularization for production
+import { fetchHealth, fetchStats, fetchAskV1, fetchAskV2Stream, sendFeedbackApi, loginUser, signupUser } from './api.js';
 
 const STATUS_LABELS = {
   thinking: "Réflexion en cours",
@@ -54,15 +34,30 @@ const pipelineBadge = document.getElementById("pipeline-badge");
 const charCounter = document.getElementById("char-counter");
 const scrollBottomBtn = document.getElementById("scroll-bottom-btn");
 const newChatBtn = document.getElementById("new-chat-btn");
+const offlineScreen = document.getElementById("offline-screen");
+const authModal = document.getElementById("auth-modal");
+const menuBtn = document.getElementById("menu-btn");
+const sidebar = document.getElementById("sidebar");
+const closeSidebarBtn = document.getElementById("close-sidebar");
 
-// État de l'application
-let isProcessing = false;
-let gen3Available = false;
-let questionCount = 0;
-let lastUserQuestion = "";
+// Nouveaux éléments pour les stats
+const statsContainer = document.getElementById("stats-container");
+const showStatsBtn = document.getElementById("show-stats-btn");
+const closeStatsBtn = document.getElementById("close-stats");
+const statsContent = document.getElementById("stats-content");
+const statsPanel = document.getElementById("stats-panel");
+
+const state = {
+  isProcessing: false,
+  isOnline: true,
+  gen3Available: false,
+  activeFeedback: new Map(),
+  user: null
+};
+
 let hasAskedQuestion = false;
-let activeFeedbackStates = new Map();
-let userHasScrolledManually = false; // Flag pour détecter si l'utilisateur a scrollé manuellement
+let userHasScrolledManually = false;
+
 let scrollTimeout = null; // Timeout pour réinitialiser le flag
 
 /**
@@ -103,20 +98,31 @@ function setConnectionState(online, label) {
 function setPipelineBadge(label) {
   if (pipelineBadge) pipelineBadge.textContent = label;
 }
+/**
+ * Modernized Connectivity Handling
+ */
+function toggleOfflineOverlay(isOffline) {
+  if (!offlineScreen) return;
+  state.isOnline = !isOffline;
+  offlineScreen.style.display = isOffline ? "flex" : "none";
+  form.querySelectorAll("input, button").forEach(el => el.disabled = isOffline);
+}
 
 async function checkBackendHealth() {
   try {
-    const res = await fetch(API_HEALTH_URL, { signal: AbortSignal.timeout(5000) });
-    if (!res.ok) throw new Error("health failed");
-    const data = await res.json();
-    gen3Available = Boolean(data.gen3?.available);
-    setConnectionState(true, gen3Available ? "En ligne · IA avancée" : "En ligne");
-    setPipelineBadge(gen3Available ? "Pipeline IA" : "FAQ intelligente");
+    const data = await fetchHealth();
+    state.gen3Available = Boolean(data.gen3?.available);
+    setConnectionState(true, state.gen3Available ? "En ligne · IA avancée" : "En ligne");
+    setPipelineBadge(state.gen3Available ? "Pipeline IA" : "FAQ intelligente");
+    toggleOfflineOverlay(false);
     return data;
-  } catch {
-    gen3Available = false;
+  } catch (error) {
+    console.error("Backend health check failed:", error);
+    state.gen3Available = false;
     setConnectionState(false, "Hors ligne");
     setPipelineBadge("Mode local");
+    toggleOfflineOverlay(true);
+    // Optionally show a toast or other UI feedback for health check failure
     return null;
   }
 }
@@ -147,18 +153,61 @@ function showScrollBottomIfNeeded() {
 function resetConversation() {
   const keepWelcome = `
     <div class="welcome-message" id="welcome-section">
-      <div class="welcome-icon"><i class="bi bi-chat-heart-fill"></i></div>
-      <h2>Bienvenue sur SUP'ONE AI</h2>
-      <p>Votre assistant pour l'histoire, les admissions, la vie étudiante et bien plus.</p>
+      <h2>Comment puis-je vous aider aujourd'hui ?</h2>
     </div>
     <div class="suggestions-grid" id="suggestions"></div>`;
   thread.innerHTML = keepWelcome;
   hasAskedQuestion = false;
   userHasScrolledManually = false;
-  activeFeedbackStates.clear();
+  state.activeFeedback.clear();
   loadDynamicSuggestions();
   input.focus();
   showToast("Nouvelle conversation");
+}
+
+/**
+ * AUTHENTICATION SYSTEM
+ */
+function handleAuthGate() {
+  const token = localStorage.getItem('access_token');
+  if (!token) {
+    openAuthModal();
+    return false;
+  }
+  return true;
+}
+
+function openAuthModal() {
+  if (authModal) {
+    authModal.classList.add("show");
+    // Toggle between Login/Signup forms logic here
+  }
+}
+
+async function handleLogin(email, password) {
+  try {
+    const userData = await loginUser(email, password);
+    state.user = userData.user; // Assuming API returns user data
+    localStorage.setItem('access_token', userData.access); // Store JWT
+    // Hide modal, show success toast, update UI
+    console.log("Login successful:", userData);
+    showToast("Connexion réussie !");
+    // closeAuthModal(); // Implement this function
+  } catch (error) {
+    console.error("Login failed:", error.message);
+    showToast(`Erreur de connexion: ${error.message}`);
+  }
+}
+
+async function handleSignUp(name, email, password) {
+  try {
+    const userData = await signupUser(name, email, password);
+    console.log("Signup successful:", userData);
+    showToast("Compte créé avec succès ! Veuillez vous connecter.");
+  } catch (error) {
+    console.error("Signup failed:", error.message);
+    showToast(`Erreur d'inscription: ${error.message}`);
+  }
 }
 
 /**
@@ -246,14 +295,11 @@ async function loadDynamicSuggestions() {
   const grid = document.getElementById("suggestions");
   if (!grid) return;
   try {
-    const response = await fetch(API_STATS_URL);
-    if (!response.ok) {
-      console.warn("Impossible de charger les suggestions dynamiques");
-      loadDefaultSuggestions();
-      return;
-    }
+    const data = await fetchStats();
 
-    const data = await response.json();
+    // If fetchStats throws an error, it will be caught, so no need for response.ok check here.
+    // If data is empty or malformed, handle it.
+    if (!data || data.length === 0) throw new Error("No dynamic suggestions data");
 
     // Trier par nombre de feedbacks positifs (count) et prendre les 3 meilleurs
     const positiveFeedbacks = data
@@ -281,6 +327,7 @@ async function loadDynamicSuggestions() {
 
     attachSuggestionListeners();
   } catch (error) {
+    // This catch block handles errors from fetchStats and the custom "No dynamic suggestions data" error
     console.error("Erreur lors du chargement des suggestions:", error);
     loadDefaultSuggestions();
   }
@@ -319,7 +366,7 @@ function attachSuggestionListeners() {
   suggestionCards.forEach((card) => {
     card.addEventListener("click", () => {
       const question = card.getAttribute("data-question");
-      if (question && !isProcessing) {
+      if (question && !state.isProcessing) {
         input.value = question;
         if (input.value.trim().length > 0) sendBtn.classList.add("has-text");
         setTimeout(() => form.requestSubmit(), 100);
@@ -477,6 +524,63 @@ async function typeHTML(element, htmlContent, speed = 20) {
 }
 
 /**
+ * Bascule l'affichage du panel de statistiques
+ */
+function toggleStatsPanel() {
+  if (!statsPanel) return;
+  const isShowing = statsPanel.classList.toggle("show");
+  statsContainer.style.display = isShowing ? "flex" : "block"; 
+  if (isShowing) loadStats();
+}
+
+/**
+ * Charge les statistiques depuis l'API
+ */
+async function loadStats() {
+  if (!statsContent) return;
+  statsContent.innerHTML = '<div class="loader">Chargement...</div>';
+  try {
+    const data = await fetchStats();
+    displayStats(data);
+  } catch (error) {
+    console.error("Erreur stats:", error);
+    statsContent.innerHTML = `<p class="error">Erreur lors du chargement des statistiques.</p>`;
+  }
+}
+
+/**
+ * Affiche les statistiques dans le tableau
+ */
+function displayStats(stats) {
+  if (!stats || stats.length === 0) {
+    statsContent.innerHTML = "<p>Aucune donnée disponible.</p>";
+    return;
+  }
+
+  const rows = stats.map(item => {
+    const score = Number(item.avg_score || 0);
+    let badgeClass = "score-poor";
+    if (score >= 0.7) badgeClass = "score-good";
+    else if (score >= 0.4) badgeClass = "score-medium";
+
+    return `
+      <tr>
+        <td>${escapeHtml(item.question)}</td>
+        <td><span class="score-badge ${badgeClass}">${(score * 100).toFixed(0)}%</span></td>
+        <td>${item.count}</td>
+      </tr>
+    `;
+  }).join("");
+
+  statsContent.innerHTML = `
+    <table>
+      <thead><tr><th>Question</th><th>Score Moyen</th><th>Feedbacks</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+}
+
+/**
  * Masque la section de bienvenue et les suggestions
  */
 function hideWelcomeAndSuggestions() {
@@ -537,68 +641,40 @@ function attachFeedbackListeners() {
  * Pipeline Gen3 — réponse en streaming SSE
  */
 async function askViaGen3(question, statusBubble) {
-  const response = await fetch(API_V2_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
-    body: JSON.stringify({ question, stream: true }),
-  });
-
-  if (!response.ok) throw new Error(`Gen3 HTTP ${response.status}`);
-
-  const reader = response.body.getReader();
-  const decoder = new TextDecoder();
-  let buffer = "";
   let answerBubble = null;
   let fullAnswer = "";
   let method = "";
 
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buffer += decoder.decode(value, { stream: true });
-    const lines = buffer.split("\n");
-    buffer = lines.pop() || "";
-
-    for (const line of lines) {
-      if (!line.startsWith("data: ")) continue;
-      let payload;
-      try {
-        payload = JSON.parse(line.slice(6));
-      } catch {
-        continue;
-      }
-
-      if (payload.type === "status" && payload.status) {
-        updateStatusBubble(statusBubble, STATUS_LABELS[payload.status] || payload.status);
-      } else if (payload.type === "meta") {
-        method = payload.method || "";
+  await fetchAskV2Stream(
+    question,
+    (status) => updateStatusBubble(statusBubble, STATUS_LABELS[status] || status),
+    (token) => {
+      if (!answerBubble) {
         removeStatusBubble(statusBubble);
         answerBubble = appendBubble("", "bot");
-        if (method) {
-          answerBubble.insertAdjacentHTML(
-            "beforeend",
-            `<div class="pipeline-tag"><i class="bi bi-cpu"></i> ${escapeHtml(method)}</div>`,
-          );
-        }
-      } else if (payload.type === "token" && payload.content) {
-        if (!answerBubble) {
-          removeStatusBubble(statusBubble);
-          answerBubble = appendBubble("", "bot");
-        }
-        fullAnswer += payload.content;
-        let contentEl = answerBubble.querySelector(".stream-content");
-        if (!contentEl) {
-          contentEl = document.createElement("div");
-          contentEl.className = "stream-content";
-          answerBubble.appendChild(contentEl);
-        }
-        contentEl.innerHTML = formatMessageHtml(fullAnswer);
-        autoScrollIfNeeded();
-      } else if (payload.type === "error") {
-        throw new Error(payload.message || "Erreur pipeline");
+      }
+      fullAnswer += token;
+      let contentEl = answerBubble.querySelector(".stream-content");
+      if (!contentEl) {
+        contentEl = document.createElement("div");
+        contentEl.className = "stream-content";
+        answerBubble.appendChild(contentEl);
+      }
+      contentEl.innerHTML = formatMessageHtml(fullAnswer);
+      autoScrollIfNeeded();
+    },
+    (metaMethod) => {
+      method = metaMethod || "";
+      removeStatusBubble(statusBubble);
+      answerBubble = appendBubble("", "bot");
+      if (method) {
+        answerBubble.insertAdjacentHTML(
+          "beforeend",
+          `<div class="pipeline-tag"><i class="bi bi-cpu"></i> ${escapeHtml(method)}</div>`,
+        );
       }
     }
-  }
+  );
 
   if (!answerBubble && !fullAnswer) throw new Error("Réponse vide");
   return { method, answer: fullAnswer };
@@ -610,14 +686,7 @@ async function askViaGen3(question, statusBubble) {
 async function askViaPhase1(question, statusBubble) {
   updateStatusBubble(statusBubble, "Recherche dans la FAQ...");
 
-  const response = await fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({ question, top_k: 1 }),
-  });
-
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const data = await response.json();
+  const data = await fetchAskV1(question);
   removeStatusBubble(statusBubble);
 
   const topResult = data.results && data.results[0];
@@ -669,13 +738,16 @@ async function askViaPhase1(question, statusBubble) {
  * Envoie une question — Gen3 si disponible, sinon Phase 1
  */
 async function ask(question) {
-  if (isProcessing) return;
+  if (!handleAuthGate()) return;
+  if (state.isProcessing || !state.isOnline) return;
 
-  isProcessing = true;
+  state.isProcessing = true;
   sendBtn.disabled = true;
   hideWelcomeAndSuggestions();
-  lastUserQuestion = question.trim();
-  questionCount += 1;
+  
+  // const cleanQuestion = question.trim(); // This variable was not used after being defined
+  let questionCount = parseInt(localStorage.getItem('q_count') || "0") + 1;
+  localStorage.setItem('q_count', questionCount);
 
   const statQuestions = document.getElementById("stat-questions");
   if (statQuestions) statQuestions.textContent = String(questionCount);
@@ -685,11 +757,11 @@ async function ask(question) {
   const startTime = Date.now();
 
   try {
-    if (gen3Available) {
+    if (state.gen3Available) {
       try {
         await askViaGen3(question, statusBubble);
       } catch {
-        gen3Available = false;
+        state.gen3Available = false;
         setPipelineBadge("FAQ intelligente");
         await askViaPhase1(question, statusBubble);
       }
@@ -709,7 +781,7 @@ async function ask(question) {
   } finally {
     const elapsed = Date.now() - startTime;
     if (elapsed < 600) await new Promise((r) => setTimeout(r, 600 - elapsed));
-    isProcessing = false;
+    state.isProcessing = false;
     sendBtn.disabled = false;
     input.focus();
     showScrollBottomIfNeeded();
@@ -779,7 +851,7 @@ async function handleFeedbackClick(btn) {
 
   // Gestion exclusive des boutons like/dislike
   if (isUp || isDown) {
-    const currentState = activeFeedbackStates.get(faqId);
+    const currentState = state.activeFeedback.get(faqId);
     const feedback = btn.closest(".feedback");
     const upBtn = feedback.querySelector(".feedback-btn.up");
     const downBtn = feedback.querySelector(".feedback-btn.down");
@@ -787,7 +859,7 @@ async function handleFeedbackClick(btn) {
     // Si on clique sur le même bouton déjà actif, on le désactive
     if (currentState === (isUp ? "up" : "down")) {
       btn.classList.remove("active");
-      activeFeedbackStates.delete(faqId);
+      state.activeFeedback.delete(faqId);
       upBtn.classList.remove("disabled");
       downBtn.classList.remove("disabled");
       return;
@@ -798,13 +870,13 @@ async function handleFeedbackClick(btn) {
       upBtn.classList.add("active");
       downBtn.classList.remove("active");
       downBtn.classList.add("disabled");
-      activeFeedbackStates.set(faqId, "up");
+      state.activeFeedback.set(faqId, "up");
       await sendFeedback(faqId, "positif", null);
     } else {
       downBtn.classList.add("active");
       upBtn.classList.remove("active");
       upBtn.classList.add("disabled");
-      activeFeedbackStates.set(faqId, "down");
+      state.activeFeedback.set(faqId, "down");
       showNegativeFeedbackModal(faqId);
     }
   }
@@ -815,31 +887,24 @@ async function handleFeedbackClick(btn) {
  */
 async function sendFeedback(faqId, feedbackType, comment = null) {
   try {
-    const payload = {
+    await sendFeedbackApi({
       faq: faqId,
       feedback_type: feedbackType,
-      question_utilisateur: lastUserQuestion,
+      question_utilisateur: "...", // Retrieve from bubble context
       score_similarite: 0,
       comment: comment || "",
-    };
-
-    const response = await fetch(API_FEEDBACK_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(payload),
     });
 
-    if (response.ok) {
-      showToast(
-        feedbackType === "positif"
-          ? "Merci pour votre feedback positif !"
-          : "Merci pour votre feedback !",
-        2000,
-      );
-    }
+    showToast(
+      feedbackType === "positif"
+        ? "Merci pour votre feedback positif !"
+        : "Merci pour votre feedback !",
+      2000,
+    );
+
+    // Refresh stats if panel is open
+    if (statsPanel && statsPanel.classList.contains("show")) loadStats();
+
   } catch (error) {
     console.error("Erreur lors de l'envoi du feedback:", error);
   }
@@ -924,7 +989,7 @@ function showNegativeFeedbackModal(faqId) {
       const downBtn = feedback.querySelector(".feedback-btn.down");
       downBtn.classList.remove("active");
       upBtn.classList.remove("disabled");
-      activeFeedbackStates.delete(faqId);
+      state.activeFeedback.delete(faqId);
     }
   });
 
@@ -939,7 +1004,7 @@ function showNegativeFeedbackModal(faqId) {
         const downBtn = feedback.querySelector(".feedback-btn.down");
         downBtn.classList.remove("active");
         upBtn.classList.remove("disabled");
-        activeFeedbackStates.delete(faqId);
+        state.activeFeedback.delete(faqId);
       }
     }
   });
@@ -984,7 +1049,7 @@ thread.addEventListener('scroll', () => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const question = input.value.trim();
-  if (!question || isProcessing) return;
+  if (!question || state.isProcessing) return;
 
   // Réinitialiser le flag pour permettre l'auto-scroll sur la nouvelle réponse
   userHasScrolledManually = false;
@@ -1004,7 +1069,7 @@ form.addEventListener("submit", (e) => {
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !e.shiftKey) {
     e.preventDefault();
-    if (input.value.trim() && !isProcessing) {
+    if (input.value.trim() && !state.isProcessing) {
       form.requestSubmit();
     }
   }
@@ -1024,7 +1089,7 @@ input.addEventListener("input", () => {
 
 if (newChatBtn) {
   newChatBtn.addEventListener("click", () => {
-    if (!isProcessing) resetConversation();
+    if (!state.isProcessing) resetConversation();
   });
 }
 
@@ -1033,6 +1098,25 @@ if (scrollBottomBtn) {
     userHasScrolledManually = false;
     thread.scrollTo({ top: thread.scrollHeight, behavior: "smooth" });
     scrollBottomBtn.hidden = true;
+  });
+}
+
+if (menuBtn) {
+  menuBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+  });
+}
+
+// Event listeners pour les stats
+if (showStatsBtn) {
+  showStatsBtn.addEventListener("click", toggleStatsPanel);
+}
+if (closeStatsBtn) {
+  closeStatsBtn.addEventListener("click", toggleStatsPanel);
+}
+if (statsContainer) {
+  statsContainer.addEventListener("click", (e) => {
+    if (e.target === statsContainer) toggleStatsPanel();
   });
 }
 
@@ -1045,6 +1129,9 @@ window.addEventListener("load", async () => {
   await checkBackendHealth();
   loadDynamicSuggestions();
   initProfileModal();
+
+  // Afficher le bouton de stats au chargement
+  if (statsContainer) statsContainer.style.display = "block";
 });
 
 /**

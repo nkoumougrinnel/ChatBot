@@ -10,6 +10,8 @@
 
 **[MOBILE.md](MOBILE.md)** — Application Android (Capacitor) : build APK, `VITE_API_URL`, thèmes clair/sombre, clavier, checklist distribution.
 
+**Présentation PowerPoint** — [`SUPONE_AI_Club_Informatique_SUPPTIC.pptx`](SUPONE_AI_Club_Informatique_SUPPTIC.pptx) (générée via `scripts/generate_presentation.py`).
+
 ## Documentation technique backend
 
 | Fichier | Sujet |

@@ -1,0 +1,58 @@
+<!-- Splash Page Initiale -->
+<div id="splash-screen" class="splash-screen">
+    <div class="splash-content">
+        <img src="logo_supone.png" alt="Sup'One Logo" class="splash-logo">
+        <div class="splash-loader"></div>
+    </div>
+</div>
+
+<!-- Sidebar for Conversation History -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <button class="icon-btn" id="close-sidebar"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <button class="new-chat-btn" id="new-chat-btn"><i class="bi bi-plus-lg"></i> New Chat</button>
+    <div class="history-list" id="history-list">
+        <!-- Dynamically injected history cards -->
+    </div>
+    <div class="user-profile-section">
+        <div class="avatar">JS</div>
+        <div class="user-info">
+            <span class="user-name">John Student</span>
+            <span class="user-role">Étudiant</span>
+        </div>
+    </div>
+</aside>
+
+<!-- Écran Offline Dédié (ne décale pas l'UI) -->
+<div class="offline-screen" id="offline-screen" style="display:none;">
+    <div class="offline-content">
+        <div class="illustration">
+            <i class="bi bi-wifi-off"></i>
+        </div>
+        <h1>Connexion perdue</h1>
+        <p>Veuillez vérifier votre accès internet pour continuer à discuter avec l'IA.</p>
+        <button class="btn-retry" onclick="checkBackendHealth()">
+            <i class="bi bi-arrow-clockwise"></i> Réessayer
+        </button>
+    </div>
+</div>
+
+<!-- Authentication Modal -->
+<div class="modal-overlay" id="auth-modal">
+    <div class="auth-card">
+        <div class="auth-tabs">
+            <button class="tab active" data-target="login-form">Login</button>
+            <button class="tab" data-target="signup-form">Sign Up</button>
+        </div>
+        <form id="login-form" class="auth-form">
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <div class="form-options">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn-primary">Sign In</button>
+        </form>
+    </div>
+</div>

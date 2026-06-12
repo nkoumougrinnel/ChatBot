@@ -59,14 +59,39 @@ body {
   flex-shrink: 0;
 }
 
+.sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 280px;
+  background: var(--bg-start);
+  border-right: 1px solid var(--border);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+  box-shadow: 20px 0 50px rgba(0,0,0,0.5);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
 .header-brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex: 1;
-  justify-content: center;
 }
-
 .header-brand h1 {
   font-size: 16px;
   font-weight: 700;
@@ -124,38 +149,40 @@ body {
 
 .welcome {
   text-align: center;
-  padding: 20px 12px;
+  padding: 40px 20px;
   transition: opacity 0.25s;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .welcome-icon {
-  width: 52px;
-  height: 52px;
-  margin: 0 auto 10px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-light));
-  border-radius: 14px;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 22px;
+  color: var(--primary-light);
 }
 
-.welcome h2 { font-size: 20px; margin-bottom: 6px; }
-.welcome p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.welcome h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.02em; }
+.welcome p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
 
 .suggestions {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 12px;
-  transition: opacity 0.25s;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
 }
 
 .suggestion-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
+  padding: 8px 16px;
+  height: auto;
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -168,8 +195,9 @@ body {
 
 .suggestion-btn:hover {
   background: rgba(255, 255, 255, 0.12);
-  transform: translateX(4px);
+  transform: translateY(-2px);
 }
+.suggestion-btn i { font-size: 14px; }
 
 .suggestion-btn i { color: #60a5fa; font-size: 16px; }
 

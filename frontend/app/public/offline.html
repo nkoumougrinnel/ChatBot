@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hors ligne - SUP'ONE AI</title>
+    <style>
+        :root {
+            --brand-500: #2355a0;
+            --brand-400: #3b6fd4;
+            --bg: #0b1220;
+            --text: #edf2f7;
+            --text-secondary: rgba(237,242,247,.65);
+            --font: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 420px;
+            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .icon-box {
+            width: 84px;
+            height: 84px;
+            background: linear-gradient(135deg, var(--brand-500), var(--brand-400));
+            border-radius: 24px;
+            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 12px 40px rgba(35, 85, 160, 0.4);
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-size: 15.5px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .btn-retry {
+            background-color: var(--brand-500);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-retry:hover { background-color: var(--brand-400); transform: translateY(-1px); }
+        .btn-retry:active { transform: scale(0.97); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        svg { width: 36px; height: 36px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.17-2.39M8.53 16.11a6 6 0 016.95 0M12 20h.01"></path>
+            </svg>
+        </div>
+        <h1>Connexion perdue</h1>
+        <p>Il semble que vous soyez hors ligne. SUP'ONE AI a besoin d'Internet pour traiter vos questions et vous répondre en temps réel.</p>
+        <button onclick="window.location.reload()" class="btn-retry">
+            <svg size="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><path d="M21 12a9 9 0 11-2.64-6.36M21 3v6h-6"></path></svg>
+            Réessayer
+        </button>
+    </div>
+</body>
+</html>

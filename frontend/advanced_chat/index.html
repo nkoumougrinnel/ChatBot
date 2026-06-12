@@ -34,6 +34,14 @@
 </head>
 
 <body>
+    <!-- Splash Page Initiale -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <img src="icone.png" alt="Sup'One Logo" class="splash-logo">
+            <div class="splash-loader"></div>
+        </div>
+    </div>
+
     <!-- Bannière d'installation PWA -->
     <div id="install-banner" class="install-banner">
         <!-- 1. Bouton X pour fermer -->
@@ -162,6 +170,19 @@
         </div>
     </div>
 
+    <!-- Sidebar for Conversation History -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="icon-btn" id="close-sidebar"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <button class="new-chat-btn" id="sidebar-new-chat"><i class="bi bi-plus-lg"></i> New Chat</button>
+        <div class="history-list" id="history-list"></div>
+        <div class="user-profile-section">
+            <div class="avatar">JS</div>
+            <div class="user-name">John Student</div>
+        </div>
+    </aside>
+
     <div class="chat-container">
         <!-- En-tête moderne -->
         <header class="chat-header">
@@ -177,6 +198,7 @@
                     </div>
                 </div>
                 <div class="controls">
+                    <button class="menu-btn" id="menu-btn"><i class="bi bi-list"></i></button>
                     <button class="new-chat-btn" id="new-chat-btn" aria-label="Nouvelle conversation" title="Nouvelle conversation">
                         <i class="bi bi-plus-lg"></i>
                     </button>
@@ -193,6 +215,7 @@
                 <div class="welcome-icon"><i class="bi bi-chat-heart-fill"></i></div>
                 <h2>Bienvenue sur SUP'ONE AI</h2>
                 <p>Votre assistant pour l'histoire, les admissions, la vie étudiante et bien plus.</p>
+                <h2>Comment puis-je vous aider aujourd'hui ?</h2>
             </div>
 
             <!-- Suggestions dynamiques (chargées depuis l'API) -->
@@ -200,6 +223,18 @@
                 <!-- Les suggestions seront chargées dynamiquement depuis l'API feedback -->
             </div>
         </main>
+
+        <!-- Écran Offline Dédié (ne décale pas l'UI) -->
+        <div class="offline-screen" id="offline-screen" style="display:none;">
+            <div class="offline-content">
+                <i class="bi bi-wifi-off" style="font-size: 3rem;"></i>
+                <h1>Connexion perdue</h1>
+                <p>Veuillez vérifier votre accès internet.</p>
+                <button class="btn-retry" onclick="window.location.reload()">
+                    <i class="bi bi-arrow-clockwise"></i> Réessayer
+                </button>
+            </div>
+        </div>
 
         <!-- Bouton retour en bas de conversation -->
         <button id="scroll-bottom-btn" class="scroll-bottom-btn" aria-label="Aller en bas" hidden>
@@ -222,6 +257,16 @@
 
         <!-- Toast de notification -->
         <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <!-- Section de statistiques (pour vérifier les feedbacks) -->
+    <div id="stats-container" class="stats-container" style="display: none;">
+        <button id="show-stats-btn" class="stats-toggle">📊 Statistiques</button>
+        <div id="stats-panel" class="stats-panel">
+            <h3>Statistiques des FAQs</h3>
+            <button id="close-stats" class="close-btn">✕</button>
+            <div id="stats-content"></div>
+        </div>
     </div>
 
     <!-- Scripts -->
