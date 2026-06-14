@@ -33,7 +33,7 @@ if not DEBUG and SECRET_KEY == 'django-insecure-change-me-in-production':
 
 # Hôtes autorisés. Django attend un point initial pour les sous-domaines
 # (ex. ".up.railway.app"), pas une étoile.
-ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', 'localhost,127.0.0.1,0.0.0.0') + [
+ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', 'localhost,127.0.0.1,0.0.0.0,192.168.10.82') + [
     '.up.railway.app',
     '.netlify.app',
     '.vercel.app',
@@ -53,6 +53,7 @@ if DEBUG:
         'http://127.0.0.1:5500',
         'http://localhost:3000',
         'http://127.0.0.1:3000',
+        'http://192.168.10.82:3000',
     ]
 
 INSTALLED_APPS = [

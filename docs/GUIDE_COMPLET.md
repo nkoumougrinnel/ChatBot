@@ -402,6 +402,7 @@ Le script `load_json_data.py` ignore automatiquement `conversational_rules.json`
 | `GET` | `/api/categories/` | Catégories |
 | `POST` | `/api/feedback/` | Like / dislike |
 | `GET` | `/api/stats/` | Statistiques / suggestions populaires |
+| `GET` | `/api/history/` | **(Nouveau)** Liste des discussions de l'utilisateur |
 
 **Exemple :**
 

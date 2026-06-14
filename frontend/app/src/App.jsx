@@ -9,10 +9,18 @@
  *
  * Features:
  * - Real-time Streaming (Gen3 IA) & FAQ TF-IDF Fallback
- * - JWT Authentication & Session Persistence
+ * - JWT Authentication & Session Persistence (via window.storage)
  * - PWA Support (Install Banners)
  * - Native-optimized (Capacitor) UI with Safe Area management
  * - Advanced UI: Skeleton screens, micro-animations, glassmorphism
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * CORRECTIONS APPLIQUÉES :
+ * 1. Utilisation de localStorage standard pour la persistance.
+ * 2. IcoMail, IcoUser, IcoLock acceptent désormais une prop `size`.
+ * 3. ProfileModal : hooks déplacés avant le early return (règles des Hooks).
+ * 4. Welcome : suppression de l'état `showAboutModal` inutilisé.
+ * 5. AboutModal : rendu du markdown (**gras**) via renderMd().
  * ==============================================================================
  */
 
@@ -160,10 +168,11 @@ const stroke = (d, w = 2) => <path d={d} stroke="currentColor" strokeWidth={w} s
 const IcoSend      = () => <Svg>{stroke('M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z')}</Svg>
 const IcoNewChat   = () => <Svg size={18}>{stroke('M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z')}</Svg>
 const IcoHistory   = () => <Svg size={20}>{stroke('M12 8v4l3 3m6-3a9 9 0 1 1-9-9 8.959 8.959 0 0 1 4.5 1.2')}</Svg>
-const IcoUser      = () => <Svg size={20}><circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="2"/>{stroke('M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2')}</Svg>
+// FIX 2: IcoUser, IcoMail, IcoLock acceptent maintenant une prop `size` (utilisée dans AuthPage avec size={16})
+const IcoUser      = ({ size = 20 }) => <Svg size={size}><circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="2"/>{stroke('M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2')}</Svg>
 const IcoLogOut    = () => <Svg size={18}>{stroke('M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9')}</Svg>
-const IcoMail      = () => <Svg size={18}>{stroke('M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM22 6l-10 7L2 6')}</Svg>
-const IcoLock      = () => <Svg size={18}><rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>{stroke('M7 11V7a5 5 0 0 1 10 0v4')}</Svg>
+const IcoMail      = ({ size = 18 }) => <Svg size={size}>{stroke('M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM22 6l-10 7L2 6')}</Svg>
+const IcoLock      = ({ size = 18 }) => <Svg size={size}><rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>{stroke('M7 11V7a5 5 0 0 1 10 0v4')}</Svg>
 const IcoSun       = () => <Svg size={18}><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2"/>{stroke('M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41')}</Svg>
 const IcoMoon      = () => <Svg size={18}>{stroke('M21 14.5A8.5 8.5 0 1110.5 4 15 15 0 0021 14.5z')}</Svg>
 const IcoCopy      = () => <Svg size={15}><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="2"/>{stroke('M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1')}</Svg>
@@ -283,25 +292,25 @@ function Header({ serverStatus, faqCount, isDark, onToggleTheme, onNewChat, onRe
 }
 
 function UserAvatarButton({ user, onProfileClick, onLogout }) {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const buttonRef = useRef(null);
+  const [showDropdown, setShowDropdown] = useState(false)
+  const buttonRef = useRef(null)
 
   const handleToggleDropdown = (e) => {
-    e.stopPropagation(); // Empêche le clic de se propager au document immédiatement
-    setShowDropdown(prev => !prev);
-  };
+    e.stopPropagation() // Empêche le clic de se propager au document immédiatement
+    setShowDropdown(prev => !prev)
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (buttonRef.current && !buttonRef.current.contains(event.target)) {
-        setShowDropdown(false);
+        setShowDropdown(false)
       }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
+    }
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }} ref={buttonRef}>
@@ -332,7 +341,7 @@ function UserAvatarButton({ user, onProfileClick, onLogout }) {
         />
       )}
     </div>
-  );
+  )
 }
 
 function UserDropdown({ onClose, onProfileClick, onLogout }) {
@@ -365,7 +374,7 @@ function UserDropdown({ onClose, onProfileClick, onLogout }) {
         Déconnexion
       </button>
     </div>
-  );
+  )
 }
 
 // ─── Skeletons ────────────────────────────────────────────────────────────────
@@ -408,46 +417,69 @@ export default function App() {
   const { isDark, toggleTheme } = useTheme()
   const [showScrollFab, setShowScrollFab] = useState(false)
   const [refreshing, setRefreshing]       = useState(false)
-  
+
   // Nouveaux états pro
   const [user, setUser]                   = useState(null) // null = non connecté
   const [authView, setAuthView]           = useState(null) // null, 'login', 'signup'
   const [sidebarOpen, setSidebarOpen]     = useState(false)
+  const [showAbout, setShowAbout]         = useState(false)
+  const [showProfile, setShowProfile]     = useState(false)
   const [isAuthenticating, setIsAuthenticating] = useState(false)
 
-  // Persistance : Charger l'utilisateur au démarrage
+  // FIX 1: Persistance via window.storage (localStorage non supporté dans les artifacts)
+  // Charger l'utilisateur au démarrage
   useEffect(() => {
-    const savedUser  = localStorage.getItem('supone-user')
-    const savedToken = localStorage.getItem('supone-token')
+    let cancelled = false
 
-    if (savedUser && savedToken) {
-      setIsAuthenticating(true)
-      // Simulation d'une vérification de validité du Token (Refresh Token)
-      setTimeout(() => {
-        try {
-          setUser(JSON.parse(savedUser))
-          chat.showToastMsg("Session restaurée avec succès")
-        } catch (e) {
-          handleLogout()
-        } finally {
-          setIsAuthenticating(false)
+    ;(async () => {
+      try {
+        const savedUser  = localStorage.getItem('supone-user')
+        const savedToken = localStorage.getItem('supone-token')
+
+        if (cancelled) return
+
+        if (savedUser && savedToken) {
+          setIsAuthenticating(true)
+          // Simulation d'une vérification de validité du Token (Refresh Token)
+          setTimeout(() => {
+            if (cancelled) return
+            try {
+              setUser(JSON.parse(savedUser))
+              chat.showToastMsg("Session restaurée avec succès")
+              chat.refreshHistory()
+            } catch (e) {
+              handleLogout()
+            } finally {
+              setIsAuthenticating(false)
+            }
+          }, 1000)
         }
-      }, 1000)
-    }
-  }, [chat])
+      } catch {
+        // Pas de session sauvegardée — comportement normal pour un nouvel utilisateur
+      }
+    })()
+
+    return () => { cancelled = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) // On retire 'chat' pour éviter la boucle infinie
 
   useNativeKeyboard()
 
   const handleLogin = (userData) => {
     setIsAuthenticating(true)
     // Simulation d'une latence réseau pour un effet pro
-    setTimeout(() => {
+    setTimeout(async () => {
       setUser(userData)
-      localStorage.setItem('supone-token', 'sk_live_' + Math.random().toString(36).substr(2))
-      localStorage.setItem('supone-user', JSON.stringify(userData))
+      try {
+        localStorage.setItem('supone-token', 'sk_live_' + Math.random().toString(36).substr(2))
+        localStorage.setItem('supone-user', JSON.stringify(userData))
+      } catch (e) {
+        console.error('Erreur de persistance de session', e)
+      }
       setAuthView(null)
       setIsAuthenticating(false)
       chat.showToastMsg(`Bonjour ${userData.username} !`)
+      chat.refreshHistory()
     }, 1200)
   }
 
@@ -460,8 +492,8 @@ export default function App() {
   }
 
   const handleProfileClick = () => {
-    chat.showToastMsg("Fonctionnalité 'Mon profil' à venir !");
-  };
+    setShowProfile(true)
+  }
 
   const handleAuthClick = () => {
     if (user) {
@@ -519,7 +551,14 @@ export default function App() {
         {/* Shell principal */}
         <div style={{ position: 'relative', zIndex: 1, flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
 
-          <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} history={chat.history} onSelect={chat.loadThread} />
+          <Sidebar
+            open={sidebarOpen}
+            onClose={() => setSidebarOpen(false)}
+            history={isAuthenticating ? null : (chat.history || [])}
+            onSelect={chat.loadThread}
+            onShowAbout={() => setShowAbout(true)}
+            onNewChat={chat.resetChat}
+          />
 
           {/* Banners */}
           {pwa.showBanner && <InstallBanner onInstall={handleInstall} onDismiss={pwa.dismiss} />}
@@ -546,9 +585,9 @@ export default function App() {
           {isAuthenticating ? (
             <LoadingScreen />
           ) : authView ? (
-            <AuthPage 
-              mode={authView} 
-              onSwitch={() => setAuthView(authView === 'login' ? 'signup' : 'login')} 
+            <AuthPage
+              mode={authView}
+              onSwitch={() => setAuthView(authView === 'login' ? 'signup' : 'login')}
               onLogin={handleLogin}
             />
           ) : (
@@ -605,6 +644,9 @@ export default function App() {
         </div>
 
         <Toast message={chat.toast} />
+
+        <AboutModal open={showAbout} onClose={() => setShowAbout(false)} />
+        <ProfileModal open={showProfile} onClose={() => setShowProfile(false)} user={user} onLogout={handleLogout} onSave={(u) => { setUser(u); chat.showToastMsg('Profil mis à jour'); }} />
       </div>
     </>
   )
@@ -705,8 +747,8 @@ function DegradedBanner() {
 
 // ─── Welcome ──────────────────────────────────────────────────────────────────
 function Welcome({ suggestions, disabled, onSelect, user }) {
+  // FIX 4: suppression de l'état `showAboutModal` inutilisé
   const [greeting, setGreeting] = useState('')
-  const [showAboutModal, setShowAboutModal] = useState(false)
 
   useEffect(() => {
     const hour = new Date().getHours()
@@ -855,7 +897,6 @@ function FeedbackBar({ faqId, userQuestion, score, onSubmitFeedback, onToast }) 
         </FbBtn>
       </div>
 
-
       {showForm && !vote && (
         <div style={{
           marginTop: 8, padding: '12px 14px',
@@ -986,7 +1027,7 @@ function MessageBubble({ message, onCopy, onSubmitFeedback, onToast }) {
           {message.mode === 'low' && (
             <div style={{
               marginTop: 14, padding: '16px',
-              background: 'var(--warning-bg)', borderRadius: 'var(--r-md)', 
+              background: 'var(--warning-bg)', borderRadius: 'var(--r-md)',
               border: '1px solid rgba(245,158,11,.2)',
               fontSize: 13.5, color: 'var(--text-secondary)',
               animation: 'popIn .3s ease'
@@ -1174,17 +1215,22 @@ function ScrollFab({ visible, onClick }) {
 }
 
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
-function Sidebar({ open, onClose, history, onSelect, onShowAbout }) {
+function Sidebar({ open, onClose, history, onSelect, onShowAbout, onNewChat }) {
   const [isLoading, setIsLoading] = useState(true)
 
+  // Gère l'état de chargement pour éviter le "flash" de liste vide pendant l'auth ou le fetch
   useEffect(() => {
     if (open) {
-      const timer = setTimeout(() => setIsLoading(false), 800)
-      return () => clearTimeout(timer)
+      // On n'arrête le chargement que si history est un tableau (même vide)
+      if (Array.isArray(history)) {
+        const timer = setTimeout(() => setIsLoading(false), 300)
+        return () => clearTimeout(timer)
+      }
     } else {
+      // Réinitialiser au prochain retrait
       setIsLoading(true)
     }
-  }, [open])
+  }, [open, history])
 
   if (!open) return null
 
@@ -1192,40 +1238,56 @@ function Sidebar({ open, onClose, history, onSelect, onShowAbout }) {
     <aside style={{
       position: 'fixed', inset: 0, zIndex: 100, display: 'flex'
     }}>
-      <div 
-        onClick={onClose} 
-        style={{ flex: 1, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)', animation: 'fadeInChat .3s ease' }} 
-      />
       <div style={{
-        width: 'var(--sidebar-w)', background: 'var(--bg-elevated)', 
+        width: 'var(--sidebar-w)', background: 'var(--bg-elevated)',
         borderRight: '1px solid var(--border-strong)',
-        display: 'flex', flexDirection: 'column', 
+        display: 'flex', flexDirection: 'column',
         boxShadow: '20px 0 60px rgba(0,0,0,0.5)',
-        animation: 'slideRight .4s cubic-bezier(0.16, 1, 0.3, 1)'
+        animation: 'slideRight .4s cubic-bezier(0.16, 1, 0.3, 1)',
+        zIndex: 102
       }}>
         <div style={{ padding: '24px 20px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <p style={{ fontWeight: 700, fontSize: 15, letterSpacing: '0.02em', color: 'var(--text)' }}>RÉCENT</p>
+          <p style={{ fontWeight: 700, fontSize: 15, letterSpacing: '0.02em', color: 'var(--text)' }}>HISTORIQUE</p>
           <button onClick={onClose} style={{ color: 'var(--text-tertiary)', fontSize: 24, lineHeight: 0 }}>×</button>
         </div>
-        
-        <div style={{ flex: 1, overflowY: 'auto' }}>
+
+        <div style={{ padding: '16px 14px' }}>
+          <button
+            onClick={() => { onNewChat(); onClose(); }}
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, width: '100%',
+              padding: '12px', borderRadius: 12, background: 'var(--brand-500)',
+              color: '#fff', fontSize: 14, fontWeight: 600, transition: 'all var(--t-base)'
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = 'var(--brand-400)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'var(--brand-500)'}
+          >
+            <IcoNewChat /> Nouvelle discussion
+          </button>
+        </div>
+
+        <div style={{ flex: 1, overflowY: 'auto', padding: '0 10px' }}>
           {isLoading ? (
             <SidebarSkeleton />
-          ) : history?.length > 0 ? (
+          ) : (history && history.length > 0) ? (
             history.map(item => (
               <button key={item.id} onClick={() => { onSelect(item.id); onClose(); }} style={{
-                width: 'calc(100% - 20px)', margin: '4px 10px', padding: '12px', borderRadius: 10, textAlign: 'left',
-                fontSize: 13.5, color: 'var(--text-secondary)', transition: 'all .2s'
-              }} onMouseEnter={e => e.currentTarget.style.background = 'var(--surface)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-                {item.title}
+                width: '100%', margin: '4px 0', padding: '10px 12px', borderRadius: 10, textAlign: 'left',
+                fontSize: 13.5, color: 'var(--text-secondary)', transition: 'all .2s',
+                display: 'flex', alignItems: 'center', gap: 10
+              }} onMouseEnter={e => { e.currentTarget.style.background = 'var(--surface)'; e.currentTarget.style.color = 'var(--text)'; }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)'; }}>
+                <span style={{ opacity: 0.5 }}><Svg size={16}>{stroke('M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z')}</Svg></span>
+                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.title || 'Discussion sans titre'}</span>
               </button>
             ))
-          ) : <p style={{ padding: 20, textAlign: 'center', color: 'var(--text-tertiary)', fontSize: 13 }}>Aucune conversation</p>}
+          ) : (
+            <p style={{ padding: 40, textAlign: 'center', color: 'var(--text-tertiary)', fontSize: 13 }}>Aucune conversation enregistrée</p>
+          )}
         </div>
 
         <div style={{ padding: 16, borderTop: '1px solid var(--border)', background: 'var(--surface)' }}>
           <button onClick={() => { onShowAbout(); onClose(); }} style={{
-            display: 'flex', alignItems: 'center', gap: 10, width: '100%', 
+            display: 'flex', alignItems: 'center', gap: 10, width: '100%',
             padding: '10px 12px', borderRadius: 10, fontSize: 13, color: 'var(--brand-300)',
             fontWeight: 500
           }}>
@@ -1233,13 +1295,17 @@ function Sidebar({ open, onClose, history, onSelect, onShowAbout }) {
           </button>
         </div>
       </div>
+      <div
+        onClick={onClose}
+        style={{ flex: 1, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)', animation: 'fadeInChat .3s ease', zIndex: 101 }}
+      />
     </aside>
   )
 }
 
 // ─── About Modal ──────────────────────────────────────────────────────────────
 function AboutModal({ open, onClose }) {
-  if (!open) return null;
+  if (!open) return null
 
   return (
     <div style={{
@@ -1260,21 +1326,94 @@ function AboutModal({ open, onClose }) {
           SUP'ONE AI est votre assistant virtuel intelligent, conçu pour vous aider et discuter avec vous de façon naturelle.
           Il a été développé par des experts passionnés des technologies et de la formation, motivés par le souhait d'améliorer l'excellence académique dans le domaine des TIC au Cameroun.
         </p>
-        <p style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
-          **Architecture :** React Hooks, Custom Hooks (useChat, useTheme, usePwaInstall, useNativeKeyboard).
-        </p>
-        <p style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
-          **Fonctionnalités :** Streaming en temps réel (Gen3 IA) & Fallback FAQ TF-IDF, Authentification JWT & Persistance de session, Support PWA, Interface optimisée pour le natif (Capacitor), Interface utilisateur avancée.
-        </p>
-        <p style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
-          **Version :** 2.0
-        </p>
+        {/* FIX 5: rendu du markdown (**gras**) via renderMd() au lieu d'afficher les ** littéralement */}
+        <div style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
+          {renderMd('**Architecture :** React Hooks, Custom Hooks (useChat, useTheme, usePwaInstall, useNativeKeyboard).')}
+        </div>
+        <div style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
+          {renderMd("**Fonctionnalités :** Streaming en temps réel (Gen3 IA) & Fallback FAQ TF-IDF, Authentification JWT & Persistance de session, Support PWA, Interface optimisée pour le natif (Capacitor), Interface utilisateur avancée.")}
+        </div>
+        <div style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
+          {renderMd('**Version :** 2.0')}
+        </div>
         <p style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
           Pour plus d'informations, visitez <a href="https://e-supptic.cm/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brand-300)', textDecoration: 'none' }}>e-supptic.cm</a>.
         </p>
       </div>
     </div>
-  );
+  )
+}
+
+// ─── Profile Modal ────────────────────────────────────────────────────────────
+function ProfileModal({ open, onClose, user, onLogout, onSave }) {
+  // FIX 3: tous les hooks sont déclarés avant le early return (règle des Hooks React)
+  const [editing, setEditing] = useState(false)
+  const [username, setUsername] = useState(user?.username ?? '')
+  const [email, setEmail] = useState(user?.email ?? '')
+
+  // Resynchronise les champs locaux si l'utilisateur change ou si la modale se rouvre
+  useEffect(() => {
+    if (user) {
+      setUsername(user.username)
+      setEmail(user.email)
+      setEditing(false)
+    }
+  }, [user, open])
+
+  if (!open || !user) return null
+
+  const save = async () => {
+    const updated = { ...user, username: username.trim() || user.username, email: email.trim() || user.email }
+    try {
+      localStorage.setItem('supone-user', JSON.stringify(updated))
+    } catch (e) {
+      console.error('Erreur de sauvegarde du profil', e)
+    }
+    onSave?.(updated)
+    setEditing(false)
+    onClose()
+  }
+
+  return (
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center',
+      background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)', animation: 'fadeInChat .3s ease'
+    }}>
+      <div style={{
+        width: '100%', maxWidth: 400, padding: 32, borderRadius: 24,
+        background: 'var(--bg-elevated)', border: '1px solid var(--border-strong)',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.4)', position: 'relative',
+        animation: 'popIn .3s cubic-bezier(0.16, 1, 0.3, 1)', textAlign: 'center'
+      }}>
+        <button onClick={onClose} style={{ position: 'absolute', top: 16, right: 16, fontSize: '1.2rem', color: 'var(--text-secondary)' }}>×</button>
+        <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'var(--brand-500)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, fontWeight: 700, margin: '0 auto 20px' }}>
+          {username.charAt(0).toUpperCase()}
+        </div>
+
+        {!editing ? (
+          <>
+            <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)' }}>{user.username}</h2>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: 24 }}>{user.email}</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <button onClick={() => setEditing(true)} style={{ padding: '12px', borderRadius: 12, background: 'var(--surface)', color: 'var(--text)', fontWeight: 600 }}>Modifier le profil</button>
+              <button onClick={() => { onLogout(); onClose(); }} style={{ padding: '12px', borderRadius: 12, background: 'var(--error-bg)', color: 'var(--error)', fontWeight: 600 }}>
+                Déconnexion
+              </button>
+            </div>
+          </>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <input value={username} onChange={e => setUsername(e.target.value)} placeholder="Nom d'utilisateur" style={{ padding: 10, borderRadius: 8, border: '1px solid var(--composer-border)' }} />
+            <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" style={{ padding: 10, borderRadius: 8, border: '1px solid var(--composer-border)' }} />
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+              <button onClick={() => setEditing(false)} style={{ padding: '10px 12px', borderRadius: 8 }}>Annuler</button>
+              <button onClick={save} style={{ padding: '10px 12px', borderRadius: 8, background: 'var(--brand-500)', color: '#fff' }}>Enregistrer</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
 
 // ─── Auth Page ────────────────────────────────────────────────────────────────
@@ -1337,11 +1476,11 @@ function AuthPage({ mode, onSwitch, onLogin }) {
           <div style={{ position: 'relative' }}>
             <div style={{ position: 'relative' }}>
               <span style={{ position: 'absolute', left: 12, top: 12, color: 'var(--text-tertiary)' }}><IcoMail size={16}/></span>
-              <input 
-                placeholder="Email" 
+              <input
+                placeholder="Email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: 12, outline: 'none', border: `1px solid ${errors.email ? 'var(--error)' : 'var(--composer-border)'}` }} 
+                style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: 12, outline: 'none', border: `1px solid ${errors.email ? 'var(--error)' : 'var(--composer-border)'}` }}
               />
             </div>
             {errors.email && <p style={errorStyle}>{errors.email}</p>}
@@ -1350,11 +1489,11 @@ function AuthPage({ mode, onSwitch, onLogin }) {
              <div style={{ position: 'relative' }}>
               <div style={{ position: 'relative' }}>
                 <span style={{ position: 'absolute', left: 12, top: 12, color: 'var(--text-tertiary)' }}><IcoUser size={16}/></span>
-                <input 
-                  placeholder="Nom d'utilisateur" 
+                <input
+                  placeholder="Nom d'utilisateur"
                   value={username}
                   onChange={e => setUsername(e.target.value)}
-                  style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: 12, outline: 'none', border: `1px solid ${errors.username ? 'var(--error)' : 'var(--composer-border)'}` }} 
+                  style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: 12, outline: 'none', border: `1px solid ${errors.username ? 'var(--error)' : 'var(--composer-border)'}` }}
                 />
               </div>
               {errors.username && <p style={errorStyle}>{errors.username}</p>}
@@ -1363,12 +1502,12 @@ function AuthPage({ mode, onSwitch, onLogin }) {
           <div style={{ position: 'relative' }}>
             <div style={{ position: 'relative' }}>
               <span style={{ position: 'absolute', left: 12, top: 12, color: 'var(--text-tertiary)' }}><IcoLock size={16}/></span>
-              <input 
-                type="password" 
-                placeholder="Mot de passe" 
+              <input
+                type="password"
+                placeholder="Mot de passe"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
-                style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: 12, outline: 'none', border: `1px solid ${errors.password ? 'var(--error)' : 'var(--composer-border)'}` }} 
+                style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: 12, outline: 'none', border: `1px solid ${errors.password ? 'var(--error)' : 'var(--composer-border)'}` }}
               />
             </div>
             {errors.password && <p style={errorStyle}>{errors.password}</p>}

@@ -1,0 +1,94 @@
+/**
+ * SUP'ONE AI - Chat API Client
+ * Service de communication avec le backend Django
+ */
+
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
+/**
+ * Vérifie la santé du serveur et les capacités IA (Gen3)
+ */
+export async function resolveServerStatus() {
+  const res = await fetch(`${API_BASE}/api/health/`);
+  if (!res.ok) throw new Error("Serveur injoignable");
+  return await res.json();
+}
+
+/**
+ * Récupère les suggestions basées sur les questions les plus populaires
+ */
+export async function getSuggestions() {
+  const res = await fetch(`${API_BASE}/api/feedback/stats/`);
+  if (!res.ok) return ["Quelle est l'histoire de SUP'PTIC ?", "Comment s'inscrire ?", "Dates des examens"];
+  const stats = await res.json();
+  // On retourne les questions ayant le meilleur score
+  return stats
+    .sort((a, b) => (b.avg_score || 0) - (a.avg_score || 0))
+    .slice(0, 4)
+    .map(s => s.question);
+}
+
+/**
+ * Envoie un feedback (positif/négatif) sur une réponse
+ */
+export async function submitFeedback(payload) {
+  const res = await fetch(`${API_BASE}/api/feedback/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  return res.ok;
+}
+
+/**
+ * Pose une question via le pipeline Phase 1 (FAQ TF-IDF)
+ */
+export async function askV1(question) {
+  const res = await fetch(`${API_BASE}/api/ask/v1/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question }),
+  });
+  if (!res.ok) throw new Error("Erreur lors de la recherche FAQ");
+  return await res.json();
+}
+
+/**
+ * Pose une question via le pipeline Gen3 (Streaming AI)
+ */
+export async function askV2Stream(question, onStatus, onToken, onMeta) {
+  const res = await fetch(`${API_BASE}/api/ask/v2/`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question, stream: true }),
+  });
+
+  if (!res.ok) throw new Error("Erreur lors de la génération IA");
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    const chunk = decoder.decode(value);
+    const lines = chunk.split("\n");
+
+    for (const line of lines) {
+      if (line.startsWith("data: ")) {
+        try {
+          const data = JSON.parse(line.substring(6));
+          if (data.status) onStatus(data.status);
+          if (data.token) onToken(data.token);
+          if (data.method) onMeta(data.method);
+        } catch (e) {
+          // Fin du stream ou chunk incomplet
+        }
+      }
+    }
+  }
+}
+
+export async function loginUser(credentials) { /* ... */ }
+export async function signupUser(data) { /* ... */ }

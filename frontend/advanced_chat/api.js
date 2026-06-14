@@ -22,6 +22,7 @@ const ENDPOINTS = {
   ASK_V2: `${API_BASE}/api/v2/chatbot/ask/`,
   HEALTH: `${API_BASE}/api/health/`,
   FEEDBACK: `${API_BASE}/api/feedback/`,
+  HISTORY: `${API_BASE}/api/history/`,
   STATS: `${API_BASE}/api/stats/`,
   LOGIN: `${API_BASE}/api/users/login/`,
   SIGNUP: `${API_BASE}/api/users/signup/`,
@@ -29,6 +30,13 @@ const ENDPOINTS = {
 
 // Export API_BASE and ENDPOINTS
 export { API_BASE, ENDPOINTS };
+
+function getAuthHeaders(extra = {}) {
+  const token = localStorage.getItem('access_token');
+  const headers = { ...extra };
+  if (token) headers['Authorization'] = `Token ${token}`;
+  return headers;
+}
 
 // Export API functions
 export async function fetchHealth() {
@@ -52,6 +60,7 @@ export async function fetchAskV1(question) {
   const response = await fetch(ENDPOINTS.ASK_V1, {
     method: "POST",
     headers: { 
+      ...getAuthHeaders(),
       "Content-Type": "application/json", 
       "Accept": "application/json" 
     },
@@ -66,6 +75,7 @@ export async function fetchAskV2Stream(question, onStatusUpdate, onToken, onMeta
   const response = await fetch(ENDPOINTS.ASK_V2, {
     method: "POST",
     headers: { 
+      ...getAuthHeaders(),
       "Content-Type": "application/json", 
       "Accept": "text/event-stream" 
     },
@@ -74,6 +84,7 @@ export async function fetchAskV2Stream(question, onStatusUpdate, onToken, onMeta
   });
 
   if (!response.ok) throw new Error(`Gen3 HTTP ${response.status}`);
+  if (!response.body) throw new Error("ReadableStream non supporté");
 
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
@@ -112,6 +123,7 @@ export async function sendFeedbackApi(payload) {
   const response = await fetch(ENDPOINTS.FEEDBACK, {
     method: "POST",
     headers: {
+      ...getAuthHeaders(),
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
@@ -120,6 +132,16 @@ export async function sendFeedbackApi(payload) {
   });
   if (!response.ok) throw new Error(`Feedback API HTTP ${response.status}`);
   return response.json();
+}
+
+export async function deleteHistoryApi() {
+  const response = await fetch(ENDPOINTS.HISTORY, {
+    method: "DELETE",
+    headers: getAuthHeaders(),
+    credentials: 'include',
+  });
+  if (!response.ok) throw new Error(`Delete history failed: ${response.status}`);
+  return true;
 }
 
 export async function loginUser(email, password) {

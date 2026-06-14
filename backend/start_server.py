@@ -17,7 +17,7 @@ print("  - http://localhost:8001 (if on same machine)")
 print()
 
 try:
-    subprocess.run([sys.executable, "manage.py", "runserver", "127.0.0.1:8001"], check=True)
+    subprocess.run([sys.executable, "manage.py", "runserver", "0.0.0.0:8001"], check=True)
 except KeyboardInterrupt:
     print("\n✓ Server stopped")
 except Exception as e:

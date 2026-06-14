@@ -180,19 +180,25 @@ function handleAuthGate() {
 function openAuthModal() {
   if (authModal) {
     authModal.classList.add("show");
-    // Toggle between Login/Signup forms logic here
   }
+}
+
+function closeAuthModal() {
+  if (authModal) authModal.classList.remove("show");
 }
 
 async function handleLogin(email, password) {
   try {
     const userData = await loginUser(email, password);
-    state.user = userData.user; // Assuming API returns user data
-    localStorage.setItem('access_token', userData.access); // Store JWT
-    // Hide modal, show success toast, update UI
+    state.user = userData.user || userData;
+    // DRF Token authentication typically uses 'token' or 'access'
+    const token = userData.token || userData.access;
+    if (token) localStorage.setItem('access_token', token);
+    
     console.log("Login successful:", userData);
     showToast("Connexion réussie !");
-    // closeAuthModal(); // Implement this function
+    closeAuthModal();
+    checkBackendHealth(); // Refresh state
   } catch (error) {
     console.error("Login failed:", error.message);
     showToast(`Erreur de connexion: ${error.message}`);
@@ -743,9 +749,8 @@ async function ask(question) {
 
   state.isProcessing = true;
   sendBtn.disabled = true;
+  state.lastQuestion = question;
   hideWelcomeAndSuggestions();
-  
-  // const cleanQuestion = question.trim(); // This variable was not used after being defined
   let questionCount = parseInt(localStorage.getItem('q_count') || "0") + 1;
   localStorage.setItem('q_count', questionCount);
 
@@ -890,7 +895,7 @@ async function sendFeedback(faqId, feedbackType, comment = null) {
     await sendFeedbackApi({
       faq: faqId,
       feedback_type: feedbackType,
-      question_utilisateur: "...", // Retrieve from bubble context
+      question_utilisateur: state.lastQuestion || "Non spécifiée",
       score_similarite: 0,
       comment: comment || "",
     });
