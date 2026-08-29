@@ -42,19 +42,22 @@ else:
     logger.warning("[llm_client] GEMINI_API_KEY non définie — le niveau LLM sera inactif.")
 
 # -------------------------------------------------------------------
-# Paramètres de génération par niveau
-# Gemini utilise GenerationConfig, pas les paramètres Ollama.
+# Paramètres de génération — optimisés anti-hallucination
 # -------------------------------------------------------------------
 _CONFIG_LLM = genai.types.GenerationConfig(
-    temperature=0.3,
-    max_output_tokens=512,
-    top_p=0.90,
+    temperature=0.15,
+    max_output_tokens=300,
+    top_p=0.80,
+    top_k=20,
+    candidate_count=1,
 )
 
 _CONFIG_DIRECT = genai.types.GenerationConfig(
     temperature=0.1,
     max_output_tokens=150,
     top_p=0.85,
+    top_k=15,
+    candidate_count=1,
 )
 
 _LEVEL_CONFIGS = {
@@ -63,20 +66,57 @@ _LEVEL_CONFIGS = {
 }
 
 # -------------------------------------------------------------------
+# Safety settings — bloquer le contenu non pertinent
+# -------------------------------------------------------------------
+_SAFETY_SETTINGS = [
+    {"category": "HARM_CATEGORY_HARASSMENT",      "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+    {"category": "HARM_CATEGORY_HATE_SPEECH",     "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+    {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+]
+
+# -------------------------------------------------------------------
 # Message système — identique à prompt_builder._SYSTEM_MESSAGE
 # Gemini accepte un system_instruction séparé du prompt utilisateur.
 # -------------------------------------------------------------------
 _SYSTEM_INSTRUCTION = (
     "Tu es SUP'ONE, l'assistant officiel de SUP'PTIC, "
     "l'École Supérieure des Postes et Télécommunications du Cameroun.\n\n"
-    "RÈGLES :\n"
+    "RÈGLES ABSOLUES (jamais enfreintes) :\n"
     "1. Tu réponds UNIQUEMENT en français.\n"
     "2. Tu te bases EXCLUSIVEMENT sur le [CONTEXTE] fourni.\n"
-    "3. Si l'information n'est PAS dans le [CONTEXTE], réponds EXACTEMENT : "
+    "3. SI l'information n'est PAS dans le [CONTEXTE], tu réponds EXACTEMENT : "
     "\"Je n'ai pas cette information dans ma base. Contactez le secrétariat de SUP'PTIC.\"\n"
-    "4. Tu ne fabriques AUCUNE information.\n"
-    "5. Tes réponses sont courtes : 2 à 3 phrases maximum."
+    "4. Tu ne fabriques JAMAIS d'information. Pas d'invention, pas de supposition.\n"
+    "5. Tes réponses sont courtes : 1 à 3 phrases maximum.\n"
+    "6. Tu ne donnes JAMAIS de conseils médicaux, juridiques ou financiers.\n"
+    "7. Tu ne réponds qu'aux questions en rapport avec SUP'PTIC.\n"
+    "8. Si la question est hors sujet, tu réponds : "
+    "\"Cette question ne concerne pas SUP'PTIC. Je suis spécialisé dans les informations de l'école.\"\n"
+    "9. Tu ne répètes JAMAIS la question de l'utilisateur.\n"
+    "10. Tu n'utilises JAMAIS de formules comme \"D'après mes informations\" ou \"Il semble que\"."
 )
+
+# -------------------------------------------------------------------
+# Cache des modèles GenerativeModel (réutilisation par level+model)
+# Évite la réinstanciation à chaque requête.
+# -------------------------------------------------------------------
+_model_cache: dict[tuple[str, str], genai.GenerativeModel] = {}
+
+
+def _get_model(model: str, level: str) -> genai.GenerativeModel:
+    """Retourne un GenerativeModel mis en cache par (model, level)."""
+    key = (model, level)
+    if key not in _model_cache:
+        config = _LEVEL_CONFIGS.get(level, _CONFIG_LLM)
+        _model_cache[key] = genai.GenerativeModel(
+            model_name=model,
+            generation_config=config,
+            system_instruction=_SYSTEM_INSTRUCTION,
+            safety_settings=_SAFETY_SETTINGS,
+        )
+    return _model_cache[key]
+
 
 # -------------------------------------------------------------------
 # Circuit-breaker léger (identique à l'ancienne version Ollama)
@@ -118,9 +158,19 @@ def _extract_text(response) -> str:
         return response.text.strip()
     except ValueError:
         # Réponse bloquée par les filtres de sécurité Gemini
-        finish = getattr(response.candidates[0], "finish_reason", "UNKNOWN") if response.candidates else "NO_CANDIDATE"
+        if response.candidates and response.candidates[0]:
+            finish = getattr(response.candidates[0], "finish_reason", "UNKNOWN")
+        else:
+            finish = "NO_CANDIDATE"
         logger.warning("[llm_client] Réponse Gemini bloquée (finish_reason=%s).", finish)
         return "Je n'ai pas cette information dans ma base. Contactez le secrétariat de SUP'PTIC."
+
+
+# -------------------------------------------------------------------
+# Cache de disponibilité — évite list_models() à chaque requête
+# -------------------------------------------------------------------
+_avail_cache: dict[str, object] = {"result": None, "expires": 0.0}
+_AVAIL_TTL_S = 300  # 5 minutes
 
 
 # -------------------------------------------------------------------
@@ -147,14 +197,9 @@ def generate(
         raise RuntimeError("[llm_client] GEMINI_API_KEY non définie.")
 
     _check_circuit()
-    config = _LEVEL_CONFIGS.get(level, _CONFIG_LLM)
 
     try:
-        gemini_model = genai.GenerativeModel(
-            model_name=model,
-            generation_config=config,
-            system_instruction=_SYSTEM_INSTRUCTION,
-        )
+        gemini_model = _get_model(model, level)
         response = gemini_model.generate_content(prompt)
         _record_success()
         logger.info("[llm_client] generate() OK — model=%s level=%s", model, level)
@@ -166,7 +211,6 @@ def generate(
         raise RuntimeError(f"[llm_client] Quota API Gemini dépassé : {exc}") from exc
 
     except InvalidArgument as exc:
-        # Clé API invalide ou paramètre incorrect — ne pas enregistrer comme failure réseau
         logger.error("[llm_client] Paramètre invalide Gemini : %s", exc)
         raise RuntimeError(f"[llm_client] Paramètre invalide : {exc}") from exc
 
@@ -200,14 +244,9 @@ def generate_stream(
         raise RuntimeError("[llm_client] GEMINI_API_KEY non définie.")
 
     _check_circuit()
-    config = _LEVEL_CONFIGS.get(level, _CONFIG_LLM)
 
     try:
-        gemini_model = genai.GenerativeModel(
-            model_name=model,
-            generation_config=config,
-            system_instruction=_SYSTEM_INSTRUCTION,
-        )
+        gemini_model = _get_model(model, level)
         response = gemini_model.generate_content(prompt, stream=True)
         _record_success()
         logger.info("[llm_client] generate_stream() démarré — model=%s level=%s", model, level)
@@ -218,7 +257,6 @@ def generate_stream(
                 if text:
                     yield text
             except ValueError:
-                # Chunk bloqué par les filtres de sécurité — on skippe proprement
                 logger.warning("[llm_client] Chunk Gemini bloqué — skip.")
                 continue
 
@@ -240,16 +278,19 @@ def generate_stream(
 
 # -------------------------------------------------------------------
 # Health check — ping l'API Gemini avec la clé configurée
+# Résultat mis en cache 5 min pour éviter list_models() à chaque requête.
 # -------------------------------------------------------------------
 def check_availability(model: str = GEMINI_MODEL) -> dict:
     """
     Vérifie que la clé Gemini est valide et que le modèle est accessible.
-
-    Interface identique à l'ancienne version Ollama :
-        { "available": bool, "model": str, "error": str|None }
-
-    Stratégie : appel list_models() — pas de génération, pas de token consommé.
+    Résultat mis en cache pendant 5 minutes pour éviter les appels réseau répétés.
     """
+    now = time.time()
+
+    # Cache hit
+    if _avail_cache["result"] is not None and now < _avail_cache["expires"]:
+        return _avail_cache["result"]
+
     result = {"available": False, "model": model, "error": None}
 
     if not GEMINI_API_KEY:
@@ -257,9 +298,7 @@ def check_availability(model: str = GEMINI_MODEL) -> dict:
         return result
 
     try:
-        genai.configure(api_key=GEMINI_API_KEY)
         available_models = [m.name for m in genai.list_models()]
-        # Les noms sont de la forme "models/gemini-1.5-flash"
         model_found = any(model in m for m in available_models)
 
         if model_found:
@@ -276,6 +315,15 @@ def check_availability(model: str = GEMINI_MODEL) -> dict:
         result["error"] = f"Erreur API Gemini : {exc}"
     except Exception as exc:
         result["error"] = str(exc)
+
+    # Mise en cache (même en cas d'erreur temporaire, pour éviter le flood)
+    if result["available"]:
+        _avail_cache["result"] = result
+        _avail_cache["expires"] = now + _AVAIL_TTL_S
+    else:
+        # Cache les erreurs aussi pendant 60s pour éviter les retries immédiats
+        _avail_cache["result"] = result
+        _avail_cache["expires"] = now + 60
 
     return result
 

@@ -1,15 +1,6 @@
 """
 prompt_builder.py — Construction des prompts pour le LLM (Gemini).
-Génération 3 : prompts différenciés par niveau, detect_conv() pour le pipeline.
-
-Fonctions publiques utilisées par rag_pipeline.py :
-    detect_conv(text)                         → str | None   (Niveau 1)
-    build_prompt(question, contexts, history) → str          (Niveau 4 — LLM)
-    build_direct_prompt(question, context)    → str          (debug LLM uniquement)
-
-Note : le message système est transmis séparément via system_instruction par
-llm_client.py. Les marqueurs de type <|system|>…<|assistant|> ci-dessous
-structurent le contexte mais sont traités comme du texte par Gemini.
+Version optimisée : renforce les instructions anti-hallucination.
 """
 
 from __future__ import annotations
@@ -17,18 +8,27 @@ from __future__ import annotations
 import re
 
 # -------------------------------------------------------------------
-# Message système — commun à tous les niveaux LLM
+# Message système — renforcé contre les hallucinations
 # -------------------------------------------------------------------
 _SYSTEM_MESSAGE = (
     "Tu es SUP'ONE, l'assistant officiel de SUP'PTIC, "
     "l'École Supérieure des Postes et Télécommunications du Cameroun.\n\n"
-    "RÈGLES :\n"
+    "RÈGLES ABSOLUES (jamais enfreintes) :\n"
     "1. Tu réponds UNIQUEMENT en français.\n"
-    "2. Tu te bases EXCLUSIVEMENT sur le [CONTEXTE] fourni.\n"
-    "3. Si l'information n'est PAS dans le [CONTEXTE], réponds EXACTEMENT : "
-    "\"Je n'ai pas cette information dans ma base. Contactez le secrétariat de SUP'PTIC.\"\n"
-    "4. Tu ne fabriques AUCUNE information.\n"
-    "5. Tes réponses sont courtes : 2 à 3 phrases maximum."
+    "2. Tu te bases EXCLUSIVEMENT sur le [CONTEXTE] fourni ci-dessous.\n"
+    "3. SI l'information n'est PAS dans le [CONTEXTE], tu réponds EXACTEMENT : "
+    "\"Je n'ai pas cette information dans ma base de données SUP'PTIC. "
+    "Pour plus de détails, contactez directement le secrétariat.\"\n"
+    "4. Tu ne fabriques JAMAIS d'information. Pas d'invention, pas de supposition, pas d'improvisation.\n"
+    "5. Tes réponses sont courtes : 1 à 3 phrases maximum.\n"
+    "6. Tu ne donnes JAMAIS de conseils médicaux, juridiques, financiers ou personnels.\n"
+    "7. Tu ne réponds qu'aux questions en rapport avec SUP'PTIC (admissions, filières, "
+    "examens, vie étudiante, services, infrastructure).\n"
+    "8. Si la question est hors sujet, tu réponds : "
+    "\"Cette question ne concerne pas SUP'PTIC. Je suis spécialisé dans les informations "
+    "de l'école. Posez-moi une question sur les admissions, les filières ou les services.\"\n"
+    "9. Tu ne répètes JAMAIS la question de l'utilisateur dans ta réponse.\n"
+    "10. Tu n'utilises JAMAIS de formules comme \"D'après mes informations\" ou \"Il semble que\"."
 )
 
 # -------------------------------------------------------------------
@@ -56,10 +56,6 @@ _CONV_PATTERNS: list[tuple[re.Pattern, str]] = [
 def detect_conv(text: str) -> str | None:
     """
     Niveau 1 — Détecte les formules conversationnelles par regex.
-    Appelé en premier par rag_pipeline.ask() et ask_stream().
-
-    Returns:
-        Réponse hardcodée si match, None sinon.
     """
     for pattern, key in _CONV_PATTERNS:
         if pattern.search(text):
@@ -71,11 +67,6 @@ def detect_conv(text: str) -> str | None:
 # Niveau 2 — DIRECT : prompt minimal pour reformulation (debug)
 # -------------------------------------------------------------------
 def build_direct_prompt(question: str, best_context: dict) -> str:
-    """
-    Prompt allégé pour reformuler une réponse FAISS directe.
-    Utilisé uniquement en debug — en Gen3, le Niveau 2 retourne la
-    réponse stockée sans passer par le LLM.
-    """
     response_text = best_context.get("response", "").strip()
     categorie     = best_context.get("categorie", "")
     return (
@@ -89,7 +80,7 @@ def build_direct_prompt(question: str, best_context: dict) -> str:
 
 
 # -------------------------------------------------------------------
-# Niveau 3 — LLM : prompt complet avec contexte FAISS + historique (debug)
+# Niveau 3 — LLM : prompt complet avec contexte FAISS + historique
 # -------------------------------------------------------------------
 def build_prompt(
     question: str,
@@ -99,14 +90,7 @@ def build_prompt(
 ) -> str:
     """
     Prompt complet pour le LLM avec contexte FAISS et historique.
-    Utilisé uniquement en debug via views.test_llm_latency().
-    En Gen3, le pipeline n'atteint jamais ce niveau.
-
-    Args:
-        question:     Question de l'étudiant.
-        contexts:     Résultats de faiss_search.search_with_metadata().
-        history:      Derniers échanges [{role, content}] (max 2 retenus).
-        max_contexts: Nombre max de blocs de contexte (défaut 3).
+    Optimisé pour réduire les hallucinations.
     """
     body = _build_user_body(history, contexts[:max_contexts], question)
     return (
@@ -124,30 +108,37 @@ def _build_user_body(
     """Corps du message utilisateur : historique + contexte + question."""
     parts: list[str] = []
 
-    # Historique : max 2 derniers échanges, tronqués à 200 chars
+    # Historique : max 2 derniers échanges, tronqués à 150 chars
     if history:
         parts.append("[HISTORIQUE]")
         for turn in history[-2:]:
             label   = "Étudiant" if turn.get("role") == "user" else "Assistant"
-            content = turn.get("content", "").strip()[:200]
+            content = turn.get("content", "").strip()[:150]
             parts.append(f"{label} : {content}")
         parts.append("")
 
     # Contexte FAISS
     if contexts:
-        parts.append("[CONTEXTE]")
+        parts.append("[CONTEXTE — Sources fiables SUP'PTIC]")
         for i, ctx in enumerate(contexts, 1):
             cat  = ctx.get("categorie", "Général")
             src  = ctx.get("source", "")
             text = ctx.get("response", "").strip()
+            # Tronquer les contextes trop longs pour éviter la confusion
+            if len(text) > 400:
+                text = text[:400] + "…"
             src_tag = f" | {src}" if src else ""
             parts.append(f"[{i}] {cat}{src_tag}\n{text}")
         parts.append("")
     else:
-        parts.append("[CONTEXTE]\n(Aucune information disponible.)\n")
+        parts.append("[CONTEXTE]\n(Aucune information disponible dans la base SUP'PTIC.)\n")
 
     parts.append(f"Question : {question.strip()}")
-    parts.append("Réponds uniquement à partir du [CONTEXTE], en français, de façon concise.")
+    parts.append(
+        "IMPORTANT : Réponds UNIQUEMENT à partir du [CONTEXTE]. "
+        "Si l'information n'y est pas, dis-le clairement. "
+        "Ne fabrique AUCUNE information. Sois concis (1-3 phrases max)."
+    )
     return "\n".join(parts) + "\n"
 
 
@@ -155,21 +146,18 @@ def _build_user_body(
 # Test rapide (python prompt_builder.py)
 # -------------------------------------------------------------------
 if __name__ == "__main__":
-    print("=== Test prompt_builder.py — Génération 3 ===\n")
+    print("=== Test prompt_builder.py — Version optimisée ===\n")
 
-    # Niveau 1 — CONV
     tests_conv = ["Bonjour !", "Merci beaucoup", "Qui es-tu ?", "Quel temps ?"]
     for q in tests_conv:
         r = detect_conv(q)
         print(f"CONV '{q}' → {r}\n")
 
-    # Niveau 2 — DIRECT (debug)
     ctx = {"categorie": "Admissions", "source": "e-supptic.cm",
-           "response": "Les frais de scolarité s'élèvent à 500 000 FCFA par an."}
+           "response": "Les frais de scolarité à SUP'PTIC s'élèvent à 500 000 FCFA par an."}
     p = build_direct_prompt("C'est combien pour s'inscrire ?", ctx)
     print(f"--- Prompt DIRECT ---\n{p}")
 
-    # Niveau 3 — LLM complet (debug)
     contexts = [
         {"categorie": "Admissions", "source": "brochure_2025.pdf",
          "response": "Le paiement peut être effectué en deux tranches."},

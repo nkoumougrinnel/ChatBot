@@ -45,11 +45,12 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 # Seuils de cohérence question ↔ réponse (surchargeables via .env)
-TFIDF_ANSWER_MIN = float(os.environ.get("TFIDF_ANSWER_MIN", "0.38"))
-FAISS_MEDIUM_MIN = float(os.environ.get("FAISS_MEDIUM_MIN", "0.45"))
-LLM_CONTEXT_MIN = float(os.environ.get("LLM_CONTEXT_MIN", "0.22"))
-OVERLAP_MIN_DIRECT = float(os.environ.get("OVERLAP_MIN_DIRECT", "0.18"))
-SCORE_DIRECT_OVERRIDE = float(os.environ.get("SCORE_DIRECT_OVERRIDE", "0.88"))
+# Optimisés pour minimiser les hallucinations
+TFIDF_ANSWER_MIN = float(os.environ.get("TFIDF_ANSWER_MIN", "0.42"))
+FAISS_MEDIUM_MIN = float(os.environ.get("FAISS_MEDIUM_MIN", "0.48"))
+LLM_CONTEXT_MIN = float(os.environ.get("LLM_CONTEXT_MIN", "0.25"))
+OVERLAP_MIN_DIRECT = float(os.environ.get("OVERLAP_MIN_DIRECT", "0.22"))
+SCORE_DIRECT_OVERRIDE = float(os.environ.get("SCORE_DIRECT_OVERRIDE", "0.90"))
 
 _STOPWORDS = frozenset({
     "les", "des", "une", "un", "est", "sont", "dans", "pour", "par", "sur",
@@ -63,6 +64,61 @@ _OFFBASE_MSG = (
     "Je n'ai pas cette information dans ma base de données SUP'PTIC. "
     "Pour plus de détails, contactez directement le secrétariat."
 )
+
+# Réponses de refus pour les cas limites
+_HALLUCINATION_SUSPECT_MSG = (
+    "La réponse générée ne semble pas fiable. "
+    "Je vous recommande de contacter directement le secrétariat de SUP'PTIC "
+    "pour obtenir une information exacte."
+)
+
+
+def _validate_llm_answer(answer: str, question: str, contexts: list[dict]) -> str:
+    """
+    Valide la réponse du LLM avant de la retourner.
+    Détecte les signes d'hallucination potentielle.
+    """
+    if not answer or not answer.strip():
+        return _OFFBASE_MSG
+
+    clean = answer.strip()
+    lower = clean.lower()
+
+    # 1. Si le LLM répond qu'il ne sait pas, retourner le refus standard
+    # Patterns plus spécifiques pour éviter les faux positifs
+    uncertainty_patterns = [
+        r"je ne sais pas",
+        r"je n'ai pas\s+(de\s+)?(information|connaissance|donn)",
+        r"pas d'information",
+        r"non disponible",
+        r"pas disponible",
+        r"aucune information",
+    ]
+    if any(re.search(p, lower) for p in uncertainty_patterns):
+        return _OFFBASE_MSG
+
+    # 2. Si la réponse contient des années très spécifiques qui ne sont pas
+    # dans le contexte, c'est suspect (hallucination de dates)
+    # Seuil abaissé à 80% pour éviter les faux positifs
+    years_in_answer = set(re.findall(r'\b(19|20)\d{2}\b', clean))
+    years_in_context = set()
+    for ctx in contexts:
+        text = ctx.get("response", "")
+        years_in_context.update(re.findall(r'\b(19|20)\d{2}\b', text))
+
+    # Si le LLM invente des années non présentes dans le contexte
+    if years_in_answer and years_in_context:
+        unknown_years = years_in_answer - years_in_context
+        if unknown_years and len(unknown_years) > len(years_in_answer) * 0.8:
+            logger.warning("[pipeline] Années suspectes dans la réponse LLM : %s", unknown_years)
+            return _HALLUCINATION_SUSPECT_MSG
+
+    # 3. Réponse trop longue = possible hors sujet
+    if len(clean) > 500:
+        logger.warning("[pipeline] Réponse LLM trop longue (%d chars), troncation", len(clean))
+        clean = clean[:497] + "…"
+
+    return clean
 
 
 def _tfidf_acceptable(tfidf_score: float, tfidf_answer: str) -> bool:
@@ -100,7 +156,7 @@ def _context_reference(ctx: dict | None) -> str:
 def _context_overlap(question: str, ctx: dict | None) -> float:
     q = _tokens(question)
     if not q:
-        return 1.0
+        return 0.0
     ref = _tokens(_context_reference(ctx))
     if not ref:
         return 0.0
@@ -108,7 +164,8 @@ def _context_overlap(question: str, ctx: dict | None) -> float:
 
 
 def _critical_terms_ok(question: str, ctx: dict | None) -> bool:
-    """Mots-clés métier de la question doivent apparaître dans le contexte FAISS."""
+    """Mots-clés métier de la question doivent apparaître dans le contexte FAISS.
+    Vérifie TOUTES les règles correspondantes (pas seulement la première)."""
     q = question.lower()
     ref = _context_reference(ctx).lower()
     rules: list[tuple[tuple[str, ...], tuple[str, ...]]] = [
@@ -124,7 +181,8 @@ def _critical_terms_ok(question: str, ctx: dict | None) -> bool:
         if any(t in q for t in triggers):
             if not required:
                 return False
-            return any(r in ref for r in required)
+            if not any(r in ref for r in required):
+                return False
     return True
 
 
@@ -151,6 +209,25 @@ def _faq_id_from_ref_question(ref_q: str) -> int | None:
     return faq.id if faq else None
 
 
+# Cache pour les lookups faq_id (évite les DB queries répétées)
+_faq_id_cache: dict[str, int | None] = {}
+_FAQ_ID_CACHE_MAX = 512
+
+
+def _cached_faq_id(ref_q: str) -> int | None:
+    """Version cachée de _faq_id_from_ref_question."""
+    if not ref_q:
+        return None
+    ref = ref_q.strip()
+    if ref in _faq_id_cache:
+        return _faq_id_cache[ref]
+    result = _faq_id_from_ref_question(ref)
+    # Évite la croissance infinie du cache
+    if len(_faq_id_cache) < _FAQ_ID_CACHE_MAX:
+        _faq_id_cache[ref] = result
+    return result
+
+
 def _pipeline_result_from_pick(pick: dict, best: dict | None, contexts: list, t0: float) -> PipelineResult:
     return PipelineResult(
         answer=pick["answer"],
@@ -160,7 +237,7 @@ def _pipeline_result_from_pick(pick: dict, best: dict | None, contexts: list, t0
         source="tfidf_cache" if pick["method"] == "tfidf_direct" else (best or {}).get("source", ""),
         categorie=(best or {}).get("categorie", ""),
         method=pick["method"],
-        faq_id=_faq_id_from_ref_question(pick.get("ref_q", "")),
+        faq_id=_cached_faq_id(pick.get("ref_q", "")),
         contexts=contexts,
     )
 
@@ -193,6 +270,46 @@ def _get_vec(text: str) -> np.ndarray:
     return np.array(_cached_encode(text), dtype=np.float32)
 
 
+# -------------------------------------------------------------------
+# Cache des résultats pipeline (pour les questions répétées sans historique)
+# -------------------------------------------------------------------
+_pipeline_cache: dict[str, PipelineResult] = {}
+_PIPELINE_CACHE_MAX = 128
+_PIPELINE_CACHE_TTL_S = 300  # 5 minutes
+
+
+def _get_cached_result(question: str) -> PipelineResult | None:
+    """Retourne le résultat en cache si la question est identique et récente."""
+    entry = _pipeline_cache.get(question.strip().lower())
+    if entry and hasattr(entry, '_created_at') and (time.time() - entry._created_at) < _PIPELINE_CACHE_TTL_S:
+        return entry
+    return None
+
+
+def _set_cached_result(question: str, result: PipelineResult) -> None:
+    """Met en cache le résultat du pipeline."""
+    if len(_pipeline_cache) >= _PIPELINE_CACHE_MAX:
+        sorted_keys = sorted(
+            _pipeline_cache.keys(),
+            key=lambda k: getattr(_pipeline_cache[k], '_created_at', 0)
+        )
+        for k in sorted_keys[:20]:
+            _pipeline_cache.pop(k, None)
+    entry = PipelineResult(
+        answer=result.answer,
+        level=result.level,
+        score=result.score,
+        latency_ms=result.latency_ms,
+        source=result.source,
+        categorie=result.categorie,
+        method=result.method,
+        faq_id=result.faq_id,
+        contexts=result.contexts,
+    )
+    entry._created_at = time.time()
+    _pipeline_cache[question.strip().lower()] = entry
+
+
 def _ms(t0: float) -> float:
     return round((time.time() - t0) * 1000, 1)
 
@@ -201,7 +318,7 @@ def _ms(t0: float) -> float:
 # Construction des événements SSE (spec W3C text/event-stream)
 # -------------------------------------------------------------------
 def build_sse_event(data: str, event: str | None = None) -> str:
-    safe_data = str(data).replace("\r\n", " ").replace("\n", " ").replace("\r", " ")
+    safe_data = str(data).replace("\r\n", "\n").replace("\r", "\n")
     lines = []
     if event:
         lines.append(f"event: {event.strip()}")
@@ -224,6 +341,13 @@ def ask(
             answer="Veuillez saisir une question.",
             level="conv", method="empty", latency_ms=_ms(t0),
         )
+
+    # Cache hit pour les questions sans historique
+    if not history:
+        cached = _get_cached_result(question)
+        if cached:
+            logger.info("[pipeline] CACHE HIT '%s'", question[:50])
+            return cached
 
     # Niveau 1 — CONV
     conv_answer = detect_conv(question)
@@ -262,7 +386,10 @@ def ask(
                 "[pipeline] KB %s score=%.4f overlap=%.2f | '%s'",
                 pick["method"], pick["score"], pick["overlap"], question[:50],
             )
-            return _pipeline_result_from_pick(pick, best, contexts, t0)
+            result = _pipeline_result_from_pick(pick, best, contexts, t0)
+            if not history:
+                _set_cached_result(question, result)
+            return result
         logger.info("[pipeline] Pas de réponse cohérente (faiss=%.4f)", best_score)
         return PipelineResult(
             answer=_OFFBASE_MSG, level="offbase", score=best_score,
@@ -293,6 +420,8 @@ def ask(
     logger.info("[pipeline] LLM (score=%.4f) | '%s'", best_score, question[:50])
     try:
         llm_answer = generate(prompt, level="llm")
+        # Validation post-génération anti-hallucination
+        llm_answer = _validate_llm_answer(llm_answer, question, contexts)
     except Exception as exc:
         logger.error("[pipeline] LLM erreur : %s", exc)
         return PipelineResult(
@@ -406,12 +535,50 @@ def ask_stream(
     logger.info("[stream] LLM (score=%.4f) | '%s'", best_score, question[:50])
     yield build_sse_event("llm|llm_gemini", event="start")
 
+    # Buffer les premiers tokens pour validation avant envoi
+    BUFFER_SIZE = 300  # chars
+    buffer = ""
+    full_answer = ""
+    buffer_validated = False
+    stopped_early = False
+
     try:
         for token in generate_stream(prompt, level="llm"):
-            yield build_sse_event(token)
+            full_answer += token
+
+            if not buffer_validated:
+                buffer += token
+                # Quand le buffer atteint la taille critique, valider
+                if len(buffer) >= BUFFER_SIZE:
+                    validated = _validate_llm_answer(buffer, question, contexts)
+                    if validated != buffer:
+                        logger.info("[stream] Réponse LLM invalidée au buffer, arrêt")
+                        stopped_early = True
+                        break
+                    buffer_validated = True
+                    # Envoyer le buffer validé
+                    yield build_sse_event(buffer)
+                    buffer = ""
+            else:
+                yield build_sse_event(token)
     except Exception as exc:
         logger.error("[stream] LLM erreur streaming : %s", exc)
         yield build_sse_event(str(exc), event="error")
+
+    # Si le stream s'est arrêté tôt ou n'a pas atteint BUFFER_SIZE, valider le buffer restant
+    if not stopped_early and full_answer:
+        if not buffer_validated and buffer:
+            validated = _validate_llm_answer(buffer, question, contexts)
+            if validated != buffer:
+                logger.info("[stream] Réponse LLM invalidée (buffer final)")
+                stopped_early = True
+            else:
+                yield build_sse_event(buffer)
+        elif buffer_validated and buffer:
+            yield build_sse_event(buffer)
+
+    if stopped_early:
+        yield build_sse_event(_OFFBASE_MSG)
 
     yield build_sse_event(_ms(t0), event="done")
 

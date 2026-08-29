@@ -1,5 +1,6 @@
 """
 Sélection cohérente question ↔ réponse (FAISS + TF-IDF + filtres hors-sujet).
+Version optimisée : renforce les filtres anti-hallucination.
 """
 from __future__ import annotations
 
@@ -8,14 +9,14 @@ import unicodedata
 
 from .faiss_search import SCORE_DIRECT, SCORE_LLM
 
-# Importés depuis rag_pipeline via paramètres ou os.environ côté appelant
 TFIDF_ANSWER_MIN = 0.38
 
 _STOP = frozenset({
     "le", "la", "les", "de", "du", "des", "a", "au", "aux", "un", "une",
     "et", "ou", "en", "sur", "pour", "par", "comment", "quels", "quelles",
     "que", "qui", "est", "sont", "je", "tu", "vous", "mon", "ma", "mes",
-    "the", "is", "are", "what", "where", "how",
+    "the", "is", "are", "what", "where", "how", "donc", "car", "mais",
+    "aussi", "bien", "tout", "tous", "toute", "cette", "ces", "cet",
 })
 
 _JOKE_MARKERS = (
@@ -24,15 +25,31 @@ _JOKE_MARKERS = (
     "pourquoi les développeurs",
     "pourquoi les robots",
     "mode sombre",
+    "une blague",
+    "raconte moi",
 )
 
+# Patterns élargis pour détecter les questions hors périmètre SUP'PTIC
 _OFF_TOPIC_PATTERNS = (
     re.compile(r"\bcapitale\s+(de\s+la\s+)?france\b", re.I),
     re.compile(r"\bquelle\s+est\s+la\s+capitale\b", re.I),
-    re.compile(r"\b(météo|weather|température)\b", re.I),
+    re.compile(r"\b(météo|weather|température|temps qu.il fait)\b", re.I),
     re.compile(r"\b(recette|météo)\s+de\b", re.I),
     re.compile(r"\b(president|président)\s+(des\s+)?usa\b", re.I),
     re.compile(r"\bbitcoin\b", re.I),
+    re.compile(r"\b(crypto|ethereum|blockchain)\b", re.I),
+    re.compile(r"\b(chanson|musique|film|série|acteur|actrice)\b", re.I),
+    re.compile(r"\b(horoscope|destin|voyant|tarot)\b", re.I),
+    re.compile(r"\b(weather|forecast|rain|sun)\b", re.I),
+    re.compile(r"\b(apprendre\s+python|cours\s+de\s+javascript|tutoriel\s+code)\b", re.I),
+    re.compile(r"\b(sport|match|gol|but)\b", re.I),
+    re.compile(r"\b(amour|amoureux|relation|couple)\b", re.I),
+    re.compile(r"\b(president\s+des\s+usa|gouvernement\s+francais|ministre\s+francais)\b", re.I),
+    re.compile(r"\b(argent\s+investir|bourse\s+action|crypto\s+monnaie)\b", re.I),
+    re.compile(r"\b(sante\s+generale|medecin\s+personnel|maladie\s+chronique)\b", re.I),
+    re.compile(r"\b(voiture\s+personnelle|permis\s+de\s+conduire)\b", re.I),
+    re.compile(r"\b(cuisine\s+recette|plat\s+traditional)\b", re.I),
+    re.compile(r"\b(voyage\s+ touristique|avion\s+reservation|hotel\s+reservation)\b", re.I),
 )
 
 
@@ -53,6 +70,7 @@ def lexical_overlap(user_question: str, reference_question: str) -> float:
 
 
 def is_off_topic_query(question: str) -> bool:
+    """Détecte les questions clairement hors sujet (non-SUP'PTIC)."""
     return any(p.search(question) for p in _OFF_TOPIC_PATTERNS)
 
 
@@ -62,9 +80,13 @@ _DOMAIN_RULES: list[tuple[tuple[str, ...], tuple[str, ...]]] = [
     (("stage", "stages"), ("stage", "stages", "alternance")),
     (("examen", "concours"), ("examen", "concours", "épreuve", "epreuve")),
     (("filière", "filiere", "filières"), ("filière", "filiere", "filières", "formation", "cycle", "licence", "master")),
-    (("campus", "adresse", "trouve", "localis", "où"), ("campus", "adresse", "yaound", "elig", "situ", "trouve", "localis")),
+    (("campus", "adresse", "trouve", "localis", "où"), ("campus", "adresse", "yaound", "elig", "situ")),
     (("club", "informatique"), ("club", "informatique", "association")),
     (("horaire", "ouverture", "heure"), ("horaire", "ouverture", "heure", "8h", "17h", "lundi")),
+    (("professeur", "enseignant", "cours"), ("professeur", "enseignant", "cours", "matière", "prof")),
+    (("bibliothèque", "biblio"), ("bibliothèque", "biblio", "livre", "documentation")),
+    (("transport", "bus", "navette"), ("transport", "bus", "navette", "trajet")),
+    (("logement", "cité", "résidence"), ("logement", "cité", "résidence", "hébergement")),
 ]
 
 
@@ -91,10 +113,38 @@ def domain_terms_match(user_question: str, reference_question: str) -> bool:
 
 
 def is_joke_answer(answer: str, user_question: str) -> bool:
-    if "blague" in user_question.lower():
+    q = (user_question or "").lower()
+    # Ne vérifier que si la question elle-même concerne une blague
+    if not any(m in q for m in ("blague", "drôle", "rigolo", "rire")):
         return False
     low = (answer or "").lower()
     return any(m in low for m in _JOKE_MARKERS)
+
+
+def _answer_quality_check(answer: str) -> bool:
+    """
+    Vérifie la qualité d'une réponse avant de la retourner.
+    Rejette les réponses trop courtes, trop vagues ou suspectes.
+    """
+    if not answer or not answer.strip():
+        return False
+    clean = answer.strip()
+    # Réponse très courte (< 5 caractères) = probablement invalide
+    if len(clean) < 5:
+        return False
+    # Réponses génériques suspects uniquement si la réponse est courte
+    generic_rejects = [
+        "je ne sais pas",
+        "pas sûr",
+        "peut-être",
+        "il me semble",
+        "d'après moi",
+    ]
+    lower = clean.lower()
+    # Si la réponse est courte ET commence par une phrase générique, rejeter
+    if len(clean) < 80 and any(lower.startswith(g) for g in generic_rejects):
+        return False
+    return True
 
 
 def resolve_kb_answer(
@@ -121,6 +171,8 @@ def resolve_kb_answer(
         ans = (ctx.get("response") or "").strip()
         if not ans:
             continue
+        if not _answer_quality_check(ans):
+            continue
         if not domain_terms_match(question, ref):
             continue
         overlap = lexical_overlap(question, ref)
@@ -139,6 +191,8 @@ def resolve_kb_answer(
             continue
         ans = (hit.get("answer") or "").strip()
         if not ans or ans.startswith("Je n'ai pas"):
+            continue
+        if not _answer_quality_check(ans):
             continue
         ref = (hit.get("question") or "").strip()
         if not domain_terms_match(question, ref):
