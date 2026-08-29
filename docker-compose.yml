@@ -27,7 +27,7 @@ services:
       - path: .env
         required: false
     environment:
-      PORT: "8000"
+      PORT: "8001"
       DATABASE_URL: postgres://${POSTGRES_USER:-supone}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-supone}
       SECRET_KEY: ${SECRET_KEY:?Définir SECRET_KEY dans .env}
       DEBUG: ${DEBUG:-False}
@@ -51,7 +51,7 @@ services:
     expose:
       - "8000"
     healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/api/health/"]
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health/')\""]
       interval: 30s
       timeout: 10s
       retries: 5

@@ -162,13 +162,10 @@ class QuestionRequestSerializer(serializers.Serializer):
 
 class ChatbotResponseSerializer(serializers.Serializer):
     """Sérialisation d'une réponse du chatbot avec statut de confiance."""
-    
+
     question = serializers.CharField()
     results = serializers.ListField(
-        child=serializers.DictField(
-            child=serializers.CharField(),
-            help_text="{'faq_id': int, 'question': str, 'answer': str, 'score': float, 'category': str}"
-        )
+        child=serializers.DictField()
     )
     count = serializers.IntegerField()
     status = serializers.CharField(

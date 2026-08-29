@@ -141,7 +141,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -179,6 +186,8 @@ CORS_ALLOW_HEADERS = [
     'Authorization',
     'X-Requested-With',
     'Accept',
+    'Cache-Control',
+    'X-Accel-Buffering',
 ]
 
 # Durcissement de sécurité actif uniquement hors développement.

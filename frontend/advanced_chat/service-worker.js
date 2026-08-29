@@ -67,7 +67,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// ✅ Stratégie de cache améliorée avec timeout pour éviter les blocages
+// Stratégie de cache améliorée avec timeout pour éviter les blocages
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
@@ -77,7 +77,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // ✅ TOUJOURS servir offline.html et demo.html depuis le cache (hors ligne garanti)
+  // TOUJOURS servir offline.html et demo.html depuis le cache (hors ligne garanti)
   if (url.pathname === '/offline.html' || url.pathname === '/demo.html') {
     event.respondWith(
       caches.match(request).then(response => {
@@ -106,7 +106,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // ✅ Stratégie améliorée pour les requêtes de navigation (pages HTML)
+  // Stratégie améliorée pour les requêtes de navigation (pages HTML)
   if (request.mode === 'navigate') {
     event.respondWith(
       // Essayer le réseau avec timeout de 5 secondes (plus généreux)
@@ -175,7 +175,7 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(networkFirst(request));
 });
 
-// ✅ Nouvelle fonction: Fetch avec timeout
+// Nouvelle fonction: Fetch avec timeout
 function fetchWithTimeout(request, timeout = 5000) {
   return new Promise((resolve, reject) => {
     const timeoutId = setTimeout(() => {
@@ -280,7 +280,7 @@ async function networkFirst(request) {
   }
 }
 
-// ✅ Fonction pour générer la page offline HTML
+// Fonction pour générer la page offline HTML
 function generateOfflineHTML() {
   return `<!DOCTYPE html>
 <html lang="fr">
@@ -365,7 +365,7 @@ function generateOfflineHTML() {
 </head>
 <body>
   <div class="container">
-    <div class="icon">📡</div>
+    <div class="icon"></div>
     <h1>Vous êtes hors ligne</h1>
     <p>Impossible de se connecter au serveur. Veuillez vérifier votre connexion internet et réessayer.</p>
     <button onclick="window.location.reload()">Réessayer</button>

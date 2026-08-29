@@ -235,10 +235,36 @@ class ChatbotAskViewSet(viewsets.ViewSet):
         return Response(response_serializer.data, status=status.HTTP_200_OK)
 
 
+@api_view(['GET'])
+def faq_stats(request):
+    """GET /api/stats/ - FAQ par taux de satisfaction (count = feedbacks positifs)"""
+    stats = FAQ.objects.annotate(
+        avg_satisfaction=Avg('feedback__score_similarite'),
+        positive_feedbacks=Count('feedback', filter=Q(feedback__feedback_type='positif'))
+    ).order_by('-avg_satisfaction')
+    data = []
+    for item in stats:
+        data.append({
+            "id": item.id,
+            "question": item.question,
+            "avg_score": round((item.avg_satisfaction or 0), 4),
+            "count": item.positive_feedbacks
+        })
+    return Response(data)
+
+
+@api_view(['GET'])
+def category_stats(request):
+    """GET /api/stats/categories/ - Répartition par catégorie"""
+    categories = Category.objects.annotate(faq_count=Count('faq'))
+    data = [{"name": cat.name, "count": cat.faq_count} for cat in categories]
+    return Response(data)
+
+
 class FeedbackViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour les feedbacks utilisateurs.
-    
+
     Endpoints:
     - GET /api/feedback/ : lister feedbacks (admin)
     - POST /api/feedback/ : créer feedback
@@ -246,33 +272,6 @@ class FeedbackViewSet(viewsets.ModelViewSet):
     queryset = Feedback.objects.all().select_related('user', 'faq')
     serializer_class = FeedbackSerializer
 
-    @api_view(['GET'])
-    def faq_stats(request):
-        """GET /api/stats/ - FAQ par taux de satisfaction (count = feedbacks positifs)"""
-        # Calcul de la moyenne des scores et compte des feedbacks POSITIFS
-        stats = FAQ.objects.annotate(
-            avg_satisfaction=Avg('feedback__score_similarite'),
-            positive_feedbacks=Count('feedback', filter=Q(feedback__feedback_type='positif'))
-        ).order_by('-avg_satisfaction')
-        data = []
-        for item in stats:
-            data.append({
-                "id": item.id,
-                "question": item.question,
-                "avg_score": round((item.avg_satisfaction or 0), 4),
-                "count": item.positive_feedbacks
-            })
-        return Response(data)
-    
-    @api_view(['GET'])
-    def category_stats(request):
-        """GET /api/stats/categories/ - Répartition par catégorie"""
-        categories = Category.objects.annotate(faq_count=Count('faq'))
-        serializer = CategorySerializer(categories, many=True)
-        # On adapte le format pour inclure le compte
-        data = [{"name": cat.name, "count": cat.faq_count} for cat in categories]
-        return Response(data)
-    
     def get_permissions(self):
         """POST public pour créer feedback; GET restreint."""
         if self.request.method == 'POST':
@@ -285,18 +284,12 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         """Assigner l'utilisateur courant ou anonyme selon l'authentification."""
         from django.contrib.auth import get_user_model
         User = get_user_model()
-        
+
         if self.request.user and self.request.user.is_authenticated:
-            # Utilisateur authentifié
             serializer.save(user=self.request.user)
         else:
-            # Utilisateur anonyme : créer/récupérer un user anonyme
-            try:
-                anon_user = User.objects.get(username='anonymous')
-            except User.DoesNotExist:
-                anon_user = User.objects.create_user(
-                    username='anonymous',
-                    email='anonymous@chatbot.local',
-                    password='anonymous'
-                )
+            anon_user, _ = User.objects.get_or_create(
+                username='anonymous',
+                defaults={'email': 'anonymous@chatbot.local'},
+            )
             serializer.save(user=anon_user)

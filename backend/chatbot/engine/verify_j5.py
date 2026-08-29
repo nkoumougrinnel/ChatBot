@@ -79,17 +79,17 @@ _NO_LLM = "--no-llm" in sys.argv
 def _ok(module: str, test: str, detail: str = "") -> None:
     _RESULTS.append({"module": module, "test": test, "status": "OK", "detail": detail})
     detail_str = f" ({detail})" if detail else ""
-    print(f"  ✔  {test}{detail_str}")
+    print(f"  OK  {test}{detail_str}")
 
 
 def _fail(module: str, test: str, reason: str) -> None:
     _RESULTS.append({"module": module, "test": test, "status": "FAIL", "reason": reason})
-    print(f"  ✘  {test} — {reason}")
+    print(f"  FAIL  {test} — {reason}")
 
 
 def _skip(module: str, test: str, reason: str = "Ollama non disponible") -> None:
     _RESULTS.append({"module": module, "test": test, "status": "SKIP", "reason": reason})
-    print(f"  ⊘  {test} — ignoré ({reason})")
+    print(f"  SKIP  {test} — ignoré ({reason})")
 
 
 def _section(title: str) -> None:
@@ -680,16 +680,16 @@ def _rapport() -> bool:
     fail = [r for r in _RESULTS if r["status"] == "FAIL"]
     skip = [r for r in _RESULTS if r["status"] == "SKIP"]
 
-    print(f"\n  ✔  Réussis  : {len(ok)}")
-    print(f"  ✘  Échoués  : {len(fail)}")
-    print(f"  ⊘  Ignorés  : {len(skip)}")
+    print(f"\n  OK  Réussis  : {len(ok)}")
+    print(f"  FAIL  Échoués  : {len(fail)}")
+    print(f"  SKIP  Ignorés  : {len(skip)}")
     print(f"  Total       : {len(_RESULTS)}")
 
     if fail:
         print(f"\n  {'─'*50}")
         print("  Détail des échecs :")
         for r in fail:
-            print(f"  ✘  [{r['module']}] {r['test']}")
+            print(f"  FAIL  [{r['module']}] {r['test']}")
             print(f"       → {r['reason']}")
 
     print(f"\n{'='*60}\n")

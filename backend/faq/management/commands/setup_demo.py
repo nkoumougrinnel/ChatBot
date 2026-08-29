@@ -22,13 +22,16 @@ class Command(BaseCommand):
         call_command('migrate', verbosity=0)
 
         if not options['skip_fixtures']:
-            self.stdout.write("Chargement des fixtures FAQ…")
-            call_command(
-                'loaddata',
-                'faq/fixtures/categories.json',
-                'faq/fixtures/faq.json',
-                verbosity=0,
-            )
+            if FAQ.objects.exists():
+                self.stdout.write("FAQ déjà en base — fixtures ignorées.")
+            else:
+                self.stdout.write("Chargement des fixtures FAQ…")
+                call_command(
+                    'loaddata',
+                    'faq/fixtures/categories.json',
+                    'faq/fixtures/faq.json',
+                    verbosity=0,
+                )
 
         faq_count = FAQ.objects.filter(is_active=True).count()
         if faq_count == 0:

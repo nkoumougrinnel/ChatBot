@@ -19,7 +19,7 @@ print()
 try:
     subprocess.run([sys.executable, "manage.py", "runserver", "0.0.0.0:8001"], check=True)
 except KeyboardInterrupt:
-    print("\n✓ Server stopped")
+    print("\nServer stopped")
 except Exception as e:
-    print(f"✗ Error: {e}")
+    print(f"Error: {e}")
     sys.exit(1)

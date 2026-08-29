@@ -213,4 +213,4 @@ def compute_and_store_vectors():
         progress = min(i + batch_size, total_faqs)
         logger.info(f"[Vectorization] Progression: {progress}/{total_faqs} FAQs ({int(progress/total_faqs*100)}%)")
     
-    logger.info(f"[Vectorization] ✅ {vectors_created} vecteurs calculés et stockés")
+    logger.info(f"[Vectorization] {vectors_created} vecteurs calculés et stockés")

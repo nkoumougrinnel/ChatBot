@@ -197,7 +197,7 @@ function showUpdateBanner() {
   }
 }
 
-// ✅ CORRECTION du bug : Ne jamais rediriger automatiquement quand on navigue
+// CORRECTION du bug : Ne jamais rediriger automatiquement quand on navigue
 window.addEventListener('online', () => {
   console.log('[PWA] Connexion rétablie');
   
@@ -210,7 +210,7 @@ window.addEventListener('online', () => {
   updateConnectionStatus(true);
   showToast('Connexion rétablie', 'success');
   
-  // ✅ Revenir à la page principale UNIQUEMENT depuis offline.html
+  // Revenir à la page principale UNIQUEMENT depuis offline.html
   if (window.location.pathname.includes('offline.html')) {
     console.log('[PWA] Retour à la page principale depuis offline.html');
     window.location.href = '/';
@@ -229,7 +229,7 @@ window.addEventListener('offline', () => {
   updateConnectionStatus(false);
   showToast('Mode hors ligne activé', 'warning');
   
-  // ✅ Ne PAS rediriger si on est déjà sur offline.html ou demo.html
+  // Ne PAS rediriger si on est déjà sur offline.html ou demo.html
   const currentPath = window.location.pathname;
   if (currentPath === '/offline.html' || currentPath === '/demo.html') {
     console.log('[PWA] Déjà sur une page hors ligne, pas de redirection');
@@ -246,7 +246,7 @@ window.addEventListener('offline', () => {
   }, 3000);
 });
 
-// ✅ Fonction pour vérifier réellement la connexion
+// Fonction pour vérifier réellement la connexion
 async function checkRealConnection() {
   try {
     const controller = new AbortController();
@@ -329,7 +329,7 @@ function showToast(message, type = 'info', duration = 3000) {
   }, duration);
 }
 
-// ✅ Initialisation simplifiée - Pas de redirection automatique
+// Initialisation simplifiée - Pas de redirection automatique
 window.addEventListener('load', async () => {
   console.log('[PWA] Script initialisé');
   
@@ -338,13 +338,13 @@ window.addEventListener('load', async () => {
   
   updateConnectionStatus(isOnline);
   
-  // ✅ Si on est sur demo.html, désactiver les événements de connexion
+  // Si on est sur demo.html, désactiver les événements de connexion
   if (currentPath === '/demo.html') {
     console.log('[PWA] Mode démo - événements de connexion désactivés');
     return;
   }
   
-  // ✅ NE PLUS rediriger automatiquement
+  // NE PLUS rediriger automatiquement
   // Le Service Worker s'occupe de tout
   
   if (isPWA()) {
