@@ -33,60 +33,72 @@ import { useNativeKeyboard } from './hooks/useNativeKeyboard'
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
 const GLOBAL_STYLE = `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
+    --brand-600: #1a4480;
     --brand-500: #2355a0;
     --brand-400: #3b6fd4;
     --brand-300: #60a5fa;
+    --brand-200: #93c5fd;
+    --brand-100: #dbeafe;
     --success:   #22c55e;
     --success-bg: rgba(34,197,94,.08);
     --warning:   #f59e0b;
     --warning-bg: rgba(245,158,11,.12);
     --error:     #ef4444;
     --error-bg:  rgba(239,68,68,.12);
-    --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-full: 9999px;
+    --r-xs: 6px; --r-sm: 10px; --r-md: 14px; --r-lg: 18px; --r-xl: 24px; --r-full: 9999px;
     --thread-max: 720px;
     --font: 'Inter', system-ui, -apple-system, sans-serif;
     --t-fast: 120ms ease;
     --t-base: 200ms ease;
+    --t-slow: 320ms cubic-bezier(0.16, 1, 0.3, 1);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
-    --sidebar-w: 280px;
+    --sidebar-w: 300px;
     --safe-top: env(safe-area-inset-top, 0px);
     --keyboard-offset: 0px;
   }
 
   :root, [data-theme="dark"] {
-    --bg:             #0b1220;
-    --bg-elevated:    #0f1d35;
-    --header-bg:      rgba(11,18,32,.92);
-    --surface:        rgba(255,255,255,.05);
+    --bg:             #0a0e1a;
+    --bg-elevated:    #0f1729;
+    --header-bg:      rgba(10,14,26,.88);
+    --surface:        rgba(255,255,255,.04);
     --surface-hover:  rgba(255,255,255,.07);
-    --border:         rgba(255,255,255,.08);
-    --border-strong:  rgba(255,255,255,.14);
+    --surface-active: rgba(255,255,255,.10);
+    --border:         rgba(255,255,255,.06);
+    --border-strong:  rgba(255,255,255,.12);
     --text:           #edf2f7;
-    --text-secondary: rgba(237,242,247,.65);
-    --text-tertiary:  rgba(237,242,247,.35);
+    --text-secondary: rgba(237,242,247,.62);
+    --text-tertiary:  rgba(237,242,247,.32);
     --user-bubble:    linear-gradient(135deg, var(--brand-500), var(--brand-400));
-    --composer-bg:    rgba(255,255,255,.05);
-    --composer-border: rgba(255,255,255,.1);
-    --chip-bg:        rgba(255,255,255,.05);
-    --chip-border:    rgba(255,255,255,.1);
-    --chip-hover:     rgba(255,255,255,.09);
-    --scrollbar:      rgba(255,255,255,.12);
-    --glow:           rgba(59,111,212,.4);
+    --composer-bg:    rgba(255,255,255,.04);
+    --composer-border: rgba(255,255,255,.08);
+    --chip-bg:        rgba(255,255,255,.04);
+    --chip-border:    rgba(255,255,255,.08);
+    --chip-hover:     rgba(255,255,255,.08);
+    --scrollbar:      rgba(255,255,255,.10);
+    --glow:           rgba(59,111,212,.35);
+    --glow-strong:    rgba(59,111,212,.55);
+    --shadow-sm:      0 1px 3px rgba(0,0,0,.3);
+    --shadow-md:      0 4px 16px rgba(0,0,0,.35);
+    --shadow-lg:      0 12px 40px rgba(0,0,0,.45);
+    --shadow-xl:      0 20px 60px rgba(0,0,0,.55);
+    --overlay:        rgba(0,0,0,.65);
   }
 
   [data-theme="light"] {
     --bg:             #f0f4fa;
     --bg-elevated:    #ffffff;
-    --header-bg:      rgba(255,255,255,.95);
+    --header-bg:      rgba(255,255,255,.92);
     --surface:        rgba(26,58,107,.04);
     --surface-hover:  rgba(26,58,107,.07);
-    --border:         rgba(0,0,0,.07);
-    --border-strong:  rgba(0,0,0,.12);
+    --surface-active: rgba(26,58,107,.10);
+    --border:         rgba(0,0,0,.06);
+    --border-strong:  rgba(0,0,0,.10);
     --text:           #0f172a;
     --text-secondary: #475569;
     --text-tertiary:  #94a3b8;
@@ -96,14 +108,21 @@ const GLOBAL_STYLE = `
     --chip-bg:        #ffffff;
     --chip-border:    #e2e8f0;
     --chip-hover:     #f1f5f9;
-    --scrollbar:      rgba(0,0,0,.12);
-    --glow:           rgba(59,111,212,.2);
+    --scrollbar:      rgba(0,0,0,.10);
+    --glow:           rgba(59,111,212,.15);
+    --glow-strong:    rgba(59,111,212,.25);
+    --shadow-sm:      0 1px 3px rgba(0,0,0,.06);
+    --shadow-md:      0 4px 16px rgba(0,0,0,.08);
+    --shadow-lg:      0 12px 40px rgba(0,0,0,.12);
+    --shadow-xl:      0 20px 60px rgba(0,0,0,.16);
+    --overlay:        rgba(0,0,0,.45);
   }
 
   html, body, #root { width:100%; height:100%; height:100dvh; font-family:var(--font); }
   body {
     background: var(--bg); color: var(--text); line-height: 1.6;
-    -webkit-font-smoothing: antialiased; overflow: hidden;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
   }
   button { cursor:pointer; border:none; background:none; font-family:inherit; }
   button:focus-visible { outline: 2px solid var(--brand-300); outline-offset: 2px; }
@@ -126,25 +145,26 @@ const GLOBAL_STYLE = `
 `
 
 const KEYFRAMES = `
-  @keyframes fadeUp   { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes msgIn    { from{opacity:0;transform:translateY(5px)}  to{opacity:1;transform:translateY(0)} }
-  @keyframes chipIn   { from{opacity:0;transform:translateY(6px)}  to{opacity:1;transform:translateY(0)} }
-  @keyframes slideDown{ from{opacity:0;transform:translateY(-5px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes pulse    { 0%,100%{opacity:1} 50%{opacity:.4} }
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes msgIn    { from{opacity:0;transform:translateY(8px)}  to{opacity:1;transform:translateY(0)} }
+  @keyframes chipIn   { from{opacity:0;transform:translateY(8px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+  @keyframes slideDown{ from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes pulse    { 0%,100%{opacity:1} 50%{opacity:.35} }
   @keyframes spin     { to{transform:rotate(360deg)} }
   @keyframes blink    { 50%{opacity:0} }
   @keyframes glowPulse{
     0%,100%{box-shadow:0 0 0 8px var(--glow),0 8px 32px var(--glow);transform:scale(1)}
-    50%    {box-shadow:0 0 0 14px transparent,0 8px 32px var(--glow);transform:scale(1.02)}
+    50%    {box-shadow:0 0 0 14px transparent,0 8px 32px var(--glow-strong);transform:scale(1.03)}
   }
   @keyframes typingBounce{
-    0%,80%,100%{transform:scale(.7);opacity:.4}
+    0%,80%,100%{transform:scale(.65);opacity:.3}
     40%{transform:scale(1);opacity:1}
   }
-  @keyframes fadeInChat { from{opacity:0;transform:scale(0.99) translateY(8px)} to{opacity:1;transform:scale(1) translateY(0)} }
-  @keyframes slideRight { from{opacity:0;transform:translateX(-20px)} to{opacity:1;transform:translateX(0)} }
-  @keyframes popIn     { from{opacity:0;transform:scale(0.95) translateY(-10px)} to{opacity:1;transform:scale(1) translateY(0)} }
-  @keyframes skeletonPulse { 0%,100%{opacity:.5} 50%{opacity:.2} }
+  @keyframes fadeInChat { from{opacity:0;transform:scale(.995) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} }
+  @keyframes slideRight { from{opacity:0;transform:translateX(-24px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes popIn     { from{opacity:0;transform:scale(.92) translateY(-8px)} to{opacity:1;transform:scale(1) translateY(0)} }
+  @keyframes skeletonPulse { 0%,100%{opacity:.45} 50%{opacity:.15} }
+  @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
 `
 
 const isNative = Capacitor.isNativePlatform()
@@ -193,9 +213,10 @@ function StatusDot({ status }) {
   const colors = { online: 'var(--success)', degraded: 'var(--warning)', offline: 'var(--error)', checking: 'var(--text-tertiary)' }
   return (
     <span style={{
-      display: 'inline-block', width: 7, height: 7, borderRadius: '50%', flexShrink: 0,
+      display: 'inline-block', width: 8, height: 8, borderRadius: '50%', flexShrink: 0,
       background: colors[status] ?? 'var(--text-tertiary)',
       animation: status === 'checking' ? 'pulse 1.2s ease infinite' : 'none',
+      boxShadow: status === 'online' ? '0 0 6px var(--success)' : 'none',
     }} />
   )
 }
@@ -212,9 +233,9 @@ function Header({ serverStatus, faqCount, isDark, onToggleTheme, onNewChat, onRe
 
   return (
     <header style={{
-      display: 'flex', alignItems: 'center', gap: 8, height: isNative ? 48 : 56,
+      display: 'flex', alignItems: 'center', gap: 8, height: isNative ? 50 : 58,
       padding: `0 16px`, paddingTop: `var(--safe-top)`,
-      background: 'var(--header-bg)', backdropFilter: 'blur(12px)',
+      background: 'var(--header-bg)', backdropFilter: 'blur(16px) saturate(1.2)',
       borderBottom: '1px solid var(--border)', flexShrink: 0, zIndex: 10,
     }}>
       {user && (
@@ -224,29 +245,30 @@ function Header({ serverStatus, faqCount, isDark, onToggleTheme, onNewChat, onRe
       )}
 
       {/* Brand */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1, minWidth: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flex: 1, minWidth: 0 }}>
         <div style={{ position: 'relative', flexShrink: 0, display: isNative ? 'none' : 'block' }}>
           <div style={{
-            width: 34, height: 34, borderRadius: 10,
+            width: 36, height: 36, borderRadius: 14,
             background: 'linear-gradient(135deg, var(--brand-500), var(--brand-300))',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: '#fff', boxShadow: '0 2px 8px var(--glow)',
+            color: '#fff', boxShadow: '0 2px 12px var(--glow)',
+            transition: 'transform var(--t-base)',
           }}>
             <IcoSparkles />
           </div>
           <span style={{
             position: 'absolute', bottom: -1, right: -1,
-            width: 10, height: 10, borderRadius: '50%',
+            width: 11, height: 11, borderRadius: '50%',
             border: '2px solid var(--bg)',
             background: { online: 'var(--success)', degraded: 'var(--warning)', offline: 'var(--error)', checking: 'var(--text-tertiary)' }[serverStatus],
             animation: serverStatus === 'checking' ? 'pulse 1.2s ease infinite' : 'none',
           }} />
         </div>
         <div style={{ minWidth: 0 }}>
-          <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--text)', lineHeight: 1.2 }}>
+          <p style={{ fontSize: 15, fontWeight: 700, letterSpacing: '-0.015em', color: 'var(--text)', lineHeight: 1.2 }}>
             SUP'ONE AI
           </p>
-          <p style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11.5, color: 'var(--text-secondary)', marginTop: 1 }}>
+          <p style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 }}>
             {serverStatus !== 'online' && <StatusDot status={serverStatus} />}
             {subtitle}
           </p>
@@ -254,7 +276,7 @@ function Header({ serverStatus, faqCount, isDark, onToggleTheme, onNewChat, onRe
       </div>
 
       {/* Actions */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
         <HdrBtn onClick={onToggleTheme} label={isDark ? 'Mode clair' : 'Mode sombre'}>
           {isDark ? <IcoSun /> : <IcoMoon />}
         </HdrBtn>
@@ -296,7 +318,7 @@ function UserAvatarButton({ user, onProfileClick, onLogout }) {
   const buttonRef = useRef(null)
 
   const handleToggleDropdown = (e) => {
-    e.stopPropagation() // Empêche le clic de se propager au document immédiatement
+    e.stopPropagation()
     setShowDropdown(prev => !prev)
   }
 
@@ -318,18 +340,19 @@ function UserAvatarButton({ user, onProfileClick, onLogout }) {
         type="button" onClick={handleToggleDropdown}
         aria-label={user.username} title={user.username}
         style={{
-          width: isNative ? 44 : 34, height: isNative ? 44 : 34,
+          width: isNative ? 44 : 36, height: isNative ? 44 : 36,
           borderRadius: '50%',
           minWidth: isNative ? 44 : 'auto',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           color: '#fff',
-          background: 'var(--brand-500)',
+          background: 'linear-gradient(135deg, var(--brand-500), var(--brand-400))',
+          boxShadow: '0 2px 8px var(--glow)',
           transition: 'all var(--t-base)',
         }}
-        onMouseEnter={e => { e.currentTarget.style.background = 'var(--brand-400)'; }}
-        onMouseLeave={e => { e.currentTarget.style.background = 'var(--brand-500)'; }}
+        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; }}
+        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
       >
-        <span style={{ fontSize: 14, fontWeight: 600, lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+        <span style={{ fontSize: 14, fontWeight: 700, lineHeight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
           {user.username.charAt(0).toUpperCase()}
         </span>
       </button>
@@ -348,29 +371,31 @@ function UserDropdown({ onClose, onProfileClick, onLogout }) {
   return (
     <div style={{
       position: 'absolute',
-      top: 'calc(100% + 8px)', // Positionne le menu déroulant sous le bouton
+      top: 'calc(100% + 8px)',
       right: 0,
       background: 'var(--bg-elevated)',
       border: '1px solid var(--border-strong)',
       borderRadius: 'var(--r-md)',
-      boxShadow: '0 4px 12px rgba(0,0,0,.2)',
-      minWidth: 160,
-      zIndex: 60, // Assure que le menu est au-dessus des autres éléments
+      boxShadow: 'var(--shadow-lg)',
+      minWidth: 170,
+      zIndex: 60,
       animation: 'popIn .25s cubic-bezier(0.16, 1, 0.3, 1)',
-      padding: '8px 0',
+      padding: '6px 0',
     }}>
       <button onClick={() => { onProfileClick(); onClose(); }} style={{
         width: '100%', textAlign: 'left', padding: '10px 16px',
-        fontSize: 14, color: 'var(--text)',
+        fontSize: 13.5, color: 'var(--text)',
         background: 'transparent', border: 'none',
+        transition: 'background var(--t-fast)',
       }} onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-hover)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
         Mon profil
       </button>
       <button onClick={() => { onLogout(); onClose(); }} style={{
         width: '100%', textAlign: 'left', padding: '10px 16px',
-        fontSize: 14, color: 'var(--text)',
+        fontSize: 13.5, color: 'var(--error)',
         background: 'transparent', border: 'none',
-      }} onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-hover)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+        transition: 'background var(--t-fast)',
+      }} onMouseEnter={e => e.currentTarget.style.background = 'var(--error-bg)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
         Déconnexion
       </button>
     </div>
@@ -380,10 +405,10 @@ function UserDropdown({ onClose, onProfileClick, onLogout }) {
 // ─── Skeletons ────────────────────────────────────────────────────────────────
 function SidebarSkeleton() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '10px 14px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '12px 14px' }}>
       {[1, 2, 3, 4, 5].map(i => (
         <div key={i} style={{
-          height: 38, width: '100%', borderRadius: 10,
+          height: 40, width: '100%', borderRadius: 12,
           background: 'var(--border-strong)', animation: 'skeletonPulse 1.8s ease-in-out infinite'
         }} />
       ))}
@@ -396,16 +421,32 @@ function LoadingScreen() {
   return (
     <div style={{
       flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      gap: 20, animation: 'fadeUp .4s ease'
+      gap: 24, animation: 'fadeUp .5s ease'
     }}>
       <div style={{
-        width: 42, height: 42, border: '3.5px solid var(--border-strong)',
-        borderTopColor: 'var(--brand-500)', borderRadius: '50%',
-        animation: 'spin .8s linear infinite'
-      }} />
-      <p style={{ fontSize: 14, color: 'var(--text-secondary)', fontWeight: 500, letterSpacing: '0.02em', textTransform: 'uppercase' }}>
-        Sécurisation de la connexion…
-      </p>
+        position: 'relative', width: 48, height: 48,
+      }}>
+        <div style={{
+          position: 'absolute', inset: 0,
+          border: '3px solid var(--border-strong)',
+          borderTopColor: 'var(--brand-500)', borderRadius: '50%',
+          animation: 'spin .8s linear infinite'
+        }} />
+        <div style={{
+          position: 'absolute', inset: 6,
+          border: '2px solid transparent',
+          borderBottomColor: 'var(--brand-300)', borderRadius: '50%',
+          animation: 'spin 1.2s linear infinite reverse'
+        }} />
+      </div>
+      <div style={{ textAlign: 'center' }}>
+        <p style={{ fontSize: 14, color: 'var(--text-secondary)', fontWeight: 500, letterSpacing: '0.03em', textTransform: 'uppercase' }}>
+          Sécurisation de la connexion…
+        </p>
+        <p style={{ fontSize: 12, color: 'var(--text-tertiary)', marginTop: 6 }}>
+          Vérification de la session en cours
+        </p>
+      </div>
     </div>
   )
 }
@@ -544,8 +585,8 @@ export default function App() {
         <div aria-hidden style={{
           position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0,
           background: isDark
-            ? 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(35,85,160,.18) 0%, transparent 70%)'
-            : 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(59,111,212,.07) 0%, transparent 70%)',
+            ? 'radial-gradient(ellipse 70% 50% at 50% -10%, rgba(35,85,160,.22) 0%, transparent 70%)'
+            : 'radial-gradient(ellipse 70% 50% at 50% -10%, rgba(59,111,212,.08) 0%, transparent 70%)',
         }} />
 
         {/* Shell principal */}
@@ -657,7 +698,7 @@ function HdrBtn({ children, onClick, disabled, label, accent, spin }) {
       type="button" onClick={onClick} disabled={disabled}
       aria-label={label} title={label}
       style={{
-        width: isNative ? 44 : 34, height: isNative ? 44 : 34, borderRadius: 8, minWidth: isNative ? 44 : 'auto',
+        width: isNative ? 44 : 36, height: isNative ? 44 : 36, borderRadius: 10, minWidth: isNative ? 44 : 'auto',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         color: accent ? '#fff' : 'var(--text-secondary)',
         background: accent ? 'var(--brand-500)' : 'var(--surface)',
@@ -679,29 +720,33 @@ function InstallBanner({ onInstall, onDismiss }) {
   return (
     <div role="dialog" aria-label="Installer l'application" style={{
       display: 'flex', alignItems: 'center', gap: 14,
-      margin: '8px auto 0', padding: '12px 14px',
+      margin: '10px auto 0', padding: '14px 16px',
       maxWidth: 'var(--thread-max)', width: 'calc(100% - 32px)',
       background: 'var(--bg-elevated)', border: '1px solid var(--border-strong)',
-      borderRadius: 'var(--r-lg)', position: 'relative', animation: 'slideDown .3s ease',
+      borderRadius: 'var(--r-lg)', position: 'relative', animation: 'slideDown .35s cubic-bezier(0.16, 1, 0.3, 1)',
+      boxShadow: 'var(--shadow-md)',
     }}>
       <button
         type="button" onClick={onDismiss} aria-label="Fermer"
-        style={{ position: 'absolute', top: 6, right: 8, width: 24, height: 24, fontSize: '1.1rem', color: 'var(--text-secondary)' }}
+        style={{ position: 'absolute', top: 8, right: 10, width: 24, height: 24, fontSize: '1.1rem', color: 'var(--text-secondary)' }}
       >×</button>
       <div style={{
-        width: 44, height: 44, borderRadius: 10, flexShrink: 0,
+        width: 46, height: 46, borderRadius: 12, flexShrink: 0,
         background: 'linear-gradient(135deg, var(--brand-500), var(--brand-300))',
         display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff',
+        boxShadow: '0 2px 10px var(--glow)',
       }}>
         <IcoSparkles />
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <p style={{ fontSize: 13.5, fontWeight: 600 }}>Installer SUP'ONE AI</p>
-        <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 }}>Accès rapide depuis votre écran d'accueil</p>
+        <p style={{ fontSize: 14, fontWeight: 700 }}>Installer SUP'ONE AI</p>
+        <p style={{ fontSize: 12.5, color: 'var(--text-secondary)', marginTop: 3 }}>Accès rapide depuis votre écran d'accueil</p>
       </div>
       <button
         type="button" onClick={onInstall}
-        style={{ padding: '7px 13px', background: 'var(--brand-500)', color: '#fff', borderRadius: 'var(--r-full)', fontSize: 12.5, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0 }}
+        style={{ padding: '8px 14px', background: 'var(--brand-500)', color: '#fff', borderRadius: 'var(--r-full)', fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0, transition: 'all var(--t-fast)' }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'var(--brand-400)'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'var(--brand-500)'; }}
       >
         <IcoDownload /> Installer
       </button>
@@ -713,19 +758,19 @@ function OfflineBanner({ onRetry, retrying }) {
   return (
     <div role="alert" style={{
       display: 'flex', alignItems: 'center', gap: 10,
-      margin: '8px auto 0', padding: '10px 14px',
+      margin: '10px auto 0', padding: '12px 16px',
       maxWidth: 'var(--thread-max)', width: 'calc(100% - 32px)',
       background: 'var(--error-bg)', border: '1px solid rgba(239,68,68,.25)',
-      borderRadius: 'var(--r-lg)', animation: 'slideDown .3s ease',
+      borderRadius: 'var(--r-lg)', animation: 'slideDown .35s cubic-bezier(0.16, 1, 0.3, 1)',
     }}>
       <IcoWifiOff />
       <div style={{ flex: 1 }}>
-        <p style={{ fontSize: 13, fontWeight: 600 }}>Serveur inaccessible</p>
-        <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 2 }}>Vérifiez votre connexion internet</p>
+        <p style={{ fontSize: 13.5, fontWeight: 600 }}>Serveur inaccessible</p>
+        <p style={{ fontSize: 12.5, color: 'var(--text-secondary)', marginTop: 2 }}>Vérifiez votre connexion internet</p>
       </div>
       <button
         type="button" onClick={onRetry} disabled={retrying}
-        style={{ padding: '6px 12px', borderRadius: 'var(--r-sm)', background: 'var(--error)', color: '#fff', fontSize: 12, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5, opacity: retrying ? 0.6 : 1 }}
+        style={{ padding: '7px 14px', borderRadius: 'var(--r-sm)', background: 'var(--error)', color: '#fff', fontSize: 12.5, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5, opacity: retrying ? 0.6 : 1, transition: 'opacity var(--t-fast)' }}
       >
         <IcoRefresh /> {retrying ? '…' : 'Réessayer'}
       </button>
@@ -736,7 +781,7 @@ function OfflineBanner({ onRetry, retrying }) {
 function DegradedBanner() {
   return (
     <div role="status" style={{
-      padding: '7px 16px', textAlign: 'center', fontSize: 12,
+      padding: '8px 16px', textAlign: 'center', fontSize: 12.5, fontWeight: 500,
       color: 'var(--warning)', background: 'var(--warning-bg)',
       borderBottom: '1px solid rgba(245,158,11,.2)',
     }}>
@@ -747,7 +792,6 @@ function DegradedBanner() {
 
 // ─── Welcome ──────────────────────────────────────────────────────────────────
 function Welcome({ suggestions, disabled, onSelect, user }) {
-  // FIX 4: suppression de l'état `showAboutModal` inutilisé
   const [greeting, setGreeting] = useState('')
 
   useEffect(() => {
@@ -771,27 +815,28 @@ function Welcome({ suggestions, disabled, onSelect, user }) {
   return (
     <div style={{
       flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center',
-      justifyContent: 'center', padding: '40px 16px 24px', textAlign: 'center',
+      justifyContent: 'center', padding: '48px 20px 32px', textAlign: 'center',
       animation: 'fadeUp .6s cubic-bezier(0.16, 1, 0.3, 1)',
     }}>
+      {/* Logo animé */}
       <div style={{
-        width: 64, height: 64, borderRadius: 18, marginBottom: 24,
+        width: 72, height: 72, borderRadius: 20, marginBottom: 28,
         background: 'linear-gradient(135deg, var(--brand-500) 0%, var(--brand-300) 100%)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         color: '#fff',
-        boxShadow: '0 0 0 8px var(--glow), 0 8px 32px var(--glow)',
+        boxShadow: '0 0 0 10px var(--glow), 0 12px 40px var(--glow-strong)',
         animation: 'glowPulse 3s ease-in-out infinite',
       }}>
         <IcoSparkles />
       </div>
 
       <h1 style={{
-        fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 700,
-        letterSpacing: '-0.03em', color: 'var(--text)', lineHeight: 1.2,
+        fontSize: 'clamp(24px, 4vw, 30px)', fontWeight: 800,
+        letterSpacing: '-0.035em', color: 'var(--text)', lineHeight: 1.15,
       }}>
         {greeting}
       </h1>
-      <p style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 10, maxWidth: 420 }}>
+      <p style={{ fontSize: 15, color: 'var(--text-secondary)', lineHeight: 1.65, marginTop: 12, maxWidth: 440 }}>
         Assistant officiel SUP'PTIC — posez vos questions sur l'école,
         les inscriptions, les examens et les services étudiants.
       </p>
@@ -799,25 +844,27 @@ function Welcome({ suggestions, disabled, onSelect, user }) {
       {/* Suggestion cards en grille */}
       {suggestions?.length > 0 && (
         <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(175px, 1fr))',
-          gap: 8, marginTop: 32, width: '100%', maxWidth: 560,
+          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: 10, marginTop: 36, width: '100%', maxWidth: 580,
         }}>
           {suggestions.map((text, i) => (
             <button
               key={text} type="button" disabled={disabled} onClick={() => onSelect(text)}
               style={{
-                padding: '12px 14px', textAlign: 'left',
+                padding: '14px 16px', textAlign: 'left',
                 background: 'var(--chip-bg)', border: '1px solid var(--chip-border)',
                 borderRadius: 'var(--r-lg)', color: 'var(--text)',
-                fontSize: 13, lineHeight: 1.4,
+                fontSize: 13.5, lineHeight: 1.45,
                 opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer',
-                transition: 'background var(--t-base), border-color var(--t-base)',
-                animation: `chipIn .35s ease ${i * 55}ms backwards`,
+                transition: 'all var(--t-base)',
+                animation: `chipIn .4s cubic-bezier(0.16, 1, 0.3, 1) ${i * 60}ms backwards`,
               }}
-              onMouseEnter={e => { if (!disabled) { e.currentTarget.style.background = 'var(--chip-hover)'; e.currentTarget.style.borderColor = 'var(--brand-300)'; }}}
-              onMouseLeave={e => { e.currentTarget.style.background = 'var(--chip-bg)'; e.currentTarget.style.borderColor = 'var(--chip-border)'; }}
+              onMouseEnter={e => { if (!disabled) { e.currentTarget.style.background = 'var(--chip-hover)'; e.currentTarget.style.borderColor = 'var(--brand-300)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}}
+              onMouseLeave={e => { e.currentTarget.style.background = 'var(--chip-bg)'; e.currentTarget.style.borderColor = 'var(--chip-border)'; e.currentTarget.style.transform = 'translateY(0)'; }}
             >
-              <span style={{ fontSize: 15, display: 'block', marginBottom: 4 }}>💬</span>
+              <span style={{ fontSize: 16, display: 'block', marginBottom: 6 }}>
+                {['', '', '', '', ''][i] || ''}
+              </span>
               {text}
             </button>
           ))}
@@ -831,16 +878,16 @@ function Welcome({ suggestions, disabled, onSelect, user }) {
 function TypingDots({ label }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-secondary)', fontSize: 14 }}>
-      <span style={{ display: 'flex', gap: 4 }}>
+      <span style={{ display: 'flex', gap: 5 }}>
         {[0, 1, 2].map(i => (
           <span key={i} style={{
-            width: 6, height: 6, borderRadius: '50%', display: 'inline-block',
-            background: 'var(--brand-300)',
-            animation: `typingBounce 1.1s ${i * 0.15}s ease-in-out infinite`,
+            width: 7, height: 7, borderRadius: '50%', display: 'inline-block',
+            background: 'var(--brand-400)',
+            animation: `typingBounce 1.2s ${i * 0.15}s ease-in-out infinite`,
           }} />
         ))}
       </span>
-      <span>{label || 'Réflexion…'}</span>
+      <span style={{ fontWeight: 500 }}>{label || 'Réflexion…'}</span>
     </div>
   )
 }
@@ -849,11 +896,12 @@ function TypingDots({ label }) {
 function BotAvatar({ error }) {
   return (
     <div style={{
-      width: 30, height: 30, borderRadius: 9, flexShrink: 0, marginTop: 2,
+      width: 32, height: 32, borderRadius: 10, flexShrink: 0, marginTop: 2,
       background: error ? 'var(--error-bg)' : 'linear-gradient(135deg, var(--brand-500), var(--brand-300))',
       border: `1px solid ${error ? 'rgba(239,68,68,.25)' : 'transparent'}`,
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       color: error ? 'var(--error)' : '#fff',
+      boxShadow: error ? 'none' : '0 2px 8px var(--glow)',
     }}>
       <IcoSparkles />
     </div>
@@ -885,7 +933,7 @@ function FeedbackBar({ faqId, userQuestion, score, onSubmitFeedback, onToast }) 
   }
 
   return (
-    <div style={{ marginTop: 10 }}>
+    <div style={{ marginTop: 12 }}>
       <div style={{ display: 'flex', gap: 4 }}>
         <FbBtn active={vote === 'positif'} activeColor="var(--success)" activeBg="var(--success-bg)"
           onClick={() => send('positif')} disabled={submitting || !!vote} label="Utile">
@@ -899,29 +947,29 @@ function FeedbackBar({ faqId, userQuestion, score, onSubmitFeedback, onToast }) 
 
       {showForm && !vote && (
         <div style={{
-          marginTop: 8, padding: '12px 14px',
+          marginTop: 10, padding: '14px 16px',
           background: 'var(--surface)', border: '1px solid var(--border)',
-          borderRadius: 'var(--r-lg)', animation: 'fadeUp .2s ease',
+          borderRadius: 'var(--r-lg)', animation: 'fadeUp .25s ease',
         }}>
-          <p style={{ fontSize: 12.5, color: 'var(--text-secondary)', marginBottom: 8 }}>
-            Qu'est-ce qui pourrait être amélioré ? <em style={{ opacity: .7 }}>(optionnel)</em>
+          <p style={{ fontSize: 13, color: 'var(--text-secondary)', marginBottom: 10, fontWeight: 500 }}>
+            Qu'est-ce qui pourrait être amélioré ? <em style={{ opacity: .6 }}>(optionnel)</em>
           </p>
           <textarea
             value={comment} onChange={e => setComment(e.target.value)}
             placeholder="Décrivez le problème…" rows={2} maxLength={500}
             style={{
-              width: '100%', padding: '8px 10px', borderRadius: 'var(--r-md)',
+              width: '100%', padding: '10px 12px', borderRadius: 'var(--r-md)',
               border: '1px solid var(--composer-border)', background: 'var(--composer-bg)',
-              color: 'var(--text)', fontSize: 13, resize: 'vertical', fontFamily: 'inherit', outline: 'none',
+              color: 'var(--text)', fontSize: 13.5, resize: 'vertical', fontFamily: 'inherit', outline: 'none',
             }}
           />
-          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 6, marginTop: 8 }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 10 }}>
             <button type="button" onClick={() => setShowForm(false)}
-              style={{ fontSize: 13, color: 'var(--text-secondary)', padding: '5px 10px', borderRadius: 'var(--r-sm)' }}>
+              style={{ fontSize: 13, color: 'var(--text-secondary)', padding: '6px 12px', borderRadius: 'var(--r-sm)', fontWeight: 500 }}>
               Annuler
             </button>
             <button type="button" onClick={() => send('negatif', comment.trim())} disabled={submitting}
-              style={{ fontSize: 13, fontWeight: 600, color: '#fff', background: 'var(--brand-500)', padding: '5px 14px', borderRadius: 'var(--r-sm)' }}>
+              style={{ fontSize: 13, fontWeight: 600, color: '#fff', background: 'var(--brand-500)', padding: '6px 16px', borderRadius: 'var(--r-sm)' }}>
               Envoyer
             </button>
           </div>
@@ -937,8 +985,8 @@ function FbBtn({ children, onClick, active, activeColor, activeBg, disabled, lab
     <button type="button" onClick={onClick} disabled={disabled} aria-label={label}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
-        display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 12px', borderRadius: 8,
-        fontSize: 12.5, fontWeight: 500,
+        display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 10,
+        fontSize: 13, fontWeight: 500,
         color: active ? activeColor : (hov && !disabled) ? 'var(--text)' : 'var(--text-secondary)',
         background: active ? activeBg : hov ? 'var(--surface-hover)' : 'transparent',
         transition: 'all var(--t-fast)',
@@ -970,13 +1018,14 @@ function MessageBubble({ message, onCopy, onSubmitFeedback, onToast }) {
       <div style={{
         display: 'flex', justifyContent: 'flex-end', width: '100%',
         paddingLeft: isNative ? '8%' : '18%',
-        animation: 'msgIn .2s ease',
+        animation: 'msgIn .25s cubic-bezier(0.16, 1, 0.3, 1)',
       }}>
         <div style={{
           background: 'var(--user-bubble)', color: '#fff',
-          padding: '10px 16px', borderRadius: '18px 18px 4px 18px',
-          fontSize: 15, lineHeight: 1.6, maxWidth: '100%',
-          boxShadow: '0 4px 12px rgba(35,85,160,.2)',
+          padding: '11px 18px', borderRadius: '20px 20px 6px 20px',
+          fontSize: 15, lineHeight: 1.65, maxWidth: '100%',
+          boxShadow: '0 4px 16px rgba(35,85,160,.25)',
+          position: 'relative',
         }}>
           {renderMd(message.content)}
         </div>
@@ -987,14 +1036,14 @@ function MessageBubble({ message, onCopy, onSubmitFeedback, onToast }) {
   // Erreur
   if (message.status === 'error') {
     return (
-      <div style={{ display: 'flex', gap: 10, animation: 'msgIn .2s ease' }}>
+      <div style={{ display: 'flex', gap: 10, animation: 'msgIn .25s cubic-bezier(0.16, 1, 0.3, 1)' }}>
         <BotAvatar error />
         <div style={{
           background: 'var(--error-bg)', border: '1px solid rgba(239,68,68,.2)',
-          borderRadius: '4px 18px 18px 18px', padding: '12px 16px', flex: 1,
+          borderRadius: '6px 20px 20px 20px', padding: '14px 18px', flex: 1,
         }}>
-          <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--error)', marginBottom: 4 }}>Connexion impossible</p>
-          <p style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.55 }}>{message.content}</p>
+          <p style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--error)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Connexion impossible</p>
+          <p style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6 }}>{message.content}</p>
         </div>
       </div>
     )
@@ -1005,10 +1054,10 @@ function MessageBubble({ message, onCopy, onSubmitFeedback, onToast }) {
   const done      = message.status === 'done'
 
   return (
-    <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', animation: 'msgIn .2s ease' }}>
+    <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', animation: 'msgIn .25s cubic-bezier(0.16, 1, 0.3, 1)' }}>
       <BotAvatar />
       <div style={{ flex: 1, minWidth: 0, paddingTop: 4 }}>
-        <div style={{ fontSize: 14.5, color: 'var(--text)', lineHeight: 1.65 }}>
+        <div style={{ fontSize: 15, color: 'var(--text)', lineHeight: 1.7 }}>
           {loading && <TypingDots label={message.statusLabel} />}
 
           {(streaming || done) && message.content && (
@@ -1026,19 +1075,19 @@ function MessageBubble({ message, onCopy, onSubmitFeedback, onToast }) {
 
           {message.mode === 'low' && (
             <div style={{
-              marginTop: 14, padding: '16px',
-              background: 'var(--warning-bg)', borderRadius: 'var(--r-md)',
+              marginTop: 16, padding: '18px',
+              background: 'var(--warning-bg)', borderRadius: 'var(--r-lg)',
               border: '1px solid rgba(245,158,11,.2)',
-              fontSize: 13.5, color: 'var(--text-secondary)',
-              animation: 'popIn .3s ease'
+              fontSize: 14, color: 'var(--text-secondary)',
+              animation: 'popIn .35s ease'
             }}>
-              <p style={{ fontWeight: 700, color: 'var(--warning)', marginBottom: 8, fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                <span style={{ marginRight: 6 }}>💡</span> Pistes de solution
+              <p style={{ fontWeight: 700, color: 'var(--warning)', marginBottom: 10, fontSize: 12.5, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Pistes de solution
               </p>
-              <ul style={{ paddingLeft: 18, lineHeight: 1.8, listStyleType: 'circle' }}>
+              <ul style={{ paddingLeft: 20, lineHeight: 1.9, listStyleType: 'circle' }}>
                 <li>Précisez votre demande (ex: "frais d'inscription ITT")</li>
                 <li>Reformulez votre question avec d'autres mots</li>
-                <li>Contactez l'assistance : <a href="mailto:support@e-supptic.cm" style={{ color: 'var(--brand-300)', textDecoration: 'none' }}>support@e-supptic.cm</a></li>
+                <li>Contactez l'assistance : <a href="mailto:support@e-supptic.cm" style={{ color: 'var(--brand-300)', textDecoration: 'none', fontWeight: 500 }}>support@e-supptic.cm</a></li>
               </ul>
             </div>
           )}
@@ -1057,12 +1106,12 @@ function MessageBubble({ message, onCopy, onSubmitFeedback, onToast }) {
 
         {/* Actions */}
         {done && message.content && (
-          <div style={{ display: 'flex', alignItems: 'center', marginTop: 6 }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginTop: 8 }}>
             <button
               type="button" onClick={handleCopy} aria-label="Copier la réponse"
               style={{
-                display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 8px',
-                borderRadius: 7, fontSize: 12.5, fontWeight: 500,
+                display: 'inline-flex', alignItems: 'center', gap: 5, padding: '5px 10px',
+                borderRadius: 8, fontSize: 12.5, fontWeight: 500,
                 color: copied ? 'var(--brand-300)' : 'var(--text-secondary)',
                 background: copied ? 'var(--surface)' : 'transparent',
                 transition: 'all var(--t-fast)',
@@ -1115,18 +1164,18 @@ function Composer({ disabled, onSend, compact }) {
       paddingBottom: `calc(var(--safe-bottom) + var(--keyboard-offset))`,
       zIndex: 5,
     }}>
-      <div style={{ maxWidth: 'var(--thread-max)', margin: '0 auto', padding: compact ? '8px 12px' : '10px 16px 14px' }}>
+      <div style={{ maxWidth: 'var(--thread-max)', margin: '0 auto', padding: compact ? '8px 12px' : '12px 16px 16px' }}>
         <div
           style={{
-            display: 'flex', alignItems: 'flex-end', gap: 6,
+            display: 'flex', alignItems: 'flex-end', gap: 8,
             background: 'var(--composer-bg)', border: `1px solid ${len > 0 ? 'var(--brand-400)' : 'var(--composer-border)'}`,
-            borderRadius: 24, padding: '6px 6px 6px 16px',
-            boxShadow: len > 0 ? '0 4px 20px rgba(0,0,0,.2)' : '0 2px 8px rgba(0,0,0,.1)',
-            backdropFilter: 'blur(8px)',
+            borderRadius: 26, padding: '7px 7px 7px 18px',
+            boxShadow: len > 0 ? '0 4px 24px rgba(0,0,0,.22), 0 0 0 3px var(--glow)' : 'var(--shadow-sm)',
+            backdropFilter: 'blur(12px)',
             transition: 'border-color var(--t-base), box-shadow var(--t-base)',
           }}
-          onFocusCapture={e => { e.currentTarget.style.borderColor = 'var(--brand-300)'; e.currentTarget.style.boxShadow = '0 2px 16px rgba(0,0,0,.15), 0 0 0 3px var(--glow)'; }}
-          onBlurCapture={e => { e.currentTarget.style.borderColor = 'var(--composer-border)'; e.currentTarget.style.boxShadow = '0 2px 16px rgba(0,0,0,.15), 0 0 0 1px var(--border)'; }}
+          onFocusCapture={e => { e.currentTarget.style.borderColor = 'var(--brand-300)'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(0,0,0,.22), 0 0 0 3px var(--glow-strong)'; }}
+          onBlurCapture={e => { e.currentTarget.style.borderColor = len > 0 ? 'var(--brand-400)' : 'var(--composer-border)'; e.currentTarget.style.boxShadow = len > 0 ? '0 4px 24px rgba(0,0,0,.22), 0 0 0 3px var(--glow)' : 'var(--shadow-sm)'; }}
         >
           <textarea
             ref={ref} value={value}
@@ -1136,7 +1185,7 @@ function Composer({ disabled, onSend, compact }) {
             disabled={disabled} rows={1} aria-label="Votre message" autoComplete="off"
             style={{
               flex: 1, border: 'none', background: 'transparent', color: 'var(--text)',
-              fontSize: 15, outline: 'none', resize: 'none', lineHeight: 1.5,
+              fontSize: 15, outline: 'none', resize: 'none', lineHeight: 1.55,
               maxHeight: 180, padding: '8px 0', fontFamily: 'inherit',
               opacity: disabled ? 0.5 : 1,
             }}
@@ -1144,14 +1193,15 @@ function Composer({ disabled, onSend, compact }) {
           <button
             type="button" onClick={submit} disabled={!canSend} aria-label="Envoyer"
             style={{
-              width: 36, height: 36, borderRadius: 14, flexShrink: 0, marginBottom: 1,
+              width: 38, height: 38, borderRadius: 14, flexShrink: 0, marginBottom: 1,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              background: canSend ? 'var(--brand-500)' : 'var(--surface)',
+              background: canSend ? 'linear-gradient(135deg, var(--brand-500), var(--brand-400))' : 'var(--surface)',
               color: canSend ? '#fff' : 'var(--text-tertiary)',
-              transition: 'background var(--t-base), color var(--t-fast)',
+              boxShadow: canSend ? '0 2px 12px var(--glow)' : 'none',
+              transition: 'all var(--t-base)',
             }}
-            onMouseEnter={e => { if (canSend) e.currentTarget.style.background = 'var(--brand-400)'; }}
-            onMouseLeave={e => { if (canSend) e.currentTarget.style.background = 'var(--brand-500)'; }}
+            onMouseEnter={e => { if (canSend) { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.boxShadow = '0 4px 16px var(--glow-strong)'; }}}
+            onMouseLeave={e => { if (canSend) { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 12px var(--glow)'; }}}
           >
             <IcoSend />
           </button>
@@ -1159,10 +1209,10 @@ function Composer({ disabled, onSend, compact }) {
 
         <div style={{
           display: 'flex', justifyContent: 'space-between',
-          marginTop: 6, padding: '0 4px', fontSize: 11.5, color: 'var(--text-tertiary)',
+          marginTop: 8, padding: '0 6px', fontSize: 11.5, color: 'var(--text-tertiary)',
         }}>
           {!compact && <span>SUP'ONE peut faire des erreurs. Vérifiez les informations importantes.</span>}
-          <span style={{ marginLeft: compact ? 'auto' : 0, color: len > 450 ? 'var(--warning)' : 'inherit' }}>
+          <span style={{ marginLeft: compact ? 'auto' : 0, color: len > 450 ? 'var(--warning)' : 'inherit', fontWeight: len > 450 ? 600 : 400 }}>
             {len}/{MAX}
           </span>
         </div>
@@ -1176,13 +1226,13 @@ function Toast({ message }) {
   return (
     <div role="status" style={{
       position: 'fixed', bottom: 100, left: '50%',
-      transform: `translateX(-50%) translateY(${message ? 0 : 70}px)`,
+      transform: `translateX(-50%) translateY(${message ? 0 : 80}px)`,
       background: 'var(--text)', color: 'var(--bg)',
-      padding: '9px 18px', borderRadius: 'var(--r-md)',
-      fontSize: 13.5, fontWeight: 500, zIndex: 100,
-      boxShadow: '0 4px 24px rgba(0,0,0,.3)',
+      padding: '11px 22px', borderRadius: 'var(--r-full)',
+      fontSize: 14, fontWeight: 600, zIndex: 100,
+      boxShadow: 'var(--shadow-lg)',
       opacity: message ? 1 : 0,
-      transition: 'transform .3s ease, opacity .3s ease',
+      transition: 'transform .35s cubic-bezier(0.16, 1, 0.3, 1), opacity .35s ease',
       pointerEvents: 'none', whiteSpace: 'nowrap',
     }}>
       {message || '\u00A0'}
@@ -1198,11 +1248,11 @@ function ScrollFab({ visible, onClick }) {
       style={{
         position: 'absolute',
         bottom: `calc(80px + var(--safe-bottom) + var(--keyboard-offset))`,
-        right: isNative ? 'max(12px, env(safe-area-inset-right))' : 16,
-        width: 36, height: 36, borderRadius: '50%',
+        right: isNative ? 'max(12px, env(safe-area-inset-right))' : 18,
+        width: 38, height: 38, borderRadius: '50%',
         background: 'var(--bg-elevated)', border: '1px solid var(--border-strong)',
         color: 'var(--text)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: '0 2px 12px rgba(0,0,0,.2)', zIndex: 10,
+        boxShadow: 'var(--shadow-md)', zIndex: 10,
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(8px)',
         transition: 'opacity var(--t-base), transform var(--t-base)',
@@ -1218,16 +1268,13 @@ function ScrollFab({ visible, onClick }) {
 function Sidebar({ open, onClose, history, onSelect, onShowAbout, onNewChat }) {
   const [isLoading, setIsLoading] = useState(true)
 
-  // Gère l'état de chargement pour éviter le "flash" de liste vide pendant l'auth ou le fetch
   useEffect(() => {
     if (open) {
-      // On n'arrête le chargement que si history est un tableau (même vide)
       if (Array.isArray(history)) {
         const timer = setTimeout(() => setIsLoading(false), 300)
         return () => clearTimeout(timer)
       }
     } else {
-      // Réinitialiser au prochain retrait
       setIsLoading(true)
     }
   }, [open, history])
@@ -1242,62 +1289,70 @@ function Sidebar({ open, onClose, history, onSelect, onShowAbout, onNewChat }) {
         width: 'var(--sidebar-w)', background: 'var(--bg-elevated)',
         borderRight: '1px solid var(--border-strong)',
         display: 'flex', flexDirection: 'column',
-        boxShadow: '20px 0 60px rgba(0,0,0,0.5)',
+        boxShadow: 'var(--shadow-xl)',
         animation: 'slideRight .4s cubic-bezier(0.16, 1, 0.3, 1)',
         zIndex: 102
       }}>
-        <div style={{ padding: '24px 20px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <p style={{ fontWeight: 700, fontSize: 15, letterSpacing: '0.02em', color: 'var(--text)' }}>HISTORIQUE</p>
-          <button onClick={onClose} style={{ color: 'var(--text-tertiary)', fontSize: 24, lineHeight: 0 }}>×</button>
+        <div style={{ padding: '28px 22px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <p style={{ fontWeight: 700, fontSize: 14, letterSpacing: '0.06em', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Historique</p>
+          <button onClick={onClose} style={{
+            width: 32, height: 32, borderRadius: 8,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: 'var(--text-secondary)', background: 'var(--surface)',
+            transition: 'all var(--t-fast)', fontSize: 18,
+          }} onMouseEnter={e => { e.currentTarget.style.background = 'var(--surface-hover)'; e.currentTarget.style.color = 'var(--text)'; }} onMouseLeave={e => { e.currentTarget.style.background = 'var(--surface)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}>
+            ×
+          </button>
         </div>
 
-        <div style={{ padding: '16px 14px' }}>
+        <div style={{ padding: '18px 16px' }}>
           <button
             onClick={() => { onNewChat(); onClose(); }}
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, width: '100%',
-              padding: '12px', borderRadius: 12, background: 'var(--brand-500)',
-              color: '#fff', fontSize: 14, fontWeight: 600, transition: 'all var(--t-base)'
+              padding: '13px', borderRadius: 14, background: 'linear-gradient(135deg, var(--brand-500), var(--brand-400))',
+              color: '#fff', fontSize: 14, fontWeight: 600, transition: 'all var(--t-base)',
+              boxShadow: '0 2px 12px var(--glow)',
             }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--brand-400)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--brand-500)'}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 16px var(--glow-strong)'; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 12px var(--glow)'; }}
           >
             <IcoNewChat /> Nouvelle discussion
           </button>
         </div>
 
-        <div style={{ flex: 1, overflowY: 'auto', padding: '0 10px' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '0 12px' }}>
           {isLoading ? (
             <SidebarSkeleton />
           ) : (history && history.length > 0) ? (
             history.map(item => (
               <button key={item.id} onClick={() => { onSelect(item.id); onClose(); }} style={{
-                width: '100%', margin: '4px 0', padding: '10px 12px', borderRadius: 10, textAlign: 'left',
-                fontSize: 13.5, color: 'var(--text-secondary)', transition: 'all .2s',
+                width: '100%', margin: '3px 0', padding: '11px 14px', borderRadius: 12, textAlign: 'left',
+                fontSize: 13.5, color: 'var(--text-secondary)', transition: 'all var(--t-fast)',
                 display: 'flex', alignItems: 'center', gap: 10
-              }} onMouseEnter={e => { e.currentTarget.style.background = 'var(--surface)'; e.currentTarget.style.color = 'var(--text)'; }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)'; }}>
-                <span style={{ opacity: 0.5 }}><Svg size={16}>{stroke('M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z')}</Svg></span>
+              }} onMouseEnter={e => { e.currentTarget.style.background = 'var(--surface-hover)'; e.currentTarget.style.color = 'var(--text)'; }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)'; }}>
+                <span style={{ opacity: 0.4 }}><Svg size={15}>{stroke('M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z')}</Svg></span>
                 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{item.title || 'Discussion sans titre'}</span>
               </button>
             ))
           ) : (
-            <p style={{ padding: 40, textAlign: 'center', color: 'var(--text-tertiary)', fontSize: 13 }}>Aucune conversation enregistrée</p>
+            <p style={{ padding: 44, textAlign: 'center', color: 'var(--text-tertiary)', fontSize: 13 }}>Aucune conversation enregistrée</p>
           )}
         </div>
 
-        <div style={{ padding: 16, borderTop: '1px solid var(--border)', background: 'var(--surface)' }}>
+        <div style={{ padding: 18, borderTop: '1px solid var(--border)', background: 'var(--surface)' }}>
           <button onClick={() => { onShowAbout(); onClose(); }} style={{
             display: 'flex', alignItems: 'center', gap: 10, width: '100%',
-            padding: '10px 12px', borderRadius: 10, fontSize: 13, color: 'var(--brand-300)',
-            fontWeight: 500
-          }}>
-            <span style={{ fontSize: 16 }}>📖</span> Aide & Documentation
+            padding: '11px 14px', borderRadius: 12, fontSize: 13.5, color: 'var(--brand-300)',
+            fontWeight: 500, transition: 'all var(--t-fast)',
+          }} onMouseEnter={e => { e.currentTarget.style.background = 'var(--surface-hover)'; }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}>
+            Aide & Documentation
           </button>
         </div>
       </div>
       <div
         onClick={onClose}
-        style={{ flex: 1, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)', animation: 'fadeInChat .3s ease', zIndex: 101 }}
+        style={{ flex: 1, background: 'var(--overlay)', backdropFilter: 'blur(6px)', animation: 'fadeInChat .3s ease', zIndex: 101 }}
       />
     </aside>
   )
@@ -1310,34 +1365,49 @@ function AboutModal({ open, onClose }) {
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center',
-      background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)', animation: 'fadeInChat .3s ease'
+      background: 'var(--overlay)', backdropFilter: 'blur(10px)', animation: 'fadeInChat .3s ease'
     }}>
       <div style={{
-        width: '100%', maxWidth: 500, padding: 32, borderRadius: 24,
+        width: '100%', maxWidth: 500, padding: 36, borderRadius: 'var(--r-xl)',
         background: 'var(--bg-elevated)', border: '1px solid var(--border-strong)',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.4)', position: 'relative',
-        animation: 'popIn .3s cubic-bezier(0.16, 1, 0.3, 1)'
+        boxShadow: 'var(--shadow-xl)', position: 'relative',
+        animation: 'popIn .35s cubic-bezier(0.16, 1, 0.3, 1)'
       }}>
         <button onClick={onClose} style={{
-          position: 'absolute', top: 16, right: 16, fontSize: '1.2rem', color: 'var(--text-secondary)'
-        }}>×</button>
-        <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16, color: 'var(--text)' }}>À propos de SUP'ONE AI</h2>
-        <p style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+          position: 'absolute', top: 16, right: 16,
+          width: 32, height: 32, borderRadius: 8,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: 'var(--text-secondary)', background: 'var(--surface)',
+          transition: 'all var(--t-fast)',
+        }} onMouseEnter={e => { e.currentTarget.style.background = 'var(--surface-hover)'; }} onMouseLeave={e => { e.currentTarget.style.background = 'var(--surface)'; }}>
+          ×
+        </button>
+        <div style={{ textAlign: 'center', marginBottom: 24 }}>
+          <div style={{
+            width: 56, height: 56, borderRadius: 16, marginBottom: 16,
+            background: 'linear-gradient(135deg, var(--brand-500), var(--brand-300))',
+            display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff',
+            boxShadow: '0 4px 16px var(--glow)',
+          }}>
+            <IcoSparkles />
+          </div>
+          <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)' }}>À propos de SUP'ONE AI</h2>
+        </div>
+        <p style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.7 }}>
           SUP'ONE AI est votre assistant virtuel intelligent, conçu pour vous aider et discuter avec vous de façon naturelle.
           Il a été développé par des experts passionnés des technologies et de la formation, motivés par le souhait d'améliorer l'excellence académique dans le domaine des TIC au Cameroun.
         </p>
-        {/* FIX 5: rendu du markdown (**gras**) via renderMd() au lieu d'afficher les ** littéralement */}
-        <div style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
+        <div style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.7, marginTop: 14 }}>
           {renderMd('**Architecture :** React Hooks, Custom Hooks (useChat, useTheme, usePwaInstall, useNativeKeyboard).')}
         </div>
-        <div style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
+        <div style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.7, marginTop: 14 }}>
           {renderMd("**Fonctionnalités :** Streaming en temps réel (Gen3 IA) & Fallback FAQ TF-IDF, Authentification JWT & Persistance de session, Support PWA, Interface optimisée pour le natif (Capacitor), Interface utilisateur avancée.")}
         </div>
-        <div style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
+        <div style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.7, marginTop: 14 }}>
           {renderMd('**Version :** 2.0')}
         </div>
-        <p style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.6, marginTop: 12 }}>
-          Pour plus d'informations, visitez <a href="https://e-supptic.cm/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brand-300)', textDecoration: 'none' }}>e-supptic.cm</a>.
+        <p style={{ fontSize: 14.5, color: 'var(--text-secondary)', lineHeight: 1.7, marginTop: 14 }}>
+          Pour plus d'informations, visitez <a href="https://e-supptic.cm/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brand-300)', textDecoration: 'none', fontWeight: 500 }}>e-supptic.cm</a>.
         </p>
       </div>
     </div>
@@ -1346,12 +1416,10 @@ function AboutModal({ open, onClose }) {
 
 // ─── Profile Modal ────────────────────────────────────────────────────────────
 function ProfileModal({ open, onClose, user, onLogout, onSave }) {
-  // FIX 3: tous les hooks sont déclarés avant le early return (règle des Hooks React)
   const [editing, setEditing] = useState(false)
   const [username, setUsername] = useState(user?.username ?? '')
   const [email, setEmail] = useState(user?.email ?? '')
 
-  // Resynchronise les champs locaux si l'utilisateur change ou si la modale se rouvre
   useEffect(() => {
     if (user) {
       setUsername(user.username)
@@ -1377,37 +1445,59 @@ function ProfileModal({ open, onClose, user, onLogout, onSave }) {
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center',
-      background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)', animation: 'fadeInChat .3s ease'
+      background: 'var(--overlay)', backdropFilter: 'blur(10px)', animation: 'fadeInChat .3s ease'
     }}>
       <div style={{
-        width: '100%', maxWidth: 400, padding: 32, borderRadius: 24,
+        width: '100%', maxWidth: 400, padding: 36, borderRadius: 'var(--r-xl)',
         background: 'var(--bg-elevated)', border: '1px solid var(--border-strong)',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.4)', position: 'relative',
-        animation: 'popIn .3s cubic-bezier(0.16, 1, 0.3, 1)', textAlign: 'center'
+        boxShadow: 'var(--shadow-xl)', position: 'relative',
+        animation: 'popIn .35s cubic-bezier(0.16, 1, 0.3, 1)', textAlign: 'center'
       }}>
-        <button onClick={onClose} style={{ position: 'absolute', top: 16, right: 16, fontSize: '1.2rem', color: 'var(--text-secondary)' }}>×</button>
-        <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'var(--brand-500)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, fontWeight: 700, margin: '0 auto 20px' }}>
+        <button onClick={onClose} style={{
+          position: 'absolute', top: 16, right: 16,
+          width: 32, height: 32, borderRadius: 8,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: 'var(--text-secondary)', background: 'var(--surface)',
+          transition: 'all var(--t-fast)',
+        }} onMouseEnter={e => { e.currentTarget.style.background = 'var(--surface-hover)'; }} onMouseLeave={e => { e.currentTarget.style.background = 'var(--surface)'; }}>
+          ×
+        </button>
+        <div style={{
+          width: 84, height: 84, borderRadius: '50%',
+          background: 'linear-gradient(135deg, var(--brand-500), var(--brand-400))',
+          color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 34, fontWeight: 700, margin: '0 auto 22px',
+          boxShadow: '0 4px 16px var(--glow)',
+        }}>
           {username.charAt(0).toUpperCase()}
         </div>
 
         {!editing ? (
           <>
             <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)' }}>{user.username}</h2>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: 24 }}>{user.email}</p>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: 28, fontSize: 14.5 }}>{user.email}</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <button onClick={() => setEditing(true)} style={{ padding: '12px', borderRadius: 12, background: 'var(--surface)', color: 'var(--text)', fontWeight: 600 }}>Modifier le profil</button>
-              <button onClick={() => { onLogout(); onClose(); }} style={{ padding: '12px', borderRadius: 12, background: 'var(--error-bg)', color: 'var(--error)', fontWeight: 600 }}>
+              <button onClick={() => setEditing(true)} style={{
+                padding: '13px', borderRadius: 14, background: 'var(--surface)',
+                color: 'var(--text)', fontWeight: 600, transition: 'all var(--t-fast)',
+              }} onMouseEnter={e => { e.currentTarget.style.background = 'var(--surface-hover)'; }} onMouseLeave={e => { e.currentTarget.style.background = 'var(--surface)'; }}>
+                Modifier le profil
+              </button>
+              <button onClick={() => { onLogout(); onClose(); }} style={{
+                padding: '13px', borderRadius: 14, background: 'var(--error-bg)',
+                color: 'var(--error)', fontWeight: 600, transition: 'all var(--t-fast)',
+              }} onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,.18)'; }} onMouseLeave={e => { e.currentTarget.style.background = 'var(--error-bg)'; }}>
                 Déconnexion
               </button>
             </div>
           </>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <input value={username} onChange={e => setUsername(e.target.value)} placeholder="Nom d'utilisateur" style={{ padding: 10, borderRadius: 8, border: '1px solid var(--composer-border)' }} />
-            <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" style={{ padding: 10, borderRadius: 8, border: '1px solid var(--composer-border)' }} />
-            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-              <button onClick={() => setEditing(false)} style={{ padding: '10px 12px', borderRadius: 8 }}>Annuler</button>
-              <button onClick={save} style={{ padding: '10px 12px', borderRadius: 8, background: 'var(--brand-500)', color: '#fff' }}>Enregistrer</button>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <input value={username} onChange={e => setUsername(e.target.value)} placeholder="Nom d'utilisateur" style={{ padding: '12px 14px', borderRadius: 12, border: '1px solid var(--composer-border)', fontSize: 14 }} />
+            <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" style={{ padding: '12px 14px', borderRadius: 12, border: '1px solid var(--composer-border)', fontSize: 14 }} />
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 4 }}>
+              <button onClick={() => setEditing(false)} style={{ padding: '10px 16px', borderRadius: 10, fontSize: 13.5, fontWeight: 500, color: 'var(--text-secondary)' }}>Annuler</button>
+              <button onClick={save} style={{ padding: '10px 16px', borderRadius: 10, background: 'var(--brand-500)', color: '#fff', fontSize: 13.5, fontWeight: 600 }}>Enregistrer</button>
             </div>
           </div>
         )}
@@ -1452,35 +1542,40 @@ function AuthPage({ mode, onSwitch, onLogin }) {
     }
   }
 
-  const errorStyle = { color: 'var(--error)', fontSize: 11, marginTop: 4, marginLeft: 4, animation: 'msgIn .2s ease' }
+  const errorStyle = { color: 'var(--error)', fontSize: 12, marginTop: 5, marginLeft: 4, animation: 'msgIn .2s ease', fontWeight: 500 }
 
   return (
     <div style={{
-      flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
-      animation: 'fadeUp .4s ease'
+      flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24,
+      animation: 'fadeUp .5s cubic-bezier(0.16, 1, 0.3, 1)'
     }}>
       <div style={{
-        width: '100%', maxWidth: 380, padding: 32, borderRadius: 24,
+        width: '100%', maxWidth: 400, padding: 36, borderRadius: 'var(--r-xl)',
         background: 'var(--bg-elevated)', border: '1px solid var(--border-strong)',
-        boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
+        boxShadow: 'var(--shadow-xl)'
       }}>
-        <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{ width: 50, height: 50, background: 'var(--brand-500)', borderRadius: 14, margin: '0 auto 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+        <div style={{ textAlign: 'center', marginBottom: 36 }}>
+          <div style={{
+            width: 56, height: 56, borderRadius: 16,
+            background: 'linear-gradient(135deg, var(--brand-500), var(--brand-300))',
+            margin: '0 auto 18px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: '#fff', boxShadow: '0 4px 16px var(--glow)',
+          }}>
             <IcoSparkles />
           </div>
-          <h2 style={{ fontSize: 24, fontWeight: 700 }}>{mode === 'login' ? 'Bon retour !' : 'Rejoindre SUP\'ONE'}</h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginTop: 8 }}>Veuillez entrer vos informations</p>
+          <h2 style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em' }}>{mode === 'login' ? 'Bon retour !' : 'Rejoindre SUP\'ONE'}</h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: 14.5, marginTop: 8 }}>Veuillez entrer vos informations</p>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ position: 'relative' }}>
             <div style={{ position: 'relative' }}>
-              <span style={{ position: 'absolute', left: 12, top: 12, color: 'var(--text-tertiary)' }}><IcoMail size={16}/></span>
+              <span style={{ position: 'absolute', left: 14, top: 13, color: 'var(--text-tertiary)' }}><IcoMail size={16}/></span>
               <input
                 placeholder="Email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: 12, outline: 'none', border: `1px solid ${errors.email ? 'var(--error)' : 'var(--composer-border)'}` }}
+                style={{ width: '100%', padding: '13px 14px 13px 42px', borderRadius: 14, outline: 'none', border: `1px solid ${errors.email ? 'var(--error)' : 'var(--composer-border)'}`, fontSize: 14.5, transition: 'border-color var(--t-fast)' }}
               />
             </div>
             {errors.email && <p style={errorStyle}>{errors.email}</p>}
@@ -1488,12 +1583,12 @@ function AuthPage({ mode, onSwitch, onLogin }) {
           {mode === 'signup' && (
              <div style={{ position: 'relative' }}>
               <div style={{ position: 'relative' }}>
-                <span style={{ position: 'absolute', left: 12, top: 12, color: 'var(--text-tertiary)' }}><IcoUser size={16}/></span>
+                <span style={{ position: 'absolute', left: 14, top: 13, color: 'var(--text-tertiary)' }}><IcoUser size={16}/></span>
                 <input
                   placeholder="Nom d'utilisateur"
                   value={username}
                   onChange={e => setUsername(e.target.value)}
-                  style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: 12, outline: 'none', border: `1px solid ${errors.username ? 'var(--error)' : 'var(--composer-border)'}` }}
+                  style={{ width: '100%', padding: '13px 14px 13px 42px', borderRadius: 14, outline: 'none', border: `1px solid ${errors.username ? 'var(--error)' : 'var(--composer-border)'}`, fontSize: 14.5, transition: 'border-color var(--t-fast)' }}
                 />
               </div>
               {errors.username && <p style={errorStyle}>{errors.username}</p>}
@@ -1501,25 +1596,29 @@ function AuthPage({ mode, onSwitch, onLogin }) {
           )}
           <div style={{ position: 'relative' }}>
             <div style={{ position: 'relative' }}>
-              <span style={{ position: 'absolute', left: 12, top: 12, color: 'var(--text-tertiary)' }}><IcoLock size={16}/></span>
+              <span style={{ position: 'absolute', left: 14, top: 13, color: 'var(--text-tertiary)' }}><IcoLock size={16}/></span>
               <input
                 type="password"
                 placeholder="Mot de passe"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
-                style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: 12, outline: 'none', border: `1px solid ${errors.password ? 'var(--error)' : 'var(--composer-border)'}` }}
+                style={{ width: '100%', padding: '13px 14px 13px 42px', borderRadius: 14, outline: 'none', border: `1px solid ${errors.password ? 'var(--error)' : 'var(--composer-border)'}`, fontSize: 14.5, transition: 'border-color var(--t-fast)' }}
               />
             </div>
             {errors.password && <p style={errorStyle}>{errors.password}</p>}
           </div>
           <button onClick={handleSubmit} style={{
-            marginTop: 8, padding: 14, borderRadius: 12, background: 'var(--brand-500)', color: '#fff', fontWeight: 600, fontSize: 15
-          }}>
+            marginTop: 10, padding: 15, borderRadius: 14,
+            background: 'linear-gradient(135deg, var(--brand-500), var(--brand-400))',
+            color: '#fff', fontWeight: 700, fontSize: 15,
+            boxShadow: '0 4px 16px var(--glow)',
+            transition: 'all var(--t-base)',
+          }} onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px var(--glow-strong)'; }} onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 16px var(--glow)'; }}>
             {mode === 'login' ? 'Se connecter' : 'Créer un compte'}
           </button>
         </div>
 
-        <p style={{ textAlign: 'center', marginTop: 24, fontSize: 13.5, color: 'var(--text-secondary)' }}>
+        <p style={{ textAlign: 'center', marginTop: 28, fontSize: 14, color: 'var(--text-secondary)' }}>
           {mode === 'login' ? "Pas encore de compte ?" : "Déjà un compte ?"}
           <button onClick={() => { setErrors({}); onSwitch(); }} style={{ color: 'var(--brand-300)', fontWeight: 600, marginLeft: 6 }}>
             {mode === 'login' ? 'S\'inscrire' : 'Se connecter'}

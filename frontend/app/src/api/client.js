@@ -167,7 +167,7 @@ export async function getSuggestions() {
 // La normalisation et la fusion avec le localStorage sont gérées dans useChat.js.
 
 /**
- * Retourne les conversations du backend.
+ * Récupère les conversations du backend.
  * En cas d'échec réseau, lève l'erreur — le hook gère le fallback local.
  */
 export async function fetchHistory() {
@@ -182,6 +182,22 @@ export async function fetchHistory() {
   })
   if (!res.ok) throw new Error(`history ${res.status}`)
   return res.json()
+}
+
+/**
+ * Supprime tout l'historique de l'utilisateur
+ */
+export async function deleteHistory() {
+  const token = getAuthToken()
+  if (!token) return false
+
+  const base = getApiBase()
+  const res  = await fetch(`${base}/api/history/`, {
+    method: 'DELETE',
+    headers: authHeaders(),
+    signal:  AbortSignal.timeout(DEFAULT_TIMEOUT_MS),
+  })
+  return res.ok
 }
 
 // ─── Cache threads ────────────────────────────────────────────────────────────

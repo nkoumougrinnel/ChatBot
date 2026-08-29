@@ -6,9 +6,9 @@ import {
   fetchThreadMessages,
   getSuggestions,
   deleteHistory,
-  resolveServerStatus,
   submitFeedback,
-} from '../api/chat';
+  resolveServerStatus,
+} from '../api/client';
 
 const HEALTH_POLL_MS = 25000;
 const LOCAL_HISTORY_KEY = 'supone-history';
