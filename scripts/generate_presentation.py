@@ -4,8 +4,10 @@
 from pathlib import Path
 
 from pptx import Presentation
+from pptx.oxml import parse_xml
 from pptx.dml.color import RGBColor
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
+from pptx.enum.shapes import MSO_SHAPE
 from pptx.util import Inches, Pt
 
 # Palette SUP'PTIC
@@ -17,6 +19,7 @@ MUTED = RGBColor(0x64, 0x74, 0x8B)
 ACCENT = RGBColor(0x22, 0xC5, 0x5E)
 
 OUTPUT = Path(__file__).resolve().parent.parent / "docs" / "SUPONE_AI_Club_Informatique_SUPPTIC.pptx"
+LOGO_PATH = Path(__file__).resolve().parent.parent / "frontend" / "advanced_chat" / "icone.png"
 
 
 def set_slide_bg(slide, color: RGBColor) -> None:
@@ -76,6 +79,70 @@ def add_two_columns(slide, left_title: str, left_items: list[str], right_title: 
             p.font.size = Pt(14)
             p.font.color.rgb = DARK
             p.space_after = Pt(6)
+
+
+def set_slide_transition(slide, direction: str = "l") -> None:
+    """
+    Ajoute une transition de type 'Poussée' (Push) à la diapositive.
+    Directions : 'l' (gauche), 'r' (droite), 't' (haut), 'b' (bas).
+    """
+    sld = slide._element
+    # On définit la transition en XML (Push transition)
+    transition_xml = (
+        f'<p:transition xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">'
+        f'<p:push dir="{direction}"/></p:transition>'
+    )
+    transition = parse_xml(transition_xml)
+    sld.insert(0, transition)
+
+
+def add_logo(slide) -> None:
+    """Ajoute le logo SUP'PTIC en bas à droite de la diapositive."""
+    if LOGO_PATH.exists():
+        # Position : Bas droite (ajusté pour une diapositive de 10x7.5 pouces)
+        # Largeur fixée à 0.6 pouce, hauteur proportionnelle
+        left = Inches(9.2)
+        top = Inches(6.7)
+        slide.shapes.add_picture(str(LOGO_PATH), left, top, width=Inches(0.6))
+
+
+def add_progress_bar(slide, index: int, total: int) -> None:
+    """Ajoute une barre de progression visuelle en bas de la diapositive."""
+    # Fond de la barre (gris clair)
+    full_width = 10
+    bg_bar = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, Inches(0), Inches(7.45), Inches(full_width), Inches(0.05)
+    )
+    bg_bar.fill.solid()
+    bg_bar.fill.fore_color.rgb = RGBColor(0xE2, 0xE8, 0xF0)
+    bg_bar.line.fill.background()
+    
+    # Barre de progression (Bleu SUP'PTIC)
+    progress_width = (index / total) * full_width
+    bar = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE, Inches(0), Inches(7.45), Inches(progress_width), Inches(0.05)
+    )
+    bar.fill.solid()
+    bar.fill.fore_color.rgb = PRIMARY_LIGHT
+    # Supprimer la bordure
+    bar.line.fill.background()
+
+
+def add_footer(slide, index: int, total: int) -> None:
+    """Ajoute un pied de page avec le numéro de diapositive au centre."""
+    # Position : Bas centre sur toute la largeur (10 pouces)
+    left = Inches(0)
+    top = Inches(7.1)
+    width = Inches(10)
+    height = Inches(0.3)
+    
+    txBox = slide.shapes.add_textbox(left, top, width, height)
+    tf = txBox.text_frame
+    p = tf.paragraphs[0]
+    p.text = f"SUP'ONE AI — Page {index} / {total}"
+    p.font.size = Pt(9)
+    p.font.color.rgb = MUTED
+    p.alignment = PP_ALIGN.CENTER
 
 
 def slide_title(prs: Presentation) -> None:
@@ -225,7 +292,7 @@ def slide_tech(prs: Presentation) -> None:
             "Python 3.13 · Django 4.2 · DRF",
             "scikit-learn · spaCy (fr)",
             "FAISS · sentence-transformers",
-            "Google Gemini 2.0 Flash",
+            "Google Gemini 1.5 Flash",
             "PostgreSQL · Gunicorn · Whitenoise",
         ],
         "Frontend & DevOps",
@@ -298,6 +365,37 @@ def slide_demo(prs: Presentation) -> None:
     )
 
 
+def slide_section_header(prs: Presentation, title: str) -> None:
+    """Ajoute une diapositive d'intermède avec un fond coloré pour séparer les sections."""
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    set_slide_bg(slide, PRIMARY)
+    t = slide.shapes.add_textbox(Inches(0.5), Inches(3.2), Inches(9), Inches(1.1))
+    tf = t.text_frame
+    tf.text = title
+    p = tf.paragraphs[0]
+    p.font.size = Pt(40)
+    p.font.bold = True
+    p.font.color.rgb = WHITE
+    p.alignment = PP_ALIGN.CENTER
+
+
+def slide_security_rgpd(prs: Presentation) -> None:
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    set_slide_bg(slide, WHITE)
+    add_title_bar(slide, "Sécurité & Protection des données (RGPD)")
+    add_bullets(
+        slide,
+        [
+            "Authentification sécurisée : Gestion par jetons (Tokens) et sessions isolées.",
+            "Chiffrement des échanges : Communications intégrales via protocole HTTPS.",
+            "Droit à l'oubli : Fonctionnalité de suppression complète de l'historique par l'utilisateur.",
+            "Confidentialité : Anonymisation des feedbacks et protection des données personnelles.",
+            "Conformité RGPD : Transparence, collecte minimale et contrôle des données par l'étudiant.",
+            "Sécurisation infrastructure : Protection de la base de données et des accès API.",
+        ],
+    )
+
+
 def slide_perspectives(prs: Presentation) -> None:
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     set_slide_bg(slide, WHITE)
@@ -345,17 +443,37 @@ def main() -> None:
     prs.slide_height = Inches(7.5)
 
     slide_title(prs)
+    slide_section_header(prs, "I. Introduction & Concept")
     slide_context(prs)
     slide_solution(prs)
+
+    slide_section_header(prs, "II. Architecture & Pipeline")
     slide_features(prs)
     slide_architecture(prs)
     slide_pipeline(prs)
+
+    slide_section_header(prs, "III. Technologies & Design")
     slide_tech(prs)
     slide_ui(prs)
+
+    slide_section_header(prs, "IV. Mise en œuvre & Sécurité")
     slide_deployment(prs)
     slide_demo(prs)
+    slide_security_rgpd(prs)
     slide_perspectives(prs)
     slide_closing(prs)
+
+    # Ajout automatique du logo et du numéro de page sur toutes les diapositives
+    total_slides = len(prs.slides)
+    for i, slide in enumerate(prs.slides, start=1):
+        add_logo(slide)
+        add_footer(slide, i, total_slides)
+        add_progress_bar(slide, i, total_slides)
+        
+        # On alterne les directions des transitions pour un effet 'intéressant'
+        # Droite à gauche pour le corps, Bas en Haut pour les sections clés
+        direction = "t" if i % 4 == 0 else "l"
+        set_slide_transition(slide, direction)
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     prs.save(str(OUTPUT))
