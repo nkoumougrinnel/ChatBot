@@ -23,10 +23,11 @@ _INDEX_PATH    = _RAG_DATA_DIR / "index.bin"
 _METADATA_PATH = _RAG_DATA_DIR / "metadata.json"
 
 # -------------------------------------------------------------------
-# Seuils de confiance — importés par rag_pipeline.py
+# Seuils de confiance — optimisés pour minimiser les hallucinations
 # -------------------------------------------------------------------
-SCORE_DIRECT = float(os.environ.get("SCORE_DIRECT", "0.52"))  # Niveau 2 → réponse directe FAISS
-SCORE_LLM    = float(os.environ.get("SCORE_LLM",    "0.30"))  # Zone TF-IDF / repli FAISS
+SCORE_DIRECT = float(os.environ.get("SCORE_DIRECT", "0.55"))  # Niveau 2 → réponse directe FAISS
+SCORE_LLM    = float(os.environ.get("SCORE_LLM",    "0.32"))  # Zone TF-IDF / repli FAISS
+SCORE_MIN    = float(os.environ.get("SCORE_MIN",    "0.15"))  # Seuil absolu minimum
 
 # -------------------------------------------------------------------
 # État interne (thread-safe)
@@ -103,15 +104,14 @@ def search(query_vec: np.ndarray, k: int = 3) -> list[tuple[int, float]]:
 def search_with_metadata(query_vec: np.ndarray, k: int = 3) -> list[dict]:
     """
     Recherche enrichie avec métadonnées et confidence_level.
-
-    confidence_level :
-        'direct'  → score >= SCORE_DIRECT  (Niveau 2)
-        'llm'     → score >= SCORE_LLM     (Niveau 3 TFIDF)
-        'offbase' → score <  SCORE_LLM
+    Filtre les résultats en dessous du seuil SCORE_MIN.
     """
     results = []
     for meta_id, score in search(query_vec, k):
         if not (0 <= meta_id < len(_metadata)):
+            continue
+        # Filtrer les résultats trop faibles
+        if score < SCORE_MIN:
             continue
         meta = _metadata[meta_id]
 

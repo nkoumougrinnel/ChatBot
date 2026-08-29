@@ -32,14 +32,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-def _pipeline():
-    from chatbot.engine.rag_pipeline import ask, ask_stream, health
-    return ask, ask_stream, health
-
-
-def _llm():
-    from chatbot.engine.llm_client import check_availability, generate_stream
-    return check_availability, generate_stream
+from chatbot.engine.rag_pipeline import ask, ask_stream, health
+from chatbot.engine.llm_client import check_availability, generate_stream
 
 
 # ---------------------------------------------------------------------------
@@ -98,10 +92,8 @@ def llm_status(request):
             "pipeline": { faiss_loaded, tfidf_loaded, ready, ... }
         }
     """
-    check_availability, _ = _llm()
-    _, _, pipeline_health_fn = _pipeline()
     llm      = check_availability()
-    pipeline = pipeline_health_fn()
+    pipeline = health()
     return Response({**llm, "pipeline": pipeline})
 
 
@@ -137,8 +129,7 @@ def ask_chatbot(request):
     # ── Mode JSON (non streamé) ──────────────────────────────────────────────
     if use_stream is False:
         try:
-            ask_fn, _, _ = _pipeline()
-            result = ask_fn(question, history)
+            result = ask(question, history)
             payload = {
                 "answer":     result.answer,
                 "method":     _LEVEL_TO_METHOD.get(result.level, result.level.upper()),
@@ -162,8 +153,7 @@ def ask_chatbot(request):
         yield _sse({"type": "status", "status": "thinking"})
 
         try:
-            _, ask_stream_fn, _ = _pipeline()
-            for raw in ask_stream_fn(question, history):
+            for raw in ask_stream(question, history):
                 event_name, data = _parse_sse_line(raw)
 
                 # event: start → métadonnées du pipeline
@@ -232,8 +222,7 @@ def test_llm_latency(request):
 
     try:
         t_start = time.time()
-        _, generate_stream_fn = _llm()
-        response_text = "".join(generate_stream_fn(prompt, level="llm"))
+        response_text = "".join(generate_stream(prompt, level="llm"))
         llm_time = round(time.time() - t_start, 2)
         return Response({
             "prompt_length":   len(prompt),

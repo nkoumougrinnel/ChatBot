@@ -275,6 +275,7 @@ def search(query: str) -> tuple[str, float, str]:
 def search_top_k(query: str, k: int = 3) -> list[dict]:
     """
     Retourne les k meilleures correspondances TF-IDF avec métadonnées.
+    Optimisé avec heapq.nlargest() au lieu de trier tous les scores.
 
     Returns:
         Liste de dicts : {answer, score, question, categorie, method}
@@ -282,20 +283,29 @@ def search_top_k(query: str, k: int = 3) -> list[dict]:
     if _vectorizer is None or _tfidf_matrix is None or not _faq_entries:
         return []
 
+    import heapq
+
     query_vec = _vectorizer.transform([query])
     n_rows = _tfidf_matrix.shape[0]
     batch = max(100, _TFIDF_BATCH)
-    top_scores: list[tuple[float, int]] = []
+
+    # Utilise un min-heap de taille k pour garder les meilleurs scores
+    # Plus efficace que de trier tous les scores : O(n log k) au lieu de O(n log n)
+    top_heap: list[tuple[float, int]] = []
 
     for start in range(0, n_rows, batch):
         end = min(start + batch, n_rows)
         sims = cosine_similarity(query_vec, _tfidf_matrix[start:end]).flatten()
         for local_i, score in enumerate(sims):
-            top_scores.append((float(score), start + local_i))
+            s = float(score)
+            if len(top_heap) < k:
+                heapq.heappush(top_heap, (s, start + local_i))
+            elif s > top_heap[0][0]:
+                heapq.heapreplace(top_heap, (s, start + local_i))
 
-    top_scores.sort(key=lambda x: x[0], reverse=True)
-    top_indices = [idx for _, idx in top_scores[:k]]
-    scores_map = {idx: sc for sc, idx in top_scores}
+    # Trie les k meilleurs par score décroissant
+    top_heap.sort(key=lambda x: x[0], reverse=True)
+    scores_map = {idx: sc for sc, idx in top_heap}
 
     return [
         {
@@ -305,7 +315,7 @@ def search_top_k(query: str, k: int = 3) -> list[dict]:
             "categorie": _faq_entries[int(i)].get("categorie", "Général"),
             "method":    "TF-IDF",
         }
-        for i in top_indices
+        for _, i in top_heap
     ]
 
 

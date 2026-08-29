@@ -6,25 +6,25 @@ ARCHITECTURE SIMPLIFIÉE (3 NIVEAUX):
 ═══════════════════════════════════════════════════════════════════════
 
 NIVEAU 0: RÈGLES CONVERSATIONNELLES (JSON externe)
-    ✓ Pattern matching simple, AVANT vectorisation
-    ✓ Règles chargées depuis conversational_rules.json
-    ✓ Performance: <5ms, RAM: 0 MB
-    ✓ Résout: ~30% des requêtes
+    Pattern matching simple, AVANT vectorisation
+    Règles chargées depuis conversational_rules.json
+    Performance: <5ms, RAM: 0 MB
+    Résout: ~30% des requêtes
 
 NIVEAU 1: CATÉGORIES PAR POPULARITÉ + CACHE
-    ✓ Traite catégories par ordre de popularité décroissante
-    ✓ 1 catégorie à la fois (économise RAM)
-    ✓ Cache: dernière catégorie avec meilleur score
-    ✓ Commence par cache, puis catégories populaires
-    ✓ Stop dès que score d'une catégorie = 0 (plus rien à trouver)
-    ✓ Performance: <2s, RAM: 40-60 MB
-    ✓ Résout: ~60% des requêtes
+    Traite catégories par ordre de popularité décroissante
+    1 catégorie à la fois (économise RAM)
+    Cache: dernière catégorie avec meilleur score
+    Commence par cache, puis catégories populaires
+    Stop dès que score d'une catégorie = 0 (plus rien à trouver)
+    Performance: <2s, RAM: 40-60 MB
+    Résout: ~60% des requêtes
 
 NIVEAU 2: FALLBACK GLOBAL
-    ✓ Si aucune catégorie n'a donné de résultat
-    ✓ Scan toutes catégories (batch de 3)
-    ✓ Performance: <5s, RAM: 60-80 MB
-    ✓ Résout: ~10% des requêtes
+    Si aucune catégorie n'a donné de résultat
+    Scan toutes catégories (batch de 3)
+    Performance: <5s, RAM: 60-80 MB
+    Résout: ~10% des requêtes
 
 ═══════════════════════════════════════════════════════════════════════
 """
@@ -176,7 +176,7 @@ def match_conversational_rule(question: str) -> Optional[str]:
                 continue
             pattern_norm = pattern.lower().strip()
             if pattern_norm and pattern_norm in question_lower:
-                logger.debug(f"[Similarity L0] ✅ RÈGLE '{intent}' (match: '{pattern_norm}')")
+                logger.debug(f"[Similarity L0] RÈGLE '{intent}' (match: '{pattern_norm}')")
                 return response
     
     return None
@@ -230,7 +230,7 @@ def search_by_popularity_with_cache(user_vec: np.ndarray, user_norm: float,
     """
     global _CATEGORY_CACHE
     
-    logger.debug(f"[Similarity L1] 🔍 Recherche par catégories populaires...")
+    logger.debug(f"[Similarity L1] Recherche par catégories populaires...")
     
     best_results = None
     best_score = 0.0
@@ -239,45 +239,45 @@ def search_by_popularity_with_cache(user_vec: np.ndarray, user_norm: float,
     categories = get_categories_by_popularity()
     
     if not categories:
-        logger.debug("[Similarity L1] ⚠️ Aucune catégorie active trouvée")
+        logger.debug("[Similarity L1] Aucune catégorie active trouvée")
         return None
     
     # 1. D'ABORD: Vérifier le cache
     if _CATEGORY_CACHE['category_id']:
-        logger.debug(f"[Similarity L1] 📦 Vérification cache: '{_CATEGORY_CACHE['category_name']}'")
+        logger.debug(f"[Similarity L1] Vérification cache: '{_CATEGORY_CACHE['category_name']}'")
         
         try:
             cached_category = Category.objects.get(id=_CATEGORY_CACHE['category_id'])
             results, score = search_in_category(cached_category, user_vec, user_norm, top_k)
             
             if score > 0:
-                logger.debug(f"[Similarity L1] 📈 Cache: score={score:.3f}")
+                logger.debug(f"[Similarity L1] Cache: score={score:.3f}")
                 best_results = results
                 best_score = score
                 best_category = cached_category
                 
                 if score >= GOOD_SCORE_THRESHOLD:
-                    logger.debug(f"[Similarity L1] ✅ TROUVÉ dans cache (score ≥ {GOOD_SCORE_THRESHOLD})")
+                    logger.debug(f"[Similarity L1] TROUVÉ dans cache (score ≥ {GOOD_SCORE_THRESHOLD})")
                     return [{'faq': faq, 'score': s} for faq, s in best_results]
         
         except Category.DoesNotExist:
-            logger.debug("[Similarity L1] ⚠️ Catégorie en cache n'existe plus")
+            logger.debug("[Similarity L1] Catégorie en cache n'existe plus")
             _CATEGORY_CACHE = {'category_id': None, 'category_name': None, 'last_score': 0.0}
     
     # 2. ENSUITE: Parcourir catégories par popularité
-    logger.debug(f"[Similarity L1] 📊 Traitement de {len(categories)} catégories...")
+    logger.debug(f"[Similarity L1] Traitement de {len(categories)} catégories...")
     
     for category in categories:
         if _CATEGORY_CACHE['category_id'] == category.id:
             continue
         
-        logger.debug(f"[Similarity L1] 🔎 Catégorie: '{category.name}'")
+        logger.debug(f"[Similarity L1] Catégorie: '{category.name}'")
         results, score = search_in_category(category, user_vec, user_norm, top_k)
         
         if score == 0:
             break
         
-        logger.debug(f"[Similarity L1] 📈 Score: {score:.3f}")
+        logger.debug(f"[Similarity L1] Score: {score:.3f}")
         
         if score > best_score:
             best_results = results
@@ -285,7 +285,7 @@ def search_by_popularity_with_cache(user_vec: np.ndarray, user_norm: float,
             best_category = category
             
             if score >= GOOD_SCORE_THRESHOLD:
-                logger.debug(f"[Similarity L1] ✅ TROUVÉ (score ≥ {GOOD_SCORE_THRESHOLD})")
+                logger.debug(f"[Similarity L1] TROUVÉ (score ≥ {GOOD_SCORE_THRESHOLD})")
                 break
     
     # 3. Mettre à jour le cache
@@ -295,14 +295,14 @@ def search_by_popularity_with_cache(user_vec: np.ndarray, user_norm: float,
             'category_name': best_category.name,
             'last_score': best_score
         }
-        logger.debug(f"[Similarity L1] 💾 Cache mis à jour: '{best_category.name}' (score: {best_score:.3f})")
+        logger.debug(f"[Similarity L1] Cache mis à jour: '{best_category.name}' (score: {best_score:.3f})")
     
     # 4. Retourner meilleur résultat trouvé
     if best_results and best_score > 0:
-        logger.debug(f"[Similarity L1] ✅ Meilleur résultat: {best_score:.3f} dans '{best_category.name}'")
+        logger.debug(f"[Similarity L1] Meilleur résultat: {best_score:.3f} dans '{best_category.name}'")
         return [{'faq': faq, 'score': s} for faq, s in best_results]
     
-    logger.debug("[Similarity L1] ❌ Aucun résultat trouvé")
+    logger.debug("[Similarity L1] Aucun résultat trouvé")
     return None
 
 
@@ -315,7 +315,7 @@ def search_fallback_global(user_vec: np.ndarray, user_norm: float,
     """
     NIVEAU 2: Fallback - recherche dans TOUTES les catégories.
     """
-    logger.debug(f"[Similarity L2] 🔍 Fallback global...")
+    logger.debug(f"[Similarity L2] Fallback global...")
     
     all_vectors = FAQVector.objects.filter(
         faq__is_active=True
@@ -324,17 +324,18 @@ def search_fallback_global(user_vec: np.ndarray, user_norm: float,
         'faq__id', 'faq__question', 'faq__answer', 'faq__category__name'
     )
     
-    if not all_vectors.exists():
-        logger.debug("[Similarity L2] ⚠️ Aucune FAQ active")
+    # Compter une seule fois au lieu de 3 queries séparées
+    total = all_vectors.count()
+    if total == 0:
+        logger.debug("[Similarity L2] Aucune FAQ active")
         return []
     
-    logger.debug(f"[Similarity L2] 📊 Recherche dans {all_vectors.count()} FAQs...")
+    logger.debug(f"[Similarity L2] Recherche dans {total} FAQs...")
     
     batch_size = 500
     best_results = []
     best_score = 0.0
     
-    total = all_vectors.count()
     for i in range(0, total, batch_size):
         batch = list(all_vectors[i:i+batch_size])
         results = compute_similarity_batch(user_vec, user_norm, batch)
@@ -344,10 +345,10 @@ def search_fallback_global(user_vec: np.ndarray, user_norm: float,
             best_score = results[0][1]
     
     if best_results:
-        logger.debug(f"[Similarity L2] ✅ Meilleur score global: {best_score:.3f}")
+        logger.debug(f"[Similarity L2] Meilleur score global: {best_score:.3f}")
         return [{'faq': faq, 'score': s} for faq, s in best_results]
     
-    logger.debug("[Similarity L2] ❌ Aucun résultat trouvé")
+    logger.debug("[Similarity L2] Aucun résultat trouvé")
     return []
 
 
@@ -360,15 +361,15 @@ def find_best_faq(question: str, top_k: int = 3, min_score: float = 0.0) -> List
     Fonction principale de recherche FAQ.
     """
     logger.debug("=" * 70)
-    logger.debug(f"[Similarity] 🚀 RECHERCHE - '{question[:50]}...'")
+    logger.debug(f"[Similarity] RECHERCHE - '{question[:50]}...'")
     logger.debug("=" * 70)
     
     # NIVEAU 0: RÈGLES CONVERSATIONNELLES
-    logger.debug("[Similarity L0] 🔍 Vérification règles...")
+    logger.debug("[Similarity L0] Vérification règles...")
     direct_response = match_conversational_rule(question)
     
     if direct_response:
-        logger.debug("[Similarity L0] ✅ RÉPONSE DIRECTE")
+        logger.debug("[Similarity L0] RÉPONSE DIRECTE")
         logger.debug("=" * 70)
         
         virtual_faq = type('VirtualFAQ', (), {
@@ -381,14 +382,14 @@ def find_best_faq(question: str, top_k: int = 3, min_score: float = 0.0) -> List
         
         return [{'faq': virtual_faq, 'score': 1.0}]
     
-    logger.debug("[Similarity L0] ⚠️ Aucune règle ne correspond")
+    logger.debug("[Similarity L0] Aucune règle ne correspond")
     
     # VECTORISATION
-    logger.debug("[Similarity] 🔢 Vectorisation...")
+    logger.debug("[Similarity] Vectorisation...")
     user_vec, user_norm = compute_tfidf_vector(question)
     
     if user_norm == 0:
-        logger.debug("[Similarity] ⚠️ Vecteur nul (mots inconnus)")
+        logger.debug("[Similarity] Vecteur nul (mots inconnus)")
         logger.debug("=" * 70)
         
         virtual_faq = type('VirtualFAQ', (), {
@@ -405,15 +406,15 @@ def find_best_faq(question: str, top_k: int = 3, min_score: float = 0.0) -> List
     results = search_by_popularity_with_cache(user_vec, user_norm, top_k)
     
     if results:
-        logger.debug("[Similarity] ✅ TROUVÉ AU NIVEAU 1")
+        logger.debug("[Similarity] TROUVÉ AU NIVEAU 1")
         logger.debug("=" * 70)
         return [r for r in results if r['score'] >= min_score]
     
     # NIVEAU 2: FALLBACK GLOBAL
-    logger.debug("[Similarity] ⚡ NIVEAU 2 (Fallback)...")
+    logger.debug("[Similarity] NIVEAU 2 (Fallback)...")
     results = search_fallback_global(user_vec, user_norm, top_k)
     
-    logger.debug("[Similarity] ✅ RECHERCHE TERMINÉE")
+    logger.debug("[Similarity] RECHERCHE TERMINÉE")
     logger.debug("=" * 70)
     
     return [r for r in results if r['score'] >= min_score]
