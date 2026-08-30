@@ -362,65 +362,113 @@ function Sidebar({ open, onClose, history, onSelect, onShowAbout, onNewChat }) {
 
 function Welcome({ suggestions, disabled, onSelect, user }) {
   const [greeting, setGreeting] = useState('')
+  const [subtitle, setSubtitle] = useState('')
 
   useEffect(() => {
     const hour = new Date().getHours()
-    let t = 'Bonjour'
-    if (hour >= 18) t = 'Bonsoir'
-    if (hour >= 21 || hour < 5) t = 'Bonne nuit'
-    const opts = [
-      `${t}${user ? ', ' + user.username : ''}`,
-      `Bienvenue${user ? ', ' + user.username : ''}`,
-    ]
-    setGreeting(opts[Math.floor(Math.random() * opts.length)])
+    let t, sub
+    if (hour >= 5 && hour < 12) {
+      t = 'Bonjour'
+      sub = 'Comment puis-je vous aider ce matin ?'
+    } else if (hour >= 12 && hour < 18) {
+      t = 'Bonjour'
+      sub = 'En quoi puis-je vous etre utile ?'
+    } else if (hour >= 18 && hour < 21) {
+      t = 'Bonsoir'
+      sub = 'Je suis la pour vous accompagner.'
+    } else {
+      t = 'Bonne nuit'
+      sub = 'Posez votre question, je reste disponible.'
+    }
+    setGreeting(user ? `${t}, ${user.username}` : t)
+    setSubtitle(sub)
   }, [user])
 
   if (!greeting) return null
 
+  const categories = [
+    { icon: 'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z', label: 'Inscriptions & Admissions', query: 'Comment s\'inscrire a SUPPTIC ?' },
+    { icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', label: 'Programmes & Filieres', query: 'Quelles filieres propose SUPPTIC ?' },
+    { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', label: 'Examens & Notes', query: 'Quand sont les prochains examens ?' },
+    { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', label: 'Vie Etudiante', query: 'Comment se passe la vie etudiante a SUPPTIC ?' },
+  ]
+
   return (
     <div style={{
       flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center',
-      justifyContent: 'center', padding: '60px 20px 32px', textAlign: 'center',
-      animation: 'fadeIn .4s ease',
+      justifyContent: 'center', padding: '48px 20px 32px', textAlign: 'center',
+      animation: 'fadeIn .5s ease',
     }}>
       <div style={{
-        width: 48, height: 48, borderRadius: 10, marginBottom: 24,
+        width: 56, height: 56, borderRadius: 14, marginBottom: 28,
         background: 'var(--accent)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: '#fff',
+        color: '#fff', boxShadow: '0 4px 20px rgba(16,163,115,.3)',
       }}>
         <IcoSparkles />
       </div>
 
       <h1 style={{
-        fontSize: 'clamp(22px, 3.5vw, 28px)', fontWeight: 600,
-        color: 'var(--text-primary)', lineHeight: 1.3, marginBottom: 8,
+        fontSize: 'clamp(24px, 4vw, 32px)', fontWeight: 600,
+        color: 'var(--text-primary)', lineHeight: 1.2, marginBottom: 10,
       }}>
         {greeting}
       </h1>
-      <p style={{ fontSize: 14, color: 'var(--text-secondary)', maxWidth: 400, lineHeight: 1.5 }}>
-        Assistant IA pour SUP'PTIC. Posez vos questions sur l'ecole, les inscriptions, les examens et les services.
+      <p style={{ fontSize: 15, color: 'var(--text-secondary)', maxWidth: 420, lineHeight: 1.5, marginBottom: 8 }}>
+        {subtitle}
+      </p>
+      <p style={{ fontSize: 13, color: 'var(--text-tertiary)', maxWidth: 380, lineHeight: 1.5 }}>
+        Posez vos questions sur l'ecole, les programmes, les inscriptions ou la vie etudiante.
       </p>
 
+      {/* Categories */}
+      <div style={{
+        display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: 10, marginTop: 36, width: '100%', maxWidth: 480,
+      }}>
+        {categories.map((cat, i) => (
+          <button
+            key={cat.label} type="button" disabled={disabled}
+            onClick={() => onSelect(cat.query)}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              padding: '14px 16px', textAlign: 'left',
+              background: 'var(--bg-secondary)', border: '1px solid var(--border-light)',
+              borderRadius: 10, color: 'var(--text-primary)',
+              opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer',
+              transition: 'background var(--t-fast), border-color var(--t-fast), transform var(--t-fast)',
+              animation: `slideUp .35s ease ${i * 60}ms backwards`,
+            }}
+            onMouseEnter={e => { if (!disabled) { e.currentTarget.style.background = 'var(--bg-tertiary)'; e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}}
+            onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-secondary)'; e.currentTarget.style.borderColor = 'var(--border-light)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+          >
+            <div style={{
+              width: 36, height: 36, borderRadius: 8, flexShrink: 0,
+              background: 'var(--accent-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: 'var(--accent)',
+            }}>
+              <Svg size={18}><path d={cat.icon} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/></Svg>
+            </div>
+            <span style={{ fontSize: 13, fontWeight: 500, lineHeight: 1.3 }}>{cat.label}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Quick suggestions */}
       {suggestions?.length > 0 && (
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: 8, marginTop: 32, width: '100%', maxWidth: 560,
-        }}>
-          {suggestions.map((text, i) => (
+        <div style={{ marginTop: 20, display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center', maxWidth: 480 }}>
+          {suggestions.slice(0, 3).map((text, i) => (
             <button
               key={text} type="button" disabled={disabled} onClick={() => onSelect(text)}
               style={{
-                padding: '12px 14px', textAlign: 'left',
-                background: 'var(--bg-secondary)', border: '1px solid var(--border-light)',
-                borderRadius: 8, color: 'var(--text-primary)',
-                fontSize: 13, lineHeight: 1.4,
-                opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer',
-                transition: 'background var(--t-fast), border-color var(--t-fast)',
-                animation: `slideUp .3s ease ${i * 50}ms backwards`,
+                padding: '7px 14px',
+                background: 'transparent', border: '1px solid var(--border-light)',
+                borderRadius: 20, color: 'var(--text-secondary)',
+                fontSize: 12.5, transition: 'all var(--t-fast)',
+                animation: `slideUp .35s ease ${(categories.length + i) * 60}ms backwards`,
               }}
-              onMouseEnter={e => { if (!disabled) { e.currentTarget.style.background = 'var(--bg-tertiary)'; e.currentTarget.style.borderColor = 'var(--border)'; }}}
-              onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg-secondary)'; e.currentTarget.style.borderColor = 'var(--border-light)'; }}
+              onMouseEnter={e => { if (!disabled) { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)'; }}}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border-light)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
             >
               {text}
             </button>

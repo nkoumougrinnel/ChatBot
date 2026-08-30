@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10a37f"/>
+      <stop offset="100%" style="stop-color:#0d8c6d"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.25)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="256" fill="url(#bg)" filter="url(#shadow)"/>
+  <circle cx="256" cy="256" r="256" fill="url(#shine)"/>
+
+  <!-- Speech bubble body -->
+  <path d="M136 168 C136 142 158 120 184 120 L328 120 C354 120 376 142 376 168 L376 280 C376 306 354 328 328 328 L220 328 L176 368 L180 328 L184 328 C158 328 136 306 136 280 Z"
+        fill="rgba(255,255,255,0.95)" rx="24"/>
+
+  <!-- Sparkle / AI star - top right -->
+  <g transform="translate(310, 155)">
+    <!-- Main 4-point star -->
+    <path d="M0,-28 L6,-6 L28,0 L6,6 L0,28 L-6,6 L-28,0 L-6,-6 Z" fill="#10a37f" opacity="0.9"/>
+    <!-- Small accent star -->
+    <circle cx="18" cy="-18" r="4" fill="#10a37f" opacity="0.6"/>
+    <circle cx="-14" cy="-22" r="2.5" fill="#10a37f" opacity="0.4"/>
+  </g>
+
+  <!-- Three dots in bubble (chat indicator) -->
+  <circle cx="216" cy="224" r="12" fill="#10a37f" opacity="0.9"/>
+  <circle cx="256" cy="224" r="12" fill="#10a37f" opacity="0.7"/>
+  <circle cx="296" cy="224" r="12" fill="#10a37f" opacity="0.5"/>
+</svg>

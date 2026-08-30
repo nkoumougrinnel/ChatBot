@@ -12,12 +12,12 @@
   "plugins": {
     "SplashScreen": {
       "launchAutoHide": true,
-      "backgroundColor": "#070f1f",
+      "backgroundColor": "#171717",
       "androidSplashResourceName": "splash"
     },
     "StatusBar": {
       "style": "DARK",
-      "backgroundColor": "#0a1628"
+      "backgroundColor": "#171717"
     },
     "Keyboard": {
       "resize": "body",
